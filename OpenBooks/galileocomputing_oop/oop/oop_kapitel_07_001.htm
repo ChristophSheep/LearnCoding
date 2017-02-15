@@ -1,0 +1,708 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 7 Abläufe in einem objektorientierten System</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 7 Abläufe in einem objektorientierten System">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 7 Abläufe in einem objektorientierten System">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_06_004.htm">
+<link rel="next" href="oop_kapitel_07_002.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_06_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="#mj832cf99e6c67bcd07d36fe1057e6f852" class="navh">7 Abläufe in einem objektorientierten System</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj26b861834c431b683e4e1d0ac1938cba" class="navh">7.1 Erzeugung von Objekten mit Konstruktoren und Prototypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj6cd9b2d12e6d2f663e4c1128b111c5d9" class="navh">7.1.1 Konstruktoren: Klassen als Vorlagen für ihre Exemplare</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj29e4ea58eb12662f0f36f92b5ec8adaa" class="navh">7.1.2 Prototypen als Vorlagen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj51d93c2b5e445392072beadafdebd393" class="navh">7.1.3 Entwurfsmuster »Prototyp«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_002.htm#mj1c44c94f2295b431db9cb9b5ee03bc9f" class="navnav">7.2 Fabriken als Abstraktionsebene für die Objekterzeugung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjb223311c89407a9e76da180dc3f69036" class="navnav">7.2.1 Statische Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjaa0579b2fb6bb3ec6034cf05f1eecac9" class="navnav">7.2.2 Abstrakte Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjc5cb28a57eeadedfbc991e6786b00788" class="navnav">7.2.3 Konfigurierbare Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj081b9df6d2dc6eafff1ff31f2823b219" class="navnav">7.2.4 Registraturen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj91442f54dd3e6454d2343a346244a94c" class="navnav">7.2.5 Fabrikmethoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7e0c800eda7165eac4272a1955efef1a" class="navnav">7.2.6 Erzeugung von Objekten als Singletons</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7dcd47135763da11d4d4dc6876f5e60f" class="navnav">7.2.7 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_003.htm#mj8ee9807b6d851ca17774d80d4e8b83bb" class="navnav">7.3 Objekte löschen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj7283bd45b7cfe614019b221ea52afec4" class="navnav">7.3.1 Speicherbereiche für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj61cf5d0c185ed5382c55f54cd3fe712c" class="navnav">7.3.2 Was ist eine Garbage Collection?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj77b12ff91a3d2c926b596ecf298bfde6" class="navnav">7.3.3 Umsetzung einer Garbage Collection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_004.htm#mja44c8c090df304b5376fe244eb0505d7" class="navnav">7.4 Objekte in Aktion und in Interaktion</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj461a627b534275782ce4985792ee15db" class="navnav">7.4.1 UML: Diagramme zur Beschreibung von Abläufen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mjf78234957c82aa740d796d46b611a52f" class="navnav">7.4.2 Nachrichten an Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj10368deb9e22e623d5445b79601554b1" class="navnav">7.4.3 Iteratoren und Generatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj3f6bd50ca8e5f65f36567d80e2803893" class="navnav">7.4.4 Funktionsobjekte und ihr Einsatz als Eventhandler</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj7e10a219a48a6476b1ea82aec6cc5ef4" class="navnav">7.4.5 Kopien von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj66aae429fecf9db6555945805016c62e" class="navnav">7.4.6 Sortierung von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_005.htm#mj7468c23d82240bfb461b8090668d1a51" class="navnav">7.5 Kontrakte: Objekte als Vertragspartner</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjed5c3bed5d1f32427a86656f31c3e743" class="navnav">7.5.1 Überprüfung von Kontrakten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjb272d58355d9d7a0899049eb6842697a" class="navnav">7.5.2 Übernahme von Verantwortung: Unterklassen in der Pflicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mja3c37a47a8407bc65b94f93f6a254ca2" class="navnav">7.5.3 Prüfungen von Kontrakten bei Entwicklung und Betrieb</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_006.htm#mjec595d98347a935335b712f91956664c" class="navnav">7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj3963c0742069044978ac462cc56c5b5a" class="navnav">7.6.1 Exceptions in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mje09bc3c4971db9aa83562a1fe7c4e034" class="navnav">7.6.2 Exceptions und der Kontrollfluss eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj21b606a3bb186e029d6b9c8c22764cc0" class="navnav">7.6.3 Exceptions im Einsatz bei Kontraktverletzungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj05465a5863b658f1b916b7805e1ef3c9" class="navnav">7.6.4 Exceptions als Teil eines Kontraktes</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjbf1f56f9665424db8d4cfc65f9adce59" class="navnav">7.6.5 Der Umgang mit Checked Exceptions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjd35575d7d7be5ba9875a7b50fa01d0d0" class="navnav">7.6.6 Exceptions in der Zusammenfassung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main">
+<p class="anleser"><em>In diesem Kapitel beschäftigen wir uns mit dem Verhalten von Objekten zur Laufzeit eines Programms. Wir begleiten Objekte vom Zeitpunkt ihrer Erzeugung über ihre hoffentlich sinnvollen Interaktionen bis zum Ende ihres Lebens, an dem sie oft nur als ein Stück Abfall angesehen werden und von der »Müllabfuhr« (der Garbage Collection) aufgesammelt werden.</em></p><a id="mj832cf99e6c67bcd07d36fe1057e6f852" name="mj832cf99e6c67bcd07d36fe1057e6f852"></a><h1 class="t1">7 Abläufe in einem objektorientierten System</h1>
+<p>Die Art, wie wir Objekte erzeugen, ist ganz entscheidend für die Qualität von objektorientierten Systemen. Der Mechanismus der dynamischen Polymorphie bietet uns eine Möglichkeit, unsere Programme änderbar und erweiterbar zu gestalten. Wenn Sie sich aber bei der Objekterzeugung auf zu starre Mechanismen einlassen, haben Sie diesen Vorteil schnell wieder verspielt. Um die Vorteile der Polymorphie wirklich für Erweiterungen nutzen zu können, müssen Sie die Stellen, an denen Objekte erzeugt werden, als mögliche Erweiterungspunkte betrachten.</p>
+<p><strong><em>Aufbau des  
+Kapitels</em></strong></p>
+<p>In Abschnitt 7.1 gehen wir deshalb zunächst auf die grundlegenden Möglichkeiten der Objekterzeugung ein: die Erzeugung von Objekten über Konstruktoren oder Prototypen. Eine der beiden Möglichkeiten wird von den objektorientierten Programmiersprachen meist direkt bereitgestellt.</p>
+<p>Diese beiden Möglichkeiten alleine reichen aber nicht aus, um Programme flexibel zu gestalten. In Abschnitt 7.2 gehen wir deshalb auf das Thema der Objekt-Fabriken ein. Dort beschreiben wir, wie wir die Möglichkeiten der Objekterzeugung verwenden sollten, um unsere Programme flexibel und erweiterbar zu halten. Abschnitt 7.3 beschäftigt sich damit, wie Objekte wieder gelöscht werden. In Abschnitt 7.4 sind die verschiedenen Formen von Interaktion zwischen Objekten das Thema. Schließlich beschäftigen wir uns in den Abschnitten 7.5 und 7.6 mit der Prüfung von Kontrakten zwischen Objekten und der Rolle  von Exceptions bei dieser Prüfung.</p><a id="mj26b861834c431b683e4e1d0ac1938cba" name="mj26b861834c431b683e4e1d0ac1938cba"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">7.1 Erzeugung von Objekten mit Konstruktoren und Prototypen  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Grundsätzlich gibt es zwei verschiedene Möglichkeiten, Objekte zu erzeugen und zu initialisieren. Das zu verwendende Verfahren wird dabei meist durch die Programmiersprache exklusiv vorgegeben:</p>
+<p><strong><em>Zwei Möglichkeiten der Objekterstellung</em></strong></p>
+<ul class="gp">
+<li>Erzeugung von Objekten über Klassenmethoden, sogenannte <span class="ckursiv">Konstruktoren.</span> Diese bieten in der Regel auch Initialisierungsmöglichkeiten für Objekte.</li>
+</ul>
+<ul class="gp">
+<li>Erzeugung von Objekten über das Kopieren von <span class="ckursiv">Prototypen</span>. Dabei dienen Objekte als Basis für das Erstellen von weiteren Objekten. Prototypen sind außerdem ein Entwurfsmuster, das sich auch in Sprachen umsetzen lässt, die selbst nicht prototypbasiert sind.</li>
+</ul>
+<p>In den <span class="ckursiv">folgenden</span> beiden Abschnitten werden wir zunächst den Ansatz der Konstruktoren und dann den Ansatz der Prototypen vorstellen.</p><a id="mj6cd9b2d12e6d2f663e4c1128b111c5d9" name="mj6cd9b2d12e6d2f663e4c1128b111c5d9"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">7.1.1 Konstruktoren: Klassen als Vorlagen für ihre  
+Exemplare  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In den meisten Programmiersprachen werden Objekte über Konstruktoren erzeugt. Bereits in Abschnitt 4.2.6, »Klassenbezogene Methoden und Attribute«, haben wir Konstruktoren als Operationen von Klassen eingeführt. Die Definition eines Konstruktors wiederholen wir an dieser Stelle, um Ihnen das Zurückblättern zu ersparen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Konstruktor
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Konstruktoren sind Operationen einer Klasse, durch die Exemplare dieser Klasse erstellt werden können. Die Klassendefinition dient dabei als Vorlage für das durch den Aufruf einer Konstruktoroperation erstellte Objekt. </p>
+</td>
+</tr>
+</table><br><p>Bei Verwendung eines Konstruktors stellt die jeweilige Klasse eine Vorlage für die Objekte dar und definiert die Eigenschaften der Objekte. Ist ein Objekt aufgrund dieser Vorlage einmal erstellt, kann die Menge seiner grundsätzlichen Eigenschaften in der Regel nicht mehr verändert werden. Sie können zum Beispiel nach der Erzeugung keine neuen Eigenschaften und Operationen mehr zum Objekt hinzufügen, da die Klasse diese als Vorlage bereits eindeutig definiert. [Es gibt allerdings Programmiersprachen wie Ruby oder Python, die auch das zulassen.
+] </p>
+<p>Schauen Sie sich also ein sehr einfaches Beispiel eines Konstruktors in der Sprache C++ einmal etwas genauer an. In Abbildung 7.1 sehen Sie zwei Klassen von Teigwaren mit jeweils zugeordneten Konstruktoren. Damit wir dieses Buch bei Amazon auch zusätzlich in der Kategorie Kochbuch einsortieren können, werden wir mit dem verwendeten Konstruktor das beliebte schwäbische Gericht Spätzle herstellen.</p>
+<div class="bildbox">
+<p><a name="IDAMQSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_001.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_001.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.1    </strong>Konstruktoren für Teigwaren</p>
+<p>In Listing 7.1 ist die Umsetzung der drei verschiedenen Konstruktoren für die Klasse <span class="clisting">Spaetzle</span> in C++ aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">class Spaetzle:  public Teigware 
+{ 
+    // ... 
+private: 
+    Herstellungsart art; 
+public: 
+    // Standardkonstruktor 
+    Spaetzle() {};   
+    // Konstruktor mit Initialisierung 
+    Spaetzle(Herstellungsart art) : art(art) {};  
+    // Copy-Konstruktor 
+    Spaetzle(const Spaetzle&amp; spaetzle) :   
+         Teigware(spaetzle), art(spaetzle.art) {}; 
+    // ... 
+};</pre></div>
+<p class="tabunter"><strong>Listing 7.1    </strong>Konstruktoren für Spaetzle-Objekte</p>
+<p>Die verwendeten Konstruktoren gehören drei verschiedenen Gruppen an:</p>
+<ul class="gp">
+<li>In Zeile  wird der Standardkonstruktor ohne Parameter umgesetzt.</li>
+</ul>
+<ul class="gp">
+<li>In Zeile  wird ein Konstruktor umgesetzt, der zusätzlich eine Initialisierung des Objekts vornimmt.</li>
+</ul>
+<ul class="gp">
+<li>In Zeile  wird der sogenannte Copy-Konstruktor umgesetzt. Dieser erstellt ein neues Objekt auf Basis eines bereits existierenden Objekts.</li>
+</ul>
+<p><strong><em>Standardkonstruktor</em></strong></p>
+<p>Unter Verwendung des Standardkonstruktors können Sie nun ein Exemplar der Klasse <span class="clisting">Spaetzle</span> erzeugen:</p>
+<div class="listing"><pre class="prettyprint">Spaetzle abendessen = new Spaetzle();</pre></div>
+<p>Damit haben Sie ein Objekt konstruiert, dessen Datenelemente durch die beiden beteiligten Klassen <span class="clisting">Spaetzle</span> und <span class="clisting">Teigwaren</span> festgelegt sind. Das neu konstruierte Objekt unterstützt außerdem alle Operationen, für welche die beiden Klassen Methoden implementiert haben.</p>
+<p>Das Einzige, was wir am Objekt nach dessen Konstruktion noch ändern können, sind dessen konkrete Daten, also die Belegungen für die von der Klasse definierten Datenelemente. [Auch hier gilt wieder, dass einige Sprachen wie Python oder Ruby es zulassen, dass später noch weitere Methoden oder Eigenschaften einem Objekt hinzugefügt werden.
+] </p>
+<p><strong><em>Konstruktor mit Initialisierung</em></strong></p>
+<p>Zusätzlich zur Objektkonstruktion können Sie im gleichen Zug noch Belegungen für Attribute des Objekts mit angeben. Welche Initialisierung möglich ist, wird durch den Konstruktor festgelegt. Im Fall der Klasse <span class="clisting">Spaetzle</span> haben Sie dafür einen zweiten Konstruktor zur Verfügung, der einen Parameter für die Herstellungsart der Spätzle definiert.</p>
+<div class="listing"><pre class="prettyprint">Spaetzle(Herstellungsart art) : art(art) {};</pre></div>
+<p>Dabei wird das Datenelement <span class="clisting">art</span>, das durch die Klasse festgelegt wird, mit dem übergebenen Wert für die Herstellungsart belegt. Der konkrete Aufruf des Konstruktors könnte dann so aussehen:</p>
+<div class="listing"><pre class="prettyprint">Spaetzle leckerEssen = new Spaetzle(enHandgeschabt);</pre></div>
+<p>In Abbildung 7.2 ist das resultierende Exemplar zu sehen. Es sind die beiden Datenelemente vorhanden, die durch die beiden beteiligten Klassen definiert werden, das Datenelement <span class="clisting">art</span> ist mit dem bei der Initialisierung verwendeten Wert belegt.</p>
+<p>Die UML-Darstellung sieht leider nicht die Möglichkeit vor, die Operationen auch für die Objekte anzeigen zu lassen. Das Objekt <span class="clisting">leckeresEssen</span> unterstützt aber die beiden Operationen <span class="clisting">setzeHerstellungsart</span> und <span class="clisting">Hersteller</span>.</p>
+<div class="bildbox">
+<p><a name="IDAMSSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_002.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_002.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.2    </strong>Ein Exemplar der Klasse »Spaetzle«, Objekt »leckeresEssen«</p>
+<p><strong><em>Copy-Konstruktor</em></strong></p>
+<p>Eine besondere Art der Objektkonstruktion realisiert der sogenannte <span class="ckursiv">Copy-Konstruktor</span>, der ein neues Objekt auf der Grundlage eines bereits existierenden Objekts erstellt und dessen Daten übernimmt.</p>
+<div class="listing"><pre class="prettyprint">    Spaetzle* essen = 
+        new Spaetzle(Spaetzle::enSpaetzlesDruecker); 
+    Spaetzle* leckeresEssen = new Spaetzle(*essen); 
+    leckerEssen-&gt;setzeHerstellungsart( 
+        Spaetzle::enHandgeschabt);</pre></div>
+<p>Durch die Verwendung des Copy-Konstruktors erhalten Sie eine 1:1-Kopie Ihres Essens, eine Spätzle-Kopie (in diesem Fall eine zweite Portion Spätzle). Diese Kopie können Sie anschließend anpassen und so zum Beispiel aus einem guten ein richtig leckeres Essen machen. Im Fall unserer Spätzle ist diese Kopie auch recht einfach zu erstellen. Sofern Objekte wiederum andere Objekte referenzieren, müssen Sie sich aber entscheiden, ob sie von diesen Objekten selbst wieder Kopien anfertigen wollen oder nur den Verweis auf das Objekt kopieren.</p>
+<p>Diese beiden Alternativen werden <span class="ckursiv">tiefe und flache Kopien</span> genannt. Wir beschäftigen uns damit genauer in Abschnitt 7.4.5, »Kopien von Objekten«. [Die meisten Programmiersprachen stellen für jede Klasse einen Copy-Konstruktor auch dann bereit, wenn dieser nicht explizit umgesetzt wird. Dieser vordefinierte Copy-Konstruktor wird allerdings nur flache Kopien von Objekten anlegen.
+] </p><a id="mj29e4ea58eb12662f0f36f92b5ec8adaa" name="mj29e4ea58eb12662f0f36f92b5ec8adaa"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">7.1.2 Prototypen als Vorlagen für Objekte  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Beim klassenbasierten Ansatz der Objekterzeugung definiert die Klasse bei der Erzeugung bereits die Struktur des erzeugten Objekts. Bei der Erzeugung wird damit schon festgelegt, welche Eigenschaften und Methoden das Objekt hat, und diese sind dann in der Regel auch nicht mehr veränderbar. Die Klasse bestimmt, wie das erzeugte Objekt von seiner Struktur her aussieht. Das ist aber nur ein mögliches Vorgehen. Die andere Möglichkeit ist es, Objekte auf Basis von Prototypen zu erstellen und die konkrete Ausprägung der Objekte erst danach durchzuführen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Prototyp
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Prototyp im Bereich der objektorientierten Programmierung ist ein Objekt, das als Vorlage für die Erstellung von anderen Objekten dient. Die Vorlage kann dabei entweder als reine Kopiervorlage oder als mitgeführte Referenz verwendet werden.</p>
+</td>
+</tr>
+</table><br><p>In der Sprache JavaScript werden Prototypen verwendet, um Vererbungsbeziehungen zu ermöglichen, ohne dass überhaupt Klassen zum Einsatz kommen. Dafür werden Prototyp-Objekte eingesetzt, die per Referenz von anderen Objekten eingebunden werden. Wir stellen diesen Ansatz der Objekterzeugung, wie er in JavaScript zu finden ist, in diesem Abschnitt kurz vor. Im nächsten Abschnitt werden wir dann auf das Entwurfsmuster »Prototyp« eingehen, bei dem Objekte als Kopiervorlagen genutzt werden.</p>
+<p><strong><em>Objekterzeugung mit JavaScript</em></strong></p>
+<p>In JavaScript wird ein Objekt zunächst einfach ohne Eigenschaften konstruiert. Anschließend wird ihm aber anderes Objekt zugeordnet, das als Vorlage dient. Dabei werden die Eigenschaften dieses Objekts komplett übernommen. Das neue Objekt hält praktisch eine <span class="ckursiv">Referenz </span>auf seine Vorlage.</p>
+<p>Bei der Verwendung von solchen Objekten greifen Sie über die Objekte auf deren Vorlagen zu. Änderungen an den Vorlagen werden so auch für die auf deren Basis erstellten Objekte sichtbar.</p>
+<p><strong><em>JavaScript kennt keine Klassen.</em></strong></p>
+<p>JavaScript kennt das Konzept der Klasse überhaupt nicht und damit natürlich auch keine auf Klassen basierende Vererbung. Dennoch lassen sich auf der Basis der sogenannten Prototypen Konzepte der objektorientierten Programmierung damit umsetzen. Auch Vererbungsbeziehungen lassen sich so umsetzen.</p>
+<p>In Abbildung 7.3 sehen Sie eine Beispielhierarchie dargestellt. Anhand dieses Beispiels stellen wir im Folgenden kurz vor, wie sich mit JavaScript die dargestellten Beziehungen auch ohne Klassen realisieren lassen.</p>
+<div class="bildbox">
+<p><a name="IDARVSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_003.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_003.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.3    </strong>Hierarchie für JavaScript-Beispiel</p>
+<p><strong><em>JavaScript: Objekte und Funktionsobjekte</em></strong></p>
+<p>Anstelle von Klassen werden dabei Funktionen verwendet, die zur Initialisierung von Objekten dienen. Funktionen sind allerdings in JavaScript selbst Objekte, die Eigenschaften haben können, und werden Funktionsobjekte genannt. Wenn Sie diese Funktionen zusammen mit dem Operator <span class="clisting">new</span> aufrufen, werden sie als Konstruktoren genutzt. Es wird dann ein neues Objekt erstellt, das die durch die Funktion beschriebene Initialisierung durchläuft. Funktionsobjekte wiederum haben selbst ein weiteres Objekt zugeordnet, das als Prototyp fungiert. Bei der Objekterstellung über eine Funktion wird dieser Prototyp auch dem erstellten Objekt zugeordnet.</p>
+<p>Betrachten wir dieses Vorgehen anhand der Umsetzung unserer Beispielhierarchie aus Abbildung 7.3. In Listing 7.2 sind die Umsetzung und Verwendung dieser Hierarchie zu sehen.</p>
+<div class="listing"><pre class="prettyprint">function Basis()  
+{ 
+    this.beschreiben = function ()  
+    { 
+        alert(" Beschreibung der Basis"); 
+    } 
+} 
+ 
+function Abgeleitet()  
+{ 
+} 
+ 
+basis = new Basis();  
+Abgeleitet.prototype = basis;  
+ 
+abgeleitet1 = new Abgeleitet();   
+abgeleitet2 = new Abgeleitet(); 
+abgeleitet1.beschreiben(); // Ausg.: Beschreibung der Basis 
+abgeleitet2.beschreiben(); // Ausg.: Beschreibung der Basis</pre></div>
+<p class="tabunter"><strong>Listing 7.2    </strong>Verwendung von Prototypen in JavaScript</p>
+<p>In Zeile  wird eine Funktion definiert, mit der Objekte initialisiert werden können. In Zeile  wird festgelegt, dass jedes dieser Objekte eine Operation <span class="clisting">beschreiben</span> haben wird, deren Implementierung dort auch festgelegt wird. In Zeile  wird eine weitere Funktion <span class="clisting">Abgeleitet</span> definiert, die zunächst noch in keiner Beziehung zu der anderen Funktion steht. In Zeile  wird ein Objekt <span class="clisting">basis</span> auf Grundlage der bereits definierten Funktion <span class="clisting">Basis</span> erstellt. In Zeile  wird dem Funktionsobjekt <span class="clisting">Abgeleitet</span> dieses neue Objekt als Prototyp zugeordnet. Dies geschieht über die Eigenschaft <span class="clisting">prototype</span>, die alle Funktionsobjekte aufweisen. In der Folge werden alle über diese Funktion initialisierten Objekte (zum Beispiel die ab Zeile  erstellten) auch alle Eigenschaften und Operationen des Objekts <span class="clisting">basis</span> besitzen.</p>
+<p>Wenn nun die Operation <span class="clisting">beschreiben</span> auf den beiden Objekten aufgerufen wird, so wird die Methode <span class="clisting">beschreiben</span> ausgeführt, die dem Objekt <span class="clisting">basis</span> zugeordnet ist. Beim Aufruf einer Operation wird nämlich die Kette der Prototypen eines Objekts durchlaufen, um festzustellen, ob einer der Prototypen die erforderliche Eigenschaft aufweist. Da in dieser Kette das Objekt <span class="clisting">basis</span> die Methode <span class="clisting">beschreiben</span> umsetzt, werden Sie also für beide Aufrufe die Ausgabe erhalten »Beschreibung der Basis«.</p>
+<p>Sie können das Verhalten eines Objekts nun modifizieren, indem Sie ihm selbst weitere Datenelemente oder Methoden zuordnen. Sie können das Verhalten des Objekts aber auch ändern, indem Sie seinen Prototyp anpassen. Wenn mehrere Objekte denselben Prototyp zugeordnet haben, wird eine Änderung an diesem Prototyp das Verhalten von allen diesen Objekten modifizieren.</p>
+<div class="listing"><pre class="prettyprint">basis.beschreiben = function () 
+    { 
+       alert("keine Lust mehr, keine Beschreibung"); 
+    } 
+abgeleitet1.beschreiben(); // Ausg.: keine Lust mehr, ... 
+abgeleitet2.beschreiben(); // Ausg.: keine Lust mehr, ...</pre></div>
+<p class="tabunter"><strong>Listing 7.3    </strong>Änderung an Prototyp</p>
+<p><strong><em>JavaScript:  
+Erweiterung  
+von Objekten</em></strong></p>
+<p>In Listing 7.3 ist eine solche Anpassung zu sehen. Die Implementierung der Methode <span class="clisting">beschreiben</span> wird für den Prototyp neu umgesetzt.</p>
+<p>Sie haben mit dieser Anweisung den Prototyp von beiden Objekten <span class="clisting">abgeleitet1</span> und <span class="clisting">abgeleite</span><span class="clisting">t2</span> verändert. Damit werden sich nun beide Objekte bockig stellen und mit Verweis auf ihren Prototyp beim Aufruf von <span class="clisting">beschreiben</span> nur noch ausgeben <span class="clisting">"keine Lust mehr, keine Beschreibung"</span><span class="clisting">.</span></p>
+<p><strong><em>Vererbung in  
+JavaScript</em></strong></p>
+<p>Da offensichtlich die beiden abgeleiteten Objekte die Eigenschaften ihres Prototyps übernommen, also mit anderen Worten geerbt haben, erhalten Sie einen Mechanismus, mit dem sich einige Aspekte der Vererbung auch in JavaScript umsetzen lassen. Durch eine Kette von Prototypen und zugehörigen Funktionen lassen sich Hierarchien aufbauen.</p>
+<p>Bei der Konstruktion eines Objekts über <span class="clisting">new FunctionName</span> wird dem neu erstellten Objekt eine interne Referenz auf einen Prototyp mitgegeben, der durch den Prototyp des verwendeten Funktionsobjekt bestimmt wird. Haben Sie dem Funktionsobjekt nichts anderes mitgeteilt, ist das der Prototyp der Funktion <span class="clisting">Object()</span>. Sie können dem Funktionsobjekt aber auch explizit einen anderen Prototyp zuordnen, wie Sie bereits in Listing 7.2 gesehen haben.</p>
+<p>Um den technischen Mechanismus einer Kette von Prototypen zu illustrieren, erweitern wir die Hierarchie unseres Beispiels noch etwas. In Abbildung 7.4 ist diese erweiterte Hierarchie dargestellt.</p>
+<p><strong><em>Hierarchie von Prototypen</em></strong></p>
+<p>Der Code in Listing 7.4 erzeugt nun genau diese Hierarchie.</p>
+<div class="listing"><pre class="prettyprint">function Basis() {} 
+function AbgeleitetA() {} 
+function WeiterAbgeleitetB() {} 
+basis = new Basis(); 
+AbgeleitetA.prototype = basis; 
+abgeleitetA = new AbgeleitetA(); 
+WeiterAbgeleitetB.prototype = abgeleitetA; 
+weiterabgeleitetB = new WeiterAbgeleitetB();</pre></div>
+<p class="tabunter"><strong>Listing 7.4    </strong>Erweiterte Hierarchie für Prototypen</p>
+<div class="bildbox">
+<p><a name="IDABZSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_004.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_004.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.4    </strong>Erweiterte Hierarchie für Prototypen</p>
+<p>Das Objekt <span class="clisting">weiterabgeleitetB</span> wird unter Verwendung des Funktionsobjekts <span class="clisting">WeiterAbgeleitetB</span> erzeugt. Damit weist das Objekt eine Kette von Prototypen auf. Der Prototyp <span class="clisting">abgeleitetA</span> ist dem Objekt <span class="clisting">weiterabgeleitetB</span> direkt zugeordnet, weil dieser auch dem Funktionsobjekt zugeordnet ist. In Abbildung 7.5 ist die resultierende Kette dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAOZSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_005.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_005.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.5    </strong>Kette von Prototypen in JavaScript</p>
+<p>Prototypen sind dabei immer Objekte (keine Funktionsobjekte). Die Prototypen werden referenziert von anderen Objekten oder von Funktionsobjekten. Wird nun eine Operation auf dem Objekt aufgerufen, wird zuerst geprüft, ob das Objekt selbst eine Methode für diese Operation aufweist.</p>
+<p>Bei einem Aufruf der Operation <span class="clisting">toString</span> auf dem Objekt <span class="clisting">weiterabgeleitetB</span> startet eine Suche auf den beteiligten Objekten. </p>
+<p>Da das Objekt selbst diese Methode nicht umgesetzt hat, wird sie im ersten Prototyp der Kette gesucht. </p>
+<p>Dies ist im Fall unseres Objekts derjenige, der über die Funktion <span class="clisting">AbgeleitetA</span> erstellt wurde und unserer Variablen <span class="clisting">abgeleitetA</span> zugewiesen worden ist. Wird die Methode dort gefunden, wird sie auch aufgerufen. Aber auch hier ist keine Methode <span class="clisting">toString</span> vorhanden. Deshalb geht die Suche über den zugeordneten Prototyp weiter, bis eine Methode gefunden wird oder das Ende der Kette von Prototypen erreicht ist. Im Fall des Aufrufs von <span class="clisting">toString</span> haben Sie gerade noch Glück: Das letzte Element der Kette (das über die Funktion <span class="clisting">Object()</span> erstellte Objekt) im-plementiert die Methode, und Sie erhalten eine Beschreibung geliefert, wenn auch eine sehr unspezifische. Wenn sich auch das letzte Element der Kette nicht zuständig erklärt, kommt es zu einem Laufzeitfehler.</p>
+<p><strong><em>Vererbungskette</em></strong></p>
+<p>Damit erlaubt JavaScript ein Vererbungsverfahren, das rein auf Objekten basiert. Wenn ein Prototyp in der Kette eine Eigenschaft oder eine Operation definiert, kann diese von allen auf dessen Basis erstellten Objekten genutzt werden. Diese Methoden und Eigenschaften können jedoch auch überschrieben werden, wenn sie ein Objekt selbst oder ein Prototyp weiter vorne in der Kette neu definiert.</p>
+<p>Ein weiterer Aspekt dieser Vorgehensweise ist es, dass Objekte und deren Prototypen zur Laufzeit des Programms angepasst werden können. Da es keinerlei feste Vorlagen für die Objekte gibt, können sie nach ihrer Erstellung munter weiter mit zusätzlichen Eigenschaften und Methoden ausgestattet werden. Dabei können auch die verwendeten Prototypen nachträglich erweitert werden, so dass alle auf deren Basis erstellten Objekte danach erweiterte oder veränderte Fähigkeiten aufweisen. [Dieser Mechanismus ist sehr flexibel, aber auch schwer zu kontrollieren. Da über jedes Objekt das Verhalten einer ganzen Menge von Objekten geändert werden kann, ohne dass diese Änderung offensichtlich wird, können hier leicht Seiteneffekte entstehen. JavaScript bietet allgemein kaum Mittel, um Datenabstraktion und Kapselung zu unterstützen.
+] </p>
+<p>Offensichtlich nicht möglich ist hier Mehrfachvererbung, da es immer nur ein Attribut <span class="clisting">prototype</span> für eine Funktion gibt.</p><a id="mj51d93c2b5e445392072beadafdebd393" name="mj51d93c2b5e445392072beadafdebd393"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">7.1.3 Entwurfsmuster »Prototyp«  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Prototypen finden ihre Anwendung auch im gleichnamigen Entwurfsmuster. Dort haben Prototypen aber eine etwas andere Funktion. Sie dienen hier als Kopiervorlage, auf deren Basis neue Objekte erzeugt werden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Entwurfsmuster »Prototyp«
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bei Verwendung des Entwurfsmusters »Prototyp« wird eine Sammlung von Objekten als Vorlagen verwaltet. Wird ein neues Objekt benötigt, wird aus den Vorlagen ein Objekt ausgewählt und eine Kopie davon erzeugt. Diese ist zunächst gleich mit dem Original und kann anschließend verändert werden.</p>
+</td>
+</tr>
+</table><br><div class="bildbox">
+<p><a name="IDAU1SQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_006.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_006.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.6    </strong>Entwurfsmuster »Prototyp« mit Verwalter</p>
+<p>In Abbildung 7.6 sind die Beziehungen zwischen den Klassen des Entwurfsmusters dargestellt. In dieser Darstellung sehen Sie bereits eine Erweiterung des Musters, bei der ein Verwalter für die Prototypen zum Einsatz kommt. Die zentrale Idee ist dabei sehr einfach: Sie haben eine Reihe von Klassen, die alle eine Schnittstelle implementieren. Diese Schnittstelle spezifiziert auch eine Operation, die es erlaubt, dass die Exemplare der Klassen Kopien von sich selbst erzeugen. Sie erzeugen dann von jeder Klasse ein prototypisches Exemplar. Auf Anforderung erzeugt dieses Exemplar eine Kopie von sich selbst, diese stellen Sie dem nutzenden Modul zur Verfügung.</p>
+<p>Im abgebildeten Szenario der Abbildung 7.6 werden die erstellten Vorlagenexemplare zentral von einer Klasse <span class="clisting">PrototypVerwalter</span> gesammelt und mit einem Schlüsselwert assoziiert. Auf Anfrage mit übergebenem Schlüssel gibt ein Exemplar des <span class="clisting">PrototypVerwalters</span> dann eine Kopie des mit dem Schlüssel assoziierten Prototyps zurück.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_07_001.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="7 Abläufe in einem objektorientierten System"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_06_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

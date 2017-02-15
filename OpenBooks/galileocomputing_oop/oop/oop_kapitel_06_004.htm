@@ -1,0 +1,1831 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 6.4 Normalisierung und Denormalisierung</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 6.4 Normalisierung und Denormalisierung">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 6.4 Normalisierung und Denormalisierung">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_06_003.htm">
+<link rel="next" href="oop_kapitel_07_001.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_06_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6" class="navnav">6 Persistenz</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_06_001.htm#mj7c2a056ec1dfeac2229b1fb85c0e36d0" class="navnav">6.1 Serialisierung von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_06_002.htm#mjbd38b9e270be21fbb00edcc8ce26a7cd" class="navnav">6.2 Speicherung in Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_002.htm#mj1b05252e9b69b82768610d09fb6fc3d4" class="navnav">6.2.1 Relationale Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_002.htm#mjc05ff1bffed71d95850cc8397fa56212" class="navnav">6.2.2 Struktur der relationalen Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_002.htm#mj69af567b73ef41ffbbb8e5e072376df0" class="navnav">6.2.3 Begriffsdefinitionen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_06_003.htm#mjd2117313ff67a912fd368065166ffb83" class="navnav">6.3 Abbildung auf relationale Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_003.htm#mj74a9a5ecb728d5307a0fc21d6ec2ef9d" class="navnav">6.3.1 Abbildung von Objekten in relationalen Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_003.htm#mjf8f90d6389516f03d3fc7d8cea5fe76a" class="navnav">6.3.2 Abbildung von Beziehungen in relationalen Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_003.htm#mj0e2023160a7634a4eac30b19482f0854" class="navnav">6.3.3 Abbildung von Vererbungsbeziehungen auf eine relationale Datenbank</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mjcb211e5113a744c438c6611dc39084bc" class="navh">6.4 Normalisierung und Denormalisierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjb2d04eb1b4c3f9d8c3c58601fc80ce55" class="navh">6.4.1 Die erste Normalform: Es werden einzelne Fakten gespeichert</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjbc06a32922168bcbe16f5ebc29155d09" class="navh">6.4.2 Die zweite Normalform: Alles hängt vom ganzen Schlüssel ab</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj3baa93dbfa4964f9eb161a54e80449e9" class="navh">6.4.3 Die dritte Normalform: Keine Abhängigkeiten unter den Nichtschlüssel-Spalten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mja09896a3c0def58f650ceeb0095eb2c7" class="navh">6.4.4 Die vierte Normalform: Trennen unabhängiger Relationen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj5d506b0fd2c19e48f0eb50a5e2a3fe38" class="navh">6.4.5 Die fünfte Normalform: Einfacher geht&#8217;s nicht</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mjcb211e5113a744c438c6611dc39084bc" name="mjcb211e5113a744c438c6611dc39084bc"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">6.4 Normalisierung und Denormalisierung  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p><strong><em>Normalisierung: Redundanz minimieren</em></strong></p>
+<p>Wir haben gerade einige Richtlinien vorgestellt, nach denen wir vorgehen sollten, wenn wir objektorientierte Klassenstrukturen auf Tabellen abbilden. Doch die relationalen Datenbanken sind unabhängig von der Objektorientierung. Die relationalen Datenbanken sind dabei einer der wenigen Bereiche der Softwareentwicklung, denen eine mathematisch begründete Theorie zugrunde liegt. Sie haben ihre eigenen Regeln, wie man die Tabellen und Beziehungen unter ihnen gestalten sollte.</p>
+<p>Die Zielsetzung der Theorie deckt sich mit unserer Zielsetzung, <span class="ckursiv">Redundanzen und Konsistenzfehler</span> in den Daten zu vermeiden. Dazu dienen in der relationalen Theorie die <span class="ckursiv">Regeln der Normalisierung</span>, die wir uns gleich anschauen werden. Durch die Anwendung der Regeln der Normalisierung wird das Datenmodell in Normalformen gebracht und die Redundanzen und die sich daraus ergebende Gefahr von Inkonsistenzen vermieden.</p>
+<p>Im vorhergehenden Abschnitt haben wir uns mit den Abbildungsregeln zwischen der Welt der Objekte und der relationalen Welt beschäftigt. In diesem Abschnitt werden wir uns die Regeln der Normalisierung anschauen und diese in Beziehung zu diesen Abbildungsregeln setzen.</p>
+<p><strong><em>Denormalisierung: Redundanz bewusst einführen</em></strong></p>
+<p>Zunächst aber ein Blick auf die Ausnahme von der Regel. Manchmal gibt es nämlich Gründe, von den Normalformen bei der Datenmodellierung bewusst abzuweichen. Dabei bewegen wir uns bewusst in die entgegengesetzte Richtung und speichern Daten redundant ab, um den Zugriff auf diese Daten zu beschleunigen. Diese <span class="ckursiv">Denormalisierung</span> ist eine Möglichkeit, die Effizienz bestimmter Prozesse auf die Kosten anderer Prozesse zu erhöhen.</p>
+<p>Nehmen wir zum Beispiel ein Datenmodell, in dem wir eine Tabelle mit Kundendaten vorliegen haben und eine Tabelle mit Bestellungen der Kunden. Die Kunden werden durch die Kundennummer eindeutig identifiziert &#8211; die Kundennummer ist ein Primärschlüssel in der Tabelle der Kunden und ein Fremdschlüssel in der Tabelle der Bestellungen.</p>
+<p>Wenn wir uns eine Bestellung anschauen möchten, müssen wir beide Tabellen lesen, weil zum Beispiel der Name des Kunden nicht in der Tabelle der Bestellungen, sondern in der Tabelle der Kunden gespeichert wird. Um das Lesen der Kundentabelle beim Anzeigen der Bestellungen zu vermeiden, können wir unser Datenmodell so ändern, dass eine Kopie des Namens des Kunden redundant in der Tabelle der Bestellungen gespeichert wird. Damit soll erreicht werden, dass die Anzeige der Bestellungen schneller erfolgen kann. Diese Beschleunigung wird jedoch durch einen höheren Speicherbedarf für die Tabelle der Bestellungen und erhöhte Komplexität beim Ändern der Kundennamen erkauft.</p>
+<p><strong><em>Normalisierungsregeln und Abbildungsregeln</em></strong></p>
+<p>Wir erwarten, dass die Anwendung der Normalisierungsregeln zu ähnlichen Ergebnissen führt, wie die von uns aufgestellten Regeln der Abbildungen von Klassen auf Tabellen. Schauen wir uns jetzt die Normalformen und die Probleme, die sie lösen, an, und überprüfen wir, ob unsere Abbildungsregeln zu normalisierten Datenmodellen führen.</p><a id="mjb2d04eb1b4c3f9d8c3c58601fc80ce55" name="mjb2d04eb1b4c3f9d8c3c58601fc80ce55"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">6.4.1 Die erste Normalform: Es werden einzelne Fakten gespeichert  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Erste Normalform (1NF)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Tabelle ist in der ersten Normalform, wenn in jedem ihrer Felder nur einzelne Werte enthalten sind.</p>
+</td>
+</tr>
+</table><br><p>Die erste Normalform definiert eigentlich nur, womit sich die relationale Theorie überhaupt befasst &#8211; mit den Relationen über den Wertemengen. Sie besagt, dass wir in jedem Feld einer Tabelle einen einzelnen Wert speichern sollten und nicht eine Liste oder eine Kombination von Werten. Wenn wir also in einer Tabelle die Relation (Land, Stadt) beschreiben wollen, besagt die erste Normalform, dass wir dazu eine Tabelle brauchen, die zwei Spalten hat. In einem Feld eines Datensatzes wird immer maximal ein Land, in dem anderen maximal eine Stadt gespeichert.</p>
+<p>In einem Land können jedoch mehrere Städte liegen. Es entspräche nicht der ersten Normalform, wenn wir ein einem Feld eines Datensatzes eine ganze Liste von Städten speichern würden:</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Land
+</td>
+<td class="tabellenkopf">Stadt
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Deutschland</p>
+</td>
+<td class="tabellentext">
+<p>Berlin, Bonn, Hamburg</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Österreich</p>
+</td>
+<td class="tabellentext">
+<p>Wien, Linz, Graz</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Italien</p>
+</td>
+<td class="tabellentext">
+<p>Rom, Venedig, Milano</p>
+</td>
+</tr>
+</table><br><p>Um das Datenmodell in die erste Normalform zu überführen, muss man die Städte in separaten Datensätzen speichern:</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Land
+</td>
+<td class="tabellenkopf">Stadt
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Deutschland</p>
+</td>
+<td class="tabellentext">
+<p>Berlin</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Deutschland</p>
+</td>
+<td class="tabellentext">
+<p>Bonn</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Deutschland</p>
+</td>
+<td class="tabellentext">
+<p>Hamburg</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Österreich</p>
+</td>
+<td class="tabellentext">
+<p>Wien</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>…</p>
+</td>
+<td class="tabellentext">
+<p>…</p>
+</td>
+</tr>
+</table><br><p><strong><em>Einzelwerte und Kombinationen</em></strong></p>
+<p>Was jedoch ein einzelner Wert und was eine Kombination aus Werten ist, ist eine fachliche Entscheidung. Wie schon oben besprochen, kann zum Beispiel eine Postleitzahl ein fachlich relevanter Wert sein, oder sie kann als Bestandteil der Adresse betrachtet werden.</p>
+<p>Ein Polygon wird durch die Koordinaten seiner Eckpunkte beschrieben, sind die Werte der Koordinaten einzelne Werte oder kann der ganze Pfad als ein Wert betrachtet werden? Das sind Entscheidungen, die für jede Anwendung getroffen werden müssen. Ist die Relation, die wir in einer Tabelle speichern möchten, die Relation (Kunde, Adresse) oder die Relation (Kunde, Postleitzahl, Straßenname, Hausnummer, Stadt)? Betrachten wir die Polygone als die Relation (ID, Liste der Eckpunkte) oder (ID, Eckpunktnummer, X, Y)?</p>
+<p><strong><em>Diskussion: Abbildungsregeln und erste Normalform</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wie sieht es aber aus, wenn ich eine Liste von Werten zwar nicht in einem Feld eines Datensatzes speichere, sondern mehrere Spalten des gleichen Typs erstelle? Was ist, wenn ich zu einem Kunden maximal drei Telefonnummern speichern möchte und deswegen drei Spalten Telefonnummer1, Telefonnummer2 und Telefonnummer3 definiere?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Auch das wäre eine Verletzung der ersten Normalform, wenn die beschriebene Relation (Kunde, Telefonnummer) wäre. Hätten die drei Telefonnummern jedoch unterschiedliche Rollen, so dass man sie nicht beliebig austauschen könnte, wäre es etwas anderes. Eine solche Relation könnte zum Beispiel die folgende sein: (Kunde, Telefonnummer, Faxnummer, Pagernummer)</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Aber oben beschreibst Du genau diese Vorgehensweise als eine Möglichkeit, eine 1:n-Beziehung abzubilden. Widersprechen die Mappingregeln denn bereits der ersten Normalform?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> In der Tat würde eine solche Abbildung einer 1:n-Beziehung der ersten Normalform widersprechen. Daher benutzt man sie auch sehr selten. Sie kann jedoch &#8211; als eine Maßnahme der Denormalisierung &#8211; sinnvoll sein.</span><a id="mjbc06a32922168bcbe16f5ebc29155d09" name="mjbc06a32922168bcbe16f5ebc29155d09"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">6.4.2 Die zweite Normalform: Alles hängt vom ganzen Schlüssel ab  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Zweite Normalform (2NF)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Tabelle ist dann in der zweiten Normalform, wenn sie in der ersten Normalform ist und alle Werte der Spalten, die nicht ein Teil des Schlüssels sind, funktional von dem gesamten Primärschlüssel abhängig sind.</p>
+</td>
+</tr>
+</table><br><p>Wenn ein Primärschlüssel aus mehreren Spalten besteht, sollte keine Untermenge der Primärschlüsselspalten ausreichen, um einen Wert einer anderen Spalte bestimmen zu können.</p>
+<p>Nehmen wir als Beispiel eine Tabelle, in der wir die Lieferanten unserer Produkte speichern. Ein Lieferant kann mehrere Produkte liefern, und ein Produkt kann von mehreren Lieferanten zu unterschiedlichen Konditionen geliefert werden.</p>
+<p>Wenn wir die Relation (Produkt-Id, Lieferanten-Id, Produktname, Lieferantenname, Preis, Lieferzeit) [In den Fällen, in denen diese Information relevant ist, werden wir die Schlüsselspalten einer Relation unterstrichen darstellen.
+]  betrachten, stellen wir fest, dass der Produktname sich bereits aus der ID des Produktes bestimmen lässt und der Lieferantenname aus der ID des Lieferantennamens. Nur für den Preis und die Lieferzeit brauchen wir den gesamten Primärschlüssel.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="6">Lieferbedingungen
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Produkt-Id
+</td>
+<td class="tabellenkopf">Lieferanten-Id
+</td>
+<td class="tabellenkopf">Produktname
+</td>
+<td class="tabellenkopf">Lieferantenname
+</td>
+<td class="tabellenkopf">Preis
+</td>
+<td class="tabellenkopf">Lieferzeit
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>Blumenerde</p>
+</td>
+<td class="tabellentext">
+<p>Garden&amp;Co</p>
+</td>
+<td class="tabellentext">
+<p>10</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>2</p>
+</td>
+<td class="tabellentext">
+<p>Blumenerde</p>
+</td>
+<td class="tabellentext">
+<p>Zilinsky und Partner</p>
+</td>
+<td class="tabellentext">
+<p>8</p>
+</td>
+<td class="tabellentext">
+<p>2</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>2</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>Spaten</p>
+</td>
+<td class="tabellentext">
+<p>Garden&amp;Co</p>
+</td>
+<td class="tabellentext">
+<p>17</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+</tr>
+</table><br><p><strong><em>Verletzung  
+der zweiten  
+Normalform</em></strong></p>
+<p>Dieses Datenmodell entspricht also nicht der zweiten Normalform, und in unseren Daten bestehen Redundanzen. Der Name des Produktes 1 (Blumenerde) wird an mehreren Stellen gespeichert, so wie auch der Name des ersten Lieferanten.</p>
+<p><strong><em>Änderungsanomalien</em></strong></p>
+<p>Wenn wir den Namen des Produktes ändern, müssen wir es entweder in allen Datensätzen ändern, oder unser Datenbestand wird inkonsistent. Dieses Fehlverhalten wird auch als Änderungsanomalie bezeichnet (<span class="ckursiv">Update Anomaly</span>).</p>
+<p>Um unser Datenmodell in die zweite Normalform zu überführen, müssen wir die Relation aufspalten. Wir überführen die Spalten, die nur von Teilen des Primärschlüssels abhängig gewesen sind, in ihre separaten Relationen. Die Teile des ursprünglichen Primärschlüssels werden jetzt zusätzlich zu Fremdschlüsseln in den neuen Tabellen. Unsere bisherige Tabelle hat also zwei Spalten verloren:</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="4">Lieferbedingungen
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">ProdId
+</td>
+<td class="tabellenkopf">LieferId
+</td>
+<td class="tabellenkopf">Preis
+</td>
+<td class="tabellenkopf">Lieferzeit
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>10</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>2</p>
+</td>
+<td class="tabellentext">
+<p>8</p>
+</td>
+<td class="tabellentext">
+<p>2</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>2</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>17</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+</tr>
+</table><br><p>Die zugehörigen Daten werden jetzt in zwei separaten Tabellen gespeichert und sind damit nicht mehr redundant. Die Produkte haben ihre eigene Tabelle, ebenso die Lieferanten.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Produkte
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">ProdId
+</td>
+<td class="tabellenkopf">Produkt
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>Blumenerde</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>2</p>
+</td>
+<td class="tabellentext">
+<p>Spaten</p>
+</td>
+</tr>
+</table><br><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Lieferanten
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">LieferId
+</td>
+<td class="tabellenkopf">Lieferant
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>Garden&amp;Co</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>2</p>
+</td>
+<td class="tabellentext">
+<p>Zilinsky und Partner</p>
+</td>
+</tr>
+</table><br><p><strong><em>2NF und Abbildungsregeln</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Objektrelationale Abbildungsregeln und 2NF
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Würden unsere Abbildungsregeln zum gleichen Ergebnis führen wie die Normalisierung?</p>
+<p>Schauen wir uns das dazugehörige Klassenmodell an, das in Abbildung 6.12 dargestellt ist. In diesem Klassenmodell sehen wir zwei Klassen, die in einer n:m-Assoziation mit einer Assoziationsklasse stehen. Unsere Mappingregeln besagen, dass wir eine n:m-Assoziation durch eine Assoziationstabelle abbilden, die Fremdschlüssel zu den Klassentabellen enthält. Die Attribute der Assoziationsklasse werden dabei in der Assoziationstabelle gespeichert. Und das wäre genau das Datenmodell, das wir durch die Normalisierung erhalten. Damit entspricht die zweite Normalform den Abbildungsregeln für n:m-Beziehungen.</p>
+</td>
+</tr>
+</table><br><div class="bildbox">
+<p><a name="IDA10SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_02_004.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_02_004.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.12    </strong>Klassenmodell &#8211; Produkt und Lieferant</p><a id="mj3baa93dbfa4964f9eb161a54e80449e9" name="mj3baa93dbfa4964f9eb161a54e80449e9"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">6.4.3 Die dritte Normalform: Keine Abhängigkeiten unter den Nichtschlüssel-Spalten  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Die dritte Normalform beschäftigt sich nun mit Spalten, die nicht zum Primärschlüssel gehören.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Dritte Normalform (3NF)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Tabelle ist in der dritten Normalform, wenn sie in der zweiten Normalform ist und keine funktionalen Abhängigkeiten unter den Spalten, die nicht zum Primärschlüssel gehören, bestehen.</p>
+</td>
+</tr>
+</table><br><p>Stellen wir uns vor, dass wir bei jeder Bestellung die Kundennummer und den Kundennamen speichern, wie in der unten stehenden Tabelle dargestellt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="4">Bestellung
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Bestellnummer
+</td>
+<td class="tabellenkopf">Kundennummer
+</td>
+<td class="tabellenkopf">Kundenname
+</td>
+<td class="tabellenkopf">Lieferdatum
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>123456</p>
+</td>
+<td class="tabellentext">
+<p>9876</p>
+</td>
+<td class="tabellentext">
+<p>Anna Müller</p>
+</td>
+<td class="tabellentext">
+<p>11.07.2006</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>123457</p>
+</td>
+<td class="tabellentext">
+<p>7346</p>
+</td>
+<td class="tabellentext">
+<p>Bertha Maier</p>
+</td>
+<td class="tabellentext">
+<p>14.08.2006</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>123458</p>
+</td>
+<td class="tabellentext">
+<p>9876</p>
+</td>
+<td class="tabellentext">
+<p>Anna Müller</p>
+</td>
+<td class="tabellentext">
+<p>03.12.2006</p>
+</td>
+</tr>
+</table><br><p>Diese Tabelle ist in der ersten und in der zweiten Normalform, denn alle Fakten werden einzeln gespeichert, und die Werte der Nichtschlüssel-Spalten lassen sich aus dem ganzen, und zwar nur dem ganzen, Primärschlüssel bestimmen. Der Primärschlüssel besteht ja nur aus der Spalte Bestellnummer.</p>
+<p>Trotzdem haben wir in unserem Datenmodell eine Redundanz, denn es besteht eine funktionale Abhängigkeit zwischen der Kundennummer und dem Kundennamen. Ändern wir den Namen des Kunden in der Bestellung 123456, müssen wir den Namen auch in der Bestellung 123458 ändern. Sonst hätten wir inkonsistente Daten bezüglich der Kundin mit der Kundennummer 9876.</p>
+<p><strong><em>Aufspaltung  
+der Tabelle</em></strong></p>
+<p>Um das Datenmodell in die dritte Normalform zu bringen, müssen wir die Tabelle aufspalten:</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="3">Bestellung
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Bestellnummer
+</td>
+<td class="tabellenkopf">Kundennummer
+</td>
+<td class="tabellenkopf">Lieferdatum
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>123456</p>
+</td>
+<td class="tabellentext">
+<p>9876</p>
+</td>
+<td class="tabellentext">
+<p>11.07.2006</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>123457</p>
+</td>
+<td class="tabellentext">
+<p>7346</p>
+</td>
+<td class="tabellentext">
+<p>14.08.2006</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>123458</p>
+</td>
+<td class="tabellentext">
+<p>9876</p>
+</td>
+<td class="tabellentext">
+<p>03.12.2006</p>
+</td>
+</tr>
+</table><br><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Kunde
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Kundennummer
+</td>
+<td class="tabellenkopf">Kundenname
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>9876</p>
+</td>
+<td class="tabellentext">
+<p>Anna Müller</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>7346</p>
+</td>
+<td class="tabellentext">
+<p>Bertha Maier</p>
+</td>
+</tr>
+</table><br><p>Die dritte Normalform sagt eigentlich, dass wir in einer Relation Fakten über unterschiedliche Dinge in unterschiedlichen Tabellen speichern sollten; Fakten über Bestellungen in der Tabelle <span class="clisting">Bestellungen</span>, Fakten über Kunden in der Tabelle <span class="clisting">Kunden</span>.</p>
+<p>Ist eine Tabelle in der dritten Normalform, sind alle Felder eines Datensatzes abhängig vom Primärschlüssel, dem ganzen Primärschlüssel <span class="ckursiv">und nichts als dem Primärschlüssel</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Objektrelationale Abbildungsregeln und 3NF
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Und was sagen unsere Abbildungsregeln zu dieser Situation? Sie sagen, dass wir eine 1:n-Beziehung so speichern sollen, dass der Primärschlüssel des 1–Teilnehmers in die Tabelle des n-Teilnehmers als Fremdschlüssel hinzugefügt werden kann. Dies entspricht genau unserem normalisierten Datenmodell.</p>
+</td>
+</tr>
+</table><br><p>Da die dritte Normalform sich nicht zu den Schlüsselkandidaten äußert, gibt es Fälle, in denen diese trivialerweise erfüllt ist, nämlich dann, wenn alle Spalten einer Tabelle Schlüsselkandidaten sind. Das sich auch hier Redundanzen ergeben können, springt die Boyce-Codd-Normalform ein, um auch dafür Regeln festzulegen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Die Boyce-Codd-Normalform (BCNF)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Tabelle ist in der Boyce-Codd-Normalform, wenn sie in der dritten Normalform ist und die Teile der Schlüsselkandidaten nicht von Teilen anderer Schlüsselkandidaten funktional abhängig sind.</p>
+</td>
+</tr>
+</table><br><p>Wir verdeutlichen diese Definition am besten anhand eines Beispiels.</p>
+<p><strong><em>Spezialist  
+® Thema</em></strong></p>
+<p>Nehmen wir an, wir betreiben eine Beratungshotline, die zu verschiedenen Themen registrierte Kunden beraten kann. Wir beschäftigen viele Spezialisten, jeder Spezialist ist für genau ein Thema zuständig, für ein Thema haben wir aber mehrere Spezialisten. Es besteht also eine funktionale Abhängigkeit <span class="ckursiv">Spezialist</span> ® <span class="ckursiv">Thema</span>.</p>
+<p><strong><em>(Kunde, Thema) ® Spezialist</em></strong></p>
+<p>Um die Qualität unserer Dienstleistung zu erhöhen, haben wir beschlossen, dass jeder registrierte Kunde für die Themen, für die er unsere Dienste bestellt hat, immer genau einen Spezialisten als Ansprechpartner haben wird. Es besteht also eine funktionale Abhängigkeit (<span class="ckursiv">Kunde, Thema</span>) ® <span class="ckursiv">Spezialist</span>.</p>
+<p>Die Tabelle, die diese Beziehungen abbildet, sieht zunächst so aus:</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="3">Beratungsabos
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Kunde
+</td>
+<td class="tabellenkopf">Thema
+</td>
+<td class="tabellenkopf">Spezialist
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Alice Müller</p>
+</td>
+<td class="tabellentext">
+<p>Hedge Fonds</p>
+</td>
+<td class="tabellentext">
+<p>Gordon Gekko</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Alice Müller</p>
+</td>
+<td class="tabellentext">
+<p>Industrieaktien</p>
+</td>
+<td class="tabellentext">
+<p>James Taggart</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob Smith</p>
+</td>
+<td class="tabellentext">
+<p>Hedge Fonds</p>
+</td>
+<td class="tabellentext">
+<p>Bud Fox</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Christine Neumann</p>
+</td>
+<td class="tabellentext">
+<p>Hedge Fonds</p>
+</td>
+<td class="tabellentext">
+<p>Gordon Gekko</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Christine Neumann</p>
+</td>
+<td class="tabellentext">
+<p>Edelmetalle</p>
+</td>
+<td class="tabellentext">
+<p>Francisco d&#8217;Anconia</p>
+</td>
+</tr>
+</table><br><p>In dieser Tabelle haben wir zwei mögliche Schlüsselkandidaten: Wir können jeden Datensatz mit dem Paar (<span class="ckursiv">Kunde, Thema</span>), den wir als den Primärschlüssel gewählt haben, eindeutig bestimmen. Als ein Alternativschlüssel könnte aber auch das Paar (<span class="ckursiv">Kunde</span>, <span class="ckursiv">Spezialist</span>) dienen. Hätten wir allerdings das Paar (<span class="ckursiv">Kunde</span>, <span class="ckursiv">Spezialist</span>) als Primärschlüssel gewählt, würde unsere Tabelle nicht die zweite Normalform erfüllen, weil dann die Nichtschlüssel-Spalte <span class="ckursiv">Thema</span> von dem Teilschlüssel <span class="ckursiv">Spezialist</span> funktional abhängig wäre.</p>
+<p><strong><em>Triviale Erfüllung der 3NF</em></strong></p>
+<p>Da aber unser gewählter Primärschlüssel aus den Spalten (<span class="ckursiv">Kunde, Thema</span>) besteht, erfüllt unsere Tabelle sogar die dritte Normalform. Dies ist allerdings in diesem Fall eine triviale Feststellung, da wir nur eine Spalte haben, die nicht zum Schlüssel gehört. Deshalb ist die Erfüllung der dritten Normalform hier keine besonders große Leistung unseres Datenmodells.</p>
+<p><strong><em>Anomalien</em></strong></p>
+<p>Dennoch weist unsere Tabelle ähnliche Anomalien auf wie Tabellen, die nicht in der zweiten Normalform sind. Der Fakt, dass Gordon Gekko sich bei uns auf Hedge Fonds spezialisiert hat, ist redundant gespeichert, und die Daten von Eddie Willers, unserem neuen Spezialisten für Industrieaktien, können wir nicht speichern, weil es noch keinen Kunden gibt, dessen Ansprechpartner er wäre.</p>
+<p>Um unser Datenmodell in die BCNF zu überführen, spalten wir die Relation (<span class="ckursiv">Kunde</span>, <span class="ckursiv">Thema</span>, <span class="ckursiv">Spezialist</span>) in zwei neue Relationen (<span class="ckursiv">Kunde</span>, <span class="ckursiv">Spezialist</span>) und (<span class="ckursiv">Spezialist</span>, <span class="ckursiv">Thema</span>) auf.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Beratungsabos
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Kunde
+</td>
+<td class="tabellenkopf">Spezialist
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Alice Müller</p>
+</td>
+<td class="tabellentext">
+<p>Gordon Gekko</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Alice Müller</p>
+</td>
+<td class="tabellentext">
+<p>James Taggart</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob Smith</p>
+</td>
+<td class="tabellentext">
+<p>Bud Fox</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Christine Neumann</p>
+</td>
+<td class="tabellentext">
+<p>Gordon Gekko</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Christine Neumann</p>
+</td>
+<td class="tabellentext">
+<p>Francisco d&#8217;Anconia</p>
+</td>
+</tr>
+</table><br><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Spezialisierungen
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Spezialist
+</td>
+<td class="tabellenkopf">Thema
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Gordon Gekko</p>
+</td>
+<td class="tabellentext">
+<p>Hedge Fonds</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>James Taggart</p>
+</td>
+<td class="tabellentext">
+<p>Industrieaktien</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bud Fox</p>
+</td>
+<td class="tabellentext">
+<p>Hedge Fonds</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Francisco d&#8217;Anconia</p>
+</td>
+<td class="tabellentext">
+<p>Edelmetalle</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eddie Willers</p>
+</td>
+<td class="tabellentext">
+<p>Industrieaktien</p>
+</td>
+</tr>
+</table><br><p>Diese Tabellen weisen nun keine Anomalien auf, Gordons Qualifikation wird eindeutig gespeichert, und wir können jetzt auch einen Datensatz für Eddie Willers einfügen. Allerdings wird in dieser Struktur die Einschränkung, dass ein Kunde pro Thema nur einen Ansprechpartner haben darf, nicht durch die Primärschlüssel erzwungen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Die Herkunft des Namens Boyce-Codd-Normalform
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Die bisher betrachteten Normalformen waren sauber durchnummeriert und somit als aufeinander aufbauend erkennbar. Warum heißt also die Boyce-Codd-Normalform nicht einfach <span class="ckursiv">vierte Normalform</span>?</p>
+<p>Die Normalformen wurden in den 70er-Jahren des 20. Jahrhunderts entwickelt, bevor die relationalen Datenbanken breiten Einsatz in der Industrie gefunden hatten. Es gab fünf definierte Normalformen. Erst mit der Verbreitung der relationalen Datenbanken wurde dann erkannt, dass eine Spezialform der dritten Normalform eine Normalform für sich ist. Um eine konsistente Nummerierung der Normalformen beizubehalten, hätte man nun die vierte und fünfte Normalform um einen Platz verschieben müssen. Aus verständlichen Gründen wurde das unterlassen. Daher trägt die Boyce-Codd-Normalform den Namen ihrer Entwickler: Ray Boyce und Edgar Codd.</p>
+</td>
+</tr>
+</table><br><a id="mja09896a3c0def58f650ceeb0095eb2c7" name="mja09896a3c0def58f650ceeb0095eb2c7"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">6.4.4 Die vierte Normalform: Trennen unabhängiger Relationen  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Vierte Normalform
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Tabelle ist dann in der vierten Normalform, wenn sie in der Boyce-Codd-Normalform ist und maximal eine nichttriviale mehrwertige, funktionale Abhängigkeit enthält.</p>
+</td>
+</tr>
+</table><br><p>Während die vorherigen Normalformen Anomalien behandelten, die von Abhängigkeiten der Felder innerhalb eines Datensatzes herrührten, befasst sich die vierte Normalform mit den Anomalien, die mit Abhängigkeiten zwischen verschiedenen Datensätzen zusammenhängen.</p>
+<p>Schauen wir uns die Problemstellung am besten wieder an einem Beispiel an.</p>
+<p>Nehmen wir an, die Mitarbeiter unserer Firma sprechen verschiedene Sprachen und haben verschiedene Qualifikationen, die in einer Tabelle <span class="clisting">Mitarbeiterausbildung</span> enthalten sind.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="3">Mitarbeiterausbildung
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Mitarbeiter
+</td>
+<td class="tabellenkopf">Sprache
+</td>
+<td class="tabellenkopf">Qualifikation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Deutsch</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Englisch</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Englisch</p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>Deutsch</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>Englisch</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob </p>
+</td>
+<td class="tabellentext">
+<p>Russisch</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+</table><br><p><strong><em>BCNF erfüllt</em></strong></p>
+<p>Die Tabelle erfüllt die BCNF, denn es besteht kein Zusammenhang zwischen der Qualifikation eines Mitarbeiters und den Sprachen, die er beherrscht. Aber aus genau diesem Grund enthält unsere Tabelle redundante Daten. Um die Tatsache zu speichern, dass Anna SQL kann, müssen wir auch einen Wert in die Primärschlüsselspalte <span class="ckursiv">Sprache</span> eintragen. Da Anna aber außer Deutsch und Englisch keine weitere Sprache spricht, müssen wir entweder Deutsch oder Englisch noch einmal eintragen. Ähnlich sieht es mit Bobs Russischkenntnissen und dem redundant gespeicherten Fakt aus, dass er C++ kann.</p>
+<p>Um diese Redundanzen zu beseitigen, könnten wir eine Hilfsspalte zum Primärschlüssel hinzufügen und die nicht benötigten Felder in den Spalten <span class="ckursiv">Sprache</span> und <span class="ckursiv">Qualifikation</span> leer lassen. Die angepasste Tabelle sieht dann wie folgt aus.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="4">Mitarbeiterausbildung
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Mitarbeiter
+</td>
+<td class="tabellenkopf">Zeilennummer
+</td>
+<td class="tabellenkopf">Sprache
+</td>
+<td class="tabellenkopf">Qualifikation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>Deutsch</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>2</p>
+</td>
+<td class="tabellentext">
+<p>Englisch</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>3</p>
+</td>
+<td class="tabellentext">
+<p> </p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>1</p>
+</td>
+<td class="tabellentext">
+<p>Englisch</p>
+</td>
+<td class="tabellentext">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>2</p>
+</td>
+<td class="tabellentext">
+<p>Russisch</p>
+</td>
+<td class="tabellentext">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>3</p>
+</td>
+<td class="tabellentext">
+<p>Deutsch</p>
+</td>
+<td class="tabellentext">
+<p> </p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>4</p>
+</td>
+<td class="tabellentext">
+<p>Deutsch</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>5</p>
+</td>
+<td class="tabellentext">
+<p> </p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+</table><br><p>Doch dies ist keine Lösung, denn auch wenn wir jetzt keine Daten redundant speichern müssen, wir können es immer noch tun. Außerdem gibt es in dieser Datenbankstruktur keine Regel, die bestimmt, wie wir die Daten speichern sollen. Warum speichern wir zum Beispiel Annas Deutschkenntnisse zusammen mit ihrer Qualifikation in Java?</p>
+<p><strong><em>Aufspaltung  
+der Relation</em></strong></p>
+<p>Um die vierte Normalform zu erfüllen, müssen wir die Relation (<span class="ckursiv">Mitarbeiter</span>, <span class="ckursiv">Sprache</span>, <span class="ckursiv">Qualifikation</span>) aufspalten. Da es keinen Zusammenhang zwischen der Sprache und der Qualifikation gibt, können wir zwei neue Relationen definieren: (<span class="ckursiv">Mitarbeiter</span>, <span class="ckursiv">Sprache</span>) und (<span class="ckursiv">Mitarbeiter</span>, <span class="ckursiv">Qualifikation</span>).</p>
+<p>Es entstehen die neuen Tabellen <span class="clisting">Sprachkenntnisse</span> und <span class="clisting">Qualifikationen</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Sprachkenntnisse
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Mitarbeiter
+</td>
+<td class="tabellenkopf">Sprache
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Deutsch</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Englisch</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>Deutsch</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>Englisch</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>Russisch</p>
+</td>
+</tr>
+</table><br><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Qualifikationen
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Mitarbeiter
+</td>
+<td class="tabellenkopf">Qualifikation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+</table><br><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Objektrelationale Abbildungsregeln und 4NF
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn wir uns nach unseren objektrelationalen Abbildungsregeln richten, ist es nur selbstverständlich, dass wir für verschiedene n:m-Beziehungen auch verschiedene Assoziationstabellen erzeugen. Durch die Befolgung der Abbildungsregeln droht uns also nicht die Verletzung der vierten Normalform.</p>
+</td>
+</tr>
+</table><br><a id="mj5d506b0fd2c19e48f0eb50a5e2a3fe38" name="mj5d506b0fd2c19e48f0eb50a5e2a3fe38"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">6.4.5 Die fünfte Normalform: Einfacher geht&#8217;s nicht  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Fünfte Normalform
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Tabelle ist dann in der fünften Normalform, wenn sie in der vierten Normalform ist und sie sich nicht ohne Informationsverlust in mehrere Tabellen aufspalten lässt.</p>
+</td>
+</tr>
+</table><br><p>Unsere Beispieltabelle <span class="clisting">Mitarbeiterausbildung</span> aus dem vorhergehenden Abschnitt erfüllte die vierte Normalform nicht, weil in ihr Informationen über unabhängige Tatsachen gespeichert wurden &#8211; über die Fremdsprachenkenntnisse und über die Qualifikationen der Mitarbeiter.</p>
+<p>Die Forderung der fünften Normalform ist es nun, dass wir eine Tabelle, die verschiedene mehrwertige Tatsachen speichert, nicht mehr weiter zerlegen können, ohne dass wir dadurch relevante Information verlieren. Zur Erinnerung: Mehrwertige Tatsachen sind solche, die durch mehrere Einträge in der Tabelle repräsentiert werden, also zum Beispiel die Tatsache, dass ein Mitarbeiter sowohl Java als auch C++ als Qualifikation aufweist.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+ Erfüllung der 5NF</em></strong></p>
+<p>Zur Abwechslung zeigen wir diesmal ein Beispiel, das die fünfte Normalform erfüllt. Schauen wir uns die Tabelle <span class="clisting">Projektqualifikationseinsatz</span> an, in der wir die eingesetzten Qualifikationen unserer Mitarbeiter in verschiedenen Projekten speichern.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="3">Projektqualifikationseinsatz
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Mitarbeiter
+</td>
+<td class="tabellenkopf">Projekt
+</td>
+<td class="tabellenkopf">Eingesetzte Qualifikation 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Chris</p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+</table><br><p>Wenn eine Relation nicht in der zweiten, der dritten, der Boyce-Codd- oder der vierten Normalform ist, können wir diese Relation immer in einfachere Relationen zerlegen. Unsere Tabelle <span class="clisting">Projektqualifikationseinsatz</span> ist in der vierten Normalform, weil die Information über den Projekteinsatz und die eingesetzte Qualifikation nicht voneinander unabhängig sind.</p>
+<p>In unserem vorherigen Beispiel zur Tabelle <span class="clisting">Mitarbeiterausbildung</span> konnten wir die Datensätze (<span class="clisting">Anna, Deutsch, Java</span>) und (<span class="clisting">Anna, Englisch, C++</span>) durch (<span class="clisting">Anna, Deutsch, C++</span>) und (<span class="clisting">Anna, Englisch, Java</span>) ersetzen, ohne die gespeicherten Tatsachen zu ändern. Bei der Qualifikation im Projekteinsatz können wir jetzt aber gerade <span class="ckursiv">nicht</span> die Einträge (<span class="clisting">Anna, Carmina, Java</span>) und (<span class="clisting">Anna, S-Tool, C++</span>) durch (<span class="clisting">Anna, Carmina, C++</span>) und (<span class="clisting">Anna, S-Tool, Java</span>) ersetzen. Schließlich programmierte Anna im Projekt <span class="clisting">Carmina</span> in <span class="clisting">C++</span> und nicht in <span class="clisting">Java</span>.</p>
+<p><strong><em>Relation  
+zerlegbar?</em></strong></p>
+<p>Können wir aber die Relation <span class="clisting">Projektqualifikationseinsatz</span> in einfachere Relationen so zerlegen, dass wir die ursprünglichen Informationen rekonstruieren können? In diesem Fall würde die fünfte Normalform von uns fordern, diese Zerlegung auch vorzunehmen.</p>
+<p>In der Relation <span class="clisting">Projektqualifikationseinsatz</span> speichern wir drei Tatsachen:</p>
+<ul class="gp">
+<li>Wer ist an welchem Projekt beteiligt?</li>
+</ul>
+<ul class="gp">
+<li>Wer setzt welche Qualifikation ein?</li>
+</ul>
+<ul class="gp">
+<li>Welche Qualifikation wird in welchem Projekt eingesetzt?</li>
+</ul>
+<p>Schauen wir uns die drei entsprechenden Relationen an. In der Tabelle <span class="clisting">Projekteinsatz</span> speichern wir, wer an welchem Projekt mitgearbeitet hat.</p>
+<p><strong><em>Tabelle  
+Projekteinsatz</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Projekteinsatz
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Projekt
+</td>
+<td class="tabellenkopf">Mitarbeiter
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>Chris</p>
+</td>
+</tr>
+</table><br><p>Die Tabelle <span class="clisting">Mitarbeiterqualifikation</span> beschreibt, wer welche Qualifikation eingesetzt hat.</p>
+<p><strong><em>Tabelle Mitarbeiterqualifikation</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Mitarbeiterqualifikation
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Mitarbeiter
+</td>
+<td class="tabellenkopf">Qualifikation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Chris</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+</table><br><p><strong><em>Tabelle Projektanforderungen</em></strong></p>
+<p>Schließlich speichern wir in der Tabelle <span class="clisting">Projektanforderungen</span>, in welchem Projekt welche Qualifikation eingesetzt wurde.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="2">Projektanforderungen
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Projekt
+</td>
+<td class="tabellenkopf">Qualifikation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+</table><br><p><strong><em>Rekonstruktion der Relation</em></strong></p>
+<p>Können wir aus diesen drei Relationen unsere ursprüngliche Relation <span class="clisting">Projektqualifikationseinsatz</span> rekonstruieren? Wenn wir die drei einfacheren Relationen kombinieren, bekommen wir folgende Daten.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf" colspan="3">Projektqualifikationseinsatz rekonstruiert
+</td>
+</tr>
+<tr>
+<td class="tabellenkopf">Mitarbeiter
+</td>
+<td class="tabellenkopf">Projekt
+</td>
+<td class="tabellenkopf">Eingesetze Qualifikation 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>SQL</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anna</p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>Carmina</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob</p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>Java</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bob </p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Chris</p>
+</td>
+<td class="tabellentext">
+<p>S-Tool</p>
+</td>
+<td class="tabellentext">
+<p>C++</p>
+</td>
+</tr>
+</table><br><p>Um aus unseren zerlegten Relationen die ursprüngliche Relation rekonstruieren zu können, müssen wir davon ausgehen, dass jeder im Projekt eingesetzte Mitarbeiter in dem Projekt auch alle seinen vorhandenen und benötigten Qualifikationen einsetzt. Und da im Projekt S-Tool C++ benötigt wird und Anna und Bob zu den S-Tool-Mitarbeitern gehören und C++ können, müssen wir davon ausgehen, dass sie C++ auch im Projekt S-Tool eingesetzt haben.</p>
+<p><strong><em>Rekonstruktion ist nicht möglich.</em></strong></p>
+<p>Nun, das ist nicht der Fall. Im Projekt S-Tool arbeiteten Anna und Bob nur in Java und SQL, um die nötigen C++-Teile kümmerte sich nur Chris.</p>
+<p>Die fünfte Normalform fordert von einer Relation, dass sie sich nicht in einfachere Relationen zerlegen lässt, aus denen es möglich wäre, sie wieder zu rekonstruieren. Unsere Relation <span class="clisting">Projektqualifikationseinsatz</span> ist also in der fünften Normalform.</p>
+<p><strong><em>Diskussion:  
+Firmenpolitik und Normalformen</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Und was wäre, wenn wir unsere Firmenpolitik ändern und von unseren Mitarbeiter erwarten würden, dass sie in jedem Projekt, in dem sie benötigt werden, alle ihre Qualifikationen einsetzen?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Dann wäre unsere Tabelle nicht in der fünften Normalform, weil sie entweder redundante Daten speichern würde, oder es wäre nicht eindeutig, wie die Daten gespeichert werden sollten. Und wir könnten die Relation so zerlegen, wie wir es getan haben.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Und wenn wir es nur in bestimmten Projekten oder nur bei bestimmten Qualifikationen verlangen würden? Sagen wir, im Projekt Carmina muss jeder alles geben, im Projekt S-Tool nur von ihm explizit verlangte Qualifikationen?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> In dem Falle müsste unsere Relation auch redundante Daten speichern müssen, oder es wäre nicht eindeutig, wie die Daten gespeichert werden sollen. Allerdings wäre es auch nicht möglich, die Relation rekonstruierbar zu zerlegen, sie wäre also in der fünften Normalform.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Die fünfte Normalform reicht also nicht aus, um redundante Daten und Anomalien des Datenmodells zu beseitigen?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Nein, sie reicht nicht. Um diese Anomalien und Redundanzen zu beseitigen, müsste man über ein anderes Datenmodell nachdenken. Zum Beispiel könnte man solche Spezialprojekte wie Carmina in einer anderen Relation verwalten, oder man müsste mit solchen Redundanzen leben. Aber die aufgeführten Normalformen beseitigen nicht alle Redundanzen und Anomalien.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Gibt es noch andere Normalformen, die uns weiterhelfen können?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Nein. Durch die Normalisierung kann man die meisten Redundanzen und Anomalien zwar beseitigen, nicht aber alle.</span><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_06_004.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="6.4 Normalisierung und Denormalisierung"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_06_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

@@ -1,0 +1,861 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 5.4 Mehrfachvererbung</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 5.4 Mehrfachvererbung">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 5.4 Mehrfachvererbung">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_05_003.htm">
+<link rel="next" href="oop_kapitel_05_005.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_05_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_005.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14" class="navnav">5 Vererbung und Polymorphie</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_001.htm#mje769296ccaf3ae315b0d51e75287d395" class="navnav">5.1 Die Vererbung der Spezifikation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mj9593b3442d74dcb313fed8d0adfcfc86" class="navnav">5.1.1 Hierarchien von Klassen und Unterklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjf4a1d7882a3f31bce76f5fc0e36fe27a" class="navnav">5.1.2 Unterklassen erben die Spezifikation von Oberklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjf24806ff4eeca6b9ec42217606b969bb" class="navnav">5.1.3 Das Prinzip der Ersetzbarkeit </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjb47b8cf703b67dbc87a9e7fb9b8751c4" class="navnav">5.1.4 Abstrakte Klassen, konkrete Klassen und Schnittstellen-Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mj60d6f50d874cf992b1fbe672cc0a7d4a" class="navnav">5.1.5 Vererbung der Spezifikation und das Typsystem</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mja01ba6ec04515aa1bd9707d45880ad9c" class="navnav">5.1.6 Sichtbarkeit im Rahmen der Vererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_002.htm#mj34d525fdf8bf9b40cdbf2807b9bb2199" class="navnav">5.2 Polymorphie und ihre Anwendungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjc3ecdad3da1f241382712b9dc94960bb" class="navnav">5.2.1 Dynamische Polymorphie am Beispiel</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjf4754b5db8c6e16dccab007f73c3a48a" class="navnav">5.2.2 Methoden als Implementierung von Operationen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjcecc846fe8a9e04e80aaef4c72983098" class="navnav">5.2.3 Anonyme Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mj7d8e0a558bb121f6759f3cac9e60684b" class="navnav">5.2.4 Single und Multiple Dispatch</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjf40bf0e266ddbbbdf13e9d8c595202da" class="navnav">5.2.5 Die Tabelle für virtuelle Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_003.htm#mje40df564b385a2f2ef85664fe5964be8" class="navnav">5.3 Die Vererbung der Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mj4775d703fdbfd6031f8317189db10135" class="navnav">5.3.1 Überschreiben von Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mj38e0fa066f121e7525f4ab5a0775c70a" class="navnav">5.3.2 Das Problem der instabilen Basisklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mjc3c0ce6022ae471884f1dbb63c77bc82" class="navnav">5.3.3 Problem der Gleichheitsprüfung bei geerbter Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj4744a80ac0ff520167d0124d73dba2b2" class="navh">5.4 Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj24431884d901efc513af9f03f390f35b" class="navh">5.4.1 Mehrfachvererbung: Möglichkeiten und Probleme</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj8be5a8d347008ce6a4243ad9b458d4dc" class="navh">5.4.2 Delegation statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf93d2964b661c11e0412548a9486d31f" class="navh">5.4.3 Mixin-Module statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj079fb2023e60f4e9a4af05511c818fdf" class="navh">5.4.4 Die Problemstellungen der Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_005.htm#mje3cdab009c7e71d5ab9a4a88fee35441" class="navnav">5.5 Statische und dynamische Klassifizierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_005.htm#mj854788ce700510087a70ffc87d35cb00" class="navnav">5.5.1 Dynamische Änderung der Klassenzugehörigkeit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_005.htm#mja85bbac4fb34a5938c3be9f5c65d922c" class="navnav">5.5.2 Entwurfsmuster »Strategie« statt dynamischer Klassifizierung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj4744a80ac0ff520167d0124d73dba2b2" name="mj4744a80ac0ff520167d0124d73dba2b2"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">5.4 Mehrfachvererbung  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Objekte können die Spezifikation von mehreren Klassen erfüllen. Ein solches Objekt ist in diesem Fall Exemplar von mehreren Klassen. Dies ist trivial, wenn die betroffenen Klassen in direkter oder indirekter Vererbungsbeziehung stehen.</p>
+<p>Doch es gibt auch andere Fälle: Ein Objekt kann durchaus auch die Spezifikation von mehreren Klassen erfüllen, die zueinander nicht in Vererbungsbeziehung stehen. In diesen Fällen sprechen wir von Mehrfachvererbung.</p>
+<p>Wie generell beim Thema Vererbung, so ist es auch bei der Mehrfachvererbung ein grundlegender Unterschied, ob mehrfach von Spezifikationen oder von Implementierungen geerbt wird. Im folgenden Abschnitt erläutern wir Anwendungen und Probleme dieser beiden Varianten.</p><a id="mj24431884d901efc513af9f03f390f35b" name="mj24431884d901efc513af9f03f390f35b"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">5.4.1 Mehrfachvererbung: Möglichkeiten und Probleme  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wir gehen in diesem Abschnitt zunächst kurz auf die Mehrfachvererbung von Spezifikationen ein, um dann einen konkreten Anwendungsfall für Mehrfachvererbung der Implementierung zu betrachten.</p>
+<h4 class="t4">Mehrfachvererbung der Spezifikation</h4>
+<p>Um die Mehrfachvererbung der Spezifikation zu erläutern, greifen wir unser Beispiel mit den Steuerelementen einer Benutzeroberfläche wieder auf. In Abbildung 5.52 ist eine Erweiterung dieses Beispiels dargestellt, in der auch die Klasse <span class="clisting">Darstellbar</span> zum Einsatz kommt. Dabei erfüllt   ein Exemplar der Klasse <span class="clisting">Menü</span> sowohl die Spezifikation der Klasse <span class="clisting">Steuerelement</span> als auch der Klasse <span class="clisting">Darstellbar</span>.</p>
+<p>Ein Exemplar der Klasse <span class="clisting">Menü</span> ist also ein Exemplar der Klasse <span class="clisting">Steuerelement</span>, doch gleichzeitig ist es auch ein Element der Klasse aller auf dem Bildschirm darstellbaren Objekte. Das Objekt gehört also auch zu der Klasse <span class="clisting">Darstellbar</span>. Warum nun also nicht die Klassen <span class="clisting">Steuerelement</span> und <span class="clisting">Darstellbar</span> in eine Spezialisierungsbeziehung bringen?</p>
+<div class="bildbox">
+<p><a name="IDA2FSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_034.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_034.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.52    </strong>Die Klasse »Menü« ist eine Unterklasse sowohl der  
+Klasse »Steuerelement« als auch der Klasse »Darstellbar«.</p>
+<p><strong><em>Klassen »Steuerelement« und  
+»Darstellbar« sind unabhängig.</em></strong></p>
+<p>In unserer Beispielanwendung sind nicht nur die Steuerelemente darstellbar. Unsere Anwendung kann auch Texte, Bilder, Animationen und Filme darstellen. Also ist die Klasse <span class="clisting">Steuerelement</span> keine Oberklasse der Klasse <span class="clisting">Darstellbar</span>. Manche Steuerelemente in unserer Anwendung, die Tastenkürzel und die Sprachbefehle, können nicht dargestellt werden. Also ist die Klasse <span class="clisting">Steuerelement</span> keine Unterklasse der Klasse <span class="clisting">Darstellbar</span><span class="ckursiv">.</span> Die beiden Klassen sind also völlig unabhängig und stehen in keiner Vererbungsbeziehung.</p>
+<p>Damit ist die Klasse <span class="clisting">Menü</span> eine Unterklasse sowohl der Klasse <span class="clisting">Steuerelement</span> als auch der Klasse <span class="clisting">Darstellbar</span><span class="ckursiv">.</span> Die Klasse <span class="clisting">Menü</span> erbt die Spezifikation der beiden anderen Klassen.</p>
+<p>Solange Sie die Klassen einfach im Rahmen der Vererbung der Spezifikation betrachten, ist auch die Mehrfachvererbung eine konzeptionell einfache Angelegenheit.</p>
+<p>In unserem Beispiel gehört jedes Exemplar der Klasse <span class="clisting">Menü</span> sowohl zu der Klasse <span class="clisting">Steuerelement</span> als auch zu der Klasse <span class="clisting">Darstellbar</span>. Es muss deshalb die Spezifikation beider Oberklassen erfüllen und für alle spezifizierten Operationen eine Methode bereitstellen. Die Mehrfachvererbung der Spezifikation bedeutet nur, dass sich die Exemplare gemeinsamer Unterklassen an alle Verpflichtungen aller vererbten Klassen halten. Damit ist die Mehrfachvererbung der Spezifikation konzeptuell nicht grundsätzlich verschieden von einfacher Vererbung.</p>
+<h4 class="t4">Mehrfachvererbung der Implementierung</h4>
+<p>Die Mehrfachvererbung der Implementierung ist vor allem dann sinnvoll, wenn die Oberklassen Funktionalität aus unterschiedlichen, sich nicht überlappenden Bereichen bereitstellen. Wir erläutern das am besten an einem Beispiel, nämlich dem Entwurfsmuster des Beobachters. Dazu stellen wir zunächst das Entwurfsmuster selbst vor<span class="ckursiv">.</span></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Entwurfsmuster »Beobachtetes&#8211;Beobachter« (engl. Observable-Observer)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Das Muster »Beobachtetes&#8211;Beobachter« (oder auch nur kurz »Beobachter«) wird verwendet, wenn mehrere Objekte &#8211; die <span class="ckursiv">Beobachter</span> &#8211; über die Änderungen eines anderen Objekts &#8211; dem <span class="ckursiv">Beobachteten</span> &#8211; benachrichtigt werden sollen.  Bei der Anwendung dieses Musters verwaltet das beobachtete Objekt eine Sammlung von Referenzen auf seine Beobachter. Das beobachtete Objekt braucht dabei nicht die konkreten Implementierungen der Beobachter zu kennen, es reicht, dass es ihre Beobachter-Schnittstelle kennt. Bei jeder Änderung des beobachteten Objekts benachrichtigt dieses alle seine Beobachter, die dann ihren eigenen Zustand aktualisieren können.</p>
+</td>
+</tr>
+</table><br><p>Ein beliebtes Beispiel für den Einsatz des Musters »Beobachtetes-Beobachter« ist die Darstellung von sich ändernden Dokumenten. Zum Beispiel kann ein HTML-Dokument auf verschiedene Arten dargestellt werden: In einem Fenster kann man seinen Quelltext darstellen, in einem anderen Fenster kann man seine Vorschau sehen, und wieder ein anderes Fenster kann seine Struktur darstellen.</p>
+<p>Wenn das Dokument nun geändert wird, sollten alle seine Darstellungen automatisch angepasst werden, indem alle Beobachter des Dokuments (die verschiedenen Sichten) über die Änderung benachrichtigt werden. [Im Abschnitt 8.2, »Die Präsentationsschicht: Model, View, Controller (MVC)«, werden wir das MVC-Muster vorstellen, durch das die Interaktion zwischen den dargestellten und den darstellenden Komponenten weiter strukturiert wird.
+] </p>
+<p>Eine möglicher Entwurf dafür könnte aussehen wie in Abbildung 5.53. Dabei stellt die Klasse <span class="clisting">BeobachtbaresHtmlDokument</span> Methoden für zwei unterschiedliche Bereiche zur Verfügung. Die Methoden an Markierung  bieten nicht-HTML-spezifische Funktionalität. Sie sind nur für das »beobachtbar sein« zuständig. Die Methoden hinter der Klammer mit der Markierung  besitzen HTML-spezifische Funktionalität und könnten vielleicht auch in einer anderen Anwendung ohne Beobachter verwendet werden.</p>
+<p><strong><em>Problem: Zwei Gruppen von Methoden</em></strong></p>
+<p>Die gewählte Modellierung ist praktikabel, allerdings hat sie einen Nachteil. Die Klasse <span class="clisting">BeobachtbaresHtmlDokument</span> enthält zwei Gruppen von Methoden: In einer Gruppe sind die HTML-relevanten Methoden, in der anderen die Methoden, welche die Beobachter des Dokuments verwalten. Getreu dem <span class="ckursiv">Prinzip einer einzigen Verantwortung</span> sollten wir diese zwei Funktionalitätsgruppen in zwei Quelltextmodule aufteilen &#8211; in unserem Falle also zwei Klassen. Die eine Klasse sollte sich ausschließlich um die HTML-relevanten Belange kümmern. Die andere Klasse sollte die Verwaltung der Beobachter übernehmen. Der große Vorteil wäre, dass sie dann auch bei anderen beobachteten Objekten eingesetzt werden kann.</p>
+<div class="bildbox">
+<p><a name="IDAPQSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_035.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_035.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.53    </strong>Beobachter eines beobachtbaren HTML-Dokuments</p>
+<p>In Abbildung 5.54 ist eine Modellierung aufgeführt, die genau das leistet: Die Klasse <span class="clisting">BeobachtbaresHtmlDokument</span> erbt ihre Funktionalität von zwei Klassen: <span class="clisting">HtmlDokument</span> stellt die HTML-spezifische Funktionalität zur Verfügung (siehe Markierung ), und die Klasse <span class="clisting">Beobachtbares</span> sorgt für die benötigte Funktionalität im Rahmen des Beobachtermusters (siehe Markierung ).</p>
+<p><strong><em>Umsetzung  
+in Java und C#</em></strong></p>
+<p>Nun, leider ist diese Klassenstruktur nicht in jeder Programmiersprache so direkt umsetzbar. In Java oder in der aktuellen Version von C# kann eine Klasse die Implementierung maximal von einer Klasse erben. Unsere Klasse <span class="clisting">BeobachtbaresHtmlDokument</span> müsste sich also entscheiden: Von welcher der Klassen <span class="clisting">Beobachtbares</span> und <span class="clisting">HtmlDokument</span> soll sie ihre Funktionalität erben, und welche soll sie über eine Komponente nutzen? Dies ist eine unangenehme Entscheidung, denn fachlich gesehen sind die Exemplare der Klasse <span class="clisting">BeobachtbaresHtmlDokument</span> Exemplare sowohl der Klasse <span class="clisting">Beobachtbares</span> als auch der Klasse <span class="clisting">HtmlDokument</span>. Die Klasse <span class="clisting">BeobachtbaresHtmlDokument</span> ist also fachlich gesehen eine Unterklasse der beiden Oberklassen &#8211; und wenn sie schon die Implementierung der Methoden beider Klassen nicht erben kann, so soll sie zumindest ihre Spezifikation und ihre Schnittstellen erben.</p>
+<div class="bildbox">
+<p><a name="IDAKRSQ"></a><a onClick="OpenWin('bilder/05_54.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_54.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.54    </strong>Ein HTML-Dokument mit geerbter Beobachtbarkeit</p>
+<p>Im beschriebenen Beispiel liegt also eine sinnvolle Anwendung für die Mehrfachvererbung von Implementierungen vor. Allerdings lassen sich durch die Verwendung der Mehrfachvererbung auch grobe Schnitzer in ein Modell einbauen, wenn das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> nicht auch hier strikt beachtet wird. Im folgenden Abschnitt stellen wir ein Beispiel vor, bei dem Mehrfachvererbung zwar möglich ist, aber zu sehr fragwürdigen Effekten führt.</p>
+<h4 class="t4">Missbrauch bei Mehrfachvererbung der Implementierung</h4>
+<p><strong><em>Marsroboter</em></strong></p>
+<p>Stellen Sie sich als Beispiel vor, die NASA hat sich entschieden, ihre Marsmission zu überdenken, und ist zum den Schluss gekommen, dass es zu gefährlich ist, Menschen dort hinzuschicken, und die Kosten dafür viel zu hoch sind. Stattdessen lässt die NASA einen Roboter entwickeln, der die Astronauten ersetzen soll. Der Vertriebsabteilung Ihrer Firma ist es gelungen, die NASA-Entscheider davon zu überzeugen, dass Sie die Software günstiger entwickeln können als die Konkurrenz.</p>
+<p>Jetzt schreiben Sie ein System, das diesen Roboter steuert. Eine seiner wichtigsten Fähigkeiten ist es, Schnappschüsse von der Marsoberfläche zu machen und sie zurück zur Erde zu schicken.</p>
+<p><strong><em>Methode shoot</em></strong></p>
+<p>Die Fähigkeit, Schnappschüsse zu schießen, deklarieren Sie als eine Operation <span class="clisting">shoot</span> in der Klasse <span class="clisting">Camera</span>. Ihr Marsroboter wird also eine Unterklasse der Klasse <span class="clisting">Camera</span> in der Sie die Methode <span class="clisting">shoot</span> implementieren.</p>
+<p>Sie und Ihre Kollegen sind klug und fleißig, und Ihre Arbeit kommt gut voran. Doch die Vertriebsabteilung schläft auch nicht. Es ist ihr gelungen, die geplante Software auch an andere Kunden zu verkaufen, die einen ähnlichen Roboter für andere gefährliche Aufgaben nutzen möchten. Natürlich müssen Sie dazu die Funktionalität etwas erweitern. Eine neue Fähigkeit des Roboters ist es, mit einem Maschinengewehr agieren zu können.</p>
+<p>Sie wählen eine Lösung, in der die Klasse <span class="clisting">Roboter</span> auch als eine Unterklasse der Klasse <span class="clisting">Gun</span> modelliert ist, die eine Operation zum Abfeuern einer Salve deklariert. Diese Operation haben Sie sinnigerweise auch <span class="clisting">shoot</span> genannt.</p>
+<div class="bildbox">
+<p><a name="IDAOSSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_036.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_036.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.55    </strong>Liebe Kinder: nicht zu Hause nachbauen.  
+Gefährliches Design eines Roboters.</p>
+<p><strong><em>Gruppenfoto?</em></strong></p>
+<p>Wäre dies tatsächlich das von Ihnen entworfene Design (dargestellt auch in Abbildung 5.55), müssten Sie dem Vertrieb ein großes Kompliment machen. Das Gruppenfoto der Entwickler sollten Sie allerdings lieber nicht dem von Ihnen programmierten Roboter überlassen.</p>
+<p>Obwohl das beschriebene Design also durch Mehrfachvererbung der Implementierung ermöglicht würde, ist es natürlich nicht sinnvoll. Die Kompositionsbeziehung aus Abbildung 5.56 bildet diesen Fall sicherlich besser ab.</p>
+<p>Dabei wird der Roboter nicht über Vererbung, sondern über Komposition aus den Komponenten <span class="clisting">Camera</span> und <span class="clisting">Gun</span> zusammengesetzt.</p>
+<div class="bildbox">
+<p><a name="IDA0SSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_037.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_037.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.56    </strong>Komposition ist in diesem Fall sicherer.</p>
+<p><strong><em>Diskussion:  
+Ist Mehrfachvererbung sinnvoll?</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wir würden doch in der Praxis nicht wirklich einen Roboter aus seinen verschiedenen Bestandteilen zusammenerben. Hier haben wir auch gleich ein offensichtliches Beispiel für einen Missbrauch von Vererbungsbeziehungen, den uns Programmiersprachen nun mal ermöglichen.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Da hast du allerdings Recht. Allerdings sind nicht alle Fehler bei der Nutzung von Mehrfachvererbung so einfach zu erkennen wie der aus unserem Beispiel.</span><span class="ckursiv">Aber das heißt auch noch lange nicht, dass eine sinnvoll genutzte Mehrfachvererbung auch von Implementierungen nicht zu besser strukturierten Programmen führen kann. Vor allem der Mechanismus der Klassenerweiterung, der normalerweise Mixin [Klassenerweiterungen (Mixins) erläutern wir in Abschnitt 5.4.3, »Mixin-Module statt Mehrfachvererbung«.
+]  genannt wird, ist oft ein sinnvolles Mittel, das es uns erlaubt, separate Anliegen auch sinnvoll zu trennen.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Warum gehen dann so populäre Sprachen wie Java und C# so restriktiv mit der Mehrfachvererbung um? Gerade bei Java wird diese Restriktion am Beispiel der Observer-Klasse eigentlich recht deutlich. Ich muss mich entscheiden, ob ich von Observer oder innerhalb einer fachlichen Klassenhierarchie erben möchte. Mit Mehrfachvererbung von implementierenden Klassen wäre das kein Problem. Das wäre ein klassischer Fall für eine Mixin-Klasse.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Es hat natürlich relevante Vorteile, die Mehrfachvererbung von Implementierungen auszuklammern. Wir schließen damit auf einfache Weise eine ganze Reihe von möglichen Problemen aus und machen die Implementierung der Sprache einfacher. Aber bei C# wurde wohl bereits erkannt, dass ein komplettes Ausklammern der Mehrfachvererbung über das Ziel hinausschießt. Es gibt zumindest Überlegungen, Verfahren zur Klassenerweiterung in eine Folgeversion aufzunehmen.</span><p>Im Beispiel des Roboters ist also die Komposition sicher die bessere Lösung, auch wenn rein technisch eine Lösung über Mehrfachvererbung möglich wäre.</p>
+<p>Am Beispiel der Anwendung des Musters »Beobachter« aus Abbildung 5.54 ist aber deutlich geworden, dass sich auch die Mehrfachvererbung der Implementierung sinnvoll einsetzen lässt. Trotzdem bieten viele Programmiersprachen, darunter so populäre wie Java und C#, diese Möglichkeit nicht an.</p>
+<p>Der Grund liegt darin, dass bei der Mehrfachvererbung einige konzeptionelle Fragen auftauchen, die zusätzliche Komplexität in Ihre Programme einbringen.</p>
+<p>Aber was bleibt dann? Wie können Sie die Aufgabenstellung, die wir anhand des Entwurfsmusters »Beobachter« illustriert haben, in solchen Programmiersprachen lösen? Es gibt mehrere Möglichkeiten einer Lösung.</p>
+<p>Im folgenden Abschnitt werden wir den Mechanismus der Delegation als Alternative zur Mehrfachvererbung vorstellen. In Abschnitt 5.4.3 werden wir daran anschließend die sogenannten Mixin-Module vorstellen, mit deren Hilfe die Problemstellung ebenfalls gelöst werden kann. Im Anschluss an diese beiden Abschnitte geben wir dann ab 5.4.4 einen Überblick darüber, warum Mehrfachvererbung eigentlich konzeptionell schwierig ist und wie die verschiedenen Programmiersprachen damit umgehen.</p><a id="mj8be5a8d347008ce6a4243ad9b458d4dc" name="mj8be5a8d347008ce6a4243ad9b458d4dc"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">5.4.2 Delegation statt Mehrfachvererbung  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><strong><em>Java und C# machen es sich einfach.</em></strong></p>
+<p>Der Verzicht auf die Mehrfachvererbung der Implementierung, wie von Java und C# praktiziert, hat den Charme der Einfachheit. Allerdings bringt dieser Verzicht auch einen relevanten Nachteil mit sich. Die Vererbung ist ein wichtiges Mittel der Vermeidung der Wiederholung &#8211; wenn mehrere oder gar alle Unterklassen eine Operation auf die gleiche Art umsetzen, sollte die umsetzende Methode nur an einer Stelle definiert sein. Die Vererbung ermöglicht es, diese Methode in der Oberklasse zu implementieren, so dass sie von allen Unterklassen geerbt werden kann.</p>
+<p>In Java und C# können Sie diesen Mechanismus nur entlang eines Stranges der Vererbungshierarchie nutzen. Was sollen Sie aber tun, wenn mehrere Klassen eine explizite Schnittstelle auf die gleiche Art implementieren sollen, diese in der Klassenhierarchie aber keine gemeinsame implementierende Basisklasse haben? Sie haben keine Oberklasse, von der sie die Implementierung erben können.</p>
+<p><strong><em>Redundanz im Quellcode</em></strong></p>
+<p>Eine offensichtliche und offensichtlich unschöne Möglichkeit ist es, Redundanzen in Quelltexte einzuführen. Jede der Klassen implementiert ihre eigene Methode zu jeder der deklarierten Operationen. Dies ist schnell mit Kopieren und Einfügen erledigt, man produziert mehr Quelltext und stellt sicher, dass es in dem Projekt auch in der Zukunft für Softwareentwicklung und Qualitätssicherung genug zu tun geben wird.</p>
+<p>Eine bessere Alternative ist es, die benötigte zusätzliche Funktionalität dadurch sicherzustellen, dass der Aufruf von Operationen an ein anderes Objekt delegiert wird.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Delegation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Beim Verfahren der Delegation setzt ein Objekt eine Operation so um, dass der Aufruf der Operation an ein anderes Objekt delegiert wird. Dadurch kann die Verantwortung, eine Implementierung für eine bestimmte Schnittstelle bereitzustellen, an ein Exemplar einer anderen Klasse delegiert werden. Auf diese Weise kann auch ohne Mehrfachvererbung die Funktionalität von mehreren Klassen genutzt werden.</p>
+</td>
+</tr>
+</table><br><p>In Abbildung 5.57 ist eine Lösung für unser Problem des beobachtbaren HTML-Dokuments vorgestellt, die auf Delegation basiert. Bei diesem Design deklarieren wir die Klasse <span class="clisting">Beobachtbares</span> als eine explizite Schnittstelle und lassen die Klasse <span class="clisting">BeobachtbaresHtmlDokument</span>  diese Schnittstelle implementieren, welche zudem die Funktionalität von <span class="clisting">HTMLDokument</span>  erbt.</p>
+<p>Die wirkliche Umsetzung der Methoden der Klasse <span class="clisting">Beobachtbares</span>, die ja nicht nur für die HTML-Dokumente gebraucht werden kann, stellt die Klasse <span class="clisting">BeobachtbaresImplementierung</span>  bereit. Jedes Exemplar der Klasse <span class="clisting">BeobachtbaresHtmlDokument</span> besitzt ein Exemplar der Klasse <span class="clisting">BeobachtbaresImplementierung</span>, auf das es alle Aufrufe der in der Schnittstelle <span class="clisting">Beobachtbares</span> deklarierten Methoden weiterleitet &#8211; delegiert (siehe Markierung ). Dieses Hilfsobjekt übernimmt also die komplette Verwaltung und Benachrichtigung der Beobachter.</p>
+<div class="bildbox">
+<p><a name="IDAYVSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_038.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_038.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.57    </strong>Beobachtbares HTML-Dokument unter Verwendung eines Delegaten</p>
+<p>Die Vorgehensweise, die Implementierung bestimmter Methoden einem Delegaten zu überlassen, löst das Problem der fehlenden Vererbungsmöglichkeit und hat auch noch andere Vorteile. Eine Implementierung einer Methode einer Klasse ist in Java und C# nicht während der Laufzeit der Anwendung änderbar, alle direkten Exemplare einer implementierenden Klasse haben für eine Operation dieselbe Methode. Diese Einschränkung gilt nicht für die Delegation.</p>
+<p><strong><em>Austausch von Delegaten</em></strong></p>
+<p>Verschiedene Objekte, auch wenn sie direkt zu einer und derselben Klasse gehören, können die Aufrufe an unterschiedliche Hilfsobjekte delegieren und diese sogar zur Laufzeit ändern. Diese Tatsache macht man sich auch beim Entwurfsmuster »Strategie« zunutze, dem wir uns in Abschnitt 5.5.2 widmen werden.</p>
+<p>Ein Nachteil der Delegation besteht darin, dass die Klassen, die sie verwenden, um bestimmte Schnittstellen zu implementieren, immer noch eine eigene Rumpfimplementierung der Schnittstelle besitzen müssen. Auch wenn jede der Methoden nur aus einem einzigen Aufruf der entsprechenden Methode des Delegaten besteht, sie muss vorhanden sein. Einige Programmiersprachen bieten hier allerdings weitergehende Unterstützung. In Ruby ist es zum Beispiel möglich, alle Aufrufe von Operationen an ein Hilfsobjekt weiterzuleiten, wenn diese von einem Objekt nicht selbst umgesetzt werden.</p>
+<p>Sofern die von Ihnen verwendete Programmiersprache den Mechanismus von Mixins unterstützt, bieten diese eine Alternative, die in vielen Fällen mit weniger Quelltext umzusetzen ist.</p><a id="mjf93d2964b661c11e0412548a9486d31f" name="mjf93d2964b661c11e0412548a9486d31f"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">5.4.3 Mixin-Module statt Mehrfachvererbung  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><strong><em>Mixins</em></strong></p>
+<p>Ein Mixin ist ein Modul, das Definitionen von Datenelementen und Methodenimplementierungen enthält, die einer implementierenden Klasse hinzugefügt werden können. Die Mixins kann man als das Gegenstück zu den reinen Schnittstellen-Klassen (in Java z. B. die Interfaces) betrachten. Während die reinen Schnittstellen nur einen Typ der Exemplare spezifizieren und keine Implementierung definieren, enthalten die Mixins Implementierungen von Methoden, sie selbst spezifizieren jedoch keinen Typ. Durch das »Zumischen« eines Mixins in die Deklaration einer implementierenden Klasse enthält diese Klasse alle Methoden des Mixins.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Mixin
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Mixins werden Module genannt, die existierende Klassen um Datenelemente und Methoden erweitern, ohne dass eine Subklasse dieser existierenden Klasse erstellt werden muss. Beispiele für Programmiersprachen, die eine solche Erweiterung zulassen, sind Ruby, Python oder CLOS (Common Lisp Object System). Allerdings werden Mixins von den verbreiteten objektorientierten Sprachen wie Java und C# zumindest in den aktuellen Versionen nicht direkt unterstützt. Wenn ein Mixin-Modul eine existierende Klasse erweitert, werden wir das in Ermangelung eines besseren deutschen Wortes als das <span class="ckursiv">Reinmischen</span> des Moduls bezeichnen.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Mixins statt  
+Vererbung</em></strong></p>
+<p>Bei dem Problem der fehlenden Vererbungsmöglichkeit können Ihnen die Mixins helfen. Statt der Delegation an eine Hilfsklasse können Sie unter Verwendung von Mixins ein Modul implementieren, das die Methoden für die Operationen der Schnittstelle implementiert.</p>
+<p>Wenn Sie dieses Modul als ein Mixin zu den implementierenden Klassen hinzufügen, ist Ihre Delegationsabsicht klar und explizit formuliert. Und wenn sich die Schnittstelle ändern sollte, müssen Sie auch nur das Mixin-Modul anpassen.</p>
+<p>In der Sprache Ruby gehört das Konzept der Mixins zu einem der Schlüsselfeatures der Programmiersprache. Wir stellen deshalb die Verwendung von Mixins anhand von Ruby vor. In Ruby kann ein Modul in eine Klasse mit dem Statement <span class="clisting">include</span> eingefügt werden. Somit werden alle Routinen, die in diesem Modul definiert werden, zu Methoden der Klasse, in die wir das Modul <span class="ckursiv">reinmischen</span>. Die reingemischten Methoden enthalten dabei den Zugriff auf alle anderen Methoden der Klasse, seien es Methoden, die in der Klasse direkt definiert worden sind, von der Oberklasse geerbt oder von anderen Modulen reingemischt wurden.</p>
+<p><strong><em>Mehrere Mixins mit gleichen Methoden</em></strong></p>
+<p>In Ruby erhält eine Klasse dabei pro Methodennamen immer nur eine Methode. Die zuletzt »reingemischte« Methode ersetzt die vorher reingemischte gleichnamige Methode. In Abbildung 5.58 ist dargestellt, wie Ruby auch in Mixin-Modulen nach Methoden sucht, wenn eine Operation auf einem Objekt aufgerufen wird.</p>
+<div class="bildbox">
+<p><a name="IDAWXSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_039.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_039.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.58    </strong>Suchreihenfolge nach Mixin-Modulen in Ruby</p>
+<p>In Ruby ist es kein Fehler, in einer Klasse mehrere Methoden mit dem gleichen Namen zu deklarieren. Die zuletzt deklarierte Methode ersetzt immer die zuvor deklarierte Methode des gleichen Namens. Mixins können aber existierende Methoden von Klassen nicht überschreiben, sondern lediglich neue Methoden hinzufügen. Klassen werden deshalb durch Mixin-Module erweitert. Dies unterscheidet den Mechanismus klar von der Vererbung.</p>
+<p>Wenn in Ruby eine Klasse oder ein Modul erweitert wird, wird automatisch die Funktionalität aller ihrer Exemplare erweitert! Dies funktioniert auch mit Mixins. Wenn Sie also nachträglich einem Mixin-Modul eine neue Methode hinzufügen, erhalten alle Klassen, in die Sie dieses Mixin importieren, diese Methode ebenfalls. Somit kann die Methode sofort von allen ihren Exemplaren verwendet werden.</p>
+<p><strong><em>Aspektorientierte Fähigkeiten von Ruby</em></strong></p>
+<p>Verzeihen Sie den Enthusiasmus und die etwas angestrengt jugendliche Sprache an dieser Stelle, aber dieses Feature ist richtig cool. Nicht nur weil sich dynamisch selbst modifizierender Code nützlich sein kann, sondern weil die Fähigkeit, bereits vorhandene Klassen zu erweitern oder sie zu ändern, eine wichtige Fähigkeit der aspektorientierten Programmierung ist. Weitere Anwendungen dafür werden wir deshalb auch in Kapitel 9, »Aspekte und Objektorientierung«, vorstellen.</p>
+<p><strong><em>Mixins in C++</em></strong></p>
+<p>Ein den Mixins ähnlicher Mechanismus kann auch in der Sprache C++ umgesetzt werden.</p>
+<p>Den Mixins kommt nämlich in C++ die private Ableitung von einer Oberklasse sehr nahe. Durch die private Vererbung erhält die Klasse alle öffentlichen und geschützten Methoden und Datenelemente der als Mixin agierenden Oberklasse, ohne jedoch »von außen betrachtet« ihre Unterklasse zu werden. Den Mechanismus der privaten Vererbung in C++ haben Sie bereits in Abschnitt 5.1.6, »Sichtbarkeit im Rahmen der Vererbung«, kennen gelernt.</p>
+<p>Wenden wir uns nun im folgenden Abschnitt noch einem anderen Aspekt der Mehrfachvererbung zu.</p><a id="mj079fb2023e60f4e9a4af05511c818fdf" name="mj079fb2023e60f4e9a4af05511c818fdf"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">5.4.4 Die Problemstellungen der Mehrfachvererbung  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Eine Programmiersprache, die Mehrfachvererbung unterstützt, muss drei Fragen dazu beantworten können. Es können sich verschiedene Situationen ergeben, in denen der Umgang mit Datenstrukturen, Operationen und Methoden nicht eindeutig geklärt ist. Eine Programmiersprache, die Mehrfachvererbung unterstützt, muss für diese Fragen eine Strategie vorliegen haben.</p>
+<p>In Abbildung 5.59 sind die folgenden drei Fragen an einem Beispiel illustriert.</p>
+<ul class="gp">
+<li>Frage 1: Wie werden Operationen mit gleicher Signatur behandelt, die in verschiedenen Oberklassen deklariert werden (siehe Markierung )?</li>
+</ul>
+<ul class="gp">
+<li>Frage 2: Wenn mehrere Oberklassen dieselbe Operation mit unterschiedlichen Methoden umsetzen, welche Methode wird beim Aufruf der Operation an einem Exemplar der gemeinsamen Unterklasse aufgerufen (siehe Markierung )?</li>
+</ul>
+<ul class="gp">
+<li>Frage 3: Wie werden Datenstrukturen kombiniert? An Markierung  werden die geerbeten Operationen und Methoden dargestellt. Wenn mehrere Oberklassen die Datenstruktur der Exemplare beschreiben, wie sieht die kombinierte Datenstruktur der Exemplare der gemeinsamen Unterklasse aus (siehe Markierung )?</li>
+</ul>
+<div class="bildbox">
+<p><a name="IDA3YSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_040.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_040.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.59    </strong>Problemstellungen bei Mehrfachvererbung</p>
+<p>In Tabelle 1 ist in der Übersicht dargestellt, wie die als Beispiel gewählten Sprachen Java, C#, Python und C++ bei diesen Fragen vorgehen. Java und C# umgehen die letzten beiden Fragen dadurch, dass sie nur die Mehrfachvererbung der Spezifikation erlauben. Damit müssen die beiden Sprachen lediglich eine Antwort auf die erste Frage liefern.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<caption class="tabunter"><p class="ptabunter"><strong>Tabelle 5.1    </strong>Übersicht über die Behandlung der Problemstellungen durch Sprachen</p>
+</caption>
+<tr>
+<td class="tabellenkopf"> 
+</td>
+<td class="tabellenkopf">Java
+</td>
+<td class="tabellenkopf">C#
+</td>
+<td class="tabellenkopf">Python
+</td>
+<td class="tabellenkopf">C++
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="cfett">Frage 1</span></p>
+</td>
+<td class="tabellentext">
+<p>Verschmelzung von Operationen</p>
+</td>
+<td class="tabellentext">
+<p>Mehrere  
+Operationen</p>
+</td>
+<td class="tabellentext">
+<p>Eine  
+Operation</p>
+</td>
+<td class="tabellentext">
+<p>Verschmelzung von Operationen</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="cfett">Frage 2</span></p>
+</td>
+<td class="tabellentext">
+<p>Nicht relevant</p>
+</td>
+<td class="tabellentext">
+<p>Nicht relevant</p>
+</td>
+<td class="tabellentext">
+<p>Diamantenregel</p>
+</td>
+<td class="tabellentext">
+<p>Expliziter  
+Klassenname</p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="cfett">Frage 3</span></p>
+</td>
+<td class="tabellentext">
+<p>Nicht relevant</p>
+</td>
+<td class="tabellentext">
+<p>Nicht relevant</p>
+</td>
+<td class="tabellentext">
+<p>Nicht  
+relevant</p>
+</td>
+<td class="tabellentext">
+<p>Wahlweise</p>
+</td>
+</tr>
+</table><br><p>In den folgenden Abschnitten schauen wir uns das Vorgehen der Sprachen bei der Beantwortung der Fragen etwas genauer an. Anhand von Beispielen werden wir dabei illustrieren, welche Probleme bei der Mehrfachvererbung entstehen können und welche Mittel uns die verschiedenen Sprachen bieten, diese zu lösen.</p>
+<h4 class="t4">Java und C# unterstützen nur Mehrfachvererbung der Spezifikation</h4>
+<p>Die Mehrfachvererbung der Spezifikation ist sowohl konzeptionell als auch in der Umsetzung einfacher als die Mehrfachvererbung der Implementierung. Aus diesem Grund verzichten die Programmiersprachen Java und C# zum Beispiel komplett auf die Mehrfachvererbung der Implementierung.</p>
+<p>Da Java und C# statisch typisiert sind, muss jede Klasse, auch wenn sie selbst keine Implementierung bereitstellt, deklariert werden. Aus diesem Grund unterscheidet man in Java und C# zwischen zwei Arten von Klassen:</p>
+<ul class="gp">
+<li>Klassen, die eine Implementierung ihrer Spezifikation enthalten können, die sowohl in Java als auch in C# mit dem Schlüsselwort <span class="clisting">class</span> deklariert und daher einfach nur »Klasse« genannt werden.</li>
+</ul>
+<ul class="gp">
+<li>Klassen, die nur die Spezifikation ihrer Schnittstelle enthalten dürfen. Sie werden einfach nur »Schnittstellen« genannt und mit dem Schlüsselwort <span class="clisting">interface</span> deklariert.</li>
+</ul>
+<p><strong><em>Implizite  
+und explizite Schnittstellen</em></strong></p>
+<p>Auch wenn man in der Umgangssprache in Java und C# vereinfacht zwischen <span class="ckursiv">Klassen</span> und <span class="ckursiv">Schnittstellen</span> unterscheidet, sollten Sie sich immer der Tatsache bewusst sein, dass auch die explizit als solche deklarierten Schnittstellen aus der Sicht der Objektorientierung Klassen sind und die Klassen auch eine implizite Schnittstelle deklarieren, die aus allen ihren öffentlichen Operationen besteht.</p>
+<p>In Java und C# ist die Mehrfachvererbung der expliziten Schnittstellen erlaubt, die Mehrfachvererbung der implementierenden Klassen jedoch nicht. Eine explizite Schnittstelle kann von mehreren anderen expliziten Schnittstellen erben, und eine implementierende Klasse kann mehrere Schnittstellen implementieren. Eine implementierende Klasse kann jedoch nur von einer implementierenden Klasse erben.</p>
+<h4 class="t4">Operationen mit gleicher Signatur in Java</h4>
+<p><strong><em>Mehrere Oberklassen deklarieren gleiche Operation.</em></strong></p>
+<p>Wenn mehrere Schnittstellen in Java eine Operation mit der gleichen Signatur deklarieren, gelten alle diese Deklarationen in der gemeinsamen Ableitung als eine Deklaration derselben Operation. In Java kann also eine Klasse nicht mehrere Methoden mit derselben Signatur implementieren. [Zumindest nicht in der Programmiersprache Java. In dem, vom Compiler generierten, Bytecode kann in der Tat eine Klasse mehrere Methoden mit derselben Signatur besitzen. Dies ist allerdings eher ein Implementierungsdetail der Generics in der Version 5 von Java als ein Feature der Programmiersprache. ] </p>
+<p>Da der Rückgabetyp einer Operation nicht zu deren Signatur gehört, kann in Java eine Klasse nicht ohne weiteres zwei Schnittstellen implementieren, die eine Operation mit derselben Signatur aber unterschiedlichen Rückgabetypen deklarieren.</p>
+<p>In den alten Java-Versionen bis 1.4 ist es immer ein Fehler, wenn eine Klasse zwei Schnittstellen mit einer Operation mit derselben Signatur, aber unterschiedlichen Rückgabetypen zu implementieren versucht. Denn bis zur Version 1.4 kann eine Methode den Rückgabewert der Methode, die sie überschreibt, beziehungsweise der Operation, die sie implementiert, nicht ändern.</p>
+<p>Abbildung 5.60 zeigt ein Beispiel, in dem die Datenstrukturen nur von einer Klasse geerbt werden (siehe Markierung ). Die Implementierung von <span class="clisting">operationA</span> wird nur von <span class="clisting">BasisklasseA</span> geerbt (siehe Markierung ). Es existiert zudem nur eine <span class="clisting">operationY</span> , ihr Rückgabetyp ist mit beiden geerbten Operationen kompatibel (kovariante Rückgabetypen werden ab Java 5 unterstützt). Die Klasse <span class="clisting">AbgeleiteteKlasse</span>  hat drei verschiedene inkompatible Rückgabewertspezifikationen für <span class="clisting">operationZ</span> geerbt. Dies ist in Java nicht erlaubt.</p>
+<p>Ab der Version 5 kann eine Methode einen Rückgabetyp deklarieren, der mit dem ursprünglichen Rückgabetyp kovariant ist.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Kovariante Typen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Der Typ <span class="ckursiv">T2</span> ist dem Typ <span class="ckursiv">T1</span> kovariant, wenn alle Exemplare von <span class="ckursiv">T2</span> gleichzeitig Exemplare von <span class="ckursiv">T1</span> sind. Einfacher gesagt, <span class="ckursiv">T2</span> muss entweder <span class="ckursiv">T1</span> oder sein Untertyp sein.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Prinzip der  
+Ersetzbarkeit</em></strong></p>
+<p>Obwohl in unserem Beispiel die <span class="clisting">AbgeleiteteKlasse</span> einen anderen Rückgabetyp der <span class="clisting">operationY</span> deklariert als den, der in der <span class="clisting">SchnittstelleB</span> beziehungsweise in der <span class="clisting">SchnittstelleC</span> deklariert ist, handelt es sich nicht um eine Verletzung des <span class="ckursiv">Prinzips der Ersetzbarkeit</span>. Denn die Deklaration der <span class="clisting">SchnittstelleB</span> besagt, dass die <span class="clisting">operationY</span> angewendet auf jedes Exemplar der <span class="clisting">SchnittstelleB</span> ein Exemplar der Klasse/Schnittstelle <span class="clisting">SchnittstelleB</span> oder <span class="clisting">null</span> zurückgibt. Die Implementierung in der Klasse <span class="clisting">AbgeleiteteKlasse</span> sorgt dafür, dass <span class="clisting">operationY</span> angewendet auf jedes ihrer Exemplare ein Exemplar der Klasse <span class="clisting">AbgeleiteteKlasse</span> zurückgibt. Da die <span class="clisting">AbgeleiteteKlasse</span> aber eine Unterklasse der <span class="clisting">SchnittstelleB</span> ist, ist das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> nicht verletzt.</p>
+<div class="bildbox">
+<p><a name="IDAFATQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_041.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_041.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.60    </strong>Mehrfachvererbung in Java</p>
+<p><strong><em>Ab Java 5: kovariante Rückgabetypen</em></strong></p>
+<p>Da in unserem Beispiel die <span class="clisting">AbgeleiteteKlasse</span> sowohl die <span class="clisting">SchnittstelleB</span> als auch die <span class="clisting">SchnittstelleC</span> implementiert, ist der Typ <span class="clisting">AbgeleiteteKlasse</span> sowohl mit dem Typ <span class="clisting">SchnittstelleB</span> als auch mit dem Typ <span class="clisting">SchnittstelleC</span> kovariant.</p>
+<h4 class="t4">Operationen mit gleicher Signatur in C#</h4>
+<p>Wenn in C# mehrere geerbte Schnittstellen eine Operation mit der gleichen Signatur deklarieren, enthält in C# die erbende Schnittstelle <span class="ckursiv">mehrere</span> Operationen mit gleichem Namen und gleicher Signatur. Dies ist ein Unterschied zu Java.</p>
+<p><strong><em>Gleiche Signatur</em></strong></p>
+<p>Unabhängig davon ob diese Operationen gleiche oder unterschiedliche, kovariante oder nicht kovariante Rückgabewerttypen haben, es sind unterschiedliche Operationen.</p>
+<p>Beim Aufruf meldet C# einen Mehrdeutigkeitsfehler, wenn die Signatur des Aufrufes die aufzurufende Methode nicht eindeutig bestimmt. Man kann diese Mehrdeutigkeit des Aufrufes auch durch explizite Typumwandlung des Objekts auf eine der Oberschnittstellen beseitigen.</p>
+<p>Wenn eine Schnittstelle in C# eine Operation deklariert, welche die gleiche Signatur hat wie eine geerbte Operation, wird eine neue Operation deklariert, welche die geerbte Operation verdeckt. Eine solche verdeckende Deklaration sollte mit dem Schlüsselwort <span class="clisting">new</span> gekennzeichnet werden.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Schnittstellen  
+in C#</em></strong></p>
+<p>In Abbildung 5.61 wird die Implementierung von <span class="clisting">operationA()</span> nur von <span class="clisting">BasisklasseA</span> geerbt. Für die <span class="clisting">operationA</span> aus der <span class="clisting">SchnittstelleB</span> kann, muss aber nicht eine eigene Methode bereitgestellt werden (siehe Markierung ). Jeder der geerbten Operationen mit unterschiedlichen Rückgabetypen an Markierung  muss in einer konkreten Klasse eine eigene Methode zugewiesen werden. Welche Methode aufgerufen wird, hängt vom Typ der Variablen ab, mit der auf das Objekt zugegriffen wird.</p>
+<div class="bildbox">
+<p><a name="IDATBTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_042.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_042.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.61    </strong>Mehrfachvererbung von Operationen in C#</p>
+<p>Die Datenstrukturen (siehe Markierung ) in diesem Beispiel werden hingegen nur von einer Klasse geerbt.</p>
+<p><strong><em>new und override</em></strong></p>
+<p>Genauso wie die Schnittstellen mehrere Operationen mit derselben Signatur haben können, können Klassen mehrere Methoden mit derselben Signatur haben. Wie bereits oben beschrieben, kann eine Klasse in C# mit dem Schlüsselwort <span class="clisting">new</span> durch eine neue Methode mit gleicher Signatur eine geerbte Methode verdecken, oder sie kann sie mit dem Schlüsselwort <span class="clisting">override</span> überschreiben.</p>
+<p>Wie sieht es aber mit der Implementierung der Schnittstellen aus, wenn diese mehrere Operationen mit der gleichen Signatur enthalten? Hier bietet C# zwei Möglichkeiten an:</p>
+<p><strong><em>Angabe der Schnittstelle</em></strong></p>
+<p>Gibt man vor dem Namen der Methode den Namen der Schnittstelle an, in der sie deklariert wurde, implementiert die Methode nur diese Operation. Zusätzlich können wir aber auch eine allgemeine Methode ohne Angabe der konkreten Schnittstelle umsetzen. [Diese Methode muss allerdings mit Sichtbarkeitsstufe <span class="clisting">public</span> deklariert werden.
+]  Diese wird dann in allen Fällen aufgerufen, in denen es keine anwendbare schnittstellenspezifische Methode gibt.</p>
+<h4 class="t4">Mehrfachvererbung von Operationen und Methoden in C++</h4>
+<p><strong><em>Mehrere Klassen implementieren dieselbe Operation.</em></strong></p>
+<p>C++ verhält sich sehr pragmatisch bei der Frage, was bei Mehrdeutigkeiten in Bezug auf den Aufruf von Methoden zu tun ist. Entweder ist der Aufruf einer Methode eindeutig, oder es handelt sich um einen Uneindeutigkeitsfehler. Wenn eine Klasse von mehreren Oberklassen Methoden mit derselben Signatur erbt, muss man beim Aufruf einer der Methoden den gemeinten Typ des aufgerufenen Objekts explizit bestimmen.</p>
+<p>Die aufzurufende Methode lässt sich also in den betrachteten Fällen immer bestimmen.</p>
+<p>In der Abbildung 5.62 sind an Markierung  nur neu hinzugefügte Datenelemente dargestellt. An Markierung  sehen Sie, dass nur die überschriebenen und neuen Methoden dargestellt werden. In dem abgebildeten Beispiel enthält ein Exemplar der Klasse <span class="clisting">abgeleiteteKlasse</span> alle geerbten Datenelemente, zwei davon heißen <span class="clisting">datumC</span> (siehe Markierung  und ). Bei einem Zugriff auf <span class="clisting">datumC</span> muss eindeutig klar sein, welches Element gemeint ist, sonst ist es ein Fehler.</p>
+<p>Werden zwei Operationen mit gleicher Signatur von zwei verschiedenen Klassen geerbt, so gelten ähnliche Regeln wie in Java. Es muss nur eine Methode für die Implementierung beider Operationen umgesetzt werden.</p>
+<p><strong><em>Rückgabetypen kovariant?</em></strong></p>
+<p>Ob die Rückgabetypen der Methoden gleich oder nur kovariant sein müssen, hängt hier von dem verwendeten Compiler ab. Der aktuelle C++-Standard erlaubt zwar kovariante Rückgabetypen, nicht alle Compiler halten sich allerdings an diese Vorgabe. Manche unterstützen sie überhaupt nicht, manche nur teilweise.</p>
+<div class="bildbox">
+<p><a name="IDAZCTQ"></a><a onClick="OpenWin('bilder/05_62.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_62.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.62    </strong>Mehrfachvererbung in C++</p>
+<h4 class="t4">Mehrfachvererbung von Operationen und Methoden in Python</h4>
+<p>In Python wird eine Operation ausschließlich über ihren Namen identifiziert. Wenn eine Klasse von mehreren Klassen mehrere Methoden mit demselben Namen geerbt hat, unterstützt sie trotzdem nur eine Operation mit diesem Namen.</p>
+<p>Die spannende Frage ist, welche der geerbten Methoden ausgeführt wird, wenn die Operation auf einem Exemplar der abgeleiteten Klasse aufgerufen wird.</p>
+<p><strong><em>Suchreihenfolge für Methoden</em></strong></p>
+<p>In den älteren Versionen von Python (bis zur Version 2.1) gilt für die Bestimmung der implementierenden Methode die Regel »Tiefensuche, von links nach rechts«. Das bedeutet, dass die Methode in den geerbten Oberklassen von links nach rechts gesucht wird, wobei bei jeder Klasse auch deren Oberklassen untersucht werden.</p>
+<p>Im folgenden Bild illustrieren wir die Reihenfolge, in der eine Methode bei einem Aufruf einer Operation gesucht wird:</p>
+<div class="bildbox">
+<p><a name="IDALDTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_043.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_043.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.63    </strong>Mehrfachvererbung in Python</p>
+<p><strong><em>Prinzip der kleinstmöglichen Überraschung</em></strong></p>
+<p>Python verfolgt löblicherweise das Prinzip der kleinstmöglichen Überraschung. Wäre es also nicht angebracht, statt einer Tiefensuche eher die Breitensuche zu verwenden? Das heißt, zuerst alle direkt geerbten Klassen zu untersuchen, dann erst deren direkte Oberklassen und so weiter? Wäre die Suchreihenfolge <span class="clisting">AbgleiteteKlasse</span>, <span class="clisting">BasisklasseB</span>, <span class="clisting">BasisklasseE</span> nicht weniger überraschend? Immerhin ist die Klasse <span class="clisting">BasisklasseE</span> in der Vererbungshierarchie näher an der <span class="clisting">AbgleiteteKlasse</span> als die Klasse <span class="clisting">BasisklasseA</span>.</p>
+<p>Doch wenn wir das Prinzip der Kapselung beachten, muss für uns unwichtig sein, ob die Klasse <span class="clisting">BasisklasseB</span> eine Methode selbst implementiert oder ob sie die Methode von einer ihrer Oberklassen geerbt hat. Aus diesem Grund ist die von Python gewählte Suchstrategie verständlich.</p>
+<p>In Python 2.2 wurde die Suchstrategie jedoch geändert.</p>
+<p>Die Zulassung der Mehrfachvererbung führt automatisch dazu, dass eine Klasse in der Vererbungshierarchie mehrfach auftreten kann. Was passiert, wenn eine Klasse zwei Oberklassen hat, die von derselben Klasse eine Methode erben, und eine der Oberklasse diese Methode überschreibt?</p>
+<p><strong><em>Diamantenregel</em></strong></p>
+<p>Wenn eine Klasse in der Vererbungshierarchie mehrfach auftritt, kann man das Klassendiagramm in Form einer Raute (englisch auch <span class="ckursiv">Diamond</span>) darstellen. Daher der Name der neuen Suchvorgehensweise in Python 2.2: die <span class="ckursiv">Diamantenregel</span>. [Um die Kompatibilität mit älteren Versionen zu gewährleisten, unterscheidet man in Python ab der Version 2.2 zwischen zwei Arten von Klassen. Für die »alten« Klassen werden die geerbten Methoden auch in den neueren Python-Versionen mit der Tiefensuche gefunden. Die Diamantenregel gilt nur für die »neuen« Klassen, die explizit von der Klasse <span class="clisting">object</span> erben müssen.
+] </p>
+<p>Nach der Diamantenregel wird die Suchreihenfolge genau wie in den alten Versionen bestimmt. Doch anstatt sofort mit der Suche anzufangen, werden aus der Suchreihenfolge zuerst die Duplikate entfernt. Erhalten bleibt immer nur der <span class="ckursiv">letzte</span> Eintrag einer Klasse. Wird also eine geerbte Methode durch eine der Oberklassen überschrieben, wird diese überschriebene Variante gefunden, auch wenn die ursprüngliche Implementierung in einer Basisklasse »weiter links« in der Vererbungshierarchie zu finden wäre.</p>
+<div class="bildbox">
+<p><a name="IDARETQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_044.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_044.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.64    </strong>Mehrfachvererbung in Python; die Diamantenregel</p>
+<p>Sollten Sie mit der Suchmethode von Python nicht zufrieden sein, haben Sie immer die Möglichkeit, die Methode in der abgeleiteten Klasse selbst zu implementieren und den Aufruf auf die gewünschte Implementierung umzuleiten.</p>
+<h4 class="t4">Datenstrukturen bei Mehrfachvererbung in Python</h4>
+<p>Klassen erben von ihren Oberklassen nicht nur die Spezifikation der Operationen und die Implementierung der Methoden, sondern auch die Definition der Datenelemente der Oberklasse. Wie sieht die Datenstruktur einer solchen von mehreren Oberklassen abgeleiteten Klasse in Python aus?</p>
+<p>In Python werden die Datenstrukturen der Exemplare einer Klasse nicht explizit durch die Klasse vorgegeben.</p>
+<p><strong><em>Zusammenführen der Datenelemente</em></strong></p>
+<p>Die Daten jedes Objekts werden in Python dem Objekt dynamisch zur Laufzeit zugeordnet, und unterschiedliche Exemplare derselben Klasse können durchaus unterschiedliche Attribute besitzen. Wenn mehrere Oberklassen ein Datenelement mit demselben Namen initialisieren, besitzen die Exemplare der abgeleiteten Klasse nur genau ein Datenelement mit diesem Namen. Das Datenelement enthält den letzten ihm zugewiesenen Wert. Da die Sprachen Python dynamisch typisiert ist und Variablen und Datenelemente keine deklarierten Typen haben, kann man jedem Datenelement jeden beliebigen Wert zuordnen.</p>
+<p><strong><em>Initialisierung  
+von Daten</em></strong></p>
+<p>Wenn also die Klasse <span class="clisting">A</span> in ihrer Initialisierungsroutine die Datenelemente <span class="clisting">x</span> und <span class="clisting">y</span> dem initialisierten Exemplar zuordnet, und die Klasse <span class="clisting">B</span> die Datenelemente <span class="clisting">y</span> und <span class="clisting">z</span>, und wenn die Klasse <span class="clisting">C</span> von <span class="clisting">A</span> und <span class="clisting">B</span> abgeleitet ist, können wir keine Aussage über die Attribute der initialisierten Exemplare von <span class="clisting">C</span> treffen, ohne uns die Initialisierungsroutine der Klasse <span class="clisting">C</span> selbst anzuschauen &#8211; denn hier gilt die einfache Regel &#8211; das Datenelement wird den ihm zuletzt zugewiesenen Wert haben.</p>
+<p><strong><em>Namenskonflikte</em></strong></p>
+<p>Um eventsuelle Namenskonflikte zu vermeiden, kann man in Python den Namen eines Datenexemplars mit einem doppelten Unterstrich anfangen lassen. Dies veranlasst Python, intern dem Namen des Datenattributes noch den Namen der deklarierenden Klasse hinzuzufügen. Damit wird ein Namenskonflikt zwar nicht ganz ausgeschlossen, aber die Gefahr wird erheblich reduziert.</p>
+<h4 class="t4">Datenstrukturen bei Mehrfachvererbung in C++</h4>
+<p><strong><em>Kombination von Datenstrukturen</em></strong></p>
+<p>Die Klassen in C++ enthalten die Deklaration aller ihrer Datenelemente und bestimmen so die für die Speicherung der Daten benötigten Datenstrukturen. Historisch betrachtet sind die Klassen in C++ eine Weiterentwicklung der Strukturen von C.</p>
+<p>Ähnlich wie bei der einfachen Vererbung setzt sich die Datenstruktur der Exemplare der abgeleiteten Klasse aus den Datenstrukturen der Oberklassen und den Einträgen, welche die abgeleitete Klasse selbst deklariert, zusammen. Die Datenstrukturen der verschiedenen Klassen in der Vererbungshierarchie werden im Speicher einfach hintereinander gehängt.</p>
+<p>Besitzen also mehrere Oberklassen einen Dateneintrag mit dem gleichen Namen, so werden die Exemplare von deren gemeinsamen Ableitungen mehrere Dateneinträge mit denselben Namen besitzen. Die Datentypen der Exemplare brauchen dabei nicht gleich zu sein.</p>
+<p>Doch wenn die unterschiedlichen Dateneinträge denselben Namen haben, wie wird auf diese Dateneinträge zugegriffen? Welcher der Dateneinträge wird verwendet, wenn man den Namen benutzt?</p>
+<p>Wenn es bei einem Zugriff nicht eindeutig ist, welcher Dateneintrag gemeint ist, meldet ein C++-Compiler einen Fehler. Als Programmierer haben wir aber die Möglichkeit, die Eindeutigkeit wieder herzustellen, indem explizit die Klasse angegeben wird, aus welcher der Eintrag verwendet werden soll.</p>
+<p>Illustrieren wir diesen etwas trockenen Sachverhalt am besten an einem Beispiel. In Abbildung 5.65 wird der Dateneintrag <span class="clisting">x</span> von zwei Basisklassen geerbt.</p>
+<div class="bildbox">
+<p><a name="IDAPGTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_045.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_045.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.65    </strong>Mehrfachvererbung der Dateneinträge in C++</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Zuordnung eines Datenelements</em></strong></p>
+<p>Dadurch hat jedes Exemplar der Klasse <span class="clisting">C</span> drei Dateneinträge mit dem Namen <span class="clisting">x</span>. Dennoch besteht hier keine Gefahr der Uneindeutigkeit, weil der Eintrag <span class="clisting">x</span> in der Klasse <span class="clisting">C</span> die geerbten Einträge verdeckt. Daher kann man in den Methoden der Klasse <span class="clisting">C</span> einfach den Bezeichner <span class="clisting">x</span> oder in Methoden anderer Klassen den Ausdruck <span class="clisting">pC-&gt;x</span> verwenden. Die Elemente, die in den Klassen <span class="clisting">A</span> und <span class="clisting">B</span> deklariert sind, können über den Typ <span class="clisting">C</span> gar nicht referenziert werden. Um sie verwenden zu können, müssen wir einen Zeiger vom Typ <span class="clisting">A*</span> bzw. <span class="clisting">B*</span> verwenden.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Uneindeutigkeit</em></strong></p>
+<p>Wenn die Klasse <span class="clisting">C</span> aber keinen eigenen Eintrag mit dem Namen <span class="clisting">x</span> hätte, wie in Abbildung 5.66, so wäre der Aufruf <span class="clisting">pC-&gt;x</span> nicht eindeutig und somit nicht zulässig.</p>
+<div class="bildbox">
+<p><a name="IDAVHTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_046.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_046.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.66    </strong>Mehrfachvererbung der Dateneinträge in C++. Ein Namenskonflikt.</p>
+<p>Namenskonflikte werden also vom Compiler entdeckt und müssen vom Programmierer durch eine explizite Typkonvertierung aufgelöst werden.</p>
+<p>Es gibt allerdings noch eine weitere Situation, in der die Entscheidung über ein Datenelement Fragen aufwirft: Wenn eine Oberklasse in der Vererbungshierarchie einer Unterklasse mehrfach vorkommt, enthalten die Exemplare der Unterklasse die Datenstruktur der Oberklasse mehrfach oder nur einmal? In Abbildung 5.67 ist diese Situation dargestellt: Die Klasse <span class="clisting">AbgeleiteteKlasse</span> erbt den Dateneintrag <span class="clisting">datumX</span> gleich zweimal von der Klasse <span class="clisting">BasisklasseA</span>.</p>
+<p>In diesem Beispiel <span class="ckursiv">ist</span> jedes Exemplar der Klasse <span class="clisting">BasisklasseB</span> gleichzeitig ein Exemplar der Klasse <span class="clisting">BasisklasseA</span> und <span class="ckursiv">hat</span> also die Daten eines Exemplars von der <span class="clisting">BasisklasseA</span>. Das Gleiche gilt für die <span class="clisting">BasisklasseC</span>. Da ein Exemplar der Klasse <span class="clisting">AbgeleiteteKlasse</span> gleichzeitig ein Exemplar der <span class="clisting">BasisklasseB</span> und der <span class="clisting">BasisklasseC</span> ist, also deren Daten besitzt, besitzt es zwei Datensätze der Klasse <span class="clisting">BasisklasseA</span>.</p>
+<div class="bildbox">
+<p><a name="IDAZITQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_047.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_047.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.67    </strong>Diamantenvererbung in C++. Datenstrukturen sind mehrfach vorhanden.</p>
+<p>Das <span class="clisting">Object4</span> ist ein Exemplar der Klasse <span class="clisting">AbgeleiteteKlasse</span>. Da die <span class="clisting">AbgeleiteteKlasse</span> indirekt eine Unterklasse der <span class="clisting">BasisklasseA</span> ist, ist das <span class="clisting">Object4</span> gleichzeitig ein Exemplar der <span class="clisting">BasisklasseA</span>. Doch welcher der zwei Datensätze <span class="clisting">datumX</span> ist gemeint, wenn man das Objekt als ein Exemplar der <span class="clisting">BasisklasseA</span> betrachten möchte?</p>
+<p>Diese Frage ist nicht eindeutig zu beantworten, und aus diesem Grund würde der Compiler einen Mehrdeutigkeitsfehler melden, wenn wir das <span class="clisting">Object4</span> einer Variablen des Typs <span class="clisting">BasisklasseA</span> zuweisen wollten.</p>
+<p><strong><em>Eindeutigkeit über static_cast</em></strong></p>
+<p>Um dem Compiler zu helfen, müssen wir bei der Typumwandlung von <span class="clisting">AbgeleiteteKlasse*</span> zu <span class="clisting">BasisklasseA*</span> immer den Weg in der Vererbungshierarchie eindeutig spezifizieren und den Typ des Zeigers immer zuerst explizit zu <span class="clisting">BasisklasseB*</span> oder <span class="clisting">BasisklasseC*</span> umwandeln. Über den Aufruf von <span class="clisting">static_cast</span> können wir diese Zuordnung eindeutig herstellen.</p>
+<p>Problematisch ist hier einzig die Tatsache, dass hier die Konzepte der Vererbung (der <span class="ckursiv">Ist</span>-Beziehung) und der Komposition (der <span class="ckursiv">Besteht-aus</span>-Beziehung) durcheinander gebracht sind. Doch was schert sich der Compiler um konzeptionelle Schwierigkeiten von Softwareentwicklern?</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Ersetzung der Mehrfachvererbung durch Komposition
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine alternative und unproblematische Umsetzung des Beispiels aus Abbildung 5.67 können Sie erstellen, indem Sie statt der Vererbung explizit die Komposition verwenden.</p>
+<span class="clisting">struct ZusammengesetzteKlasse { 
+ BasisklasseB b; 
+ BasisklasseC c; 
+};</span>
+<p>In diesem Beispiel <span class="ckursiv">ist</span> ein Exemplar der Klasse <span class="clisting">ZusammengesetzteKlasse</span> kein Exemplar der <span class="clisting">BasisklasseB</span> oder der <span class="clisting">BasisklasseC</span>, sondern ein Exemplar der Klasse <span class="clisting">ZusammengesetzteKlasse</span>. Sie <span class="ckursiv">besteht aus</span> einem Exemplar der <span class="clisting">BasisklasseB</span> und einem Exemplar der <span class="clisting">BasisklasseC</span>, die jeweils ein Exemplar der <span class="clisting">BasisklasseA</span> <span class="ckursiv">sind</span>.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Virtuelle  
+Vererbung</em></strong></p>
+<p>Manchmal kann es für uns aber wichtig sein, dass jedes Exemplar der abgeleiteten Klasse sich eindeutig als ein Exemplar der in der Klassenhierarchie mehrfach vorkommenden Oberklasse betrachten lässt. Dies bietet in C++ die sogenannte <span class="ckursiv">virtuelle Vererbung</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Virtuelle Vererbung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn eine <span class="clisting">BasisklasseB</span> von der <span class="clisting">BasisklasseA</span> virtuell abgeleitet ist, bedeutet das, dass die Exemplare der <span class="clisting">BasisklasseB</span> zwar alle Dateneinträge der Oberklasse <span class="clisting">BasisklasseA</span> besitzen, allerdings nicht exklusiv. Wenn auch die <span class="clisting">BasisklasseC</span> virtuell von der <span class="clisting">BasisklasseA</span> abgeleitet ist und die <span class="clisting">AbgeleiteteKlasse</span> sowohl von der <span class="clisting">BasisklasseB</span> als auch von der <span class="clisting">BasisklasseC</span> abgeleitet ist, so enthalten die Datenstrukturen der Exemplare der Klasse <span class="clisting">AbgeleiteteKlasse</span> nur einen Satz der Einträge der <span class="clisting">BasisklasseA</span>. Die in der <span class="clisting">BasisklasseB</span> und in der <span class="clisting">BasisklasseC</span> implementierten Methoden teilen sich diesen Datensatz. </p>
+</td>
+</tr>
+</table><br><p>Abbildung 5.68 zeigt den Effekt von virtueller Vererbung in der Übersicht.</p>
+<p>Exemplare der Klasse <span class="clisting">AbgeleiteteKlasse</span> enthalten nun aufgrund der virtuellen Vererbung das Datenelement <span class="clisting">datumX</span> nur einmal.</p>
+<p>Dies entspricht grob dem Verhalten von Python: Zwar hat jede Klasse der Klassenhierarchie eigene Methoden, sie teilen aber eine gemeinsame Datenstruktur.</p>
+<p>In diesem Beispiel enthält ein Exemplar der Klasse <span class="clisting">AbgeleiteteKlasse</span> nur einen Datensatz der <span class="clisting">BasisklasseA</span>, obwohl die Klasse <span class="clisting">BasisklasseA</span> über zwei Vererbungspfade erreichbar ist. Daher kann das <span class="clisting">Object4</span> es eindeutig als ein Exemplar der <span class="clisting">BasisklasseA</span> betrachtet werden, und man kann seinen Dateneintrag <span class="clisting">datumX</span> direkt verwenden, weil der Name <span class="clisting">datumX</span> diesen Dateneintrag eindeutig bestimmt.</p>
+<div class="bildbox">
+<p><a name="IDAZNTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_048.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_048.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.68    </strong>Virtuelle Vererbung in C++</p>
+<p><strong><em>Diskussion:  
+Virtuelle  
+Vererbung</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Hör mal, Du machst hier so trockene Beispiele mit ABC, kannst du dir nicht etwas Realistischeres ausdenken?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> O.k., ich versuche es. Stellen wir uns die Klasse der Transportmittel vor. Jedes Transportmittel wird eine Bezeichnung haben. Bei Schiffen wird es der Name des Schiffes sein, bei Autos das Kennzeichen, bei Fahrrädern die Seriennummer des Rahmens.</span><span class="ckursiv">Jetzt unterteilen wir die Klasse <span class="clistingk">Transportmittel</span> anhand des Kriteriums »Motorisierung« in zwei Unterklassen: <span class="clistingk">Motorisierte Transportmittel</span> (mit dem Dateneintrag »Leistung«) und <span class="clistingk">unmotorisierte Transportmittel</span>. Anhand des Kriteriums »Bereifung« unterteilen wir die Transportmittel in <span class="clistingk">bereifte Transportmittel</span> (mit dem Dateneintrag »Reifendruck«) und <span class="clistingk">reifenlose Transportmittel</span>. Schließlich leiten wir von den Oberklassen <span class="clistingk">motorisierte Transportmittel</span> und <span class="clistingk">bereifte Transportmittel</span> die Klasse <span class="clistingk">Auto</span> ab. Ich habe dir das Szenario übrigens in Abbildung 5.69 aufgezeichnet.</span><span class="ckursiv">Ein Auto hat also einen Dateneintrag über die Leistung des Motors, definiert in der Klasse motorisierte Transportmittel. Es hat auch einen Dateneintrag für den Reifendruck, definiert in der Klasse <span class="clistingk">bereifte Transportmittel</span>. Außerdem hat ein Auto, da es ein Transportmittel ist, auch einen Namen. Einen oder zwei? Da wir hier nur einen Namen brauchen, würden wir in diesem Falle in C++ die virtuelle Vererbung verwenden.</span><div class="bildbox">
+<p><a name="IDA0OTQ"></a><a onClick="OpenWin('bilder/05_69.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_69.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.69    </strong>Exotisches Beispiel für virtuelle Vererbung</p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Hör mal, dieses Beispiel ist zwar nicht so trocken, aber es ist schon ziemlich … Wie soll ich es sagen, ohne Dich zu beleidigen …?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ja gut, du hast schon Recht. Das Beispiel ist nicht besonders realistisch. Ich muss zugeben, dass ich noch nie in der Praxis die virtuelle Vererbung in C++ gebraucht habe, weil die Klassenhierarchien nie tief und komplex genug waren und ich in vielen Fällen die Komposition gegenüber der Vererbung bevorzuge.</span><span class="ckursiv">Wenn wir überhaupt überlegen müssen, ob eine Klasse virtuell oder nicht virtuell erben soll, sollten wir stattdessen zunächst überlegen, ob die Klassenhierarchie nicht zu kompliziert ist.</span><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_05_004.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="5.4 Mehrfachvererbung"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_05_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_005.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

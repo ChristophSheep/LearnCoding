@@ -1,0 +1,1244 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 7.4 Objekte in Aktion und in Interaktion</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 7.4 Objekte in Aktion und in Interaktion">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 7.4 Objekte in Aktion und in Interaktion">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_07_003.htm">
+<link rel="next" href="oop_kapitel_07_005.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_005.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852" class="navnav">7 Abläufe in einem objektorientierten System</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_001.htm#mj26b861834c431b683e4e1d0ac1938cba" class="navnav">7.1 Erzeugung von Objekten mit Konstruktoren und Prototypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj6cd9b2d12e6d2f663e4c1128b111c5d9" class="navnav">7.1.1 Konstruktoren: Klassen als Vorlagen für ihre Exemplare</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj29e4ea58eb12662f0f36f92b5ec8adaa" class="navnav">7.1.2 Prototypen als Vorlagen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj51d93c2b5e445392072beadafdebd393" class="navnav">7.1.3 Entwurfsmuster »Prototyp«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_002.htm#mj1c44c94f2295b431db9cb9b5ee03bc9f" class="navnav">7.2 Fabriken als Abstraktionsebene für die Objekterzeugung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjb223311c89407a9e76da180dc3f69036" class="navnav">7.2.1 Statische Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjaa0579b2fb6bb3ec6034cf05f1eecac9" class="navnav">7.2.2 Abstrakte Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjc5cb28a57eeadedfbc991e6786b00788" class="navnav">7.2.3 Konfigurierbare Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj081b9df6d2dc6eafff1ff31f2823b219" class="navnav">7.2.4 Registraturen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj91442f54dd3e6454d2343a346244a94c" class="navnav">7.2.5 Fabrikmethoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7e0c800eda7165eac4272a1955efef1a" class="navnav">7.2.6 Erzeugung von Objekten als Singletons</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7dcd47135763da11d4d4dc6876f5e60f" class="navnav">7.2.7 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_003.htm#mj8ee9807b6d851ca17774d80d4e8b83bb" class="navnav">7.3 Objekte löschen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj7283bd45b7cfe614019b221ea52afec4" class="navnav">7.3.1 Speicherbereiche für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj61cf5d0c185ed5382c55f54cd3fe712c" class="navnav">7.3.2 Was ist eine Garbage Collection?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj77b12ff91a3d2c926b596ecf298bfde6" class="navnav">7.3.3 Umsetzung einer Garbage Collection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mja44c8c090df304b5376fe244eb0505d7" class="navh">7.4 Objekte in Aktion und in Interaktion</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj461a627b534275782ce4985792ee15db" class="navh">7.4.1 UML: Diagramme zur Beschreibung von Abläufen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf78234957c82aa740d796d46b611a52f" class="navh">7.4.2 Nachrichten an Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj10368deb9e22e623d5445b79601554b1" class="navh">7.4.3 Iteratoren und Generatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj3f6bd50ca8e5f65f36567d80e2803893" class="navh">7.4.4 Funktionsobjekte und ihr Einsatz als Eventhandler</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj7e10a219a48a6476b1ea82aec6cc5ef4" class="navh">7.4.5 Kopien von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj66aae429fecf9db6555945805016c62e" class="navh">7.4.6 Sortierung von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_005.htm#mj7468c23d82240bfb461b8090668d1a51" class="navnav">7.5 Kontrakte: Objekte als Vertragspartner</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjed5c3bed5d1f32427a86656f31c3e743" class="navnav">7.5.1 Überprüfung von Kontrakten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjb272d58355d9d7a0899049eb6842697a" class="navnav">7.5.2 Übernahme von Verantwortung: Unterklassen in der Pflicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mja3c37a47a8407bc65b94f93f6a254ca2" class="navnav">7.5.3 Prüfungen von Kontrakten bei Entwicklung und Betrieb</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_006.htm#mjec595d98347a935335b712f91956664c" class="navnav">7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj3963c0742069044978ac462cc56c5b5a" class="navnav">7.6.1 Exceptions in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mje09bc3c4971db9aa83562a1fe7c4e034" class="navnav">7.6.2 Exceptions und der Kontrollfluss eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj21b606a3bb186e029d6b9c8c22764cc0" class="navnav">7.6.3 Exceptions im Einsatz bei Kontraktverletzungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj05465a5863b658f1b916b7805e1ef3c9" class="navnav">7.6.4 Exceptions als Teil eines Kontraktes</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjbf1f56f9665424db8d4cfc65f9adce59" class="navnav">7.6.5 Der Umgang mit Checked Exceptions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjd35575d7d7be5ba9875a7b50fa01d0d0" class="navnav">7.6.6 Exceptions in der Zusammenfassung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mja44c8c090df304b5376fe244eb0505d7" name="mja44c8c090df304b5376fe244eb0505d7"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">7.4 Objekte in Aktion und in Interaktion  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Wenn wir Objekte lediglich erzeugen und danach wieder zerstören würden, wären wir mit unseren Programmen schnell am Ende. Zwar ist vor allem die Art der Objekterzeugung sehr relevant für die Flexibilität unserer Programme. Anschließend sollen die erzeugten Objekte aber natürlich die ihnen zugedachten Aufgaben wahrnehmen. Dabei agieren und interagieren die Objekte.</p>
+<p><strong><em>Aufbau des Abschnitts</em></strong></p>
+<p>In Abschnitt 7.4.1 stellen wir zunächst die wichtigsten Sichtweisen auf die verschiedenen Formen von Aktionen und Interaktionen vor. Wir verwenden dabei die von der UML zur Verfügung gestellten Beschreibungsmöglichkeiten.</p>
+<p>Anschließend gehen wir in den Abschnitten 7.4.2 und 7.4.3 auf ausgewählte und wichtige Arten der Interaktion zwischen Objekten genauer ein. Wir beschreiben, wie Iteratoren und Generatoren dafür sorgen, dass Sie mit Sammlungen von Objekten effizient umgehen können.</p>
+<p>In Abschnitt 7.4.4 lernen Sie die Funktionsweise von Ereignissen und Delegaten kennen, die verwendet werden, um Aktionen mit Objekten zu verknüpfen.</p>
+<p>Schließlich beantwortet Abschnitt 7.4.5 die Frage, in welchen Fällen Sie Kopien von Objekten erstellen müssen und wie Sie diese Kopien korrekt herstellen.</p><a id="mj461a627b534275782ce4985792ee15db" name="mj461a627b534275782ce4985792ee15db"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">7.4.1 UML: Diagramme zur Beschreibung von Abläufen  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Um das Ablaufverhalten von Systemen zu beschreiben, bietet die UML eine ganze Reihe von Diagrammtypen an.</p>
+<p><strong><em>Diagrammtypen</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Aktivitätsdiagramme</span> 
+beschreiben die einzelnen Schritte, mit denen ein System eine bestimmte Anforderung umsetzt.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Anwendungsfalldiagramme</span> 
+werden in der Analysephase eingesetzt und beschreiben die Beziehungen zwischen Akteuren, Anwendungsfällen des Systems und dem System selbst.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Zustandsdiagramme</span> (Zustandsautomaten) 
+beschreiben die Übergänge zwischen Zuständen in einem System in Form von endlichen Automaten. Zustandsdiagramme können als Beschreibungsmittel für den Lebenszyklus eines Objekts eingesetzt werden.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Sequenzdiagramme</span> 
+beschreiben die Interaktionen und den Nachrichtenaustauch zwischen Objekten. Sie stellen vor allem den zeitlichen Ablauf dieser Nachrichten (deren Sequenz) dar.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Kommunikationsdiagramme</span> 
+(vor UML 2.0 Kollaborationsdiagramm) beschreiben ebenfalls Interaktionen, bieten aber eine etwas andere Sicht auf diese. Dabei liegt der Fokus auf der Zusammenarbeit von mehreren Objekten, die eine gemeinsame Aufgabe erledigen.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Timingdiagramme</span> 
+sind eine Neuerung der UML 2.0. Sie beschreiben die Zustandswechsel von Kommunikationspartnern aufgrund von Nachrichten. Timingdiagramme sind als Detailsicht bei zeitkritischen Zustandsübergängen sinnvoll.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Interaktionsübersichtsdiagramme</span> 
+sind ebenfalls eine Neuerung der UML 2.0. Sie bieten die Möglichkeit, Sequenzdiagramme, Kommunikationsdiagramme und Timingdiagramme (also alle Interaktionsdiagramme) in eine gemeinsame Übersicht zu bringen.</li>
+</ul>
+<p>Von den gelisteten Diagrammtypen werden Aktivitätsdiagramme, Zustandsdiagramme und Sequenzdiagramme in der Regel am häufigsten genutzt. Diese stellen wir deshalb an dieser Stelle jeweils anhand eines kurzen Beispiels vor. Die ebenfalls häufig verwendeten Anwendungsfalldiagramme werden wir dagegen nicht genauer vorstellen, da sie hauptsächlich in der Analysephase benötigt werden. Detaillierte Informationen zu den Diagrammen der UML 2.0 finden Sie in <span class="ckursiv">UML 2.0, Das umfassende Handbuch</span> von Christoph Kecher [Kecher 2009] oder in <span class="ckursiv">UML 2 Glasklar</span> von Chris Rupp und anderen [Rupp 2007].</p>
+<h4 class="t4">Aktivitätsdiagramm</h4>
+<p>Eine häufig genutzte Sichtweise auf das Verhalten von Programmen ist es, diese als eine Abfolge von Aktivitäten zu betrachten. Diese Sichtweise wird durch die Aktivitätsdiagramme der UML unterstützt. In Abbildung 7.31 ist ein Ausschnitt der Aktivitäten dargestellt, die beim Einschalten und Auslösen einer Alarmanlage durchlaufen werden.</p>
+<div class="bildbox">
+<p><a name="IDAERSQ"></a><a onClick="OpenWin('bilder/07_31.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_31.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.31    </strong>Aktivitäten einer Alarmanlage</p>
+<p>Zunächst einmal haben wir verschiedene <span class="ckursiv">Aktivitätsbereiche</span> vorliegen. Wir haben unsere Aktivitäten auf die Bereiche Hausbesitzer, Alarmanlage, technische Komponenten und einen Einbrecher verteilt. Der Name des Einbrechers bleibt im Dunkeln, da er aber direkt die Alarmanlage auslöst, wird es sich wohl nicht um Arsène Lupin handeln.</p>
+<p><strong><em>Darstellung eines Einsatzfalls</em></strong></p>
+<p>Wir haben in unserem Aktivitätsdiagramm also einen Einsatzfall dargestellt, bei dem die Anlage tatsächlich ausgelöst wird. Beginnend mit dem obligatorischen Startzustand ist es die erste <span class="ckursiv">Aktion</span>, die von unserem Hausbesitzer durchgeführt wird, die Alarmanlage einzuschalten. Nach der PIN-Eingabe wird die PIN über einen <span class="ckursiv">Objektknoten</span>, der Objekte der Klasse <span class="clisting">Pin</span> enthalten kann, an die Alarmanlage zur Prüfung übergeben. Die Pfeile, welche die Aktivitäten verbinden, repräsentieren den <span class="ckursiv">Kontrollfluss</span> zwischen Aktivitäten, im Fall von Objektübergaben sprechen wir auch vom <span class="ckursiv">Objektfluss</span>. Hier findet eine Prüfung statt, und über den nachfolgenden <span class="ckursiv">Entscheidungsknoten </span>wird das Ergebnis der Prüfung ausgewertet.</p>
+<p>Nur im Fall einer positiven Prüfung werden nun die Sensoren eingeschaltet und mit der folgenden <span class="ckursiv">Gabelung</span> zwei parallele Abläufe angestoßen. Während die Anlage nun regelmäßig die Sensoren auf Funktionsfähigkeit abfragt und parallel dazu auf eingehende Meldungen wartet, macht sich unser Anfänger-Einbrecher an einem Fenster zu schaffen und löst damit eine <span class="ckursiv">Signal-Sende-Aktion</span> (engl. <span class="ckursiv">Signal Send Action</span>) Einbruch! aus. Der entsprechende Sensor wartet geradezu auf ein solches Signal, über die entsprechende <span class="ckursiv">Ereignis-Empfangs-Aktion</span> (engl. <span class="ckursiv">Accept Event Action</span>) nimmt er das Signal entgegen und führt dann die Aktion <span class="ckursiv">Sensorauslösung melden</span> durch. Die notwendigen Aktionen, um den Alarm zu deaktivieren, haben wir zu einer eigenen <span class="ckursiv">Aktivität</span> zusammengefasst. Damit können wir diese in anderen Diagrammen als zusammengesetzte Aktion verwenden.</p>
+<p><strong><em>Aktivitäten einer Alarmanlage</em></strong></p>
+<p>Aktivitätsdiagramme bieten neben den dargestellten Komponenten noch eine ganze Reihe weiterer Modellierungsmittel. Wichtig ist an dieser Stelle noch die Möglichkeit, Schleifen und Auswahlbedingungen explizit über <span class="ckursiv">Schleifen- und Bedingungsknoten</span> darzustellen. Außerdem lassen sich sowohl für Aktionen als auch für Aktivitäten Vor- und Nachbedingungen angeben.</p>
+<h4 class="t4">Zustandsdiagramm</h4>
+<p><strong><em>Kurz und bündig: Zustandsdiagramm</em></strong></p>
+<p>Einer der großen Vorteile von objektorientierten Systemen ist es, dass die Zustände des Systems in klar definierten Komponenten, den Objekten, verwaltet werden. Dadurch können wir den Objekten einen klaren Lebenszyklus und definierte Zustände zuordnen.</p>
+<p>Über die Sicht auf Zustände können wir ein System unter einem anderen Blickwinkel betrachten, als es bei den Aktivitäten der Fall ist. Zwar spielen bei der aktivitätszentrierten Sicht durchaus auch Zustandsinformationen eine Rolle, bei den Zustandsdiagrammen stehen die Zustände aber im Fokus.</p>
+<p>Die in der UML definierten Zustandsdiagramme helfen uns, die verschiedenen Zustände, die ein Objekt oder eine Gruppe von Objekten durchlaufen, darzustellen und zu verstehen. In Abbildung 7.32 ist eine typische Anwendung eines UML-Zustandsdiagramms dargestellt. Wir beschreiben damit die verschiedenen <span class="ckursiv">Zustände</span> einer Alarmanlage.</p>
+<div class="bildbox">
+<p><a name="IDATTSQ"></a><a onClick="OpenWin('bilder/07_32.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_32.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.32    </strong>Zustandsübergänge einer Alarmanlage</p>
+<p>Die Alarmanlage kennt in diesem Szenario die Zustände <span class="ckursiv">deaktiviert, Pin-Eingabe für Aktivierung, Pin-Eingabe für Deaktivierung, Überwachung, Sensoren prüfen, Alarm Vorstufe, Alarm ausgelöst</span>. Bei dem Zustand <span class="ckursiv">Überwachung</span> handelt es sich allerdings um einen zusammengesetzten Zustand, der intern aus weiteren Zuständen aufgebaut ist.</p>
+<p><strong><em>Zustände einer Alarmanlage</em></strong></p>
+<p>Im ersten Zustand, den wir vom Startzustand unseres Diagramms erreichen, ist die Alarmanlage <span class="ckursiv">deaktiviert</span>. Die weiteren Übergänge zwischen den Zuständen, die durch gerichtete Verbindungen dargestellt werden, sind mit zusätzlichen Informationen angereichert.</p>
+<p><strong><em>Ereignis 
+Bedingung 
+Aktion</em></strong></p>
+<p>Nehmen wir als Beispiel den Übergang vom Zustand <span class="ckursiv">Alarm Vorstufe</span> zum Zustand <span class="ckursiv">Alarm ausgelöst</span>. Dem Diagramm lässt sich entnehmen, dass der Zustandsübergang durch das <span class="cfett">Ereignis</span> <span class="ckursiv">Ablauf von 60 Sekunden ohne Pin</span> ausgelöst wird. Nach Auslösen des Türsensors beim Öffnen der Eingangstür haben wir 60 Sekunden Zeit, um den Alarm zu deaktivieren. Läuft diese Zeit ab, ohne dass eine Pin-Eingabe stattfindet, wird die <span class="cfett">Aktion</span> <span class="ckursiv">Licht- und Tonsignal</span> durchgeführt, und die Anlage begibt sich in den Zustand <span class="ckursiv">Alarm ausgelöst</span>. Dieser Übergang wird in jedem Fall so stattfinden, wenn das angegebene Ereignis eintritt.</p>
+<p>Wir haben aber auch einen Übergang aus dem Zustand <span class="ckursiv">Pin-Eingabe für Aktivierung</span>, bei dem erst aufgrund des Ergebnisses der erfolgten Aktion <span class="ckursiv">Pin prüfen</span> entschieden werden kann, welcher Folgezustand resultiert. Die zugehörige <span class="cfett">Entscheidung</span> basiert auf zwei <span class="cfett">Bedingungen</span>: Ist die Bedingung <span class="ckursiv">[Pin ok]</span> erfüllt, erfolgt der Übergang in den Zustand <span class="ckursiv">Überwachung</span>. Ist die eingegebene PIN dagegen falsch, landen wir wieder im Zustand <span class="ckursiv">deaktiviert</span>.</p>
+<p><strong><em>Explizite Modellierung von Zuständen</em></strong></p>
+<p>Eine explizite Modellierung von verschiedenen Zuständen ist aber nicht nur bei technischen Abläufen sinnvoll, wie sie bei einer Alarmanlage, einer Zapfsäule oder einem Bankautomaten auftreten. Gerade bei Anwendungen, bei denen die Zustände nicht so offensichtlich zu greifen sind, macht es Sinn, diese Zustände explizit zu machen. In Abbildung 7.33 sind die verschiedenen Zustände eines Vertrags dargestellt, der zwischen einem Kunden und dem Anbieter einer Dienstleistung geschlossen wird. Der Vertrag durchläuft dabei die Zustände <span class="ckursiv">in Planung, in Prüfung, aktiv, zur Kündigung vorgesehen</span> und <span class="ckursiv">gekündigt</span>.</p>
+<p>Nehmen wir hier einmal als Beispiel den Übergang von einem bestehenden Vertrag zu einem Vertrag mit vorgesehener Kündigung heraus.</p>
+<div class="bildbox">
+<p><a name="IDAKVSQ"></a><a onClick="OpenWin('bilder/07_33.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_33.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.33    </strong>Beispiel für verschiedene Zustände eines Vertrags</p>
+<p><strong><em>Elemente des  
+Diagramms</em></strong></p>
+<p>Im Diagramm lässt sich entnehmen, dass der Zustandsübergang durch das <span class="cfett">Ereignis</span> <span class="ckursiv">Anruf: Kündigung</span> ausgelöst wird, das den Anruf eines Kunden repräsentiert, der den Vertrag partout nicht mehr haben will. Allerdings gilt eine <span class="cfett">Bedingung</span> <span class="ckursiv">Frist ok</span>: Nur wenn die vereinbarten Fristen eingehalten wurden, wird die resultierende <span class="cfett">Aktion</span> <span class="ckursiv">Kündigung durchführen</span> auch wirklich durchgeführt und die Kündigung eingetragen. Wenn unser Kunde einen Vertrag mit zehnjähriger Laufzeit über eine wöchentliche Lieferung von schwarzen Socken abgeschlossen hat, diese jedoch nicht mehr benötigt, weil ihm beide Beine amputiert wurden: Sein Pech, unser Zustandsdiagramm sieht Ausnahmen nicht vor. Wenn der Kunde dann nach Ablauf der zehn Jahre wieder anruft, werden wir aber die Kündigung durchführen und den Vertrag in den Zustand <span class="ckursiv">gekündigt</span> überführen. Löschen werden wir ihn allerdings erst nach Ablauf einer definierten Frist, weil wir immer noch damit rechnen, dass unser Kunde wieder anruft, um die Kündigung rückgängig zu machen und den Vertrag um weitere zehn Jahre zu verlängern.</p>
+<h4 class="t4">Sequenzdiagramm</h4>
+<p>Eine andere Sicht auf die Interaktion von Objekten nehmen wir ein, wenn wir den Nachrichtenaustausch zwischen diesen Objekten beobachten oder modellieren.</p>
+<p>Die Sequenzdiagramme der UML nehmen genau diese Sicht ein. Wir haben in Abbildung 7.34 unser Beispiel einer Alarmanlage wieder aufgegriffen und dabei einen möglichen Ablauf bei Aktivierung und Auslösung der Anlage aufgezeichnet. Die UML bietet auch Möglichkeiten, alternative Ablaufpfade in einem Sequenzdiagramm zu beschreiben. Allerdings führt dies zu zusätzlicher Komplexität der Diagramme, weshalb in der Praxis häufig die Darstellung genau eines konkreten Ablaufszenarios in Sequenzdiagrammen modelliert wird.</p>
+<p><strong><em>Sequenz beim Auslösen der Anlage</em></strong></p>
+<p>In unserem Beispieldiagramm von Abbildung 7.34 sehen wir die wichtigsten Bestandteile von Sequenzdiagrammen versammelt. <span class="ckursiv">Objekte</span> und <span class="ckursiv">Akteure</span> werden am Beginn ihrer jeweiligen <span class="ckursiv">Lebenslinien</span> dargestellt. Die Lebenslinie unseres Akteurs Hugo (ein Hausbewohner) umfasst (glücklicherweise) den gesamten Ablauf. Dagegen wird ein Objekt vom Typ <span class="clisting">PinPrüfer</span> während des Ablaufs zweimal erstellt und auch wieder zerstört, was sich an der entsprechenden Lebenslinie erkennen lässt, die jedes Mal durch ein terminierendes Kreuz beendet wird.</p>
+<p>Unsere beteiligten Objekte und Akteure tauschen nun <span class="clisting">Nachrichten</span> aus. Dabei markieren wir über sogenannte <span class="ckursiv">Aktivierungsbalken</span> auf der Lebenslinie, ob ein Objekt gerade aktiv ist. Aktiv heißt hier, dass unser Objekt in irgendeiner Weise noch aktiv an der Sequenz beteiligt ist. Dies ist dann der Fall, wenn es gerade selbst eine Nachricht abarbeitet oder auf die Rückmeldung eines anderen Objekts wartet, dem gerade eine Nachricht geschickt wurde. Für unsere Alarmanlage endet zum Beispiel der Aktivierungsbalken zunächst, nachdem die Anlage Tür- und Fenstersensoren aktiviert hat. Danach ist sie in einem passiven Zustand, der erst durch die Auslösung eines Sensors und die entsprechende Benachrichtigung wieder unterbrochen wird.</p>
+<p>Bei den Nachrichten wird unterschieden zwischen synchronen und asynchronen Nachrichten. Synchrone Nachrichten erfordern eine Rückmeldung, asynchrone nicht. Die Aufforderung der Alarmanlage zur PIN-Eingabe an unseren Hausbesitzer erfordert in unserem Beispiel die PIN als Rückgabe. Die Nachricht der Alarmanlage wird als durchgezogener Pfeil dargestellt, die Rückmeldung an die Alarmanlage unter Angabe der PIN durch einen gestrichelten Pfeil.</p>
+<div class="bildbox">
+<p><a name="IDAHXSQ"></a><a onClick="OpenWin('bilder/07_34.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_34.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.34    </strong>Ablaufsequenz beim Auslösen einer Alarmanlage</p><a id="mjf78234957c82aa740d796d46b611a52f" name="mjf78234957c82aa740d796d46b611a52f"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">7.4.2 Nachrichten an Objekte  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wenn ein Objekt auf irgendeine Weise aufgefordert wird, eine Aktion auszuführen, sprechen wir davon, dass eine Nachricht an dieses Objekt gesendet wurde. Ganz konkret heißt das normalerweise, dass ein Objekt eine Operation auf einem anderen Objekt aufruft. Wenn das Objekt, das die Nachricht erhält, diese Operation unterstützt, wird es die Nachricht verarbeiten. Zur Verarbeitung wird eine Methode genutzt, die für dieses spezifische Objekt diese Operation umsetzt.</p>
+<p>Allerdings: Völlig einfach läuft auch das nicht ab. Welche Methode denn nun genau aufgerufen wird, hängt aufgrund der möglichen Polymorphie, nun ja, von den Umständen ab. Dabei kommt die sogenannte <span class="ckursiv">Tabelle für virtuelle Methoden</span> zum Einsatz. Das damit verbundene Thema ist »späte Bindung«. Welche komplexen Szenarien dabei ablaufen können, haben wir in Abschnitt 5.2.5, »Die Tabelle für virtuelle Methoden«, gesehen.</p>
+<p>Eine Stärke der objektorientierten Systeme liegt darin, dass Sender und Empfänger der Nachricht nur sehr locker verbunden sein müssen. Durch verschiedene Möglichkeiten der Entkopplung können wir die Verbindung zwischen beiden Beteiligten lockern. Zum einen muss der Sender einer Nachricht nur minimale Information über den Empfänger haben. Er muss lediglich wissen, dass der Empfänger die betreffende Nachricht versteht.</p>
+<p>Eine weitere Entkopplung ist über das Beobachter-Muster möglich, das wir in Abschnitt 5.4.1, »Mehrfachvererbung: Möglichkeiten und Probleme«, vorgestellt haben.</p>
+<p>Durch den Mechanismus von Ereignissen können Nachrichten auch asynchron zugestellt werden. Dabei kennt der Sender die Empfänger der Nachricht überhaupt nicht. Ein von Sender und Empfänger unabhängiges Modul sorgt dafür, dass Ereignisse den Empfängern zugestellt werden, die sich für diese interessieren. In Abschnitt 7.4.4, »Funktionsobjekte und ihr Einsatz als Eventhandler«, gehen wir auf die Behandlung von Ereignissen genauer ein.</p><a id="mj10368deb9e22e623d5445b79601554b1" name="mj10368deb9e22e623d5445b79601554b1"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">7.4.3 Iteratoren und Generatoren  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Eine sehr häufige Aufgabenstellung in objektorientierten Anwendungen ist es, dass wir uns mit Sammlungen von Objekten beschäftigen müssen. Deshalb werden in der Regel große Teile unseres Codes damit zu tun haben, Objekte in Sammlungen einzufügen, sie dort wieder zu suchen oder einfach eine bestimmte Aktion auf allen Elementen der Sammlung auszuführen.</p>
+<p>Für die Aufgabe, nacheinander die Elemente einer Sammlung zu durchlaufen, werden in der Regel die sogenannten Iteratoren eingesetzt. Diese bieten uns die Möglichkeit, die Elemente von Sammlungen schrittweise durchzugehen.</p>
+<p>Richtig interessant wird die Arbeit mit Sammlungen allerdings dann, wenn eine Sammlung gar nicht komplett vorliegt, sondern erst nach und nach aufgebaut werden kann oder soll. In diesem Fall kommen wir mit Iteratoren nicht weiter. Wir müssen unseren Iterator zu einem Generator umbauen.</p>
+<p>Wir werden in diesem Abschnitt zunächst auf Iteratoren und deren Funktionsweise eingehen. Dann folgt eine Bauanleitung für Generatoren. Am Beispiel eines Generators für die Zahlenreihe der Fibonacci-Zahlen werden wir die Funktionsweise von Generatoren vorstellen.</p>
+<p><strong><em>Diskussion:  
+Wozu  
+Generatoren?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Wie kann es denn sein, dass wir eine Sammlung nicht komplett vorliegen haben? Sammlungen von Objekten haben doch immer eine klar feststellbare Zahl von Elementen, also habe ich diese doch immer komplett vorliegen. Zum Beispiel lade ich einfach eine bestimmte Anzahl von Objekten aus der Datenbank, füge alle in eine Sammlung ein und fertig.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Es gibt mehrere Situationen, in denen du möglicherweise eine Sammlung nicht komplett vorliegen hast. Zum Beispiel gibt es Zahlenreihen wie die Fibonacci-Zahlen, die eine unendliche Folge von Zahlen liefern. Wenn wir also die Sammlung aller Fibonacci-Zahlen erstellen wollten, müssten wir ganz schön viel Zeit einkalkulieren.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> O.k., aber das ist ja nun keine echte Sammlung von Objekten. Die Sammlung der Fibonacci-Zahlen enthält doch höchstens Wertobjekte. In normalen Geschäftsanwendungen werden wir auch eher selten die Fibonacci-Reihe benötigen.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Auch wenn wir Daten aus einer Datenbank laden, kann es sein, dass wir eine Sammlung nicht von Anfang an komplett füllen wollen oder können. Wenn eine Übersicht mehrere tausend Datensätze umfasst, macht es wenig Sinn, diese alle auf einmal in eine Sammlung einzufügen, da wir sicher nicht alle auf einmal anzeigen oder bearbeiten werden. Hier kann ein Generator von Vorteil sein, der bei Bedarf einen oder mehrere Datensätze zur Sammlung hinzufügt.</span><p>Da wir uns das Beispiel der Fibonacci-Zahlen vorgenommen haben, werden wir uns auch mit dem zugehörigen Algorithmus zu deren Berechnung beschäftigen. Wir stellen deshalb zunächst einige Vorüberlegungen dazu an, wie wir Algorithmen und andere Ablaufbeschreibungen in objektorientierten Systemen am besten repräsentieren.</p>
+<h4 class="t4">Algorithmen als Routinen oder Objekte</h4>
+<p><strong><em>Objekte und  
+Routinen</em></strong></p>
+<p>Ein Objekt ist eine Einheit gekoppelter Daten und Prozesse. Darin unterscheiden sich die Objekte aber nicht wesentlich von Routinen. Diese haben auch Daten in der Form von Parametern und lokalen Variablen, und sie haben auch Verhalten &#8211; den programmierten Ablauf des Unterprogramms.</p>
+<p><strong><em>Unterschied Objekt und  
+Routine</em></strong></p>
+<p>Wir finden aber auch relevante Unterschiede zwischen Objekten und Routinen.</p>
+<ul class="gp">
+<li><span class="cfett">Die Lebensdauer</span> 
+Bei den Objekten ist sie selten vom Objekt selbst gesteuert, das Objekt wird durch andere Teile der Anwendung erzeugt und vernichtet. Eine Routine wird zwar durch andere Teile der Anwendung aufgerufen, wann sie beendet wird, steuert sie aber selbst.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Die Funktionalität</span> 
+Ein Objekt kann mehrere Operationen unterstützen, die in beliebiger Reihenfolge oder sogar parallel aufgerufen werden können. Dagegen läuft eine Routine einfach sequenziell durch.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Die Änderungen und der Auswertbarkeit des Zustandes</span> 
+Der Zustand eines Objekts kann im Laufe der Lebensdauer durch äußere Einflüsse geändert und kann zwischendurch abgefragt werden. Dagegen hängt der Zustand einer Routine ausschließlich von ihren Parametern, den Daten, auf welche die Routine selbst zugreift, und den internen Abläufen der Routine ab. Auf den Zustand einer Subroutine kann man von außen nicht zugreifen, erst wenn sie beendet ist, kann man ihr Ergebnis und die eventuell modifizierten Parameter abfragen. Die lokalen Variablen sind von außen nicht zugreifbar. Dabei kann das Ergebnis einer Routine eine ganze Liste von Daten sein, die während des Laufes der Routine aufbereitet wird.</li>
+</ul>
+<p><strong><em>Algorithmen  
+als Routinen</em></strong></p>
+<p>Bestimmte Konzepte lassen sich allerdings viel einfacher in der Form eines Prozesses als eines Objekts darstellen. Solche Konzepte sind meistens Algorithmen mit einem fest vorgegebenen Ablauf, deren Zustand nur von den Parametern und den Daten, auf die der Algorithmus selbst zugreift, abhängig ist und wobei nur das Ergebnis des Algorithmus für den Rest der Anwendung relevant ist.</p>
+<p>Die Form einer Routine ist für die Realisierung solcher Algorithmen gut geeignet. Problematisch ist diese Vorgehensweise, wenn das für den Rest der Anwendung relevante Ergebnis eines solchen Algorithmus nicht <span class="ckursiv">ein</span> Wert (beziehungsweise ein Objekt), sondern eine ganze Reihe von Werten ist.</p>
+<p><strong><em>Sammlungen  
+als Resultat von Routinen</em></strong></p>
+<p>In einem solchen Fall muss die Routine das Ergebnis zuerst komplett aufbereiten und es dann als eine Sammlung (engl. <span class="ckursiv">Collection</span>) seinem Aufrufer bereitstellen. Dies ist dann unproblematisch, wenn der Aufrufer das komplette Ergebnis tatsächlich auf einmal braucht &#8211; es ist aber weniger als optimal, wenn der Aufrufer nur die einzelnen Elemente des Ergebnisses nacheinander bearbeiten möchte.</p>
+<p><strong><em>Beschränkte Zahl von Ergebniselementen</em></strong></p>
+<p>Und Routinen sind ganz und gar ungeeignet, wenn der Aufrufer nicht alle Elemente der Ergebnisliste braucht, sondern nur eine beschränkte Zahl der Elemente vom Anfang der Liste. Dies ist ein häufiges Szenario, wenn es zum Beispiel um die Anzeige von Listen, die aus einer Datenbank befüllt werden, geht. Eine Datenbankabfrage kann keine, wenige, aber auch sehr viele Einträge zurückgeben. Wenn auf dem Bildschirm nur hundert angezeigt werden können, hat es wenig Sinn, mit der Anzeige erst zu beginnen, nachdem wir alle zehntausend Ergebniszeilen einer Datenbankabfrage übertragen haben.</p>
+<h4 class="t4">Ein erster Ansatz: Iteratoren</h4>
+<p>In solchen Fällen können wir von den Mechanismen für Kapselung und Polymorphie der objektorientierten Sprachen profitieren. Der Aufrufer soll nicht von der konkreten Implementierung einer gelieferten Sammlung abhängig sein, sondern nur von deren Schnittstelle. Eine Sammlung kann verschiedene Operationen anbieten. Es können Elemente eingefügt werden, diese können wieder entfernt werden, wir können überprüfen, ob ein Element in der Sammlung enthalten ist oder wie viele Elemente die Sammlung enthält.</p>
+<p>Aber: In unserem Falle brauchen wir das eigentlich gar nicht. Wir brauchen nur die Fähigkeit der Sammlung, ihre Elemente nacheinander zu liefern &#8211; sie abzählen zu lassen. Der Nutzer der Sammlung muss also nur imstande sein, eine Abzählung der Elemente der Sammlung zu starten, nacheinander nach dem nächsten Eintrag zu fragen und am Ende festzustellen, dass alle Elemente abgezählt worden sind.</p>
+<p><strong><em>Methode next()</em></strong></p>
+<p>Also bräuchten wir nur eine Methode <span class="clisting">next()</span>, die am Anfang das erste und danach immer das nächste Element liefert. Und eine Methode <span class="clisting">hasNext()</span>, die <span class="clisting">false</span> zurückgibt, wenn alle Elemente abgezählt worden sind.</p>
+<p>Nun, es kann mehrere Benutzer der Sammlung geben, die ihre Elemente unabhängig voneinander abzählen möchten. Daher kann der Zustand der jeweiligen Abzählung nicht der Sammlung selbst zugeordnet werden, sondern einem neuen Objekt &#8211; einem <span class="ckursiv">Iterator</span>. [In der Sprache PHP werden die Elemente eines Arrays mit der Funktion <span class="clisting">each</span> abgezählt. Der Zustand der Abzählung wird nicht in einem externen Iterator, sondern in dem Array selbst verwaltet. Daher kann ein Array in PHP nicht gleichzeitig von mehreren Benutzern abgezählt werden. Ein unschönes Element einer sehr nützlichen Programmiersprache.
+] </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Iteratoren
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Iterator ist ein Objekt, das den Zustand einer Abzählung auf einer Sammlung verwaltet. Da sich der Zustand des Iterators unabhängig von der Sammlung verändern kann, werden solche Iteratoren auch <span class="ckursiv">externe Iteratoren</span> genannt, um sie von ihren internen Kollegen, über die wir später sprechen werden, zu unterscheiden. In diesem Abschnitt werden wir auf das Wort »extern« der Einfachheit halber jedoch verzichten. </p>
+</td>
+</tr>
+</table><br><p>Es ist der Iterator, der die Operationen <span class="clisting">next()</span> und <span class="clisting">hasNext()</span> anbietet. [Die Operationen <span class="clisting">next()</span> und <span class="clisting">hasNext()</span> sind nur eine Möglichkeit, wie man die Schnittstelle eines Iterators gestalten kann. Eine andere Möglichkeit wäre, auf die Methode <span class="clisting">hasNext()</span> zu verzichten und am Ende einer Abzählung von <span class="clisting">next()</span> den Wert <span class="clisting">NULL</span> zurückgeben zu lassen oder eine Exception zu werfen. Wieder eine andere Möglichkeit wäre, dass die Methode <span class="clisting">next()</span> nicht den nächsten Eintrag liefert, sondern <span class="clisting">true</span>, wenn es einen nächsten Eintrag gibt, und <span class="clisting">false</span>, wenn die Abzählung beendet ist. Auf den aktuellen Eintrag könnte man dann mit einer anderen Operation zugreifen. Auch wenn das Konzept eines Iterators ziemlich einfach ist, sind die Designmöglichkeiten vielfältig.
+]  Die Sammlung selbst muss aber eine Operation anbieten, die einen neuen Iterator erstellt und zurückgibt. Sie muss aber nicht, und das ist die Tatsache, die wir uns zunutze machen, alle Werte tatsächlich enthalten. Der gelieferte Iterator kann die Einträge erst bei Bedarf bereitstellen.</p>
+<h4 class="t4">Ein Schritt weiter: Generatoren</h4>
+<p><strong><em>Generatoren  
+liefern Werte  
+bei Bedarf</em></strong></p>
+<p>Ein Iterator, der die gelieferten Werte dynamisch bei Bedarf bereitstellt, wird <span class="ckursiv">Generator</span> genannt.</p>
+<p>Schauen wir uns nun unser bereits angekündigtes Beispiel an, die Berechnung der Fibonacci-Zahlenreihe. Die Fibonacci-Zahlen sind eine mathematische Folge von nichtnegativen ganzen Zahlen. Der Mathematiker Leonardo Fibonacci entwickelte sie 1202, um das Wachstum einer Population von Kaninchen zu beschreiben.</p>
+<p>Die Fibonacci-Zahlen werden folgendermaßen definiert:</p>
+<p>F1 = 1; F2 = 1; Fi; i&gt;2<span class="cfett"> </span>= Fi-2<span class="cfett"> </span>+ Fi-1</p>
+<p>Das bedeutet in Worten: Für die beiden ersten Zahlen wird jeweils der Wert <span class="ckursiv">Eins</span> vorgegeben. Jede weitere Zahl ist die Summe ihrer beiden Vorgänger. Daraus ergibt sich die Folge zu 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, ...</p>
+<p><strong><em>Berechnung der Fibonacci-Zahlen</em></strong></p>
+<p>Der Algorithmus zur Berechnung der Fibonacci-Zahlen könnte folgendermaßen aussehen:</p>
+<div class="listing"><pre class="prettyprint">a := 1; 
+b := 1; 
+wiederhole: 
+   füge a zum Ergebnis hinzu; 
+   c := a; 
+   a := b; 
+   b := a + b;</pre></div>
+<p><strong><em>Umsetzung  
+mit Python</em></strong></p>
+<p>Was hier bereits auffällt: Die Wiederholung hat keine Abbruchbedingung. Wir können die Reihe unendlich lange fortsetzen.</p>
+<p>Nun sollen wir diesen Algorithmus in ein Programm umwandeln, das eine bestimmte Anzahl der Fibonacci-Zahlen ausgibt. In Listing 7.27 ist eine erste Version zu sehen, diesmal umgesetzt in der Sprache Python.</p>
+<div class="listing"><pre class="prettyprint">def printFibonacci(count): 
+    a = 1 
+    b = 1 
+    while (count &gt; 0): 
+        print a, 
+        c = a 
+        a = b 
+        b = a + c 
+        count -= 1</pre></div>
+<p class="tabunter"><strong>Listing 7.27    </strong>Berechnung der Fibonacci-Zahlen mit Python</p>
+<p><strong><em>Problem 1: Berechnung  
+und Ausgabe  
+vermischt</em></strong></p>
+<p>Die Version ist schon ganz in Ordnung, allerdings hat sie einen Makel: Sie vermischt die Beschaffung der Ergebnisse, in unserem Falle die Berechnung der Fibonacci-Zahlen, mit deren Bearbeitung, in unserem Falle deren Ausgabe. Wir sehen hier einen Fall der Kopplung, die wir ja zu minimieren versuchen. Was wäre, wenn wir mit den Ergebnissen des Algorithmus andere Pläne hätten, zum Beispiel einen anderen Algorithmus sukzessive damit aufzurufen?</p>
+<p>Versuchen wir also, die Berechnung der Zahlen von deren Ausgabe zu trennen. In Listing 7.28 sehen Sie eine angepasste Version unseres kleinen Programms, die zwei separate Routinen verwendet.</p>
+<div class="listing"><pre class="prettyprint">def computeFibonacci(count): 
+    a = 1 
+    b = 1 
+    result = [] 
+    while (count &gt; len(result)): 
+        result.append(a) 
+        c = a 
+        a = b 
+        b = a + c 
+    return result 
+ 
+def printFibonacci(count): 
+    for f in computeFibonacci(count): 
+        print f,</pre></div>
+<p class="tabunter"><strong>Listing 7.28    </strong>Berechnung und Ausgabe getrennt</p>
+<p><strong><em>Problem 2: Speicherbedarf abhängig von Anzahl</em></strong></p>
+<p>Das sieht schon etwas besser aus. Wir haben den Makel der Kopplung beseitigt und den Algorithmus in der Methode <span class="clisting">computeFibonacci</span> von der Ausgabemethode entkoppelt. Allerdings haben wir uns ein anderes Problem eingehandelt: Das Ergebnis wird zuerst in einer dynamisch wachsenden Liste gespeichert und erst nach der Berechnung ausgegeben. Das ist unangenehm, wenn die Anzahl der Fibonacci-Zahlen, die wir ausgeben möchten, sehr groß ist. Das ursprüngliche Programm hatte konstanten Speicherbedarf, der Speicherbedarf unserer aktuellen Version ist von der Anzahl der auszugebenden Zahlen linear abhängig.</p>
+<p><strong><em>Lösung:  
+Generator für Fibonacci-Zahlen</em></strong></p>
+<p>Das können wir besser! Wir schreiben uns einfach einen Generator.</p>
+<div class="listing"><pre class="prettyprint">class FibonacciGenerator:   
+    def __init__(self, count):   
+        self.__count = count 
+        self.__a = 1     
+        self.__b = 1     
+    def next(self):      
+        if (self.__count &lt;= 0): 
+            raise StopIteration 
+        self.__count -= 1; 
+        c = self.__a     
+        self.__a = self.__b 
+        self.__b = self.__a + c 
+        return c 
+ 
+def printFibonacci(count): 
+    generator = FibonacciGenerator(count)    
+    for i in range(count): 
+        print generator.next(),    </pre></div>
+<p class="tabunter"><strong>Listing 7.29    </strong>Generator für Fibonacci-Zahlen</p>
+<p>Wir haben die Funktion <span class="clisting">computeFibonacci</span> in eine Klasse <span class="clisting">FibonacciGenerator</span> umgewandelt (Zeile ). Exemplare der Klasse werden in Zeile  mit dem Parameter <span class="clisting">count</span> der ursprünglichen Funktion initialisiert. Außerdem besitzt die Klasse Objektvariablen <span class="clisting">a</span>, <span class="clisting">b</span> und <span class="clisting">c</span>, die in den mit  markierten Zeilen verwendet werden. Diese entsprechen den lokalen Variablen der Funktion. In Zeile  sehen Sie die Methode <span class="clisting">next()</span>, die nacheinander die Fibonacci-Zahlen zurückgibt. Wir haben damit den Algorithmus zur Erzeugung der Zahlenreihe als Objekt implementiert. In den Zeilen  und  wird der Generator konstruiert und verwendet.</p>
+<p><strong><em>Entkopplung erfolgreich</em></strong></p>
+<p>Um die Zahlen ähnlich wie die Liste, die von der ursprüngliche Funktion zurückgegeben wurde, in einer <span class="clisting">for</span><span class="ckursiv">-</span>Schleife benutzen zu können, brauchen wir nur eine kleine Erweiterung. Wir müssen eine Sammlung programmieren, die den Generator als ihren Iterator zurückgibt. [Iteratoren sind Bestandteile der Sprache Python seit der Version 2.2.
+]  Unser endgültiger Quelltext ist in Listing 7.30 dargestellt.</p>
+<div class="listing"><pre class="prettyprint">class FibonacciNumbers: 
+    def __init__(self, count): 
+        self.__count = count 
+ 
+    class FibonacciGenerator: 
+        def __init__(self, count): 
+            self.__count = count 
+            self.__a = 1 
+            self.__b = 1 
+        def next(self): 
+            if (self.__count &lt;= 0): 
+                raise StopIteration 
+            self.__count -= 1; 
+            c = self.__a 
+            self.__a = self.__b 
+            self.__b = self.__a + c 
+            return c 
+ 
+    def __iter__(self):     
+        return FibonacciNumbers.FibonacciGenerator( 
+                  self.__count) 
+ 
+def printFibonacci(count): 
+    for f in FibonacciNumbers(count):   
+        print f,</pre></div>
+<p class="tabunter"><strong>Listing 7.30    </strong>Ein Generator wird von einer Sammlung geliefert.</p>
+<p>Nun liefert ein Exemplar der Klasse <span class="clisting">FibonacciNumbers</span> ein Exemplar der Klasse <span class="clisting">FibonacciGenerator</span>, wenn es nach seinem Iterator befragt wird. Dies wird in Zeile  so deklariert. In der for-Schleife von Zeile  verwendet Python dann automatisch den Iterator, um die jeweils nächsten Elemente abzuholen.</p>
+<p>Eine schöne Sache, nicht wahr? Wir haben die Berechnung der Fibonacci-Zahlen von deren Verarbeitung entkoppelt, und der Speicherverbrauch ist konstant wie bei der ursprünglichen Prozedur.</p>
+<p><strong><em>Diskussion:  
+Weitere  
+Abhängigkeiten</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Sieht ja zunächst recht gut aus. Aber so völlig entkoppelt ist das Ganze dann doch noch nicht.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Was meinst du damit? Unser Generator hat doch nun mit der Ausgabe der von ihm generierten Zahlen überhaupt nichts mehr zu tun.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Das ist schon richtig, aus Sicht des Generators haben wir keine Abhängigkeit mehr. Aber wenn wir unsere Methode zur Ausgabe der Zahlen anschauen, ist diese umgekehrt auf den Generator angewiesen. Sie kann nicht verwendet werden, um die Ergebnisse einer anderen Funktion aufzubereiten. Wenn wir die Ergebnisse eines Generators für die Ackermann-Funktion ausgeben wollen, müssen wir dafür eine eigene Methode schreiben.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Da hast du allerdings Recht. In unserem Fall ist das zwar kein großes Problem, weil unsere Ausgabemethode so einfach ist und ihre Mehrfachverwendung uns nicht sehr viel an Code einsparen wird. Aber wenn die Ausgabe komplexer wäre, zum Beispiel die Ergebnisse als kleines Feuerwerk auf den Bildschirm zaubern, dann hätten wir durchaus ein Problem, diese Ausgabe erneut zu verwenden. Eine mögliche Lösung ist die Verwendung von Funktionen als Parameter für andere Funktionen. In Abschnitt 7.4.4 werden wir Beispiele für die Behandlung von Funktionen als Objekte kennen lernen.</span><p>Wir haben im obigen Beispiel gesehen, wie wir einen Generator für Fibonacci-Zahlen umsetzen können. Dadurch haben wir elegant eine Umsetzung der Berechnung erreicht und erhalten außerdem die Elemente der Reihe eins nach dem anderen geliefert.</p>
+<p><strong><em>Zusatzaufwand  
+für Generatoren</em></strong></p>
+<p>Aber nichts auf dieser Welt gibt es völlig kostenlos. Wir haben auch gesehen, dass wir mehr Quelltext für die Implementierung des Algorithmus brauchen. Außerdem ist der Ablauf der ursprünglich prozeduralen Beschreibung des Algorithmus durch die Struktur der Klasse nicht mehr so klar wie vorher. Bei unserem Beispiel mit den Fibonacci-Zahlen mag dieser Nachteil klein erscheinen. Bei komplizierten Abläufen kann es allerdings ein recht großer Aufwand sein, eine Funktion in einen Generator umzuwandeln.</p>
+<p>Es hängt sehr stark von der Unterstützung durch die Programmiersprache ab, ob sich der Aufwand, einen Generator zu schreiben, rechnet. Betrachten wir zunächst die Möglichkeiten, Generatoren in Java umzusetzen.</p>
+<p><strong><em>Generatoren  
+für Java</em></strong></p>
+<p>In Java ist der Aufwand, einen Generator zu programmieren, höher als der Aufwand, den man für eine entsprechende Methode braucht. Daher werden Generatoren in Java kaum verwendet. Eine wichtige Ausnahme sind Objekte, die für Datenübertragung zuständig sind, bei der die Beschaffung der kompletten Liste der Ergebnisse viel zu viel Zeit und/oder Speicher in Anspruch nehmen würde. Die JDBC-Recordsets oder die in Java allgegenwärtigen Streams und Readers kann man als etwas abgewandelte Generatoren betrachten.</p>
+<p>Doch wir können Generatoren auch in Java in Form einer Methode programmieren. Ein Generator hat zwei Zuständigkeiten. Einerseits stellt er seinen Benutzern den Zugriff auf die gelieferten Werte zur Verfügung, andererseits beschafft er die Einträge.</p>
+<p>Die Beschaffung der Werte können wir als eine <span class="ckursiv">Methode</span> umsetzen, die in einem nebenläufigen Thread läuft und die beschafften Einträge in eine nur ein Element umfassende Queue abstellt, von wo diese vom Benutzer des Iterators abgefragt werden können.</p>
+<p>Und genauso können wir eine Basisklasse für Generatoren implementieren. Die abstrakte Basisklasse übernimmt die Verantwortung für die Synchronisation mit dem nebenläufigen Thread und die Iteratorenfunktionalität. Die konkreten Implementierungen müssen nur den Algorithmus umsetzen.</p>
+<p>Doch einen Nachteil hat diese Implementierung: Wenn nicht alle Werte des Generators ausgelesen werden, bleibt der nebenläufige Berechnungsthread in einem suspendierten Zustand und belegt Ressourcen, auch wenn der Generator nicht mehr gebraucht wird. Speicher- und Threadleck ante portas. [Wir haben die beschriebene Umsetzung eines Generators in Java hier nicht im Source-Code gelistet. Durch die mangelnde Unterstützung von Java für Generatoren ist die Lösung alles andere als elegant. Wer die Umsetzung trotz dieser Warnung sehen möchte, findet sie auf der Webseite zum Buch (<span class="ckursiv"><a href="http://www.objektorientierte-programmierung.de">www.objektorientierte-programmierung.de</a></span>).
+] </p>
+<p>Aber es gibt auch Sprachen, die Generatoren direkt unterstützen und deren Implementierung sehr einfach machen. Python ab der Version 2.2 oder C# ab der Version 2 gehören in diese lobenswerte Kategorie.</p>
+<p><strong><em>Generatoren:  
+einfach in  
+Python oder C#</em></strong></p>
+<p>In diesen Sprachen entspricht der Aufwand, eine Funktion zu schreiben, genau dem Aufwand, einen Generator zu schreiben. Und die Form des Generator-Quelltextes entspricht auch dem Quelltext der entsprechenden Funktion. Denn die Verantwortung, die Ergebnisse abzählbar zu machen, übernimmt die Programmiersprache selbst. Unser Beispiel würde bei der Verwendung der Generator-Syntax in Python folgendermaßen aussehen:</p>
+<div class="listing"><pre class="prettyprint">def computeFibonacci(count): 
+    a = 1 
+    b = 1 
+    while (count &gt; 0): 
+       <span class="cfett"> yield a</span> 
+        c = a 
+        a = b 
+        b = a + c 
+        count -= 1</pre></div>
+<p class="tabunter"><strong>Listing 7.31    </strong>Verwendung eines Sprachkonstrukts von Python als Generator</p>
+<p><strong><em>Generator als  
+vollwertiges Objekt</em></strong></p>
+<p>Ja, der Quelltext ähnelt sehr einem Quelltext einer Funktion und unterscheidet sich von einer Funktion nur durch die Verwendung der Befehls <span class="clisting">yield</span>, der dem Befehl <span class="clisting">return</span> entspricht, aber statt einen Ergebniswert zurückzugeben und die Ausführung der Funktion zu beenden, bereitet er einfach einen Rückgabewert für den nächsten Aufruf der Methode <span class="clisting">next()</span> des Generators vor. Der Generator ist dabei ein vollwertiges Objekt mit eigenem Zustand und eigener Lebensdauer, Objektvariablen und Methoden.</p>
+<p>Eine <span class="ckursiv">Sub</span>routine wird gestartet, und erst wenn sie fertig ist, kann sie ein Ergebnis liefern. Die aufrufende Routine wartet während der Ausführung der Subroutine, bis sie fertig mit ihrer Arbeit ist.</p>
+<p><strong><em>Generatoren sind Coroutinen.</em></strong></p>
+<p>Ein Generator dagegen kann als eine Routine betrachtet werden, die parallel zu der aufrufenden Routine läuft und immer bei Bedarf und auch wiederholt ein Ergebnis liefert. Aus diesem Grunde werden Generatoren auch Koroutinen genannt. Dabei kommt es nicht darauf an, ob die Koroutinen tatsächlich in einem separaten Thread wirklich parallel ausgeführt werden &#8211; dies wäre sogar, wenn es um die Übersichtlichkeit und Einfachheit der Abläufe geht, eher kontraproduktiv.</p>
+<p><strong><em>Vorteil: Ergebnismenge muss nicht begrenzt werden.</em></strong></p>
+<p>In unserem Beispiel hat der Generator immer eine endliche Liste von Ergebnissen geliefert. Bei einer dem Generator entsprechenden Funktion ist dies eine zwingende Anforderung, es sei denn, Ihr Rechner hat unbegrenzten Speicher und Sie haben unendlich viel Zeit. Bei einem Generator besteht keine Notwendigkeit, die Anzahl der gelieferten Ergebnisse zu begrenzen. [Diese Behauptung gilt nicht für unsere Implementierung in Java &#8211; es sei denn, Sie können den nebenläufigen Thread für die gesamte Restdauer der Anwendungslaufzeit tolerieren.
+]  Der Konsument der Werte kann selbst bestimmen, wie viele Werte er von dem Generator abfragt. [Wenn Sie einen unbegrenzten Generator in einer <span class="clisting">for</span>–Schleife verwenden, denken Sie immer daran, dass Sie die Schleife durch ein <span class="clisting">break</span>- oder ein <span class="clisting">return</span>-Statement beenden sollten.
+]  Hier unser Beispiel mit einem unbegrenzten Fibonacci-Zahlen-Generator:</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Unbegrenzter Fibonacci- 
+Generator</em></strong></p>
+<div class="listing"><pre class="prettyprint">def computeFibonacci(): 
+    a = 1 
+    b = 1 
+    while (True): 
+        yield a 
+        c = a 
+        a = b 
+        b = a + c 
+ 
+def printFibonacciTo(limit): 
+    for f in computeFibonacci(): 
+        if (f &gt; limit): 
+            break 
+        print f,</pre></div>
+<p class="tabunter"><strong>Listing 7.32    </strong>Unbegrenzter Generator für Fibonacci-Zahlen</p>
+<p>Diese Version des Generators beschreibt nun nachvollziehbar unseren Algorithmus und erstellt doch die Elemente der Reihe erst auf explizite Anfrage.</p>
+<p>Im folgenden Abschnitt werden Sie sehen, wie in objektorientierten Systemen Routinen als Objekte abgebildet werden können. Dadurch können andere Objekte mit diesen Routinen parametrisiert werden.</p><a id="mj3f6bd50ca8e5f65f36567d80e2803893" name="mj3f6bd50ca8e5f65f36567d80e2803893"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">7.4.4 Funktionsobjekte und ihr Einsatz als Eventhandler  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><strong><em>Ziele dieses Abschnitts</em></strong></p>
+<p>In diesem Abschnitt werden Sie Objekte und Klassen kennen lernen, die auf Ereignisse in einer interaktiven Anwendung reagieren können. Diese sogenannten Eventhandler ermöglichen es, dass ganz unterschiedliche Oberflächenelemente die gleiche Aktion zugeordnet bekommen.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Elemente einer Oberfläche</em></strong></p>
+<p>Die meisten der heutzutage entwickelten Anwendungen sind interaktiv. Sie reagieren auf äußere Ereignisse: Eine grafische Benutzerschnittstelle reagiert zum Beispiel auf das Anklicken einer Maustaste, ein Webserver reagiert auf das Abrufen einer Webseite, die Software einer Alarmanlage muss auf die Meldungen der Bewegungssensoren reagieren.</p>
+<p>Schauen wir uns die Strukturen und Abläufe der interaktiven Anwendungen etwas genauer an.</p>
+<p>Nehmen wir an, Sie möchten in Ihrer grafischen Anwendung eine Schaltfläche haben, die einen Ausdruck des im Fenster dargestellten Dokuments auslösen kann, wenn ein Anwender darauf klickt. Ihnen stehen die nötigen Klassen zur Verfügung, die Schaltflächen auf dem Bildschirm implementieren. Sie können den Text und das Symbol der Schaltfläche darstellen, und die Schaltfläche wird bei Mausklicks und Tastatureingaben benachrichtigt. Aber noch keine dieser Klassen kann einen Ausdruck starten.</p>
+<p>Eine Möglichkeit, die benötigte Umsetzung der gewünschten Drucktaste zu erhalten, ist, eine Ableitung der Klasse <span class="clisting">Schaltfläche</span> zu erstellen und die Methode <span class="clisting">click</span> so zu überschreiben, dass sie zusätzlich zur Änderung der Darstellung der Taste auch den Ausdruck startet. Diese Variante, dargestellt in Abbildung 7.35, führt aber dazu, dass Sie die Druckfunktionalität in jeder der Unterklassen genau gleich umsetzen müssten.</p>
+<div class="bildbox">
+<p><a name="IDAEETQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_025.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_025.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.35    </strong>Nicht empfehlenswert: druckfähige Unterklassen</p>
+<p><strong><em>Hier hilft die  
+Vererbung bei der Vermeidung der Redundanz nicht.</em></strong></p>
+<p>Die Verwendung der Vererbung an dieser Stelle ist also nicht ideal. Zwar würde die abgeleitete Klasse <span class="clisting">DruckSchaltfläche</span> den Kontrakte der Klasse <span class="clisting">Schaltfläche</span> erfüllen und so dem <span class="ckursiv">Prinzip der Ersetzbarkeit</span> folgen, aber die Regel <span class="ckursiv">Wiederholungen vermeiden</span> würden Sie dabei verletzen.</p>
+<p>Das Ausdrucken eines Dokuments sollte nicht ausschließlich durch das Anklicken der Schaltfläche möglich sein. Sie möchten dem Benutzer auch einen Menüeintrag und ein Tastenkürzel anbieten. Dadurch müssten Sie in den Klassen <span class="clisting">DruckMenü</span> und <span class="clisting">DruckTastenkürzel</span> genau die gleiche Methode noch einmal implementieren.</p>
+<p><strong><em>Die Delegation ist hier die Lösung.</em></strong></p>
+<p>In den Abschnitten 5.4.2, »Delegation statt Mehrfachvererbung«, und 5.5.2, »Entwurfsmuster ›Strategie‹ statt dynamischer Klassifizierung«, haben Sie eine Designmöglichkeit kennen gelernt, die es Ihnen erlaubt, Objekten bestimmte Funktionalität zuzuordnen, ohne dass diese Objekte selbst Methoden für die gewünschte Funktionalität implementieren müssten: Lassen Sie die Objekte ihre Aufgabe an speziell zu diesem Zweck erstellte Hilfsobjekte delegieren.</p>
+<p>Bei der Verwendung der Delegation anstatt der Vererbung leitet das Hauptobjekt Teile seiner Aufgaben an eine ihm bekannte Komponente weiter. </p>
+<p>Wenden wir dieses Vorgehen auf unser Beispiel an, sieht die Situation bereits anders aus: Das Hilfsobjekt, das ein Dokument ausdruckt, wird sowohl einer Schaltfläche, einem Menüeintrag und auch einem Tastenkürzel, und vielleicht noch anderen Steuerelementen, zugeordnet. In Abbildung 7.36 ist die Modellierung so angepasst, dass die Aktion zum Drucken eines Dokuments nur noch einmal in der Klasse <span class="clisting">Ausdruck</span> umgesetzt werden muss.</p>
+<div class="bildbox">
+<p><a name="IDA3ETQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_026.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_026.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.36    </strong>Verwendung von separaten Objekten zur Bearbeitung von Ereignissen</p>
+<p>Die Schaltfläche für das Drucken gehört zu derselben Klasse <span class="clisting">Schaltfläche</span> wie die Schaltfläche, die das Löschen eines Dokuments auslöst. Die Schaltflächen unterscheiden sich nur in ihren Eigenschaften und Beziehungen, sie gehören aber alle zur selben konkreten Klasse.</p>
+<p>Die Ausführung der Aktionen <span class="ckursiv">Drucken</span>, die durch ein Ereignis wie zum Beispiel einen Klick auf die Schaltfläche <span class="ckursiv">Drucken</span> ausgelöst werden, ist an separate Objekte delegiert. Diese sind alle Exemplare der Klasse <span class="clisting">Ausdruck</span>. Die Aufgabe dieser separaten Objekte ist es also, auf Ereignisse zu reagieren. Sie werden deshalb auch <span class="ckursiv">Eventhandler</span> (Ereignisverarbeiter) genannt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Eventhandler (Ereignisverarbeiter)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ereignisverarbeiter sind Routinen, die aufgrund eines Ereignisses aufgerufen werden und die Aktion durchführen, die durch das Ereignis ausgelöst werden soll. In objektorientierten Systemen können diese Routinen als Objekte repräsentiert werden. Als Reaktion auf ein Ereignis wird in diesem Fall eine Operation dieses Objekts aufgerufen.</p>
+</td>
+</tr>
+</table><br><p>Wir haben Eventhandler also als Routinen definiert. Wenn Sie sich das Beispiel in Abbildung 7.36 genauer anschauen, stellen Sie fest, dass die Exemplare der Klasse <span class="clisting">Aktion</span> eine sehr einfache Schnittstelle haben. Sie bieten lediglich eine einzige Operation <span class="clisting">durchführen()</span> an. Sie sind nur dazu da, um eine Methode bereitzustellen, die von verschiedenen Objekten zu verschiedenen Zeiten aufgerufen werden kann. Damit kapseln diese Objekte lediglich die Routine <span class="clisting">durchführen()</span>.</p>
+<p>Daher wäre es eigentlich praktisch, wenn Sie gar keine eigene Klasse für diese Aktionen erstellen, sondern lediglich Routinen definieren müssten, die dann in verschiedenen Kontexten verwendet werden. Diese Möglichkeit bieten die sogenannten <span class="ckursiv">Funktionsobjekte</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Funktionsobjekte (Function Objects)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Manche Programmiersprachen ermöglichen es, Routinen direkt als Objekte zu behandeln. Diese Objekte werden als Funktionsobjekte bezeichnet.</p>
+<p>In Programmiersprachen, die dieses Konzept unterstützen, müssen Sie also keine Klasse <span class="clisting">Aktion</span> oder <span class="clisting">Ausdruck</span> selbst programmieren, es reicht, wenn Sie eine Routine <span class="clisting">ausdruck()</span> erstellen. Diese Routine wird dann als ein Objekt behandelt. Zu solchen Programmiersprachen gehören zum Beispiel Python, Ruby oder JavaScript. In ihnen sind die Routinen (Prozeduren, Funktionen, Methoden oder Blöcke) selbst Objekte. C# bietet unter dem Namen Delegaten (Delegates) ein Sprachmittel, das es ermöglicht, Objekte mit Funktionen zu parametrisieren.</p>
+</td>
+</tr>
+</table><br><p>In Sprachen, die Funktionsobjekte direkt unterstützen, lässt sich unser Anwendungsbeispiel zur Druckfunktion umsetzen, ohne dass Sie eine eigene Klasse für die Aktion Drucken (und möglicherweise jede Menge anderer Aktionen) einführen müssen.</p>
+<p><strong><em>Drei Umsetzungsvarianten</em></strong></p>
+<p>In den folgenden Abschnitten stellen wir drei verschiedene Umsetzungsvarianten für unser Beispiel aus Abbildung 7.36 vor; eine davon in der Sprache Ruby, die Funktionsobjekte direkt unterstützt, in der also Routinen echte Objekte sind. Das zweite Beispiel stellen wir in Java vor. In Java sind Routinen nicht direkt als Objekte behandelbar. Schließlich stellen wir eine weitere Variante in C# vor. C# bietet ein spezielles Konstrukt, die Delegaten, mit denen sich Funktionsobjekte nachbauen lassen. [In C++ ist mit den sogenannten Funktionszeigern ein Konstrukt verfügbar, mit dem eine vergleichbare Funktionalität wie mit Funktionsobjekten umgesetzt werden kann.
+] </p>
+<h4 class="t4">Ein Beispiel in Ruby</h4>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Routinen sind echte Objekte.</em></strong></p>
+<p>Als Erstes stellen wir eine Umsetzung unseres Beispiels in einer Sprache vor, die Routinen als echte Objekte behandelt. Die Umsetzung unserer Anforderung lässt sich in so einer Sprache direkt vornehmen.</p>
+<p>In Listing 7.33 sehen Sie also eine Umsetzung in Ruby, bei der die Aktionen als anonyme Funktionen umgesetzt werden. [Anonyme Klassen und Methoden haben Sie bereits in Abschnitt 5.2.3 kennengelernt.
+] </p>
+<div class="listing"><pre class="prettyprint"># Eine Taste, die eine Bezeichnung und eine Aktion verwaltet 
+class Schaltflaeche 
+  def initialize(name, &amp;aktion)   
+    @name = name 
+    @aktion = aktion 
+  end 
+  def click  
+    @aktion.call  
+  end 
+end</pre></div>
+<div class="listing"><pre class="prettyprint"># Im Code des Dokumentfensters</pre></div>
+<div class="listing"><pre class="prettyprint">class DokumentFenster 
+  ... 
+  def initialize 
+    schaltflaecheAusdruck = Schaltflaeche.new("Drucken"){  
+      @document.print 
+    } 
+    schalteflaecheLoeschen = Button.new("Löschen") {  
+      @document.loeschen 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.33    </strong>Verwendung von Funktionsobjekten in Ruby</p>
+<p>Exemplare der Klasse <span class="clisting">Schaltfläche</span> werden in Zeile  mit einer Aktion parametrisiert. [Die Eigenschaft <span class="clisting">aktion</span> ist vom Ruby-Typ <span class="clisting">Proc</span>. <span class="clisting">Procs</span> sind Objekte, die eine Routine referenzieren können, die erst durch den Aufruf der Operation <span class="clisting">call</span> ausgeführt wird.
+]  Bei Aufruf der Operation <span class="clisting">click</span>, deren Umsetzung in Zeile  zu sehen ist, wird die bei der Konstruktion übergebene Aktion über den Aufruf von <span class="clisting">call</span> ausgeführt (Zeile ). Wenn nun ein Exemplar der Klasse <span class="clisting">DokumentFenster</span> erzeugt wird, so werden dort zwei Exemplare von <span class="clisting">Schaltfläche</span> erstellt. Das erste Exemplar erhält den Namen <span class="ckursiv">Drucken</span>  und bekommt außerdem eine anonyme Funktion übergeben, die selbst <span class="clisting">@document.print</span> aufruft. Die zweite Schaltfläche wird in Zeile  mit dem Namen <span class="ckursiv">Löschen</span> und einer anderen anonymen Funktion parametrisiert, die wiederum <span class="clisting">@document.loeschen</span> aufruft.</p>
+<p>In unserem Beispiel bleiben die Funktionen zum Drucken und Löschen eines Dokuments anonym. Genauso gut könnten Sie diese aber auch einer Variablen zuweisen.</p>
+<h4 class="t4">Routinen sind keine Objekte: Ein Beispiel in Java</h4>
+<p><strong><em>Proc-Objekte in Ruby Python Java</em></strong></p>
+<p>In Java kann man die Methoden der Klassen nicht als Objekte behandeln. Um zum Beispiel einer Schaltfläche eine spezielle Aktion zuzuordnen, müssen Sie tatsächlich eine Klasse <span class="clisting">Ausdruck</span> programmieren, wie im Beispiel aus Abbildung 7.36.</p>
+<p>Da Sie in Java für die Umsetzung der Routinen also eine komplette eigene Klasse erstellen müssen, können Sie natürlich der Klasse <span class="clisting">Aktion</span> auch mehr Verantwortung zuweisen, als nur eine Routine zu kapseln. Man kann ihr zum Beispiel den im Menü oder auf der Taste dargestellten Text oder das in einer Tastenleiste dargestellte Symbol zuordnen. </p>
+<p>Java bietet eine Basisklasse für solche Aktionsklassen unter dem Namen <span class="clisting">AbstractAction</span> an. Aber auch in Java lässt es sich vermeiden, eine komplett sichtbare eigenständige Klasse für eine solche Aktion umzusetzen. Dafür können Sie wieder die anonymen Klassen verwenden. [Siehe auch Abschnitt 5.2.3, »Anonyme Klassen«.
+]  </p>
+<p>In Abbildung 7.37 sind die verwendeten Klassen dargestellt. Da UML sich mit anonymen Klassen etwas schwer tut, haben wir stellvertretend die Klasse <span class="clisting">AnonymousAction</span> und ihr Exemplar <span class="clisting">ausdrucken</span> aufgeführt.</p>
+<p>Anonyme Klassen können innerhalb einer Methode deklariert werden, sie können dabei als eine Unterklasse einer benannten Klasse oder als eine Implementierung einer Schnittstelle erzeugt werden.</p>
+<p>In Listing 7.34 ist die Implementierung aufgeführt. In Zeile  wird dabei eine anonyme Unterklasse von <span class="clisting">AbstractAction</span> deklariert und auch gleich ein Exemplar <span class="clisting">ausdrucken</span> davon erstellt. </p>
+<p>Die anonyme Klasse implementiert die Operation <span class="clisting">actionPerformed()</span> in Zeile  so, dass beim Erhalt eines Ereignisses das aktuelle Dokument gedruckt wird.</p>
+<div class="bildbox">
+<p><a name="IDAJKTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_027.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_027.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.37    </strong>Aktion unter Verwendung einer anonymen Klasse</p>
+<div class="listing"><pre class="prettyprint">private void initComponents() { 
+    Action ausdrucken = new AbstractAction("Drucken") {  
+      public void actionPerformed(ActionEvent e) {  
+        ... // Dokument drucken 
+      } 
+ 
+    }; 
+    JButton printButton = new JButton(); 
+    printButton.setAction(ausdrucken);   
+    ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.34    </strong>Verwendung einer anonymen Unterklasse von »AbstractAction«</p>
+<p>In Zeile  wird die Aktion <span class="clisting">ausdrucken</span> der neu erstellten Schaltfläche <span class="clisting">printButton</span> (ein Exemplar von <span class="clisting">JButton</span>) zugeordnet. So werden über <span class="clisting">printButton</span> eintreffende Ereignisse die Aktion <span class="clisting">ausdrucken</span> auslösen.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Routinen können zu Objekten gemacht werden.</em></strong></p>
+<h4 class="t4">Ein Beispiel in C#</h4>
+<p>C# verwendet zur Behandlung von Ereignissen sogenannte <span class="ckursiv">Delegaten-Klassen</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Delegaten-Klassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Delegaten-Klassen sind eine Spezialität von C#. Exemplare von Delegaten-Klassen erhalten bei ihrer Konstruktion eine Methode übergeben, die sie auf Anforderung ausführen. Die Signatur der Methode wird dabei durch die Klassendefinition festgelegt. Delegaten-Objekte sind damit also direkt durch die Übergabe von Methoden parametrisierbar.</p>
+</td>
+</tr>
+</table><br><p>Die Verwendung der Delegaten-Klassen ist deshalb notwendig, weil C# als eine statisch typisierte Programmiersprache die Signatur für die verwendeten Funktionen deklarieren muss. Dies geschieht über die Klassendefinition.</p>
+<p>Die Delegaten-Klassen, deren Exemplaren man entsprechende Methoden zuordnen kann, sind ziemlich speziell. Sie haben alle die gleiche Struktur und nur einen Zweck: Methoden zu kapseln. Sie sind so speziell, dass C# für die Deklaration dieser Klassen eine spezielle Syntax und das Schlüsselwort <span class="clisting">delegate</span> vorgesehen hat.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Schaltflächen  
+in C#</em></strong></p>
+<p>Betrachten wir zunächst unser Beispiel mit den Schaltflächen in einer Variante, die eine Delegaten-Klasse verwendet. In Abbildung 7.38 ist die Verwendung der in C# vordefinierten Klasse <span class="clisting">EventHandler</span> dargestellt. Diese ist eine Delegaten-Klasse, so dass Sie Exemplaren dieser Klasse Methoden mit der deklarierten Signatur zuordnen können.</p>
+<div class="bildbox">
+<p><a name="IDACMTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_028.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_028.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.38    </strong>Verwendung der Delegaten-Klasse »Eventhandler«</p>
+<p>Die Klasse <span class="clisting">EventHandler</span> legt dabei fest, dass die ihr zugeordneten Methoden die Parameterleiste <span class="clisting">(object sender, EventArgs e)</span> aufweisen müssen. Die Methode <span class="clisting">ausdrucken</span> entspricht dieser Festlegung und kann so einem Exemplar der Klasse <span class="clisting">EventHandler</span> zugeordnet werden. Das Objekt <span class="clisting">clicked</span>, das in <span class="clisting">schaltflaecheDrucken</span> enthalten ist, ist ein solches Exemplar.</p>
+<p>In Listing 7.35 ist die Umsetzung zu sehen.</p>
+<div class="listing"><pre class="prettyprint">class Button { 
+    public event EventHandler clicked;   
+    // ... 
+ } 
+ 
+class DokumentFenster { 
+     // Die Methode zum Ausdrucken des Dokuments 
+     public void ausdrucken(object sender, EventArgs e) {  
+        // ... Ausdruck der Datei ... 
+     } 
+       Button schaltflaecheDrucken = new Button("Drucken");   
+       schaltflaecheDrucken.clicked += ausdrucken;  
+      }</pre></div>
+<p class="tabunter"><strong>Listing 7.35    </strong>Verwendung der Delegaten-Klasse EventHandler in C#</p>
+<p>In Zeile  ist zu sehen, dass die Klasse <span class="clisting">Button</span> ein Exemplar der Klasse <span class="clisting">EventHandler</span> besitzt. Wird nun wie in Zeile  ein Exemplar von <span class="clisting">Button</span> erstellt, so kann diesem eine Methode zugeordnet werden, die mit der Signatur von <span class="clisting">EventHandler</span> kompatibel ist. In Zeile  wird die Methode <span class="clisting">ausdrucken</span> zugewiesen. Allgemein werden solche Delegaten-Klassen in C# und der ganzen .NET-Familie verwendet, um Beobachter über interessante Ereignisse zu informieren.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Konverter als Delegaten</em></strong></p>
+<p>Betrachten wir noch ein weiteres Beispiel, bei dem eine eigene Delegaten-Klasse verwendet wird. Um eine Klasse zur Kapselung einer Methode mit der Signatur <span class="clisting">(String str)</span> und dem Rückgabetyp <span class="clisting">int</span> zu deklarieren, reicht eine Zeile:</p>
+<div class="listing"><pre class="prettyprint">delegate int Converter(String str);</pre></div>
+<p>Der Konstruktor der Delegaten-Klasse <span class="clisting">Converter</span> enthält als Parameter den Namen einer Methode, die bei der Verwendung eines Konverters aufgerufen werden soll. Listing 7.36 zeigt die Delegaten-Klasse im Einsatz.</p>
+<div class="listing"><pre class="prettyprint">public static int DecimalConversion(String str)  
+{ 
+  return Int32.Parse(str); 
+} 
+public static int HexadecimalConversion(String str)  
+{ 
+  return Int32.Parse(str, 
+    System.Globalization.NumberStyles.HexNumber); 
+} 
+static void Main(string[] args) 
+{ 
+  Converter converter =                      
+      new Converter(HexadecimalConversion); 
+  Console.Out.WriteLine(converter("100"));   
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.36    </strong>Verwendung der Delegaten-Klasse Converter</p>
+<p>In diesem Beispiel sind die zwei Methoden in Zeile  und  mit der vorher deklarierten Klasse <span class="clisting">Converter</span> kompatibel. In Zeile  wird der Konverter mit einer der beiden Methoden initialisiert. Beim folgenden Aufruf in Zeile  wird dann auch die angegebene Konvertierungsmethode verwendet.</p>
+<p>In C# können Sie einer Delegatenvariablen nicht nur ein Delegaten-Exemplar zuordnen, sondern gleich mehrere. So können Sie der Variablen <span class="clisting">converter</span> noch ein anderes Exemplar der Klasse <span class="clisting">Converter</span> hinzufügen:</p>
+<div class="listing"><pre class="prettyprint">converter += new Converter(DecimalConversion);</pre></div>
+<p>Jetzt würde C# bei dem Aufruf <span class="clisting">converter("100")</span> beide Konvertierungsfunktionen aufrufen. Nun, in unserem Beispiel würde das kaum Sinn machen, da wir nur einen Rückgabewert bekommen: den, der von der zuletzt aufgerufenen Methode zurückgegeben wird.</p>
+<p>Wenn es aber um die Signalisierung von Ereignissen an mehrere potenzielle Beobachter geht, kann die Zuordnung mehrerer Delegaten-Exemplare mit dem Rückgabetyp <span class="clisting">void</span> sinnvoll sein.</p><a id="mj7e10a219a48a6476b1ea82aec6cc5ef4" name="mj7e10a219a48a6476b1ea82aec6cc5ef4"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">7.4.5 Kopien von Objekten  <a href="#t2t37"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wir schicken in diesem Abschnitt zunächst einmal eine Frage vorweg: Wozu benötigen wir eigentlich Kopien von unseren Objekten?</p>
+<p>Häufig werden Objekte als Vorlagen verwendet. Dabei wird auf der Grundlage eines bestehenden Objekts ein weiteres, zunächst genau gleiches Objekt erzeugt. Dieses wird dann in der Folge angepasst. So kann zum Beispiel eine Überweisung beim Online-Banking als Vorlage für weitere Überweisungen verwendet werden.</p>
+<p>Auf einer technischen Ebene können Sie dagegen Kopien zum Beispiel verwenden, um sich Zustände von Objekten zu merken, die Sie später wiederherstellen wollen oder mit denen ein Abgleich stattfinden soll.</p>
+<p><strong><em>Vorlagen für Überweisungen</em></strong></p>
+<p>Ein Beispiel von Kopien, die von Vorlagen gemacht werden, sind die Überweisungsvorlagen, die Sie zum Beispiel beim Online-Banking verwenden. Dort können Sie eine einmal ausgeführte Überweisung an das Finanzamt als Vorlage speichern. Da Sie wissen, dass diese Überweisung leider nicht die letzte sein wird, können Sie alle Daten des Überweisungsobjekts speichern.</p>
+<p>Wenn Sie die nächste Überweisung an das Finanzamt vornehmen, machen Sie auf Basis dieses Objekts eine Kopie, bei der Adressat, Bankleitzahl, Kontonummer und auch Betrag zunächst übernommen werden. In der Regel werden Sie dann aber den Betrag anpassen müssen. Das System wird bei Ausführung dann weitere Attribute wie zum Beispiel das Ausführungsdatum für Sie anpassen.</p>
+<div class="bildbox">
+<p><a name="IDACPTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_029.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_029.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.39    </strong>Vorlagen für Überweisungen</p>
+<p>Nach Auswahl einer Überweisung wird zunächst eine exakte Kopie angelegt, bei der sich anschließend die einzelnen Attribute anpassen lassen (siehe Abbildung 7.40).</p>
+<p><strong><em>Kopie als Prototyp</em></strong></p>
+<p>Diese Art von Kopie agiert als Prototyp und sollte auch entsprechend verwaltet werden. Wir haben das entsprechende Entwurfsmuster in Abschnitt 7.1 bereits kurz vorgestellt. Sie erstellen dabei auf der Grundlage bereits vorhandener Daten ein neues Objekt und prägen dieses dann konkret aus. Dabei können natürlich auch Kopien von Sammlungen (Collections) angefertigt werden. Andere Arten von Kopien sollten auf einer fachlichen Betrachtungsebene nicht notwendig sein. Müssen Sie sich auf dieser Ebene doch auch mit anderen Arten von Kopien beschäftigen, fehlt oft eine Abstraktionsebene.</p>
+<div class="bildbox">
+<p><a name="IDA4PTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_030.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_030.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.40    </strong>Kopie des Überweisungsobjekts</p>
+<h4 class="t4">Copy-Konstruktor</h4>
+<p>Wie erstellen Sie nun eine solche Kopie von Objekten? Sie haben bisher zwei technische Möglichkeiten dafür kennen gelernt. In Abschnitt 7.1 haben wir die sogenannten Copy-Konstruktoren beschrieben, ebenso die Erstellung von neuen Objekten auf der Grundlage von Prototypen. Ein Copy-Konstruktor erhält bei der Konstruktion ein existierendes Exemplar einer Klasse übergeben und erstellt davon eine Kopie.</p>
+<p>Um Kopien von Objekten herzustellen, hat der Copy-Konstruktor allerdings einen Nachteil: Der Aufruf eines Konstruktors kann nicht polymorph erfolgen, ist also nicht abhängig vom konkreten Typ des zu kopierenden Objekts. Es ist also durchaus ein Unterschied, ob Sie</p>
+<div class="listing"><pre class="prettyprint">MeinObjekt kopie = original.clone();</pre></div>
+<p>oder</p>
+<div class="listing"><pre class="prettyprint">MeinObjekt kopie = new MeinObjekt(original);</pre></div>
+<p>aufrufen. Auf den ersten Blick sieht es zwar so aus, als würden beide Aufrufe genau das Gleiche machen, nämlich eine exakte Kopie erstellen. Aufgrund der fehlenden dynamischen Polymorphie bei Konstruktoren ist das Verhalten der beiden Varianten aber unterschiedlich.</p>
+<p><strong><em>Copy-Konstruktor in Java</em></strong></p>
+<p>Wir betrachten zunächst einmal das Verhalten von Copy-Konstruktoren für diesen Fall. Nehmen Sie an, Sie haben eine Klasse <span class="clisting">Kunde</span> vorliegen, außerdem eine Unterklasse für Geschäftskunden. Beide Klassen haben jeweils einen Copy-Konstruktor. In Abbildung 7.41 sind die Klassen mit ihren Konstruktoren dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAARTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_031.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_031.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.41    </strong>Copy-Konstruktoren für Kunde und Geschäftskunde</p>
+<p>Aufgerufen wird der Konstruktor der Klasse <span class="clisting">Kunde</span> in einer Methode <span class="clisting">neuerKunde</span> der Klasse <span class="clisting">KundenGenerator</span>. Diese erhält ein Exemplar der Klasse <span class="clisting">Kunde</span> als Wert für den Parameter <span class="clisting">alterKunde</span> übergeben. Da <span class="clisting">Geschäftskunde</span> eine Unterklasse von <span class="clisting">Kunde</span> ist, kann natürlich auch ein Exemplar der Klasse <span class="clisting">Geschäftskunde</span> übergeben werden.</p>
+<p>In Listing 7.37 ist die Java-Umsetzung der Operation <span class="clisting">neuerKunde</span> und deren Verwendung gezeigt.</p>
+<div class="listing"><pre class="prettyprint">class KundenGenerator { 
+  Kunde neuerKunde (Kunde alterKunde) {   
+    return new Kunde(alterKunde); 
+  } 
+  public static void main(String[] args) { 
+    KundenGenerator generator = new KundenGenerator(); 
+    Kunde kunde1 = new Kunde("Zuiop","Qwert");   
+    Geschäftskunde kunde2 =                      
+      new Geschäftskunde("Zuiop","Qwert","HRB 112244"); 
+    Kunde neuerKunde1 = generator.neuerKunde (kunde1);    
+    Kunde neuerKunde2 = generator.neuerKunde(kunde2);     
+ 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.37    </strong>Kopien durch Copy-Konstruktor</p>
+<p>Die Methode <span class="clisting">neuerKunde</span> in Zeile  erstellt eine Kopie eines Exemplars der Klasse <span class="clisting">Kunde</span>, indem sie den Copy-Konstruktor aufruft. In den Zeilen  und  wird dann jeweils ein Exemplar der Klasse <span class="clisting">Kunde</span> und eines der Klasse <span class="clisting">Geschäftskunde</span> erstellt. Beide werden nacheinander in den mit  markierten Zeilen als Parameterwert an <span class="clisting">neuerKunde</span> übergeben.</p>
+<p><strong><em>Nur Exemplar der Basisklasse</em></strong></p>
+<p>Wenn Sie danach die Klassenzugehörigkeit der beiden neu erstellten Objekte erfragen, erhalten Sie folgende Antwort:</p>
+<div class="listing"><pre class="prettyprint">Klasse des neuen Kunden kunde1: Kunde 
+Klasse des neuen Kunden kunde2: Kunde</pre></div>
+<p>Auch die Kopie des Geschäftskunden hat lediglich ein Exemplar der Klasse <span class="clisting">Kunde</span> erzeugt, da unser Copy-Konstruktor nicht polymorph auf der Grundlage des übergebenen Objekts agiert.</p>
+<h4 class="t4">Clone-Operation</h4>
+<p>Ein anderes Verhalten zeigt sich, wenn für die Kopien eine eigene Operation verwendet wird, um auf Basis eines existierenden Objekts eine Kopie davon zu erzeugen. Eine solche Operation wird als Clone-Operation bezeichnet. In Abbildung 7.42 sind die modifizierten Klassen dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDATSTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_032.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_032.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.42    </strong>Kopien durch Clone-Operation</p>
+<p>Wenn Kopien über die Clone-Operation erzeugt werden, ändert sich das Verhalten im Vergleich zu den Copy-Konstruktoren. Nun haben also sowohl die Klasse <span class="clisting">Kunde</span> als auch die Klasse <span class="clisting">Geschäftskunde</span> eine Operation <span class="clisting">clone</span> zugeordnet. Exemplare der Klassen können damit also Kopien von sich selbst erzeugen.</p>
+<p>Die Methode <span class="clisting">neuerKunde</span> in der Klasse <span class="clisting">KundenGenerator</span> ruft in dieser Variante keinen Copy-Konstruktor mehr auf, sondern die Operation <span class="clisting">clone</span> auf dem übergebenen Exemplar der Klasse <span class="clisting">Kunde</span>:</p>
+<div class="listing"><pre class="prettyprint">    Kunde neuerKunde(Kunde alterKunde) { 
+        return alterKunde.clone(); 
+    }</pre></div>
+<p>Wird mit dieser veränderten Variante erneut der Code von Listing 7.37 durchlaufen, weisen die kopierten Objekte die korrekte Klassenzugehörigkeit auf:</p>
+<div class="listing"><pre class="prettyprint">Klasse des neuen Kunden kunde1: Kunde 
+Klasse des neuen Kunden kunde2:<span class="clisting"> Geschäftskunde</span></pre></div>
+<p>Durch das Erstellen einer Kopie über die Operation <span class="clisting">clone</span> erhalten Sie also eine korrekte Kopie unserer Kundenobjekte, auch wenn es sich um Exemplare von Unterklassen handelt.</p>
+<p><strong><em>Die Operation clone in Java</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Die Operation clone in Java
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Die Behandlung der Clone-Operation in Java ist nicht völlig geradlinig. Die von der Klasse <span class="clisting">Object</span> zur Verfügung gestellte Methode <span class="clisting">clone</span> ist als <span class="clisting">protected</span> deklariert. Sie kann damit von abgeleiteten Klassen, die eine öffentliche Operation für das Kopieren ihrer Exemplare zur Verfügung stellen, genutzt werden, um flache Kopien von Objekten zu erzeugen. Erst wenn abgeleitete Klassen eine Operation für das Erstellen von Kopien bereitstellen, kann diese auch genutzt werden. So weit, so verständlich. Allerdings gibt es nun zwei weitere Randbedingungen. Damit ein Objekt die Methode <span class="clisting">clone</span> der Klasse <span class="clisting">Object</span> nutzen darf, muss die zugehörige Klasse die Schnittstelle <span class="clisting">Cloneable</span> implementieren. Die Dokumentation zu dieser Schnittstelle enthält die folgende Beschreibung:</p>
+<p><span class="ckursiv">Bitte beachten Sie, dass diese Schnittstelle die Methode </span><span class="clisting">clone</span><span class="ckursiv"> nicht enthält. Deshalb ist es nicht möglich, ein Objekt nur auf Grundlage der Tatsache, dass es die Schnittstelle implementiert, mittels </span><span class="clisting">clone</span><span class="ckursiv"> zu kopieren. Auch wenn die </span><span class="clisting">clone</span><span class="ckursiv">-Methode über Reflection aufgerufen wird, besteht keine Garantie, dass dies erfolgreich sein wird. </span></p>
+<p>Objekte, welche die Schnittstelle Cloneable implementieren, weisen die Gemeinsamkeit auf, dass sie eine Kopie von sich anfertigen können. Sie können diese Eigenschaft aber nicht nutzen, weil in der Schnittstelle die entsprechende Operation nicht festgelegt wird. Eine Klasse könnte ihre Methode zur Erstellung einer Kopie also durchaus zum Beispiel <span class="clisting">reproduce</span> nennen. </p>
+<p>Dies schränkt zum Beispiel sehr stark die Möglichkeiten ein, Sammlungen von Objekten über einen generischen Mechanismus zu kopieren. Für eigene Klassen gibt es natürlich die Möglichkeit, eine Erweiterung der Schnittstelle <span class="clisting">Cloneable</span> zu definieren, die dann auch die <span class="clisting">clone</span>-Methode spezifiziert. </p>
+</td>
+</tr>
+</table><br><h4 class="t4">Formale Eigenschaften von Kopien</h4>
+<p>Betrachten wir jetzt auch einmal die formalen Eigenschaften, die wir einer Kopie zuschreiben:</p>
+<ul class="gp">
+<li>Die Kopie ist nicht identisch mit dem Original.</li>
+</ul>
+<ul class="gp">
+<li>Die Kopie gehört zur selben Klasse wie das Original.</li>
+</ul>
+<ul class="gp">
+<li>Die Kopie ist gleich dem Original, sofern wir keine Änderungen daran vorgenommen haben.</li>
+</ul>
+<ul class="gp">
+<li>Änderungen an der Kopie ändern nicht die Daten, die dem Original gehören.</li>
+</ul>
+<p><strong><em>Tiefe einer Kopie</em></strong></p>
+<p>Letztere Forderung bezieht sich auf die Unterscheidung einer Kopie des Inhalts gegenüber einer Kopie der Referenz. Wenn etwas als Bestandteil eines Objekts betrachtet wird, dann sollte auch nur dieses Objekt selbst die Möglichkeit haben, diesen Bestandteil zu ändern. Ob ein referenziertes Objekt nun in diesem Sinn Bestandteil eines anderen Objekts ist, kann aus der entsprechenden Klassendefinition nicht entnommen werden. Diese Einordnung gehört zur Metainformation, also zur Information über die entsprechende Klasse.</p>
+<p>Wir müssen diese Information beim Erstellen von Kopien aber berücksichtigen und entscheiden, ob wir von einem referenzierten Objekt wiederum eine Kopie erstellen oder die Referenz einfach auf dasselbe Objekt setzen können.</p>
+<p>Greifen wir unser Beispiel der Überweisungen, die als Vorlagen für andere Überweisungen dienen, nun wieder auf. Die Überweisung referenziert dabei eine Bankverbindung. Diese wiederum verweist auf eine Bank. In Abbildung 7.43 sind diese Beziehungen dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDADWTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_033.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_033.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.43    </strong>Von Überweisung referenzierte Objekte</p>
+<p>Wenn Sie nun eine Kopie anlegen, dann wollen Sie sicherlich die Bankverbindung komplett kopieren. Wenn Sie hier einfach nur den Verweis auf das Objekt <span class="clisting">Bankverbindung</span> übernehmen, würden mysteriöserweise in unserer Vorlage Änderungen an der Kontonummer auftauchen. In diesem Fall soll eine sogenannte <span class="ckursiv">tiefe Kopie</span> der Bankverbindung erstellt werden. Gilt das aber auch für die über die Bankverbindung referenzierte Bank? Wenn Sie diese auch kopieren würden, wäre der Effekt doch eher merkwürdig. Es gäbe dann zum Beispiel die Kreissparkasse Stormarn mehrfach in Ihrem System. In diesem Fall würden Sie also beim Kopieren der Bankverbindung nur den Verweis auf die referenzierte Bank kopieren. Sie legen eine <span class="ckursiv">flache Kopie</span> des Objekts an.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Flache und tiefe Kopien
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Beim Anlegen einer flachen Kopie eines Objekts werdem alle Datenelemente, die Basisdatentypen enthalten, kopiert. Weitere Objekte, die referenziert werden, werden aber nicht mitkopiert, sondern lediglich die Referenz auf diese Objekte. Beim Anlegen einer tiefen Kopie eines Objekts werden alle Datenelemente und alle referenzierten Objekte kopiert. Damit entstehen auch von den referenzierten Objekten Kopien, die anschließend verändert werden können, ohne dass diese dabei das Original modifizieren. Ob ein Objekt flach oder tief kopiert werden muss, ist meist eine fachliche Entscheidung. Wenn die Kopie modifiziert werden muss, ohne das Original zu verändern, so muss eine tiefe Kopie erstellt werden. </p>
+</td>
+</tr>
+</table><br><p><strong><em>Zyklische  
+Referenzen</em></strong></p>
+<p>Ein Problem, das uns beim Kopieren plagen kann, ist das Auftreten von zyklischen Referenzen. Es kann niemand ausschließen, dass unsere Kopiermethode über eine Referenz auf ein Objekt trifft, das sie bereits einmal kopiert hat. Nur: Woher soll sie das wissen? Wenn Sie an dieser Stelle einfach weitermachen, haben Sie eine klare Endlosschleife vorliegen, unser Kopiervorgang wird zu keinem Ende kommen.</p>
+<p>In manchen Anwendungen können Sie Annahme machen, dass es fachlich nicht notwendig ist, potenziell zyklische Beziehungen zu kopieren.</p>
+<p>Nehmen Sie als Beispiel den Fall, dass ein Auftrag eine Liste von Positionen enthält, die jeweiligen Positionen wiederum eine Referenz auf den Auftrag. In diesem Fall ist es klar, dass das die erste Beziehung eine Kompositionsbeziehung ist. Ein Auftrag setzt sich aus den Positionen zusammen. Bei der Position wäre aber der referenzierte Auftrag nicht Bestandteil, so dass ein Kopieren nicht zulässig wäre.</p>
+<p><strong><em>Zyklen durch  
+fehlerhafte Modellierung</em></strong></p>
+<p>Aber auch wenn Sie diese Annahme machen, so können zumindest durch fehlerhafte Modellierungen Zyklen auftreten. Sie würden diese Fehler aber nur sehr schwer finden können, da Ihr Programm sich in so einem Fall einfach nicht beendet. Um Zyklen erkennen zu können, müssen Sie beim Aufruf der Methode mitführen, welche Objekte Sie auf dem Weg zur aktuellen Aufrufstelle bereits kopiert haben. Dies können Sie zum Beispiel tun, indem Sie bei einem rekursiven Aufruf der Kopiermethode eine Liste mitgeben, in die das aktuelle Objekt mit aufgenommen wird. Mit der Methode <span class="clisting">clone()</span>, die wir bereits diskutiert haben, ist das allerdings nicht möglich, da diese keine Parameter hat.</p>
+<p>Betrachten wir nun ein einfaches Beispiel, bei dem Sie zyklische Verweise zwischen Objekten vorliegen haben. Nehmen Sie an, sie haben die Klassen <span class="clisting">A</span>, <span class="clisting">B</span> und <span class="clisting">C</span> aus Abbildung 7.44 vorliegen, die sich gegenseitig referenzieren. Die Methode <span class="clisting">clone</span> kopiert dabei jeweils das referenzierte Objekt mit.</p>
+<div class="bildbox">
+<p><a name="IDANYTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_034.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_034.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.44    </strong>Zyklische Referenzen zwischen Objekten</p>
+<p>In Listing 7.38 ist die Umsetzung der Operation für die drei Klassen aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">class A implements Cloneable { 
+    B b; 
+    public A clone() throws CloneNotSupportedException { 
+        A a = (A)super.clone(); 
+        b = b.clone(); 
+        return a; 
+    } 
+} 
+ 
+class B implements Cloneable { 
+    C c; 
+    public B clone() throws CloneNotSupportedException { 
+        B b = (B)super.clone(); 
+        c = c.clone(); 
+        return b; 
+    } 
+} 
+ 
+class C implements Cloneable { 
+    A a; 
+    public C clone() throws CloneNotSupportedException { 
+        C c = (C)super.clone(); 
+        a = a.clone(); 
+        return c; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.38    </strong>Umsetzung der Operation »clone« für A, B und C</p>
+<p>Die verschiedenen <span class="clisting">clone</span>-Methoden rufen sich also wechselseitig auf, die Methode der Klasse <span class="clisting">A</span> ruft zum Beispiel die Operation <span class="clisting">clone</span> auf dem referenzierten Exemplar von <span class="clisting">B</span> auf.</p>
+<p><strong><em>Endlosschleife</em></strong></p>
+<p>Wenn Sie nun versuchen, eine Kopie eines Exemplars von <span class="clisting">A</span> zu erstellen, landen Sie in einer Endlosschleife:</p>
+<div class="listing"><pre class="prettyprint">        C c = new C(); 
+        B b = new B(); 
+        A a = new A(); 
+        a.b = b; 
+        b.c = c; 
+ c.a = a; 
+        A another = a.clone();</pre></div>
+<p><strong><em>Mitführen  
+von kopierten Objekten</em></strong></p>
+<p>Der Aufruf von <span class="clisting">a.clone</span> wird nämlich auch <span class="clisting">b.clone</span> aufrufen, dieses wiederum <span class="clisting">a.clone</span> und so weiter. Der Aufruf wird also zu keinem Ende kommen. Diese Situation kann zum Beispiel durch eine Prüfung gegen eine mitgeführte Liste von Objekten korrigiert werden.</p>
+<div class="listing"><pre class="prettyprint">public A safeclone(LinkedList list) 
+         throws CloneNotSupportedException { 
+    if (list.contains(this)) return this; 
+    LinkedList newlist = (LinkedList)list.clone(); 
+    newlist.add(this); 
+    A a = (A)super.clone(); 
+    b = b.safeclone(newlist); 
+    return a; 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.39    </strong>Prüfung auf zyklische Referenzen bei Kopien</p>
+<p>In Listing 7.39 wird an die Methode <span class="clisting">safeclone()</span> eine Liste übergeben, in der alle Objekte, die Sie gerade kopieren, enthalten sind. Wenn das aktuelle Objekt hier bereits auftaucht, was Sie über die Prüfung mit <span class="clisting">list.contains(this)</span> feststellen, ist ein Kopieren nicht mehr notwendig, und Sie können direkt die Referenz zurückgeben. Im anderen Fall müssen Sie die Liste lokal um das aktuelle Objekt erweitern und übergeben diese dann in modifizierter Form an die weiteren Aufrufe der Kopiermethoden. [Die vorgestellte Methode soll nur das generelle Prinzip illustrieren. Durch das jeweils vorgenommene Kopieren der kompletten Liste mit bereits behandelten Objekten arbeitet diese Version nicht sonderlich effizient.
+] </p><a id="mj66aae429fecf9db6555945805016c62e" name="mj66aae429fecf9db6555945805016c62e"></a><a name="t36"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t37"></a><h3 class="t3">7.4.6 Sortierung von Objekten  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t36"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Eine Aufgabenstellung, die neben dem Kopieren häufig auftaucht, ist das Sortieren von Objekten nach einem bestimmten Kriterium. Möglicherweise wollen Sie eine Liste von Objekten sortiert anzeigen oder einfach den Zugriff auf eine Sammlung von Objekten effizienter gestalten. Eine Suche in sortierten Sammlungen ist wesentlich effizienter als eine Suche in unsortierten Sammlungen. Ein anderer Grund kann es sein, eine Abarbeitungsreihenfolge für eine Sammlung von Objekten festzulegen.</p>
+<p><strong><em>Verantwortung  
+für Vergleich</em></strong></p>
+<p>In der Praxis gibt es zwei gängige Möglichkeiten, um einen Vergleich bezüglich der Sortierung zweier Objekte durchzuführen:</p>
+<ul class="gp">
+<li>Sie können die Verantwortung für den Vergleich einem der beiden Objekte zuordnen.</li>
+</ul>
+<ul class="gp">
+<li>Sie bringen ein weiteres Objekt ins Spiel bringen, das den Vergleich durchführt (einen Vergleicher oder Komparator [Vergleicher ist zwar auch ein schöner deutscher Begriff, wir rechnen uns aber durch die Verwendung des Begriffs Komparator höhere Chancen dafür aus, dass wir die Filmrechte dieses Buchs nach Hollywood verkaufen können.
+] ).</li>
+</ul>
+<p>Beide Varianten haben ihre Vor- und Nachteile.</p>
+<p>Schauen wir uns dazu jeweils Beispiele in der Programmiersprache Java an.</p>
+<p><strong><em>Java</em></strong></p>
+<p>Wir haben dabei eine Klasse <span class="clisting">Kunde</span> vorliegen, die eine Eigenschaft <span class="clisting">prio</span> (für die Priorität des Kunden) und eine Eigenschaft <span class="clisting">name</span> deklariert.</p>
+<div class="bildbox">
+<p><a name="IDA50TQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_035.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_035.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.45    </strong>Sortierung von Kunden nach deren Priorität</p>
+<p>Dadurch, dass die Klasse die Schnittstelle <span class="clisting">Comparable</span> implementiert, ist sie in vielen Kontexten einsetzbar, die eine Sortierung erfordern. In Listing 7.40 Umsetzung einer Vergleichsoperation für Kunden dargestellt.</p>
+<div class="listing"><pre class="prettyprint">class Kunde implements Comparable { 
+  Prioritaet prio; 
+  String name; 
+  public int compareTo(Object obj) throws ClassCastException 
+  { 
+      Kunde andererKunde = (Kunde)obj; 
+      if (prio.value &lt; andererKunde.prio.value) return &#8211;1; 
+      if (prio.value &gt; andererKunde.prio.value) return 1; 
+      return name.compareTo(andererKunde.name); 
+   } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.40    </strong>Umsetzung einer Vergleichsoperation für Kunden</p>
+<p>Ein Vergleich unter Verwendung der Methode <span class="clisting">compareTo()</span> wird Ihre Kunden nun nach Priorität sortieren. Nur wenn die Prioritäten gleich sind, wird weiter nach dem Namen sortiert. Sind auch die Namen gleich, dann erfolgt keine weitere Sortierung mehr.</p>
+<p>Es ist meistens vernünftig, die Methode, die eine Sortierung unterstützt, so zu implementieren, dass sie 0 zurückgibt, wenn der Vergleich der zwei Objekte mit der Methode <span class="clisting">equals()</span> den Wert <span class="clisting">true</span> zurückgibt, also dann, wenn die Objekte vollständig gleich sind. In unserem Beispiel ist das gegeben, denn bei vollständiger Gleichheit wird die Methode <span class="clisting">compareTo()</span> der Klasse <span class="clisting">String</span> das Resultat 0 liefern, wenn sie für das Attribut <span class="clisting">name</span> aufgerufen wird.</p>
+<p><strong><em>Verschiedene  
+Sortierkriterien</em></strong></p>
+<p>Nehmen Sie nun aber an, sie wollen Ihre Kunden in einer anderen Situation nicht nach Priorität, sondern einfach nach alphabetischer Reihenfolge des Nachnamens sortieren. Es gibt ja nicht nur die Vertriebssicht auf die Kunden.</p>
+<p>Die bereits umgesetzte Methode <span class="clisting">compareTo()</span> können Sie in diesem Fall nicht mehr verwenden.</p>
+<p>Besser fahren Sie mit der Anwendung einer Vergleichsstrategie, einem Komparator-Objekt, das die Vergleiche zwischen zwei Objekten durchführt. [Dies ist ein weiterer Anwendungsfall für das Entwurfsmuster »Strategie«, das wir in Abschnitt 5.5.2, »Entwurfsmuster ›Strategie‹ statt dynamischer Klassifizierung «, vorgestellt haben.
+]  Java zum Beispiel bietet uns dafür bereits die Schnittstelle <span class="clisting">Comparator</span> an, die von einer Komparator-Klasse implementiert werden kann. Damit verlagern Sie die Verantwortung für den Vergleich vom zu vergleichenden Objekt auf einen eigenständigen Komparator.</p>
+<p>Der Komparator benötigt allerdings Zugriff auf die für einen Vergleich relevanten Daten der beiden betroffenen Objekte. In Abbildung 7.46 ist eine Variante unseres Beispiels dargestellt, die einen Komparator verwendet, anstatt die Vergleichsoperation der Klasse <span class="clisting">Kunde</span> zuzuordnen.</p>
+<div class="bildbox">
+<p><a name="IDAH2TQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_036.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_036.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.46    </strong>Verwendung einer Komparator-Klasse</p>
+<p>In der Abbildung ist neben der Umsetzung der <span class="clisting">compare</span>-Methode auch eine Verwendung des Komparators angegeben. Die Klasse <span class="clisting">Collections</span> bietet eine statische Methode an, die eine übergebene Liste mit Hilfe eines ebenfalls übergebenen Komparators sortiert. In der Übersicht sehen Sie auch, dass über einen Komparator nicht nur eine Sortierung über <span class="clisting">compare()</span> vorgenommen werden kann, sondern dass auch die Prüfung auf Gleichheit über die Methode <span class="clisting">equals()</span> an ihn delegiert werden kann.</p>
+<p><strong><em>Komparator ist flexibler.</em></strong></p>
+<p>Diese Modellierung ist nun wesentlich flexibler, weil Sie das Sortierkriterium austauschen können, ohne in die Klasse <span class="clisting">Kunde</span> eingreifen zu müssen. Sie hat allerdings auch einen Nachteil: Sie müssen dem Komparator Zugriff auf die vergleichsrelevanten Daten der Klasse <span class="clisting">Kunde</span> ermöglichen. Im Fall der Priorität ist das kein Problem, da diese wahrscheinlich ohnehin zur Schnittstelle eines Kunden-Objekts gehört. In anderen Fällen kann es aber notwendig sein, dass eigentlich interne Daten für den Komparator offen gelegt werden.</p>
+<p><strong><em>Komparator  
+oder Vergleichsmethode</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Sortierung und Vergleich über Komparator
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bei der Abwägung, ob Sie eine Vergleichsoperation einem Objekt selbst oder einem Komparator zuordnen, sollten Sie zunächst darauf achten, ob es eine klare vorgegebene Reihenfolge für die Sortierung gibt. Bei der Klasse <span class="clisting">Datum</span> gibt es beispielsweise eine intuitiv gültige Sortierung, die Datumsobjekte in eine Reihenfolge bringt. In solchen Fällen ist es sinnvoll, die Operationen für Vergleich und Sortierung dem Objekt selbst zuzuordnen. Wenn es allerdings ein solches eindeutiges Kriterium nicht gibt, sollten Sie eine Komparator-Klasse verwenden. Dadurch können Sie auch später weitere Sortierkriterien hinzufügen, ohne die Klasse der zu sortierenden Objekte anpassen zu müssen.</p>
+</td>
+</tr>
+</table><br><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_07_004.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="7.4 Objekte in Aktion und in Interaktion"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_005.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

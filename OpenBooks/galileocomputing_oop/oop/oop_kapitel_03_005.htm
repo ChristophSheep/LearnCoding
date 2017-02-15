@@ -1,0 +1,393 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 3.5 Prinzip 5: Trennung der Schnittstelle von der Implementierung</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 3.5 Prinzip 5: Trennung der Schnittstelle von der Implementierung">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 3.5 Prinzip 5: Trennung der Schnittstelle von der Implementierung">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_03_004.htm">
+<link rel="next" href="oop_kapitel_03_006.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_03_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_03_006.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a" class="navnav">3 Die Prinzipien des objektorientierten Entwurfs</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_001.htm#mj3779726901d09a441b65ad53bd5975d9" class="navnav">3.1 Prinzip 1: Prinzip einer einzigen Verantwortung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_002.htm#mje61a2510fb2b5b517d72db623f2ffa3b" class="navnav">3.2 Prinzip 2: Trennung der Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_003.htm#mj637b1f986c2e9441d2d305cafc96f6ac" class="navnav">3.3 Prinzip 3: Wiederholungen vermeiden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_004.htm#mj887f0556cf1d83e4d56c5875b300fe87" class="navnav">3.4 Prinzip 4: Offen für Erweiterung, geschlossen für Änderung </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mjf3cd04445959793a762a62c9b9ff6c75" class="navh">3.5 Prinzip 5: Trennung der Schnittstelle von der Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_006.htm#mjf155956d6de05131afd30434fd85e74f" class="navnav">3.6 Prinzip 6: Umkehr der Abhängigkeiten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_03_006.htm#mjc8b152bcef3e835d257ec67f78fbe37c" class="navnav">3.6.1 Umkehrung des Kontrollflusses</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_007.htm#mjabe2e315eab5476b96de870d159eb869" class="navnav">3.7 Prinzip 7: Mach es testbar</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mjf3cd04445959793a762a62c9b9ff6c75" name="mjf3cd04445959793a762a62c9b9ff6c75"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">3.5 Prinzip 5: Trennung der Schnittstelle von der Implementierung  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Der Zusammenhang zwischen der Spezifikation der Schnittstelle eines Moduls und der Implementierung sollte nur für die Erstellung des Moduls selbst eine Rolle spielen. Alle anderen Module sollten die Details der Implementierung ignorieren.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Trennung der Schnittstelle von der Implementierung  
+(Program to interfaces) 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Jede Abhängigkeit zwischen zwei Modulen sollte explizit formuliert und dokumentiert sein. Ein Modul sollte immer von einer klar definierten Schnittstelle des anderen Moduls abhängig sein und nicht von der Art der Implementierung der Schnittstelle. Die Schnittstelle eines Moduls sollte getrennt von der Implementierung betrachtet werden können.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Schnittstelle ist Spezifikation</em></strong></p>
+<p>In der obigen Definition dürfen Sie unter dem Begriff <span class="ckursiv">Schnittstelle</span> nicht nur bereitgestellte Funktionen und deren Parameter verstehen. Der Begriff Schnittstelle bezieht sich vielmehr auf die komplette Spezifikation, die festlegt, welche Funktionalität ein Modul anbietet.</p>
+<p>Durch das Befolgen des <span class="ckursiv">Prinzips der Trennung der Schnittstelle von der Implementierung</span> wird es möglich, Module auszutauschen, welche die Schnittstelle implementieren. Das Prinzip ist auch unter der Formulierung <span class="ckursiv">Programmiere gegen Schnittstellen, nicht gegen Implementierungen</span> bekannt.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Protokollausgaben</em></strong></p>
+<p>Nehmen Sie als ein einfaches Beispiel ein Modul, das für die Ausgabe von Fehler- und Protokollmeldungen zuständig ist. Unsere Implementierung gibt die Meldungen einfach über die Standardausgabe auf dem Bildschirm als Text aus.</p>
+<p>Wenn andere Module, die diese Funktionalität nutzen, sich darauf verlassen, dass die Fehlermeldungen über die Standardausgabe auf dem Bildschirm erscheinen, kann das zu zweierlei Problemen führen. Probleme treten z. B. dann auf, wenn Sie das Protokollmodul so ändern möchten, dass die Meldungen in einer Datenbank gespeichert oder per E-Mail verschickt werden. In Abbildung 3.6 ist das Problem illustriert.</p>
+<div class="bildbox">
+<p><a name="IDAYDSQ"></a><a onClick="OpenWin('bilder/03_06.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein03_06.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 3.6    </strong>Trennung der Schnittstelle von der Implementierung</p>
+<p><strong><em>Problem 1:  
+Funktionalität nicht genutzt</em></strong></p>
+<p>Dieses Problem kann daraus resultieren, dass andere Module die bereitgestellte Funktionalität gar nicht nutzen, sondern eine äquivalente Funktionalität selbst implementieren. Es ist doch so einfach, eine Meldung über die Standardausgabe auszugeben. Jedes »Hello World«-Programm macht es, warum also ein spezielles Protokollmodul nutzen? Ersetzen Sie jetzt das Protokollmodul durch ein anderes, das die Meldungen in einer Datenbank speichert, werden bestimmte Meldungen tatsächlich in der Datenbank landen, andere dagegen immer noch auf der Standardausgabe erscheinen. Dieses Problem haben wir bereits in Abschnitt 3.3 angesprochen.</p>
+<p><strong><em>Problem 2:  
+Sich auf die Implementierung  
+verlassen</em></strong></p>
+<p>Ein anderes Problem kann für die Module entstehen, welche die Fehlermeldungen einlesen und auswerten. Wenn sich diese Module darauf verlassen, dass die Fehlermeldungen über die Standardausgabe ausgegeben werden, können sie z. B. die Umleitung der Standardausgabe dafür nutzen, um die Meldungen einzulesen. Werden die Meldungen nicht mehr über die Standardausgabe ausgegeben, werden die abhängigen Module nicht mehr funktionieren.</p>
+<p>Sie können die geschilderten Probleme vermeiden, indem Sie sich in Ihren Modulen nur auf die Definition der Schnittstelle anderer Module verlassen. Dabei müssen diese jeweils ihre Schnittstelle möglichst klar definieren und dokumentieren.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Verwendung von Schriftgrößen</em></strong></p>
+<p>Ein anderes Beispiel der Probleme, die sich daraus ergeben, wenn man sich statt der Schnittstelle auf deren konkrete Implementierung verlässt, lässt sich leider viel zu oft beobachten, wenn Sie unter Windows die Bildschirmauflösung und die Größe der Fonts ändern. Zu viele Anwendungen gehen davon aus, dass die Bildschirmauflösung 96 dpi beträgt (<span class="ckursiv">Kleine Schriftarten</span>), ändert man die Auflösung auf <span class="ckursiv">Große Schriftarten</span> (120 dpi), sehen sie merkwürdig aus oder lassen sich gar nicht mehr benutzen.</p>
+<p>Das Problem besteht darin, dass sich die Anwendungen auf eine bestimmte Implementierung der Darstellung der Texte auf dem Bildschirm verlassen. Sie verlassen sich darauf, dass für einen bestimmten Text ein Bereich des Bildschirms von bestimmter Größe gebraucht wird. Dies ist jedoch nur ein nicht versprochenes Detail der Implementierung, nicht eine in der Schnittstelle der Textdarstellung unter Windows definierte Funktionalität.</p>
+<p><strong><em>Vorsicht:  
+Java- und  
+C#-Interfaces</em></strong></p>
+<p>Die Programmiersprachen Java und C# bietet in ihren Konstrukten eine Trennung zwischen Klassen und Schnittstellen (Interfaces). Sie könnten nun annehmen, dass Sie das Prinzip schon dann erfüllen, wenn Sie in Ihren Modulen vorrangig mit Java- oder C#-Schnittstellen anstelle von konkreten Klassen arbeiten. Dies ist aber nicht so. Das Prinzip bezieht sich vielmehr darauf, dass Sie keine Annahmen über die konkreten Implementierungen machen dürfen, die hinter einer Schnittstelle liegen. Diese Annahmen können Sie aber bei Java- und C#-Interfaces genauso machen wie bei anderen Klassen.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_03_005.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="3.5 Prinzip 5: Trennung der Schnittstelle von der Implementierung"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_03_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_03_006.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

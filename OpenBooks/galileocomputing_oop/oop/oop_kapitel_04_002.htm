@@ -1,0 +1,1164 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 4.2 Klassen: Objekte haben Gemeinsamkeiten</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 4.2 Klassen: Objekte haben Gemeinsamkeiten">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 4.2 Klassen: Objekte haben Gemeinsamkeiten">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_04_001.htm">
+<link rel="next" href="oop_kapitel_04_003.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_04_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_04_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b" class="navnav">4 Die Struktur objektorientierter Software</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_001.htm#mj7b6b81a0c8972299dbdd92524d8707c3" class="navnav">4.1 Die Basis von allem: das Objekt</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj561db4b7b51ddab563d9357086a75f16" class="navnav">4.1.1 Eigenschaften von Objekten: Objekte als Datenkapseln</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mjd18cdb9194cd0684bdfa301683893159" class="navnav">4.1.2 Operationen und Methoden von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj41885f11bf43f1afc60b76e0afbe7b6c" class="navnav">4.1.3 Kontrakte: Ein Objekt trägt Verantwortung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj4bba9c78108c5ebe6a1e25d09da23b23" class="navnav">4.1.4 Die Identität von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj62d09a1cbb82ce7738613ddee041cc52" class="navnav">4.1.5 Objekte haben Beziehungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj1267a0a54c9f28f7e90497952f29dd59" class="navh">4.2 Klassen: Objekte haben Gemeinsamkeiten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjff74dbd3ea0281a9773d7cd8126e9c8b" class="navh">4.2.1 Klassen sind Modellierungsmittel</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj7012e3ccb719d6c513e60ff574e1c59b" class="navh">4.2.2 Kontrakte: die Spezifikation einer Klasse</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj2695596f673a2fc50b338aa48ddfcc9c" class="navh">4.2.3 Klassen sind Datentypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjc85ceff1ceeab068dd628ab5076d0d70" class="navh">4.2.4 Klassen sind Module</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj1cf8ce74da5d16b89eb3efa0ae9bf182" class="navh">4.2.5 Sichtbarkeit von Daten und Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mja2d7825b1c1c07dd16d08858ed4e2186" class="navh">4.2.6 Klassenbezogene Methoden und Attribute</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj8fefd5a44232563aae6ce704fc4d92c1" class="navh">4.2.7 Singleton-Methoden: Methoden für einzelne Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_003.htm#mjf8802262d55361c06e93e627e44e539e" class="navnav">4.3 Beziehungen zwischen Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj0ff05dc78b1417fb2771d4f29cbc6c1a" class="navnav">4.3.1 Rollen und Richtung einer Assoziation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj36d410616a672dcba508d9ae14c749a3" class="navnav">4.3.2 Navigierbarkeit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj4e980b9907659670b9dec829430e1e5f" class="navnav">4.3.3 Multiplizität </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj160479d0824fb412e545da4b151a77fa" class="navnav">4.3.4 Qualifikatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mjeb1a3ff160181940bb222e7f0e97402c" class="navnav">4.3.5 Beziehungsklassen, Attribute einer Beziehung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj8fc9eae8c02cefd02bf024b5dda0bbe1" class="navnav">4.3.6 Implementierung von Beziehungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj8118cb8c892c6648834fb351f4be17aa" class="navnav">4.3.7 Komposition und Aggregation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mjc62b233e44c20911b6cee2de3c15a801" class="navnav">4.3.8 Attribute</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj344620f0b2ee4df48d645d45e973920c" class="navnav">4.3.9 Beziehungen zwischen Objekten in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_004.htm#mj0e24bd346a5e2c3a8c2f91eec5a74cd5" class="navnav">4.4 Klassen von Werten und Klassen von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mjea3fc9fb362ce0dd9c3af96496b7796d" class="navnav">4.4.1 Werte in den objektorientierten Programmiersprachen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mj925becc3655976ef8cb6eee567f97833" class="navnav">4.4.2 Entwurfsmuster »Fliegengewicht«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mjfca6187c7c9d3b4fdc70dec4c511e84c" class="navnav">4.4.3 Aufzählungen (Enumerations)</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mjd80f28e5e2134c13382e2859c64f48ee" class="navnav">4.4.4 Identität von Objekten</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj1267a0a54c9f28f7e90497952f29dd59" name="mj1267a0a54c9f28f7e90497952f29dd59"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">4.2 Klassen: Objekte haben Gemeinsamkeiten  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>In einer Anwendung gibt es in der Regel viele Objekte. Manche sind grundverschieden, manche sind strukturell und funktional gleich und unterscheiden sich nur durch ihre Identität und durch die ihnen zugeordneten konkreten Daten.</p>
+<p><strong><em>Gemeinsame Eigenschaften  
+von Objekten</em></strong></p>
+<p>Wir haben in unserem Beispiel aus <a href="#Rxx_ref222296366">Listing 4.1</a> nur ein Objekt implementiert, das eine elektrische Leitung repräsentiert. Die physikalischen Gesetze gelten aber für alle elektrischen Leitungen. Alle elektrischen Leitungen weisen bestimmte Eigenschaften auf, wenn auch mit unterschiedlichen Werten. Alle folgen denselben Regeln, alle können ihre Daten in gleichen Datenstrukturen speichern, und deren Funktionalität kann durch die gleichen Methoden implementiert werden. In einem objektorientierten System ist es sinnvoll, diese Gemeinsamkeiten zu erfassen und zu modellieren.</p>
+<p>Gleichartige Objekte können deshalb zu Klassen zusammengefasst werden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Klassen in der objektorientierten Programmierung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Klasse beschreibt die gemeinsamen Eigenschaften und Operationen einer Menge von gleichartigen Objekten.</p>
+<p>Die Objekte, die zu einer Klasse gehören, werden als <span class="ckursiv">Exemplare</span> dieser Klasse bezeichnet (englisch <span class="ckursiv">instance</span>).</p>
+</td>
+</tr>
+</table><br><p>Alle Objekte, die in unserer Anwendung eine elektrische Leitung abbilden, gehören zu derselben Klasse. Sie sind Exemplare der Klasse <span class="clisting">ElektrischeLeitung</span>. Wir werden im folgenden Abschnitt zeigen, wie Klassen zur Modellierung und Strukturierung einer Anwendung eingesetzt werden können.</p><a id="mjff74dbd3ea0281a9773d7cd8126e9c8b" name="mjff74dbd3ea0281a9773d7cd8126e9c8b"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">4.2.1 Klassen sind Modellierungsmittel  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><strong><em>Objekte und Exemplare von Klassen</em></strong></p>
+<p>Klassen sind für die objektorientierte Programmierung so fundamental, dass in den meisten Programmiersprachen ein Objekt immer einer konkreten Klasse zugeordnet wird. [JavaScript ist hier eine der wenigen Ausnahmen, deswegen haben wir diese Sprache für unser erstes Beispiel gewählt.
+]  Damit fallen die Begriffe <span class="ckursiv">Objekt</span> und <span class="ckursiv">Exemplar</span> zusammen und werden oft (nicht ganz korrekt) als Synonyme verwendet. Der Unterschied ist, während das Wort »Objekt« keine Aussage über die Zugehörigkeit des Objekts zu einer Klasse beschreibt, wird das Wort »Exemplar« immer im Zusammenhang mit einer Klasse verwendet.</p>
+<p>Bei der Entwicklung eines objektorientierten Systems steht ganz am Anfang die Aufgabe, die Objekte, die im System benötigt werden, zu identifizieren. Gleich danach kommt aber die Aufgabe, die Gemeinsamkeiten dieser Objekte festzustellen und sie Klassen zuzuordnen, die sogenannte<span class="ckursiv"> Klassifizierung.</span></p>
+<p>Unser Anliegen, eine Anwendung klar zu strukturieren, besteht also zum größten Teil darin, sowohl die äußere Struktur der Klassen untereinander als auch die innere Struktur der Elemente einer Klasse klar und übersichtlich zu gestalten.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Klassifizierung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Die Zuordnung von Objekten zu Klassen heißt Klassifizierung. Dabei werden relevante Gemeinsamkeiten von Objekten identifiziert und Objekte mit diesen Gemeinsamkeiten derselben Klasse zugeordnet.</p>
+</td>
+</tr>
+</table><br><div class="bildbox">
+<p><a name="IDAEQSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_008.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_008.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.11    </strong>Mengendarstellung für Klassen</p>
+<p>In <a href="#Rxx_ref222300515">Abbildung 4.11</a> liegt eine Klassifizierung für eine Reihe von Tieren und anderen Objekten vor, die zum großen Teil eine Rolle in Fernsehserien, Filmen oder Büchern gespielt haben. Die in diesem Beispiel gewählte Zuordnung zu Klassen ist aber nur eine von vielen möglichen Zuordnungen.</p>
+<p>Sie sehen auch, dass in dieser Zuordnung einige Objekte zu mehreren Klassen gehören. So sind zum Beispiel Clarence und Alex sowohl der Klasse Filmstars als auch den Klassen Löwen und Tiere zugeordnet. Ist ein Objekt einer Klasse zugeordnet, sagt man auch, das Objekt sei ein Exemplar dieser Klasse.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Exemplare einer Klasse
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Objekte sind Exemplare der Klassen, zu denen sie gehören. Dabei kann eine Klasse mehrere Exemplare haben, und Objekte können auch Exemplare von mehreren Klassen sein. </p>
+<p>In den meisten Programmiersprachen ist ein Objekt immer nur ein direktes Exemplar einer einzigen Klasse. Über Beziehungen zwischen Klassen, die wir in Kapitel 5, »Vererbung und Polymorphie«, vorstellen werden, kann ein Objekt aber auch indirekt Exemplar von weiteren Klassen sein. Im weiteren Verlauf werden wir generell den Begriff Exemplar verwenden. Zwischen direkten und indirekten Exemplaren werden wir nur unterscheiden, wenn diese Differenzierung für eine Problemstellung relevant ist.</p>
+</td>
+</tr>
+</table><br><p>Statt des Begriffs Exemplar wird in der Literatur und im täglichen Gespräch unter Softwareentwicklern häufig auch der Begriff <span class="ckursiv">Instanz einer Klasse</span> verwendet. Dieser leitet sich allerdings aus einer inkorrekten Übersetzung des englischen Begriffs <span class="ckursiv">Instance</span> ab. Da sich der Begriff Exemplar als eine besser gelungene Übersetzung etabliert hat, werden wir diesen im Folgenden verwenden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Einfache und mehrfache Klassifizierung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn ein Objekt immer nur direktes Exemplar einer einzigen Klasse sein kann, spricht man von der <span class="ckursiv">einfachen Klassifizierung</span>. Die meisten objektorientierten Programmiersprachen unterstützen nur die einfache Klassifizierung. Wenn ein Objekt direkt mehreren konkreten Klassen zugeordnet werden kann, spricht man von <span class="ckursiv">mehrfacher Klassifizierung</span>. </p>
+</td>
+</tr>
+</table><br><p><strong><em>Zwei  
+Modellebenen</em></strong></p>
+<p>Bei der Klassifizierung gibt es generell zwei verschiedene Ebenen, auf denen Objekte zu Klassen gruppiert werden:</p>
+<ul class="gp">
+<li>das konzeptionelle Modell (oder Analysemodell)</li>
+</ul>
+<ul class="gp">
+<li>das Implementierungsmodell (oder Designmodell)</li>
+</ul>
+<p>Wir werden uns in den folgenden Kapiteln hauptsächlich mit dem Implementierungsmodell beschäftigen. Dieses wird jedoch häufig auf Basis eines konzeptionellen Modells erstellt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Konzeptionelles Modell (Analysemodell)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In einem <span class="ckursiv">konzeptionellen</span> Modell beschreibt eine Klasse die konzeptionellen Gemeinsamkeiten von bestimmten Objekten, deren Rollen, deren Verwendung und deren Verantwortlichkeiten. Die erstellten Konzepte bleiben unabhängig von der Technologie, in der Software realisiert werden soll. Sie beschreiben die Fachdomäne und nicht die Software.</p>
+<p>Klassen dienen im konzeptionellen Modell dazu, die Begriffe, die Beziehungen und Prozesse der Fachdomäne zu kategorisieren und zu strukturieren. Die Aufgabe, das konzeptionelle Modell zu erstellen, wird als <span class="ckursiv">Analysephase</span> bezeichnet. Sie wird häufig nicht von Softwareentwicklern, sondern von separaten Teams in Abstimmung mit den fachlichen Anforderern durchgeführt.</p>
+</td>
+</tr>
+</table><br><p>In der Regel wird das konzeptionelle Modell nicht direkt in ein Programm umgesetzt werden. Dies liegt daran, dass für die Strukturierung von Software andere Kriterien angelegt werden als für die Strukturierung einer fachlichen Domäne.</p>
+<p>Zum Beispiel kann es sinnvoll sein, eine Operation <span class="clisting">kündigen()</span>, die im fachlichen Modell einem Vertrag zugeordnet ist, in der Implementierung so umzusetzen, dass die Kündigung als eine eigene Klasse modelliert wird. Es resultiert ein Modell, das sich mit einer Programmiersprache umsetzen lässt, das Implementierungsmodell (oder auch Designmodell).</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Das Implementierungsmodell 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Implementierungsmodell legt die konkrete Umsetzung des konzeptionellen Modells fest. Manche Klassen aus dem konzeptionellen Modell können Klassen im Implementierungsmodell direkt entsprechen. Häufig wird es keinen direkten Bezug zu Klassen der Implementierung geben. Abhängig von gewählter Architektur und Programmiersprache werden bestimmte Konzepte unterschiedlich komplex realisiert.Wir werden im Folgenden die Klassen immer auf der Ebene des Implementierungsmodells betrachten.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Klassen haben eine Spezifikation.</em></strong></p>
+<p>Klassen haben in einem Implementierungsmodell zwei unterschiedliche Funktionen.</p>
+<ul class="gp">
+<li>Zum einen können Sie eine Spezifikation auf der Basis der Klassen erstellen. Dabei entspricht die Klasse einem abstrakten Typ: Sie beschreibt exakt die Schnittstelle für alle Exemplare der Klasse. Diese Rolle der Klassen werden wir im folgenden Abschnitt <a href="#Rxx_ref222302915">4.2.2</a> genauer erläutern.</li>
+</ul>
+<ul class="gp">
+<li>Zum anderen ist einer Klasse aber auch eine Implementierung zugeordnet. Sie kann damit als Modul verwendet werden, das eine bestimmte Umsetzung ihrer Spezifikation kapselt. In Abschnitt <a href="#Rxx_ref222302990">4.2.4</a> werden wir auf diese Sichtweise genauer eingehen.</li>
+</ul>
+<p>Bevor wir also dazu übergehen, wie für Klassen ihre zugehörige Spezifikation formuliert werden kann, werfen wir noch einen Blick auf ein Beispiel einer Klasse. In Abschnitt <a href="#Rxx_ref222302053">4.1.1</a> haben wir bereits ein Objekt vorgestellt, das eine elektrische Leitung repräsentierte. In <a href="#Rxx_ref222300524">Abbildung 4.12</a> sind dieses Objekt und die Klasse, zu der es gehört, dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAFVSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_009.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_009.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.12    </strong>Die Klasse der elektrischen Leitungen</p>
+<p>Die Klasse <span class="clisting">ElektrischeLeitung</span> ist dabei mit ihrem Namen und ihrem Stereotyp aufgeführt. Darunter sind abgetrennt zunächst die Datenelemente und dann die Operationen und Methoden der Klasse aufgelistet. Das Datenelement <span class="clisting">spannung</span> ist dabei mit dem Wert 230 vorbelegt. Der Stereotyp <span class="clisting">&lt;&lt;implementationsklasse&gt;&gt;</span> beschreibt, dass es sich um ein Implementierungsmodell handelt. Stereotypen bieten in UML die Möglichkeit, die Beschreibungssprache zu erweitern, um genauere Angaben zu bestimmten Elementen zu machen.</p>
+<p>Außerdem ist in der Abbildung das Objekt <span class="clisting">leitung1</span> angegeben, mit seiner Zugehörigkeit zur Klasse <span class="clisting">ElektrischeLeitung</span>. Zwischen dem Objekt und der Klasse ist eine Abhängigkeitsbeziehung eingezeichnet, die mit dem Stereotyp <span class="clisting">&lt;&lt;instance&gt;&gt;</span> markiert ist. Dies bedeutet, dass <span class="clisting">leitung1</span> ein Exemplar der Klasse <span class="clisting">ElektrischeLeitung</span> ist. Die Werte für die Datenelemente <span class="clisting">spannung</span> und <span class="clisting">widerstand</span> sind beim Objekt mit aufgeführt.</p><a id="mj7012e3ccb719d6c513e60ff574e1c59b" name="mj7012e3ccb719d6c513e60ff574e1c59b"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">4.2.2 Kontrakte: die Spezifikation einer Klasse  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In Abschnitt <a href="#Rxx_ref222302802">4.1.3</a> haben Sie gesehen, dass zwischen Objekten Kontrakte geschlossen werden, die deren Zusammenarbeit regeln. Diese Kontrakte lassen sich natürlich auch auf Klassen anwenden. Kontrakte, die für Klassen definiert werden, gelten für alle Exemplare dieser Klassen.</p>
+<p>Dabei legen Klassen die Eigenschaften, Operationen und Datenelemente für alle ihre Exemplare fest.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Schnittstelle einer Klasse
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Klassen legen für alle ihre Exemplare fest, welche Eigenschaften und Operationen diese Exemplare besitzen. Die Schnittstelle einer Klasse besteht damit aus allen durch die Klasse definierten Eigenschaften und Operationen. Außerdem werden durch die Schnittstelle die Vor- und Nachbedingungen für die Operationen beschrieben sowie geltende Invarianten für Beziehungen zwischen den Eigenschaften von Exemplaren der Klasse.</p>
+<p>Einige Programmiersprachen bieten Konstrukte an, die explizit sogenannte Schnittstellen-Klassen definieren. Es ist aber zu beachten, dass jede Klasse eine Schnittstelle definiert. Reine Schnittstellen-Klassen haben dabei lediglich die Restriktion, dass sie nicht gleichzeitig eine Implementierung der Schnittstelle anbieten können. </p>
+</td>
+</tr>
+</table><br><p>In <a href="#Rxx_ref222300524">Abbildung 4.12</a> legt die Klasse <span class="clisting">ElektrischeLeitung</span> fest, dass alle ihre Exemplare, so auch das dargestellte Exemplar <span class="clisting">leitung1</span>, die Datenelemente <span class="clisting">spannung</span> und <span class="clisting">widerstand</span> besitzen. Außerdem legt die Klasse fest, dass die Exemplare die Operationen <span class="clisting">getSpannung()</span>, <span class="clisting">setSpannung()</span> und <span class="clisting">getStromstärke()</span> besitzen.</p>
+<p>Ein Kontrakt zwischen einer Klasse und den Nutzern einer Klasse bezieht sich auf die Operationen dieser Klasse und auf Abhängigkeiten zwischen den Eigenschaften der Klasse. Für die zur Verfügung gestellten Operationen legt ein Kontrakt fest, welche Voraussetzungen ein Aufrufer der Operation schaffen muss, damit die Operation durchgeführt werden kann: die Vorbedingungen müssen eingehalten werden. Außerdem legt ein Kontrakt fest, welche Leistung die Operation erbringt, sofern die Vorbedingungen gegeben sind: Die Nachbedingungen werden festgelegt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Vorbedingungen (engl. Preconditions) einer Operation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Für eine Operation können Vorbedingungen festgelegt werden. Ein Aufrufer der Operation verpflichtet sich, diese Bedingungen beim Aufruf der Operation herzustellen. Sind die Vorbedingungen nicht erfüllt, ist die Operation nicht verpflichtet, ihre spezifizierte Aufgabe zu erfüllen. Vorbedingungen sind damit der Kontraktbestandteil, den der Aufrufer einer Operation einzuhalten hat.</p>
+</td>
+</tr>
+</table><br><p>Sind die Vorbedingungen eingehalten, ist der Aufgerufene wiederum verpflichtet, die Nachbedingungen herzustellen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Nachbedingungen (engl. Postconditions) einer Operation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Für eine Operation können Nachbedingungen festgelegt werden. Eine Klasse, welche die Operation über eine Methode umsetzt, sichert zu, dass die Nachbedingungen unmittelbar nach Aufruf der Operation gelten. Diese Zusicherung gilt jedoch nur, wenn der Aufrufer die für die Operation definierten Vorbedingungen eingehalten hat.</p>
+</td>
+</tr>
+</table><br><p>Zusätzlich können auch nach außen zugesicherte Bedingungen vereinbart sein, die immer gelten sollen, unabhängig vom Aufruf einer Operation.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Invarianten (engl. Invariants) 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Invarianten sind Eigenschaften und Beziehungen zwischen Eigenschaften eines Objekts, die sich durch keine Operation ändern lassen. Invarianten, die für eine Klasse definiert werden, gelten für alle Exemplare dieser Klasse.</p>
+</td>
+</tr>
+</table><br><p>Die Bedingungen müssen dabei möglichst in einer Form ausgedrückt werden, die sie automatisch überprüfbar machen.</p>
+<p>Auf Ebene der UML ist die sogenannte <span class="ckursiv">Object Constraint Language</span> (OCL) dafür vorgesehen, Bedingungen auszudrücken. [Eine sehr übersichtliche Beschreibung zur OCL und ihrer Abbildung auf Java-Programme findet sich in einer Beschreibung von Jason Gorman unter http://www.parlezuml.com/tutorials/umlforjava/java_ocl.pdf.
+] </p>
+<p><strong><em> 
+ 
+Object Constraint Language (OCL)</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Object Constraint Language (OCL)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>OCL ist seit der Version 1.1 von UML Bestandteil des UML-Standards. OCL wird dabei verwendet, um zusätzliche Bedingungen darzustellen, die sich mit den sonstigen Beschreibungsmitteln der UML nicht oder nur umständlich ausdrücken lassen. </p>
+<p>OCL stellt dabei eine rein deklarative Beschreibungsmöglichkeit zur Verfügung, um sogenannte <span class="ckursiv">Constraints</span> auszudrücken. Dabei ist ein Constraint ein Ausdruck, der entweder wahr oder falsch ist. Damit eignet sich OCL sehr gut, um Vorbedingungen, Nachbedingungen und Invarianten von Operationen auszudrücken.4</p>
+</td>
+</tr>
+</table><br><p>Die Syntax der OCL ist recht intuitiv, so dass die angegebenen Bedingungen meist direkt verständlich sind.</p>
+<p><strong><em>OCL: Beispiel</em></strong></p>
+<p><a href="#Rxx_ref222300548">Abbildung 4.13</a> zeigt ein einfaches Beispiel für Vor- und Nachbedingungen, wie sie in OCL ausgedrückt werden. Durch die Angabe von <span class="clisting">context ZeitungsAbo::kuendigen</span> wird ausgedrückt, dass sich die gelisteten Bedingungen auf die Operation <span class="clisting">kuendigen</span> der Klasse <span class="clisting">ZeitungsAbo</span> beziehen. Mit <span class="clisting">pre:</span> wird eine Vorbedingung gekennzeichnet, in diesem Fall wird verlangt, dass das betroffene Abo nicht bereits im Status <span class="clisting">gekuendigt</span> ist und dass das angegebene Datum nicht vor dem frühestmöglichen Kündigungsdatum liegt. Mit <span class="clisting">post:</span> wird die Nachbedingung gekennzeichnet, in diesem Fall wird zugesichert, dass sich das Abo danach im Zustand <span class="clisting">gekuendigt</span> befindet.</p>
+<div class="bildbox">
+<p><a name="IDA21SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_010.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_010.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.13    </strong>Beispiel für Bedingungen in OCL-Notation</p>
+<p>Mit den nun eingeführten Begriffen von Vorbedingung, Nachbedingung und Invariante lässt sich jetzt auch definieren, was eigentlich die Spezifikation einer Klasse ausmacht.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Spezifikation einer Klasse
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Die Spezifikation einer Klasse beschreibt für alle Operationen dieser Klasse deren Vor- und Nachbedingungen. Zusätzlich enthält die Spezifikation eine Beschreibung der Invarianten, die für alle Exemplare der Klasse gelten. Damit lässt sich die Spezifikation einer Klasse in Form von Vorbedingungen, Nachbedingungen und Invarianten formulieren. </p>
+</td>
+</tr>
+</table><br><p>Eine Klasse legt also Kontrakte für ihre Exemplare fest. In 7.5, »Kontrakte: Objekte als Vertragspartner«, werden Sie ausführliche Beispiele kennen lernen, bei denen Kontrakte formuliert und auch überprüft werden.</p>
+<p>Wir gehen aber zunächst auf eine weitere Funktion der Klassen ein: Sie legen den Datentyp für alle ihre Exemplare fest. Wir beschreiben im Folgenden, wie sich Klassen in die unterschiedlichen Typsysteme von Programmiersprachen einfügen.</p><a id="mj2695596f673a2fc50b338aa48ddfcc9c" name="mj2695596f673a2fc50b338aa48ddfcc9c"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">4.2.3 Klassen sind Datentypen  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Eine Klasse legt fest, welche Eigenschaften und Operationen bei einem Objekt genutzt werden können, das dieser Klasse angehört. Damit legt die Klasse den Typ für alle ihre Exemplare fest. Ein Objekt kann auch Exemplar von mehreren Klassen sein, in diesem Fall hat das Objekt mehrere Typen zugeordnet.</p>
+<p>Im Beispiel zur Klasse der elektrischen Leitungen aus Abschnitt <a href="#Rxx_ref222303055">4.2.1</a> spezifiziert die Klasse <span class="clisting">ElektrischeLeitung</span>, dass jedes zu dieser Klasse gehörige Objekt eine Eigenschaft <span class="clisting">spannung</span> hat, auf die über die Operation <span class="clisting">getSpannung</span> zugegriffen werden kann. Über die Umsetzung dieser Eigenschaft sagt die Spezifikation der Klasse nichts aus. Trotzdem kann nun aber das sogenannte <span class="ckursiv">Typsystem</span> einer Programmiersprache aufgrund dieser Information entscheiden, ob die Operation <span class="clisting">getSpannung</span> auf einem Objekt zulässig ist.</p>
+<p>Für die Entscheidung, ob ein Objekt einer Variablen zugewiesen oder ob eine Operation auf einem Objekt durchgeführt werden kann, sind die Typen der Objekte wichtig. Es ist sinnvoll, eine elektrische Leitung nach der daran anliegenden Spannung zu fragen. Diese Frage einem Objekt zu stellen, das kein Exemplar der Klasse <span class="clisting">ElektrischeLeitung</span> ist, wäre aber ein Fehler.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Typsysteme der Programmiersprachen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Typsystem ist ein Bestandteil der Umsetzung einer Programmiersprache oder deren Laufzeitumgebung, der die im Programm verwendeten Datentypen zur Übersetzungszeit oder Laufzeit überprüft. Dabei wird jedem Ausdruck ein Typ zugeordnet. Das Typsystem stellt dann fest, ob der Ausdruck in einer bestimmten Verwendung mit den Regeln des Typsystems verträglich ist.</p>
+<p>Zu diesen Prüfungen gehört zum Beispiel auch, ob eine Operation auf einem Objekt durchgeführt oder ob ein Objekt einer Variablen zugeordnet werden kann.</p>
+<p>Je nachdem, wann programmtechnisch diese Prüfung stattfindet, unterscheiden wir die Typsysteme der Programmiersprachen: </p>
+<ul class="gp">
+<li>Beim statischen Typsystem erfolgt die Überprüfung zur Übersetzungszeit des Programms. </li>
+</ul>
+<ul class="gp">
+<li>Beim dynamischen Typsystem erfolgt die Prüfung zur Laufzeit des Programms.</li>
+</ul>
+</td>
+</tr>
+</table><br><p>In den folgenden beiden Abschnitten stellen wir das statische und das dynamische Typsystem jeweils kurz an einem Beispiel vor.</p>
+<h4 class="t4">Statisches Typsystem</h4>
+<p>In einem statischen Typsystem wird der Typ von Variablen und Parametern im Quelltext deklariert. In statisch typisierten Programmiersprachen gehören nicht nur die Objekte bestimmten Typen an, die Variablen sind auch bestimmten Typen zugeordnet. Eine Variable, für die ein Typ deklariert ist, schränkt ein, welche Objekte ihr zugeordnet werden können.</p>
+<p><strong><em>Compiler erkennen Typkonflikte.</em></strong></p>
+<p>In einer statisch typisierten Programmiersprache erkennt bereits der Compiler, wenn wir einer Variablen ein Objekt eines unpassenden Typs zuweisen möchten, und meldet einen Kompilierungsfehler. Es braucht deshalb nicht zur Laufzeit überprüft zu werden, ob eine Operation auf einem Objekt durchgeführt werden kann, denn es ist sichergestellt, dass einer Variablen nur Objekte des passenden Typs zugewiesen worden sind. So kann bereits der Compiler anhand des deklarierten Typs überprüfen, ob die aufgerufene Operation zur Spezifikation der deklarierten Klasse gehört.</p>
+<p><strong><em>Vorteile des statischen Typsystems</em></strong></p>
+<p>Das statische Typsystem hat gegenüber dem dynamischen Typsystem einige Vorteile:</p>
+<ul class="gp">
+<li>Kompilierte Anwendungen können besser optimiert werden: Da der Compiler bereits überprüfen kann, ob eine Operation zulässig ist, braucht diese Überprüfung nicht zur Laufzeit stattzufinden.</li>
+</ul>
+<ul class="gp">
+<li>Die Programmstruktur ist übersichtlicher: Da jede Variable einen deklarierten Typ hat, wird schneller klar, welche Rolle welche Variable spielt.</li>
+</ul>
+<ul class="gp">
+<li>Entwicklungsumgebungen können besser unterstützt werden: Da die Entwicklungsumgebung die Typen der Variablen kennt, kann sie dem Entwickler verschiedenartige Unterstützung anbieten, zum Beispiel zu einer Objektvariablen die möglichen Operationen anzeigen.</li>
+</ul>
+<ul class="gp">
+<li>Fehler im Programm können früher erkannt werden: Da der Compiler die Typen überprüft, werden Situationen, in denen Sie eckige Klötzchen in runde Löcher stecken, früh erkannt.</li>
+</ul>
+<p><strong><em>Java</em></strong></p>
+<p>Betrachten wir ein Beispiel, bei dem ein Exemplar der Klasse <span class="clisting">ElektrischeLeitung</span> zum Einsatz kommt. Die Klasse ist in <a href="#Rxx_ref222300558">Abbildung 4.14</a> aufgeführt.</p>
+<p>Wenn Sie in Java einer Variablen ein neu erstelltes Exemplar der Klasse zuweisen wollen, muss diese Variable den korrekten Typ aufweisen.</p>
+<div class="bildbox">
+<p><a name="IDA05SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_011.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_011.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.14    </strong>Klasse »ElektrischeLeitung« mit Exemplar</p>
+<div class="listing"><pre class="prettyprint">ElektrischeLeitung wire = new ElektrischeLeitung(220,50);  
+String text = wire.getBeschreibung();   
+int textLength = text.length();   
+text = wire;     // Fehler: Typen nicht kompatibel</pre></div>
+<p>In Zeile  weisen Sie der Variablen <span class="clisting">wire</span> eine Referenz auf das neu erstellte Exemplar der Klasse <span class="clisting">ElektrischeLeitung</span> zu.</p>
+<p>In Zeile  braucht zur Laufzeit nicht überprüft zu werden, ob das von <span class="clisting">wire</span> referenzierte Objekt die Operation <span class="clisting">getBeschreibung()</span> unterstützt, denn wir wissen bereits zur Übersetzungszeit, dass Objekte des Typs <span class="clisting">ElektrischeLeitung</span> eine solche Operation unterstützen und das Ergebnis dieser Operation vom Typ <span class="clisting">String</span> ist. Ähnliches gilt für Zeile . Der Fehler in Zeile  wird bereits zur Übersetzungszeit entdeckt. Der Compiler weiß, dass die Variable <span class="clisting">wire</span> nur ein Objekt vom Typ <span class="clisting">ElektrischeLeitung</span>, nicht aber vom Typ <span class="clisting">String</span> enthalten kann.</p>
+<p><strong><em>Kopplung zwischen Klassen  
+und Typen</em></strong></p>
+<p>In einer statisch typisierten Sprache sind die Klassen mit dem Typsystem sehr eng gekoppelt. Jede Klasse deklariert einen Typ. Je nach Programmiersprache kann das Typsystem zusätzlich noch andere Typen enthalten, die nicht den deklarierten Klassen entsprechen &#8211; Java oder C++ enthalten zum Beispiel primitive Datentypen wie <span class="clisting">int</span> oder <span class="clisting">char</span>.</p>
+<h4 class="t4">Dynamisches Typsystem</h4>
+<p>Eine andere Strategie verfolgen die Sprachen mit dynamischem Typsystem. In diesen Programmiersprachen sind Variablen keinen deklarierten Typen zugeordnet. Die Variablen können beliebige Objekte referenzieren, ob eine Operation auf dem referenzierten Objekt durchgeführt werden kann, wird dynamisch zur Laufzeit des Programms überprüft.</p>
+<p><strong><em>Dynamische Typisierung nur als Dokumentation</em></strong></p>
+<p>Eigentlich ist die Bezeichnung <span class="ckursiv">dynamisch typisiert</span> nicht ganz korrekt, denn die Typen werden in diesen Sprachen gar nicht deklariert. Die Variablen haben keinen deklarierten Typ und die Klassen beziehungsweise die Objekte auch nicht. Sie bieten bestimmte Operationen an, aber welche dieser Operationen zu einem Typ gehören, ist nicht Bestandteil des Programms. Diese wichtige Information gehört bei dynamisch typisierten Sprachen zur Dokumentation.</p>
+<p><strong><em>Vorteile des dynamischen Typsystems</em></strong></p>
+<p>Auch das dynamische Typsystem hat Vorteile:</p>
+<ul class="gp">
+<li>Das dynamische Typsystem ist <span class="ckursiv">flexibler</span>: Da die Variablen, die Parameter und die Ergebnisse der Funktionen keine deklarierten Parameter haben, können Sie die Funktionen mit einer größeren Vielfalt von Objekten verwenden. Man spricht auch von <span class="ckursiv">Ducktyping</span>, also einem Enten-Typsystem: Wenn es watschelt wie eine Ente, wenn es schwimmt wie eine Ente, wenn es quakt wie eine Ente, so behandeln wir es wie eine Ente.</li>
+</ul>
+<ul class="gp">
+<li>Beim dynamischen Typsystem entfällt die Notwendigkeit einer expliziten Typumwandlung.</li>
+</ul>
+<p><strong><em>Programmiersprache Python (dynamisch typisiert)</em></strong></p>
+<p>Unten stehend ein Beispiel in der dynamisch typisierten Sprache Python. Wir verwenden dabei wieder ein Exemplar der Klasse <span class="clisting">ElektrischeLeitung</span> aus Abbildung 4.14.</p>
+<div class="listing"><pre class="prettyprint">  wire = ElektrischeLeitung(220,50)  
+  text = wire.getBeschreibung()  
+  textLength = len(text) # Entspricht text.__len__()  
+  text = wire  
+  textLength = len(text) # Entspricht name.__len__() </pre></div>
+<p class="tabunter"><strong>Listing 4.3    </strong>Zuweisung von Objekten auf Variablen in Python</p>
+<p>Hier wird in Zeile  überprüft, ob das Objekt, das von <span class="clisting">wire</span> referenziert wird, tatsächlich die Operation <span class="clisting">getBeschreibung</span> unterstützt. Im Unterschied zu der Version in Java kommt es in Zeile  zu keinem Fehler, denn in Python können wir der Variablen <span class="clisting">text</span> nicht nur Zeichenketten, sondern auch ein Exemplar von <span class="clisting">ElektrischeLeitung</span> zuweisen. Dafür kommt es zu einem Laufzeitfehler in Zeile , denn in Zeile  referenziert die Variable <span class="clisting">text</span> ein Exemplar von <span class="clisting">ElektrischeLeitung</span>, und dieses unterstützt die Operation <span class="clisting">len(..)</span> nicht.</p>
+<p><strong><em>Klassen und Typsystem entkoppelt</em></strong></p>
+<p>In einer dynamisch typisierten Sprache spielen Klassen für das Typsystem eine untergeordnete Rolle. Da die Typen nicht explizit deklariert werden, können auch Objekte, die zu ganz unterschiedlichen Klassen gehören, den gleichen Typ, das heißt die gleichen Operationen, implementieren.</p>
+<p>In Abschnitt 5.1.5, »Vererbung der Spezifikation und das Typsystem«, werden wir darauf eingehen, warum ein dynamisches Typsystem es einfacher macht, Änderungen an Klassenhierarchien vorzunehmen.</p>
+<p>Zunächst werfen wir aber im folgenden Abschnitt einen Blick auf ein Problem, das nur in statisch typisierten Sprachen existiert: Es ist schwierig, die Gemeinsamkeiten verschiedener Klassen zusammenzufassen, wenn sich diese nur in Bezug auf den Typ eines verwendeten Objekts unterscheiden.</p>
+<h4 class="t4">Parametrisierte Klassen</h4>
+<p>In statisch typisierten Sprachen kann es oft ein Problem sein, dass für gleichartige Abläufe, die sich lediglich im Typ eines Parameters unterscheiden, redundanter Code erstellt werden muss. Wir werden dieses Problem gleich an einem Beispiel vorstellen. Parametrisierte Klassen unterstützen bei der Lösung dieses Problems, deshalb präsentieren wir hier zunächst deren Definition.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Parametrisierte Klassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bei der Deklaration von parametrisierten Klassen können ein oder mehrere Typparameter angegeben werden. Wird ein Exemplar so einer Klasse erstellt, muss für diesen Parameter ein konkreter Typ angegeben werden. Zur Übersetzungszeit wird der Parameter dann durch den konkret angegebenen Typ ersetzt. </p>
+<p>Eine Klassendeklaration, die mit Typparameter versehen ist, deklariert nicht nur eine Klasse, sondern eine Menge von Klassen, die sich durch den konkreten Wert der Typparameter unterscheiden. </p>
+</td>
+</tr>
+</table><br><p><a href="#Rxx_ref222300577">Abbildung 4.15</a> zeigt ein Beispiel dafür, wie parametrisierte Klassen in UML dargestellt werden.</p>
+<div class="bildbox">
+<p><a name="IDANFTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_012.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_012.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.15    </strong>Beispiel für die UML-Darstellung von parametrisierten Klassen</p>
+<p>Die Klasse <span class="clisting">Vector</span>, die in Abbildung 4.15 dargestellt ist, ist in Java ab Version 5 eine parametrisierte Klasse. Ihre Operationen haben zum Teil einen Parameter <span class="clisting">element</span>, dessen Typ noch nicht festgelegt ist. Wenn ein Exemplar der Klasse <span class="clisting">Vector</span> angelegt wird, wird dieser Typparameter <span class="clisting">T</span> an einen konkreten Typ (in der Regel eine Klasse) gebunden. Es ist auch möglich, dass eine weitere Klasse, wie in diesem Beispiel die Klasse <span class="clisting">StringVector</span>, den Typparameter bereits bindet. Alle Exemplare von <span class="clisting">StringVector</span> arbeiten damit automatisch mit dem Typ <span class="clisting">String</span> als Elementtyp.</p>
+<p>Um die Verwendung von parametrisierten Klassen zu illustrieren, drängt es sich geradezu auf, zwei Beispiele in der Sprache Java zu präsentieren. Da Java erst ab der Version 5 parametrisierte Klassen anbietet, lässt sich ein Vergleich eines Stücks Source-Code ohne und mit parametrisierten Klassen gut anstellen.</p>
+<p>Hier zunächst die Variante unter Verwendung von Java 1.4. Die Darstellung der Klasse <span class="clisting">Vector </span>ist in <a href="#Rxx_ref222300596">Abbildung 4.16</a> zu finden.</p>
+<p><strong><em>Code ohne  
+parametrisierte Klassen</em></strong></p>
+<div class="bildbox">
+<p><a name="IDAJGTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_013.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_013.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.16    </strong>Klasse »Vector« in Java 1.4</p>
+<p>Da eine Parametrisierung nicht möglich ist, arbeitet die Klasse <span class="clisting">Vector</span> auf allen Exemplaren der Klasse <span class="clisting">Object</span>. Im Fall von Java sind alle Objekte Exemplare dieser Klasse.</p>
+<div class="listing"><pre class="prettyprint">ElektrischeLeitung wire = new ElektrischeLeitung(220,50); 
+Vector wires = new Vector(); 
+wires.add(wire); 
+ElektrischeLeitung wire2 =                 
+        (ElektrischeLeitung) wires.get(0);        </pre></div>
+<p>Dieser Code hat zwei Nachteile. Zum einen müssen Sie beim Zugriff auf das erste Element des Vektors in Zeile  eine explizite Konvertierung zur Klasse <span class="clisting">ElektrischeLeitung</span> machen. Der Hauptnachteil ist aber, dass Sie nicht sicher sein können, dass in dem Vektor tatsächlich nur Exemplare der Klasse <span class="clisting">ElektrischeLeitung</span> enthalten sind. Den vorgestellten Zeilen lässt sich das zwar entnehmen, aber in realen Szenarien wird so ein Vektor möglicherweise auch mit anderen Objekten bestückt. Sie laufen also immer Gefahr, dass die Konvertierung des enthaltenen Elements in die Klasse <span class="clisting">ElektrischeLeitung</span> in Zeile  fehlschlägt. Der Zugriff auf die Sammlung ist nicht typsicher.</p>
+<p><strong><em>Code mit parametrisierten Klassen</em></strong></p>
+<p>Schauen Sie sich nun die Variante unter Verwendung einer parametrisierten Klasse in Java 5 an, die nun die Version der Klasse <span class="clisting">Vector</span> aus <a href="#Rxx_ref222300577">Abbildung 4.15</a> verwendet.</p>
+<div class="listing"><pre class="prettyprint">ElektrischeLeitung leitung = 
+          new ElektrischeLeitung(220,50); 
+Vector&lt;ElektrischeLeitung&gt; leitungen =    
+         new Vector ElektrischeLeitung ();        
+leitungen.add(leitung); 
+ElektrischeLeitung leitung2 = leitungen.get(0);   </pre></div>
+<p>Hier haben Sie dem Compiler in Zeile  gesagt, dass der Vektor <span class="clisting">leitungen</span> nur Objekte vom Typ <span class="clisting">ElektrischeLeitung</span> enthalten kann. Daher »weiß« der Compiler in Zeile , dass die Operation <span class="clisting">get</span> ein Exemplar von <span class="clisting">ElektrischeLeitung</span> zurückgibt.</p>
+<p>Die Klasse <span class="clisting">Vector</span> ist aus der Sicht des Typsystems zur Übersetzungszeit eine ganze Familie von Klassen &#8211; eine für jeden Typ der Objekte, die sie enthalten kann.</p>
+<p>Verwenden Sie wie in unserem Beispiel die Klasse <span class="clisting">Vector&lt;ElektrischeLeitung&gt;</span>, so wird der Typ <span class="clisting">ElektrischeLeitung</span> als der Wert des Typparameters <span class="clisting">T</span> eingesetzt. Der Typparameter <span class="clisting">T</span> wurde für die Klasse <span class="clisting">Vector</span> in <a href="#Rxx_ref222300577">Abbildung 4.15</a> definiert. Der Aufruf <span class="clisting">leitungen.add(...)</span> akzeptiert nur Parameter vom Typ <span class="clisting">ElektrischeLeitung</span>, und der Typ der übergebenen Variablen <span class="clisting">leitung</span> wird bereits zur Übersetzungszeit überprüft.</p>
+<p>Dies funktioniert so, als ob die Operation <span class="clisting">add</span> als <span class="clisting">add(ElektrischeLeitung o)</span> deklariert wäre. Der Aufruf <span class="clisting">leitungen.get(0)</span> funktioniert, als ob die Methode mit <span class="clisting">ElektrischeLeitung get(..)</span> deklariert wäre. Aus diesem Grunde ist an dieser Stelle keine explizite Typumwandlung nötig.</p>
+<p><strong><em>Parametrisierte Klassen in Java, C# und C++</em></strong></p>
+<p>In den Programmiersprachen firmiert die Fähigkeit, parametrisierte Klassen zu verwenden, unter verschiedenen Namen. Java und C# nennen sie <span class="ckursiv">Generics</span><span class="cfett"></span>, in C++ wird sie <span class="ckursiv">Templates</span> genannt.</p>
+<p>In Java bestehen die konkreten Ausprägungen der parametrisierten Klassen nur im Quelltext. Zur Übersetzungszeit wird die Korrektheit der Quelltexte überprüft, und die nötigen Typumwandlungen werden hinzugefügt. Anschließend wird in der übersetzten Version die generische, nicht konkret parametrisierte Klasse verwendet.</p>
+<p>In C++ wird im Gegensatz zu Java für jede spezifische Ausprägung eines Templates eine eigene kompilierte Einheit gebildet.</p>
+<h4 class="t4">Stark und schwach typisierte Programmiersprachen</h4>
+<p>Ein anderes Kriterium, nach dem Sie die Typsysteme der Programmiersprachen vergleichen können, ist die Strenge, mit der beliebige Speicherbereiche als Daten eines Objekts behandelt werden können. Die Unterscheidung zwischen starker und schwacher Typisierung ist völlig unabhängig von der Unterscheidung zwischen statischer und dynamischer Typisierung.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Stark und schwach typisierte Sprachen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine stark typisierte Sprache überwacht das Erstellen und den Zugriff auf alle Objekte so, dass sichergestellt ist, dass Variablen immer auf Objekte verweisen, die auch die Spezifikation des Typs erfüllen, der für die Variable deklariert ist.</p>
+<p>Schwach typisierte Sprachen haben diese Restriktion nicht. In solchen Sprachen ist es möglich, ein Objekt einer Variablen zuzuordnen, ohne dass das Objekt notwendigerweise die Spezifikation des Typs der Variablen erfüllt.</p>
+</td>
+</tr>
+</table><br><p>Eine statisch stark typisierte Sprache überprüft bei einer Typumwandlung zur Übersetzungszeit eines Programms, ob das Objekt dem Zieltyp der Umwandlung entspricht, und meldet einen Fehler, wenn das nicht der Fall sein soll.</p>
+<p><strong><em>Java: statisch und stark typisiert</em></strong></p>
+<p>Ein Beispiel einer statisch und stark typisierten Sprache ist Java. In Java ist es nicht ohne weiteres möglich, einen beliebigen Speicherbereich als Repräsentation eines Objekts zu interpretieren. Da Java statisch typisiert ist, ist es ein Übersetzungsfehler, wenn man einer Variablen vom Typ <span class="clisting">String</span> eine Variable vom Typ <span class="clisting">Object</span> ohne eine explizite Typumwandlung zuweist. Ob die explizite Typumwandlung zur Laufzeit klappt, hängt davon ab, ob das Objekt tatsächlich den Zieltyp der Umwandlung implementiert.</p>
+<p>Wenn wir von den primitiven Datentypen in Java absehen, heißt das, dass die Typumwandlung nur dann klappt, wenn das Objekt zu der angegebenen Klasse der Typumwandlung gehört. Gehört das Objekt nicht dazu, führt das in Java zu einem Laufzeitfehler.</p>
+<div class="listing"><pre class="prettyprint">Object o1 = new String("test"); 
+Object o2 = new Integer(1);</pre></div>
+<div class="listing"><pre class="prettyprint">// gelingt, da das von o1 referenzierte Objekt 
+// ein String ist 
+String s = (String) o1; 
+ 
+// ein Laufzeitfehler. Das von o2 referenzierte Objekt 
+// ist kein String 
+s = (String) o2;</pre></div>
+<p class="tabunter"><strong>Listing 4.4    </strong>Fehler bei Typumwandlung in Java</p>
+<p><strong><em>Ruby, Smalltalk: dynamisch und stark typisiert</em></strong></p>
+<p>Java ist also nicht nur statisch, sondern auch stark typisiert. Andere Beispiele von stark typisierten Sprachen sind die dynamisch typisierten Sprachen Python, Ruby, JavaScript, Smalltalk sowie die statisch typisierte Sprache C#. [C# ist stark typisiert, wenn man keine <span class="clisting">unsafe</span>-Sektionen verwendet. In den Sektionen, die mit dem Schlüsselwort <span class="clisting">unsafe</span> gekennzeichnet sind, kann man Zeiger verwenden und auf beliebige Speicherbereiche zugreifen, sofern es nicht zu einer Zugriffsverletzung führt. Dies kann nützlich sein, ist aber eben <span class="clisting">unsafe</span>.
+] </p>
+<p>Eine schwach typisierte Sprache überlässt dem Entwickler die Kompetenz zu entscheiden, ob ein Speicherbereich direkt als ein Objekt zu interpretieren ist. So funktioniert in einer schwach typisierten Sprache auch eine Typumwandlung von Objekten, die nicht zum Zieltyp der Umwandlung passen. Nach der Typumwandlung wird der Speicherbereich, der sich an der Adresse des Objekts befindet, einfach als Exemplar einer anderen Klasse behandelt.</p>
+<p>Da C++ die Möglichkeiten zur Typkonvertierung von der Sprache C übernommen hat, wäre dort der unten stehende Aufruf möglich:</p>
+<div class="listing"><pre class="prettyprint">MeineKlasse* meinObjekt = new MeineKlasse(); 
+String* text = new String("test"); 
+text = (String*) meinObjekt;  </pre></div>
+<p>Hier würde zur Übersetzungszeit kein Fehler gemeldet, obwohl in Zeile  der Variablen <span class="clisting">text</span> das nach dem Typsystem nicht kompatible Exemplar von <span class="clisting">MeineKlasse</span> zugewiesen wird. Auch zur Laufzeit wird die Fehlersituation nicht direkt signalisiert. Allerdings wird der erste Zugriff auf die Variable <span class="clisting">text</span> sehr wahrscheinlich zu einem Programmabsturz führen, da an der Stelle, auf die der Zeiger <span class="clisting">text</span> verweist, kein <span class="clisting">String</span>-Objekt zu finden ist, sondern ein Exemplar von <span class="clisting">MeineKlasse</span>.</p>
+<p><strong><em>C++: statisch und schwach typisiert</em></strong></p>
+<p>In schwach typisierten Sprachen gibt es also eine mögliche Fehlerquelle mehr. Allerdings kann es auch sinnvoll sein, diese Fähigkeit der Programmiersprache zu nutzen. So kann man zum Beispiel in C++ den Inhalt einer Datei einlesen und den Speicherbereich, in den die Datei geladen wurde, sofort als konkretes Objekt nutzen. [Dabei kann natürlich einiges schief gehen, wenn die eingelesenen Daten nicht die erwartete Struktur aufweisen. Das Ergebnis und das resultierende Verhalten des Programms sind dann eher zufällig.
+] </p>
+<p>Beispiele von schwach typisierten objektorientierten Sprachen sind C++ oder ObjectPascal und Delphi.</p>
+<p><strong><em>Vorteile und Nachteile</em></strong></p>
+<p>Bei der Entscheidung, ob man für die Umsetzung einer Anforderung eine stark oder eine schwach typisierte Sprache bevorzugen sollte, sollte man sich die Frage stellen, ob man einen direkten Zugriff auf bestimmte Speicherbereiche braucht und, wenn ja, ob es nützlich ist, auf diese Daten direkt als Strukturen, denen bestimmte Funktionalität zugeordnet ist, zuzugreifen.</p>
+<p><strong><em>Diskussion:  
+Typisierung  
+von C++</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> C++ soll also schwach typisiert sein. Das ist aber doch nicht ganz korrekt. Wir können doch in C++ zur Laufzeit eine Typumwandlung über einen Aufruf von <span class="clistingk">dynamic_cast</span> durchführen. Dieser Aufruf signalisiert uns doch genau wie in Java einen Fehler, wenn die verwendeten Typen nicht kompatibel sind.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Mit Bezug auf den Operator <span class="clistingk">dynamic_cast</span> hast du Recht. Und wenn dies die einzige Möglichkeit der Typumwandlung in C++ wäre, könnten wir C++ auch als stark typisiert betrachten. Allerdings erbt C++ eine ganze Reihe von Möglichkeiten von der Sprache C. Und die darüber verfügbaren Typkonvertierungen konvertieren jeden beliebigen Typ in jeden beliebigen anderen.</span><span class="ckursiv">Außerdem verwendet C++ für die Bearbeitung von Arrays ähnlich wie C die Zeigerarithmetik. Und so sind bei dem Zugriff auf das zweite Element eines Arrays <span class="clistingk">a</span> die Aufrufe <span class="clistingk">a[1]</span> und <span class="clistingk">*(a+1)</span> äquivalent. Nun, nach dem Prinzip der Ersetzbarkeit kann man einer Zeigervariablen <span class="clistingk">t</span> vom Typ <span class="clistingk">T*</span> auch einen Zeiger <span class="clistingk">s</span> vom Subtyp <span class="clistingk">S*</span> zuweisen. Das funktioniert mit den Arrays allerdings nicht, denn die Exemplare von <span class="clistingk">S</span> können mehr Speicherplatz belegen als die von <span class="clistingk">T</span>. Während also der Ausdruck <span class="clistingk">s[1]</span> tatsächlich auf das zweite Element des Arrays <span class="clistingk">S</span> zugreift, greift <span class="clistingk">t[1]</span> irgendwo in die Mitte der Daten des ersten Elements, in der Annahme, es handele sich um ein direktes Exemplar der Klasse <span class="clistingk">T</span>. C++ ist also keine stark typisierte Programmiersprache.</span><p>Neben der Funktion als Modellierungsmittel und Datentyp nehmen Klassen auch eine durchaus bodenständige Aufgabe wahr: Sie sind Module von Software, durch die sich Quelltexte strukturieren lassen. Auf diese Funktion gehen wir im folgenden Abschnitt ein.</p><a id="mjc85ceff1ceeab068dd628ab5076d0d70" name="mjc85ceff1ceeab068dd628ab5076d0d70"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">4.2.4 Klassen sind Module  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Eine Klasse ist oft auch eine Implementierungseinheit, ein Modul eines Programms. Dieses Modul kann auch dazu dienen, die Spezifikation der Klasse umzusetzen. So stellen Klassen zu den festgelegten Operationen meist auch eine zugehörige Implementierung in Form einer Methode bereit.</p>
+<p>Eine Klasse übernimmt also die Aufgabe eines Moduls und stellt häufig die folgenden Elemente zur Verfügung:</p>
+<ul class="gp">
+<li>Sie deklariert die Methoden der Klasse.</li>
+</ul>
+<ul class="gp">
+<li>Sie enthält die Implementierung der deklarierten Methoden.</li>
+</ul>
+<ul class="gp">
+<li>Sie deklariert die Datenelemente ihrer Exemplare. [Wie Sie in Abschnitt 4.2.6, »Klassenbezogene Methoden und Attribute«, sehen werden, können Klassen zusätzlich auch Datenelemente deklarieren, die der Klasse selbst zugeordnet sind.
+] </li>
+</ul>
+<p>Eine Klasse spezifiziert demnach nicht nur eine Schnittstelle, sondern stellt oft auch die Implementierung der Schnittstelle zur Verfügung. Dabei muss die Klasse aber nicht für alle spezifizierten Operationen wirklich eine Methode umsetzen. In Abschnitt 5.1.4, »Abstrakte Klassen, konkrete Klassen und Schnittstellen-Klassen«, werden Sie Klassen kennen lernen, die explizit bestimmte Operationen nur spezifizieren, aber keine Methode dafür bereitstellen.</p>
+<p>In <a href="#Rxx_ref222300643">Abbildung 4.17</a> sehen Sie, wie die Klasse <span class="clisting">ElektrischeLeitung</span> die von ihr spezifizierten Operationen auch in Form von Methoden umsetzt. Die dargestellte Umsetzung ist in Java vorgenommen. Die Klasse selbst fasst dabei in einem Block des Quelltextes alle Datenelemente und Methoden zusammen.</p>
+<p>Programmiersprachen unterscheiden sich stark bezüglich der Konzepte, wie sie Klassen zur Strukturierung und Modularisierung von Quelltexten heranziehen. Wir betrachten im Folgenden exemplarisch drei verschiedene Vorgehensweisen am Beispiel der Programmiersprachen Java, Ruby und C++.</p>
+<p><strong><em>Klassen als Module in Java</em></strong></p>
+<p>In Java entspricht eine nach außen sichtbare Klasse einem Modul. Der gesamte Quelltext einer Klasse ist eine zusammenhängende Einheit, ein Abschnitt des Gesamtquelltextes der Anwendung. Eine Klasse kann also nicht über mehrere Bereiche eines Quelltextes verteilt werden. </p>
+<div class="bildbox">
+<p><a name="IDADRTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_014.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_014.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.17    </strong>Eine Klasse setzt Methoden um.</p>
+<p>In <a href="#Rxx_ref222300643">Abbildung 4.17</a> ist für die Umsetzung einer Klasse in Java auch dargestellt, dass die öffentliche Klasse <span class="clisting">ElektrischeLeitung</span> vollständig in der Datei <span class="clisting">ElektrischeLeitung.java</span> deklariert und umgesetzt wird. In der gleichen Datei können zwar noch weitere Klassen enthalten sein, diese dürfen aber nicht die Sichtbarkeitsstufe »Öffentlich« <span class="clisting">(public)</span> aufweisen und damit ihre Schnittstelle nicht nach außen zur Verfügung stellen. [Auf die verschiedenen Sichtbarkeitsstufen werden wir gleich im unmittelbar folgenden Abschnitt <span class="ckursiv">Sichtbarkeit von Daten und Methoden</span> eingehen.
+] </p>
+<p>In Ruby lässt sich eine Klasse in mehrere Quelltext-Module [Auch Ruby verwendet den Begriff »Modul« (Module) in einem engeren Sinn und bezeichnet damit ein spezifisches Sprachkonstrukt; wir meinen damit einfach nur einen zusammenhängenden Abschnitt des Quelltextes, der als eine Einheit betrachtet werden kann. ]  aufteilen. In <a href="#Rxx_ref222300698">Abbildung 4.18</a> ist dargestellt, wie die Klasse <span class="clisting">ElektrischeLeitung</span> aus zwei Bestandteilen zusammengesetzt wird, die in verschiedenen Dateien liegen.</p>
+<div class="bildbox">
+<p><a name="IDA1RTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_015.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_015.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.18    </strong>Kombination der Klasse »ElektrischeLeitung« aus zwei Quelltext-Modulen</p>
+<p>Ein vergleichbares Verfahren bieten die partiellen Klassen in C# ab der Version 2. Bei partiellen Klassen werden die Teilquelltexte, aus denen sich eine Klasse zusammensetzt, zur Übersetzungszeit zu einer Binäreinheit zusammengefügt. Ruby ist hier allerdings noch flexibler, eine Klasse kann dort sogar zur Laufzeit noch dynamisch erweitert werden. Durch diese Art der Modularisierung lassen sich Klassen erweitern, ohne in die Quelltexte der bestehenden Klasse eingreifen zu müssen. In Abschnitt 7.2.5, »Fabrikmethoden«, werden Sie ein Beispiel kennen lernen, in dem die Aufteilung einer Klasse auf mehrere Module hilft, Abhängigkeiten zwischen Modulen aufzuheben.</p>
+<p><strong><em>Klassen als Module in C++</em></strong></p>
+<p>Die Sprache C++ bietet eine Zwischenvariante für die Aufteilung einer Klasse auf mehrere Quelltext-Module. Da in C++ die Deklaration einer Klasse von ihrer Implementierung getrennt werden kann, werden dabei üblicherweise Deklaration und Implementierung in separaten Dateien vorgenommen. Dabei ist es auch möglich, die Implementierungen von Methoden einer Klasse auf mehrere Quelltext-Module zu verteilen. Die Deklaration der Klasse muss allerdings in einem Modul vorgenommen werden. [Die Sprache C++ verwendet intensiv einen Precompiler, mit dem man eine Übersetzungseinheit auch in mehrere Dateien aufteilen könnte. So gesehen kann man also auch die Deklaration einer Klasse auf mehrere Dateien verteilen. Wir betrachten hier die Quelltexte eher aus der Sicht des Compilers, für den eine Klassendeklaration in der Tat eine zusammenhängende Einheit sein muss.
+] </p><a id="mj1cf8ce74da5d16b89eb3efa0ae9bf182" name="mj1cf8ce74da5d16b89eb3efa0ae9bf182"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">4.2.5 Sichtbarkeit von Daten und Methoden  <a href="#t2t37"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Nun werden Sie die Möglichkeiten von objektorientierten Sprachen kennen lernen, die Sichtbarkeit von Daten und Methoden zu steuern. Wenn die Methode eines Objekts für ein anderes Objekt sichtbar ist, so ist dies in diesem Kontext damit gleichbedeutend, dass sie auch aufgerufen werden kann. Sie dient in diesem Fall zur Umsetzung einer Operation.</p>
+<p>In den objektorientierten Sprachen können wir differenziert angeben, aus welchen Kontexten bestimmte Operationen von Objekten aufgerufen oder bestimmte Eigenschaften eines Objekts zugegriffen werden dürfen.</p>
+<p><strong><em>Sichtbarkeitsstufen</em></strong></p>
+<p>Werfen Sie also zunächst einen Blick auf die gängigen Sichtbarkeitsstufen in der Übersicht. Die UML definiert vier verschiedene Stufen.</p>
+<ul class="gp">
+<li>Sichtbarkeitsstufe »Öffentlich« (<span class="clisting">public</span>)</li>
+</ul>
+<ul class="gp">
+<li>Sichtbarkeitsstufe »Privat« (<span class="clisting">private</span>)</li>
+</ul>
+<ul class="gp">
+<li>Sichtbarkeitsstufe »Geschützt« (<span class="clisting">protected</span>)</li>
+</ul>
+<ul class="gp">
+<li>Sichtbarkeitsstufe »Bereich« (<span class="clisting">package</span>)</li>
+</ul>
+<p>Wir betrachten hier zunächst die beiden Sichtbarkeitsstufen »Öffentlich« und »Privat«. Diese differenzieren zwischen den Eigenschaften und Methoden, die zur Schnittstelle eines Objekts gehören, und denjenigen, die nicht zur Schnittstelle gehören. In <a href="#Rxx_ref222300715">Abbildung 4.19</a> ist dargestellt, wie die verschiedenen Sichtbarkeitsstufen in UML gekennzeichnet werden.</p>
+<div class="bildbox">
+<p><a name="IDADTTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_016.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_016.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.19    </strong>Darstellung der Sichtbarkeit in UML</p>
+<p>In Abschnitt 5.1.6, »Sichtbarkeit im Rahmen der Vererbung«, kommt die Sichtbarkeitsstufe »Geschützt« hinzu, die die Sichtbarkeit mit Bezug auf die Vererbung der Implementierung regelt. Dort werden wir auch andere Sichtbarkeitsstufen, darunter die Stufe »Bereich«, beschreiben.</p>
+<h4 class="t4">Sichtbarkeitsstufe »Öffentlich«</h4>
+<p>Bisher haben wir mit Bezug auf Objekte und Klassen immer nur von Operationen gesprochen, die über Methoden realisiert werden. Da eine Operation genau das ist, was ein Objekt nach außen zur Verfügung stellt, muss die entsprechende Methode immer als öffentlich deklariert sein.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Sichtbarkeitsstufe »Öffentlich« (public)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Alle Elemente (Methoden und Dateneinträge) eines Objekts, die zu seiner Schnittstelle gehören, haben die Sichtbarkeitsstufe »Öffentlich« (<span class="clisting">public</span>). Eine öffentliche Methode kann jeder Benutzer des Objekts aufrufen, auf öffentliche Datenobjekte kann jeder Benutzer des Objekts zugreifen.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Warum überhaupt Sichtbarkeitsstufen?</em></strong></p>
+<p>Die Operationen, die wir auf einem Exemplar einer Klasse ausführen können, werden durch die Klasse selbst spezifiziert. Umgesetzt werden diese Operationen dann durch die Methoden des Objekts.</p>
+<p>Aber nicht jede Methode muss gleich zur Schnittstelle eines Objekts gehören. Es ist gerade eine Stärke der Objektorientierung, dass ein Objekt nur einen Teil seiner Funktionalität nach außen zur Verfügung stellen muss. Ein Objekt kann also durchaus Methoden haben, die lediglich dazu dienen, eine komplexe Methode in kleinere, überschaubare Methoden aufzuspalten.</p>
+<p><strong><em>Manche Methoden sind nicht Teil der Schnittstelle.</em></strong></p>
+<p>Doch diese neuen Methoden gehören nicht zu der spezifizierten Schnittstelle der Exemplare, sie gehören nur zu ihrer technischen Umsetzung. Da wir die Schnittstelle von ihrer Umsetzung trennen und die Benutzer der Objekte von den Details ihrer Implementierung abschirmen möchten, müssen wir dafür sorgen, dass die Benutzer diese zusätzlichen Methoden nicht aufrufen können. Durch die Wahl der Sichtbarkeitsstufe »Privat« werden diese Methoden nach außen hin unsichtbar.</p>
+<h4 class="t4">Sichtbarkeitsstufe »Privat«</h4>
+<p>Bei der Beschreibung der privaten Sichtbarkeit müssen wir zwischen dem klassen- und dem objektbasierten Sichtbarkeitskonzept unterscheiden. Das klassenbasierte Sichtbarkeitskonzept wird dabei zum Beispiel von Java, C# oder C++ verfolgt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Sichtbarkeitsstufe »Privat« (klassenbasierte Sichtbarkeit)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Beim klassenbasierten Sichtbarkeitskonzept kann auf private Daten und Methoden eines Objekts nur aus den Methoden der Klasse zugegriffen werden, in der diese privaten Elemente deklariert worden sind.</p>
+<p>Wir sind allerdings nicht nur auf das aufrufende Objekt beschränkt, sondern wir können auch auf private Elemente anderer Exemplare derselben Klasse zugreifen. Die Zugehörigkeit zur selben Klasse bestimmt also die Sichtbarkeit.</p>
+</td>
+</tr>
+</table><br><p><a href="#Rxx_ref222301880">Listing 4.5</a> zeigt ein Beispiel in Java, in dem auf das Datenelement <span class="clisting">size</span> eines anderen Exemplars der Klasse <span class="clisting">MyClass</span> zugegriffen werden kann, obwohl dieses als <span class="clisting">private</span> deklariert ist.</p>
+<div class="listing"><pre class="prettyprint">class MyClass implements Comparable&lt;MyClass&gt; { 
+   private int size; // Private Variable size 
+   public int compareTo(MyClass other) { 
+      if (size &lt; other.size) return &#8211;1; 
+      if (size &gt; other.size) return 1; 
+      return 0; 
+   } 
+   ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 4.5    </strong>Zugriff auf private Datenelemente</p>
+<p>Die Methode <span class="clisting">compareTo</span> der Exemplare der Klasse <span class="clisting">MyClass</span> greift nicht nur auf das eigene private Datenelement <span class="clisting">size</span> zu, nein, sie greift auch auf das private Datenelement <span class="clisting">size</span> des Objekts <span class="clisting">other</span> zu. Sie darf das, weil die Methode <span class="clisting">compareTo</span> in derselben Klasse implementiert ist, in der das Datenelement <span class="clisting">size</span> enthalten ist. Da in Java die Sichtbarkeitsregeln klassen- und nicht objektbasiert sind, spielt es keine Rolle, dass das Objekt <span class="clisting">other</span> ein anderes sein kann als das Objekt, dessen Methode <span class="clisting">compareTo</span> aufgerufen wurde. Die Sichtbarkeitsregeln werden hier zur Übersetzungszeit und nur anhand der Klassen ausgewertet.</p>
+<p><strong><em>Diskussion:  
+Was heißt schon privat?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Dann heißt privat in diesem Fall also nicht, dass die Methode nicht von außen auf einem Objekt aufgerufen werden kann?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Nein, jedes andere Exemplar der Klasse kann die Methode auf unserem Objekt aufrufen, sofern dies aus einer Methode der Klasse selbst heraus geschieht.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Gibt es denn eine Möglichkeit, die Sichtbarkeit wirklich auf das aktuelle Objekt einzuschränken, also auch in Java oder C++ eine objektbasierte Sichtbarkeitsregel anzuwenden?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Nein, nicht mit den Mitteln der Programmiersprache. Auf der anderen Seite ist die bestehende Vorgehensweise zum Beispiel für Vergleichsoperationen auch sehr sinnvoll. Wäre die Sichtbarkeit weiter eingegrenzt, könnten wir den Zugriff auf jegliche vergleichsrelevante Information nicht als privat deklarieren.</span><p>Die Klassenzugehörigkeit muss allerdings bei der Regelung der Sichtbarkeit nicht unbedingt eine Rolle spielen. Im objektbasierten Sichtbarkeitskonzept ist alleine das Objekt für die Regelung der Sichtbarkeit zuständig. Das objektbasierte Sichtbarkeitskonzept ist zum Beispiel in Ruby umgesetzt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Sichtbarkeitsstufe »Privat« (objektbasierte Sichtbarkeit)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Beim objektbasierten Sichtbarkeitskonzept ist der Zugriff auf private Daten und Methoden eines Objekts nur innerhalb von Methoden möglich, die auf dem Objekt selbst ausgeführt werden.</p>
+<p>Damit ist es zum Beispiel nicht möglich, innerhalb einer Vergleichsoperation, bei der das zu vergleichende Objekt übergeben wurde, auf dessen private Daten und Operationen zuzugreifen. Dies gilt auch dann, wenn das andere Objekt zur selben Klasse gehört.</p>
+</td>
+</tr>
+</table><br><p>Betrachten wir die Auswirkungen des objektbasierten Sichtbarkeitskonzepts am Beispiel der Programmiersprache Ruby.</p>
+<p><strong><em>Private Methoden in Ruby</em></strong></p>
+<p>Ist in Ruby eine Methode privat, kann man sie nur ohne Angabe des Zielobjekts aufrufen. Wenn nämlich das Zielobjekt nicht angegeben ist, gilt der Aufruf immer dem Objekt, in dessen Methode sich das Programm gerade befindet. Ohne Angabe des Zielobjekts ist also das aufrufende Objekt selbst das aufgerufene Zielobjekt. Auf das gerade aktive Objekt kann man sich in Ruby mit dem Schlüsselwort <span class="clisting">self</span> beziehen. Doch nicht einmal die Angabe <span class="clisting">self</span> als Zielobjekt ist beim Aufruf einer privaten Methode zulässig.</p>
+<p>Ist in Ruby die Methode <span class="clisting">test</span> privat, ist ihr Aufruf in der Form <span class="clisting">test</span> zulässig; der Aufruf <span class="clisting">self.test</span> jedoch nicht.</p>
+<div class="listing"><pre class="prettyprint">class A 
+private 
+  def test 
+    print "test A" 
+  end 
+public 
+  def testParameter(x) 
+    test # OK, ruft die Methode test dieses Objekts auf 
+    x.test # Ob x.test aufgerufen werden darf, 
+           # wird zur Laufzeit bestimmt. 
+  end 
+end</pre></div>
+<div class="listing"><pre class="prettyprint">class B 
+public 
+  def test 
+    print "test B" 
+  end 
+end 
+ 
+a = A.new 
+b = b.new 
+ 
+a.test # Fehler, a.test ist privat 
+b.test  # OK, b.test ist öffentlich 
+a.testParameter(b) # OK, b.test ist öffentlich 
+a.testParameter(a) # Fehler, a.test ist privat</pre></div>
+<p class="tabunter"><strong>Listing 4.6    </strong>Zugriff auf private Datenelemente in Ruby </p>
+<p><strong><em>Daten in Ruby sind privat.</em></strong></p>
+<p>In Ruby sind die Datenelemente immer privat. Ein Datenelement eines Objekts trägt in Ruby immer das Präfix <span class="clisting">@</span>. Der Zugriff auf private Datenelemente der Objekte von außen kann über Lese- und Schreibmethoden ermöglicht werden.</p>
+<p>Hier das zugehörige Beispiel:</p>
+<div class="listing"><pre class="prettyprint">class A 
+  def x 
+    return @x 
+  end 
+  def x=(value) 
+    @x = value 
+  end 
+end</pre></div>
+<p>Eine äquivalente und kompaktere Schreibweise:</p>
+<div class="listing"><pre class="prettyprint">class A 
+  attr :x 
+end</pre></div>
+<p><strong><em>Differenzierungsmöglichkeiten</em></strong></p>
+<p>Damit lässt das Konzept der objektbasierten Sichtbarkeit eine feinere Differenzierung zu als das klassenbasierte Konzept. Aber auch hier kann es natürlich Sinn machen, dass aus Methoden eines Objekts auf die Interna eines anderen Exemplars derselben Klasse zugegriffen werden kann. Am Beispiel der Vergleichsoperation haben wir gesehen, dass das wünschenswert sein kann.</p>
+<p>Betrachten wir dazu wieder ein Beispiel in Ruby, das ja ein objektbasiertes Sichtbarkeitskonzept verfolgt. Dort bringt in diesem Fall die Sichtbarkeitsstufe »Geschützt« das gewünschte Ergebnis.</p>
+<p><strong><em>Sichtbarkeitsstufe »Geschützt«  
+in Ruby</em></strong></p>
+<p>In Ruby kann ein Objekt auf <span class="ckursiv">seine eigenen</span> privaten Elemente immer zugreifen, unabhängig davon, in welcher Klasse sie deklariert worden sind. Ein Objekt kann auch immer auf <span class="ckursiv">seine eigenen</span> geschützten Elemente zugreifen. Der Unterschied zwischen den Sichtbarkeitsstufen »Privat« und »Geschützt« in Ruby besteht darin, dass ein Objekt auf geschützte Elemente von <span class="ckursiv">anderen</span> Objekten zugreifen kann, solange diese zur selben Klasse gehören, in der die aufgerufene Methode deklariert wurde. In <a href="#Rxx_ref222300729">Abbildung 4.20</a> ist eine Beispielhierarchie von Klassen aufgeführt, die jeweils eine Methode <span class="clisting">x</span> aufweisen. Die Sichtbarkeit der Methode ist in den einzelnen Klassen aber unterschiedlich definiert.</p>
+<div class="bildbox">
+<p><a name="IDAL0TQ"></a><a onClick="OpenWin('bilder/04_20.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_20.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.20    </strong>Sichtbarkeitsstufen für verschiedene Klassen und Operationen</p>
+<p>In <a href="#Rxx_ref222301890">Listing 4.7</a> ist die Umsetzung der Klassenhierarchie und der Methoden in Ruby aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">class A 
+protected 
+  def x 
+    print "A.x" 
+  end 
+public 
+  def test(o)   
+    o.x 
+  end 
+end 
+ 
+class B &lt; A # B ist eine Unterklasse von A 
+end 
+class C &lt; A # C ist auch eine Unterklasse von A 
+protected 
+  def x # C überschreibt x von A 
+    print "C.x" 
+  end 
+end</pre></div>
+<div class="listing"><pre class="prettyprint">class D # D ist keine Unterklasse von A 
+protected 
+  def x # deklariert aber selbst die Methode x 
+    print "D.x" 
+  end 
+end</pre></div>
+<p class="tabunter"><strong>Listing 4.7    </strong>Verwendung der Sichtbarkeitsstufe »Geschützt« in Ruby</p>
+<p>Dabei hat die Klasse <span class="clisting">A</span> eine zusätzliche Methode <span class="clisting">test</span> zugeordnet (Zeile ), die auf dem übergebenen Objekt die Operation <span class="clisting">x</span> aufruft. Je nach Klassenzugehörigkeit des übergebenen Objekts ist der Aufruf von <span class="clisting">x</span> erlaubt oder führt zu einem Fehler.</p>
+<p>Verschiedene Aufrufe der Operation <span class="clisting">x</span> sind in <a href="#Rxx_ref222301905">Listing 4.8</a> dargestellt.</p>
+<div class="listing"><pre class="prettyprint">a, b, c, d = A.new, B.new, C.new, D.new 
+ 
+a.test(b) # OK, weil die Methode b.x in A definiert wurde 
+b.test(a) # auch OK, weil b indirekt zu A gehört 
+a.test(c) # Fehler, weil c.x nicht in A definiert wurde 
+c.test(a) # OK, weil c indirekt zu A gehört 
+a.test(d) # Fehler, d.x wurde nicht in A deklariert</pre></div>
+<p class="tabunter"><strong>Listing 4.8    </strong>Aufrufe von geschützten Methoden in Ruby</p>
+<h4 class="t4">Weitere Sichtbarkeitsstufen</h4>
+<p>Die Behandlung der Sichtbarkeit ist vielfältig und unterscheidet sich von Programmiersprache zu Programmiersprache. Wir geben hier nur einen kurzen Überblick über weitere Varianten der Sichtbarkeit.</p>
+<p><strong><em>Java: Geschützt  
+im Package</em></strong></p>
+<p>Ist in Java bei den Elementen einer Klasse keine Sichtbarkeit angegeben, dann ist das Element »Geschützt innerhalb des Packages«. Diese Stufe entspricht der Stufe »Geschützt«, allerdings ist das Element außerhalb des Packages nicht sichtbar.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">C#: intern und intern geschützt
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>C# kennt noch die Sichtbarkeitsstufen:  »Intern« (englisch <span class="ckursiv">internal</span>) und »Intern geschützt« (englisch <span class="ckursiv">protected internal</span>). Diese entsprechen den Stufen »Öffentlich« und »Geschützt«, beschränken die Sichtbarkeit allerdings auf das aktuelle Programmmodul (englisch <span class="ckursiv">Assembly</span>)<a href="#Rxx53955"><sup>11  </sup></a>. </p>
+</td>
+</tr>
+</table><br><p>Sichtbarkeitsregeln gibt es nicht nur für die Elemente der Klassen, sondern auch für die Klassen selbst. Man kann zum Beispiel bestimmen, ob eine Klasse in der ganzen Anwendung sichtbar sein sollte oder nur innerhalb eines ihrer Teile. Auch hier unterscheiden sich die Sichtbarkeitsregeln von Programmiersprache zu Programmiersprache.</p><a id="mja2d7825b1c1c07dd16d08858ed4e2186" name="mja2d7825b1c1c07dd16d08858ed4e2186"></a><a name="t36"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t37"></a><h3 class="t3">4.2.6 Klassenbezogene Methoden und Attribute  <a href="#t2t38"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t36"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Bisher haben wir von Methoden und Datenelementen einzelner Objekte gesprochen. Manche Routinen und Daten lassen sich jedoch nicht einzelnen Objekten zuordnen.</p>
+<p>Damit stellt sich die Frage: Wenn ein objektorientiertes Programm ausschließlich aus interagierenden Objekten besteht, wem können dann diese Routinen und Daten zugeordnet werden?</p>
+<p>Hier bietet sich das zweite fundamentale Konstrukt der objektorientierten Programme an, nämlich die Klasse. Genau wie Objekte lassen sich auch Klassen Methoden und Daten zuordnen, die dann über den Aufruf von Operationen ausgeführt werden.</p>
+<p>Sie werden in diesem Abschnitt Beispiele für Methoden und Daten kennen lernen, die direkt Klassen zugeordnet werden können.</p>
+<p><strong><em>Einsatz</em></strong></p>
+<p>Am weitesten verbreitet sind dabei die folgenden Verwendungen:</p>
+<ul class="gp">
+<li>Konstruktoren erstellen neue Exemplare einer Klasse.</li>
+</ul>
+<ul class="gp">
+<li>Verwaltungsinformation für Exemplare einer Klasse</li>
+</ul>
+<ul class="gp">
+<li>Operationen auf primitiven Datentypen</li>
+</ul>
+<ul class="gp">
+<li>Hilfsfunktionen</li>
+</ul>
+<ul class="gp">
+<li>Klassenbezogene Konstanten</li>
+</ul>
+<p>Im Folgenden stellen wir diese Anwendungen jeweils kurz vor.</p>
+<h4 class="t4">Konstruktoren</h4>
+<p>Dass sich eine Operation nicht direkt einem Objekt zuordnen lässt, ist am offensichtlichsten bei Operationen, die ein komplett neues Objekt erstellen sollen. Wenn wir noch kein Objekt vorliegen haben, kann diese Operation auch nicht auf einem existierenden Objekt aufgerufen werden. Da mit dem Aufruf aber ein Exemplar einer ganz konkreten Klasse erstellt wird, können Konstruktoren als Basisoperationen der Klasse selbst aufgefasst werden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Konstruktoren
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Konstruktoren sind Operationen einer Klasse, durch die Exemplare dieser Klasse erstellt werden können. Die Klassendefinition dient dabei als Vorlage für das durch den Aufruf einer Konstruktoroperation erstellte Objekt.</p>
+</td>
+</tr>
+</table><br><p>Über Konstruktoren werden also Exemplare einer Klasse erzeugt. In den meisten Programmiersprachen wird der Name der entsprechenden Klasse auch für den Konstruktoraufruf verwendet. Im Beispiel von <a href="#Rxx_ref222301923">Listing 4.9</a> sind ein sehr einfacher Konstruktor und dessen Aufruf in der Programmiersprache Java dargestellt. Die Klasse <span class="clisting">Spaetzle</span> hat einen gleichnamigen Konstruktor <span class="clisting">Spaetzle()</span> zugeordnet. Durch den Aufruf von <span class="clisting">new Spaetzle()</span> wird ein neues Exemplar der Klasse erstellt. Der Konstruktor ist also eine besondere Operation, die von der Klasse zur Verfügung gestellt wird.</p>
+<div class="listing"><pre class="prettyprint">public class Spaetzle { 
+    Spaetzle() 
+    { 
+    }; 
+    ... 
+} 
+ 
+Spaetzle portion = new Spaetzle();</pre></div>
+<p class="tabunter"><strong>Listing 4.9    </strong>Einfaches Beispiel für einen Konstruktoraufruf</p>
+<p>Konstruktoren sind nicht die einzige Möglichkeit, neue Exemplare einer Klasse zu erzeugen. Weitere Möglichkeiten werden Sie in Abschnitt 7.2, »Fabriken als Abstraktionsebene zur Objekterzeugung«, kennen lernen.</p>
+<h4 class="t4">Verwaltungsinformation für Exemplare einer Klasse</h4>
+<p>Ein Beispiel für eine sinnvolle Verwendung der klassenbasierten Elemente ist eine Registratur für Exemplare einer Klasse. So könnte die Klasse <span class="clisting">ProtocolHandler</span> spezifizieren, dass jedes ihrer Exemplare eine Methode <span class="clisting">canHandle</span> besitzt, mit der es die Frage beantworten kann, ob es ein Protokoll bearbeiten kann. Diese verschiedenen Exemplare würden sich dann in die klassenbezogene Registratur eintragen, so dass eine klassenbezogene Methode <span class="clisting">getProtocolHandler</span> das richtige Exemplar für das jeweilige Protokoll aussuchen kann.</p>
+<p>Zur Verwaltung der Exemplare, die sich dort eingetragen haben, benötigt die Klasse auch eine klassenbezogene Datenstruktur, also zum Beispiel eine Liste. Mehr zu diesem Beispiel finden Sie in Abschnitt 7.2, »Fabriken als Abstraktionsebene zur Objekterzeugung«.</p>
+<h4 class="t4">Operationen auf primitiven Datentypen</h4>
+<p>Für Operationen und Daten, die sich auf primitive Datentypen beziehen, bietet es sich an, diese als klassenbezogene Methoden zu implementieren. Primitive Datentypen sind in vielen Programmiersprachen keine Objekte und können deshalb auch keine eigenen Methoden haben.</p>
+<p>In Java oder auch Ruby gibt es zum Beispiel die Klasse <span class="clisting">Math</span>, welche die gängigsten mathematischen Konstanten wie die Zahl p und Funktionen wie Sinus oder Kosinus als klassenbasierte Elemente enthält.</p>
+<p>In Java sind die Datentypen <span class="clisting">int</span> oder <span class="clisting">float</span> primitiv, ihre Exemplare sind keine Objekte und können keine eigenen Methoden haben. In Ruby dagegen ist alles ein Objekt, also auch die Klassen. Damit sind alle Klassen erweiterbar. So können Sie zum Beispiel die Klasse <span class="clisting">Float</span> um die Methode <span class="clisting">sin</span> erweitern, wie in <a href="#Rxx_ref222301939">Listing 4.10</a> dargestellt.</p>
+<div class="listing"><pre class="prettyprint">class Float 
+  def sin 
+    Math::sin(self) 
+  end 
+end 
+ 
+2.0.sin # gibt 0.909297426825682 aus</pre></div>
+<p class="tabunter"><strong>Listing 4.10    </strong>Erweiterung der Klasse »Float« in Ruby</p>
+<h4 class="t4">Hilfsfunktionen als klassenbezogene Methoden</h4>
+<p>Eine häufige Verwendung finden klassenbezogene Methoden und Dateneinträge als eine Art Organisationsform für bestimmte Hilfs- oder Bibliotheksmethoden, die mit Exemplaren von anderen Klassen arbeiten, aber nicht unbedingt zu dem Umfang der Spezifikation dieser Klassen gehören.</p>
+<p>So gehört es zum Beispiel nicht zur Spezifikation der Klasse <span class="clisting">String</span> in Java, dass ihre Exemplare überprüfen können, ob sie eine Zahl repräsentieren und den Wert dieser Zahl zurückgeben. Diese nützliche Funktionalität ist zum Beispiel als eine klassenbezogene Methode <span class="clisting">parseFloat</span> der Klasse <span class="clisting">Float</span> implementiert:</p>
+<div class="listing"><pre class="prettyprint">... 
+Float ungefaehrPi = Float.parseFloat("3.1415"); 
+...</pre></div>
+<p>In diesem Fall wird also eine Operation auf der Klasse <span class="clisting">Float</span> selbst aufgerufen und ein Exemplar der Klasse zurückgeliefert. Hier haben wir also bereits ein weiteres Beispiel gesehen, wie sich neben Konstruktoren über andere klassenbezogene Operationen Exemplare einer Klasse erstellen lassen.</p>
+<h4 class="t4">Klassenbezogene Konstanten</h4>
+<p>Konstanten, die bei der Ausführung von Operationen benötigt werden, können als klassenbezogene Konstanten definiert werden. Sie werden damit zu nicht änderbaren Daten der Klasse.</p>
+<p>Zum Beispiel können Sie der Klasse <span class="clisting">Spaetzle</span> aus unserem Beispiel in <a href="#Rxx_ref222301923">Listing 4.9</a> eine Konstante <span class="clisting">OPTIMALE_ANZAHL_EIER_PRO_PERSON</span> hinzufügen. Diese in Schwaben generell anerkannte Konstante hat den Wert 2.5 und kann dann in den entsprechenden Operationen auch von außen verwendet werden.</p>
+<div class="listing"><pre class="prettyprint">public class Spaetzle { 
+  static final double OPTIMALE_ANZAHL_EIER_PRO_PERSON = 2.5;</pre></div>
+<p>Diese Konstante kann nun in Berechnungen von weiteren Mengenvorgaben als Standardwert verwendet werden. [Spätzle dienen hier nur als Beispiel, deshalb wird das komplette Rezept hier und in den folgenden Source-Code-Beispielen nicht auftauchen. Wenn Sie daran interessiert sind, erhalten Sie es auf der Webseite zum Buch (<span class="ckursiv"><a href="http://www.objektorientierte-programmierung.de">www.objektorientierte-programmierung.de</a></span>).
+] </p>
+<h4 class="t4">Umsetzung von klassenbezogenen Methoden und Daten in den Programmiersprachen</h4>
+<p>Programmiersprachen bieten verschiedene Möglichkeiten, klassenbezogene Methoden und Daten einzusetzen.</p>
+<p><strong><em>static ist das Schlüsselwort.</em></strong></p>
+<p>In C++, C# oder Java werden sie mit dem Schlüsselwort <span class="clisting">static</span> gekennzeichnet. In Ruby benutzt man statt eines Schlüsselwortes den Namen der Klasse selbst als Präfix der klassenbezogenen Methode. Klassenbezogene Dateneinträge enthalten in Ruby das Präfix <span class="clisting">@@</span> statt das Präfix <span class="clisting">@</span> der objektbezogenen Dateneinträge.</p>
+<p>Sie könnten die klassenbezogenen Methoden und Daten, zumindest in bestimmten Programmiersprachen wie zum Beispiel C++, auch als globale Prozeduren, Funktionen und Variablen implementieren. Klassenbezogene Elemente haben jedoch den Vorteil, dass Sie Sichtbarkeitsregeln dafür deklarieren können. Die in Abschnitt <a href="#Rxx_ref222302832">4.2.5</a> beschriebenen Sichtbarkeitsregeln lassen sich auch auf klassenbezogene Methoden und Daten anwenden. Damit trägt dieses Vorgehen zur Übersichtlichkeit Ihrer Programme bei.</p>
+<p><strong><em>Globale  
+Methoden in  
+Java und C#</em></strong></p>
+<p>In Java oder C# gibt es überhaupt keine globalen Methoden oder Dateneinträge, daher bieten hier die klassenbezogenen Elemente die einzige Möglichkeit, Routinen, die nicht einem Objekt zugeordnet sind, zu implementieren.</p><a id="mj8fefd5a44232563aae6ce704fc4d92c1" name="mj8fefd5a44232563aae6ce704fc4d92c1"></a><a name="t37"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t38"></a><h3 class="t3">4.2.7 Singleton-Methoden: Methoden für einzelne Objekte  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t37"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In den klassenbasierten Programmiersprachen wie Java, C#, C++, Ruby oder Python definieren wir Methoden in der Regel immer für alle Exemplare einer Klasse. Damit sind auf alle Exemplare einer Klasse dieselben Operationen anwendbar.</p>
+<p>Aber nicht alle Programmiersprachen erzwingen diese Gleichförmigkeit. In einigen dynamisch typisierten Sprachen ist es durchaus auch möglich, Methoden einzelnen Objekten zuzuordnen. Der Namensgebung der Programmiersprache Ruby folgend, werden diese Methoden <span class="ckursiv">Singleton-Methoden</span> genannt. [Singleton-Methoden dürfen nicht mit den Singleton-Objekten verwechselt werden, die Sie in Abschnitt 7.2.6, »Erzeugung von Objekten als Singletons«, kennen lernen werden.
+] </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Singleton-Methoden
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Singleton-Methoden sind Methoden, die genau einem Objekt zugeordnet sind. Eine Singleton-Methode wird nach der Erstellung einem konkreten Objekt hinzugefügt. Danach unterstützt das Objekt die durch die Methode realisierte Operation.</p>
+</td>
+</tr>
+</table><br><p>Betrachten wir die Umsetzung einer Singleton-Methode an einem Beispiel in der Programmiersprache Ruby. Das Beispiel zeigt, dass die Methode <span class="clisting">test</span> in diesem Fall nur an genau einem Objekt vorhanden ist.</p>
+<div class="listing"><pre class="prettyprint">class A 
+end 
+ 
+a1 = A.new 
+a2 = A.new 
+ 
+def a1.test 
+  return "Test" 
+end 
+ 
+a1.test # OK, das Objekt a1 hat die Methode test 
+a2.test # Fehler, das Objekt a2 hat keine Methode test</pre></div>
+<p class="tabunter"><strong>Listing 4.11    </strong>Singleton-Methoden in Ruby</p>
+<p>In C++, Java oder C# gibt es keine Möglichkeit, eine Methode für ein einzelnes Objekt zu implementieren. In Java können Sie aber einen ähnlichen Effekt mit den anonymen Klassen erreichen, die in Abschnitt 5.2.3 beschrieben werden.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_04_002.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="4.2 Klassen: Objekte haben Gemeinsamkeiten"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_04_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_04_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

@@ -1,0 +1,622 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 9 Aspekte und Objektorientierung</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 9 Aspekte und Objektorientierung">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 9 Aspekte und Objektorientierung">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_08_002.htm">
+<link rel="next" href="oop_kapitel_09_002.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_08_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_09_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="#mjacb891de66e6e63ae41af14a9233ee73" class="navh">9 Aspekte und Objektorientierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj78bbe41d6052e596f380a32cbcde87fc" class="navh">9.1 Trennung der Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj3202a01a0f16461d2dcf2538c41045f7" class="navh">9.1.1 Kapselung von Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjabaf49447f557f766fce48f52bc5f934" class="navh">9.1.2 Lösungsansätze zur Trennung von Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_002.htm#mj309e7bff0d34f0b383d87b75c75e859a" class="navnav">9.2 Aspektorientiertes Programmieren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mj720e7f8df2912088f1d696c0f9b223bc" class="navnav">9.2.1 Integration von aspektorientierten Verfahren in Frameworks</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mj6b3ed5ab812a3c5283e5eb6dae2a91a9" class="navnav">9.2.2 Bestandteile der Aspekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mj20edd38c45c1b557bab3a5df290c4da2" class="navnav">9.2.3 Dynamisches Crosscutting</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mjf0455268e97f15472aed064d45c1a0f2" class="navnav">9.2.4 Statisches Crosscutting</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_003.htm#mj4e8777e76ed3abd16003da610c2e4fb9" class="navnav">9.3 Anwendungen der Aspektorientierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj9437623a0951fcf5d7d2ca5dd82953b4" class="navnav">9.3.1 Zusätzliche Überprüfungen während der Übersetzung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj2e79b3be4b26d4dc0b398732cd26b5fc" class="navnav">9.3.2 Logging</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj7ed70e732bd6f9f6224eb978223d840e" class="navnav">9.3.3 Transaktionen und Profiling</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj0c273b6c4bf0568d70f8862e7bba4377" class="navnav">9.3.4 Design by Contract</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mjc019b942674c4f95dfbf05ebd3dafd2a" class="navnav">9.3.5 Introductions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj64be25e8cd08b89dcb1d4b89466e3e91" class="navnav">9.3.6 Aspektorientierter Observer</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_004.htm#mje8d5d04454aca569e147e717a2537fa9" class="navnav">9.4 Annotations</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_004.htm#mj6c8390288339f7aa89de173bbbbe35a5" class="navnav">9.4.1 Zusatzinformation zur Struktur eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_004.htm#mj4bc24ab65115a9307512cf40d385e31f" class="navnav">9.4.2 Annotations im Einsatz in Java und C#</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_004.htm#mjfda429a1743f505a522b2ac063ff9394" class="navnav">9.4.3 Beispiele für den Einsatz von Annotations</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main">
+<p class="anleser"><em>In diesem Kapitel stellen und klären wir die Frage, ob aspektorientierte Programmierung ein neues Paradigma ist oder eine Ergänzung zu objektorientierten Techniken. Wir nehmen die Antwort hier schon einmal ganz kurz vorweg: Aus unserer Sicht ist Aspektorientierung eine Ergänzung der Objektorientierung, die in Zukunft einige bestehende Defizite ausbügeln könnte.</em></p><a id="mjacb891de66e6e63ae41af14a9233ee73" name="mjacb891de66e6e63ae41af14a9233ee73"></a><h1 class="t1">9 Aspekte und Objektorientierung</h1><a id="mj78bbe41d6052e596f380a32cbcde87fc" name="mj78bbe41d6052e596f380a32cbcde87fc"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">9.1 Trennung der Anliegen  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Für die Beherrschung der Komplexität ist das Prinzip <span class="ckursiv">Teile und herrsche</span> das Wesentliche. Es geht darum, komplexe Systeme in einfachere Bestandteile zu zerlegen und diese von dem Gesamtsystem unabhängig einsetzbar zu machen.</p>
+<p>Idealerweise wird die Komplexität der Programme von der Komplexität der Anforderungen etwa <span class="ckursiv">linear</span> abhängig sein. [Wir sind uns natürlich klar darüber, dass sich über eine ideale Programmiersprache lange diskutieren lässt. Wir beziehen uns hier lediglich darauf, wie sich Anforderungen, die mit einem Programm umgesetzt werden sollen, auf das Programm selbst abbilden lassen. Dabei wird das Programm selbst nicht einfacher werden, als es die inhärente Komplexität der Anforderungen zulässt. Die ideale Sprache würde aber keine zusätzliche Komplexität durch technische Restriktionen hinzufügen.
+] </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Die ideale Programmiersprache
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine ideale Programmiersprache wäre eine solche, in die man die an das Programm gestellten funktionalen Anforderungen einfach direkt übersetzen könnte. Eine zusammenhängend beschriebene funktionale Anforderung sollte in einen zusammenhängenden Abschnitt der Quelltexte &#8211; ein Modul &#8211; überführt werden können. In so einer Sprache wäre ein Modul nur dann von einem anderen Modul abhängig, wenn die korrespondierenden fachlichen Anforderungen ebenfalls abhängig sind.<sup>1  </sup></p>
+</td>
+</tr>
+</table><br><p>Die Objektorientierung bietet hier viele Möglichkeiten. Durch die dynamische Polymorphie können wir die Abhängigkeiten abstrahieren, so dass Module nicht von konkreten Implementierungen, sondern von abstrakten Schnittstellen abhängig sind. Sie können gemeinsame Funktionalität in mehrfach verwendbare Module auslagern und Spezialfunktionalität in separaten Erweiterungsmodulen bereitstellen.</p>
+<p><strong><em>Trennung der Anliegen &#8211; keine Stärke der Objektorientierung</em></strong></p>
+<p>Doch ein Problem hat auch die Objektorientierung nicht zufrieden stellend gelöst: die Trennung der Anliegen. Die Strukturierung eines objektorientierten Systems wird anhand von Objekten und ihren Klassen vorgenommen. Man weist den Klassen bestimmte Verantwortungen zu und implementiert ihre Funktionalität in entsprechenden Quelltextmodulen.</p>
+<p>In gut entworfenen Systemen hat jede Klasse einen klar definierten Zweck, sie wurde entworfen, weil sie im System eine Verantwortung trägt und für eine Aufgabe zuständig ist.</p>
+<p><strong><em>Problem: Wo wird meine Anforderung umgesetzt?</em></strong></p>
+<p>Das Problem in einem objektorientierten System ist, dass eine Klasse sich außer um ihre Primäraufgabe auch um andere Anliegen kümmern muss. Wenn Sie zum Beispiel eine sicherheitsrelevante Anwendung schreiben, dürfen bestimmte Aktionen nur durch dafür vorgesehenen Benutzer durchgeführt werden. In jeder Methode, die eine solche Aktion auslöst, muss also überprüft werden, ob der aktuelle Benutzer sie überhaupt durchführen darf. Sie können zwar die Funktionalität der Überprüfung in eine dafür vorgesehene Klasse verlagern, den Aufruf der Überprüfung jedoch nicht.</p>
+<p>Auf diese Art sind Sie also gezwungen, eine einfache Anforderung wie »Nur Benutzer der Sicherheitsstufe B dürfen die Stammdaten eines Kunden ändern« an vielen Stellen Ihrer Quelltexte einzubauen: In der Methode, die den Namen eines Kunden ändert, in der Methode, die einem Kunden eine neue Adresse zuordnet, und in vielen anderen Methoden.</p>
+<p>Die Anforderung lässt sich mit den Mitteln der Objektorientierung nicht einer einzigen Stelle im Programm zuordnen. Objektorientierte Programmiersprachen entsprechen also nicht unserem Ideal einer Programmiersprache.</p>
+<p><strong><em>Problem: Welche Anforderung setze ich hier um?</em></strong></p>
+<p>Doch auch wenn unsere Programmiersprache nicht ideal ist, ist es natürlich möglich, die beschriebene Anwendung inklusive Sicherheitsüberprüfungen erfolgreich zu erstellen. Nehmen Sie nun aber an, dass sich später zeigt, dass Ihre Sicherheitsmaßnahmen nicht ausreichend waren. Änderungen an den Kundendaten konnten zwar nur überprüfte Benutzer der Sicherheitsstufe B durchführen, da Sie aber nicht nachvollziehen können, wer welche Änderung vorgenommen hat, haben manche Benutzer ihre Privilegien missbraucht und ihre Freunde zu VIP-Kunden gemacht. Ihr Auftraggeber stellt also vernünftigerweise eine neue Anforderung: »Jede Änderung an Kundendaten muss mit Namen des Benutzers protokolliert werden.« Und da der Betriebsrat auch sein O.k. gegeben hat, müssen Sie wieder jede Menge Methoden anfassen und um die entsprechenden Aufrufe der Protokollierung erweitern. Glücklicherweise haben Sie dabei den Zugriff auf die Quelltexte der Klasse <span class="clisting">Kunde</span>, weil Sie diese selbst entwickelt haben.</p>
+<p>Die Methoden der Klasse <span class="clisting">Kunde</span> sehen jetzt in etwa so aus: [Das hier ist kein echter Quelltext und auch keine echte Programmiersprache.
+] </p>
+<div class="listing"><pre class="prettyprint">Klasse Kunde { 
+   namenÄndern(neuerName) { 
+      erlaubt?(aktuellerBenutzer, 'kundenNamenÄndern') 
+         nein R Fehler Melden; 
+      protokolliere(aktuellerBenutzer, 
+         'kundenNamenÄndern', 
+         this.id, this.name, neuerName); 
+      this.name = neuerName; 
+   } 
+   statusÄndern(neuerStatus) { 
+      erlaubt?(aktuellerBenutzer, 'kundenStatusÄndern') 
+         nein R Fehler Melden; 
+      protokolliere(aktuellerBenutzer, 
+         'kundenStatusÄndern', 
+         this.id, this.status, neuerStatus); 
+      this.status = neuerStatus; 
+   } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 9.1    </strong>Mehrere Anliegen vermischt</p>
+<p>Nun haben die Methoden, deren Primäraufgabe es ist, den Namen beziehungsweise den Status eines Kunden zu ändern, mehr Quelltext, der für andere Anliegen zuständig ist als für ihre eigentliche Aufgabe. Glücklicherweise können Sie aus den Quelltexten und den sprechenden Namen der Methoden noch erkennen, wozu sie eigentlich da sind. In realen Programmen ist das nicht immer der Fall.</p>
+<p>Diese Verunreinigung von Code durch Bestandteile, die nichts mit den eigentlichen Aufgaben des betrachteten Moduls zu tun haben, wird als <span class="ckursiv">Code Tangling [</span>Code Tangling kann etwa mit »Code-Durcheinander« oder auch mit »durcheinander gewürfelter Code« übersetzt werden.
+]  bezeichnet.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Code Tangling (Code-Durcheinander)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Als <span class="ckursiv">Code Tangling</span> wird es bezeichnet, wenn Code, der verschiedene Anliegen betrifft, in einem Modul vermischt wird. Code Tangling führt dazu, dass die betroffenen Module das <span class="ckursiv">Prinzip einer einzigen Verantwortung</span> verletzen. Dadurch ist der betroffene Code schlecht wiederverwendbar. Zusätzlich leidet die Verständlichkeit des Codes, da der Ablauf aufgrund der verschiedenen Anliegen häufig nicht klar erkennbar ist.</p>
+</td>
+</tr>
+</table><br><p>In unserem Beispiel lässt sich auch ein weiteres Problem beobachten. Der Code für die Umsetzung der Sicherheitsüberprüfungen und für die Protokollierung findet sich in gleichartiger Form in mehreren ansonsten unabhängigen Modulen wieder. Der Code ist damit über mehrere Module verstreut. Der englische Begriff dafür ist <span class="ckursiv">Code Scattering</span>. Dieser verstreute Code kann natürlich seine Ursache auch einfach in schlechtem Moduldesign haben. In unserem Beispiel haben Sie aber mit den klassischen Mechanismen der Objektorientierung gar keine Chance, dieses Verstreuen zu vermeiden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Code Scattering (Code-Streuung)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="ckursiv">Code Scattering</span> liegt vor, wenn ein Anliegen über mehrere Module verteilt ist. Code Scattering führt dazu, dass Code häufig redundant in verschiedenen Modulen vorliegt. Auch hierdurch wird das <span class="ckursiv">Prinzip einer einzigen Verantwortung </span>verletzt. Es gibt mehrere Module, die Verantwortung für das gleiche Anliegen tragen. Es wird damit sehr schwer herauszufinden, von welchen Modulen eine bestimmte Anforderung umgesetzt wird.</p>
+</td>
+</tr>
+</table><br><p>Sie finden in unserem Beispiel also sowohl Code Tangling als auch Code Scattering. Liegt also einfach ein schlechtes Moduldesign vor?</p>
+<p><strong><em>Crosscutting  
+Concerns</em></strong></p>
+<p>Die beiden Anliegen der Bearbeitung von Kundendaten und der Überprüfung von Sicherheitsaspekten lassen sich mit den zur Verfügung stehenden Verfahren aber überhaupt nicht in eine eindeutige Nutzungsbeziehung zwischen Modulen bringen. Solche Anliegen (Concerns) nennt man <span class="ckursiv">Crosscutting Concerns</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Crosscutting Concerns (übergreifende Anliegen)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="ckursiv">Crosscutting Concerns</span> sind Anliegen in einem System, für die es keine Zerlegung in Module gibt, in denen eines der Anliegen als unabhängig vom anderen betrachtet werden kann. Die Anliegen liegen quer zueinander. Damit ist es nicht möglich, sie in eine hierarchische Struktur zu bringen. </p>
+</td>
+</tr>
+</table><br><p>In unserem Beispiel unterscheiden sich die Abhängigkeiten der Module von den Abhängigkeiten der Anforderungen: In unseren Anforderungen beziehen sich die Sicherheitsanforderungen auf die Fachanforderungen. In unseren Quelltexten ist das umgekehrt, unsere Fachmethoden müssen sich um die Sicherheitsanliegen mitkümmern. Diese Situation ist in Abbildung 9.1 dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDASQSQ"></a><a onClick="OpenWin('bilder/09_01.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein09_01.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 9.1    </strong>Umkehr der Abhängigkeit der Aspekte in den Quelltexten</p>
+<p>Fazit: Die Objektorientierung, wenn sie auch viele Probleme der Komplexität angeht, ist hier nicht die ideale Vorgehensweise.</p><a id="mj3202a01a0f16461d2dcf2538c41045f7" name="mj3202a01a0f16461d2dcf2538c41045f7"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">9.1.1 Kapselung von Daten  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Ein anderes Problem bringt die Kapselung der Daten mit sich. Durch die Kapselung der Datenstrukturen einer Klasse wird verhindert, dass andere Teile der Anwendung unkontrolliert auf sie zugreifen. So wird die Komplexität der Anwendung verringert und ihre Änderbarkeit erhöht. Das ist der positive Beitrag der Objektorientierung. Doch er hat seinen Preis: Wenn wir die Daten der Exemplare dieser Klasse zum Beispiel in einer Datenbank speichern möchten, muss diese Persistenzfunktionalität ebenfalls in der Klasse implementiert werden &#8211; denn niemand außer der Klasse selbst darf auf ihre Datenstrukturen zugreifen.</p>
+<p>So muss sich unsere Klasse neben ihrer Primäraufgabe auch um das Anliegen der Persistenz kümmern. Dies hat mehrere Nachteile:</p>
+<p><strong><em>Mehrere Änderungsgründe</em></strong></p>
+<ul class="gp">
+<li>Ändern sich die Anforderungen an eines dieser Anliegen, muss die Klasse angepasst werden. Das widerspricht aber unserem Wunsch, dass eine Änderung eines Quelltextmoduls nur durch eine Änderung in <span class="ckursiv">einem</span> Anforderungsbereich erzwungen werden sollte.</li>
+</ul>
+<p><strong><em>Unnötige  
+Abhängigkeiten</em></strong></p>
+<ul class="gp">
+<li>Nur weil Sie in einem Kontext die Persistenzfunktionalität brauchen, müssen Sie die Klasse erweitern. In anderen Kontexten wird die Persistenz aber vielleicht gar nicht benötigt. Nun müssen Sie aber, wenn Sie in beiden Kontexten dieselbe Klasse mehrfach verwenden möchten, die Persistenzfunktionalität, zumindest eine leere Implementierung, doch bereitstellen. Sie zwingen so Anwendungen, die keine Persistenz benötigen, von der Persistenz abhängig zu sein. Sie müssen zwar keine tatsächlich funktionierende Persistenzimplementierung bereitstellen, Sie müssen aber wissen, dass es so etwas wie Persistenz überhaupt gibt. Dies widerspricht unserem Wunsch, nur von explizit benötigten Schnittstellen abhängig zu sein.</li>
+</ul>
+<ul class="gp">
+<li>Die Persistenz betrifft normalerweise nicht nur eine Klasse, sie betrifft verschiedene Klassen und muss also in verschiedenen Quelltextmodulen behandelt werden. Dies widerspricht jedoch unserem Wunsch, eine Anforderung in einem Quelltextmodul zu implementieren.</li>
+</ul>
+<p><strong><em>Aufbau des  
+Kapitels</em></strong></p>
+<p>Was können Sie tun, um dieses Probleme in einem objektorientierten System anzugehen? Im nächsten Abschnitt 9.1.2 werden wir einige Ansätze zur Problemlösung vorstellen, die darauf aufbauen, Quelltexte zu generieren oder Informationen über die Klassenstruktur eines Programms auszuwerten. Diese Ansätze werden in der Praxis eingesetzt, haben aber selbst eine Reihe von Defiziten. In Abschnitt 9.2 werden wir deshalb zeigen, dass die aspektorientierte Programmierung eine ganze Reihe der anhand unseres Beispiels vorgestellten Probleme elegant löst. Anhand von weiteren Beispielen werden wir vorstellen, wie sich in Abschnitt 9.3 aspektorientierte Mechanismen einsetzen lassen, um die vorgestellten Defizite der Objektorientierung auszubügeln. Dabei unterstützen auch die sogenannten Annotations, Zusatzinformationen zu einem Programm, die Gegenstand von Abschnitt 9.4 sind.</p><a id="mjabaf49447f557f766fce48f52bc5f934" name="mjabaf49447f557f766fce48f52bc5f934"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">9.1.2 Lösungsansätze zur Trennung von Anliegen  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Bleiben wir beim Beispiel der Persistenz-Funktionalität, und schauen wir uns verschiedene erprobte Möglichkeiten an, wie Sie die Persistenz in unseren Klassen umsetzen können. Wir gehen dabei davon aus, dass Sie die zugehörigen Daten in einer relationalen Datenbank speichern, und versuchen, dabei die Auswirkungen der genannten Unzulänglichkeiten der Objektorientierung zu minimieren.</p>
+<h4 class="t4">Quelltextgenerierung</h4>
+<p>Wenn Objekte in einer relationalen Datenbank gespeichert werden, werden normalerweise die Klassen bestimmten Tabellen zugeordnet und deren Dateneinträge bestimmten Spalten in diesen Tabellen. Die konkreten Abbildungen der Objektstrukturen auf die Strukturen einer relationalen Datenbank haben wir bereits in Kapitel 6, »Persistenz«, beschrieben.</p>
+<p><strong><em>Abbildung Objekte auf  
+Tabellen</em></strong></p>
+<p>Irgendwo in den Quelltexten muss definiert werden, welche Klassen und welche Attribute dieser Klassen welchen Tabellen und Spalten zugeordnet sind. Bei einem für unsere Anwendung entworfenen Datenmodell reicht diese Information meistens aus, um die Persistenz der Objekte implementieren zu können &#8211; die nötigen SQL-Befehle für das Lesen, Ändern, Anlegen und Löschen der Dateneinträge in der Datenbank können aus dieser Information abgeleitet werden.</p>
+<p>Da aber nur die jeweiligen Klassen den Zugriff auf diese Daten haben, müssen diese SQL-Befehle in den jeweiligen Klassen implementiert werden. Ein Teil der Funktionalität kann sicherlich in einer gemeinsamen Basisklasse implementiert werden, andere Teile in einem anderen Modul, doch das Lesen und das Schreiben in die konkreten Attribute der Exemplare einer Klasse kann nur in der Klasse selbst oder, wenn es die Sichtbarkeitsregeln zulassen, in einer ihrer Unterklassen implementiert werden.</p>
+<p>Da Sie aber mit der Zuordnung der Klassen zu den Datenbanktabellen und der Attribute zu den Datenbankspalten alle nötigen Informationen haben, wie die SQL-Befehle auszusehen haben, wäre es redundant, diese SQL-Befehle explizit schreiben zu müssen.</p>
+<p>Ein Compiler verlangt aber, dass die Quelltexte der Klassen die Vorschrift für die Erzeugung der SQL-Befehle enthalten. Sie müssen zum Beispiel definieren, dass das Feld <span class="clisting">firstName</span> der Exemplare der Klasse <span class="clisting">Person</span> in der Spalte <span class="clisting">VORNAME</span> der Tabelle <span class="clisting">Person</span> gespeichert wird, und nur die Klasse <span class="clisting">Person</span> hat den Zugriff auf ihre eigenen Felder.</p>
+<p><strong><em>Generierung  
+von redundanten Quelltexten</em></strong></p>
+<p>Um diese Information nicht selbst in Ihre Quelltexte einfügen zu müssen, können Sie die redundanten Teile der Quelltexte aus dem Datenmodell und der Zuordnungsinformation generieren lassen. Die redundanten Teile werden also generiert, die Primärfunktionalität der Klasse programmieren wir wie vorher selbst.</p>
+<p>Diese Vorgehensweise erfüllt die Zielsetzung, redundante Teile in den von Menschen erstellten Quelltexten zu meiden. Sie hat allerdings ein paar Stolperfallen, die sich aus der Tatsache ergeben, dass Sie generierte Quelltexte mit den selbst programmierten mischen müssen.</p>
+<h4 class="t4">Stolperfallen der Quelltextgenerierung</h4>
+<p><strong><em>Was ist ein  
+Quelltext?</em></strong></p>
+<p>Das Wort »Quelltext« hat für uns zwei Bedeutungen. Einerseits ist es ein technischer Begriff, mit dem Textdateien gemeint werden, die ein Compiler oder ein Interpreter einer Programmiersprache einlesen und daraus ein Programm erzeugen oder starten kann. Anderseits sind es die Dateien, die ein Programmierer erstellt. In diesem zweiten Sinne ist ein generierter Text kein Quelltext, sondern ein Produkt eines Generators.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Quelle und Generat
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Texte und Daten, die ein Programmierer erstellt und bearbeitet, werden wir als <span class="ckursiv">Quelle</span> bezeichnen. Texte und Daten, die ein Generator produziert, werden wir als <span class="ckursiv">Generat</span> bezeichnen.</p>
+</td>
+</tr>
+</table><br><p>Die Generierung ist dann unproblematisch, wenn sich die Generate von den vom Menschen programmierten Quellen klar trennen lassen.</p>
+<p>Wenn man die Quellen und die Generate in gemeinsamen »Quelltext«-Dateien vermischt, wird es zwangsläufig passieren, dass diese Dateien bei der Änderung der Eingaben für den Generator durch die Generierung verändert werden. So werden in der Versionsverwaltung [Sie benutzen doch eine Versionsverwaltung, nicht wahr?
+]  Änderungen festgehalten, die nicht durch den Programmierer verursacht worden sind &#8211; Sie haben dann Schwierigkeiten, echte von generierten Änderungen zu unterscheiden.</p>
+<p>Eine Möglichkeit, um dies zum Beispiel in C++ zu erreichen, besteht darin, die Generate in separate Dateien zu speichern und diese durch das Pragma <span class="cfett">#</span><span class="clisting">include</span> in die Quelltexte einzubinden. In Ruby oder C# können Sie zum Beispiel die partiellen Klassen nutzen und die generierten Teile der Klassen in separate Quelltextdateien auslagern.</p>
+<p>Wenn dies nicht möglich sein sollte, ist es wichtig, dafür zu sorgen, dass die generierten Teile die von Menschen erstellten Quellen nicht zerstören. Es gibt verschiedene Strategien, die das verhindern sollen.</p>
+<p><strong><em>Kombination mit generiertem Code</em></strong></p>
+<ul class="gp">
+<li>In den generierten Quelltextdateien werden spezielle geschützte Bereiche markiert, die der Generator nicht ändert. Dies funktioniert manchmal, ist aber nicht besonders schön.</li>
+</ul>
+<ul class="gp">
+<li>Man bearbeitet die generierten Dateien gar nicht manuell, sondern nur deren Kopien. Die Änderungen, die sich in den generierten Dateien durch die Neugenerierung ergeben haben, werden in die manuell bearbeiteten Dateien automatisch oder manuell überführt. Genauso wie man Patches eines Originalsystems in ein modifiziertes System übernimmt.</li>
+</ul>
+<p>Die Quelltextgenerierung stellt also einen nützlichen und auch praxisrelevanten Ansatz dar, um Informationen über Programme zu verwalten und diese Programme selbst wieder als Daten betrachten zu können. Die praktische Umsetzung dieses Ansatzes ist jedoch immer mit Zusatzaufwand verbunden und beinhaltet zusätzliche mögliche Fehlerquellen. In Abbildung 9.2 ist dargestellt, wie Quelltexte mit generierten Anteilen aussehen können.</p>
+<div class="bildbox">
+<p><a name="IDAMUSQ"></a><a onClick="OpenWin('bilder/07_Aspekte in OO_001.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_Aspekte in OO_001.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 9.2    </strong>Gemischte Quelltexte durch generierte Anteile</p>
+<p>Im folgenden Abschnitt werden wir Fälle betrachten, bei denen Sie ohne Generierung auskommen können, indem Sie die bereits vorhandene Strukturinformation eines Programms ausnutzen.</p>
+<h4 class="t4">Verwendung von Metainformationen</h4>
+<p>Im vorherigen Abschnitt haben wir SQL-Anweisungen betrachtet, die sich automatisch aus der Abbildung der Klassen auf die Datenbanktabellen und von Attributen auf die Datenbankspalten ergeben. Doch auch diese Abbildung selbst kann redundant sein.</p>
+<p>Es kann zum Beispiel sinnvoll sein, dass die Tabellen genauso heißen wie die Klassen, deren Exemplare in ihnen gespeichert werden. Die Spalten können in diesem Fall so heißen wie die Attribute dieser Exemplare. Warum sollte man also extra spezifizieren müssen, dass das Attribut <span class="clisting">Name</span> der Klasse <span class="clisting">Person</span> in der Spalte <span class="clisting">Name</span> der Tabelle <span class="clisting">Person</span> gespeichert werden soll?</p>
+<p><strong><em>Meta- 
+informationen</em></strong></p>
+<p>Programme verarbeiten Informationen. So kann unser Programm die Information speichern, dass der Name einer Person »Ellsworth Toohey« lautet. Die übergeordnete Information, dass eine Person überhaupt einen Namen hat, gehört zu der Struktur des Programms. Solche übergeordneten Informationen nennt man <span class="ckursiv">Metainformationen</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Metainformationen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Metainformationen sind Informationen über die Struktur eines Programms selbst: Welche Klassen existieren? Was sind deren Unter- und Oberklassen? Welche Attribute haben die Exemplare dieser Klassen, welche Operationen unterstützen sie, welche Methoden implementieren sie. Dass ein Objekt ein Attribut <span class="clisting">Name</span> hat, kann zum Beispiel durch seine Zugehörigkeit zu der Klasse <span class="clisting">Person</span> bestimmt sein. </p>
+<p>Steht diese Metainformation auch zur Laufzeit eines Programms zur Verfügung, können darüber zum Beispiel Abbildungsregeln zwischen der Struktur von Klassen und Tabellen einer Datenbank definiert werden. </p>
+</td>
+</tr>
+</table><br><p>Wenn die Klassen, Methoden und andere zur Struktur eines objektorientierten Programms gehörende Elemente einfach als Objekte behandelt werden, stehen diese automatisch zur Laufzeit eines Programms zur Verfügung. Solche Objekte werden <span class="ckursiv">Metaobjekte</span> genannt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Metaobjekte
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In manchen Programmiersprachen sind die Elemente selbst auch Objekte, welche die Struktur eines Programms bestimmen. So können Klassen und Methoden selbst Objekte sein, deren Eigenschaften erfragt und möglicherweise modifiziert werden können. Diese zur Programmstruktur gehörenden Elemente werden als Metaobjekte bezeichnet. </p>
+<p>Ruby und Smalltalk sind Beispiele für Programmiersprachen, in denen Klassen vollwertige Objekte sind. In Java stehen Klassen auch als Objekte zur Verfügung, allerdings sind diese Objekte in Java nicht veränderbar.</p>
+</td>
+</tr>
+</table><br><p>Ein Generator, der eine Klasse auf die Struktur einer Datenbanktabelle abbilden soll, benötigt also Zugriff auf die Metainformation eines Programms. Woher soll er wissen, dass die Klasse <span class="clisting">Person</span> ein Attribut <span class="clisting">Name</span> hat? Diese Information steckt in den Quelltexten unserer Klassen. Der Compiler oder ein Interpreter unserer Programmiersprache bekommt sie doch ebenfalls aus den Quelltexten.</p>
+<p>Um einen schlaueren Generator schreiben zu können, benötigen Sie also den Zugriff auf die Metainformationen Ihres Programms. Entweder müssen Sie selbst einen Parser für die genutzte Programmiersprache schreiben, oder Sie nutzen die Mittel der jeweiligen Programmiersprache, falls diese so nett ist und Ihnen den Zugriff auf die Metainformationen zur Laufzeit eines Programms ermöglicht. In diesem Fall können Sie vielleicht sogar auf den Generator verzichten.</p>
+<p>Anstatt generierte »Quelltexte« bereitzustellen, können Sie die Abbildung auf eine relationale Datenbank zur Laufzeit mit Hilfe der Metainformationen vornehmen. Diesen Weg geht zum Beispiel Hibernate, ein frei verfügbares Framework zur Abbildung von Objekten auf relationale Datenbanken (Object Relational Mapping Tool). Hibernate verwendet die sogenannte Reflexion, um zur Laufzeit eines Programms Informationen über die Struktur von Objekten und der zugehörigen Klassen zu ermitteln.</p>
+<h4 class="t4">Introspektion und Reflexion</h4>
+<p>Informationen über die Struktur des Programms nutzt ein Compiler, um Typüberprüfungen vorzunehmen und die syntaktische Korrektheit eines Programms zu prüfen.</p>
+<p>Aber zur Laufzeit eines Programms ist diese Information nicht immer vorhanden. Bei der Übersetzung eines C++-Programms werden zum Beispiel alle Zugriffe auf das Attribut <span class="clisting">Name</span> der Exemplare der Klasse <span class="clisting">Person</span> durch entsprechende Zeigerarithmetik ersetzt, das laufende Programm muss nicht wissen, dass es die Namen von Personen speichert, wichtig ist nur, dass die richtigen Bytes an der richtigen Stellen gespeichert werden und dass die Aufrufstellen die richtigen Adressen anspringen. Bei der Übersetzung eines C++-Programms geht also ein großer Teil der Metainformation verloren.</p>
+<p>In anderen objektorientierten Programmiersprachen ist diese Information aber auch zur Laufzeit verfügbar. Beispiele für diese Sprachen sind Smalltalk, Python, Ruby und mit Einschränkungen auch Java.</p>
+<p>Die Möglichkeit, auf diese Art von Information beim Programmablauf zuzugreifen, wird als <span class="ckursiv">Reflexion</span> bezeichnet.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Reflexion (engl. Reflection)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Reflexion ist ein Vorgang, bei dem ein Programm auf Informationen zugreift, die nicht zu den Daten des Programms, sondern zur Struktur des Programms selbst gehören. Diese Informationen können dabei über eine definierte Schnittstelle ausgelesen werden. Eine Modifikation dieser Strukturen ist über Reflexion nicht möglich. Die über Reflexion erhaltene Information wird auch als Metainformation bezeichnet, da es sich dabei um Informationen über das laufende Programm handelt.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Introspektion</em></strong></p>
+<p>Sehr nahe verwandt mit der Reflexion ist die Introspektion. Bei Introspektion wird in der Regel Information zusätzlich zu einer Komponente bereitgestellt. So kann man zum Beispiel die Metainformationen, die Java über eine Klasse bereitstellt, für Java Beans [Java Beans sind gewöhnliche Java-Klassen, die sich an bestimmte Konventionen halten und damit ermöglichen, dass bestimmte Tools deren Exemplare generisch bearbeiten können. So kann man zum Beispiel einen Dialogeditor schreiben, der auch mit Elementen arbeiten kann, die dem Entwickler des Editors nicht bekannt waren. Zumindest Teilen der Namenskonventionen folgt man heutzutage in verschiedenen Bereichen von Java, auch wenn es gar nicht um die visuelle Bearbeitung von Komponenten geht.
+]  erweitern, indem man einer Bean-Klasse <span class="clisting">X</span> eine Hilfsklasse <span class="clisting">XBeanInfo</span> zur Seite stellt.</p>
+<p><strong><em>Diskussion: Änderungen durch Reflexion</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Über die Reflexion in Java kann ich aber Informationen nicht nur lesen, ich kann sie auch verändern.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Ja, man kann die Daten des Programmes ändern, nicht aber seine Struktur. In Java kann man zum Beispiel über Reflexion keine neuen Methoden einer Klasse hinzufügen oder neue Klassen erstellen. Man kann jedoch die Werte der Attribute eines Objekts ändern oder seine Methoden aufrufen.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Und man kann dynamische Proxy-Klassen erstellen.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Ja, das kann man in der Tat. Allerdings nur für vorher definierte und zur Laufzeit mit Reflexion nicht mehr änderbare Schnittstellen.</span><p>Der Zugriff auf Metainformation kann dabei unterstützen, wenn ein Anliegen wie die Persistenz von Objekten automatisiert erledigt werden soll. Für manche Arten von Anliegen reicht diese Art des Zugriffs aber nicht aus.</p>
+<p>Wir stellen im folgenden Abschnitt 9.2 die Technik der aspektorientierten Programmierung vor, die für eine ganze Reihe von übergreifenden Anliegen Lösungsmöglichkeiten bereitstellt. Die Fähigkeiten der Aspektorientierung gehen dabei über die Möglichkeiten von Reflexion hinaus und erlauben uns, an definierten Stelle in die Struktur eines Programms einzugreifen.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_09_001.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="9 Aspekte und Objektorientierung"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_08_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_09_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

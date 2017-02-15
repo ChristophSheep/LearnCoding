@@ -1,0 +1,569 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 6.3 Abbildung auf relationale Datenbanken</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 6.3 Abbildung auf relationale Datenbanken">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 6.3 Abbildung auf relationale Datenbanken">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_06_002.htm">
+<link rel="next" href="oop_kapitel_06_004.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_06_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_06_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6" class="navnav">6 Persistenz</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_06_001.htm#mj7c2a056ec1dfeac2229b1fb85c0e36d0" class="navnav">6.1 Serialisierung von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_06_002.htm#mjbd38b9e270be21fbb00edcc8ce26a7cd" class="navnav">6.2 Speicherung in Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_002.htm#mj1b05252e9b69b82768610d09fb6fc3d4" class="navnav">6.2.1 Relationale Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_002.htm#mjc05ff1bffed71d95850cc8397fa56212" class="navnav">6.2.2 Struktur der relationalen Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_002.htm#mj69af567b73ef41ffbbb8e5e072376df0" class="navnav">6.2.3 Begriffsdefinitionen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mjd2117313ff67a912fd368065166ffb83" class="navh">6.3 Abbildung auf relationale Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj74a9a5ecb728d5307a0fc21d6ec2ef9d" class="navh">6.3.1 Abbildung von Objekten in relationalen Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf8f90d6389516f03d3fc7d8cea5fe76a" class="navh">6.3.2 Abbildung von Beziehungen in relationalen Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj0e2023160a7634a4eac30b19482f0854" class="navh">6.3.3 Abbildung von Vererbungsbeziehungen auf eine relationale Datenbank</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_06_004.htm#mjcb211e5113a744c438c6611dc39084bc" class="navnav">6.4 Normalisierung und Denormalisierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mjb2d04eb1b4c3f9d8c3c58601fc80ce55" class="navnav">6.4.1 Die erste Normalform: Es werden einzelne Fakten gespeichert</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mjbc06a32922168bcbe16f5ebc29155d09" class="navnav">6.4.2 Die zweite Normalform: Alles hängt vom ganzen Schlüssel ab</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mj3baa93dbfa4964f9eb161a54e80449e9" class="navnav">6.4.3 Die dritte Normalform: Keine Abhängigkeiten unter den Nichtschlüssel-Spalten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mja09896a3c0def58f650ceeb0095eb2c7" class="navnav">6.4.4 Die vierte Normalform: Trennen unabhängiger Relationen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mj5d506b0fd2c19e48f0eb50a5e2a3fe38" class="navnav">6.4.5 Die fünfte Normalform: Einfacher geht&#8217;s nicht</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mjd2117313ff67a912fd368065166ffb83" name="mjd2117313ff67a912fd368065166ffb83"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">6.3 Abbildung auf relationale Datenbanken  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Um Objekte mit ihren Beziehungen in relationalen Datenbanken speichern zu können, müssen wir beschreiben, wie diese auf die relationalen Strukturen abgebildet werden.</p><a id="mj74a9a5ecb728d5307a0fc21d6ec2ef9d" name="mj74a9a5ecb728d5307a0fc21d6ec2ef9d"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">6.3.1 Abbildung von Objekten in relationalen Datenbanken  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Schauen wir uns zunächst an, wie man die grundsätzlichen Daten der Objekte in einer relationalen Datenbank speichern kann. Wenn wir davon ausgehen, dass alle Exemplare einer Klasse etwa die gleiche Datenstruktur haben, können wir für die Speicherung ihrer Daten eine Tabelle definieren, deren Spalten den Attributen beziehungsweise den Dateneinträgen der Objekte entsprechen.</p>
+<p>Wir können aber durchaus auch mehrere Attribute eines Objekts in einer Spalte speichern. Im Extremfall könnten wir sogar alle Daten eines Objekts serialisieren und sie so in einem Feld eines Datensatzes speichern.</p>
+<h4 class="t4">Zugriffsrelevanz</h4>
+<p>Wichtig für solche Entscheidungen ist immer die Frage: Werde ich auf die Werte der einzelnen Eigenschaften in der Datenbank zugreifen müssen? Werde ich nach ihnen suchen? Wenn ich zum Beispiel alle Kunden aus einem Postleitzahlenbereich finden möchte, ist es sinnvoll, die Postleitzahl des Kunden in einer separaten Spalte der Kundentabelle zu speichern und sie nicht in einer breiteren Adressspalte zusammen mit dem Straßen- und dem Stadtnamen zu verbinden.</p>
+<p>Als Richtlinie kann uns dabei die Struktur des Objekts selbst dienen. Wenn die Adresse in unserer Anwendung einfach als eine Zeichenkette gehandhabt wird, spricht nicht vieles dafür, sie nur wegen der Speicherung in der Datenbank in ihre Bestandteile zu zerlegen. Wurde dagegen eine Adresse in unserem Klassenmodell als eine eigenständige Klasse mit gesonderten Attributen modelliert, wird es wohl meistens sinnvoll sein, diese auch getrennt in der Datenbank zu speichern.</p>
+<h4 class="t4">Verteilung auf mehrere Tabellen</h4>
+<p>Es kann aber auch sinnvoll sein, die Daten einer Klasse auf Datensätze in mehreren Tabellen zu verteilen. Dabei kann man die ursprüngliche Tabelle auf zwei Arten trennen:</p>
+<p><strong><em>Vertikale  
+Verteilung</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Vertikal</span> 
+Bei dieser Verteilung speichert man verschiedene Attribute der Objekte in verschiedenen Tabellen, also die Daten eines einzelnen Objekts werden in mehreren Datensätzen verschiedener Tabellen gespeichert.  Dies ist vor allem dann sinnvoll, wenn die Attribute optional sind und häufig keinen Wert haben oder wenn die Werte bestimmter Attribute selten gebraucht werden. Durch die vertikale Teilung kann die Tabelle mit den häufig verwendeten Daten der Objekte kleiner und die Zugriffe auf diese Tabelle können schneller werden. Braucht man jedoch auch die in andere Tabellen ausgelagerten Daten, muss man auf mehrere Tabellen zugreifen, was wiederum weniger effektiv ist. Welche Tabellenstruktur man wählen sollte, hängt letzten Endes von der konkreten Anwendung ab.</li>
+</ul>
+<p><strong><em>Horizontale  
+Verteilung</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Horizontal</span> 
+Hier werden verschiedene Objekte in verschiedenen Tabellen mit derselben Struktur gespeichert. Ein Objekt wird aber immer nur in einer Tabelle gespeichert. Diese Aufteilung ist vor allem dann sinnvoll, wenn man häufig nur auf eine bestimmte Menge der Objekte zugreift. So können wir zum Beispiel offene Rechnungen in einer anderen Tabelle speichern als Rechnungen, die bereits beglichen worden sind. Dies ermöglicht einen schnelleren Zugriff auf die offenen Rechnungen, vor allem dann, wenn es nur wenige offene, aber viele beglichene Rechnungen im System gibt. Die erhöhte Komplexität der Anwendung gehört allerdings zu den Nachteilen der horizontalen Aufteilung. Ein anderer Nachteil ergibt sich aus der etwas kleineren Effektivität, wenn wir bei der Suche nach den Objekten das Aufteilungskriterium nicht berücksichtigen können. Suchen wir in unserem Beispiel eine Rechnung nach ihrer Rechnungsnummer und wissen nicht, ob die Rechnung bereits beglichen ist, müssen wir zwei Tabellen statt einer durchsuchen.</li>
+</ul>
+<h4 class="t4">Partitionierung</h4>
+<p>Viele relationale Datenbanksysteme kennen das Konzept der <span class="ckursiv">Partitionierung</span> der Tabellen. Eine partitionierte Tabelle ist intern horizontal geteilt, nach außen gibt sie sich aber als eine gewöhnliche Tabelle. Auf diese Art können wir die Vorteile der horizontalen Aufteilung nutzen und die Komplexität dieser Aufteilung der Datenbank überlassen. Selbstverständlich können wir beide Verteilungsstrategien auch kombinieren.</p>
+<p>Wir werden zu der Verteilung der Tabellen und der Abbildung der Daten der Objekte auf die Tabellen und ihre Spalten noch einmal in Abschnitt 6.3.3 zurückkommen, in dem wir uns der Abbildung der Vererbung widmen.</p>
+<h4 class="t4">Identität</h4>
+<p>Neben der Abbildung der eigentlichen Daten der Objekte auf die Daten in einer relationalen Datenbank ist es wichtig, dass wir die Identität der Objekte und ihren Bezug zu den richtigen Daten verwalten können.</p>
+<p>In einer objektorientierten Anwendung hat jedes Objekt eine eindeutige Identität. Auch Objekte, welche die gleichen Daten enthalten, können als selbstständige, nicht verwechselbare Entitäten betrachtet werden. In einer relationalen Datenbank gibt es den Begriff der Identität aber nicht. Datensätze einer Relation können anhand des Primär- oder eines Alternativschlüssels eindeutig bestimmt werden, ändert man jedoch die Werte der Schlüsselspalten, können wir nicht sagen, ob ein neuer Datensatz entstanden ist und der alte gelöscht wurde oder ob wir einen Datensatz modifiziert haben. Um einen Bezug der Datensätze zu den dazugehörigen Objekten herzustellen, müssen wir die Eigenschaften des Objekts bestimmen, die für die eindeutige Bestimmung seiner Identität verwendet werden können.</p>
+<p><strong><em>Natürlicher Schlüssel</em></strong></p>
+<p>Eine Möglichkeit bieten die sogenannten <span class="ckursiv">natürlichen Schlüssel</span>. Ein natürlicher Schlüssel ist ein Attribut, oder eine Gruppe von Attributen, das nach den Fachregeln der Anwendung zur eindeutigen Identifizierung eines Objekts dienen kann. So kann zum Beispiel die zweistellige Internetländerdomäne oder das internationale Länderkennzeichen als natürlicher Schlüssel für die Bestimmung eines Landes dienen.</p>
+<p><strong><em>Ersatzschlüssel 
+Surrogate Key</em></strong></p>
+<p>Häufig gibt es keinen solchen natürlichen Schlüssel. In so einem Fall können wir einen <span class="ckursiv">Ersatzschlüssel</span> (engl. <span class="ckursiv">Surrogate Key</span>) definieren, der jedem Exemplar einer Klasse zugeordnet wird, um dessen Identität eindeutig zu bestimmen. Ein Ersatzschlüssel hat in der Anwendung keine fachliche Bedeutung, er wird dem Anwender nicht gezeigt, sondern nur intern verwendet, um den Bezug der Objekte zu ihren gespeicherten Daten herzustellen.</p>
+<p>Die Verwendung von Ersatzschlüsseln hat eine ganze Reihe von Vorteilen.</p>
+<p><strong><em>Ersatzschlüssel sind einfach.</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Vorteil 1:</span> Während der natürliche Schlüssel komplex sein und aus mehreren Spalten bestehen kann, können wir immer einen einfachen Ersatzschlüssel definieren. Wir können wahrscheinlich eine Person durch ihren Namen, ihr Geburtsdatum und den Geburtsort eindeutig identifizieren, es ist aber wesentlich effizienter, wenn sich diese Information nicht in jeder Tabelle, die Daten zu dieser Person enthält, wiederholen muss.</li>
+</ul>
+<p><strong><em>Ersatzschlüssel müssen nicht geändert werden.</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Vorteil 2:</span> In einigen Fällen kann es fachlich notwendig sein, die Werte der Spalten des natürlichen Schlüssels zu ändern. Dies führt zwangsweise zur erhöhten Komplexität bei der Verwaltung der Identität der Objekte. Wenn wir zum Beispiel die Passnummer als den Schlüssel der Tabelle unserer Spione verwenden, müssen wir die Identität der Daten bei der Ausstellung jedes neuen Passes anpassen. Da der Ersatzschlüssel aber keine fachliche Bedeutung hat, besteht nie der fachliche Bedarf, ihn zu ändern.</li>
+</ul>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li>Andererseits kann es manchmal sinnvoll sein, die Werte eines Ersatzschlüssels zu ändern, ohne dass dies fachliche Konsequenzen hätte. Wenn man zum Beispiel mehrere Datenbanken zusammenführt, muss man die Schlüsselwerte, die nicht eindeutig sind, ändern. Wenn zwei Firmen fusionieren und ihre Kundendatenbanken konsolidieren, kann die nötige Änderung der Kundennummern einen nicht zu unterschätzenden Aufwand bedeuten.</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Ersatzschlüssel gibt es immer.</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Vorteil 3:</span> Für bestimmte Objekte gibt es gar keinen natürlichen Schlüssel, hier sind wir auf die Verwendung einer Ersatzschlüssels angewiesen.</li>
+</ul>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li>Vor allem dann, wenn es keinen natürlichen Schlüssel für bestimmte Objekte gibt, tendiert man dazu, einen Ersatzschlüssel zu einem natürlichen Schlüssel zu erheben. So haben heutzutage jede Bestellung und jede Rechnung eine im Unternehmen eindeutige Nummer, fast jedes Buch eine ISBN, jedes zugelassene Auto ein Kennzeichen, jeder Kunde eine Kundennummer, jedes Konto eine Kontonummer. Solche für die Anwender sichtbare Schlüssel kann man durchaus als natürliche Schlüssel betrachten. Wenn es dennoch für bestimmte Klassen von Objekten keinen natürlichen Schlüssel gibt, kann es praktisch erscheinen, den Benutzern die Werte der Ersatzschlüssel anzuzeigen. Dies birgt aber die Gefahr, dass der Ersatzschlüssel irgendwann zu einem natürlichen Schlüssel mutiert und dies zu den bereits geschilderten Schwierigkeiten mit natürlichen Schlüsseln führt.</li>
+</ul>
+</li>
+</ul><a id="mjf8f90d6389516f03d3fc7d8cea5fe76a" name="mjf8f90d6389516f03d3fc7d8cea5fe76a"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">6.3.2 Abbildung von Beziehungen in relationalen Datenbanken  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Für die Abbildung von Beziehungen zwischen Objekten in einer Datenbank spielt die Multiplizität [Der Begriff der Multiplizität wurde in Abschnitt 4.3.3, »Kardinalität«, definiert. Obwohl im Bereich der relationalen Datenbank häufiger der Begriff der Kardinalität verwendet wird, bleiben wir aus Konsistenzgründen beim Begriff Multiplizität.
+]  der Beziehung eine entscheidende Rolle. Bei einer 1:1-Beziehung können wir die Daten beider Objekte in derselben Tabelle speichern, weil die Identität eines Objekts eindeutig die Identität des anderen Objekts bestimmt. Dies ist sogar dann der Fall, wenn einer der Teilnehmer der Beziehung optional ist, in diesem Falle können wir die dazugehörigen Spalten einfach leer lassen.</p>
+<p><strong><em>Beziehung 
+1:1 
+1:0..1</em></strong></p>
+<p>Bei der Abbildung der 1:1-Beziehung gelten die gleichen Überlegungen wie bei der vertikalen Aufteilung der Abbildung einer einzelnen Klasse. Je nachdem, wie oft wir auf bestimmte Attribute der Teilnehmer der Beziehung zusammenhängend zugreifen, und je nachdem, wie oft der optionale Teilnehmer vorhanden ist, sollten wir entscheiden, auf wie viele Tabellen wir die Daten verteilen.</p>
+<p>Wir sehen, dass schon ein einzelnes Objekt und die 1:1-Beziehungen auf recht vielfältige Art und Weise auf die Tabellenstrukturen in einer relationalen Datenbank abgebildet werden können. Es gibt entsprechend auch eine ganze Anzahl von Möglichkeiten, mehrwertige Beziehungen auf eine relationale Datenbank abzubilden. Die gängigsten davon werden wir in den nächsten Abschnitten vorstellen.</p>
+<p><strong><em>1:*</em></strong></p>
+<p>Wir könnten auch die Daten beider Teilnehmer einer 1:n-Beziehung in einer Tabelle speichern, denn ähnlich wie bei der 1:1-Beziehung bestimmt die Identität des n-Teilnehmers eindeutig die Identität des 1–Teilnehmers. Dies bedeutet aber, dass die Daten des 1-Teilnehmers redundant wiederholt mehrmals [Dass es redundanten Formulierungen an Eleganz mangelt, kann man an der hier gewählten Formulierung erkennen.
+]  gespeichert werden müssen.</p>
+<p>Ein besseres Vorgehen ist es, wenn wir in die Tabelle der n-Teilnehmer nur den eindeutigen Schlüssel des 1-Teilnehmers einfügen und mit diesem <span class="ckursiv">Fremdschlüssel</span> die Datensätze in der Tabelle des 1-Teilnehmers referenzieren. Dies ist die gängigste Abbildung einer 1:n-Beziehung in relationalen Datenbanken.</p>
+<p><strong><em>Referenzielle  
+Integrität</em></strong></p>
+<p>Die meisten relationalen Datenbanken können sicherstellen, dass es für den Wert eines Fremdschlüssels immer einen entsprechenden Eintrag in der Zieltabelle gibt. Das Vorhandensein eines entsprechenden Eintrages nennt man <span class="ckursiv">referenzielle Integrität.</span> Durch die automatische Überprüfung der referenziellen Integrität kann die Datenbank sicherstellen, dass der von dem n-Teilnehmer referenzierte 1-Teilnehmer existiert. Sie kann aber nicht sicherstellen, dass es die n-Teilnehmer gibt.</p>
+<div class="bildbox">
+<p><a name="IDABGSQ"></a><a onClick="OpenWin('bilder/06_03.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_03.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.3    </strong>Referenzielle Integrität und eine 1:*-Beziehung</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Datenmodelle in der Entity-Relationship-Darstellung 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Entity-Relationship-Modell (kurz ER-Modell) ist ein Verfahren zur Datenmodellierung, das häufig für Entwurf und Dokumentation von relationalen Datenbanken eingesetzt wird. Die zugehörigen ER-Diagramme beschreiben Beziehungen zwischen Entitäten in der Wirklichkeit. ER-Diagramme weisen Ähnlichkeiten zu den Strukturdiagrammen der UML auf, setzen jedoch einen stärkeren Fokus auf die Beziehungen zwischen Entitäten und den datenbankspezifischen Eigenschaften wie Primär- oder Fremdschlüssel. In ER-Diagrammen wird jede Relation durch ein Kästchen dargestellt.  Die Spalten des Primärschlüssels sind oben, sie werden mit PK (Primary Key) markiert und unterstrichen dargestellt. </p>
+<p>Wenn eine Relation einen Fremdschlüssel zu einer anderen Relation enthält, wird dies durch einen Pfeil dargestellt. Die Spalten des Fremdschlüssels werden mit FK (Foreign Key) markiert. Spalten, die keine NULL-Werte enthalten dürfen (die Pflichtspalten), werden fett dargestellt. </p>
+</td>
+</tr>
+</table><br><p>Sind die Spalten des Fremdschlüssels keine Pflichtspalten, handelt es sich um eine 0..1:*-Beziehung. Sind die Spalten des Fremdschlüssels Pflichtspalten, geht es um eine 1:*-Beziehung. Ist der Primärschlüssel oder ein Alternativschlüssel selbst ein Fremdschlüssel, geht es um eine 1:0..1-Beziehung. Und wenn für die Spalten des Fremdschlüssels eine Eindeutigkeitsbedingung gilt (markiert mit U für unique), die Spalten aber keine Pflichtfelder sind, geht es um eine 0..1:0..1-Beziehung.</p>
+<p><strong><em>1:1..n</em></strong></p>
+<p>Eine andere, seltener angewandte Möglichkeit besteht darin, in der Tabelle des 1-Teilnehmers die Daten oder zumindest die Schlüssel der n-Teilnehmer zu speichern. Dies ist manchmal vernünftig, wenn die obere Schranke n der Multiplizität eine kleine definierte Zahl ist. Wenn zum Beispiel in unserer Anwendung eine Person minimal eine und maximal drei Anschriften haben kann, können wir durchaus alle drei in der Tabelle <span class="clisting">Person</span> speichern. Auf diese Art können wir sicherstellen, dass zumindest eine Anschrift vorhanden ist.</p>
+<div class="bildbox">
+<p><a name="IDA4GSQ"></a><a onClick="OpenWin('bilder/06_04.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_04.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.4    </strong>Umkehr der referenziellen Integrität</p>
+<p>Der Nachteil dieser Vorgehensweise liegt wieder in der Redundanz und der dadurch erhöhten Komplexität der Anwendung. Hier sind es nicht die Daten selbst, die redundant sind, sondern wir haben redundante Datenstrukturen geschaffen.</p>
+<p><strong><em>Menge (Set)</em></strong></p>
+<p>Außer der Zuordnung der Objekte einer 1:n-Beziehung zueinander müssen wir noch andere Eigenschaften der Beziehung in Betracht ziehen. Ist die Beziehung geordnet? Können sich Elemente der Beziehung wiederholen? Die in der Abbildung 6.3 beschriebene Vorgehensweise eignet sich sehr gut für die Abbildung einer Menge (<span class="ckursiv">Set</span>), in der ein Objekt maximal einmal auftreten kann und die Reihenfolge der Objekte keine Rolle spielt.</p>
+<p><strong><em>1:* {ordered}</em></strong></p>
+<p>Wenn die Reihenfolge der n-Teilnehmer eine Rolle spielt und sie sich nicht nach bereits existierenden Attributen bestimmen lässt, hat man grundsätzlich zwei Möglichkeiten. Wenn der 1-Teilnehmer nicht optional ist, kann man den Ersatzschlüssel der n-Teilnehmer so wählen, dass dessen Wert sich für die Bestimmung der Reihenfolge verwenden lässt. Der Primärschlüssel der n-Teilnehmer kann sogar aus dem Primärschlüssel des 1-Teilnehmers und einer Reihenfolgezahl bestehen.</p>
+<div class="bildbox">
+<p><a name="IDAJHSQ"></a><a onClick="OpenWin('bilder/06_05.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_05.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.5    </strong>Der Fremdschlüssel ist ein Teil des Primärschlüssels.</p>
+<p><strong><em>0..1:* {ordered}</em></strong></p>
+<p>Wenn der 1-Teilnehmer jedoch optional ist, wenn also die n-Teilnehmer auch ohne den 1-Teilnehmer existieren können, kann ihr Primärschlüssel nicht den Primärschlüssel des 1-Teilnehmers beinhalten. In diesem Falle ist es meist notwendig, für die Bestimmung der Reihenfolge eine zusätzliche Spalte hinzuzufügen. Im Beispiel von Abbildung 6.6 ist die Einführung einer zusätzlichen Spalte <span class="clisting">Reihenfolgenummer</span> für diesen Fall dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDARHSQ"></a><a onClick="OpenWin('bilder/06_06.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_06.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.6    </strong>Abbildung einer geordneten 0..1:*-Beziehung</p>
+<p><strong><em>n:m</em></strong></p>
+<p>Bei einer n:m-Beziehung kann die Identität eines der Teilnehmer die Identität der anderen Teilnehmer der Beziehung nicht eindeutig bestimmen. Es ist also nicht möglich, diese Beziehung in einer der zwei Tabellen abzubilden. Stattdessen müssen wir eine zusätzliche Tabelle definieren, die Fremdschlüssel zu den Tabellen beider Teilnehmer der Beziehung enthält. Je nach Art der Beziehung &#8211; ist es eine Menge, ein Korb oder eine Liste &#8211; können wir die beiden Fremdschlüssel zusammen als Primärschlüssel der Beziehungstabelle definieren oder stattdessen eine neue Primärschlüsselspalte definieren.</p>
+<p><strong><em>Assoziationsklassen</em></strong></p>
+<p>Manche Beziehungen haben ihre eigenen Attribute. In Abschnitt 4.3.4 haben wir gezeigt, wie die Assoziationsklassen den »normalen« Klassen entsprechen. Somit können wir für das Speichern der Attribute einer Assoziationsklasse die gleichen Regeln anwenden, die auch für die »normalen« Klassen gelten. Gehört die Assoziationsklasse zu einer n:m-Beziehung, bietet sich die Beziehungstabelle an, um dort die Attribute der Assoziationsklasse zu speichern.</p>
+<div class="bildbox">
+<p><a name="IDAZHSQ"></a><a onClick="OpenWin('bilder/06_07.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_07.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.7    </strong>Abbildung einer n:m-Beziehung und einer Assoziationsklasse</p><a id="mj0e2023160a7634a4eac30b19482f0854" name="mj0e2023160a7634a4eac30b19482f0854"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">6.3.3 Abbildung von Vererbungsbeziehungen auf eine  
+relationale Datenbank  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Bisher gingen wir in unserer Beschreibung davon aus, dass alle Exemplare einer Klasse dieselben Attribute haben. Das ist natürlich eine sehr vereinfachte Sichtweise, denn zu einer Klasse gehören doch auch alle Exemplare ihrer Unterklassen, und die Unterklassen definieren für ihre Exemplare normalerweise zusätzliche Eigenschaften. Die Datenstruktur der Exemplare einer Unterklasse enthält also die Datenstruktur der Exemplare ihrer Oberklasse beziehungsweise ihrer Oberklassen. Die Speicherung der Daten der Exemplare der Unterklasse entspricht also der Speicherung der Daten einer <span class="ckursiv">1:0..1-Kompositionsbeziehung</span>. 0..1 deswegen, weil es auch Exemplare der Oberklasse geben kann, die nicht zu der Unterklasse gehören.</p>
+<p>Bei der Verwendung der Vererbungshierarchie liegt der Schwerpunkt allerdings etwas anders als bei der Kompositionsbeziehung. Wir stellen uns zum Beispiel in einer Anwendung die Frage »Welche Objekte <span class="ckursiv">enthalten</span> eine Produktnummer?« viel seltener als die Frage »Welche Produkte <span class="ckursiv">gibt es</span>?«.</p>
+<p>Daher sollten wir uns die gängigsten Speicherungsmöglichkeiten einer Klassenhierarchie genauer anschauen.</p>
+<p>Um eine Klassenhierarchie auf eine relationale Datenbank abzubilden, gibt es in der Praxis drei verschiedene Möglichkeiten:</p>
+<p><strong><em>Drei Möglichkeiten, eine Klassenhierarchie zu speichern</em></strong></p>
+<ul class="gp">
+<li>Wir bilden alle Klassen der Hierarchie auf eine Tabelle ab (<span class="ckursiv">Single Table Inheritance</span>).</li>
+</ul>
+<ul class="gp">
+<li>Wir bilden jede Klasse der Hierarchie auf eine eigene Tabelle ab (<span class="ckursiv">Class Table Inheritance</span>).</li>
+</ul>
+<ul class="gp">
+<li>Wir bilden jede Klasse der Hierarchie, die nicht abstrakt ist, auf eine Tabelle ab (<span class="ckursiv">Concrete Table Inheritance</span>).</li>
+</ul>
+<p>Alle drei Methoden haben ihre Anwendungsfälle, und es hängt zum Beispiel von der Art der Hierarchie und auch vom verwendeten Datenbanksystem ab, welche Modellierung adäquat ist.</p>
+<p>Als Beispiel greifen wir uns diesmal eine Modellierung von fachlichen Objekten in einem Produktkatalog heraus. Wir bieten verschiedene Produkte an. Dazu gehören Dienstleistungen und physische Produkte wie Werkzeuge und Maschinen, die aus verschiedenen Teilen bestehen. Die physischen Produkte müssen irgendwo gelagert werden, und ein und dasselbe Produkt kann unter verschiedenen Markennamen zu unterschiedlichen Preisen verkauft werden. [Dies ist keine Marketingmasche. Die Preisunterschiede sind bestimmt durch unterschiedliche Garantieleistungen und durch die unterschiedlich aufwändige Präsentation in unterschiedlichen Baumärkten. ] </p>
+<div class="bildbox">
+<p><a name="IDAERSQ"></a><a onClick="OpenWin('bilder/06_08.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_08.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.8    </strong>Beispielhierarchie zur Abbildung auf eine relationale Datenbank</p>
+<p>Wir haben eine Reihe von abstrakten Klassen in der Hierarchie von Abbildung 6.8. Von diesen können keine Exemplare erstellt werden. Konkrete Klassen dagegen sind die folgenden: <span class="clisting">Maschinenteil</span>, <span class="clisting">Maschine</span>, <span class="clisting">Schraubenschlüssel</span>, <span class="clisting">Schraubendreher</span>, <span class="clisting">Hammer</span> und <span class="clisting">Dienstleistung</span>.</p>
+<p>Wie würden wir nun die Klasse <span class="clisting">Produkt</span> bei der Verwendung von Single Table Inheritance auf Tabellen einer relationalen Datenbank abbilden?</p>
+<h4 class="t4">Single Table Inheritance</h4>
+<p>Hier resultiert eine einzige Tabelle mit dem Namen <span class="clisting">Produkt</span>, die alle Informationen enthält. In Abbildung 6.9 ist diese Abbildung dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAASSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_02_003.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_02_003.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.9    </strong>Abbildung von Vererbung auf genau eine Tabelle</p>
+<p>Die gesamte Vererbungshierarchie ist bei diesem Vorgehen in einer Tabelle <span class="clisting">Produkt</span> abgelegt. Da eine Maschine zum Beispiel kein Attribut »Erbringer« hat, müsste diese Spalte NULL-Werte zulassen, auch wenn sie für eine Dienstleistung ein Pflichtfeld ist. Theoretisch wäre es also möglich, inkonsistente Daten eintragen zu können. Um diese Konsistenzlücke zu schließen, könnte man die Möglichkeiten der gewählten Datenbank nutzen und sie bei jeder Erzeugung und jeder Änderung eines Datensatzes überprüfen lassen, ob bei einer Maschine die Spalte Erbringer leer und bei jeder Dienstleitung ausgefüllt ist.</p>
+<p>Wie aber erkennt man, ob ein Datensatz zu einer Maschine, einer Dienstleistung oder einer anderen Produktklasse gehört? Da wir anhand der Produktnummer nicht den Typ des Produktes erkennen können, benötigen wir eine zusätzliche Spalte, in die wir den Typ explizit speichern &#8211; die Spalte <span class="clisting">ProduktTyp</span>. Dies ist allerdings nicht immer erforderlich. Wenn wir aus den anderen Daten erkennen können, zu welcher konkreten Klasse der Datensatz gehört, wird eine solche Spalte nicht benötigt.</p>
+<h4 class="t4">Concrete Table Inheritance</h4>
+<p>Eine andere Strategie, die ohne eine zusätzliche Typ-Spalte auskommt, ist die Concrete Table Inheritance. Die resultierende Tabellenstruktur ist in Abbildung 6.10 dargestellt. Bei dieser Strategie werden die Daten jeder konkreten Klasse in einer separaten Tabelle gespeichert. Der Vorteil dieser Strategie ist, dass für jeden Datensatz einer Tabelle klar ist, zu welcher Klasse das gespeicherte Objekt gehört, und die Bedingungen für die Spalten der Tabellen sich einfacher formulieren lassen. Der Nachteil ist die erhöhte Komplexität des Datenmodells &#8211; wir brauchen mehr Tabellen, mehrere Fremdschlüssel, und aus einem Pflichtfeld Produktnummer für den Fremdschlüssel in der Tabelle <span class="clisting">Markenname</span> sind fünf optionale Fremdschlüsselfelder geworden.</p>
+<p>Vielleicht wäre es sogar besser, aus der einen Tabelle <span class="clisting">Markenname</span> fünf separate Tabellen zu machen, für jeden Produkttyp eine eigene.</p>
+<div class="bildbox">
+<p><a name="IDAVSSQ"></a><a onClick="OpenWin('bilder/06_10.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_10.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.10    </strong>Abbildung jeder konkreten Klasse auf eine Tabelle</p>
+<p>Ein weiterer Nachteil ist, dass wir fünf Tabellen lesen müssen, um ein Produkt zu finden, dessen konkreten Typ wir nicht kennen. Dies wäre auch der Fall, wenn wir eine Liste aller Produktbezeichnungen anzeigen sollten.</p>
+<p>Diese Strategie wird üblicherweise gewählt, wenn die Klassen nur wenige Gemeinsamkeiten haben. In Java sind zum Beispiel alle Klassen Unterklassen der Klasse <span class="clisting">Object</span>. Es wäre dann doch ein sehr merkwürdiges Datenmodell, das nur aus einer Tabelle <span class="clisting">Object</span> bestehen würde.</p>
+<h4 class="t4">Class Table Inheritance</h4>
+<p>Wenn wir aber die Produkte als solche häufig bearbeiten und uns nicht für deren konkreten Typ interessieren, können wir noch eine weitere Strategie wählen. Dabei bilden wir <span class="ckursiv">jede</span> Klasse, auch die abstrakten Klassen, auf jeweils eine Tabelle ab. Die in unserem Beispiel resultierenden Tabellen sind in Abbildung 6.11 dargestellt. In diesem Falle müssen wir die Beziehungen zwischen den einzelnen Tabellen anders gestalten, da nun bestimmte Informationen ausgelagert werden. Hier wird deutlich, dass die Datenstruktur der Unterklassen eine Komposition aus ihren eigenen Daten und den Daten der Oberklasse ist.</p>
+<div class="bildbox">
+<p><a name="IDAHTSQ"></a><a onClick="OpenWin('bilder/06_11.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_11.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.11    </strong>Abbildung jeder Klasse auf eine Tabelle</p>
+<p>Die Tabellen, welche die konkreten Klassen repräsentieren, haben nun jeweils einen Verweis auf ihre abstrakte Oberklasse erhalten, da diese einen Teil der Information für das resultierende Objekt enthalten. Wenn wir nun die Bezeichnungen aller Produkte aus der Datenbank laden möchten, brauchen wir nur die Tabelle <span class="clisting">Produkt</span> zu lesen. Brauchen wir dagegen die Daten einer Maschine, reicht uns das Lesen der Tabelle <span class="clisting">Maschine</span> nicht mehr aus, denn um die Bezeichnung der Maschine zu erhalten, müssen wir die Tabelle <span class="clisting">Produkt</span> auswerten.</p>
+<p><strong><em>Kombination der Vorgehensweisen</em></strong></p>
+<p>Wenn wir uns das Datenmodell genauer anschauen, erkennen wir, dass wir für die Speicherung der Werkzeugdaten nur eine Tabelle <span class="clisting">Werkzeug</span> definiert haben. Für die Werkzeuge haben wir also die Strategie Single Table Inheritance gewählt. Wir können also durchaus verschiedene Strategien miteinander kombinieren, je nach Bedarf der konkreten Anwendung.</p>
+<p><strong><em>Optimierung durch Redundanz</em></strong></p>
+<p>Eine andere mögliche Abwandlung der »Class Table Inheritance« besteht darin, dass wir in jeder Tabelle alle Attribute der Klasse definieren &#8211; auch die von der Oberklasse geerbten. Dies bedeutet, dass die Daten redundant in mehreren Tabellen gespeichert werden und der Speicherbedarf und die Komplexität der Änderung der Daten erhöht werden.</p>
+<p>Allerdings brauchen wir dann nur die Tabelle <span class="clisting">Maschine</span> zu lesen, um alle Maschinendaten, auch die Bezeichnung, zu laden; und es würde reichen, die Tabelle <span class="clisting">Produkt</span> zu lesen, um die Liste aller Produktbezeichnungen erstellen zu können.</p>
+<p>Ob sich eine solche Einführung der Redundanz in eine Datenbank lohnt, muss für jede Anwendung selbst bewertet werden. Bewusst eingesetzt, kann dies durchaus eine sinnvolle Optimierung der Gesamtperformanz sein.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_06_003.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="6.3 Abbildung auf relationale Datenbanken"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_06_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_06_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

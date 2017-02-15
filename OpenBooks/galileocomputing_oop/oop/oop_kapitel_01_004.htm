@@ -1,0 +1,473 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 1.4 Warum überhaupt Objektorientierung?</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 1.4 Warum überhaupt Objektorientierung?">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 1.4 Warum überhaupt Objektorientierung?">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_01_003.htm">
+<link rel="next" href="oop_kapitel_02_001.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_01_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_02_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f" class="navnav">1 Einleitung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_01_001.htm#mj311565c5c46a3b13daf9951e408cac80" class="navnav">1.1 Was ist Objektorientierung?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_01_002.htm#mj76dcfb99844b65256d72e05c0b621f9c" class="navnav">1.2 Hallo liebe Zielgruppe</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_01_003.htm#mj431067e1d24bca6b013fd468c4ae9a1c" class="navnav">1.3 Was bietet dieses Buch (und was nicht)?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_01_003.htm#mj586e7f39aec7605bbe601cd5800a4e52" class="navnav">1.3.1 Bausteine des Buchs</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_01_003.htm#mj37bb8099c240c8a773076ebfe27077a7" class="navnav">1.3.2 Crosscutting Concerns: übergreifende Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_01_003.htm#mj6f77364a42f1b0556dc51743b4c43418" class="navnav">1.3.3 Die Rolle von Programmiersprachen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj0dac8b5e2e90db455669f21ff09193e3" class="navh">1.4 Warum überhaupt Objektorientierung?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj662afe3e1923c53c81d44a8cf184a842" class="navh">1.4.1 Gute Software: Was ist das eigentlich?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mje1cae1436f90985328f07e355d75125a" class="navh">1.4.2 Die Rolle von Prinzipien</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjd108a0434f36179f3e4f266b6a41fe70" class="navh">1.4.3 Viele mögliche Lösungen für ein Problem</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj0dac8b5e2e90db455669f21ff09193e3" name="mj0dac8b5e2e90db455669f21ff09193e3"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">1.4 Warum überhaupt Objektorientierung?  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Wir wollen hier zunächst einmal eine Aussage vorausschicken, die trivial anmuten mag: Es ist nicht einfach, gute Software zu entwickeln. Speziell die Komplexität von mittleren und großen Softwaresystemen stellt oft ein großes Problem dar.</p>
+<p>Objektorientierte Softwareentwicklung ist nicht die einzige Methode, um diese Komplexität in den Griff zu bekommen, aber sie hat sich in verschiedenen Anwendungskontexten bewährt. Außerdem liefert sie mittlerweile ein Instrumentarium für eine ganze Reihe von Problemfeldern.</p>
+<p>Objektorientierte Vorgehensweisen ergänzen sich außerdem gut mit einigen anderen Ansätzen in der Softwareentwicklung. Deshalb ist das letzte Kapitel auch dem Thema Aspektorientierung gewidmet, da dieser Ansatz einige der Defizite der objektorientierten Vorgehensweise ausbügeln kann.</p><a id="mj662afe3e1923c53c81d44a8cf184a842" name="mj662afe3e1923c53c81d44a8cf184a842"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">1.4.1 Gute Software: Was ist das eigentlich?  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Je nachdem, wen wir fragen, wird die Antwort auf die Frage »Was macht gute Software für Sie aus?« unterschiedlich ausfallen.</p>
+<p>Fragen wir doch zunächst den <span class="ckursiv">Anwender </span>von Software. Das sind wir ja praktisch alle. Hier werden wir häufig die folgenden Anforderungen hören:</p>
+<ul class="gp">
+<li>Software soll das machen, was ich von ihr erwarte: Software muss korrekt sein.</li>
+</ul>
+<ul class="gp">
+<li>Software soll es mir möglichst einfach machen, meine Aufgabe zu erledigen: Software muss benutzerfreundlich sein.</li>
+</ul>
+<ul class="gp">
+<li>Ich möchte meine Arbeit möglichst schnell und effizient erledigen, ich möchte keine Wartezeiten haben: Software muss effizient und performant sein.</li>
+</ul>
+<p>Fragen wir nun denjenigen, der für Software und Hardware <span class="ckursiv">bezahlt</span>, kommen weitere Anforderungen hinzu:</p>
+<ul class="gp">
+<li>Ich möchte keine neue Hardware kaufen müssen, wenn ich die Software einsetze: Software muss effizient mit Ressourcen umgehen.</li>
+</ul>
+<ul class="gp">
+<li>Ich möchte, dass die Software möglichst günstig erstellt werden kann.</li>
+</ul>
+<ul class="gp">
+<li>Mein Schulungsaufwand sollte gering sein.</li>
+</ul>
+<p>Fragen wir den <span class="ckursiv">Projektmanager</span>, der die Entwicklung der Software vorantreiben soll, dann kommt noch mehr zutage:</p>
+<ul class="gp">
+<li>Meine Auftraggeber kommen oft mit neuen Ideen. Es darf nicht aufwändig sein, diese neuen Ideen auch später noch umzusetzen: Software muss sich anpassen lassen.</li>
+</ul>
+<ul class="gp">
+<li>Ich habe feste Zieltermine, das Management sitzt mir im Nacken. Deshalb muss ich diese Software in möglichst kurzer Zeit fertigstellen.</li>
+</ul>
+<ul class="gp">
+<li>Das Programm soll über Jahre hinweg verwendet werden. Ich muss Änderungen auch dann noch mit überschaubarem Aufwand umsetzen können.</li>
+</ul>
+<p>Trotz der unterschiedlichen Sichtweisen kristallisieren sich hier einige zentrale Kriterien für gute Software heraus [Neben den aufgelisteten Kriterien gibt es noch weitere allgemeine Anforderungen an Software. Es ist von der jeweiligen Anwendung abhängig, wie zentral die jeweilige Anforderung ist. So ist für Software zur Steuerung eines Atomkraftwerks Korrektheit und Fehlertoleranz wichtiger als der effiziente Umgang mit Ressourcen.
+] :</p>
+<ul class="gp">
+<li><span class="cfett">Korrektheit</span> 
+Software soll genau das tun, was von ihr erwartet wird.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Benutzerfreundlichkeit</span> 
+Software soll einfach und intuitiv zu benutzen sein.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Effizienz</span> 
+Software soll mit wenigen Ressourcen auskommen und gute Antwortzeiten für Anwender haben.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Wartbarkeit</span> 
+Software soll mit wenig Aufwand erweiterbar und änderbar sein.</li>
+</ul>
+<p>Ein Hauptfeind dieser Kriterien ist die Komplexität, die sich in der Regel bei Softwaresystemen mit zunehmender Größe aufbaut.</p><a id="mje1cae1436f90985328f07e355d75125a" name="mje1cae1436f90985328f07e355d75125a"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">1.4.2 Die Rolle von Prinzipien  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wenn wir Sie motivieren wollen, dass Sie objektorientierte Methoden einsetzen sollten, müssen wir drei verschiedene Arten von Fragen stellen:</p>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>1.</strong></td>
+<td valign="top" width="100%" align="left"> Welche Probleme wollen Sie eigentlich angehen? Häufig wird die Aufgabenstellung sein, die bereits genannten Kriterien wie Korrektheit, Benutzerfreundlichkeit, Effizienz und Wartbarkeit einzuhalten.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>2.</strong></td>
+<td valign="top" width="100%" align="left"> Welche abstrakten Prinzipien helfen Ihnen dabei? Beispiele sind hier Kapselung von Information oder klare Zuordnung von Veranwortlichkeiten zu Modulen.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>3.</strong></td>
+<td valign="top" width="100%" align="left"> Wie können Sie diese Prinzipien in einem Softwaresystem sinnvoll umsetzen?</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<p>Da Objektorientierung eben nur eine Methode ist, um diese Ziele umzusetzen, ist es beim Entwurf von Systemen immer wichtig, dass Sie sich bewusst sind, warum Sie einen bestimmten Entwurf gewählt haben.</p>
+<p>Am Ende kommt es darauf an, den ursprünglichen Zielen möglichst nahe zu kommen. Sie werden dabei oft Kompromisse finden müssen. Die mit der objektorientierten Vorgehensweise verbundenen Prinzipien sind dabei Richtlinien, diese müssen aber oft gegeneinander abgewogen werden.</p>
+<p>Deshalb beginnen wir in Kapitel 3, »Die Prinzipien des objektorientierten Entwurfs«, auch mit der Vorstellung dieser grundlegenden Prinzipien, die der objektorientierten Softwareentwicklung zugrunde liegen. Zum überwiegenden Teil können diese völlig unabhängig von Begriffen wie Klasse oder Objekt vorgestellt werden. Erst nach der Einführung der Prinzipien werden wir also erklären, wie diese mittels Klassen und Objekten umgesetzt werden können.</p><a id="mjd108a0434f36179f3e4f266b6a41fe70" name="mjd108a0434f36179f3e4f266b6a41fe70"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">1.4.3 Viele mögliche Lösungen für ein Problem  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Auch wenn Sie sich einmal entschieden haben, nach dem objektorientierten Paradigma vorzugehen, werden für eine Problemstellung häufig verschiedene Lösungen möglich sein.</p>
+<p>Obwohl sich die beiden Autoren grundsätzlich darüber einig sind, dass objektorientierte Techniken zu sinnvollen Problemlösungen führen, ergeben sich hinsichtlich der in einem konkreten Fall zu wählenden Lösung doch häufig Differenzen.</p>
+<p><strong><em>Diskussionen  
+können hilfreich sein.</em></strong></p>
+<p>In so einem Fall werden wir die resultierende Diskussion einfach ganz offen vor unserer Leserschaft austragen und diese dabei mit Beispielen aus unseren praktischen Erfahrungen mit Objekttechnologie unterfüttern. Das wird ein ganz schön lebhaftes Buch werden, das können wir an dieser Stelle schon versprechen.</p>
+<p><strong><em>Diskussion: 
+Was gibt&#8217;s  
+denn hier zu diskutieren?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Findest du das denn eine gute Idee, einfach vor unseren Leserinnen und Lesern zu diskutieren? Bestimmt erwarten sie doch, dass wir uns auf unserem Fachgebiet einig sind und auch klare Lösungen vorstellen. Ich weiß natürlich, dass wir uns wirklich nicht immer einig sind, aber wir könnten doch zumindest so tun.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Nun, wenn wir ständig diskutieren würden, wäre das sicherlich etwas irritierend. Und wir sind uns ja auch größtenteils einig, in vielen Fällen gibt es einfach auch generell anerkannte Vorgehensweisen. Aber spannend wird das Ganze erst an den Punkten, an denen das Vorgehen eben nicht mehr völlig klar ist und wir uns für eine von mehreren möglichen Vorgehensweisen entscheiden müssen.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Stimmt schon, hin und wieder so eine kleine Diskussion zwischendurch war ja auch beim Schreiben des Buchs durchaus nützlich. Dann lass uns jetzt aber loslegen. Die nächste Diskussion kommt bestimmt bald.</span><p><strong><em>Icons</em></strong></p>
+<p>Um Ihnen die Orientierung im Buch zu erleichtern, haben wir zwei Icons verwendet:</p>
+<p><strong><em><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"> </em></strong></p>
+<p>Hier finden Sie hilfreiche Definitionen, die die wesentlichen Aspekte des Themas zusammenfassen.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"></em></strong></p>
+<p>Konkrete Beispiele erleichtern Ihnen das Verstehen.</p>
+<p>Weiterführende Informationen finden Sie auf der Webseite zum Buch unter <span class="ckursiv"><a href="http://www.objektorientierte-programmierung.de">www.objektorientierte-programmierung.de</a></span>.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_01_004.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="1.4 Warum überhaupt Objektorientierung?"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_01_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_02_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

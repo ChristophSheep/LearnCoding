@@ -1,0 +1,687 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 5.5 Statische und dynamische Klassifizierung</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 5.5 Statische und dynamische Klassifizierung">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 5.5 Statische und dynamische Klassifizierung">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_05_004.htm">
+<link rel="next" href="oop_kapitel_06_001.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_05_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_06_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14" class="navnav">5 Vererbung und Polymorphie</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_001.htm#mje769296ccaf3ae315b0d51e75287d395" class="navnav">5.1 Die Vererbung der Spezifikation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mj9593b3442d74dcb313fed8d0adfcfc86" class="navnav">5.1.1 Hierarchien von Klassen und Unterklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjf4a1d7882a3f31bce76f5fc0e36fe27a" class="navnav">5.1.2 Unterklassen erben die Spezifikation von Oberklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjf24806ff4eeca6b9ec42217606b969bb" class="navnav">5.1.3 Das Prinzip der Ersetzbarkeit </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjb47b8cf703b67dbc87a9e7fb9b8751c4" class="navnav">5.1.4 Abstrakte Klassen, konkrete Klassen und Schnittstellen-Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mj60d6f50d874cf992b1fbe672cc0a7d4a" class="navnav">5.1.5 Vererbung der Spezifikation und das Typsystem</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mja01ba6ec04515aa1bd9707d45880ad9c" class="navnav">5.1.6 Sichtbarkeit im Rahmen der Vererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_002.htm#mj34d525fdf8bf9b40cdbf2807b9bb2199" class="navnav">5.2 Polymorphie und ihre Anwendungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjc3ecdad3da1f241382712b9dc94960bb" class="navnav">5.2.1 Dynamische Polymorphie am Beispiel</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjf4754b5db8c6e16dccab007f73c3a48a" class="navnav">5.2.2 Methoden als Implementierung von Operationen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjcecc846fe8a9e04e80aaef4c72983098" class="navnav">5.2.3 Anonyme Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mj7d8e0a558bb121f6759f3cac9e60684b" class="navnav">5.2.4 Single und Multiple Dispatch</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjf40bf0e266ddbbbdf13e9d8c595202da" class="navnav">5.2.5 Die Tabelle für virtuelle Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_003.htm#mje40df564b385a2f2ef85664fe5964be8" class="navnav">5.3 Die Vererbung der Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mj4775d703fdbfd6031f8317189db10135" class="navnav">5.3.1 Überschreiben von Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mj38e0fa066f121e7525f4ab5a0775c70a" class="navnav">5.3.2 Das Problem der instabilen Basisklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mjc3c0ce6022ae471884f1dbb63c77bc82" class="navnav">5.3.3 Problem der Gleichheitsprüfung bei geerbter Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_004.htm#mj4744a80ac0ff520167d0124d73dba2b2" class="navnav">5.4 Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj24431884d901efc513af9f03f390f35b" class="navnav">5.4.1 Mehrfachvererbung: Möglichkeiten und Probleme</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj8be5a8d347008ce6a4243ad9b458d4dc" class="navnav">5.4.2 Delegation statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mjf93d2964b661c11e0412548a9486d31f" class="navnav">5.4.3 Mixin-Module statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj079fb2023e60f4e9a4af05511c818fdf" class="navnav">5.4.4 Die Problemstellungen der Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mje3cdab009c7e71d5ab9a4a88fee35441" class="navh">5.5 Statische und dynamische Klassifizierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj854788ce700510087a70ffc87d35cb00" class="navh">5.5.1 Dynamische Änderung der Klassenzugehörigkeit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mja85bbac4fb34a5938c3be9f5c65d922c" class="navh">5.5.2 Entwurfsmuster »Strategie« statt dynamischer Klassifizierung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mje3cdab009c7e71d5ab9a4a88fee35441" name="mje3cdab009c7e71d5ab9a4a88fee35441"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">5.5 Statische und dynamische Klassifizierung  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Bisher gingen wir davon aus, dass ein Objekt seine Klassenzugehörigkeit während seiner gesamten Existenz nicht ändert. Die Beziehung zwischen einem Objekt und der dazugehörigen Klasse war nicht änderbar &#8211; die Klassifizierung des Objekts war <span class="ckursiv">statisch</span>.</p>
+<p><strong><em>Änderung  
+der Klassenzugehörigkeit</em></strong></p>
+<p>Allerdings: Manchmal haben wir in der Praxis Szenarien, in denen sich die Klassenzugehörigkeit eines Objekts während seiner Existenz ändert. So kann aus einem Interessenten ein Kunde oder aus einem externen Berater ein interner Mitarbeiter werden. In solchen Fällen sprechen wir von einer <span class="ckursiv">dynamischen</span> Klassifizierung.</p>
+<p>Die dynamische Klassifizierung spielt meistens eine Rolle in den konzeptionellen Modellen, in der Programmierung kann man sie seltener sehen. Ein Grund dafür wird wohl die Tatsache sein, dass die klassenbasierten Programmiersprachen wie Java, C#, C++, Python oder Ruby sie nicht unterstützen. [In C++ wird die Klassenzugehörigkeit eines polymorphen Objekts durch den Pointer auf die Tabelle seiner virtuellen Methoden realisiert. Mit direkter Speichermanipulation ist es daher doch möglich, die Klassenzugehörigkeit eines Objekts in C++ dynamisch zu ändern. Es ist jedoch ein gewagtes Spiel mit dem Feuer, so etwas zu machen. Spiele mit dem Feuer sind aufregend und interessant, und wer sie mag, sollte über die Karriere eine Stuntmans oder eines Zirkusartisten statt eines Softwareentwicklers nachdenken.
+] </p><a id="mj854788ce700510087a70ffc87d35cb00" name="mj854788ce700510087a70ffc87d35cb00"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">5.5.1 Dynamische Änderung der Klassenzugehörigkeit  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Es gibt allerdings auch Sprachen, die eine Änderung der Klassenzugehörigkeit explizit unterstützen. Eine dieser Sprachen ist das Common Lisp Object System, CLOS. Wir werden deshalb zunächst einmal am Beispiel von CLOS vorstellen, wie wir eine solche Anpassung der Klassenzugehörigkeit vornehmen könnten, wenn die Sprache das unterstützt. Im Anschluss daran werden wir dann zeigen, wie wir einen entsprechenden Mechanismus durch die Verwendung von Strategien auch in den etwas gängigeren Sprachen wie Java umsetzen können.</p>
+<p>In einer Sprache wie CLOS sind Mechanismen vorgesehen, die es erlauben, den Typ eines Objekts auf definierte Weise zur Laufzeit eines Programms zu verändern.</p>
+<p><strong><em>Wir machen aus einem A ein B.</em></strong></p>
+<p>Wenn wir Objekt <span class="clisting">x</span> (ein Exemplar der Klasse <span class="clisting">A</span>) zu einem Exemplar der Klasse <span class="clisting">B</span> machen, werden dabei alle Attribute übernommen, die in <span class="clisting">A</span> und in <span class="clisting">B</span> vorkommen. Zusätzlich wird (sofern vorhanden) eine Methode <span class="clisting">update-instance-for-different-class</span> aufgerufen, in der neu zu initialisierende Datenelemente, die in <span class="clisting">B</span> definiert sind, aber von <span class="clisting">A</span> nicht bereitgestellt werden, mit Werten belegt werden können. Der Rest ist einfach, da <span class="clisting">x</span> nun ein Exemplar von <span class="clisting">B</span> ist, werden auch die entsprechenden Aufrufe von Operationen den Methoden von <span class="clisting">B</span> zugeordnet.</p>
+<p><strong><em>Geschäftspartner: Gäste, Interessenten und Kunden</em></strong></p>
+<p>Nehmen wir als Beispiel eine Anwendung, in der Geschäftspartner als Gäste, Interessenten oder Kunden klassifiziert werden. Dabei können diese vom Gast zum Interessenten und schließlich zum Kunden werden. Die entsprechende Hierarchie ist in Abbildung 5.70 dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAHGSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_049.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_049.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.70    </strong>Hierarchie von Geschäftspartnern</p>
+<p>Die Definition der Klassen sieht in CLOS dann wie unten stehend aus.</p>
+<div class="listing"><pre class="prettyprint">;; Definition der beteiligten Klassen 
+(defclass geschaeftspartner() 
+    ((name :initarg :name :accessor name) 
+     (vorname :initarg :vorname :accessor vorname) 
+    ) 
+) 
+(defclass interessent (geschaeftspartner) 
+    ((erwarteter-umsatz :initarg :umsatz :accessor umsatz)) 
+) 
+ 
+(defclass gast (geschaeftspartner) 
+    ((zeitbudget :initarg :zeitbudget :accessor zeitbudget)) 
+) 
+ 
+(defclass kunde (geschaeftspartner) 
+    ((einstufung :initarg :einstufung :accessor einstufung)) 
+)</pre></div>
+<p class="tabunter"><strong>Listing 5.33    </strong>Festlegung einer Klassenhierarchie in CLOS</p>
+<p>Alle beteiligten Klassen haben unterschiedliche Implementierungen der Operation <span class="clisting">display</span>. Da in den spezifischen Klassen auch weitere Attribute hinzukommen, ist die Darstellung eines Geschäftspartners in allen abgeleiteten Klassen unterschiedlich.</p>
+<div class="listing"><pre class="prettyprint">;; Display-Methoden für die spezifischen Klassen 
+(defmethod display ((gp geschaeftspartner)) 
+    (princ (string-concat "Geschäftspartner " (firstname gp) " "  (name gp))) 
+) 
+(defmethod display((gp interessent)) 
+    (call-next-method) ;; ruft die Methode der Basisklasse 
+    (princ (string-concat " ist ein Interessent mit erwartetem Umsatz " (umsatz gp))) 
+) 
+ 
+(defmethod display((gp gast)) 
+    (call-next-method) ;; ruft die Methode der Basisklasse 
+    (princ (string-concat " ist ein Gast mit Zeitbudget " (zeitbudget gp))) 
+) 
+ 
+(defmethod display((gp kunde)) 
+    (call-next-method) ;; ruft die Methode der Basisklasse 
+    (princ (string-concat " ist ein Kunde mit Einstufung " (einstufung gp))) 
+)</pre></div>
+<p class="tabunter"><strong>Listing 5.34    </strong>Unterschiedliche Darstellungen für Geschäftspartner</p>
+<p><strong><em>Gast wird  
+zu einem  
+Interessenten.</em></strong></p>
+<p>Nun wollen wir für Exemplare der jeweiligen Klassen deren Beschreibung ausgeben lassen. Dabei lassen wir einfach nebenbei einen Gast seine Klasse auf <span class="clisting">interessent</span> wechseln. Dies geschieht in CLOS über die Methode <span class="clisting">change-class</span>.</p>
+<div class="listing"><pre class="prettyprint">;; ... 
+        (frieda (make-instance 'gast :vorname "Frieda" 
+                 :name "Müller" :zeitbudget "100 Minuten")) 
+        (gerd (make-instance 'interessent :vorname "Gerd" 
+                 :name "Müller" :umsatz "200 Euro")) 
+        (anne (make-instance 'kunde :vorname "Anne" 
+                    :name "Müller" :einstufung "mittel")) 
+        ) 
+        ;; ... 
+        (display frieda) 
+        (display gerd) 
+        (display anne) 
+       <span class="cfett"> (change-class frieda 'interessent)</span> 
+       <span class="cfett"> (display frieda)</span> 
+       <span class="cfett"> ;; ...</span></pre></div>
+<p>Wir erhalten die folgende Ausgabe vom Interpreter:</p>
+<div class="listing"><pre class="prettyprint">Geschäftspartner Frieda Müller ist ein Gast  
+mit Zeitbudget 100 Minuten. 
+ 
+Geschäftspartner Gerd Müller ist ein Interessent  
+mit erwartetem Umsatz 200 Euro. 
+Geschäftspartner Anne Müller ist ein Kunde  
+mit Einstufung mittel. 
+ 
+Geschäftspartner Frieda Müller 
+*** &#8211; SLOT-VALUE: The slot ERWARTETER-UMSATZ of #&lt;INTERESSENT 
+#x19F192C1&gt; has no value</pre></div>
+<p><strong><em>Vorbelegen von neuen Attributen</em></strong></p>
+<p>Ups, wir haben Frieda Müller vom Gast zur Interessentin befördert, ohne ihr aber einen Wert für das benötigte Attribut <span class="clisting">erwarteter-umsatz</span> zu geben. Das heißt, beim Ändern einer Klasse sind spezielle neue Initialisierungen für ein Objekt notwendig. CLOS sieht dafür die generische Funktion <span class="clisting">update-instance-for-different-class</span> vor.</p>
+<div class="listing"><pre class="prettyprint">(defmethod update-instance-for-different-class ((gast gast) 
+(interessent interessent) &amp;rest initargs) 
+    (setf (umsatz interessent) "100 Euro") 
+)</pre></div>
+<p>Wenn wir die Methode wie oben aufgeführt überschreiben, wird diese beim Wechsel eines Objekts von der Klasse <span class="clisting">gast</span> zur Klasse <span class="clisting">interessent</span> aufgerufen. Unsere Ausgabe sieht danach wie unten stehend aus:</p>
+<div class="listing"><pre class="prettyprint">Geschäftspartner Frieda Müller ist ein Gast  
+mit Zeitbudget 100 Minuten. 
+Geschäftspartner Gerd Müller ist ein Interessent  
+mit erwartetem Umsatz 200 Euro. 
+Geschäftspartner Anne Müller ist ein Kunde  
+mit Einstufung mittel. 
+Geschäftspartner Frieda Müller ist ein Interessent  
+mit erwartetem Umsatz 100 Euro.</pre></div>
+<p><strong><em>Wir können das tun. Sollen wir  
+es auch?</em></strong></p>
+<p>Obwohl die Programmiersprache hier einfache und intuitive Mechanismen bereitstellt, um ein Objekt die Klasse wechseln zu lassen, kann ein derartiges Vorgehen die Komplexität von Programmen erhöhen. Auch wenn eine Programmiersprache ein solches Vorgehen zulässt: Besser ist meistens die Anwendung des Entwurfmusters Strategie. Dieses lässt sich auch in Sprachen anwenden, die keine dynamische Klassifizierung unterstützen.</p>
+<p>Es besteht nämlich auch ein grundsätzliches konzeptionelles Problem bei der Änderung der Klassenzuordnung zur Laufzeit. Wie bei jeder anderen Änderung eines Objekts müssen wir nämlich auch bei der Änderung seiner Klassenzugehörigkeit dafür sorgen, dass das Objekt alle Versprechen, die es gegeben hat, weiterhin erfüllt. Das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> verlangt genau das.</p>
+<p>Was bedeutet das? In den statisch typisierten Programmiersprachen bestimmt die Klassenzugehörigkeit den Typ des Objekts. Die Klassenzugehörigkeit bestimmt also, ob eine Variable das Objekt enthalten beziehungsweise referenzieren kann. Ändert sich die Klassenzugehörigkeit des Objekts, müssen wir dafür sorgen, dass nur solche Variablen das Objekt referenzieren, die auch mit seinem neuen Typ kompatibel sind.</p>
+<p><strong><em>Subtypmigration</em></strong></p>
+<p>Es gibt aber eine Möglichkeit, dies zu gewährleisten und trotzdem die gewünschte Änderung des Verhaltens zu erreichen. Sie müssen dafür sorgen, dass die Variablen als ihren Typ nur eine Oberklasse aller möglichen Klassen, zu denen das Objekt im Laufe seiner Existenz mutieren kann, haben können.</p>
+<p>Die echte Klassenzugehörigkeit des Objekts darf also nicht sichtbar sein, nur seine Klassenzugehörigkeit zu einer Oberklasse darf bekannt sein. Und diese ändert sich nicht. Es ändert sich nur der von außen unsichtbare Subtyp des Objekts. Das Objekt ändert nicht seine Schnittstelle, es ändert nur die Implementierung.</p>
+<p>Im folgenden Abschnitt werden wir sehen, wie wir genau dieses Verhalten durch die Anwendung des Entwurfsmusters »Strategie« erreichen.</p><a id="mja85bbac4fb34a5938c3be9f5c65d922c" name="mja85bbac4fb34a5938c3be9f5c65d922c"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">5.5.2 Entwurfsmuster »Strategie« statt dynamischer Klassifizierung  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wenn sich die nach außen sichtbare Klassenzugehörigkeit eines Objekts nicht ändert, kann man die Änderung der eigentlichen Klassenzugehörigkeit auch in einer Programmiersprache umsetzen, die keine dynamische Klassifizierung unterstützt.</p>
+<p>Das Mittel der Wahl ist in diesem Fall das Entwurfsmuster »Strategie«.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Entwurfsmuster »Strategie«
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn sich ein Teil des Verhaltens der Exemplare einer Klasse abhängig von ihrem Zustand verändern kann, kann man die verschiedenen Verhaltensweisen in separate Strategieklassen auslagern. </p>
+<p>Jedes Exemplar der Hauptklasse besitzt zu jedem Zeitpunkt ein Exemplar einer der Strategieklassen, auf das es die Implementierung seines Verhaltens delegiert. Ändert sich der Zustand des Objekts so, dass eine Veränderung der Verhaltens nötig wird, tauscht das Objekt sein Strategieobjekt aus. Durch die Anwendung dieses Musters entkoppelt man die verschiedenen Verhaltensvarianten der Exemplare der Hauptklasse, ohne auf die dynamische Klassifizierung zurückgreifen zu müssen.</p>
+</td>
+</tr>
+</table><br><p>Greifen wir eine etwas modifizierte Variante unseres Beispiels aus Abbildung 5.70 wieder auf, und nehmen wir an, wir schreiben eine E-Commerce-Internetanwendung.</p>
+<p>Die Besucher unserer Seite können sich registrieren und Ware bestellen. Der Inhalt der Seite wird für jeden Benutzer speziell aufbereitet. Benutzer, die noch nichts bestellt haben, bekommen andere Werbung und Aktionen präsentiert als die Bestandskunden. Die Neukunden können nur per Vorkasse bezahlen, den Premiumkunden wird eine Ratenzahlung angeboten. Die Zugehörigkeit jedes Benutzers zu diesen Kategorien kann sich mit der Zeit ändern.</p>
+<p>Eine mögliche Realisierung ist eine Klasse <span class="clisting">User</span>, die den aktuellen Status des Benutzers kennt und ihn in ihren Methoden auswertet. Listing 5.35 zeigt eine Java-Implementierung einer solchen Klasse.</p>
+<div class="listing"><pre class="prettyprint">public class User { 
+  private enum Status { 
+    PROSPECT, NEW_CUSTOMER, ORDINARY_CUSTOMER, VIP_CUSTOMER 
+  } 
+ 
+  private Status status; 
+ 
+  public void displayAds() { 
+    switch (status) { 
+    case PROSPECT: 
+      // Werbung für Interessenten 
+      break; 
+ 
+    case NEW_CUSTOMER: 
+      //  Werbung für Neukunden 
+      break; 
+ 
+    ... // und so weiter 
+  } 
+  ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.35    </strong>Problematische Lösung: Auswertung von Kundenstatus in Klasse »User«</p>
+<p>Wir müssen davon ausgehen, dass solche <span class="clisting">switch</span>-Befehle nicht nur in der Methode <span class="clisting">displayAds</span>, sondern in sehr vielen anderen Methoden der Klasse <span class="clisting">User</span> vorkommen. Das ist nicht besonders übersichtlich und führt zu großem Aufwand, wenn sich die Kategorisierung der Besucher ändert.</p>
+<p>So könnten wir in der Zukunft bestimmte Kunden, die gern bestellen, aber ungern zahlen, einer neuen Kategorie zuordnen, die ein neues Verhalten der Internetseite bewirken sollte. Dies würde bedeuten, dass wir viele Methoden und viele <span class="clisting">switch</span>-Befehle sichten und anpassen müssen. </p>
+<p>In Abbildung 5.71 sehen Sie eine Möglichkeit, dieses Problem durch die Anwendung des Entwurfsmusters »Strategie« zu lösen.</p>
+<div class="bildbox">
+<p><a name="IDARRSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_050.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_050.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.71    </strong>Entwurfsmuster »Strategie« angewendet</p>
+<p><strong><em>Strategieklassen</em></strong></p>
+<p>Unsere Anwendung wird übersichtlicher, wenn wir das Verhalten der unterschiedlichen Benutzerkategorien in unterschiedlichen Klassen unterbringen &#8211; in Strategieklassen wie zum Beispiel <span class="clisting">ProspectStrategy</span> und <span class="clisting">NewCustomerStrategy</span>. In Abschnitt 5.4.2 haben wir das Konzept der Delegation beschrieben. Exemplare von Strategieklassen sind Objekte, an die der Aufruf von Operationen delegiert wird. Zusätzlich können wir diese Objekte zu definierten Zeitpunkten auswechseln, um darüber das Verhalten eines Objekts zu ändern.</p>
+<p>Wenn Sie das Muster »Strategie« auf unser Beispiel anwenden, besitzt jedes Exemplar der Klasse <span class="clisting">User</span> zu jedem Zeitpunkt genau ein Exemplar einer der Unterklassen von <span class="clisting">UserStrategy</span> und delegiert die Aufrufe der statusspezifischen Operationen an das Strategieobjekt.</p>
+<p>Ändert sich der Status des Benutzers, wird zum Beispiel aus einem Interessenten ein Neukunde, bekommt das <span class="clisting">User</span>-Objekt ein neues Strategieobjekt. So ändert sich sein Verhalten, nach außen ändert sich der Typ des <span class="clisting">User</span>-Objekts jedoch nicht.</p>
+<p><strong><em>Beispiel für  
+Strategieklassen</em></strong></p>
+<p>In Listing 5.36 ist die Umsetzung dieses Konzepts für unser Beispiel in Java dargestellt.</p>
+<div class="listing"><pre class="prettyprint">public class Guest { 
+ 
+  private abstract class Strategy { 
+    // gibt die Werbung aus 
+    public abstract void displayAds(); 
+    // bearbeitet eine Bestellung und gibt das neue 
+    // Strategieobjekt des Besuchers zurück 
+    public abstract Strategy makePurchase(...); 
+    ... andere Methoden der Strategieobjekte 
+  } 
+ 
+  // das aktuelle Strategieobjekt des Besuchers 
+  private Strategy strategy; 
+ 
+  private void displayAds()  { 
+    // delegiere den Aufruf an das Strategieobjekt 
+    strategy.displayAds(); 
+  } 
+ 
+  public void makePurchase() { 
+    // delegiere den Aufruf und merke dir das neue 
+    // Strategieobjekt 
+    strategy = strategy.makePurchase(); 
+  } 
+ 
+  private class ProspectStrategy extends Strategy { 
+    @Override 
+    public void displayAds() { 
+      // Werbung für Interessenten anzeigen 
+    } 
+ 
+    @Override 
+    public Strategy makePurchase() { 
+      // die Erstbestellung bearbeiten ... 
+      // Aus einem Interessenten wird jetzt ein Neukunde 
+      return new NewCustomerStrategy(this); 
+    } 
+    ... 
+  } 
+ 
+  private class NewCustomerStrategy extends Strategy { 
+    public NewCustomerStrategy(ProspectStrategy strategy) { 
+      // Übernehme eventuell die Informationen aus 
+      // dem vorherigen Status 
+    } 
+ 
+    @Override 
+    public void displayAds() { 
+      // Werbung für Neukunden anzeigen 
+    } 
+ 
+    @Override 
+    public Strategy makePurchase() { 
+      // die weiteren Bestellungen eines Neukunden 
+      // bearbeiten. 
+      // Dies ändert den Status des Kunden nicht, erst der 
+      // Zahlungseingang macht aus einem Neukunden einen 
+      // gewöhnlichen Kunden 
+      return this; 
+    } 
+    ... 
+  } 
+  ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.36    </strong>Umsetzung von Strategien für Kunden</p>
+<p>Die jeweilige Strategie legt zum einen über die Umsetzung der Operation <span class="clisting">displayAds</span> fest, welche Werbung der Kunde zu sehen bekommt. Zum anderen legt sie über die Umsetzung der Operation <span class="clisting">makePurchase</span> auch fest, wie mit einer Bestellung umgegangen wird. Die Operation <span class="clisting">makePurchase</span> kann auch dazu führen, dass ein Kunde vom <span class="clisting">Prospect</span> zum <span class="clisting">Customer</span> befördert wird. Deshalb gibt die Methode <span class="clisting">makePurchase</span> der Klasse <span class="clisting">ProspectStrategy</span> ein neues Strategie-Objekt zurück, das dann in Zukunft verwendet wird. <span class="clisting">ProspectStrategy</span> löst sich damit praktisch selbst ab, sehr uneigennützig.</p>
+<p>Das vorgestellte Entwurfsmuster ist besonders geeignet für alle Fälle, in denen Sie zur Laufzeit das Verhalten von Exemplaren einer Klasse ändern wollen.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_05_005.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="5.5 Statische und dynamische Klassifizierung"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_05_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_06_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

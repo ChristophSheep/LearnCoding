@@ -1,0 +1,434 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 3.6 Prinzip 6: Umkehr der Abhängigkeiten</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 3.6 Prinzip 6: Umkehr der Abhängigkeiten Umkehr der AbhängigkeitenPrinzip Umkehr der Abhängigkeiten<$nopage>Dependency Inversion Principle  <Pfeil>R<normal> Prinzip Umkehr der Abhängigkeiten">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 3.6 Prinzip 6: Umkehr der Abhängigkeiten Umkehr der AbhängigkeitenPrinzip Umkehr der Abhängigkeiten<$nopage>Dependency Inversion Principle  <Pfeil>R<normal> Prinzip Umkehr der Abhängigkeiten">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_03_005.htm">
+<link rel="next" href="oop_kapitel_03_007.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_03_005.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_03_007.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a" class="navnav">3 Die Prinzipien des objektorientierten Entwurfs</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_001.htm#mj3779726901d09a441b65ad53bd5975d9" class="navnav">3.1 Prinzip 1: Prinzip einer einzigen Verantwortung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_002.htm#mje61a2510fb2b5b517d72db623f2ffa3b" class="navnav">3.2 Prinzip 2: Trennung der Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_003.htm#mj637b1f986c2e9441d2d305cafc96f6ac" class="navnav">3.3 Prinzip 3: Wiederholungen vermeiden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_004.htm#mj887f0556cf1d83e4d56c5875b300fe87" class="navnav">3.4 Prinzip 4: Offen für Erweiterung, geschlossen für Änderung </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_005.htm#mjf3cd04445959793a762a62c9b9ff6c75" class="navnav">3.5 Prinzip 5: Trennung der Schnittstelle von der Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mjf155956d6de05131afd30434fd85e74f" class="navh">3.6 Prinzip 6: Umkehr der Abhängigkeiten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjc8b152bcef3e835d257ec67f78fbe37c" class="navh">3.6.1 Umkehrung des Kontrollflusses</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_007.htm#mjabe2e315eab5476b96de870d159eb869" class="navnav">3.7 Prinzip 7: Mach es testbar</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mjf155956d6de05131afd30434fd85e74f" name="mjf155956d6de05131afd30434fd85e74f"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">3.6 Prinzip 6: Umkehr der Abhängigkeiten   <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Eine Möglichkeit, einer komplexen Aufgabe Herr zu werden, ist es, sie in einfachere Teilaufgaben aufzuteilen und diese nach und nach zu lösen. Ähnlich können Sie auch bei der Entwicklung von Softwaremodulen vorgehen. Sie können Module für bestimmte Grundfunktionen erstellen, die von den spezifischeren Modulen verwendet werden.</p>
+<p>Aber ein Entwurf, der grundsätzlich von Modulen ausgeht, die andere Module verwenden (Top-down-Entwurf), ist nicht ideal, weil dadurch unnötige Abhängigkeiten entstehen können. Um die Abhängigkeiten zwischen Modulen gering zu halten, sollten Sie Abstraktionen verwenden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Abstraktion
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Abstraktion beschreibt das in einem gewählten Kontext Wesentliche eines Gegenstand oder eines Begriffs. Durch eine Abstraktion werden die Details ausgeblendet, die für eine bestimmte Betrachtungsweise nicht relevant sind. Abstraktionen ermöglichen es, unterschiedliche Elemente zusammenzufassen, die unter einem bestimmten Gesichtspunkt gleich sind. </p>
+<p>So lassen sich zum Beispiel die gemeinsamen Eigenschaften von verschiedenen Betriebssystemen als Abstraktion betrachten: Wir lassen die Details der spezifischen Umsetzungen und spezielle Fähigkeiten der einzelnen Systeme weg und konzentrieren uns auf die gemeinsamen Fähigkeiten der Systeme. Eine solche Abstraktion beschreibt die Gemeinsamkeiten von konkreten Betriebssystemen wie Windows, Linux, SunOS oder Mac OS. </p>
+</td>
+</tr>
+</table><br><p>Unter Verwendung von Abstraktionen können wir nun das <span class="ckursiv">Prinzip der Umkehr der Abhängigkeiten</span> formulieren.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Umkehr der Abhängigkeiten (Dependency Inversion Principle)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Unser Entwurf soll sich auf Abstraktionen stützen. Er soll sich nicht auf Spezialisierungen stützen.</p>
+</td>
+</tr>
+</table><br><p>Softwaremodule stehen in der Regel in einer wechselseitigen Nutzungsbeziehung. Bei der Betrachtung von zwei Modulen können Sie diese also in ein nutzendes Modul und in ein genutztes Modul einteilen.</p>
+<p><strong><em>Definition: 
+Abstraktion</em></strong></p>
+<p>Das <span class="ckursiv">Prinzip der Umkehr der Abhängigkeiten</span> besagt nun, dass die nutzenden Module sich nicht auf eine Konkretisierung der genutzten Module stützen sollen. Stattdessen sollen sie mit Abstraktionen dieser Module arbeiten. Damit wird die direkte Abhängigkeit zwischen den Modulen aufgehoben. Beide Module sind nur noch von der gewählten Abstraktion abhängig. Der Name <span class="ckursiv">Umkehr der Abhängigkeiten</span> ist dabei etwas irreführend, er deutet an, dass Sie eine bestehende Abhängigkeit einfach umdrehen. Vielmehr ist es aber so, dass Sie eine Abstraktion schaffen, von der beide beteiligte Module nun abhängig sind. Die Abhängigkeit von der Abstraktion schränkt uns aber wesentlich weniger ein als die Abhängigkeit von Konkretisierungen.</p>
+<p><strong><em>Weg vom Top-down-Entwurf</em></strong></p>
+<p>Die Methode geht damit weg von einem Top-down-Entwurf, bei dem Sie in einem nutzenden Modul einfach dessen benötigte Module identifizieren und diese in der konkreten benötigten Ausprägung einfügen. Vielmehr betrachten Sie auch die genutzten Module und versuchen, für sie eine gemeinsame Abstraktion zu finden, die das minimal Notwendige der genutzten Module extrahiert.</p>
+<p>Doch auch wenn dieser Abschnitt die Wichtigkeit der Abstraktion beschreibt, sollten wir konkret werden und an einem Beispiel illustrieren, was <span class="ckursiv">Umkehr der Abhängigkeiten</span> in der Praxis bedeutet.</p>
+<p>Nehmen wir an, Sie möchten eine Windows-Anwendung erstellen, die aus dem Internet die aktuelle Wettervorhersage einliest und sie grafisch darstellt. Den <span class="ckursiv">Prinzipien der einzigen Verantwortung</span> und der <span class="ckursiv">Trennung der Anliegen</span> folgend, verlagern Sie die Funktionalität, die sich um die Behandlung der Windows-API kümmert, in eine separate Bibliothek. Vielleicht können Sie sogar eine bereits vorhandene Bibliothek wie die MFC [MFC &#8211; Microsoft Foundation Classes &#8211; eine C++ Bibliothek, die neben anderer Funktionalität die Windows-API in einer objektorientierten Form bereitstellt.
+]  einsetzen.</p>
+<p>Schauen wir uns in der Abbildung 3.7 die resultierenden Abhängigkeiten von einigen Modulen unserer Anwendung an.</p>
+<div class="bildbox">
+<p><a name="IDABESQ"></a><a onClick="OpenWin('bilder/03_prinzipien_006.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein03_prinzipien_006.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 3.7    </strong>Abhängigkeiten in unserer Beispielanwendung</p>
+<p>Das sieht schon nicht unvernünftig aus. Das Modul für die Darstellung der Wetterdaten ist von dem Windows API-Modul abhängig, dieses aber nicht von der Darstellung der Wetterdaten. Das bedeutet, dass das Windows API-Modul auch in anderen Anwendungen, die nichts mit dem Wetter zu tun haben, eingesetzt werden kann.</p>
+<p>Doch mit einem Problem kommt diese Modulstruktur leider sehr schwer zurecht: Sie können Ihre Anwendung nur unter Windows laufen lassen. Auf dem Mac oder unter Linux oder Unix kann die Anwendung nicht ohne weiteres laufen.</p>
+<p>Sie könnten sicherlich ein anderes Modul für die Mac API schreiben und wieder ein anderes für Linux oder Unix. Aber leider bedeutet das, dass Sie auch das Modul für die Darstellung der Wetterdaten anpassen müssen.</p>
+<p><strong><em>Abstraktes Modul</em></strong></p>
+<p>Damit dieses Modul aber von dem verwendeten Betriebssystem unabhängig werden kann, müssen Sie eine Abstraktion der verschiedenen Betriebssysteme als ein neues abstraktes Modul definieren. Die verschiedenen betriebssystemabhängigen Module werden die spezifizierte Funktionalität bereitstellen.</p>
+<p>Bei einem Top-down-Design wie in der Abbildung 3.7, sind die Module von den Modulen abhängig, deren Funktionalität sie <span class="ckursiv">nutzen</span>. Die Module, welche die Funktionalität <span class="ckursiv">bereitstellen,</span> sind von ihren Client-Modulen unabhängig.</p>
+<p>Durch das Einführen eines abstrakten Betriebssystemmoduls ändert sich dies. Die Abstraktion schreibt vor, welche Funktionalität die konkreten Implementierungen bereitstellen müssen. Die Abstraktion ist dabei von den Implementierungen unabhängig. Man muss sie nicht ändern, wenn man eine neue Implementierung, sagen wir für Amiga, erstellt. Jede Implementierung ist allerdings abhängig von der abstrakten Spezifikation. Ändert sich die Spezifikation, müssen alle ihre Implementierungen angepasst werden. Die Abhängigkeit verläuft also in »umgekehrter« Richtung &#8211; vom Bereitsteller, nicht zu ihm. Daher auch der Name <span class="ckursiv">Umkehr der Abhängigkeiten</span>.</p>
+<p><strong><em>Portables Design</em></strong></p>
+<p>Abbildung 3.8 zeigt ein neues, portableres Design, in dem die Mehrfachverwendbarkeit des Moduls für die Darstellung der Wetterdaten verbessert wurde.</p>
+<p><strong><em>Abstraktion, Abhängigkeiten und die  
+Änderungen</em></strong></p>
+<p>Wenn Sie sich das Beispiel genauer anschauen, stellen Sie fest, dass in diesem Design die abstrakten Module nur »eingehende« Abhängigkeiten (also andere Module von ihnen abhängig sind) und die konkreten Module nur »ausgehende« Abhängigkeiten haben &#8211; sie sind also von anderen Modulen abhängig. Da man davon ausgehen kann, dass die abstrakten Spezifikationen seltener als die konkreten Implementierungen geändert werden müssen, ist unser neues Design auf die Änderungswünsche der Anwender gut vorbereitet.</p>
+<div class="bildbox">
+<p><a name="IDA4ESQ"></a><a onClick="OpenWin('bilder/03_prinzipien_007.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein03_prinzipien_007.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 3.8    </strong>Beispielanwendung mit »umgekehrten« Abhängigkeiten</p>
+<p>Die häufigsten Änderungen werden in Modulen stattfinden, von denen kein anderes Modul abhängig ist. Die Änderungen werden sich also seltener in andere Module »fortpflanzen«. In der Praxis sind Module selten ganz abstrakt oder ganz konkret. Die meisten enthalten zum Teil konkrete Implementierungen und zum Teil abstrakte Deklarationen. Ein Qualitätskriterium für das Design ist der Zusammenhang zwischen der Abstraktheit eines Moduls und dem Verhältnis zwischen seinen ein- und ausgehenden Abhängigkeiten. Je abstrakter ein Modul, desto größer sollte der Anteil der eingehenden Abhängigkeiten sein.</p>
+<p>Abbildung 3.9 zeigt dasselbe Design noch einmal, allerdings etwas anders dargestellt. Diesmal verlaufen alle Abhängigkeiten in der Darstellung in dieselbe Richtung. Und wir können zufrieden feststellen, dass die Abhängigkeiten alle von den konkreten zu den abstrakten Modulen verlaufen.</p>
+<div class="bildbox">
+<p><a name="IDAJFSQ"></a><a onClick="OpenWin('bilder/03_prinzipien_008.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein03_prinzipien_008.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 3.9    </strong>Konkrete Module sollen von abstrakten Modulen abhängig sein.</p><a id="mjc8b152bcef3e835d257ec67f78fbe37c" name="mjc8b152bcef3e835d257ec67f78fbe37c"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">3.6.1 Umkehrung des Kontrollflusses  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><strong><em>Achtung: Dies ist nicht Hollywood!</em></strong></p>
+<p>Durch die Umkehrung der Abhängigkeiten kann bei der Umsetzung in einer Anwendung auch die sogenannte <span class="ckursiv">Umkehrung des Kontrollflusses</span> (engl. <span class="ckursiv">Inversion of Control</span>) resultieren. <span class="ckursiv">Umkehrung der Abhängigkeiten</span> und <span class="ckursiv">Umkehrung des Kontrollflusses</span> dürfen allerdings nicht verwechselt werden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Umkehrung des Kontrollflusses (engl. Inversion of Control)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Als die Umkehrung des Kontrollflusses wird ein Vorgehen bezeichnet, bei dem ein spezifisches Modul von einem mehrfach verwendbaren Modul aufgerufen wird. Die Umkehrung des Kontrollflusses wird auch Hollywood-Prinzip genannt: »Don&#8217;t call us, we&#8217;ll call you«. </p>
+<p>Die Umkehrung des Kontrollflusses wird eingesetzt, wenn die Behandlung von Ereignissen in einem mehrfach verwendbaren Modul bereitgestellt werden soll. Das mehrfach verwendbare Modul übernimmt die Aufgabe, die anwendungsspezifischen Module aufzurufen, wenn bestimmte Ereignisse stattfinden. Die spezifischen Module rufen also die mehrfach verwendbaren Module nicht auf, sie werden stattdessen von ihnen aufgerufen.</p>
+</td>
+</tr>
+</table><br><p>Betrachten wir die <span class="ckursiv">Umkehrung des Kontrollflusses</span> an dem in Abbildung 3.10 dargestellten Beispiel.</p>
+<p>Das Beispiel stellt die Struktur einer Anwendung vor, die Wahlergebnisse visualisiert. Sie verwendet eine <span class="ckursiv">Bibliothek</span>, die schöne Balken- und Kuchendiagramme erstellen kann. Das anwendungsspezifische Modul <span class="ckursiv">Wahlvisualisierung</span> ruft diese Grafikbibliothek auf &#8211; dies ist der »normale« Kontrollfluss: Die Bibliothek bietet eine Schnittstelle an, die von spezifischen Modulen aufgerufen werden kann.</p>
+<div class="bildbox">
+<p><a name="IDAXGSQ"></a><a onClick="OpenWin('bilder/03_prinzipien_009.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein03_prinzipien_009.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 3.10    </strong>Umkehrung des Kontrollflusses</p>
+<p>Unsere Anwendung zur Visualisierung von Wahlergebnissen ist aber auch eine Windows-Anwendung, die auf der Basis eines mehrfach verwendbaren <span class="ckursiv">Frameworks [</span>Frameworks sind Anwendungsbausteine, die einen allgemeinen Rahmen für jeweils spezifische konkrete Anwendungen zur Verfügung stellen. Die Umkehrung des Kontrollflusses ist der zentrale Mechanismus, der von den meisten Frameworks genutzt wird. In Kapitel 8, »Module und Architektur«, werden Sie die Eigenschaften von Frameworks anhand einiger Beispiele kennen lernen.
+]  gebaut wurde. Das Windows-Framework übernimmt z. B. die Aufgabe, das Modul <span class="ckursiv">Wahlvisualisierung</span> zu informieren, falls ein Fenster vergrößert wurde und die Grafik angepasst werden muss. Dies ist der »umgekehrte« Kontrollfluss: Das Framework gibt eine Schnittstelle vor, die von den spezifischen eingebetteten Modulen implementiert werden muss. Diese Schnittstelle wird anschließend vom Framework aufgerufen.</p>
+<p>Sie werden eine spezielle Form der Umkehrung des Kontrollflusses, die sogenannte Dependency Injection, in Abschnitt 7.2.7 kennen lernen.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_03_006.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="3.6 Prinzip 6: Umkehr der Abhängigkeiten Umkehr der AbhängigkeitenPrinzip Umkehr der Abhängigkeiten<$nopage>Dependency Inversion Principle  <Pfeil>R<normal> Prinzip Umkehr der Abhängigkeiten"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_03_005.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_03_007.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

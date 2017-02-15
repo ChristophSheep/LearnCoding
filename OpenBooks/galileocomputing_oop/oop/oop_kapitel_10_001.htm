@@ -1,0 +1,483 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_09_004.htm">
+<link rel="next" href="oop_kapitel_10_002.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_09_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="#mj69f5d6dcf2a5fe7063f7ee04820669ec" class="navh">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj650ecca145548f0d632594fe8ffc0eb9" class="navh">10.1 OOP in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj3cddea9177147d48be4a19073305ce9f" class="navh">10.1.1 Klassen in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj64ce19731869346193bea822aac6177b" class="navh">10.1.2 Dynamische Natur von PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_002.htm#mj777eb917fb36b59bdc046c5b15330927" class="navnav">10.2 Das entwickelte Framework &#8211; Trennung der Anliegen &#8211; Model View Controller</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_002.htm#mj1347057e4ca234e143f84ac3d48c2143" class="navnav">10.2.1 Trennung der Daten von der Darstellung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_003.htm#mj143f7b7967800fbc9e4212f3732fec4a" class="navnav">10.3 Ein Dienst in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_003.htm#mjc22ab53407bbed20d06449ea4ab6bf73" class="navnav">10.3.1 Datenmodell</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_003.htm#mjddeded4df39daa61407f491d183939f0" class="navnav">10.3.2 Dienste &#8211; Version 1</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_004.htm#mj8db7d030dd0fecb5d5f38c3b3c5fff3f" class="navnav">10.4 Ein Klient in Ajax</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_004.htm#mj6fd9781fec12ec813977e6c6f02e6378" class="navnav">10.4.1 Bereitstellung der Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_004.htm#mj6615fa4f2574779912a147f3ee2962d5" class="navnav">10.4.2 Darstellung der Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_005.htm#mj84d41f973bb38a7ebb9ae77e397862dc" class="navnav">10.5 Ein Container für Dienste in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mj444254068bed671d4c406143e181a811" class="navnav">10.5.1 Dispatcher</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mjf1fba7eb918b8d0e1decb950d5f3e98d" class="navnav">10.5.2 Fabrik</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mj8fd79f59364e2c74a3e078afd836f9d0" class="navnav">10.5.3 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mj46b9937615aaf41cc11a90277e35bb3c" class="navnav">10.5.4 Sicherheit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_006.htm#mj1e0a9cd22e5214a5bb797ebb58f113cc" class="navnav">10.6 Ein Klient ohne JavaScript</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_007.htm#mj2c164a142d4a479519051aa6ee0722f9" class="navnav">10.7 Was noch übrigbleibt</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main">
+<p class="anleser"><em>In diesem Praxiskapitel werden wir die besprochenen Prinzipien an einem konkreten Anwendungsfall demonstrieren.</em></p><a id="mj69f5d6dcf2a5fe7063f7ee04820669ec" name="mj69f5d6dcf2a5fe7063f7ee04820669ec"></a><h1 class="t1">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</h1><span class="ckursiv"><em><strong>Galileo:</strong></em> Euer Buch ist jetzt schon fast ausverkauft, und wir sollten uns überlegen, ob wir es einfach nachdrucken oder eine überarbeitete Version mit aktualisiertem und neuem Inhalt herausbringen. Ich weiß, ihr seid beide ziemlich beschäftigt, aber wir im Verlag denken, eine überarbeitete Version wäre die bessere Wahl.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wir sollten schon ein paar Ecken und Kanten glätten und die Hinweise der Leser in die neue Auflage einfließen lassen. Zum Beispiel könnten wir in einem praktischen Kapitel eine kleine Anwendung programmieren, an der wir die objektorientierte Vorgehensweise und die hier vorgestellten Prinzipien demonstrieren könnten.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Gute Idee! Wir könnten zum Beispiel eine coole Anwendung für das iPhone programmieren. Dabei könnten wir auch ObjectiveC vorstellen, eine schöne Programmiersprache, die mir als ein objektorientierter Nachfolger von C einfach besser gefällt als C++.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Na ja, ObjectiveC ist schon interessant, allerdings wird es kaum verwendet. Der Mac und das iPhone sind zwar elegant, aber die Mehrheit unserer Leser programmiert nicht für MacOS X oder das iPhone. Ich bin mir nicht sicher, ob das Kapitel dann auch für sie so praktisch wäre.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Was machen wir dann? Etwas in Java, Python oder Ruby? C++ wäre hier meine letzte Wahl.</span><span class="ckursiv"><em><strong>Galileo:</strong></em> Im Bereich der Web-Programmierung ist seit Jahren die Sprache PHP populär und wird häufig eingesetzt. Wäre das denn eine mögliche Basis für das Kapitel mit der praktischen Anwendung?  </span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Das trifft sich gut, in der aktuellen Version 5 hat PHP nun auch echte objektorientierte Eigenschaften mitbekommen. Damit können wir eine ganze Reihe der im Buch vorgestellten Konzepte gut illustrieren.  </span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Dann lass uns ein praktisches Kapitel über objektorientiertes Programmieren in PHP schreiben.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Und um die Beispielanwendung noch interessanter zu machen, werden wir eine Webanwendung schreiben, die intensiv Ajax verwendet. Daher werden wir uns auch JavaScript praktisch widmen.</span><p>Und so entstand dieses Kapitel ...</p><a id="mj650ecca145548f0d632594fe8ffc0eb9" name="mj650ecca145548f0d632594fe8ffc0eb9"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">10.1 OOP in PHP  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Bei Programmiersprachen wie Python oder Ruby kann man darüber streiten, welche der Sprachen eleganter ist &#8211; PHP ist über jegliche Eleganzdiskussion erhaben. Es hat sich bereits in der Domäne der Webentwicklung etabliert, als es noch gar kein Ruby oder Python gab. PHP entstand als einfache Alternative zu Perl zur Erstellung von dynamischen Webseiten.</p>
+<p>Im Laufe der Zeit erhielt PHP die Fähigkeiten mächtigerer Programmiersprachen, und seit den Versionen 4 und 5 kann man PHP zur Familie der objektorientierten Programmiersprachen zählen.</p>
+<p>PHP wird noch immer sehr häufig in der Webprogrammierung (und fast nur dort) verwendet, weil es eine einfache, frei verfügbare und mächtige Programmiersprache mit sehr umfangreichen Bibliotheken ist.</p>
+<p>PHP wurde nicht von Anfang an als objektorientierte Programmiersprache entworfen. Die Fähigkeiten der Objektorientierung erschienen erst in der Version 4. Diese Implementierung wurde in der Version 5 komplett ersetzt, um mehr Funktionalität zu integrieren und die Performance der objektorientierten PHP-Programme stark zu verbessern. Wobei das Wort »ersetzt« nicht ganz korrekt ist: Da die Implementierungen der objektorientierten Sprachanteile von PHP in den Versionen 4 und 5 nicht kompatibel sind, blieb die alte Implementierung in PHP 5 erhalten, um alte Skripte auch unter PHP 5 laufen lassen zu können.</p>
+<p>Neue Skripte, sofern man sie objektorientiert programmieren möchte, sollten allerdings nur die neue, in der Version 5 eingeführte Syntax verwenden. Daher werden wir uns hier auch nur dieser Syntax widmen.</p><a id="mj3cddea9177147d48be4a19073305ce9f" name="mj3cddea9177147d48be4a19073305ce9f"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">10.1.1 Klassen in PHP  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Abgesehen von der dynamischen Natur von PHP ähneln die Klassen in PHP den Klassen in Java. PHP unterstützt die einfache Vererbung von implementierenden Klassen und die Mehrfachvererbung von explizit deklarierten Schnittstellen.</p>
+<p>Hier das Beispiel einer Klassendeklaration in PHP:</p>
+<div class="listing"><pre class="prettyprint">abstract class MeineKlasse  
+         extends MeineBasisKlasse 
+         implements SchnittstelleA, SchnittstelleB { 
+   protected $id; 
+   public $value;
+   public static $count = 1; 
+   const MAX = 1000; 
+ 
+   public function __construct($id) { 
+      $this-&gt;id = $id; 
+   } 
+ 
+   public function ausgabe() { 
+      print "Meine Klasse " . $this-&gt;id . " " . $this-&gt;value; 
+   } 
+ 
+   public abstract function auswerten(); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 10.1    </strong>Beispiel der Syntax einer Klasse in PHP</p>
+<p>An diesem Beispiel sehen wir die Grundelemente der Syntax einer Klasse in PHP. Eine Klasse wird mit dem Schlüsselwort <span class="clisting">class</span> deklariert. </p>
+<p><strong><em>Klassen- und Objektvariablen, Konstanten</em></strong></p>
+<p>Klassen- und Objektvariablen werden in PHP mit ihrer Sichtbarkeitsstufe vorangestellt deklariert: »Öffentlich« (<span class="clisting">public</span>), »Geschützt« (<span class="clisting">protected</span>) und »Privat« (<span class="clisting">private</span>). </p>
+<p>Da PHP eine dynamisch typisierte Sprache ist, braucht man keinen Datentyp zu deklarieren. Man kann einer Objektvariablen einen An-fangswert zuweisen, allerdings muss dieser Anfangswert konstant sein und darf zum Beispiel keinen Funktionsaufruf enthalten.</p>
+<p>Auf öffentliche Elemente eines Objekts kann man immer zugreifen, auf die privaten nur innerhalb der Methode der Klasse, in der die Elemente deklariert wurden. Auf die geschützten Elemente darf man von der Methode der deklarierenden Klasse und der von ihr abgeleiteten Unterklassen zugreifen.</p>
+<p>Um zum Beispiel auf die Objektvariable <span class="clisting">$value</span> eines Objekts, das der Variablen <span class="clisting">$x</span> zugeordnet ist, zuzugreifen, schreibt man <span class="clisting">$x-&gt;value. </span>Man lässt das zweite Dollarzeichen also weg. <span class="clisting">$x-&gt;$value</span> wäre allerdings kein Syntaxfehler, sondern hätte eine andere Bedeutung. <span class="clisting">$x-&gt;$value</span> würde zuerst den Wert der lokalen Variablen <span class="clisting">$value</span> auswerten und dann auf die öffentliche Objektvariable mit dem ausgewerteten Namen zugreifen.</p>
+<p>Im Gegensatz zu Objektvariablen werden die Klassenvariablen mit dem Schlüsselwort <span class="clisting">static</span> gekennzeichnet.</p>
+<p>Um auf die Klassenvariable <span class="clisting">$count</span> der Klasse <span class="clisting">MeineKlasse</span> zuzugreifen, schreibt man <span class="clisting">MeineKlasse::$count [</span>Der Operator <span class="clisting">::</span> heißt in PHP <span class="ckursiv">Paamayim Nekudotayim</span>. Im Hebräischen bedeutet dies »doppelter Doppelpunkt«.
+] .</p>
+<p>Man kann auch klassenspezifische Konstanten deklarieren, und zwar mit dem Schlüsselwort <span class="clisting">const</span>. Im Gegensatz zu Variablen beginnen die Namen von Konstanten nicht mit einem Dollarzeichen. Um auf die Konstante <span class="clisting">MAX</span> der Klasse <span class="clisting">MeineKlasse</span> zuzugreifen, schreibt man <span class="clisting">MeineKlasse::MAX</span>.</p>
+<p><strong><em>Klassen- und Objektmethoden</em></strong></p>
+<p>Methoden werden in den Klassen ähnlich wie globale Funktionen mit dem Schlüsselwort <span class="clisting">function</span> deklariert. Auch die Funktionen können mit den Schlüsselwörtern <span class="clisting">public</span>, <span class="clisting">protected</span> und <span class="clisting">private</span> den drei Sichtbarkeitsstufen zugeordnet werden. Wenn kein solches Schlüsselwort angegeben wird, wird die öffentliche Sichtbarkeitsstufe angenommen.</p>
+<p>Wenn man innerhalb eine Methode auf die eigene Objektvariable zugreifen möchte, muss man dazu die Spezialreferenz <span class="clisting">$this</span> verwenden. Um also auf die private Objektvariable <span class="clisting">$id</span> zuzugreifen, schreibt man <span class="clisting">$this-&gt;id</span>. Die Schreibweise <span class="clisting">$id</span> würde auf eine lokale Methodenvariable zeigen.</p>
+<p>Um auf die eigenen Klassenvariablen oder Klassenkonstanten zuzugreifen, kann man statt des Klassennamens die Klassenreferenz <span class="clisting">self</span> verwenden. Man kann also <span class="clisting">self::$count</span> statt <span class="clisting">MeineKlasse::$count </span>schreiben.</p>
+<p>In PHP kann man auch Klassenmethoden deklarieren, sie werden ähnlich wie Klassenvariablen mit dem Schlüsselwort <span class="clisting">static</span> gekennzeichnet. Innerhalb einer »statischen« Klassenmethode ist die Referenz <span class="clisting">$this</span> nicht definiert, und so hat man keinen Zugriff auf die Objektvariablen. Interessanterweise kann man aber auch jede Objektmethode in einem »statischen Kontext« aufrufen. Zum Beispiel kann man <span class="clisting">MeineKlasse:: ausgabe()</span> statt <span class="clisting">$x-&gt;ausgabe()</span> schreiben. Ein solcher Aufruf ist kein Fehler, allerdings setzt er die Spezialreferenz <span class="clisting">$this</span> nicht. In diesem Falle bleibt die Spezialreferenz <span class="clisting">$this</span> unverändert, so dass man auf diese Art eine überschriebene Methode auf einer Oberklasse im Kontext des aktuellen Objekts aufrufen kann (ähnlich wie in C++). Um die Methode der direkten Oberklasse aufzurufen, kann man statt des Namens der Oberklasse die Spezialklassenreferenz <span class="clisting">parent</span> verwenden. [Seit der Version 5.3 kann man statt des direkt angegebenen Namens der Klasse auch eine Variable verwenden, deren Wert der Name der Klasse ist.
+] </p>
+<p><strong><em>Vererbung in PHP</em></strong></p>
+<p>Mit dem Schlüsselwort <span class="clisting">extends</span> wird gekennzeichnet, von welcher Oberklasse die deklarierte Klasse abgeleitet wird. Mit dem Schlüsselwort <span class="clisting">implements</span> werden die von der Klasse implementierten Schnittstellen eingeleitet.</p>
+<p>Eine Klasse muss alle Methoden der Schnittstellen implementieren, oder sie muss als abstrakt deklariert werden. Wie in Java kann man keine Exemplare einer abstrakten Klasse erstellen.</p>
+<p>Die Bedeutung von abstrakten Klassen und Methoden sowie von Schnittstellen in PHP ist allerdings geringer als in Java. In PHP haben die Variablen keinen festen Typ, so dass man keine explizit deklarierten Schnittstellen braucht, um Operationen eines Objekts aufrufen zu können.</p>
+<p>Die abstrakten Klassen und Methoden und auch die Schnittstellen sollten in PHP verwendet werden, um eigene Programmierfehler zu vermeiden. Zur Laufzeit kann man mit dem Operator <span class="clisting">instanceof</span> die Zugehörigkeit von Objekten zu bestimmten Klassen und Schnittstellen überprüfen.</p>
+<p>PHP kennt finale Klassen und Methoden. Diese werden mit dem Schlüsselwort <span class="clisting">final</span> bezeichnet. Ähnlich wie bei anderen Programmiersprachen kann man finale Methoden in abgeleiteten Klassen nicht überschreiben, und von finalen Klassen kann nicht geerbt werden.</p>
+<p><strong><em>Lebenszyklus  
+der Objekte</em></strong></p>
+<p>Exemplare einer Klasse werden mit dem Schlüsselwort <span class="clisting">new</span> erstellt. Eine Klasse kann eine Konstruktor-Methode deklarieren. Der Name der Methode muss <span class="clisting">__construct</span> lauten [Alternativ kann man auch den Namen der Klasse verwenden, intern wird dieser Name zu <span class="clisting">__construct</span> umgewandelt.
+]  und kann eine beliebige Anzahl von Parametern haben. Im Gegensatz zu Programmiersprachen wie Java, C# oder C++ wird der Konstruktor der Oberklasse nicht automatisch aufgerufen. Dies muss explizit mit dem Aufruf <span class="clisting">parent::__construct(...)</span> geschehen.</p>
+<p>Eine Klasse kann auch einen Destruktor mit dem Namen <span class="clisting">__destruct</span> deklarieren. Dieser kann keine Parameter haben. Ähnlich wie bei dem Konstruktor werden die Destruktoren der Oberklassen nicht implizit aufgerufen. Der Destruktor wird automatisch aufgerufen, wenn das Objekt nicht mehr erreichbar ist oder wenn das Skript beendet wird. Bei Destruktoren sollte man besonders aufpassen &#8211; sobald eine Ausnahme (Exception) in einem Destruktor geworfen und nicht gefangen wird, wird das Skript mit einem fatalen Fehler terminiert.</p><a id="mj64ce19731869346193bea822aac6177b" name="mj64ce19731869346193bea822aac6177b"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">10.1.2 Dynamische Natur von PHP  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>PHP ist eine dynamische Programmiersprache. Die Dynamik zeichnet sich nicht zuletzt dadurch aus, dass man Objektvariablen auch dynamisch erstellen kann. Wenn zum Beispiel <span class="clisting">$x</span> auf ein Exemplar der Klasse <span class="clisting">MeineKlasse</span> zeigt, führt der Aufruf </p>
+<p><span class="clisting">$x-&gt;beschreibung = "Ein Beispielobjekt"</span> </p>
+<p>nicht zu einem Fehler, sondern erstellt eine neue Objektvariable des Objekts <span class="clisting">$x</span>.</p>
+<p><strong><em>Ein wenig Magie</em></strong></p>
+<p>Wie sich PHP verhält, wenn man auf nichtexistierende Objektvariablen zugreift oder nichtexistierende Methoden aufruft, kann man mit wenigen »magischen« Methoden beeinflussen. Sofern Sie eine Methode           <span class="clisting">__get($name)</span> deklariert haben, wird diese aufgerufen, sobald man auf eine nichtexistierende Objektvariable mit dem Name <span class="clisting">$name</span> lesend zugreift. Bei einem schreibenden Zugriff wird <span class="clisting">__set($name, $value)</span> aufgerufen, sofern Sie diese Methode deklariert haben.</p>
+<p>Eine ähnliche »Magie« tritt auch beim Aufrufen nichtexistierender Methoden zutage. Je nachdem, ob die nichtexistierende Methode in einem Objektkontext (mit <span class="clisting">$this</span> gesetzt) oder einem statischen Kontext aufgerufen wird, wird eine der »magischen« Methoden <span class="clisting">__call($name, $arguments)</span> oder <span class="clisting">__callStatic($name, $arguments)</span> aufgerufen.</p>
+<p>Wer mehr von dieser »Magie«, die in PHP <span class="ckursiv">Überladen</span> (Overloading) heißt, erfahren möchte, den verweisen wir auf das sehr umfassende Handbuch von PHP (<span class="ckursiv">http://de.php.net</span>).</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_10_001.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_09_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

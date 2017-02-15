@@ -1,0 +1,792 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 7.5 Kontrakte: Objekte als Vertragspartner</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 7.5 Kontrakte: Objekte als VertragspartnerKontrakt<$nopage>Vertrag <Pfeil>R<normal> Kontrakt">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 7.5 Kontrakte: Objekte als VertragspartnerKontrakt<$nopage>Vertrag <Pfeil>R<normal> Kontrakt">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_07_004.htm">
+<link rel="next" href="oop_kapitel_07_006.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_006.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852" class="navnav">7 Abläufe in einem objektorientierten System</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_001.htm#mj26b861834c431b683e4e1d0ac1938cba" class="navnav">7.1 Erzeugung von Objekten mit Konstruktoren und Prototypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj6cd9b2d12e6d2f663e4c1128b111c5d9" class="navnav">7.1.1 Konstruktoren: Klassen als Vorlagen für ihre Exemplare</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj29e4ea58eb12662f0f36f92b5ec8adaa" class="navnav">7.1.2 Prototypen als Vorlagen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj51d93c2b5e445392072beadafdebd393" class="navnav">7.1.3 Entwurfsmuster »Prototyp«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_002.htm#mj1c44c94f2295b431db9cb9b5ee03bc9f" class="navnav">7.2 Fabriken als Abstraktionsebene für die Objekterzeugung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjb223311c89407a9e76da180dc3f69036" class="navnav">7.2.1 Statische Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjaa0579b2fb6bb3ec6034cf05f1eecac9" class="navnav">7.2.2 Abstrakte Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjc5cb28a57eeadedfbc991e6786b00788" class="navnav">7.2.3 Konfigurierbare Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj081b9df6d2dc6eafff1ff31f2823b219" class="navnav">7.2.4 Registraturen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj91442f54dd3e6454d2343a346244a94c" class="navnav">7.2.5 Fabrikmethoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7e0c800eda7165eac4272a1955efef1a" class="navnav">7.2.6 Erzeugung von Objekten als Singletons</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7dcd47135763da11d4d4dc6876f5e60f" class="navnav">7.2.7 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_003.htm#mj8ee9807b6d851ca17774d80d4e8b83bb" class="navnav">7.3 Objekte löschen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj7283bd45b7cfe614019b221ea52afec4" class="navnav">7.3.1 Speicherbereiche für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj61cf5d0c185ed5382c55f54cd3fe712c" class="navnav">7.3.2 Was ist eine Garbage Collection?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj77b12ff91a3d2c926b596ecf298bfde6" class="navnav">7.3.3 Umsetzung einer Garbage Collection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_004.htm#mja44c8c090df304b5376fe244eb0505d7" class="navnav">7.4 Objekte in Aktion und in Interaktion</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj461a627b534275782ce4985792ee15db" class="navnav">7.4.1 UML: Diagramme zur Beschreibung von Abläufen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mjf78234957c82aa740d796d46b611a52f" class="navnav">7.4.2 Nachrichten an Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj10368deb9e22e623d5445b79601554b1" class="navnav">7.4.3 Iteratoren und Generatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj3f6bd50ca8e5f65f36567d80e2803893" class="navnav">7.4.4 Funktionsobjekte und ihr Einsatz als Eventhandler</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj7e10a219a48a6476b1ea82aec6cc5ef4" class="navnav">7.4.5 Kopien von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj66aae429fecf9db6555945805016c62e" class="navnav">7.4.6 Sortierung von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj7468c23d82240bfb461b8090668d1a51" class="navh">7.5 Kontrakte: Objekte als Vertragspartner</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjed5c3bed5d1f32427a86656f31c3e743" class="navh">7.5.1 Überprüfung von Kontrakten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjb272d58355d9d7a0899049eb6842697a" class="navh">7.5.2 Übernahme von Verantwortung: Unterklassen in der Pflicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mja3c37a47a8407bc65b94f93f6a254ca2" class="navh">7.5.3 Prüfungen von Kontrakten bei Entwicklung und Betrieb</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_006.htm#mjec595d98347a935335b712f91956664c" class="navnav">7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj3963c0742069044978ac462cc56c5b5a" class="navnav">7.6.1 Exceptions in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mje09bc3c4971db9aa83562a1fe7c4e034" class="navnav">7.6.2 Exceptions und der Kontrollfluss eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj21b606a3bb186e029d6b9c8c22764cc0" class="navnav">7.6.3 Exceptions im Einsatz bei Kontraktverletzungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj05465a5863b658f1b916b7805e1ef3c9" class="navnav">7.6.4 Exceptions als Teil eines Kontraktes</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjbf1f56f9665424db8d4cfc65f9adce59" class="navnav">7.6.5 Der Umgang mit Checked Exceptions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjd35575d7d7be5ba9875a7b50fa01d0d0" class="navnav">7.6.6 Exceptions in der Zusammenfassung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj7468c23d82240bfb461b8090668d1a51" name="mj7468c23d82240bfb461b8090668d1a51"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">7.5 Kontrakte: Objekte als Vertragspartner  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Ein Objekt stellt in der Regel eine Reihe von Operationen zur Verfügung, die auf ihm ausgeführt werden können.</p>
+<p>Dabei wird die Syntax der Operation durch die Regeln einer Programmiersprache sehr genau beschrieben: Name der Operation, Zahl und Art der zu übergebenden Parameter, genaue Schreibweise des Aufrufs, all das wird exakt festgelegt.</p>
+<p><strong><em>Semantik der Operation</em></strong></p>
+<p>Wie steht es aber mit dem Teil, den wir als Semantik der Operation bezeichnen? Wo wird festgelegt, was die Umsetzung der Operation (die entsprechende Methode des Objekts) denn genau leisten soll? Wie wir durch das <span class="ckursiv">Prinzip der Trennung der Schnittstelle von der Implementierung</span> festgelegt haben, soll ein Nutzer eben nicht die Implementierung betrachten, um herauszufinden, was eine Methode leistet. In diesem Abschnitt werden wir darauf eingehen, wie Kontrakte für Klassen überprüft werden können. Außerdem werden wir an konkreten Beispielen vorstellen, wie ausformulierte Kontrakte dabei helfen können, Fehler im Design zu erkennen.</p><a id="mjed5c3bed5d1f32427a86656f31c3e743" name="mjed5c3bed5d1f32427a86656f31c3e743"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">7.5.1 Überprüfung von Kontrakten  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In Abschnitt 4.2.2, »Kontrakte: Die Spezifikation einer Klasse«, haben wir vorgestellt, wie formale Kontrakte zur Spezifikation einer Klasse verwendet werden können. Dabei kamen Vorbedingungen, Nachbedingungen und Invarianten zum Einsatz, und wir haben die OCL-Notation dafür vorgestellt. Wir wiederholen die Abbildung des OCL-Beispiels in Abbildung 7.47, da die OCL-Notation in den folgenden Abschnitten häufiger zum Einsatz kommt.</p>
+<div class="bildbox">
+<p><a name="IDAQHSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_037.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_037.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.47    </strong>Beispiel für OCL-Notation: Vor- und Nachbedingung</p>
+<p>Im abgebildeten Beispiel sind die Vor- und Nachbedingungen für die Operation <span class="clisting">kuendigen</span> der Klasse <span class="clisting">ZeitungsAbo</span> beschrieben. In diesem Abschnitt gehen wir nun darauf ein, wie diese Bedingungen zur Laufzeit eines Programms geprüft werden können.</p>
+<p>Nur wenige Programmiersprachen erlauben eine direkte Übertragung von Vorbedingungen, Nachbedingungen und Invarianten in die Sprache und stellen integrierte Konstrukte dafür zur Verfügung. Die Sprache Eiffel bietet dafür die Sprachelemente <span class="clisting">require</span>, <span class="clisting">ensure</span> und <span class="clisting">invariant</span>. In anderen Sprachen hat sich der Mechanismus der sogenannten <span class="ckursiv">Zusicherungen</span> (Assertions) eingebürgert.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Zusicherungen (Assertions)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Zusicherungen sind Ausdrücke, die entweder wahr oder falsch sind und an definierten Stellen im Ablauf eines Programms ausgewertet werden. Zusicherungen sollen sicherstellen, dass der Zustand des Programms zum Zeitpunkt der Auswertung korrekt ist.  Zusicherungen werden häufig benutzt, um Vorbedingungen und Nachbedingungen von Operationen abzubilden. </p>
+</td>
+</tr>
+</table><br><p>Zusicherungen differenzieren nicht mehr, ob es sich um die Prüfung einer Vorbedingung, einer Nachbedingung, einer Invariante oder vielleicht einfach nur eines Zwischenzustands handelt. Je nach der Stelle im Quellcode, an der sie auftauchen, können sie alle genannten Rollen übernehmen.</p>
+<p>Eine Umsetzung der in OCL dargestellten Vor- und Nachbedingungen in Java kann zum Beispiel aussehen wie in Listing 7.41.</p>
+<div class="listing"><pre class="prettyprint">class ZeitungsAbo { 
+    ... 
+    void kuendigen(Date kuendigungsDatum) { 
+       assert(status != AboStatus.gekuendigt); 
+       assert(kuendigungsDatum &gt;= this.fruehesteKuendigung); 
+       ... 
+       assert(status == AboStatus.gekuendigt); 
+    } 
+    ...</pre></div>
+<p class="tabunter"><strong>Listing 7.41    </strong>Prüfung von Vor- und Nachbedingungen in Java</p>
+<p>Mit OCL und der programmiersprachlichen Konstrukten zur Absicherung von Bedingungen stehen die technischen Möglichkeiten zur Verfügung, mit denen Sie Kontrakte zwischen Modulen beschreiben können. Im folgenden Abschnitt werden Sie erfahren, wie Kontrakte gerade mit Blick auf das wichtige <span class="ckursiv">Prinzip der Ersetzbarkeit</span> formuliert werden können. Sie werden dabei sehen, dass die Ausformulierung von Kontrakten dazu führen kann, dass Fehler im Klassenentwurf schneller erkannt werden.</p><a id="mjb272d58355d9d7a0899049eb6842697a" name="mjb272d58355d9d7a0899049eb6842697a"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">7.5.2 Übernahme von Verantwortung: Unterklassen in der Pflicht  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Bereits in Abschnitt 5.1.3 haben Sie das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> kennengelernt. Dieses fordert, dass ein Exemplar einer Unterklasse an jeder Stelle anstatt eines Exemplars der Oberklasse eingesetzt werden kann. Dabei wurden auch drei Konsequenzen des <span class="ckursiv">Prinzips der Ersetzbarkeit</span> für Unterklassen aufgeführt:</p>
+<ul class="gp">
+<li>Unterklassen dürfen die Vorbedingungen für Operationen nicht verschärfen.</li>
+</ul>
+<ul class="gp">
+<li>Unterklassen dürfen die Nachbedingungen einer Operation nicht einschränken.</li>
+</ul>
+<ul class="gp">
+<li>Unterklassen müssen sicherstellen, dass die Invarianten der Oberklasse eingehalten werden.</li>
+</ul>
+<p>Lassen Sie uns im Folgenden zwei Beispiele betrachten, eines, bei dem das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> in Bezug auf Vor- und Nachbedingungen erfüllt ist, und anschließend eines, bei dem das Prinzip eklatant verletzt wird. Anschließend werden Sie ebenfalls anhand eines Beispiels sehen, an welchen Stellen im Code eine Überprüfung von Kontrakten sinnvoll ist.</p>
+<h4 class="t4">Ein korrektes Beispiel: Das Prinzip der Ersetzbarkeit wird eingehalten</h4>
+<p>Was bedeuten die Anforderungen an Vor- und Nachbedingungen denn nun in der Praxis? Betrachten Sie dazu als Beispiel die in Abbildung 7.48 dargestellte einfache Hierarchie von Klassen, die sich auf Bankkonten beziehen.</p>
+<div class="bildbox">
+<p><a name="IDA4RSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_038.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_038.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.48    </strong>Hierarchie von Bankkonten</p>
+<p>Sie sehen eine Klasse <span class="clisting">BankKonto</span> als Basisklasse, von der die Klasse <span class="clisting">KreditKonto</span> abgeleitet ist. Beide Klassen spezifizieren eine Operation <span class="clisting">abheben</span>, die laut Beschreibung den Kontostand um den dabei angegebenen Betrag vermindert. Dabei überschreibt die Klasse <span class="clisting">KreditKonto</span> die bereits in der Klasse <span class="clisting">BankKonto</span> umgesetzte Methode für das Abheben. Aus der Darstellung geht aber noch nicht hervor, worin sich die beiden Umsetzungen denn nun unterscheiden. Deshalb sind in Abbildung 7.49 die jeweiligen Vor- und Nachbedingungen der Operation unter Verwendung der OCL dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDANSSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_039.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_039.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.49    </strong>Vor- und Nachbedingungen der Operation »abheben«</p>
+<p>Für ein generelles Bankkonto ist es die Vorbedingung für das Abheben, dass genug Geld auf dem Konto ist. Sie können höchstens so viel abheben, wie auf dem Konto ist. Dies wird durch die Vorbedingung <span class="clisting">pre: betrag &lt;= kontostand</span> ausgedrückt. Die Nachbedingung ist, dass der neue Kontostand um den angegebenen Betrag reduziert wurde: <span class="clisting">post: kontostand = kontostand@pre</span> &#8211; <span class="clisting">betrag</span>.</p>
+<p>Die Klasse <span class="clisting">KreditKonto</span> ändert die Nachbedingung für die Operation <span class="clisting">abheben</span> gegenüber der Klasse <span class="clisting">BankKonto</span> nicht. Damit ist die zweite Konsequenz des <span class="ckursiv">Prinzips der Ersetzbarkeit</span> eingehalten: Die Nachbedingungen dürfen nicht gelockert werden. Wie sieht es aber mit der Vorbedingung aus?</p>
+<p>Bei einem Kreditkonto ist eine Abhebung auch dann möglich, wenn der Kontostand negativ ist, sofern ein vorgegebenes Kreditlimit nicht überschritten wird. Die Vorbedingung lautet nun als <span class="clisting">pre: betrag &lt;= (kontostand + kreditlimit)</span>. Da das Kreditlimit nicht negativ sein kann, ist diese Vorbedingung weniger restriktiv als die Vorbedingung in der Klasse <span class="clisting">BankKonto</span>: Eine Abhebung ist immer noch möglich, wenn der Kontostand den abzuhebenden Betrag noch deckt. Zusätzlich kann aber auch eine Abhebung stattfinden, wenn zwar das Konto den Betrag nicht mehr hergibt, der gewährte Kreditrahmen aber ausreichend ist.</p>
+<p>Damit ist auch die erste Konsequenz der <span class="ckursiv">Prinzips der Ersetzbarkeit</span> eingehalten: Unterklassen dürfen die Vorbedingungen von Operationen nicht verschärfen. In Listing 7.42 ist die Umsetzung der Klasse <span class="clisting">BankKonto</span> in Java aufgeführt. [Auch die weiteren Beispiele in diesem Abschnitt stellen wir in der Programmiersprache Java vor.
+]  In der Methode <span class="clisting">abheben</span> wird die Vorbedingung durch eine Zusicherung abgeprüft. Die Nachbedingung wird im Code nicht geprüft.</p>
+<div class="listing"><pre class="prettyprint">class BankKonto { 
+    int kontostand; 
+ 
+    BankKonto(int kontostand) { 
+        this.kontostand = kontostand; 
+    } 
+    int kontostand(){ 
+        return kontostand; 
+    } 
+    void abheben(int betrag) { 
+       <span class="cfett"> assert(betrag &lt;= kontostand);</span> 
+        kontostand -= betrag; 
+    } 
+    void einzahlen(int betrag) { 
+        kontostand += betrag; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.42    </strong>Umsetzung der Klasse »BankKonto«</p>
+<p>In Listing 7.43 ist die Umsetzung der Klasse <span class="clisting">KreditKonto</span> zu sehen. Dort wird die (gelockerte) Vorbedingung ebenfalls in der Methode <span class="clisting">abheben</span> geprüft.</p>
+<div class="listing"><pre class="prettyprint">class KreditKonto extends BankKonto { 
+    int kreditlimit; 
+    ... 
+    void abheben(int betrag) { 
+       <span class="cfett"> assert(betrag &lt;= (kontostand + kreditlimit));</span> 
+        kontostand -= betrag; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.43    </strong>Umsetzung der Klasse »KreditKonto«</p>
+<p><strong><em>Prinzip der  
+Ersetzbarkeit  
+eingehalten</em></strong></p>
+<p>Unsere Klassenhierarchie und ihre Umsetzung erfüllt das <span class="ckursiv">Prinzip der Ersetzbarkeit</span>, da die Klasse <span class="clisting">KreditKonto</span> den Kontrakt der Klasse <span class="clisting">BankKonto</span> immer noch einhält. Wenn Geld auf dem Konto ist, kann eine Abhebung erfolgen. Um die Einhaltung der Vorbedingungen zu prüfen, haben wir zwei Zusicherungen in den beiden Methoden eingefügt. Dadurch wird von beiden Klassen der jeweilige Kontrakt korrekt überprüft.</p>
+<p>Eine Verletzung des <span class="ckursiv">Prinzips der Ersetzbarkeit</span> ist allerdings nicht immer offensichtlich. Im Folgenden werden Sie deshalb ein sehr ähnlich aussehendes Beispiel kennen lernen, bei dem das Prinzip trotzdem verletzt wird.</p>
+<h4 class="t4">Ein fehlerhaftes Beispiel: Das Prinzip der Ersetzbarkeit wird verletzt</h4>
+<p>Eine Verletzung des <span class="ckursiv">Prinzips der Ersetzbarkeit</span> erkennen Sie daran, dass für eine Operation in einer abgeleiteten Klasse entweder die Vorbedingungen verschärft oder die Nachbedingungen gelockert werden. Die abgeleitete Klasse hält also den Kontrakt der Basisklasse nicht mehr ein.</p>
+<p>Für unser Beispiel wählen wir wieder eine Klasse <span class="clisting">BankKonto</span> mit den Basisoperationen <span class="clisting">einzahlen</span> und <span class="clisting">abheben</span>. Zusätzlich fügen wir aber die Operationen <span class="clisting">ueberweisen</span> und <span class="clisting">modifiziereKreditLimit</span> hinzu.</p>
+<div class="bildbox">
+<p><a name="IDAAVSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_040.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_040.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.50    </strong>Eine Klasse »SparKonto« ist von »BankKonto« abgeleitet.</p>
+<p>Die beiden zusätzlichen Operationen machen auf den ersten Blick so durchaus Sinn. In Abbildung 7.50 sehen Sie auch eine Klasse <span class="clisting">SparKonto</span>, die von <span class="clisting">BankKonto</span> abgeleitet ist. Der Klasse <span class="clisting">SparKonto</span> sind dabei ebenfalls Methoden für die Operationen <span class="clisting">ueberweisen</span> und <span class="clisting">modifiziereKreditLimit</span> zugeordnet.</p>
+<p>In Abbildung 7.51 sehen Sie die Vor- und Nachbedingungen für die Operation <span class="clisting">überweisen</span> aufgelistet.</p>
+<div class="bildbox">
+<p><a name="IDASVSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_041.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_041.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.51    </strong>Vorbedingungen für die Operation »überweisen«</p>
+<p>Die Vorbedingung für eine Überweisung, wie sie für die Klasse <span class="clisting">BankKonto</span> formuliert ist, macht durchaus Sinn: Es muss genügend Geld auf dem Konto sein, so dass das Kreditlimit nicht überschritten wird. Die Bedingung lautet also <span class="clisting">pre: betrag &lt;= (kontostand + kreditlimit)</span>.</p>
+<p>Die Umsetzung der Operation in der Klasse <span class="clisting">BankKonto</span> sichert dann auch genau das zu.</p>
+<div class="listing"><pre class="prettyprint">class BankKonto 
+    ... 
+    void ueberweisen(int betrag, BankKonto zielkonto) 
+    { 
+       <span class="cfett"> assert(betrag &lt;= (kontostand + kreditlimit));</span> 
+        abheben(betrag); 
+        zielkonto.einzahlen(betrag); 
+    }</pre></div>
+<p>Nun stellen wir aber fest, dass eine Überweisung von einem Sparkonto gar nicht möglich ist. Bei Sparkonten kann nur eingezahlt und abgehoben werden. Damit ist die Operation <span class="clisting">ueberweisen</span> auf einem Sparkonto nicht zulässig. Eine mögliche Konsequenz ist der unten stehende Code.</p>
+<div class="listing"><pre class="prettyprint">class SparKonto extends BankKonto { 
+    ... 
+    // Überweisungen von einem Sparkonto nicht möglich 
+    @Override 
+    void ueberweisen(int betrag, BankKonto zielkonto) { 
+       <span class="cfett"> assert(false);</span> 
+    }</pre></div>
+<p><strong><em>assert(false) in Methoden</em></strong></p>
+<p>Die Vorbedingung für den Aufruf der Operation wird radikal eingeschränkt, es ist nun nämlich überhaupt nicht mehr zulässig, die Operation auf einem Exemplar von <span class="clisting">SparKonto</span> aufzurufen. In der OCL-Darstellung von Abbildung 7.51 wird das dadurch deutlich, dass die Bedingung nun <span class="clisting">pre: false</span> lautet.</p>
+<p>Das ist ein ganz klarer Indikator dafür, dass das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> für diesen Fall nicht gilt. Die vorgestellte Modellierung verletzt damit das <span class="ckursiv">Prinzip der Ersetzbarkeit.</span></p>
+<p>Aber die beschriebene Modellierung ist nicht nur unter diesem Aspekt fehlerhaft. Auch die Anpassung eines Kreditlimits macht für ein Sparkonto keinen Sinn. Wenn Sie schon einmal versucht haben, Ihr Sparbuch zu überziehen, werden Sie das bemerkt haben. Die Klasse <span class="clisting">SparKonto</span> muss mit diesem Konflikt umgehen. In Abbildung 7.52 sind die Vor- und Nachbedingungen für die beiden beteiligten Klassen bezüglich der Operation <span class="clisting">modifiziereKreditLimit</span> dargestellt.</p>
+<p>Die Klasse <span class="clisting">BankKonto</span> verlangt als Vorbedingung, dass das neue Kreditlimit nicht negativ sein darf. Als Nachbedingung verspricht sie, dass das Limit entsprechend dem Betrag angepasst wird.</p>
+<div class="bildbox">
+<p><a name="IDAZWSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_042.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_042.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.52    </strong>Radikale Lockerung der Nachbedingung</p>
+<div class="listing"><pre class="prettyprint">class BankKonto { 
+    ... 
+    void modifiziereKreditLimit(int betrag) { 
+       <span class="cfett"> assert((kreditlimit + betrag) &gt;= 0);</span> 
+       <span class="clisting"> int kreditlimit_pre = kreditlimit;</span> 
+        kreditlimit += betrag; 
+       <span class="cfett"> assert(kreditlimit == kreditlimit_pre + betrag);</span> 
+    } 
+    ...</pre></div>
+<p>Bei einem <span class="clisting">SparKonto</span> gibt es kein Kreditlimit. Eine Möglichkeit ist es also, die Operation in dieser Klasse so umzusetzen, dass sie einfach nichts tut.</p>
+<div class="listing"><pre class="prettyprint">    // Limiterhöhung hat bei Sparkonten keine Auswirkung 
+    @Override 
+    void modifiziereKreditLimit(int betrag) { 
+    }</pre></div>
+<p>Dadurch wird auf der einen Seite die Vorbedingung gelockert, was zulässig ist. Es gibt nun nämlich gar keine Einschränkung in den Vorbedingungen mehr. In Abbildung 7.52 ist das daran erkennbar, dass die Vorbedingung durch <span class="clisting">pre: true</span> beschrieben wird.</p>
+<p>Auf der anderen Seite hält die Methode aber die Versprechung der Nachbedingung nicht mehr ein, die für die Klasse <span class="clisting">BankKonto</span> ebenfalls aus der Abbildung als <span class="clisting">post: kreditlimit = kreditlimit@pre + betrag</span> zu entnehmen ist. Die neue Nachbedingung in der Umsetzung durch die Klasse <span class="clisting">SparKonto</span> lautet nämlich <span class="clisting">post: true</span>. Damit wird überhaupt keine Zusicherung mehr gemacht, die Nachbedingung ist radikal gelockert worden.</p>
+<p><strong><em>Methoden leer überschrieben</em></strong></p>
+<p>Hier sehen Sie einen weiteren Indikator für die Verletzung des <span class="ckursiv">Prinzips der Ersetzbarkeit</span>: Bereits implementierte Methoden werden in abgeleiteten Klassen leer überschrieben. Auch aus diesem Grund verletzt die vorgestellte Modellierung das <span class="ckursiv">Prinzip der Ersetzbarkeit</span>.</p>
+<h4 class="t4">Wer prüft Kontrakte: Aufrufer oder Aufgerufener?</h4>
+<p>Wir haben in den bisherigen Beispielen die Überprüfung der Kontrakte mit ihren Vor- und Nachbedingungen in die Verantwortung des Objekts gelegt, dessen Methode aufgerufen wird. Das ist die im Allgemeinen verwendete Variante. Auf den ersten Blick ist dies auch das bessere Vorgehen. Wenn Sie die Zusicherung vor jedem Aufruf überprüfen müssten, wären diese Prüfungen weit über den Code verstreut und damit nur mit großem Aufwand änderbar.</p>
+<p>Aber prüfen Sie mit diesem Vorgehen überhaupt die Einhaltung des Kontrakts? Kontrakte beziehen sich nicht auf Implementierungen, sondern auf Schnittstellen. Betrachten Sie zur Illustration ein Beispiel aus einer etwas anderen Domäne.</p>
+<p><strong><em>Öko-Tankstelle mit Salatöl</em></strong></p>
+<p>Nehmen Sie einfach einmal an, Sie sind Betreiber der Öko-Tankstelle in Abbildung 7.53 und vertreiben Salatöl als Treibstoff. Dieses Salatöl kann von speziell umgerüsteten Dieselfahrzeugen verwendet werden, die aber nach wie vor alternativ auch mit Diesel fahren können. Normale Dieselfahrzeuge dürfen damit aber nicht betankt werden, da sich der Motor sonst stinkend und rauchend selbst zerstören würde.</p>
+<div class="bildbox">
+<p><a name="IDASYSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_043.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_043.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.53    </strong>Eine Tankstelle für umgerüstete Dieselfahrzeuge</p>
+<p>In Abbildung 7.54 sehen Sie eine mögliche Modellierung solcher Fahrzeuge und einer zugehörigen Tankstelle.</p>
+<div class="bildbox">
+<p><a name="IDAXYSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_044.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_044.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.54    </strong>Herkömmliche Dieselautos und umgerüstete Dieselautos</p>
+<p>Sie setzen also die Methode <span class="clisting">tanken</span> für beide beteiligte Klassen um: Umgerüstete Dieselautos sind in unserem Modell eine Spezialisierung von normalen Dieselautos. Mit dem Rüstzeug aus den vorhergehenden Abschnitten statten Sie die Operation <span class="clisting">tanken</span> aber auch gleich mit den entsprechenden Vorbedingungen aus, um den Kontrakt der Operation explizit zu formulieren. In Abbildung 7.55 sind die Vorbedingungen für die Umsetzung in beiden Klassen aufgeführt. Für ein <span class="clisting">DieselAuto</span> gilt die Vorbedingung, dass der verwendete Kraftstoff vom Typ <span class="clisting">Diesel</span> sein muss. Für ein <span class="clisting">UmgerüstetesDieselAuto</span> kann es aber auch Salatöl sein.</p>
+<div class="bildbox">
+<p><a name="IDAGZSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_045.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_045.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.55    </strong>Vorbedingungen für Operation »tanken«</p>
+<p><strong><em>Prinzip der Ersetzbarkeit erfüllt</em></strong></p>
+<p>Zunächst können Sie daraus entnehmen, dass die Modellierung das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> erfüllt. Die Unterklasse lockert die Vorbedingung, indem sie Diesel als Kraftstoff immer noch zulässt, aber auch Salatöl akzeptiert.</p>
+<div class="listing"><pre class="prettyprint">class DieselAuto { 
+ 
+    void tanken(Kraftstoff kraftstoff) 
+    { 
+       <span class="cfett"> assert(kraftstoff.typ() == KraftstoffTyp.Diesel);</span> 
+        System.out.println("Dieselauto " + 
+          "wird betankt mit " + kraftstoff.toString()); 
+    } 
+} 
+ 
+class UmgerüstetesDieselAuto extends DieselAuto { 
+    void tanken(Kraftstoff kraftstoff) 
+    { 
+       <span class="cfett"> assert(kraftstoff.typ() == KraftstoffTyp.Diesel</span> 
+            <span class="cfett"> || kraftstoff.typ() == KraftstoffTyp.SalatOel);</span> 
+        System.out.println("Umgerüstetes Dieselauto " + 
+           "wird betankt mit " + kraftstoff.toString()); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.44    </strong>Überprüfung der Vorbedingungen für die Operation »tanken«</p>
+<p>In Listing 7.44 ist die Umsetzung der Prüfungen im Java-Source-Code aufgeführt.</p>
+<p>Die Tankstelle haben Sie in unserem Szenario von einem weniger ökologisch orientierten Vorbesitzer übernommen. Deshalb ist die Operation der Tankstelle, mit der die Autos betankt werden, generell für Dieselautos ausgelegt.</p>
+<div class="listing"><pre class="prettyprint">class Tankstelle { 
+    private Kraftstoff kraftstoff; 
+    void oeffnen() { 
+        this.kraftstoff = 
+            new Kraftstoff(KraftstoffTyp.SalatOel); 
+    } 
+   <span class="cfett"> void betanken(DieselAuto auto)</span> 
+    { 
+        auto.tanken(this.kraftstoff); 
+    } 
+}</pre></div>
+<p>Sie machen vor der Eröffnung Ihrer Tankstelle ein größere Zahl von Testläufen, die mit Salatöl betriebenen Autos Ihrer Freunde rollen alle an. Alles läuft prächtig.</p>
+<div class="listing"><pre class="prettyprint">Tankstelle tankstelle = new Tankstelle(); 
+tankstelle.oeffnen(); 
+UmgerüstetesDieselAuto pkw1 = new UmgerüstetesDieselAuto(); 
+UmgerüstetesDieselAuto pkw2 = new UmgerüstetesDieselAuto(); 
+tankstelle.betanken(pkw1); 
+tankstelle.betanken(pkw2);</pre></div>
+<p>Sie erhalten die unten stehende Ausgabe.</p>
+<div class="listing"><pre class="prettyprint">Umgerüstetes Dieselauto wird betankt mit SalatOel 
+Umgerüstetes Dieselauto wird betankt mit SalatOel</pre></div>
+<p><strong><em>Verletzung des Kontrakts</em></strong></p>
+<p>Sie stellen offensichtlich keine Verletzung unseres Kontrakts fest, da immer die Methode <span class="clisting">tanken</span> der spezialisierten Klasse <span class="clisting">UmgerüstetesDieselAuto</span> aufgerufen wird. Aber erinnern Sie sich: Die Vorbedingungen der Operation <span class="clisting">tanken</span> sehen für die Klasse <span class="clisting">DieselAuto</span> ganz anders aus als für die Klasse <span class="clisting">UmgerüstetesDieselAuto</span>. Die umgerüsteten Autos sind wesentlich toleranter. An der Aufrufstelle der Operation <span class="clisting">tanken</span> kann aber jedes beliebige Dieselauto vorbeikommen.</p>
+<p>Deshalb tickt hier eine Zeitbombe, denn faktisch liegt beim Aufruf der Operation <span class="clisting">tanken</span> eine mögliche Kontraktverletzung vor.</p>
+<p>Diese mögliche Verletzung des Kontrakts haben Sie aber nicht erkannt, weil Sie die Kontrolle über die Einhaltung der Vorbedingungen in den konkreten Methoden vornehmen. Dort ist die Verletzung nicht mehr erkennbar. Bisher ging alles gut, aber nur weil noch kein echtes Dieselfahrzeug Ihre Tankstelle angesteuert hat.</p>
+<p>Als nun ein paar Tage später ein fetter LKW an Ihre Zapfsäule rollt, ist dieser natürlich nicht auf Salatöl vorbereitet.</p>
+<div class="listing"><pre class="prettyprint">DieselAuto lkw = new DieselAuto(); 
+tankstelle.betanken(lkw);</pre></div>
+<p>Die Ausgabe sieht nun weniger freundlich aus.</p>
+<div class="listing"><pre class="prettyprint">Exception in thread "main" java.lang.AssertionError 
+at DieselAuto.tanken(TankstellenTest.java:33) 
+at Tankstelle.betanken(TankstellenTest.java:24) 
+at TankstellenTest.main(TankstellenTest.java:13)</pre></div>
+<p><strong><em>Testläufe finden Verletzung nicht.</em></strong></p>
+<p>Sie haben die Kontraktverletzung bei den ganzen Testläufen nicht bemerkt, und nun steht erst einmal der Betrieb Ihrer Tankstelle, während Sie einem aufgebrachten LKW-Fahrer erklären dürfen, warum er hier keinen Kraftstoff erhalten wird.</p>
+<p>Aber warum eigentlich haben Sie die Kontraktverletzung bei den Tests nicht bemerkt? Sie haben doch alle Regeln befolgt und die Prüfung der Kontrakte in den beiden Methoden verankert, welche die Operation <span class="clisting">tanken</span> jeweils umsetzen.</p>
+<p>Nun, das Problem liegt darin, dass die Prüfung des Kontrakts in den realisierenden Methoden vorgenommen wurde. Damit erfolgte die Prüfung eben nicht gegenüber der abstrakten Schnittstelle, sondern gegenüber der Implementierung. Nur wenn diese Implementierung durchlaufen wird, kann die Verletzung des Kontrakts auch festgestellt werden.</p>
+<p><strong><em>Prüfung von  
+Kontrakten</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Prüfung von Kontrakten beim Aufruf von Operationen 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Kontrakte bezüglich Vorbedingungen sollen mit den Informationen geprüft werden, die beim Aufruf der Operation zur Verfügung stehen. Damit findet eine Überprüfung gegenüber der Schnittstelle statt. Wird eine Vorbedingung erst bei der Umsetzung einer Operation überprüft, ist die Prüfung lückenhaft und hängt davon ab, welche Implementierung für das Ausführen der Operation verwendet wird. Durch eine Prüfung an der Aufrufstelle werden nicht nur faktische, sondern auch mögliche Kontraktverletzungen bezüglich der Vorbedingungen gefunden.</p>
+</td>
+</tr>
+</table><br><p>Sie werden gleich sehen, dass diese Forderung alleine mit den Mitteln der Objektorientierung nur schwer zu erfüllen ist und aspektorientierte Erweiterungen notwendig sind, um sie praktikabel umzusetzen.</p>
+<p>Zunächst wollen wir jedoch erläutern, warum diese Forderung sehr sinnvoll ist. Betrachten Sie dazu das Beispiel der Salatöl-Tankstelle in etwas angepasster Form. Die obige Forderung verlangt von uns, dass die Einhaltung des Kontrakts an der <span class="ckursiv">Aufrufstelle </span>der Operation <span class="clisting">tanken</span> überprüft werden soll.</p>
+<p>In Abbildung 7.56 ist der Ablauf beim Betanken in der Übersicht dargestellt. Dabei sind die beiden möglichen Stellen für die Prüfung des Kontrakts markiert.</p>
+<p>Wenn Sie die Variante der Überprüfung an der Aufrufstelle wählen, resultiert der folgende Source-Code.</p>
+<div class="listing"><pre class="prettyprint">    void betanken(DieselAuto auto) 
+    { 
+       <span class="cfett"> assert(this.kraftstoff.typ() ==</span> 
+                     <span class="cfett"> KraftstoffTyp.Diesel);</span> 
+        auto.tanken(this.kraftstoff); 
+    }</pre></div>
+<div class="bildbox">
+<p><a name="IDAV2SQ"></a><a onClick="OpenWin('bilder/07_56.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_56.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.56    </strong>Ablauf beim Betanken eines umgerüsteten Dieselautos</p>
+<p>Bei dieser Variante hätten die durchgeführten Testläufe ergeben, dass eine nicht vertragsgemäße Nutzung der Operation <span class="clisting">tanken</span> vorliegt. Denn nun würde auch das Betanken eines umgerüsteten Autos dazu führen, dass die Kontraktverletzung bereits hier erkannt wird. Da wir nämlich an dieser Stelle nur die allgemeinere Information zur Verfügung haben, dass wir ein <span class="clisting">DieselAuto</span> (und nicht unbedingt ein umgerüstetes) vorliegen haben, muss auch der Kontrakt, den wir mit der Klasse <span class="clisting">DieselAuto</span> haben, geprüft werden. Und der ist restriktiver in Bezug auf die Vorbedingungen als der Kontrakt mit der Klasse der umgerüsteten Autos. Mit einer Prüfung an der Aufrufstelle hätten Sie also schon beim ersten Testlauf festgestellt, dass Ihr Programm fehlerhaft ist und korrigiert werden muss.</p>
+<p><strong><em>Prüfung des  
+Kontrakts an  
+Aufrufstelle</em></strong></p>
+<p>Warum also nicht grundsätzlich die Prüfung des Kontrakts an die Stelle verlagern, an der eine Operation aufgerufen wird? Im obigen Beispiel haben wir doch gesehen, dass diese Variante erst wirklich korrekt auf die Einhaltung eines Kontrakts prüft.</p>
+<p>Leider hat diese Lösung in der Praxis einen Haken, und in den meisten Fällen werden Sie die Prüfung aus einem ganz pragmatischen Grund nicht an die Aufrufstelle verlagern können: Es gibt in der Regel wesentlich mehr Aufrufstellen für eine Operation, als es Implementierungen davon gibt. Sie müssten die Prüfungen also redundant über Code verteilen, den Sie möglicherweise selbst gar nicht kennen. Damit wird die Wartung dieser Prüfungen schnell zu einem Albtraum. Über einige der Aufrufstellen haben Sie möglicherweise gar keine Kontrolle, da sie sich in anderen Modulen befinden oder von anderen Teams oder Firmen entwickelt werden. Obwohl Sie dadurch die Prüfung der Kontrakte korrekt gestalten können, ist diese Lösung mit den herkömmlichen Mitteln der Objektorientierung nicht praktikabel umsetzbar.</p>
+<p>Eine elegante Lösung für diesen Konflikt bieten die Techniken der Aspektorientierung.</p>
+<p><strong><em>Aspekte als Lösung</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Aspektorientierte Erweiterungen zur Prüfung von Kontrakten
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Aspektorientierte Frameworks und Spracherweiterungen ermöglichen es, die Prüfung von Kontrakten beim Aufruf von Operationen vorzunehmen, ohne dass diese Prüfungen über den Code verteilt werden müssen.</p>
+<p>Mit den herkömmlichen Methoden der Objektorientierung ist eine solche Prüfung nicht möglich, ohne die Struktur des Codes in Bezug auf die Überprüfungen von Kontrakten sehr unübersichtlich zu machen.</p>
+</td>
+</tr>
+</table><br><p>In Abschnitt 9.3.4, »Design by Contract«, finden Sie ein Beispiel, wie die Prüfungen mit Mitteln der Aspektorientierung umgesetzt werden können.</p><a id="mja3c37a47a8407bc65b94f93f6a254ca2" name="mja3c37a47a8407bc65b94f93f6a254ca2"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">7.5.3 Prüfungen von Kontrakten bei Entwicklung und Betrieb  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><span class="ckursiv">Pacta sunt servanda</span> (Verträge müssen gehalten werden) ist ein Grundsatz des privaten und öffentlichen Rechts. Aber auch im juristischen Bereich muss immer eine Einschätzung getroffen werden, mit welchen Mitteln die Einhaltung von Kontrakten geprüft wird. Ähnliche Abwägungen müssen Sie auch bei Kontrakten zwischen verschiedenen Klassen oder Modulen treffen.</p>
+<p>Sie haben im vorigen Abschnitt mehrere Möglichkeiten gesehen, Kontrakte explizit beim Ablauf eines Programms zu überprüfen. Dabei stellt sich irgendwann die Frage, unter welchen Umständen diese Prüfung denn vorgenommen werden soll. Dient sie lediglich dazu, während der Entwicklungszeit eines Systems auf die Einhaltung von Kontrakten zu prüfen? Bei ausreichendem Test des Systems könnten Sie die Annahme machen, dass alle Kontraktverletzungen aufgefallen sind und Sie eine solche Überprüfung in einem produktiven System nicht mehr benötigen.</p>
+<p><strong><em>Nicht überprüfbare Bedingungen</em></strong></p>
+<p>Bestimmte Prüfungen können Sie gar nicht sinnvoll in einem produktiven System durchführen, obwohl sie zur Entwicklungszeit durchaus angebracht sind. Ein Beispiel dafür ist der Zugriff auf eine sortierte Liste. Die Suche nach einem Element dieser Liste verursacht Aufwand, der logarithmisch von der Anzahl der Listenelemente abhängt. Es gehört zur Spezifikation unserer Suchmethode, dass sie keinen höheren Aufwand erfordert. Eine sinnvolle Vorbedingung ist es zu fordern, dass die Liste wirklich sortiert ist, weil wir sonst falsche Ergebnisse liefern würden. Aber wir können diese Bedingung zur Laufzeit nicht überprüfen. Die Prüfung selbst hat einen Aufwand, der linear von der Anzahl der Listenelemente abhängt. Wenn Sie die Prüfung durchführen würden, wäre die Spezifikation der Operation von vornherein nicht mehr zu erfüllen. Die Beobachtung verändert in diesem Fall das Beobachtete.</p>
+<p>In anderen Fällen kann aber eine Prüfung von Kontrakten zur Laufzeit durchaus sinnvoll sein. Wenn die Konsequenzen der Kontraktverletzung bereits als schwerwiegend absehbar sind, macht auch eine Überprüfung zur Laufzeit Sinn. Im Fall unseres nicht salatöltauglichen LKW war es sicherlich sinnvoll, die Einhaltung des Kontrakts auch im produktiven System zu erzwingen. Dadurch, dass über die Zusicherung ein Betanken des LKW verhindert wurde, haben Sie sich ärgerliche Schadenersatzforderungen aufgrund eines explodierten Dieselmotors erspart.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_07_005.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="7.5 Kontrakte: Objekte als VertragspartnerKontrakt<$nopage>Vertrag <Pfeil>R<normal> Kontrakt"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_006.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

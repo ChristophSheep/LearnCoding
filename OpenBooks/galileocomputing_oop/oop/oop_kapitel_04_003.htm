@@ -1,0 +1,781 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 4.3 Beziehungen zwischen Objekten</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 4.3 Beziehungen zwischen Objekten">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 4.3 Beziehungen zwischen Objekten">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_04_002.htm">
+<link rel="next" href="oop_kapitel_04_004.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_04_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_04_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b" class="navnav">4 Die Struktur objektorientierter Software</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_001.htm#mj7b6b81a0c8972299dbdd92524d8707c3" class="navnav">4.1 Die Basis von allem: das Objekt</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj561db4b7b51ddab563d9357086a75f16" class="navnav">4.1.1 Eigenschaften von Objekten: Objekte als Datenkapseln</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mjd18cdb9194cd0684bdfa301683893159" class="navnav">4.1.2 Operationen und Methoden von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj41885f11bf43f1afc60b76e0afbe7b6c" class="navnav">4.1.3 Kontrakte: Ein Objekt trägt Verantwortung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj4bba9c78108c5ebe6a1e25d09da23b23" class="navnav">4.1.4 Die Identität von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj62d09a1cbb82ce7738613ddee041cc52" class="navnav">4.1.5 Objekte haben Beziehungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_002.htm#mj1267a0a54c9f28f7e90497952f29dd59" class="navnav">4.2 Klassen: Objekte haben Gemeinsamkeiten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mjff74dbd3ea0281a9773d7cd8126e9c8b" class="navnav">4.2.1 Klassen sind Modellierungsmittel</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj7012e3ccb719d6c513e60ff574e1c59b" class="navnav">4.2.2 Kontrakte: die Spezifikation einer Klasse</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj2695596f673a2fc50b338aa48ddfcc9c" class="navnav">4.2.3 Klassen sind Datentypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mjc85ceff1ceeab068dd628ab5076d0d70" class="navnav">4.2.4 Klassen sind Module</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj1cf8ce74da5d16b89eb3efa0ae9bf182" class="navnav">4.2.5 Sichtbarkeit von Daten und Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mja2d7825b1c1c07dd16d08858ed4e2186" class="navnav">4.2.6 Klassenbezogene Methoden und Attribute</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj8fefd5a44232563aae6ce704fc4d92c1" class="navnav">4.2.7 Singleton-Methoden: Methoden für einzelne Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mjf8802262d55361c06e93e627e44e539e" class="navh">4.3 Beziehungen zwischen Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj0ff05dc78b1417fb2771d4f29cbc6c1a" class="navh">4.3.1 Rollen und Richtung einer Assoziation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj36d410616a672dcba508d9ae14c749a3" class="navh">4.3.2 Navigierbarkeit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj4e980b9907659670b9dec829430e1e5f" class="navh">4.3.3 Multiplizität </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj160479d0824fb412e545da4b151a77fa" class="navh">4.3.4 Qualifikatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjeb1a3ff160181940bb222e7f0e97402c" class="navh">4.3.5 Beziehungsklassen, Attribute einer Beziehung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj8fc9eae8c02cefd02bf024b5dda0bbe1" class="navh">4.3.6 Implementierung von Beziehungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj8118cb8c892c6648834fb351f4be17aa" class="navh">4.3.7 Komposition und Aggregation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjc62b233e44c20911b6cee2de3c15a801" class="navh">4.3.8 Attribute</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj344620f0b2ee4df48d645d45e973920c" class="navh">4.3.9 Beziehungen zwischen Objekten in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_004.htm#mj0e24bd346a5e2c3a8c2f91eec5a74cd5" class="navnav">4.4 Klassen von Werten und Klassen von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mjea3fc9fb362ce0dd9c3af96496b7796d" class="navnav">4.4.1 Werte in den objektorientierten Programmiersprachen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mj925becc3655976ef8cb6eee567f97833" class="navnav">4.4.2 Entwurfsmuster »Fliegengewicht«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mjfca6187c7c9d3b4fdc70dec4c511e84c" class="navnav">4.4.3 Aufzählungen (Enumerations)</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mjd80f28e5e2134c13382e2859c64f48ee" class="navnav">4.4.4 Identität von Objekten</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mjf8802262d55361c06e93e627e44e539e" name="mjf8802262d55361c06e93e627e44e539e"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">4.3 Beziehungen zwischen Objekten  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>In <a href="#Rxx_ref222300501">Abbildung 4.10</a> haben wir bereits eine ganze Reihe von Beziehungen zwischen handelnden Personen der griechischen Mythologie dargestellt. Dabei haben Sie gesehen, dass Objekte in den unterschiedlichsten Beziehungen zueinander stehen können.</p>
+<p>Wenn man in der objektorientierten Welt von Beziehungen spricht, unterscheidet man grundsätzlich drei Arten von Beziehungen:</p>
+<p><strong><em>Beziehungen zwischen Klassen und Objekten</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Beziehungen zwischen Klassen und Objekten</span> 
+Eine solche Beziehung, die Klassifizierung, haben wir in Abschnitt <a href="#Rxx_ref222303055">4.2.1</a> kennengelernt. Die Klassifizierung beschreibt eine Beziehung zwischen einer Klasse und ihren Exemplaren. Das Objekt <span class="clisting">Plato</span> steht zum Beispiel in so einer Beziehung mit der Klasse <span class="clisting">Mann</span>, denn Plato ist ein Mann (oder auch ein Exemplar der Klasse <span class="clisting">Mann</span>). In <a href="#Rxx_ref222300757">Abbildung 4.21</a> sehen Sie diese Beziehung an Markierung .</li>
+</ul>
+<p><strong><em>Beziehungen zwischen Klassen</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Beziehungen zwischen Klassen untereinander</span> 
+Weil Plato ein Mann ist, und ein Mann eine Person, ist Plato sterblich, denn jede Person ist sterblich. Es besteht also eine Beziehung zwischen der Klasse der sterblichen Objekte und der Klasse <span class="clisting">Person</span> &#8211; die Klasse <span class="clisting">Person</span> ist eine <span class="ckursiv">Unterklasse</span> der Klasse <span class="clisting">Sterblich</span>. Und da <span class="ckursiv">jeder</span> Mann eine Person ist, ist die Klasse <span class="clisting">Person</span> eine <span class="ckursiv">Oberklasse</span> der Klasse <span class="clisting">Mann</span>. In Abbildung 4.21 wird dieser Zusammenhang an Markierung  dargestellt.</li>
+</ul>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li>Den Beziehungen zwischen den Ober- und Unterklassen werden wir uns in Abschnitt 5.1.1, »Hierarchien von Klassen und Unterklassen«, widmen.</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Beziehungen zwischen Objekten</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Beziehungen zwischen Objekten untereinander</span> 
+Aristoteles hatte einen Lehrer, Plato, und einen bekannten Schüler, Alexander den Großen. Dies sind Beispiele einer Beziehung zwischen konkreten Objekten, denen wir uns jetzt widmen werden. In <a href="#Rxx_ref222300757">Abbildung 4.21</a> sehen Sie diese Beziehungen an den Markierungen  und .</li>
+</ul>
+<div class="bildbox">
+<p><a name="IDAXHSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_017.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_017.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.21    </strong>UML-Darstellung der Beziehungen von Aristoteles</p>
+<p><strong><em>Assoziation, Aggregation und Komposition</em></strong></p>
+<p>Beziehungen zwischen verschiedenen Objekten werden ganz allgemein auch <span class="ckursiv">Assoziation</span> genannt. [Obwohl in UML eine Assoziation als eine Linie zwischen den Klassenkästchen dargestellt wird, ist eine Assoziation eine Beziehung zwischen Objekten &#8211; den Exemplaren dieser Klassen. Ein Beispiel einer Beziehung zwischen Klassen wäre die Generalisierung, der wir uns in Abschnitt 5.1.1, »Hierarchien von Klassen und Unterklassen«, widmen werden.
+]  Außerdem gibt es spezielle Formen von Assoziationen.</p>
+<p>Beziehungen  zwischen einem Objekt und seinen Teilen werden <span class="ckursiv">Aggregation</span><span class="cfett"></span> beziehungsweise <span class="ckursiv">Komposition</span><span class="cfett"></span> genannt. Die Unterscheidung zwischen Aggregation und Komposition ist recht subtil und hängt häufig nur von der Betrachtungsweise des Entwicklers ab. Wir werden uns der Aggregation und der Komposition in Abschnitt <a href="#Rxx_ref222304239">4.3.8</a> näher widmen.</p>
+<p><strong><em>Assoziationen zwischen  
+Objekten</em></strong></p>
+<p>Schauen wir uns im Folgenden an, was wir über die Assoziationen zwischen Objekten sagen können.</p>
+<p>Eine Assoziation hat immer eine semantische Bedeutung. Zwei oder mehrere Objekte können zueinander in verschiedenen Beziehungen stehen. So wie im Leben zwei Menschen in der Beziehung Elternteil &#8211; Kind und unabhängig davon in der Beziehung Lieferant &#8211; Kunde zueinander stehen können. [Wir werden uns in diesem Buch nicht allen Details der Fähigkeiten der UML widmen, eine tiefer gehende Beschreibung können Sie in [Kecher 2006] finden.
+] </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Assoziationen in UML
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In UML-Klassendiagrammen werden mögliche Assoziationen zwischen Exemplaren von zwei Klassen als eine Linie zwischen den Klassenkästchen dargestellt. Besteht die Beziehung zwischen Exemplaren genau einer Klasse, wird sie durch eine Linie dargestellt, die in dem Kästchen der Klasse sowohl beginnt als auch endet.</p>
+<p>Wenn man in einem UML-Diagramm einzelne Objekte darstellt, kann man eine existierende Beziehung zwischen diesen Objekten als eine Linie zwischen den Objektkästchen darstellen. Eine solche Darstellung einer existierenden Beziehung zwischen zwei einzelnen Objekten nennt man einen <span class="ckursiv">Link.</span></p>
+<p>Die Bedeutung der Beziehung wird meistens durch den Namen der Beziehung ausgedrückt. In UML wird der Name der Beziehung als Text in der Nähe der Linie dargestellt.</p>
+</td>
+</tr>
+</table><br><a id="mj0ff05dc78b1417fb2771d4f29cbc6c1a" name="mj0ff05dc78b1417fb2771d4f29cbc6c1a"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">4.3.1 Rollen und Richtung einer Assoziation  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Die Beziehungen zwischen Objekten sind meistens nicht symmetrisch, das heißt, dass jedes Objekt eine unterschiedliche <span class="ckursiv">Rolle</span> in der Beziehung einnimmt. Wir können sagen, dass Zeus auf dem Olymp wohnt, nicht aber der Olymp auf dem Zeus. Die Bezeichnung einer Beziehung hat also eine <span class="ckursiv">Richtung</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Rollen in UML
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In UML-Klassendiagrammen<sup>15  </sup> werden die Rollen der Objekte als Text in der Nähe der jeweiligen Klasse angegeben. Die Leserichtung der Bezeichnung der Beziehung wird durch ein kleines Dreieck angegeben.</p>
+</td>
+</tr>
+</table><br><div class="bildbox">
+<p><a name="IDAPUSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_018.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_018.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.22    </strong>Rolle und Richtung einer Assoziation</p><a id="mj36d410616a672dcba508d9ae14c749a3" name="mj36d410616a672dcba508d9ae14c749a3"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">4.3.2 Navigierbarkeit  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Eine weitere wichtige Eigenschaft einer Beziehung ist ihre <span class="ckursiv">Navigierbarkeit</span>. Nehmen wir an, es besteht eine Assoziation <span class="clisting">schickt Werbung</span> zwischen den Exemplaren der Klasse <span class="clisting">Firma</span> und der Klasse <span class="clisting">Person</span>. Die Firma kann alle Personen auflisten, denen sie Werbung zuschickt. Eine Person hat aber keine Liste der Firmen, die sie mit Werbung belästigen. Wir sagen, dass die Assoziation <span class="clisting">schickt Werbung</span> in der Richtung <span class="clisting">Firma-Person</span> navigierbar ist, nicht jedoch in der Richtung <span class="clisting">Person-Firma</span>. Die Navigierbarkeit wird meistens in den Designmodellen angegeben, in den Analysemodellen spielt die Navigierbarkeit selten eine Rolle.</p>
+<div class="bildbox">
+<p><a name="IDASVSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_019.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_019.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.23    </strong>Navigierbarkeit einer Assoziation</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Navigierbarkeit in UML
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In UML wird eine Beziehung, die nur in einer Richtung navigierbar ist, durch einen Pfeil an dem Ende, zu dem wir navigieren können, angezeigt. Ist eine Beziehung in beide Richtungen navigierbar, wird dies meistens durch die Abwesenheit der Pfeile dargestellt, es ist aber auch möglich, einen Doppelpfeil zu verwenden.</p>
+</td>
+</tr>
+</table><br><a id="mj4e980b9907659670b9dec829430e1e5f" name="mj4e980b9907659670b9dec829430e1e5f"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">4.3.3 Multiplizität   <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Die <span class="ckursiv">Multiplizität</span> einer Beziehung sagt aus, wie viele Objekte des jeweiligen Typs in dieser Beziehung stehen können. </p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Dateien im Dateisystem</em></strong></p>
+<p>Nehmen Sie zum Beispiel ein Modell für ein einfaches Dateisystem, in dem jede Datei immer in genau einem Verzeichnis liegt. Ein Verzeichnis kann aber leer sein, oder es kann eine oder mehrere Dateien enthalten. Der Bereich für die mögliche beziehungsweise nötige Anzahl der Objekte in einer solchen Beziehung wird als die Multiplizität dieser Beziehung bezeichnet. </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Multiplizität
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Die <span class="ckursiv">Multiplizität einer Beziehung</span> zwischen Klassen legt die mögliche Anzahl der an der Beziehung beteiligten Exemplare fest. </p>
+<p>Dabei sprechen wir von der <span class="ckursiv">Multiplizität einer Rolle</span> in der Beziehung, wenn wir nur eine der beteiligten Klassen sowie deren Rolle in der Beziehung betrachten.</p>
+<p>In UML wird die Multiplizität einer Klasse in einer Beziehung als eine Auflistung der möglichen Anzahl von Exemplaren angegeben. Diese Angabe wird einfach in der Nähe des einen Endes der Beziehung bei der betroffenen Klasse dargestellt. Intervalle werden als »min .. max« angegeben. Ein Stern bedeutet dabei »beliebig viele«. Das Intervall »0..*« kann also auch als »*« angegeben werden.</p>
+<p>Neben den Multiplizitäten in einer Beziehung gibt es auch noch die reine <span class="ckursiv">Multiplizität einer Klasse</span><span class="cfett">. </span>Diese legt fest, wie viele Exemplare dieser Klasse überhaupt existieren können oder müssen. So ist die Multiplizität einer Singleton-Klasse<a href="#Rxx64195">16</a> in der Regel 0 ... 1, das heißt es kann maximal ein Exemplar davon existieren.</p>
+</td>
+</tr>
+</table><br><p>In <a href="#Rxx_ref222300802">Abbildung 4.24</a> wird das Konzept der Multiplizität und deren Darstellung in UML verdeutlicht. </p>
+<p>An Markierung  ist eine Assoziation <span class="clisting">liegt in</span> zwischen Exemplaren der Klasse <span class="clisting">Stadt</span> und der Klasse <span class="clisting">Land</span> dargestellt. Die Assoziation wird durch eine Linie repräsentiert, die an der Klasse <span class="clisting">Stadt</span> anfängt und an der Klasse <span class="clisting">Land</span> endet. Eine Stadt liegt nach unserem Modell in genau einem Land. In einem Land muss es mindestens eine Stadt geben, nach oben ist die Zahl der Städte aber unbegrenzt. Damit ist die <span class="ckursiv">Multiplizität der Rolle </span><span class="clisting">Stadt</span> in der beschriebenen Beziehung <span class="clisting">1..*</span>, die <span class="ckursiv">Multiplizität der Rolle</span> <span class="clisting">Land</span> ist genau <span class="clisting">1</span>. Die <span class="ckursiv">Multiplizität der gesamten Beziehung</span> <span class="clisting">liegt in </span>ist damit <span class="clisting">1..* zu 1</span>.</p>
+<div class="bildbox">
+<p><a name="IDA0ZSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_020.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_020.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.24    </strong>Mehrwertige Beziehungen in UML</p>
+<p>Ein weiteres Beispiel ist die Beziehung <span class="clisting">Elternteil-Kind</span>, die an Markierung  von <a href="#Rxx_ref222300802">Abbildung 4.24</a> dargestellt ist. Diese Beziehung besteht zwischen Exemplaren der Klasse <span class="clisting">Person</span>. Solche Beziehungen zwischen Exemplaren derselben Klasse werden <span class="ckursiv">reflexiv</span> genannt. Die Multiplizität der Rolle <span class="clisting">Kind</span> ist <span class="clisting">*</span> (also beliebig viele), denn es gibt Menschen, die keine Kinder haben, und Menschen, die ein oder mehrere Kinder haben. Wie sieht es aber mit der Multiplizität der Rolle <span class="clisting">Elternteil</span> aus? Wenn wir zum Beispiel eine genealogische Anwendung schreiben, würde man spontan sagen, dass sie <span class="clisting">2</span> ist, denn jeder Mensch hat genau eine biologische Mutter und genau einen biologischen Vater. In der Abbildung sehen Sie aber, dass die Multiplizität der Rolle <span class="clisting">Elternteil</span> als <span class="clisting">0..2</span> modelliert ist.</p>
+<p>Dies liegt daran, dass Sie in der praktischen Verwendung der Beziehung in ein logisches Problem laufen, wenn Sie für jede Person fordern, dass auch die zugehörigen Eltern bekannt sein sollen. Da für jeden eingefügten Elternteil (auch wieder eine Person) gefordert würde, dass auch für diesen bereits die Eltern bekannt sind, kommen Sie beim Versuch, einen konsistenten Datenbestand zu erstellen, in eine nicht terminierende Rekursion. Deshalb wird die Beziehung so modelliert, dass zu einer Person die Eltern auch einfach unbekannt sein können, also die Rolle <span class="clisting">Elternteil</span> die Multiplizität <span class="clisting">0..2</span> erhält.</p>
+<p><strong><em>Mögliche  
+Multiplizitäten</em></strong></p>
+<p>Im Beispiel haben Sie bereits einige der möglichen Multiplizitäten gesehen. Am häufigsten werden Sie in Modellen auf Beziehungen mit folgenden Multiplizitäten treffen:</p>
+<p>Ein Objekt steht in einer Beziehung mit</p>
+<ul class="gp">
+<li>genau einem anderen Objekt.</li>
+</ul>
+<ul class="gp">
+<li>keinem oder einem anderen Objekt.</li>
+</ul>
+<ul class="gp">
+<li>mindestens einem anderen Objekt.</li>
+</ul>
+<ul class="gp">
+<li>beliebig vielen anderen Objekten.</li>
+</ul>
+<p>Es kann aber durchaus Beziehungen mit anderen Multiplizitäten geben. Zum Beispiel in der Beziehung <span class="clisting">Tennismatch-Spieler</span>, die ebenfalls in <a href="#Rxx_ref222300802">Abbildung 4.24</a> dargestellt ist, ist die Multiplizität der Spieler <span class="clisting">zwei</span> oder <span class="clisting">vier</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Kardinalität und Multiplizität
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In UML wird klar zwischen der Multiplizität und der Kardinalität einer Beziehung unterschieden: Die Multiplizität legt die möglichen Kardinalitäten einer Beziehung fest, meist indem die minimale und maximale Kardinalität angegeben wird.</p>
+<p>Die tatsächliche Kardinalität einer Beziehung kann nur für konkret bekannte Objekte angegeben werden. So gibt es in Deutschland zum Beispiel genau 2076 Städte. Die <span class="ckursiv">Kardinalität</span> der Rolle Stadt in dieser Beziehung wäre also 2076. Die zugehörige <span class="ckursiv">Multiplizität </span>der Rolle ist aber 1..*. Diese beschreibt einfach die möglichen Kardinalitäten, von denen die 2076 eben auch eine ist.</p>
+<p>Die begriffliche Trennung zwischen Multiplizität und Kardinalität ist nicht immer so klar, wie sie innerhalb der UML definiert wird. Insbesondere bei den im Bereich der relationalen Datenbanken verwendeten Modellen (z. B. Entity-Relationship-Diagramme) wird der Begriff der Kardinalität häufig analog zur Multiplizität in UML verwendet<a href="#Rxx56602">17</a>. </p>
+</td>
+</tr>
+</table><br><p><strong><em>Mehrwertige Beziehungen</em></strong></p>
+<p>Wenn die obere Schranke der Multiplizität einer Beziehung größer als 1 ist (z. B. *), die Beziehung also <span class="ckursiv">mehrwertig</span> ist, können wir uns Gedanken über die Struktur der Objekte am mehrwertigen Ende der Beziehung machen. Wenn die Objekte in dieser Beziehung eine definierte Reihenfolge haben, sagt man, dass die Beziehung <span class="ckursiv">geordnet</span> ist.</p>
+<p>Eine weitere Frage, die wir uns stellen können, ist die Frage, ob ein Objekt in der Beziehung mehrfach aufgelistet sein kann. Ein Team kann aus mehreren Spielern bestehen, ein konkreter Spieler kann aber nicht mehrfach in einem Team auftauchen. Eine Reiseroute kann durch mehrere Städte führen, dabei kann eine Stadt in einer Route mehrfach durchlaufen werden.</p>
+<p><strong><em>Mehrwertige Beziehungen  
+als Menge</em></strong></p>
+<p>Wenn nichts Abweichendes angegeben ist, verstehen wir eine mehrwertige Beziehung üblicherweise als eine <span class="ckursiv">Menge</span> (englisch <span class="ckursiv">Set</span>) ohne definierte Ordnung, in der ein Objekt nur einmal auftreten kann. Ist die Reihenfolge definiert, gilt für die Beziehung die Einschränkung <span class="clisting">{ordered}</span> oder <span class="clisting">{ordered set}</span>, je nachdem, ob ein Objekt mehrfach auftreten kann. Es gibt auch den Fall, in dem ein Objekt zwar mehrfach auftreten kann, die Ordnung aber trotzdem keine Rolle spielt. Diese Art der Beziehung wird im Englischen als <span class="ckursiv">Bag</span>, im Deutschen als <span class="ckursiv">Korb</span> bezeichnet. Ein Beispiel einer solchen Beziehung wäre die Liste der Abonnenten einer Zeitschrift, wenn der Verlag kein Aussortieren von Dubletten vorgenommen hat. Ein Kunde kann eine Zeitschrift mehrfach abonniert haben, die Reihenfolge, in der die Zeitschrift versendet wird, spielt aber keine Rolle.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Einschränkungen von Beziehungen in UML
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In UML können auch andere Informationen bei einer Beziehung angegeben werden. Die Einschränkungen werden in geschweiften Klammern angegeben. Neben den Einschränkungen <span class="clisting">{ordered}</span> oder <span class="clisting">{bag}</span> kann man zum Beispiel angeben, ob eine Beziehung azyklisch ist oder eine Hierarchie abbildet.</p>
+</td>
+</tr>
+</table><br><div class="bildbox">
+<p><a name="IDAU4SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_021.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_021.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.25    </strong>Zusatzinformationen zu Beziehungen in UML</p><a id="mj160479d0824fb412e545da4b151a77fa" name="mj160479d0824fb412e545da4b151a77fa"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">4.3.4 Qualifikatoren  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Manchmal kann man über die Multiplizität einer Beziehung eine genauere Aussage treffen. Zum Beispiel kann ein Mensch im Laufe seines Lebens mehrere Ehepartner haben. Doch zu einem Zeitpunkt, zumindest in unserem Kulturkreis, kann ein Mensch höchstens einen Ehepartner haben. Ein anderes Beispiel ist die Beziehung zwischen einer Firma und ihren Kunden. Eine Firma kann viele Kunden haben, aber durch eine Kundennummer kann sie einen ihrer Kunden eindeutig identifizieren. Pro Kundennummer hat eine Firma also genau einen Kunden.</p>
+<p>Diese Informationen über die Multiplizität einer mehrwertigen Beziehung können wir durch die Angabe der Qualifikatoren ausdrücken. Mithilfe eines Qualifikators kann man aus vielen Objekten an einem mehrwertigen Ende einer Beziehung bestimmte Objekte auswählen.</p>
+<div class="bildbox">
+<p><a name="IDAD5SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_022.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_022.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.26    </strong>Qualifikatoren der Beziehungen in UML</p>
+<p>In der Beziehung <span class="clisting">Ehe</span> ist zum Beispiel ein <span class="clisting">Zeitpunkt</span> ein Qualifikator, der es uns ermöglicht, einen konkreten Ehepartner eines mehrmals verheirateten Menschen genau zu bestimmen. Die Kundennummer ist wiederum ein solcher Qualifikator in der Beziehung zwischen einer Firma und seinen Kunden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Qualifikatoren in UML
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In UML-Diagrammen werden die Qualifikatoren als Kästchen an dem Ende der Beziehung dargestellt, von dem wir mit Hilfe des Qualifikators navigieren. Die Namen der Qualifikatoren können entweder im Kästchen oder in seiner Nähe angegeben werden. Am anderen Ende der Beziehung gibt man dann die Multiplizität der qualifizierten Beziehung an.</p>
+</td>
+</tr>
+</table><br><a id="mjeb1a3ff160181940bb222e7f0e97402c" name="mjeb1a3ff160181940bb222e7f0e97402c"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">4.3.5 Beziehungsklassen, Attribute einer Beziehung  <a href="#t2t37"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Schauen wir uns jetzt die Beziehung <span class="clisting">Job</span> zwischen den Klassen <span class="clisting">Person</span> und <span class="clisting">Firma</span> an.</p>
+<div class="bildbox">
+<p><a name="IDAEBTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_023.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_023.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.27    </strong>Beziehungsklasse in UML</p>
+<p>Es gibt Personen ohne Job, eine Person kann aber auch mehrere Jobs haben. Eine Firma hat (zumindest in unserem Modell) immer mindestens einen Beschäftigten, sei es der Unternehmer selbst. Die Multiplizität der Rolle <span class="clisting">Arbeitgeber</span> ist also 0..*, die der Rolle <span class="clisting">Arbeitnehmer</span> 1..*.</p>
+<p>Obwohl die Reihenfolge der Mitarbeiter keine Rolle spielt und wir deswegen die Beziehung in Richtung <span class="clisting">Firma</span>-<span class="clisting">Person</span> als eine Menge (<span class="ckursiv">Set</span>) modelliert haben, ist es doch wichtig zu wissen, welche Funktion ein Mitarbeiter in einer Firma hat. Und wichtig ist auch, zumindest für die meisten von uns, die in einer solchen Beziehung stehen, wie hoch das Gehalt [Wir meinen hier sowohl die Löhne als auch die Gehälter.
+]  eines Menschen in einer Firma ist.</p>
+<p>Welcher Klasse können wir diese Informationen zuordnen? Offensichtlich können wir die Attribute <span class="clisting">Funktion</span> und <span class="clisting">Gehalt</span> nicht der Klasse <span class="clisting">Firma</span> zuordnen, denn dann müssten alle Mitarbeiter die gleiche Funktion haben und dasselbe Gehalt verdienen.</p>
+<p>Würden wir diese Attribute der Klasse <span class="clisting">Person</span> zuordnen, könnte zwar jeder Mitarbeiter eine eigene Funktion und sein eigenes Gehalt haben, allerdings müssten die Funktion und sein Gehalt bei jeder Firma gleich sein. Außerdem hätten diese Attribute bei einem Menschen ohne Job keine Bedeutung. [Würden wir ein Personalverwaltungssystem für einen Arbeitgeber entwickeln, könnten wir durchaus die Attribute <span class="clisting">Funktion</span> und <span class="clisting">Gehalt</span> der Klasse <span class="clisting">Mitarbeiter</span> zuordnen. Ein Mensch kann zwar mehrere Jobs haben, für unser System wäre dies aber nicht relevant. Die Jobs, die ein Mitarbeiter bei anderen Firmen hat, würden wir nicht verwalten.
+] </p>
+<p><strong><em>Assoziationsklasse</em></strong></p>
+<p>Die Lösung unserer Aufgabe ist, die Attribute weder der Klasse <span class="clisting">Firma</span> noch der Klasse <span class="clisting">Person</span> zuzuordnen, sondern der Beziehung <span class="clisting">Job</span> selbst. In diesem Falle spricht man von einer <span class="ckursiv">Assoziationsklasse</span> oder auch einer <span class="ckursiv">Beziehungsklasse</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Assoziationsklassen in UML
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In UML wird eine Assoziationsklasse als eine Klasse dargestellt, die mit einer gestrichelten Linie mit der Linie der Beziehung verbunden wird.</p>
+<p>Eine Assoziationsklasse können wir immer auch als eine normale Klasse modellieren. Es ist eine Frage der Verständlichkeit der Modelle, für welche Alternative man sich entscheidet. Eine mögliche Alternative ist in <a href="#Rxx_ref222300864">Abbildung 4.28</a> dargestellt.</p>
+</td>
+</tr>
+</table><br><div class="bildbox">
+<p><a name="IDAHETQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_024.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_024.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.28    </strong>Alternative Darstellung einer Beziehungsklasse</p><a id="mj8fc9eae8c02cefd02bf024b5dda0bbe1" name="mj8fc9eae8c02cefd02bf024b5dda0bbe1"></a><a name="t36"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t37"></a><h3 class="t3">4.3.6 Implementierung von Beziehungen  <a href="#t2t38"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t36"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Beziehungen unterscheiden sich unter anderem durch ihre Multiplizität, ihre Navigierbarkeit; die mehrwertigen können geordnet oder ungeordnet sein; ein Objekt kann einmal oder mehrfach auftreten. Es gibt also sehr viele Varianten von Beziehungen. Aus diesem Grunde findet man in den gängigen Programmiersprachen keine speziellen Konstrukte für die Umsetzung der Beziehungen.</p>
+<p><strong><em>Umsetzung von Beziehungen</em></strong></p>
+<p>Stattdessen verwendet man bei <span class="ckursiv">einwertigen Beziehungen </span>in dem Objekt, von dem die Beziehung navigierbar ist, meistens Zeiger oder Referenzen, die zu dem anderen Objekt zeigen.</p>
+<p>Eine <span class="ckursiv">beidseitig navigierbare Beziehung</span> wird am häufigsten implementiert durch zwei Zeiger oder Referenzen, die programmtechnisch synchron gehalten werden müssen.</p>
+<p>Die <span class="ckursiv">mehrwertigen Beziehungen</span> werden auf verschiedene Arten umgesetzt. Verwendet werden Arrays, Listen, Mengen oder andere Containerkonstrukte, die in der jeweiligen Programmiersprache vorhanden sind oder die man selbst implementiert.</p>
+<p><span class="ckursiv">Beziehungsklassen</span> werden als gewöhnliche Klassen implementiert.</p>
+<p><a href="#Rxx_ref222301957">Listing 4.12</a> stellt die Umsetzung von verschiedenen Beziehungen in Java dar. Wir zeigen dabei eine mögliche Umsetzung einer beidseitig navigierbaren Mengenbeziehung <span class="clisting">Person&#8211;Adresse</span>. Eine Person kann mehrere Adressen haben, und unter einer Adresse kann man mehrere Personen finden.</p>
+<div class="listing"><pre class="prettyprint">class Person { 
+  private Set&lt;Address&gt; addresses = new HashSet&lt;Address&gt;(); 
+  // Hier verwalten wir eine Richtung der Beziehung 
+  // Person-Address: 
+  public void addAddress(Address address) { 
+    if (addresses.contains(address)) return; 
+    adresses.add(address); 
+    address.addPerson(this); // die andere Richtung pflegen 
+  } 
+  ... 
+} 
+ 
+class Address { 
+private Set&lt;Person&gt; people = new HashSet&lt;Person&gt;(); 
+  // Hier verwalten wir eine Richtung der Beziehung 
+  // Person-Address: 
+  public void addPerson(Person person) { 
+    if (people.contains(person)) return; 
+    people.add(person); 
+    person.addAddress(this); // die andere Richtung pflegen 
+  } 
+  ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 4.12    </strong>Abbildung von Beziehungen auf Klassen</p><a id="mj8118cb8c892c6648834fb351f4be17aa" name="mj8118cb8c892c6648834fb351f4be17aa"></a><a name="t37"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t38"></a><h3 class="t3">4.3.7 Komposition und Aggregation  <a href="#t2t39"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t37"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Bisher haben wir uns die Beziehungen zwischen verschiedenen Objekten angeschaut. Doch ein Objekt selbst kann eine komplexe Struktur besitzen, und wir können die Beziehungen zwischen dem Objekt und seinen Teilen modellieren. Dabei unterscheiden wir zwischen <span class="ckursiv">Komposition</span> und <span class="ckursiv">Aggregation</span>.</p>
+<p>Sowohl die Komposition als auch die Aggregation sind Teil-von- bzw. Besteht-aus-Beziehungen. Wir können zum Beispiel modellieren, dass eine Bestellung aus den Bestellungsposten oder dass eine Fußballmannschaft aus ihren Spielern besteht.</p>
+<p><strong><em>Unterschied Aggregation &#8211;Komposition</em></strong></p>
+<p>Eine Aggregation unterscheidet sich von einer Komposition</p>
+<ul class="gp">
+<li>in der Anzahl der zusammengesetzten Objekte, deren Teil ein Objekt sein kann, und</li>
+</ul>
+<ul class="gp">
+<li>in der Lebensdauer der zusammengesetzten Objekte und deren Teile.</li>
+</ul><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Aggregation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Von einer Aggregation sprechen wir, wenn ein Objekt ein Teil von mehreren zusammengesetzten Objekten sein kann. Die zusammengesetzten Objekte nennen wir in diesem Fall <span class="ckursiv">Aggregate.</span> Die Lebensdauer der Teile kann dabei länger sein als die Lebensdauer der Aggregate.</p>
+</td>
+</tr>
+</table><br><p>Ein Beispiel für eine Aggregation ist die Beziehung zwischen einer Mannschaft und ihren Spielern. Ein Mensch kann in mehreren Mannschaften spielen, und wird eine Mannschaft aufgelöst, bedeutet es in den allermeisten Fällen nicht das Ende für ihre Ex-Spieler.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Komposition
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bei einer Komposition kann ein Teil immer nur in genau einem zusammengesetzten Objekt enthalten sein, und die Lebensdauer des zusammengesetzten Objekts entspricht immer der Lebensdauer seiner Komponenten. Das zusammengesetzte Objekt wird hier als <span class="ckursiv">Kompositum</span> bezeichnet.</p>
+</td>
+</tr>
+</table><br><p>Ein Beispiel für eine Komposition ist die Beziehung zwischen einer Bestellung und den einzelnen Posten der Bestellung. Ein Bestellungsposten gehört in genau eine Bestellung, und wird die Bestellung gelöscht, löscht man automatisch auch alle ihre Posten.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Komposition und Aggregation in UML
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bei der Modellierung kommt es häufig vor, dass eine Klasse die Rolle <span class="clisting">Teil</span> in mehreren Kompositionsbeziehungen spielt. Jedes Exemplar dieser Klasse kann aber immer nur in einer solchen Beziehung stehen. In den Modellen kann man diese Beziehungen mit der Bedingung <span class="clisting">{xor}</span> auszeichnen.</p>
+<p>Sind die Beziehungen nur in der Richtung <span class="clisting">Kompositum-Komponente</span> navigierbar, ist die explizite Angabe der Bedingung <span class="clisting">{xor}</span> meistens nicht notwendig. </p>
+<p>In den Klassendiagrammen in UML wird die Aggregation durch eine leere Raute am Ende des Aggregats dargestellt. Die Komposition wird durch eine ausgefüllte Raute am Ende des Kompositums dargestellt. </p>
+</td>
+</tr>
+</table><br><div class="bildbox">
+<p><a name="IDAYKTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_025.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_025.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.29    </strong>Aggregation und Komposition in UML</p>
+<p>Alternativ kann man die Komposition auch darstellen wie in <a href="#Rxx_ref222300880">Abbildung 4.30</a> gezeigt.</p>
+<div class="bildbox">
+<p><a name="IDABLTQ"></a><a onClick="OpenWin('bilder/04_30.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_30.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.30    </strong>Verschiedene alternative Darstellungen der Komposition</p>
+<h4 class="t4">Einsatz von Komposition und Aggregation</h4>
+<p>Die Entscheidung, ob wir eine Beziehung als eine Aggregation, eine Komposition oder als einfache Assoziation modellieren sollten, ist oft schwierig, weil es keine festen Regeln gibt, nach denen wir unterscheiden können, welche der Möglichkeiten die geeignete ist. Die semantische Bedeutung ist in UML nur vage definiert, man spricht von einem Modellierungsplacebo. Wie wir aber wissen, Placebos wirken. Versuchen wir also ein paar Richtlinien aufzustellen, die uns bei der Entscheidung helfen, welche Variante wir einsetzen sollen.</p>
+<p><strong><em>Hierarchie</em></strong></p>
+<p>Durch die Verwendung der Komposition lässt sich sehr gut ausdrücken, dass eine Beziehung zwischen den Objekten derselben Klasse hierarchisch ist. Gute Beispiele hierfür sind Organigramme oder Dateisysteme.</p>
+<p><strong><em>Lebensdauer  
+und Persistenz</em></strong></p>
+<p>Eine andere Information, die sich durch die Modellierung einer Komposition ausdrücken lässt, ist das Verhalten der Objekte beim Löschen oder beim Speichern des Kompositums. Da das Kompositum aus Teilen besteht, die nur als Teile des Kompositums existieren, werden sie mit dem Kompositum gelöscht beziehungsweise gespeichert. Diese Semantik betrifft jedoch die dynamischen Aspekte der Modelle, und die Klassendiagramme sind für die Darstellung der statischen Sachverhalte vorgesehen.</p>
+<p><strong><em>Datenstruktur</em></strong></p>
+<p>Eine sinnvolle Verwendung einer Komposition ist die Modellierung der Klassen in C++. Dort wird die Struktur des Speichers, in dem die Daten eines Objekts gehalten werden, explizit ausprogrammiert. Ob ein Objekt seine Teile direkt enthält oder ob es Zeiger auf andere Speicherbereiche enthält, ist eine Tatsache, die man hervorragend mit der Verwendung der Komposition ausdrücken kann. Dies ist jedoch keine allgemeine Vorgabe von UML, es ist nur ein Vorschlag, dem man bei der grafischen Darstellung der C++-Klassen in einem UML-Klassendiagramm folgen kann.</p>
+<p><strong><em>Diskussion:  
+Komposition und Aggregation</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wie entscheide ich denn nun konkret, ob ich eine Beziehung als Komposition, Aggregation oder einfach als Assoziation modelliere?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Einige Hinweise haben wir ja schon gegeben. Vor allem das technische Kriterium, ob die referenzierten Bestandteile mit einem anderen Objekt zusammen gelöscht werden sollen, deutet stark auf eine Komposition hin.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Und wenn sich das zur Zeit der Modellierung gar nicht so genau entscheiden lässt?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Bedacht angewandt können die Komposition und die Aggregation zum besseren Verständnis des Modells beitragen. Manchmal ist es einfach natürlich zu sagen, dass ein Objekt aus anderen Objekten besteht. Wir sollten aber nicht zu viele Gedanken und zu viel Zeit an die Modellierungsentscheidung verschwenden. Jede Komposition und jede Aggregation lässt sich nämlich auch einfach durch eine Assoziation mit entsprechenden Einschränkungen und der Angabe der Navigierbarkeit und der Multiplizität abbilden.</span><a id="mjc62b233e44c20911b6cee2de3c15a801" name="mjc62b233e44c20911b6cee2de3c15a801"></a><a name="t38"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t39"></a><h3 class="t3">4.3.8 Attribute  <a href="#t2t310"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t38"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Neben seiner Funktionalität und den Beziehungen zu anderen Objekten hat ein Objekt Attribute &#8211; Eigenschaften, die das Objekt beschreiben, und Daten, die das Objekt verwaltet. In Abschnitt <a href="#Rxx_ref222302053">4.1.1</a> haben wir bereits vorgestellt, wie Eigenschaften von Objekten beschrieben werden.</p>
+<p>Genau genommen entsprechen Attribute eines Objekts den Komponenten dieses Objekts in verschiedenen Kompositionsbeziehungen. Das Attribut-Sein und das Komponente-Sein sind zwei austauschbare Beschreibungsmöglichkeiten desselben Konzeptes. Daher entspricht die Notation für die Darstellung der Attribute in UML der kompakten Notation für die Darstellung der Komposition.</p>
+<p>Für Attribute gilt also das Gleiche wie für die Komposition: Sie können ein- oder mehrwertig sein. Wenn sie mehrwertig sind, kann die Reihenfolge der Werte relevant oder irrelevant sein. Ein Wert kann mehrfach vorkommen, oder jeder Wert muss eindeutig sein.</p>
+<p>Die Multiplizität des Ganzen ist bei Attributen genau wie bei der Komposition genau 1. Die Navigierbarkeit hat bei den Attributen fast immer die Richtung <span class="clisting">Zusammengesetztes Objekt-Attribut</span>. Sollte irgendwann eine andere Art der Navigierbarkeit benötigt werden, empfehlen wir, diese Beziehung nicht als Attribut, sondern als Komposition zu modellieren.</p><a id="mj344620f0b2ee4df48d645d45e973920c" name="mj344620f0b2ee4df48d645d45e973920c"></a><a name="t39"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t310"></a><h3 class="t3">4.3.9 Beziehungen zwischen Objekten in der Übersicht  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t39"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In <a href="#Rxx_ref222300889">Abbildung 4.31</a> sehen Sie noch einmal die UML-Darstellungsmöglichkeiten für Beziehungen zwischen Objekten in der Übersicht.</p>
+<div class="bildbox">
+<p><a name="IDAIOTQ"></a><a onClick="OpenWin('bilder/04_31.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_31.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.31    </strong>Darstellung von Beziehungen zwischen Objekten in UML</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_04_003.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="4.3 Beziehungen zwischen Objekten"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_04_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_04_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

@@ -1,0 +1,598 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 9.4 Annotations</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 9.4 Annotations">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 9.4 Annotations">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_09_003.htm">
+<link rel="next" href="oop_kapitel_10_001.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_09_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73" class="navnav">9 Aspekte und Objektorientierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_001.htm#mj78bbe41d6052e596f380a32cbcde87fc" class="navnav">9.1 Trennung der Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_001.htm#mj3202a01a0f16461d2dcf2538c41045f7" class="navnav">9.1.1 Kapselung von Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_001.htm#mjabaf49447f557f766fce48f52bc5f934" class="navnav">9.1.2 Lösungsansätze zur Trennung von Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_002.htm#mj309e7bff0d34f0b383d87b75c75e859a" class="navnav">9.2 Aspektorientiertes Programmieren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mj720e7f8df2912088f1d696c0f9b223bc" class="navnav">9.2.1 Integration von aspektorientierten Verfahren in Frameworks</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mj6b3ed5ab812a3c5283e5eb6dae2a91a9" class="navnav">9.2.2 Bestandteile der Aspekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mj20edd38c45c1b557bab3a5df290c4da2" class="navnav">9.2.3 Dynamisches Crosscutting</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mjf0455268e97f15472aed064d45c1a0f2" class="navnav">9.2.4 Statisches Crosscutting</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_003.htm#mj4e8777e76ed3abd16003da610c2e4fb9" class="navnav">9.3 Anwendungen der Aspektorientierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj9437623a0951fcf5d7d2ca5dd82953b4" class="navnav">9.3.1 Zusätzliche Überprüfungen während der Übersetzung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj2e79b3be4b26d4dc0b398732cd26b5fc" class="navnav">9.3.2 Logging</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj7ed70e732bd6f9f6224eb978223d840e" class="navnav">9.3.3 Transaktionen und Profiling</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj0c273b6c4bf0568d70f8862e7bba4377" class="navnav">9.3.4 Design by Contract</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mjc019b942674c4f95dfbf05ebd3dafd2a" class="navnav">9.3.5 Introductions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj64be25e8cd08b89dcb1d4b89466e3e91" class="navnav">9.3.6 Aspektorientierter Observer</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mje8d5d04454aca569e147e717a2537fa9" class="navh">9.4 Annotations</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj6c8390288339f7aa89de173bbbbe35a5" class="navh">9.4.1 Zusatzinformation zur Struktur eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj4bc24ab65115a9307512cf40d385e31f" class="navh">9.4.2 Annotations im Einsatz in Java und C#</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjfda429a1743f505a522b2ac063ff9394" class="navh">9.4.3 Beispiele für den Einsatz von Annotations</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mje8d5d04454aca569e147e717a2537fa9" name="mje8d5d04454aca569e147e717a2537fa9"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">9.4 Annotations  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>In Abschnitt 9.1.2 haben wir uns mit den Metainformationen befasst, die in einem Programm von vornherein vorhanden sind &#8211; die Struktur der Klassen, ihre Namen, die Namen der Operationen und der Methoden, die Typen der Parametern und so weiter. Das sind auch die Metainformationen, die ein Compiler beziehungsweise der Interpreter einer Programmiersprache braucht.</p>
+<p>Doch es gibt auch andere interessante Informationen über die Struktur des Programms, die für einen Compiler oder Interpreter irrelevant sind.</p><a id="mj6c8390288339f7aa89de173bbbbe35a5" name="mj6c8390288339f7aa89de173bbbbe35a5"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">9.4.1 Zusatzinformation zur Struktur eines Programms  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Für den Compiler ist es nicht wichtig, ob eine Methode <span class="clisting">setAmount</span> oder <span class="clisting">asdfg</span> heißt. Für den Compiler ist es egal, ob eine Methode <span class="clisting">testDivision</span> oder <span class="clisting">purgeDatabase</span> heißt. Eine Methode ist für ihn eine Routine, die einer Klasse zugeordnet ist.</p>
+<p><strong><em>Metainformation in Programmiersprachen</em></strong></p>
+<p>Manche Metainformationen sind für die Programme so wichtig und so relevant, dass sie durch Konstrukte der Programmiersprache selbst beschrieben werden können. So kann man in Java zum Beispiel mit dem Schlüsselwort <span class="clisting">transient</span> bestimmen, dass bestimmte Felder nicht serialisiert werden dürfen, oder mit <span class="clisting">synchronized</span> Methoden markieren, die für jedes Exemplar nicht in mehreren Threads gleichzeitig laufen können.</p>
+<p>Doch für uns gibt es durchaus auch auf der Metaebene andere Unterschiede zwischen den Klassen und ihren Methoden. Wir möchten unterscheiden können, welche Eigenschaften einer GUI-Komponente in einem visuellen Editor dargestellt werden können, wir möchten, dass unser Testtool alle vorbereiteten Tests durchführt, nicht aber andere Methoden aufruft.</p>
+<p><strong><em>Namenskonventionen</em></strong></p>
+<p>Eine große Hilfe können hier Namenskonventionen sein. So bestimmt zum Beispiel die Spezifikation von Java Beans, dass jede Eigenschaft einer Bean, die gelesen werden kann, durch eine Methode repräsentiert wird, die mit <span class="clisting">get</span> anfängt (oder mit <span class="clisting">is</span> für boolesche Werte), und jede änderbare Eigenschaft durch eine Methode, die mit <span class="clisting">set</span> anfängt. Das Testframework JUnit in seinen älteren Versionen geht davon aus, dass jede Testmethode mit <span class="clisting">test</span> anfängt. Zusammen mit Möglichkeiten der Reflexion in einer Programmiersprache können die aus diesen Konventionen resultierenden Informationen dann auch zur Laufzeit eines Programms ausgewertet werden.</p>
+<p>Doch durch Namenskonventionen können wir nicht alle benötigten Metainformationen den Metaprogrammen auf vernünftige Art bereitstellen. Wie soll man zum Beispiel eine Methode bezeichnen, die innerhalb einer Transaktion durchgeführt werden soll? Wie soll man spezifizieren, in welcher Tabelle Exemplare einer Klasse gespeichert werden?</p>
+<p>Eine Hilfe bieten hier externe Konfigurationsdateien. Deren Einsatz ist vor allem dann sinnvoll, wenn die programmierten Klassen in verschiedenen Kontexten unterschiedlich konfiguriert werden.</p>
+<p><strong><em>Diskussion: 
+Konvention oder Konfiguration</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Konfigurationsdateien machen doch ein Programm nur komplexer. Ich habe dann einen weiteren Punkt außerhalb des Source-Codes, an dem möglicherweise redundante Information liegt. Ich würde statt Konfiguration lieber auf Namenskonventionen zurückgreifen und zum Beispiel die Exemplare einer Klasse in einer Tabelle speichern, die genauso heißt wie die Klasse.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Das ist aber nicht so einfach. Vor allem dann nicht, wenn es um das Speichern einer ganzen Klassenhierarchie und der Beziehungen zwischen den Klassen geht. Wie man in Kapitel 6, »Persistenz«, sehen kann, gibt es verschiedene Möglichkeiten, wie man Klassen auf Tabellen abbilden kann.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Das stimmt. Aber trotzdem würde ich lieber eine einfache Konvention definieren und nur bei Abweichungen etwas konfigurieren. Denn jede Zeile in einer Konfigurationsdatei ist auch eine Zeile, in der ich einen Fehler machen kann.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Das ist vernünftig. Man sollte immer eine Konvention der Notwendigkeit einer Konfiguration vorziehen. Aber manchmal geht es halt ohne Konfiguration nicht.</span><p>Doch auch wenn man durch die Konfigurationsdateien alle nötigen Metainformationen bereitstellen kann, in manchen Situationen sind sie unhandlich. Vor allem dann, wenn es sich um Zusatzinformationen handelt, die das Programm selbst beschreiben und nicht seine Einbindung in einen speziellen Kontext.</p>
+<p>So kann es zum Beispiel durchaus unterschiedliche Konfigurationen der Abbildung der Klassenstruktur auf die Tabellenstruktur einer relationalen Datenbank geben, aber die Zusatzinformation, dass eine Methode immer in einem neuen Thread gestartet werden soll, bleibt für alle Installationen des Programms gleich. Diese Information ist am besten direkt im Quelltext der Methode aufgehoben, nicht in einer externen Konfigurationsdatei.</p>
+<p><strong><em>Zusatzinformation in Programmstruktur</em></strong></p>
+<p>Wir brauchen also eine Möglichkeit, solche Zusatzinformationen in die Struktur der Programme einzubinden. Die interpretierten Skriptsprachen wie JavaScript, Python oder Ruby bieten eine Reihe von Möglichkeiten. Konstrukte definieren.</p>
+<p>Diese Möglichkeiten haben wir in den kompilierten Programmiersprachen unser Programm einbringen zu können.</p><a id="mj4bc24ab65115a9307512cf40d385e31f" name="mj4bc24ab65115a9307512cf40d385e31f"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">9.4.2 Annotations im Einsatz in Java und C#  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In C# oder Java ab der Version 5 erhalten wir diese explizite Unterstützung. Hier können wir zusätzliche Metainformation mit sogenannten <span class="ckursiv">Annotations</span> (Anmerkungen) bereitstellen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Annotations (Anmerkungen)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Annotations sind strukturierte Zusatzinformationen zu den Strukturelementen eines Programmes, die programmtechnisch zur Übersetzungszeit oder zur Laufzeit des Programms ausgewertet werden können.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Vordefinierte Annotations</em></strong></p>
+<p>In Java ab der Version 5 sind bereits einige vordefinierte Annotations verfügbar, die Hinweise für den Java-Compiler enthalten.</p>
+<p>Mit der Annotation <span class="clisting">@Override</span> werden Methoden markiert, die eine geerbte Methode überschreiben sollten. Sie signalisieren dem Compiler, dass er einen Fehler melden soll, wenn es sich um eine neue Methode handelt, wir also nicht wie eigentlich spezifiziert eine andere Methode überschreiben. Die Annotations selbst können Parameter haben.</p>
+<p>Mit der Annotation <span class="clisting">@SuppressWarnings</span> können wir zum Beispiel bestimmen, dass bestimmte Compilerwarnungen nicht ausgegeben werden sollen. Welche, das wird durch den Wert eines Parameters bestimmt. <span class="clisting">@SuppressWarnings("all")</span> veranlasst zum Beispiel den Java Compiler in Eclipse, alle Warnungen für das annotierte Element zu unterdrücken.</p>
+<p>Den Annotations selbst können wir wiederum andere Annotations hinzufügen. So können wir zum Beispiel bestimmen, für welche Elemente die Annotations gültig sind (Klassen, Pakete, Methoden, Felder, lokale Variablen, Annotations und so weiter) oder wo die Zusatzinformation sichtbar sein soll.</p>
+<p><strong><em>Annotations zur Übersetzungszeit</em></strong></p>
+<p>Es gibt Annotations, die der Compiler verwenden soll, die aber nicht in das übersetzte Programm einfließen sollen. <span class="clisting">@Override</span> und <span class="clisting">@SuppressWarnings</span> sind solche Annotations. Andere Annotations sollen zwar in das Kompilat einfließen, sie werden aber zur Laufzeit nicht gebraucht. Solche Annotations können von anderen Werkzeugen noch zur Übersetzungszeit verwendet werden, sie können solche Informationen beim Laden eines Programms nutzen.</p>
+<p><strong><em>Annotations  
+zur Laufzeit</em></strong></p>
+<p>Schließlich gibt es natürlich auch Annotations, deren Zusatzinformationen wir zur Laufzeit eines Programms auswerten wollen. Die Information, in welcher Tabelle die Exemplare einer Klasse gespeichert werden, wenn es keinen Eintrag in einer Konfigurationsdatei gibt, können wir in einer solchen Annotation speichern. Selbstverständlich können wir die Informationen aus Annotations auch für die aspektorientierte Programmierung nutzen.</p><a id="mjfda429a1743f505a522b2ac063ff9394" name="mjfda429a1743f505a522b2ac063ff9394"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">9.4.3 Beispiele für den Einsatz von Annotations  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><strong><em>Programmverhalten ändern</em></strong></p>
+<p>Betrachten wir nun ein Beispiel, bei dem wir über Annotations das Verhalten eines Programms modifizieren.</p>
+<p><strong><em>AWT</em></strong></p>
+<p>Das meistverwendete Framework, um in Java grafische Benutzerschnittstellen zu programmieren, ist Swing, das auf dem älteren AWT (<span class="ckursiv">Abstract Windowing Toolkit</span>) basiert. [Eine Alternative bietet zum Beispiel das Framework SWT, auf dem das Eclipse-Framework basiert.
+] </p>
+<p>Die Swing-Elemente sind nicht threadsicher, wir können ihre Methoden zwar in verschiedenen Threads aufrufen, aber wir müssen dann selbst für die Synchronisierung der Zugriffe auf ihre Datenelemente sorgen. Die Synchronisierung ist am einfachsten, wenn alles in einem einzigen Thread läuft &#8211; dann gibt es nämlich nichts zum Synchronisieren. Dafür gibt es in Swing-Anwendungen auch bereits einen Thread, der dafür vorgesehen ist, nämlich den AWT-Ereignisthread. Aufrufe von Swing-Methoden, die durch Eingaben eines Benutzers angestoßen werden, laufen in diesem Thread ab.</p>
+<p><strong><em>Aufrufe von Methoden im Ereignisthread</em></strong></p>
+<p>Wenn wir nun selbst weitere Methoden schreiben, die mit Swing-Elementen arbeiten, müssen wir nun aber bei jedem Aufruf dafür sorgen, dass diese auch wirklich in diesem AWT-Ereignisthread gestartet werden. Tun wir das nicht und rufen die Methoden der Spring- und AWT-Elemente in unterschiedlichen Threads auf, kann es passieren, dass wir mit inkonsistenten Daten arbeiten.</p>
+<p>Wir können dies am einfachsten vermeiden, wenn wir keine eigenen Threads starten und alle betroffenen Methoden im AWT-Ereignisthread ablaufen lassen. Doch wenn die Abarbeitung unserer Methoden lange dauert, entsteht so eine hässlich träge Benutzerschnittstelle, die viel zu langsam auf die Benutzereingaben reagiert. Daher ist es besser, wenn wir lange laufende Aufgaben in separaten Threads starten. Wenn diese die Darstellung von Swing-Elementen aktualisieren möchten, sorgen wir mit <span class="clisting">SwingUtilities.invokeLater</span> dafür, dass die Swing-Methoden im AWT-Ereignisthread aufgerufen werden.</p>
+<p>Nun ist es natürlich aufwändig und fehleranfällig, bei jedem einzelnen Aufruf einer Methode darauf zu achten, dass eine Methode auch wirklich im AWT-Ereignisthread ausgeführt wird. Deswegen erstellen wir uns eine aspektorientierte Erweiterung, welche die Ausführung entsprechend markierter Methoden automatisch in den AWT-Ereignisthread verschiebt.</p>
+<p><strong><em>Annotation  
+EventThread</em></strong></p>
+<p>Dazu benötigen wir zunächst eine Annotation <span class="clisting">EventThread</span>, mit der wir solche Methoden markieren werden.</p>
+<div class="listing"><pre class="prettyprint">@Retention(RetentionPolicy.CLASS) 
+@Target(ElementType.METHOD) 
+public @interface EventThread {}</pre></div>
+<p>Die Annotation soll nur für Methoden verwendet werden, daher ist sie mit der Annotation <span class="clisting">@Target(ElementType.METHOD)</span> markiert, und sie sollte in dem übersetzten Code für den Aspektweber [Ein Aspektweber ist ein Teil eines aspektorientierten Compilers oder Frameworks, welches dafür verantwortlich ist, dass das übersetzte Programm den definierten Aspekten entsprechend an den richtigen Stellen &#8211; den Pointcuts &#8211; modifiziert wird.
+]  enthalten bleiben. Zur Laufzeit wird sie nicht mehr benötigt. Deswegen markieren wir sie mit der Annotation <span class="clisting">@Retention(RetentionPolicy.CLASS) [</span>Die <span class="clisting">RetentionPolicy.CLASS</span> ist der Standard für Annotations, daher brauchen wir diese Annotation nicht explizit anzugeben.
+] .</p>
+<p><strong><em>Aspekt EventThreadAspect</em></strong></p>
+<p>Der folgende Aspekt sorgt dafür, dass die Ausführung jeder so markierten Methode in den AWT-Ereignisthread verschoben wird, wenn die Methode in einem anderen Thread aufgerufen wird. Der Aufruf <span class="clisting">proceed</span> ruft die ursprüngliche Methode auf, wenn wir uns ohnehin bereits im AWT-Ereignisthread befinden.</p>
+<div class="listing"><pre class="prettyprint">public aspect EventThreadAspect { 
+   void around(): @annotation(EventThread) 
+     &amp;&amp; execution(void *.*(..)) { 
+      if (SwingUtilities.isEventDispatchThread()) { 
+         proceed(); 
+      } else { 
+         SwingUtilities.invokeLater(new Runnable() { 
+            public void run() { 
+               proceed(); 
+            } 
+          }); 
+      } 
+   } 
+   declare error: @annotation(EventThread) 
+     &amp;&amp; execution(!void *.*(..)) : "Must return void"; 
+}</pre></div>
+<p class="tabunter"><strong>Listing 9.9    </strong>Aspekt für Zuordnung von Threads zur Ausführung einer Methode</p>
+<p><strong><em>Methoden  
+invokeLater und invokeAndWait</em></strong></p>
+<p>Grundsätzlich haben wir zwei Möglichkeiten, wie wir den Aufruf in den AWT-Ereignisthread verschieben können:</p>
+<ul class="gp">
+<li>durch die Methode <span class="clisting">invokeLater</span></li>
+</ul>
+<ul class="gp">
+<li>durch die Methode <span class="clisting">invokeAndWait</span></li>
+</ul>
+<p>Beide Methoden sorgen dafür, dass der Aufruf im AWT-Ereignisthread abgearbeitet wird, nachdem alle bereits vorliegenden Ereignisse abgearbeitet worden sind. Der Unterschied zwischen den beiden Methoden besteht darin, dass die Methode <span class="clisting">invokeLater</span> sofort zurückkehrt, während <span class="clisting">invokeAndWait</span> so lange wartet, bis der Aufruf im AWT-Ereignisthread bearbeitet wurde. In unserem Beispiel haben wir uns für den Einsatz von <span class="clisting">invokeLater</span> entschieden, da <span class="clisting">invokeAndWait</span> mehr Aufwand erfordert, um Deadlocks zu vermeiden.</p>
+<p><strong><em>Nur Methoden ohne  
+Rückgabewert</em></strong></p>
+<p>Da wir aber möglicherweise noch vor dem eigentlichen tatsächlichen Aufruf der urspünglichen Methode zurückkehren, können wir deren Ergebnis nicht liefern. Aus diesem Grunde erlauben wir den Einsatz der Annotation <span class="clisting">@EventThread</span> nur für Methoden, die <span class="clisting">void</span> zurückgeben. Diese Einschränkung wird in der Sektion, die mit <span class="clisting">declare error</span> beginnt, vorgenommen.</p>
+<p>Um zu zeigen, wie sich die neu eingeführte Annotation <span class="clisting">EventThread</span> im Einsatz verhält, konstruieren wir in Listing 9.10 in der Zeile  ein Swing-Fenster, das eine Textzeile mit einer Zahl und einen Button enthält.</p>
+<p>Durch Klick auf den Button können wir den Wert der dargestellten Zahl um 10 erhöhen. Diesen Button konstruieren wir in der Zeile , er bekommt dabei die in Zeile  definierte Aktion zugeordnet.</p>
+<div class="listing"><pre class="prettyprint">public class TestFrame extends JFrame { 
+   private JLabel outputLabel; 
+   private int counter; 
+ 
+   public TestFrame() {         
+      JPanel pane = new JPanel(new BorderLayout()); 
+      setContentPane(pane); 
+      outputLabel = new JLabel(); 
+      pane.add(outputLabel, BorderLayout.CENTER); 
+      outputLabel.setText("-"); 
+      Action incAction = new AbstractAction("Add 10") {   
+         public void actionPerformed(ActionEvent e) { 
+            add(10); 
+         } 
+      }; 
+      pane.add(new JButton(incAction),          
+                      BorderLayout.SOUTH); 
+      validate(); 
+      pack(); 
+      Thread backgroundAdder = new Thread(new Runnable(){  
+         public void run() { 
+            while (true) { 
+               try { 
+                  Thread.sleep(1000); 
+               } catch (InterruptedException ignored) { 
+               } 
+               addOne(); 
+            } 
+         } 
+      }); 
+      backgroundAdder.start(); 
+   } 
+ 
+   @EventThread 
+   private void addOne() {   
+      System.out.println("addOne in " + 
+              Thread.currentThread().getName()); 
+      counter++; 
+      outputLabel.setText(Integer.toString(counter)); 
+   } 
+ 
+   @EventThread 
+   private void add(int n) {  
+      System.out.println("add in " + 
+               Thread.currentThread().getName()); 
+      counter += n; 
+      outputLabel.setText(Integer.toString(counter)); 
+   } 
+ 
+   public static void main(String[] args) { 
+      TestFrame f = new TestFrame(); 
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+      f.setVisible(true); 
+   } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 9.10    </strong>Anzeige eines Zählers</p>
+<p>Ab Zeile  von Listing 9.10 konstruieren und starten wir einen neuen Thread <span class="clisting">backgroundAdder</span>, der unsere dargestellte Zahl über die Methode <span class="clisting">addOne</span> jede Sekunde um 1 erhöht. Die Methode <span class="clisting">addOne</span> selbst wird in Zeile  implementiert. Schließlich sehen wir Zeile  die Umsetzung der Methode <span class="clisting">add</span>, die bei Klick auf unseren Button aufgerufen wird.</p>
+<p><strong><em>Synchronisationsproblem</em></strong></p>
+<p>Wenn wir nicht dafür sorgen, dass unsere beiden Methoden <span class="clisting">add</span> und <span class="clisting">addOne</span> grundsätzlich im AWT-Ereignisthread ausgeführt werden, haben wir ein Synchronisationsproblem. Käme der Klick auf den Button genau in dem Augenblick, in dem der nebenläufige Thread den Wert der Zahl um 1 erhöhen soll, kann es theoretisch passieren, dass die Textzeile einen falschen Wert anzeigt. Für unser aktuelles Beispiel scheint das nicht wirklich tragisch zu sein, in anderen Kontexten würde das aber ein größeres Problem darstellen. Wenn zum Beispiel über eine der Methoden Einfügungen in eine Listbox vorgenommen werden und in der anderen Methode auf diese Einträge während des Einfügens zugegriffen wird, kann der lesende Zugriff auf einen undefinierten Zwischenzustand treffen.</p>
+<p>Um das Verhalten der Methoden verfolgen zu können, lassen wir zu Testzwecken die Methoden <span class="clisting">add</span> und <span class="clisting">addOne</span> den Thread, in dem sie ausgeführt werden, ausgeben. Wir spielen nun ein Szenario durch, bei dem wir zweimal auf unseren Button klicken und währenddessen unser Thread ebenfalls unseren Counter hochzählt.</p>
+<p><strong><em>Ausgabe ohne Annotation</em></strong></p>
+<p>Wenn wir die Annotation <span class="clisting">EventThread</span> für die Methoden <span class="clisting">add</span> und <span class="clisting">addOne</span> nicht verwenden, erhalten wir zum Beispiel die unten stehende Ausgabe:</p>
+<div class="listing"><pre class="prettyprint">addOne in Thread-2 
+addOne in Thread-2 
+add in AWT-EventQueue-0 
+addOne in Thread-2 
+add in AWT-EventQueue-0 
+addOne in Thread-2 
+addOne in Thread-2</pre></div>
+<p>Die Methoden werden also immer in dem Thread gestartet, von dem aus sie aufgerufen werden. Da ein Klick auf einen Button bereits im AWT-Ereignisthread verarbeitet wird, erfolgt auch die Abarbeitung unserer Methode <span class="clisting">add</span> in diesem Thread. Die Methode <span class="clisting">addOne</span> wird in dem von uns selbst gestarteten Thread aufgerufen, also erfolgt auch ihre Abarbeitung dort.</p>
+<p><strong><em>Ausgabe mit Annotation</em></strong></p>
+<p>Wenn wir aber wie in unserem Listing die Annotation <span class="clisting">EventThread</span> für beide Methoden verwenden, werden alle Aufrufe unserer Methoden im AWT-Ereignisthread ablaufen. Die Ausgabe unseres Programms sieht dann zum Beispiel aus wie folgt.</p>
+<div class="listing"><pre class="prettyprint">addOne in AWT-EventQueue-0 
+addOne in AWT-EventQueue-0 
+add in AWT-EventQueue-0 
+addOne in AWT-EventQueue-0 
+add in AWT-EventQueue-0 
+addOne in AWT-EventQueue-0 
+addOne in AWT-EventQueue-0</pre></div>
+<p><strong><em>Annotations unterstützen  
+Trennung der Anliegen</em></strong></p>
+<p>Die Kombination der zusätzlichen Metainformationen durch die Annotations mit der Aspektorientierung bietet uns also neue Möglichkeiten für die Erweiterung der verwendeten Programmiersprachen, mit deren Hilfe wir unsere Quelltexte besser strukturieren können. Wir haben hier also ein weiteres Mittel, um die Trennung von Anliegen in unseren Quelltexten vorzunehmen. In unserem Beispiel müssen wir zwar immer noch angeben, welche unserer Methoden im separaten Ereignisthread laufen sollen. Dieses Anliegen wird aber nun zu einer Eigenschaft der Methode und ist nicht mehr dem Aufruf von Methoden zugeordnet. Außerdem haben wir die Umsetzung der Verlagerung in einen eigenen Thread zentral als einen Aspekt umgesetzt.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_09_004.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="9.4 Annotations"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_09_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

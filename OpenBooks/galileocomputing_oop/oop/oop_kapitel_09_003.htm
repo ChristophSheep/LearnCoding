@@ -1,0 +1,689 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 9.3 Anwendungen der Aspektorientierung</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 9.3 Anwendungen der Aspektorientierung">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 9.3 Anwendungen der Aspektorientierung">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_09_002.htm">
+<link rel="next" href="oop_kapitel_09_004.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_09_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_09_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73" class="navnav">9 Aspekte und Objektorientierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_001.htm#mj78bbe41d6052e596f380a32cbcde87fc" class="navnav">9.1 Trennung der Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_001.htm#mj3202a01a0f16461d2dcf2538c41045f7" class="navnav">9.1.1 Kapselung von Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_001.htm#mjabaf49447f557f766fce48f52bc5f934" class="navnav">9.1.2 Lösungsansätze zur Trennung von Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_002.htm#mj309e7bff0d34f0b383d87b75c75e859a" class="navnav">9.2 Aspektorientiertes Programmieren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mj720e7f8df2912088f1d696c0f9b223bc" class="navnav">9.2.1 Integration von aspektorientierten Verfahren in Frameworks</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mj6b3ed5ab812a3c5283e5eb6dae2a91a9" class="navnav">9.2.2 Bestandteile der Aspekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mj20edd38c45c1b557bab3a5df290c4da2" class="navnav">9.2.3 Dynamisches Crosscutting</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_002.htm#mjf0455268e97f15472aed064d45c1a0f2" class="navnav">9.2.4 Statisches Crosscutting</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj4e8777e76ed3abd16003da610c2e4fb9" class="navh">9.3 Anwendungen der Aspektorientierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj9437623a0951fcf5d7d2ca5dd82953b4" class="navh">9.3.1 Zusätzliche Überprüfungen während der Übersetzung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj2e79b3be4b26d4dc0b398732cd26b5fc" class="navh">9.3.2 Logging</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj7ed70e732bd6f9f6224eb978223d840e" class="navh">9.3.3 Transaktionen und Profiling</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj0c273b6c4bf0568d70f8862e7bba4377" class="navh">9.3.4 Design by Contract</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjc019b942674c4f95dfbf05ebd3dafd2a" class="navh">9.3.5 Introductions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj64be25e8cd08b89dcb1d4b89466e3e91" class="navh">9.3.6 Aspektorientierter Observer</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_004.htm#mje8d5d04454aca569e147e717a2537fa9" class="navnav">9.4 Annotations</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_004.htm#mj6c8390288339f7aa89de173bbbbe35a5" class="navnav">9.4.1 Zusatzinformation zur Struktur eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_004.htm#mj4bc24ab65115a9307512cf40d385e31f" class="navnav">9.4.2 Annotations im Einsatz in Java und C#</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_004.htm#mjfda429a1743f505a522b2ac063ff9394" class="navnav">9.4.3 Beispiele für den Einsatz von Annotations</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj4e8777e76ed3abd16003da610c2e4fb9" name="mj4e8777e76ed3abd16003da610c2e4fb9"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">9.3 Anwendungen der Aspektorientierung  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>In den folgenden Abschnitten werden wir einige Probleme vorstellen, die sich durch die aspektorientierte Vorgehensweise elegant angehen lassen. Sie werden dabei eine ganze Reihe von Beispielen für Aspekte kennen lernen.</p><a id="mj9437623a0951fcf5d7d2ca5dd82953b4" name="mj9437623a0951fcf5d7d2ca5dd82953b4"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">9.3.1 Zusätzliche Überprüfungen während der Übersetzung  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Ein Compiler überprüft unsere Programme auf syntaktische Korrektheit. Für eine konkrete Anwendung können jedoch weitergehende Bedingungen gelten, die wir ebenfalls zur Laufzeit überprüfen möchten.</p>
+<p>Nehmen Sie an, Sie setzen eine Anwendung mit Datenbankzugriff um. Die Vorstellung dürfte nicht schwer fallen, gilt diese Annahme doch für den überwiegenden Teil von Anwendungen. In Java sind die grundlegenden Methoden für den Zugriff auf relationale Datenbanken in den Paketen <span class="clisting">java.sql</span> und <span class="clisting">javax.sql</span> definiert. Diese können in allen anderen Paketen verwendet werden, die <span class="clisting">java.sql</span> oder <span class="clisting">javax.sql</span> importieren.</p>
+<p>Nehmen Sie nun aber an, dass Sie in Ihrer Anwendung solche Datenbankzugriffe in einem dafür vorgesehenen Paket kapseln wollen. So soll es zum Beispiel verboten sein, Zugriffe auf die Datenbank direkt aus Paketen vorzunehmen, die dem Darstellungsbereich zugeordnet sind. Unser Ziel ist es dabei, die Persistenzbehandlung von anderen Teilen der Anwendung klar zu trennen. Dies geben Sie als Konvention an Ihr Entwicklungsteam und erklären in einem Treffen aller Beteiligten noch einmal, wie wichtig die Einhaltung dieser Konvention ist.</p>
+<p><strong><em>Absicherung  
+gegen Programmierfehler</em></strong></p>
+<p>Sie wissen aber schon: Irren ist menschlich, und es wird nicht lange dauern, bis sich doch die ersten Aufrufe von Datenbankzugriffen in den Darstellungsklassen finden. Deswegen wollen Sie die Überprüfung der verbotenen Aufrufe automatisieren. Aspektorientierte Mechanismen können Ihnen dabei helfen. Am Beispiel von AspectJ stellen wir eine Möglichkeit vor, wie Sie Ihre eigenen Überprüfungen mit einbringen können.</p>
+<p>Mit der folgenden Deklaration können Sie jeden Aufruf einer Operation aus den Paketen <span class="clisting">java.sql</span> und <span class="clisting">javax.sql</span> und allen ihren Unterpaketen aus dem Paket <span class="clisting">my.view</span> und allen seinen Unterpaketen zu einem Fehler zu machen:</p>
+<div class="listing"><pre class="prettyprint">declare error: 
+  (call(java.sql..* *.*(..)) || call(javax.sql..* *.*(..))) 
+    &amp;&amp; within(my.view..*): 
+      "Don't call SQL from the View packages.";</pre></div>
+<p>Dadurch wird festgelegt, dass alle Aufrufe von Methoden aus den beiden SQL-Paketen, die innerhalb von Methoden aus dem Paket <span class="clisting">my.view</span> oder einem Unterpaket getätigt werden, zu einer Fehlermeldung führen sollen.</p>
+<p><strong><em>Warnung bei  
+verbotenen  
+Aufrufen</em></strong></p>
+<p>Wenn Ihre Anwendung bereits existiert und Sie erst später feststellen, dass sich einige SQL-Aufrufe in die falschen Pakete eingeschlichen haben, kann es sinnvoll sein, dass Sie solche Aufrufe schnell entdecken, sie aber nicht als einen Fehler betrachten. Der Compiler soll nur eine Warnung ausgeben, damit Sie schnell die Stellen finden, die Sie überarbeiten müssen. Die folgende Deklaration warnt Sie bei allen SQL-Aufrufen, die innerhalb Ihrer Quelltexte (Paket <span class="clisting">my</span>) liegen, aber außerhalb des Paketes <span class="clisting">my.db</span> zu finden sind:</p>
+<div class="listing"><pre class="prettyprint">declare warning: 
+  (call(java.sql..* *.*(..)) || call(javax.sql..* *.*(..))) 
+    &amp;&amp; within(my..*) &amp;&amp; !within(my.db..*): 
+      "All SQL-calls should be in the package my.db";</pre></div><a id="mj2e79b3be4b26d4dc0b398732cd26b5fc" name="mj2e79b3be4b26d4dc0b398732cd26b5fc"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">9.3.2 Logging  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Ein anderes übergreifendes Anliegen ist die Protokollierung der Abläufe in einem Programm. Nehmen wir an, Sie möchten während der Entwicklung die Ausführung jeder öffentlichen Methode aller Klassen protokollieren. Die Objektorientierung bietet Ihnen die Möglichkeit, die Art der Protokollierung von den Methoden zu entkoppeln &#8211; die aufrufenden Methoden werden ausschließlich eine abstrakte Schnittstelle aufrufen. Wie sie implementiert ist, ob sie die Protokolleinträge in eine Datei, auf dem Bildschirm oder in eine Datenbank schreibt, interessiert sie nicht. Doch die Aufrufe der Protokollierung müssen Sie trotzdem in die Quelltexte der Methoden schreiben. Mit den Mitteln der Objektorientierung können Sie das Anliegen der Protokollierung nicht ganz von den Quelltexten der Methoden fernhalten.</p>
+<p><strong><em>Protokolleinträge vor und nach Methoden</em></strong></p>
+<p>Die Aspektorientierung ist hier dagegen eine große Hilfe. Mit dem folgenden Aspekt legen Sie fest, dass alle Ihre Klassen so modifiziert werden, dass sie vor und nach der Ausführung jeder öffentlichen Methode den entsprechenden Protokolleintrag vornehmen. In unserem Beispiel werden die Protokollausgaben auf der Konsole ausgegeben, es spricht aber nichts dagegen, auch hier eine Abstraktion zu verwenden.</p>
+<div class="listing"><pre class="prettyprint">public aspect Logging { 
+  private int depth = 0; 
+ 
+  private static String spaces(int n) 
+//Wir verwenden die Methode <span class="clisting">spaces</span> und die Variable <span class="clisting">depth</span>, 
+//um die Protokollausgabe optisch ansprechender geschachtelt zu gestalten. 
+//Beachten Sie bitte, dass die Methode <span class="clisting">spaces</span> privat ist. 
+//Wäre sie selbst öffentlich, würde sie auch von dem Aspekt,
+//so wie die Pointcuts definiert sind, betroffen. Das würde
+//bei dem ersten Aufruf einer öffentlichen Methode zu einer
+//Endlosschleife und letztendlich zu einem Stack-Überlauf führen.
+] { 
+    StringBuilder result = new StringBuilder(); 
+    for (int i = 0; i &lt; n; ++i) result.append(" "); 
+    return result.toString(); 
+  } 
+ 
+  before(): execution (public * *(..)) { 
+    System.out.println(spaces(depth) + "Before " + 
+       thisJoinPointStaticPart.toLongString()); 
+    ++depth; 
+  } 
+ 
+  after(): execution (public * *(..)) { 
+    --depth; 
+    System.out.println(spaces(depth) + "After " + 
+      thisJoinPointStaticPart.toLongString()); 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 9.3    </strong>Aspekt für Logging-Ausgaben</p>
+<p>Sie haben nun festgelegt, dass vor (<span class="clisting">before</span>) der Ausführung (<span class="clisting">execution</span>) aller öffentlichen Methoden (<span class="clisting">public * * (..)</span>) eine Beschreibung des aktuellen Joinpoints (also der aufgerufenen Methode) ausgegeben wird. Eine Einrückung erfolgt durch Leerzeichen, damit die Ausgabe übersichtlicher wird. Sie verwalten dazu die Variable <span class="clisting">depth</span>, die vor jedem Methodenaufruf erhöht und nach jedem Methodenaufruf (<span class="clisting">after</span>) wieder heruntergezählt wird.</p><a id="mj7ed70e732bd6f9f6224eb978223d840e" name="mj7ed70e732bd6f9f6224eb978223d840e"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">9.3.3 Transaktionen und Profiling  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Im vorherigen Beispiel haben wir den Aspektweber dazu veranlasst, alle öffentlichen Methoden um zwei Protokollausgaben zu erweitern. Dieser Eingriff war statisch. Bereits zur Übersetzungszeit war klar, an welchen Stellen des Programms die Protokollausgaben zu machen sind.</p>
+<p>Eine ähnliche Aufgabe haben Sie vorliegen, wenn Sie die Zeit messen möchten, die das Programm bei der Ausführung der Methoden einer Klasse verbraucht. Hier müssen Sie vor jedem Aufruf einer gemessenen Methode die »Stoppuhr« starten und sie nach der Ausführung der Methode wieder stoppen.</p>
+<p>Doch im Gegensatz zu unserem vorherigen Protokollierungsbeispiel können Sie nicht bereits zur Übersetzungszeit sagen, wann genau die Stoppuhr gestartet und wann sie gestoppt wird. Denn wenn eine gemessene Methode eine weitere gemessene Methode aufruft, darf die zweite Methode die Stoppuhr weder starten noch stoppen. Sonst würden Sie nicht die Gesamtzeit messen können. Bei einem statischen Pointcut könnten Sie sich mit einer Überprüfung einer Variablen helfen. In unserem Protokollierungsbeispiel verwenden wir die Variable <span class="clisting">depth</span>, um die Tiefe der Schachtelung der Ausgabe zu steuern. Beim Messen der Zeit müssten Sie überprüfen, ob sie den Wert 0 hat, um nur dann die Stoppuhr zu starten oder zu stoppen.</p>
+<p><strong><em>Transaktionen über dynamische Pointcuts</em></strong></p>
+<p>Ein anderes Szenario, in dem Sie ein solches Verhalten brauchen, können Transaktionen sein. Sie können verlangen, dass bestimmte Methoden immer innerhalb einer Transaktion laufen. Die Transaktion sollte also vor dem Aufruf einer solchen Methode gestartet werden, wenn sie nicht bereits läuft, und nach dem Ende der Methode beendet werden, wenn sie beim Aufruf dieser Methode gestartet wurde.</p>
+<p>AspectJ kann Ihnen diese Arbeit abnehmen und bietet Ihnen dafür die dynamischen Pointcuts an. Auch bei den dynamischen Pointcuts werden die Klassen statisch an den Stellen angepasst, an denen die Pointcut-Bedingung potenziell wahr werden kann, allerdings wird der dynamische Teil der Bedingung automatisch überprüft und der Advice nur dann ausgeführt, wenn die Bedingung zur Laufzeit wahr ist.</p>
+<p>Schauen wir uns also ein Beispiel in AspectJ an. Die Klasse <span class="clisting">Test</span> in Listing 9.4 hat zwei nicht statische öffentliche Methoden <span class="clisting">inner</span> und <span class="clisting">outer</span>. Sie wollen vor jedem Aufruf einer nicht statischen öffentlichen Methode der Klasse <span class="clisting">Test</span> eine Stoppuhr starten und sie nach jedem solchen Aufruf stoppen. Aber nur dann, wenn sich der Aufruf nicht innerhalb eines anderen gemessenen Aufrufes befindet.</p>
+<div class="listing"><pre class="prettyprint">public class Test { 
+ 
+   public void outer() { 
+      System.out.println("Starting outer method"); 
+      inner(); 
+      System.out.println("Ending outer method"); 
+   } 
+ 
+   public void inner() { 
+      System.out.println("In inner method"); 
+   } 
+ 
+   public static void main(String[] args) { 
+     Test t = new Test(); 
+     t.inner(); 
+     t.outer(); 
+   } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 9.4    </strong>Geschachtelte Methodenaufrufe</p>
+<p>Der Messaspekt ist in Listing 9.5 aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">public aspect TransactionalAspect { 
+ 
+  private pointcut TestPointcut():     
+      execution(public !static * Test.*(..)); 
+ 
+  before(): TestPointcut()&amp;&amp;!cflowbelow(TestPointcut()) { 
+    System.out.println("Starting timer"); 
+  } 
+ 
+   after(): TestPointcut() &amp;&amp; !cflowbelow(TestPointcut()){ 
+     System.out.println("Ending timer"); 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 9.5    </strong>Aspekt zur Messung von Methodenlaufzeiten</p>
+<p><strong><em>!cflowbelow als dynamische Bedingung</em></strong></p>
+<p>Der statische <span class="clisting">TestPointcut</span> in Zeile  erfasst die Ausführung jeder öffentlichen nicht statischen Methode der Klasse <span class="clisting">Test</span>. Durch die Klausel <span class="clisting">!cflowbelow(TestPointcut())</span> in den mit  markierten Zeilen erweitern Sie die Pointcut-Bedingung der Advices um die dynamische Bedingung, dass sie nicht durchgeführt werden sollte, wenn sie sich innerhalb der Durchführung eines Joinpoints befindet, der selbst von <span class="clisting">TestPointcut</span> erfasst wird.</p>
+<p>Das Programm (die Methode <span class="clisting">main</span> der Klasse <span class="clisting">Test</span>) produziert erwartungsgemäß folgende Ausgabe:</p>
+<div class="listing"><pre class="prettyprint">Starting timer 
+In inner method 
+Ending timer 
+Starting timer 
+Starting outer method 
+In inner method 
+Ending outer method 
+Ending timer</pre></div>
+<p>Wie Sie sehen, wird der Timer beim zweiten Aufruf der Methode <span class="clisting">inner</span> nicht angefasst.</p><a id="mj0c273b6c4bf0568d70f8862e7bba4377" name="mj0c273b6c4bf0568d70f8862e7bba4377"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">9.3.4 Design by Contract  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wie wir in Abschnitt 7.5.2, »Übernahme von Verantwortung: Unterklassen in der Pflicht«, über die Verträge zwischen den Aufrufern und den Bereitstellern einer Schnittstelle beschrieben haben, ist die Überprüfung von Vorbedingungen für eine Operation in den meisten Programmiersprachen problematisch. Findet die Überprüfung beim Aufrufer statt, muss sie redundant an allen Aufrufstellen stattfinden. Findet sie dagegen beim Aufgerufenen statt, muss sie möglicherweise redundant bei jeder Implementierung der Operation programmiert werden. Außerdem wird dann die Einhaltung des Kontrakts nur abhängig von den konkreten Testdaten überprüft werden, die Prüfung ist also unvollständig.</p>
+<p><strong><em>Salatöl, Diesel und explodierende LKWs</em></strong></p>
+<p>In Abschnitt 7.5.2 haben wir das Beispiel von auf Salatöl umgerüsteten Dieselfahrzeugen beschrieben. Wir haben festgestellt, dass Sie beim Prüfen der Vorbedingungen beim Betanken auf ein Dilemma stoßen. Wenn Sie die Prüfung dem aufgerufenen Modul (in unserem Beispiel den konkreten Fahrzeugen) überlassen, werden Sie eine inkorrekte Verwendung unserer Schnittstelle möglicherweise nur zufällig und spät herausfinden. Wenn Sie die Prüfungen an die Aufrufstellen verlagern, müssten Sie diese über unseren Code verstreuen, da es wesentlich mehr Aufrufstellen gibt als Methodenimplementierungen.</p>
+<p>Aber wie bereits bei der Vorstellung unseres Beispiels versprochen, zeigen wir hier den Ausweg aus diesem Dilemma über aspektorientierte Vorgehensweisen. Leider musste unsere Salatöl-Tankstelle geschlossen werden, nachdem das Betanken eines Dieselfahrzeugs den ganzen Betrieb zum Stillstand gebracht und ein wütender LKW-Fahrer die Zapfsäulen demoliert hatte. Deshalb wählen wir hier ein etwas ungefährlicheres Szenario und zeigen die Überprüfung von Kontrakten am Beispiel eines Konverters, der eine Zeichenkette in eine Zahlenrepräsentation überführen soll.</p>
+<p><strong><em>Überprüfung von Verträgen anhand von Metadaten</em></strong></p>
+<p>Dabei lassen sich alle Stellen, an denen eine Überprüfung des Kontrakts stattfinden muss, programmatisch anhand der Programm-Metadaten bestimmen. Um redundanten Code an vielen programmatisch bestimmbaren Stellen eines Programms einzuweben, dafür sind die aspektorientierten Werkzeuge wie geschaffen.</p>
+<p>Schauen wir uns also zunächst die Schnittstelle unseres Konverters an.</p>
+<div class="listing"><pre class="prettyprint">public interface Converter { 
+  long convertNumber(String str); 
+}</pre></div>
+<p>Diese Schnittstelle beschreibt eine Klasse, die Zeichenketten zu ganzen Zahlen konvertiert. Wir bestimmen, dass der Vertrag zwischen dem Aufrufer und dem Aufgerufenen die Vorbedingung enthält, dass der Aufrufparameter ausschließlich die Dezimalziffern enthält:</p>
+<div class="listing"><pre class="prettyprint">public aspect ConverterContract { 
+  before(String str): 
+   call(long Converter.convertNumber(String)) &amp;&amp; args(str) { 
+    for (char c: str.toCharArray()) { 
+      if (c &lt; '0' || c &gt; '9') { 
+        throw new IllegalArgumentException( 
+          "Kann nur dezimale Ziffern enthalten"); 
+      } 
+    } 
+  } 
+}</pre></div>
+<p><strong><em>Implementierung eines Konverters</em></strong></p>
+<p>Hier eine einfache Implementierung der Schnittstelle <span class="clisting">Converter. [</span>Die Methode <span class="clisting">parseLong</span> der Klasse <span class="clisting">long</span> kann auch negative Nummern parsen. Unsere Vorbedingung ist hier strikter, da wir nur positive Nummern zulassen.
+] </p>
+<div class="listing"><pre class="prettyprint">public class DecimalConverter implements Converter { 
+  public long convertNumber(String str) { 
+    return Long.parseLong(str); 
+  } 
+}</pre></div>
+<p>Doch außer der einfachen dezimalen Konversion können wir Zahlen auch aus anderen Notationen überführen. Die folgende Implementierung akzeptiert die Zahlen in den drei in Java üblichen Notationen: Fängt die Zahl mit <span class="clisting">0x</span> an, wird sie als hexadezimal verstanden, beginnt sie nur mit einer <span class="clisting">0</span>, handelt es sich um die oktale Notation, fängt sie mit einer anderen Ziffer an, geht es um die übliche dezimale Notation.</p>
+<div class="listing"><pre class="prettyprint">public class JavaNumberConverter implements Converter { 
+  public long convertNumber(String str) { 
+    if (str.startsWith("0x") || str.startsWith("0X")) 
+      return Long.parseLong(str.substring(2), 16); 
+    if (str.startsWith("0")) return Long.parseLong(str, 8); 
+    return Long.parseLong(str); 
+  } 
+}</pre></div>
+<p>Die Klasse <span class="clisting">JavaNumberConverter</span> implementiert die Schnittstelle <span class="clisting">Converter</span>, sie muss also jeden Aufruf akzeptieren, der sich an die spezifizierte Bedingung hält, nur Dezimalziffern im Parameter zu übergeben.</p>
+<p>Sie kann die Vorbedingung allerdings aufweichen. In unserem Falle tut sie das und akzeptiert auch die hexadezimale Notation mit dem Präfix <span class="clisting">0x</span>.</p>
+<p>Wir müssen also den Pointcut in unserem Vertragsaspekt umformulieren:</p>
+<div class="listing"><pre class="prettyprint">before(String str): 
+  call(long Converter.convertNumber(String)) &amp;&amp; args(str) 
+    &amp;&amp; !call(long JavaNumberConverter.convertNumber(String))</pre></div>
+<p>Schauen wir uns jetzt die Aufrufstellen genauer an.</p>
+<div class="listing"><pre class="prettyprint">Converter con = new DecimalConverter(); 
+System.out.println(con.convertNumber("123"));  
+JavaNumberConverter jnc = new JavaNumberConverter(); 
+con = jnc; 
+System.out.println(jnc.convertNumber("0xc001babe")); 
+System.out.println(con.convertNumber("0xc001babe"));</pre></div>
+<p><strong><em>Prüfung von  
+Vorbedingungen</em></strong></p>
+<p>In der Zeile  wird die Operation <span class="clisting">convertNumber</span> der Schnittstelle <span class="clisting">Converter</span> aufgerufen. Die Vorbedingungsprüfung muss also stattfinden. Das Programm gibt hier <span class="clisting">123</span> aus. In der Zeile  wird die Methode <span class="clisting">convertNumber</span> auf einer Variablen vom Typ <span class="clisting">JavaNumberConverter</span> aufgerufen. <span class="clisting">JavaNumberConverter</span> verlangt aber keine Überprüfung der Vorbedingung, daher gibt das Programm hier die Zahl <span class="clisting">0xc001babe</span> als <span class="clisting">3221338814</span> aus.</p>
+<p>Interessant wird es dann auf der Zeile . Die Variable <span class="clisting">con</span> zeigt auf dasselbe Objekt wie die Variable <span class="clisting">jnc</span>. Doch der Typ der Variablen <span class="clisting">con</span> garantiert nur, dass sie auf einen <span class="clisting">Converter</span> zeigt. Daher muss sich der Aufrufer an den Vertrag mit der Schnittstelle <span class="clisting">Converter</span> halten. Aus diesem Grund wird in der Zeile  eine <span class="clisting">IllegalArgumentException</span> geworfen.</p>
+<p>Dies ist genau das Verhalten, das wir erreichen wollten. Wir überprüfen an dieser Stelle also direkt die Möglichkeit, dass eine Kontraktverletzung auftreten könnte. Hätten wir dieses Vorgehen bei unserem Beispiel mit der Salatöl-Tankstelle gewählt, wäre direkt bei unserem ersten Testlauf mit salatölfähigen Autos aufgefallen, dass wir mit unserer Umsetzung auch normale Dieselautos mit Salatöl betanken können. Eine saubere Umsetzung von Design by Contract hätte eine gute Geschäftsidee gerettet und auf Jahre hinaus Arbeitsplätze in der Salatöl-Industrie gesichert.</p><a id="mjc019b942674c4f95dfbf05ebd3dafd2a" name="mjc019b942674c4f95dfbf05ebd3dafd2a"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">9.3.5 Introductions  <a href="#t2t37"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In den vorherigen Beispielen haben wir uns mit der Anpassung von Abläufen in einem Programm befasst. Wir haben in unsere Klassen Interzeptoren eingebunden, die das Verhalten der bereits vorhandenen Methoden geändert haben.</p>
+<p>AspectJ und andere aspektorientierte Frameworks können die bestehende Klassenstruktur aber auch auf eine andere Art erweitern. Zum Beispiel können Sie in bestehende Klassen neue Elemente einfügen, sie bestimmte Schnittstellen implementieren lassen oder zwischen eine Klasse und ihre direkte Oberklasse eine weitere Klasse in die Vererbungshierarchie einfügen.</p>
+<p><strong><em>Erweiterung von Schnittstellen mit Methoden</em></strong></p>
+<p>Ein interessanter Anwendungsfall für die Erweiterung von bestehenden Klassen ist die Erweiterung der expliziten Schnittstellen in Java um konkrete Methoden. Dies bietet eine Alternative zur Mehrfachvererbung der Implementierung, die in Java nicht unterstützt wird. In folgendem Beispiel erweitern wir die Schnittstelle <span class="clisting">ReadableList&lt;T&gt;</span> um die konkrete Methode <span class="clisting">last</span>, die sich vollständig auf die abstrakten Methoden <span class="clisting">size()</span> und <span class="clisting">get()</span> der Schnittstelle abbilden lässt:</p>
+<div class="listing"><pre class="prettyprint">public interface ReadableList&lt;T&gt; { 
+   public int size(); 
+   public T get(int i); 
+}</pre></div>
+<p>Eine Implementierung, die für die Datenhaltung ein Array verwendet:</p>
+<div class="listing"><pre class="prettyprint">public class SimpleList&lt;T&gt; implements ReadableList&lt;T&gt; { 
+   private final T[] data; 
+   public SimpleList(T... elements) { 
+      data = elements.clone(); 
+   } 
+   public int size() { 
+      return data.length; 
+   } 
+   public T get(int i) { 
+      return data[i]; 
+   } 
+}</pre></div>
+<p><strong><em>Neue Methode last für ReadableList</em></strong></p>
+<p>Der folgende Aspekt erweitert nun alle Implementierungen der Schnittstelle <span class="clisting">ReadableList</span> um die Methode <span class="clisting">last()</span>.</p>
+<div class="listing"><pre class="prettyprint">public aspect ReadableListMixin { 
+   public T ReadableList&lt;T&gt;.last() { 
+      System.out.println("Mixed method last"); 
+      return get(size()-1); 
+   } 
+}</pre></div>
+<p>Deswegen funktioniert folgender Aufruf und gibt die Zeichenkette <span class="clisting">"two"</span> aus.</p>
+<div class="listing"><pre class="prettyprint">ReadableList r = new SimpleList&lt;String&gt;("one", "two"); 
+System.out.println(r.last());</pre></div>
+<p>Über die aspektorientierte Spracherweiterung haben wir also die Möglichkeit erhalten, echte Mixins zusammen mit unseren Klassen zu verwenden.</p><a id="mj64be25e8cd08b89dcb1d4b89466e3e91" name="mj64be25e8cd08b89dcb1d4b89466e3e91"></a><a name="t36"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t37"></a><h3 class="t3">9.3.6 Aspektorientierter Observer  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t36"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Mit den Mitteln der Aspektorientierung lassen sich auch einige Verfahren, die wir in objektorientierten Systemen häufiger finden, direkter ausdrücken.</p>
+<p>Wir haben in Abschnitt 8.2.1 das Beobachter-Muster vorgestellt. Dabei registrieren sich Objekte bei anderen Objekten als Beobachter und werden im Fall von Änderungen benachrichtigt. Wir werden im Folgenden zeigen, wie wir dieses Muster mit Mitteln der Aspektorientierung umsetzen können.</p>
+<p><strong><em>Einfache  
+hydrologische Regel</em></strong></p>
+<p>Im folgenden Beispiel betrachten wir die Klasse <span class="clisting">Well</span>, die einen hypothetischen Brunnen repräsentiert. Dort wo solche Brunnen stehen, gelten sehr einfache hydrologische Regeln. Wenn es drei Tage hintereinander regnet, füllt sich der Brunnen mit genau einem Eimer Wasser, das man aus dem Brunnen abpumpen kann.</p>
+<div class="listing"><pre class="prettyprint">public class Well { 
+  private int level; 
+  public int getLevel() { 
+    return level; 
+  } 
+  public void rain(int days) { 
+    level += days / 3; 
+  } 
+  public void pump(int buckets) { 
+    level -= Math.min(level, buckets); 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 9.6    </strong>Modellierung eines Brunnens</p>
+<p><strong><em>Muster  
+»Beobachter«</em></strong></p>
+<p>Die Klasse <span class="clisting">Well</span> repräsentiert einen Brunnen und kann uns mit der Methode <span class="clisting">getLevel</span> immer sagen, wie viel Wasser im Brunnen noch übrig geblieben ist. Wir möchten unsere Anwendung allerdings so erweitern, dass sie uns warnt, wenn der Pegel eines Brunnen zu tief sinkt. Um dies zu erreichen, möchten wir die Klasse <span class="clisting">Well</span> so erweitern, dass sie eine Liste von Beobachtern verwaltet und bei jeder Änderung des Pegels die Beobachter benachrichtigt. Da die Klasse <span class="clisting">Well</span> in anderen Anwendungen diese Funktionalität nicht braucht, möchten wir ihren Quelltext nicht ändern. Stattdessen verwenden wir AspectJ, um die nötigen Introductions und Interzeptoren in den Quelltext der Klasse <span class="clisting">Well</span> einzuweben.</p>
+<p><strong><em>Beobachter-Klasse</em></strong></p>
+<p>Hier unsere Beobachter-Klasse. Jedes ihrer Exemplare kann genau einen Brunnen beobachten. Ein Brunnen kann aber von mehreren Beobachtern beobachtet werden.</p>
+<div class="listing"><pre class="prettyprint">public class WellObserver { 
+  private Well well; 
+  public WellObserver(Well well) { 
+    this.well = well; 
+  } 
+  public void waterLevelChanged() { 
+    System.out.println( 
+     "New water level: " + well.getLevel()); 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 9.7    </strong>Beobachter für einen Brunnen</p>
+<p><strong><em>Aspekt für  
+Beobachter</em></strong></p>
+<p>Was wir jetzt noch brauchen, ist die Benachrichtigung der Beobachter, wenn sich der Pegel eines Brunnen ändert. Dafür sorgt der folgende Aspekt:</p>
+<div class="listing"><pre class="prettyprint">privileged public aspect WellObserverAspect { 
+  private final transient Set&lt;WellObserver&gt; Well.observers 
+    = new HashSet&lt;WellObserver&gt;();  
+ 
+  after (WellObserver observer, Well well) returning:  
+    execution (WellObserver.new(Well)) 
+    &amp;&amp; args(well) &amp;&amp; target(observer) { 
+    well.observers.add(observer); 
+  } 
+  after(Well well): set(* Well.level) &amp;&amp; target(well) { 
+    for (WellObserver observer: well.observers) { 
+      observer.waterLevelChanged(); 
+    } 
+  }</pre></div>
+<p class="tabunter"><strong>Listing 9.8    </strong>Aspekt für die Benachrichtigung über Pegeländerungen</p>
+<p>Der Aspekt ist als privilegiert deklariert und hat somit den Zugriff auf die privaten Elemente der Klasse <span class="clisting">Well</span>. An der Stelle  fügen wir jedem Exemplar der Klasse <span class="clisting">Well</span> ein Attribut hinzu, das eine Menge (<span class="clisting">Set</span>) repräsentiert. In diesem Set werden die Beobachter des Brunnens verwaltet. Damit haben wir also nachträglich die Klasse <span class="clisting">Well</span> beobachtbar gemacht. In der Zeile  erweitern wir den Konstruktor der Klasse <span class="clisting">WellObserver</span> so, dass jeder Observer in die Menge der Observer bei dem beobachteten Brunnen eingetragen wird. Schließlich erzeugen wir in der Zeile  einen Interzeptor, der dafür sorgt, dass nach jeder Änderung des Pegels (<span class="clisting">set(* Well.level)</span>) alle Beobachter des Brunnens benachrichtigt werden.</p>
+<p><strong><em>Klasse Well bleibt unabhängig.</em></strong></p>
+<p>Die Klasse <span class="clisting">Well</span> selbst hat also weiterhin »keine Ahnung« davon, dass jemand sie überhaupt beobachten kann. Welche ihrer Aktionen beobachtet werden und wie das geschieht, ist alleine Aufgabe des entsprechenden Aspekts.</p>
+<p>Konstruieren wir nun einige aspektorientierte Brunnen und prüfen, ob die Beobachtung auch ohne direkte Mitarbeit der Klasse <span class="clisting">Well</span> klappt.</p>
+<div class="listing"><pre class="prettyprint">Well wellA = new Well(); 
+WellObserver observerA = new WellObserver(wellA); 
+wellA.rain(15); 
+wellA.pump(3); 
+wellA.pump(3); 
+wellA.pump(3);</pre></div>
+<p>Wir erhalten die folgende Ausgabe:</p>
+<div class="listing"><pre class="prettyprint">New water level: 5 
+New water level: 2 
+New water level: 0</pre></div>
+<p>Nachdem es 15 Tage geregnet hat, ändert sich der Wasserstand auf fünf Eimer. Dies wird korrekt beobachtet. Der erste Versuch, drei Eimer Wasser abzuschöpfen, führt dann zum Stand von zwei verbleibenden Eimern. Beim nächsten Schöpfversuch sinkt der Stand auf 0, was noch protokolliert wird. Beim letzten Versuch bleibt der Stand auf 0, es ist ja kein Wasser mehr zu holen.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_09_003.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="9.3 Anwendungen der Aspektorientierung"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_09_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_09_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

@@ -1,0 +1,1370 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 7.2 Fabriken als Abstraktionsebene für die Objekterzeugung</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 7.2 Fabriken als Abstraktionsebene für die Objekterzeugung">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 7.2 Fabriken als Abstraktionsebene für die Objekterzeugung">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_07_001.htm">
+<link rel="next" href="oop_kapitel_07_003.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852" class="navnav">7 Abläufe in einem objektorientierten System</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_001.htm#mj26b861834c431b683e4e1d0ac1938cba" class="navnav">7.1 Erzeugung von Objekten mit Konstruktoren und Prototypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj6cd9b2d12e6d2f663e4c1128b111c5d9" class="navnav">7.1.1 Konstruktoren: Klassen als Vorlagen für ihre Exemplare</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj29e4ea58eb12662f0f36f92b5ec8adaa" class="navnav">7.1.2 Prototypen als Vorlagen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj51d93c2b5e445392072beadafdebd393" class="navnav">7.1.3 Entwurfsmuster »Prototyp«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj1c44c94f2295b431db9cb9b5ee03bc9f" class="navh">7.2 Fabriken als Abstraktionsebene für die Objekterzeugung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjb223311c89407a9e76da180dc3f69036" class="navh">7.2.1 Statische Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjaa0579b2fb6bb3ec6034cf05f1eecac9" class="navh">7.2.2 Abstrakte Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjc5cb28a57eeadedfbc991e6786b00788" class="navh">7.2.3 Konfigurierbare Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj081b9df6d2dc6eafff1ff31f2823b219" class="navh">7.2.4 Registraturen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj91442f54dd3e6454d2343a346244a94c" class="navh">7.2.5 Fabrikmethoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj7e0c800eda7165eac4272a1955efef1a" class="navh">7.2.6 Erzeugung von Objekten als Singletons</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj7dcd47135763da11d4d4dc6876f5e60f" class="navh">7.2.7 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_003.htm#mj8ee9807b6d851ca17774d80d4e8b83bb" class="navnav">7.3 Objekte löschen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj7283bd45b7cfe614019b221ea52afec4" class="navnav">7.3.1 Speicherbereiche für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj61cf5d0c185ed5382c55f54cd3fe712c" class="navnav">7.3.2 Was ist eine Garbage Collection?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj77b12ff91a3d2c926b596ecf298bfde6" class="navnav">7.3.3 Umsetzung einer Garbage Collection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_004.htm#mja44c8c090df304b5376fe244eb0505d7" class="navnav">7.4 Objekte in Aktion und in Interaktion</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj461a627b534275782ce4985792ee15db" class="navnav">7.4.1 UML: Diagramme zur Beschreibung von Abläufen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mjf78234957c82aa740d796d46b611a52f" class="navnav">7.4.2 Nachrichten an Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj10368deb9e22e623d5445b79601554b1" class="navnav">7.4.3 Iteratoren und Generatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj3f6bd50ca8e5f65f36567d80e2803893" class="navnav">7.4.4 Funktionsobjekte und ihr Einsatz als Eventhandler</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj7e10a219a48a6476b1ea82aec6cc5ef4" class="navnav">7.4.5 Kopien von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj66aae429fecf9db6555945805016c62e" class="navnav">7.4.6 Sortierung von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_005.htm#mj7468c23d82240bfb461b8090668d1a51" class="navnav">7.5 Kontrakte: Objekte als Vertragspartner</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjed5c3bed5d1f32427a86656f31c3e743" class="navnav">7.5.1 Überprüfung von Kontrakten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjb272d58355d9d7a0899049eb6842697a" class="navnav">7.5.2 Übernahme von Verantwortung: Unterklassen in der Pflicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mja3c37a47a8407bc65b94f93f6a254ca2" class="navnav">7.5.3 Prüfungen von Kontrakten bei Entwicklung und Betrieb</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_006.htm#mjec595d98347a935335b712f91956664c" class="navnav">7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj3963c0742069044978ac462cc56c5b5a" class="navnav">7.6.1 Exceptions in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mje09bc3c4971db9aa83562a1fe7c4e034" class="navnav">7.6.2 Exceptions und der Kontrollfluss eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj21b606a3bb186e029d6b9c8c22764cc0" class="navnav">7.6.3 Exceptions im Einsatz bei Kontraktverletzungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj05465a5863b658f1b916b7805e1ef3c9" class="navnav">7.6.4 Exceptions als Teil eines Kontraktes</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjbf1f56f9665424db8d4cfc65f9adce59" class="navnav">7.6.5 Der Umgang mit Checked Exceptions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjd35575d7d7be5ba9875a7b50fa01d0d0" class="navnav">7.6.6 Exceptions in der Zusammenfassung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj1c44c94f2295b431db9cb9b5ee03bc9f" name="mj1c44c94f2295b431db9cb9b5ee03bc9f"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">7.2 Fabriken als Abstraktionsebene für die Objekterzeugung  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Bei der Erzeugung von Objekten über Konstruktoren müssen Sie bereits exakt wissen, von welcher Klasse ein Exemplar erzeugt werden soll. Damit haben Sie aber ein mögliches Problem in Ihre Module eingebaut, das Sie daran hindern könnte, das Verhalten eines Moduls zu erweitern oder eine Variante des Moduls einzuführen.</p>
+<p>Nun hat sich ein Entwickler eines Moduls, der ein neues Objekt über einen Konstruktor erzeugt, zunächst einmal überlegt, warum er gerade den Konstruktor dieser Klasse aufruft. Was ist denn dann eigentlich das Problem?</p>
+<p><strong><em>Offen für Erweiterung, geschlossen für Änderung</em></strong></p>
+<p>Wie in anderen Fällen müssen Sie auch hier das Prinzip <span class="ckursiv">Offen für Erweiterung, geschlossen für Änderung</span> im Blick behalten. Wenn Sie den Quellcode eines Moduls zu jedem Zeitpunkt beliebig ändern können und den Aufwand nicht scheuen, können Sie natürlich auch die Art der Objekterzeugung immer an Ort und Stelle anpassen.</p>
+<p>Aber in vielen Fällen können Sie den Quellcode gar nicht modifizieren, z. B. weil er Ihnen gar nicht für Änderungen zur Verfügung steht. Selbst wenn Sie es können, sollte ein Modul nur dann geändert werden, wenn es unbedingt notwendig ist. Das Modul soll für Änderungen geschlossen sein. Es muss einen anderen Weg geben, um Varianten der Verwendung zu ermöglichen.</p>
+<p>Und hier kommen die sogenannten <span class="ckursiv">Fabriken</span> ins Spiel.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Fabrik
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Fabrik in der objektorientierten Programmierung ist ein Objekt, das andere Objekte erzeugt. Bei diesem Objekt kann es sich auch um die Repräsentation einer Klasse handeln. Je nach verwendeter Umsetzung einer Fabrik sprechen wir von einer <span class="ckursiv">statischen Fabrik</span>, von <span class="ckursiv">Fabrikmethoden</span> oder <span class="ckursiv">abstrakten Fabriken</span>.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Ein Vorgehen</em></strong></p>
+<p>Da <span class="ckursiv">Fabrik</span> im Bereich der Objektorientierung ein sehr schillernder Begriff ist, haben wir mit der obigen Definition den kleinsten gemeinsamen Nenner gewählt. Eine Fabrik ist zunächst einmal kein Entwurfsmuster, sondern einfach ein bestimmtes Vorgehen bei der Objekterzeugung. Die zugehörigen Muster <span class="ckursiv">Statische Fabrik,</span> <span class="ckursiv">Abstrakte Fabrik</span> und <span class="ckursiv">Fabrikmethode</span> werden wir in der Folge noch vorstellen. Es ist aber immer Vorsicht geboten, wenn jemand vom <span class="ckursiv">Entwurfsmuster</span> »<span class="ckursiv">Fabrik«</span> (oder vom Factory Pattern) spricht. Dann ist meist eine Nachfrage angebracht, welches Vorgehen denn nun genau mit diesem Begriff gemeint ist.</p>
+<p><strong><em>Diskussion: Erweiterungspunkte durch  
+Fabriken</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Fabriken können Programme aber auch komplexer machen. Sie sollten nur dort zum Einsatz kommen, wo spätere Erweiterungen zu erwarten sind.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Da muss ich sagen: Das hört sich ein bisschen danach an, als würdest du prophetische Fähigkeiten voraussetzen. Wenn wir vorher genau wüssten, wo unser Programm später erweitert werden soll, wären wir alle glückliche Softwareentwickler.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Der Hinweis bedeutet auch nur, dass wir nun nicht all unsere Objekterzeugungen in Fabriken kapseln sollen. Oft werden wir erst bei der ersten Änderungsanforderung feststellen, wo Änderungen durchgeführt werden müssen. Dann sollten wir nicht zögern und in diesem Zug unseren Code ändern und möglicherweise eine der Fabrikvarianten verwenden. Oft sind es auch Schwierigkeiten mit der Erstellung von Unit-Tests, die darauf hinweisen, an welchen Stellen noch Erweiterungspunkte notwendig sind.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Stimmt, und immerhin gibt es ja Indizien, die darauf hindeuten, dass bestimmte Klassen zu einer Menge gehören, die sich laufend verändern wird. Wenn sich eine fachliche Klassenhierarchie schon zur Entwicklungszeit laufend weiter auffächert, ist dies zum Beispiel ein guter Hinweis darauf, dass das auch später noch so sein wird.</span><p>Der Einsatz von Fabriken unterstützt Sie bei der Einhaltung des Prinzips <span class="ckursiv">Offen für Erweiterung, geschlossen für Änderung</span> und führt dazu, dass Ihre Programme besser erweiterbar bleiben.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+ Webbrowser-Anwendung</em></strong></p>
+<p>Nehmen Sie als Beispiel an, Sie möchten eine einfache Webbrowser-Anwendung umsetzen, die mit verschiedenen Kommunikationsprotokollen umgehen können soll. Dabei gibt es eine ganze Reihe von möglichen Protokollen, die Ihr Browser unterstützen soll. Neben den gängigen Protokollen wie http und ftp soll Ihre Anwendung auch für neue Protokolle erweiterbar sein.</p>
+<p>Schauen Sie sich zunächst an, was passiert, wenn Sie in solchen Fällen keine Variante der Fabriken verwenden. In Abbildung 7.7 sind zwei verschiedene Handler für Kommunikationsprotokolle dargestellt, nämlich die Klassen <span class="clisting">HttpHandler</span> und <span class="clisting">FtpHandler</span>.</p>
+<div class="bildbox">
+<p><a name="IDAIRSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_007.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_007.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.7    </strong>Verschiedene Handler für Protokolle</p>
+<p>Beide implementieren die Schnittstelle <span class="clisting">ProtocolHandler</span> und damit die Operation <span class="clisting">getContent</span>, die zu einer URL den dahinter liegenden Inhalt in Form eines Strings liefern soll. [Wir gehen hier von der vereinfachenden Annahme aus, dass sich unter den verwendeten URLs immer Inhalt befindet, der sich als Text repräsentieren lässt.
+]  Der nutzende Klient entscheidet selbst, von welcher der beiden Klassen er ein Exemplar erstellen möchte. Wenn er den Inhalt anzeigen möchte, muss er außerdem dafür weitere Objekte heranziehen. Ein <span class="clisting">ProtocolHandler</span> ist nur dafür zuständig, den Inhalt abzuholen und dabei das übergebene Protokoll zu berücksichtigen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Kleiner Exkurs: Protokolle und URLs in Java
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In den Bibliotheken von Java sind bereits Mechanismen enthalten, um mit verschiedenen URL-Typen und deren Protokollen umgehen zu können. Dabei wird über die Schnittstelle <span class="clisting">URLConnection</span> eine Abstraktion verwendet, mit der ein einheitlicher Zugriff auf die verschiedenen Typen von URLs möglich ist. Das dabei verwendete Klassendesign ermöglicht es auch, eigene Handler zu implementieren und zu verwenden, indem Fabrikmechanismen eingesetzt werden. In den folgenden Abschnitten werden wir aber die von Java bereitgestellten Klassen nicht benutzen, sondern mit eigenen Umsetzungen die verschiedenen Varianten von Fabriken Schritt für Schritt illustrieren.</p>
+</td>
+</tr>
+</table><br><p>Die Methode <span class="clisting">displayURL</span>, innerhalb der ein <span class="clisting">ProtocolHandler</span> ausgewählt wird, ist in Listing 7.5 dargestellt.</p>
+<div class="listing"><pre class="prettyprint">public void displayURL(String urlString, 
+                       ContentViewer viewer) { 
+        URL url = new URL(urlString); 
+        String sProtocol = url.getProtocol(); 
+ 
+        ProtocolHandler handler = null; 
+        if (sProtocol.equalsIgnoreCase("HTTP") ) {  
+            handler = new HttpHandler();  
+        } else if (sProtocol.equalsIgnoreCase("FTP")) { 
+            handler = new FtpHandler();  
+        } else { 
+            throw new RuntimeException("kein Bearbeiter für 
+                     die URL " + url + " gefunden "); 
+        } 
+        String content = handler.getContent(stringURL);   
+         ... 
+        viewer.showContent(content); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.5    </strong>Auswahl eines ProtocolHandlers</p>
+<p>Dabei wird auf der Grundlage der übergebenen URL entschieden (), dann ein Exemplar angelegt  und im Erfolgsfall darüber der Inhalt der betreffenden Webseite abgeholt .</p>
+<p>Sieht zunächst einmal so aus, als würde das funktionieren. Wo liegt aber das Problem? Wir schauen uns das Problem und eine erste Lösung im nächsten Abschnitt genauer an.</p><a id="mjb223311c89407a9e76da180dc3f69036" name="mjb223311c89407a9e76da180dc3f69036"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">7.2.1 Statische Fabriken  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In der Regel werden Sie Exemplare der Klasse <span class="clisting">ProtocolHandler</span> noch an anderen Stellen im Code benötigen. Bei der Anzeige einer kurzen Vorschau in einem anderen Browserfenster wäre zum Beispiel ein Einsatz ebenfalls notwendig. An diesen Stellen werden Sie also den Code zur Auswahl des korrekten Bearbeiters noch einmal schreiben müssen. Dies steht aber unserem Prinzip <span class="ckursiv">Wiederholungen vermeiden</span> entgegen<span class="ckursiv">.</span> Wenn es nun erforderlich wird, dass Ihre Anwendung ein weiteres Protokoll, zum Beispiel das Secure-Http-Protokoll, unterstützen soll, werden Sie Änderungen an mehreren Stellen im Code vornehmen müssen.</p>
+<p>Dieses erste Problem können Sie durch den Einsatz einer statischen Fabrik lösen.</p>
+<div class="bildbox">
+<p><a name="IDAFTSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_008.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_008.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.8    </strong>Statische Fabrik für »ProtocolHandler«</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Statische Fabrik 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Der Einsatz einer statischen Fabrik kapselt die Erstellung von Objekten an einer zentralen Stelle im Code. Dabei wird meistens eine klassenbezogene Methode (statische Methode) verwendet. Diese wird statische Fabrikmethode genannt. Ist die konkrete Klassenzugehörigkeit des erzeugten Objekts vom Wert eines Parameters abhängig, handelt es sich um eine parametrisierte statische Fabrik.</p>
+</td>
+</tr>
+</table><br><p>In Abbildung 7.8 ist das Beispiel der <span class="clisting">ProtocolHandler</span> unter Verwendung einer statischen Fabrik <span class="clisting">StaticProtocolHandlerFactory</span> dargestellt. Code-Redundanzen werden dabei vermieden, indem die Erzeugung von Exemplaren von <span class="clisting">ProtocolHandler</span> an genau einer Stelle im Code, nämlich in der klassenbezogenen Methode <span class="clisting">getProtocolHandler</span>, erfolgt.</p>
+<p>Der Code, der vorher direkt vom nutzenden Client umgesetzt werden musste, ist nun in der statischen Fabrik gekapselt, deren Methode <span class="clisting">getProtocolHandler</span> von verschiedenen Clients aufgerufen wird.</p>
+<p>In unserem Beispiel würde die Nutzung der statischen Fabrik durch <span class="clisting">Client1</span> dann so aussehen:</p>
+<div class="listing"><pre class="prettyprint">    ProtocolHandler handler = 
+        StaticProtocolFactory.getProtocolHandler(stringURL); 
+    String content = handler.getContent(stringURL); 
+    ... 
+    viewer.showContent(content);</pre></div>
+<p><strong><em>Zentrale  
+Erzeugung von Exemplaren</em></strong></p>
+<p>Der Code zur Erstellung eines konkreten Exemplars wird dabei einfach in eine statische Methode einer eigenen Klasse ausgelagert. In Listing 7.6 ist die Umsetzung der statischen Fabrik dargestellt. Die statische Fabrikmethode <span class="clisting">getProtocolHandler</span> übernimmt nun die Aufgabe, die korrekte Klasse auszuwählen, und liefert das erstellte Exemplar zurück.</p>
+<div class="listing"><pre class="prettyprint">class StaticProtocolFactory 
+{ 
+    static ProtocolHandler getProtocolHandler( 
+              String stringURL) throws MalformedURLException 
+    { 
+        URL url = new URL(stringURL); 
+        String sProtocol = url.getProtocol(); 
+ 
+        ProtocolHandler handler = null; 
+        if (sProtocol.equalsIgnoreCase("HTTP") ) 
+        { 
+            handler = new HttpHandler(); 
+        } 
+        else if (sProtocol.equalsIgnoreCase("FTP")) 
+        { 
+            handler = new FtpHandler(); 
+        } 
+        else 
+        { 
+            throw new RuntimeException( 
+              "kein ProtocolHandler für die URL " 
+               + url + " vorhanden "); 
+        } 
+        return handler; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.6    </strong>Umsetzung einer statischen Fabrik</p>
+<p><strong><em>Parametrisierte statische Fabrik</em></strong></p>
+<p>Mit dem Einsatz einer statischen Fabrik haben Sie eine zentrale Stelle geschaffen, an der alle Exemplare der Klasse <span class="clisting">ProtocolHandler</span> erzeugt werden. Da die statische Fabrikmethode der Fabrik noch einen Parameter nimmt, anhand dessen erst der zu erstellende konkrete <span class="clisting">ProtocolHandler</span> bestimmt wird, handelt es sich um eine parametrisierte statische Fabrik.</p>
+<p><strong><em>Diskussion:  
+Wo bleibt die  
+Flexibilität?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Hm, so richtig beeindruckt bin ich noch nicht. Damit haben wir das Problem doch nur verlagert. Wenn wir ein neues Protokoll hinzufügen wollen, müssen wir die Fabrik wieder anpacken und den entsprechenden Bearbeiter dort konstruieren. Außerdem: Wenn ich nun auf die Idee komme, dass ich ganz andere Umsetzungen meiner Protokollbearbeiter brauche, dann muss ich direkt wieder in den Source-Code eingreifen, um hier eine andere statische Fabrik anzugeben.</span><p><strong><em>Erweiterbarkeit 
+Austauschbarkeit</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Das ist natürlich richtig. Was wir gemacht haben, ist einfach eine Vermeidung von Code-Redundanzen, außerdem haben wir eine definierte Stelle im Code geschaffen, an der bestimmte Objekte konstruiert werden. Den Nutzen einer solchen Kapselung sollten wir nicht unterschätzen.</span><span class="ckursiv">Aber du hast da gleich zwei Probleme auf einmal erwähnt: Zum einen ist es schwierig, ein neues Protokoll (zum Beispiel WAP) hinzuzufügen. Zum anderen können wir nicht einfach hingehen und unsere Protokollbearbeiter komplett austauschen (zum Beispiel um zum Testen immer simulierte Daten zu liefern).</span><p><strong><em>Probleme bei Erweiterbarkeit</em></strong></p>
+<p>Die Verwendung einer statischen Fabrik vermeidet zwar Code-Redundanzen, sie ist aber keine Lösung für zwei Problemfelder, die sich ergeben, wenn wir unser Modul erweitern wollen:</p>
+<ul class="gp">
+<li>Um ein neues Protokoll behandeln zu können, müssen Sie die statische Fabrik selbst anpassen.</li>
+</ul>
+<ul class="gp">
+<li>Ein Austausch der konkreten Realisierungen von <span class="clisting">ProtocolHandlern</span> in verschiedenen Einsatzszenarien ist aufwändig. Zum Beispiel ist es nicht auf einfache Art möglich, Simulationen in Testszenarien zu verwenden.</li>
+</ul>
+<p>Im folgenden Abschnitt stellen wir zunächst eine Lösungsmöglichkeit für das zweite Problem vor: die abstrakte Fabrik.</p><a id="mjaa0579b2fb6bb3ec6034cf05f1eecac9" name="mjaa0579b2fb6bb3ec6034cf05f1eecac9"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">7.2.2 Abstrakte Fabriken  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Abstrakte Fabriken ergeben sich als Erweiterung der bereits vorgestellten statischen Fabriken. Statische Fabriken haben den Nachteil, dass sie nicht austauschbar sind, weil statische Methoden nicht der dynamischen Polymorphie unterliegen.</p>
+<p>Greifen wir zur Illustration unser Beispiel mit den verschiedenen Protokollen und deren Bearbeiterklassen wieder auf. Wären Sie nicht flexibler, wenn Sie hier die dynamische Polymorphie nutzen und auch die verwendete Fabrik austauschen könnten? Vielleicht wollen Sie Tests in Szenarien durchführen, in denen Sie gar nicht wirklich auf URLs zugreifen können. In diesem Fall wäre es wünschenswert, auf eine einfache Weise die entsprechenden Implementierungen der <span class="clisting">ProtocolHandler</span> austauschen zu können.</p>
+<p><strong><em>Fabriken  
+implementieren eine Schnittstelle.</em></strong></p>
+<p>Versuchen wir also, Nutzen aus der dynamischen Polymorphie zu ziehen. Wir lassen verschiedene Fabriken dieselbe Schnittstelle implementieren und verwenden nur diese Schnittstelle, wenn wir eine Fabrik benötigen. In Abbildung 7.9 sind die beteiligten Klassen aufgeführt.</p>
+<div class="bildbox">
+<p><a name="IDAVWSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_009.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_009.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.9    </strong>Abstrakte Fabrik für »ProtocolHandler«</p>
+<p>Sie sehen dort, dass für die verschiedenen Varianten der Fabrik eine Schnittstelle <span class="clisting">HandlerFactory</span> eingeführt wurde, welche die Operation <span class="clisting">getProtocolHandler</span> spezifiziert. Die Schnittstelle wird realisiert von den beiden konkreten Klassen <span class="clisting">SimHandlerFactory</span> und <span class="clisting">JavaBasedHandlerFactory</span>. Dabei ist die <span class="clisting">SimHandlerFactory</span> für Szenarien gedacht, in denen keine realen Daten verwendet werden können, zum Beispiel in einem Unit-Test. Deshalb wird diese in der Methode <span class="clisting">getProtocolHandler</span> ein Exemplar von <span class="clisting">SimProtocolHandler</span> erzeugen.</p>
+<p>Die <span class="clisting">JavaBasedHandlerFactory</span> dagegen wird das bereits bekannte Verfahren verwenden und abhängig vom jeweiligen Protokoll ein Exemplar von <span class="clisting">HttpProtocolHandler</span>, <span class="clisting">FtpProtocolHandler</span> oder einer anderen Realisierung zurückliefern.</p>
+<p>Die Schnittstelle <span class="clisting">HandlerFactory</span> wird als abstrakte Fabrik bezeichnet.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Abstrakte Fabrik
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine abstrakte Fabrik stellt eine Schnittstelle für verschiedene konkrete Fabriken dar. Die abstrakte Fabrik definiert dabei eine oder mehrere Operationen, durch die wiederum abstrakte Produkte erstellt werden. Die Realisierungen einer abstrakten Fabrik, die konkreten Fabriken, setzen die vorgegebenen Operationen so um, dass sie Exemplare von konkreten Produktklassen erstellen. Durch die Nutzung einer abstrakten Fabrik ist es möglich, die erzeugten Produkte zu variieren, indem ein Austauch der konkreten verwendeten Fabrik erfolgt.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Verwendung  
+von abstrakten Fabriken</em></strong></p>
+<p>Um die Verwendung von abstrakten Fabriken zu illustrieren, nehmen wir das Beispiel aus Abbildung 7.9 wieder auf. In Listing 7.7 sind die beiden unterschiedlichen Realisierungen der Operation <span class="clisting">getProtocolHandler</span> aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">class JavaBasedProtocolFactory implements ProtocolFactory 
+{ 
+    ... 
+    ProtocolHandler getProtocolHandler(String urlString) { 
+        ProtocolHandler handler = null; 
+        if (sProtocol.equalsIgnoreCase("HTTP") ) 
+        { 
+            handler = new HttpHandler(); 
+        } 
+        ... 
+    } 
+} 
+ 
+class SimHandlerFactory implements HandlerFactory  
+{ 
+    ProtocolHandler getProtocolHandler(String urlString) 
+    { 
+        ProtocolHandler handler = new ProtocolHandlerSim (); 
+        return handler; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.7    </strong>Verschiedene Umsetzungen der Operation »getProtocolHandler«</p>
+<p>Für den Fall der <span class="clisting">SimHandlerFactory</span>  wird für alle angeforderten Protokolle einfach ein Simulator zurückgegeben. Diese Fabrik können Sie also für Tests verwenden, wenn die eigentlich über eine URL referenzierten Daten nicht relevant sind.</p>
+<p><strong><em>Nutzung  
+der Fabrik-Schnittstelle</em></strong></p>
+<p>Als Nutzer der Fabrik kommt eine Klasse <span class="clisting">BrowserView</span> in Frage, die den gelieferten Inhalt in einem Browser anzeigen soll. Wird ein Exemplar der Klasse <span class="clisting">BrowserView</span> erzeugt, bekommt es die zu verwendende Fabrik im Konstruktor übergeben. Anschließend verwendet die Klasse <span class="clisting">BrowserView</span> die abstrakte Fabrik, um sich deren Produkt (ein Exemplar von <span class="clisting">ProtocolHandler</span>) erstellen zu lassen. In Abbildung 7.10 sind die Nutzungsbeziehungen der beteiligten Klassen aufgeführt.</p>
+<div class="bildbox">
+<p><a name="IDAOZSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_010.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_010.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.10    </strong>Anwendung der abstrakten Fabrik für »ProtocolHandler«</p>
+<p>Abhängig davon, zu welcher konkreten Klasse die im Konstruktor übergebene Fabrik gehört, ergibt sich nun unterschiedliches Verhalten. Wird ein Exemplar von <span class="clisting">SimHandlerFactory</span> bei der Konstruktion übergeben, wird <span class="clisting">BrowserView</span> intern lediglich simulierte Daten verwenden. Wird ein Exemplar von <span class="clisting">JavaBasedHandlerFactory</span> übergeben, wird auf die übergebene URL zugegriffen, und die Daten werden dort abgeholt. In Listing 7.8 ist die Umsetzung der Klasse <span class="clisting">BrowserView</span> aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">public class BrowserView { 
+    private ProtocolFactory factory; 
+ 
+    BrowserView(ProtocolFactory factory) 
+    { 
+        this.factory = factory; 
+    } 
+ 
+    void renderUrlContents(String stringURL)    { 
+        ProtocolHandler handler = 
+          factory.getProtocolHandler(stringURL); 
+        String content = handler.getContent(stringURL); 
+        renderContent(content); 
+    } 
+    // ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.8    </strong>Umsetzung der Klasse »BrowserView«</p>
+<p><strong><em>Fabrik als  
+Parameter</em></strong></p>
+<p>Nun können Sie den <span class="clisting">BrowserView</span> mit einer Fabrik für Protokollbearbeiter parametrisieren. Abhängig von der übergebenen Fabrik wird er sich unterschiedlich verhalten.</p>
+<p><strong><em>Offen für  
+Erweiterung</em></strong></p>
+<p>Sie haben dadurch die Möglichkeit, das Verhalten der konstruierten Exemplare der Klasse <span class="clisting">BrowserView</span> zu beeinflussen, indem Sie die Fabrik Exemplare von konkreten Produkten konstruieren lassen. Damit haben Sie einen Erweiterungspunkt geschaffen, mit dem Sie das Verhalten von <span class="clisting">BrowserView</span> beeinflussen können, ohne dass Sie die existierenden Klassen anpassen müssen. Dies unterstützt das Prinzip <span class="ckursiv">Offen für Erweiterung, geschlossen für Änderung</span>.</p>
+<p>In Listing 7.9 sehen Sie, wie zwei verschiedene konkrete Fabriken verwendet werden, um das interne Verhalten eines <span class="clisting">BrowserViews</span> anzupassen.</p>
+<div class="listing"><pre class="prettyprint">JavaBasedProtocolFactory javaFactory = 
+                          new JavaBasedProtocolFactory(); 
+SimProtocolFactory simFactory = new SimProtocolFactory(); 
+ 
+BrowserView productionview = new BrowserView(javaFactory); 
+BrowserView testview = new BrowserView(simFactory); 
+ 
+productionview.renderUrlContents("http://www.mopo.de"); 
+testview.renderUrlContents("http://www.mopo.de");</pre></div>
+<p class="tabunter"><strong>Listing 7.9    </strong>Verwendung von zwei verschiedenen konkreten Fabriken</p>
+<p>Die beiden angelegten <span class="clisting">BrowserViews</span> werden sich nun unterschiedlich verhalten. Der eine wird versuchen, die Webseite <span class="ckursiv"><a href="http://www.mopo.de">www.mopo.de</a></span> zu erreichen, der andere wird einfachen simulierten Inhalt anzeigen.</p>
+<p><strong><em>Diskussion: Anpassungsaufwand in Fabriken</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> O.k., wir können nun also die Art unserer Protokollbearbeiter austauschen. Das ist natürlich ganz nett, wenn uns die bisherigen zum Beispiel zu ineffizient werden und wir sie aus diesem Grund austauschen möchten. Aber wenn wir nun ein neues Protokoll hinzufügen wollen, sagen wir einmal für das WAP-Protokoll, dann müssen wir in diesem Fall ja sogar in alle vorhandenen Fabrik-Klassen eingreifen.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> An irgendeiner Stelle muss letztendlich entschieden werden, welche konkrete Klasse verwendet werden soll. Es kann immer nur darum gehen, diese Entscheidung an einer Stelle vorzunehmen, an der Änderungen möglichst selten zu erwarten und dann möglichst einfach vorzunehmen sind. Wenn wir unser Switch-Statement aber komplett loswerden wollen, müssen wir die Entscheidung, welche Protokollbearbeiter-Klasse angelegt wird, an eine komplett andere Stelle verlagern.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Wohin können wir diese Entscheidung denn verlagern?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wir können diese Entscheidung auch außerhalb des Programmcodes treffen lassen, indem wir die konkrete zu verwendende Klasse in einer Konfigurationsdatei festlegen. Eine andere Möglichkeit ist es, dass sich neue Klassen, die für ein bestimmtes Protokoll zuständig sind, mit einem spezifischen Exemplar bei einer Fabrik registrieren.</span><p><strong><em>Erweiterung um neues Protokoll</em></strong></p>
+<p>Auch mit der eingeführten abstrakten Fabrik existiert in unserem Beispiel immer noch eine Einschränkung, die bei der Erweiterung um neue Protokolle hinderlich sein kann: Wenn Sie ein neues Protokoll unterstützen wollen, müssen Sie die betroffenen konkreten Fabriken wieder öffnen, um den neuen Protokolltyp hinzuzufügen. Das muss nicht unbedingt ein Problem sein. In vielen Fällen sind die Mechanismen der abstrakten Fabrik ausreichend, und eine Erweiterung um neue Produkte ist unwahrscheinlich oder kann im Quellcode vorgenommen werden.</p>
+<p><strong><em>Entscheidung  
+verlagern</em></strong></p>
+<p>Wenn aber mit hoher Wahrscheinlichkeit neue Produkte hinzukommen, kann es sinnvoll sein, die Entscheidung über die konkreten Produkte weiter zu verlagern.</p>
+<p>Hier haben Sie zwei praktikable Möglichkeiten:</p>
+<ul class="gp">
+<li>Sie lagern die Entscheidung in eine externe Konfiguration aus.</li>
+</ul>
+<ul class="gp">
+<li>Sie erstellen einfach von allen Protokollbearbeiter-Klassen Exemplare und lassen diese selbst entscheiden, ob sie ein Protokoll bearbeiten können.</li>
+</ul>
+<p>Im folgenden Abschnitt lernen Sie die erste Variante kennen. Die zweite Variante stellen wir in Abschnitt 7.2.4, »Registraturen für Objekte«, vor.</p><a id="mjc5cb28a57eeadedfbc991e6786b00788" name="mjc5cb28a57eeadedfbc991e6786b00788"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">7.2.3 Konfigurierbare Fabriken  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Bei der Verwendung von Fabriken ist der entscheidende Punkt, an welcher Stelle im Programmcode die Entscheidung stattfindet, von welcher konkreten Klasse ein Exemplar erzeugt werden soll. Diese Entscheidung kann auch außerhalb des Programmcodes liegen, indem sie über eine externe Konfiguration vorgenommen wird. In diesem Fall liegt dann eine konfigurierbare Fabrik vor.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Konfigurierbare Fabrik
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine konfigurierbare Fabrik verlagert die Entscheidung darüber, von welcher Klasse ein Exemplar erzeugt werden soll, in eine Konfiguration, die außerhalb des Programms liegt. Voraussetzung für den Einsatz einer konfigurierbaren Fabrik ist es, dass die verwendete Programmiersprache es erlaubt, erst zur Laufzeit zu entscheiden, zu welcher konkreten Klasse ein zu erstellendes Objekt gehört.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Umsetzung in Java</em></strong></p>
+<p>Die Sprache Java bietet zum Beispiel die geforderten Möglichkeiten. Es ist möglich, über den Namen einer Klasse ein Exemplar dieser Klasse zu konstruieren. [Die Fähigkeit, Information über Klassen und andere Strukturen eines Programms zur Laufzeit auszuwerten und zu nutzen, wird <span class="ckursiv">Reflexion</span> genannt. Wir stellen Reflexion in Kapitel 9, »Aspekte und Objektorientierung«, noch im Detail vor.
+]  Wir stellen im Folgenden an einem Beispiel in Java vor, wie eine statische Fabrik so modifiziert werden kann, dass sie über eine Datei konfigurierbar wird. In Abbildung 7.11 sind die erweiterten Nutzungsbeziehungen der statischen Fabrik dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAM3SQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_011.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_011.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.11    </strong>Umsetzung einer konfigurierbaren Fabrik</p>
+<p>Die statische Fabrik nutzt zum einen die Klasse <span class="clisting">Properties</span>, um aus einer Konfigurationsdatei den Namen der Klasse auszulesen, die für ein bestimmtes Protokoll zuständig ist. Zum anderen wird die Klasse <span class="clisting">Class</span> verwendet, um neue Exemplare der <span class="clisting">ProtocolHandler</span> zu erzeugen.</p>
+<p>Wie genau das Erzeugen von neuen Exemplaren stattfindet, lässt sich am besten anhand der entsprechenden Umsetzung in Java erläutern. In Listing 7.10 ist eine konfigurierbare Fabrik aufgeführt. Die Fehlerbehandlung haben wir in diesem Beispiel aus Gründen der Übersicht weggelassen.</p>
+<p><strong><em>Entscheidung per Konfiguration</em></strong></p>
+<div class="listing"><pre class="prettyprint">class StaticProtocolHandlerFactory { 
+    public ProtocolHandler getProtocolHandler( 
+                                    String protocol) 
+ { 
+        Properties properties = new Properties();   
+        properties.load(new FileInputStream(    
+                "factory.properties")); 
+        String handler = properties    
+                .getProperty(protocol); 
+        Class classOfProtocolHandler =     
+                Class.forName(handler); 
+        ProtocolHandler protocolHandler =        
+                (ProtocolHandler) classOfProtocolHandler 
+                .newInstance(); 
+        return protocolHandler; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.10    </strong>Umsetzung einer konfigurierbaren Fabrik in Java</p>
+<p>Im Folgenden beschreiben wir Schritt für Schritt, was in diesem Stück Quellcode passiert.</p>
+<p>Zunächst wird in Zeile  ein Exemplar der Klasse <span class="clisting">Properties</span> erzeugt. Über dieses Objekt können Werte zu Attributen aus einer Datei gelesen werden. In  wird die verwendete Datei angegeben und eingelesen.</p>
+<p><strong><em>Klassenname  
+aus Datei</em></strong></p>
+<p>Im Beispiel wird die Datei <span class="clisting">factory.properties</span> genutzt, um eine Zuordnung zwischen dem Protokoll und der dafür verantwortlichen Klasse vorzunehmen. Die Einträge in dieser Datei enthalten in unserem Beispiel Zuordnungen für die Protokolle http und ftp:</p>
+<div class="listing"><pre class="prettyprint">http=de.galileocomputing.oobook.abstractfactory.HttpHandler 
+ftp=de.galileocomputing.oobook.abstractfactory.FtpHandler</pre></div>
+<p>In Zeile  wird der zum übergebenen Protokoll gehörende Klassenname ausgelesen. Für den Fall des http-Protokolls erhalten Sie also <span class="clisting">de. galileocomputing.oobook.abstractfactory.HttpHandler</span> als Name der Klasse, von der ein Exemplar erzeugt werden soll. In Zeile  wird über die statische Methode <span class="clisting">forName</span> über den Namen das Objekt gesucht, das die Klasse <span class="clisting">HttpHandler</span> repräsentiert. Dieses Objekt enthält Informationen über die Struktur der Klasse, es kann aber auch verwendet werden, um Exemplare der Klasse zu erzeugen. Genau dies geschieht in Zeile : Ein Exemplar der Klasse <span class="clisting">HttpHandler</span> (oder einer anderen konkreten Unterklasse von <span class="clisting">ProtocolHandler</span>) wird erzeugt und der Variablen <span class="clisting">protocolHandler</span> zugewiesen.</p>
+<p>Damit liegt die Entscheidung, welche konkrete Klasse verwendet wird, nicht mehr im Quellcode, sondern in der verwendeten Konfigurationsdatei. Soll ein neues Protokoll unterstützt oder ein existierendes Protokoll durch eine andere Klasse bearbeitet werden, ist neben der Umsetzung der neuen Unterklasse von <span class="clisting">ProtocolHandler</span> lediglich eine Änderung in der Konfigurationsdatei notwendig.</p>
+<p>Im vorgestellten Beispiel haben wir eine statische Fabrik um Konfigurationsmöglichkeiten erweitert. Es wäre aber genauso möglich, die abstrakte Fabrik aus Abschnitt 7.2.2 mit diesen Möglichkeiten zu erweitern, so dass Sie mehrere Varianten einer konfigurierbaren Fabrik verwenden könnten.</p>
+<p><strong><em>Konfiguration in Sprachen ohne Reflexion</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Konfigurierbare Fabriken in Sprachen ohne Reflexion
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Das vorgestellte Beispiel in Java nutzt die Fähigkeit von Java, zur Laufzeit zu bestimmen, von welcher konkreten Klasse ein Exemplar erzeugt werden soll. Was ist aber in Sprachen wie C++, die diese Fähigkeiten nicht haben? Betrachten wir, welche Möglichkeiten Sie in C++ haben, so einen Mechanismus nachzubauen.</p>
+<p>In C++-Programmen ist es möglich, dass Bibliotheken nicht schon beim Start des Programms geladen werden, sondern erst später im Programmablauf aufgrund einer expliziten Ladeanweisung. Dadurch lässt sich ein ähnlicher Effekt erreichen wie durch die beschriebenen Konfigurationsmöglichkeiten in Java, allerdings mit wesentlich mehr Aufwand. Sie können dabei in einer Konfigurationsdatei festlegen, welche Bibliothek aus einer Reihe von Bibliotheken geladen werden soll. Liegen nun unterschiedliche Bibliotheken mit unterschiedlichen Realisierungen für die gleiche Schnittstellen-Klasse vor, so werden abhängig von der geladenen Bibliothek unterschiedliche Realisierungen dieser Schnittstelle im Programm verwendet. </p>
+<p>Wenn die geladenen Klassen jeweils ein Exemplar in eine <span class="ckursiv">Registratur</span> eintragen, kann der Zugriff darauf über diese Registratur vermittelt und das für einen konkreten Fall (in unserem Beispiel ein bestimmtes Protokoll) registrierte Exemplar geliefert werden. Damit ändert sich das Verhalten des Programms abhängig davon, welche Bibliotheken dynamisch geladen werden. Da nun in einer Konfigurationsdatei entschieden wird, welche dieser Bibliotheken geladen werden, so haben Sie für diesen Fall das Verhalten einer konfigurierbaren Fabrik vorliegen.</p>
+</td>
+</tr>
+</table><br><a id="mj081b9df6d2dc6eafff1ff31f2823b219" name="mj081b9df6d2dc6eafff1ff31f2823b219"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">7.2.4 Registraturen für Objekte  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In Abschnitt 7.2.2 hatten wir die Frage gestellt, wie denn die Entscheidung über die Klassenzugehörigkeit von erstellten Objekten weiter verlagert werden kann, so dass auch eine Fabrik selbst nicht mehr im Quellcode entscheiden muss, welche konkrete Klasse verwendet wird. Im vorigen Abschnitt haben Sie gesehen, dass diese Entscheidung in eine Konfigurationsdatei ausgelagert werden kann.</p>
+<p>Was wir noch nicht betrachtet haben, ist die Möglichkeit, diese Entscheidung den Produkten der Fabrik selbst zu überlassen. Warum sollten Sie nicht einfach einmal eine ganze Reihe von Produkten auf Vorrat produzieren und diese dann bei Bedarf prüfen, ob sie für Ihre aktuelle Anforderung geeignet sind?</p>
+<p>In Abbildung 7.12 greifen wir unser Beispiel mit unterschiedlichen Realisierungen der Schnittstelle <span class="clisting">ProtocolHandler</span> wieder auf. Dort sehen Sie aber diesmal eine zusätzliche Klasse <span class="clisting">ProtocolHandlerRegistry</span>, die als Registratur für Exemplare aller Unterklassen von <span class="clisting">ProtocolHandler</span> dient.</p>
+<div class="bildbox">
+<p><a name="IDAWATQ"></a><a onClick="OpenWin('bilder/07_12.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_12.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.12    </strong>Registratur für »ProtocolHandler«</p>
+<p>Die Schnittstelle <span class="clisting">ProtocolHandler</span> verlangt nun, dass eine Klasse, welche die Schnittstelle implementiert, auch eine Methode <span class="clisting">canHandle</span> implementiert, die Auskunft darüber gibt, ob ein Exemplar der Klasse ein angegebenes Protokoll bearbeiten kann.</p>
+<p>Eine zentrale Rolle nimmt in diesem Szenario aber die Klasse <span class="clisting">ProtocolHandlerRegistry</span> ein, deren Umsetzung in Listing 7.11 dargestellt ist.</p>
+<div class="listing"><pre class="prettyprint">public class Protocol<span class="clisting">HandlerRegistry</span> { 
+    static List&lt;ProtocolHandler&gt; protocolHandlers =       
+                      new ArrayList&lt;ProtocolHandler&gt;(); 
+ 
+    static void register(ProtocolHandler handler) {   
+        protocolHandlers.add(handler); 
+    } 
+    static ProtocolHandler getProtocolHandler(    
+                    String protocol) { 
+        ListIterator&lt;ProtocolHandler&gt; iter = 
+            protocolHandlers.listIterator(); 
+        while (iter.hasNext()) { 
+            ProtocolHandler handler = iter.next(); 
+            if (handler.canHandle(protocol)) {   
+                return handler;    
+            } 
+    } 
+    // Fehlerbehandlung weggelassen 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.11    </strong>Umsetzung der Klasse »ProtocolHandlerRegistry« in Java</p>
+<p>Betrachten wir deren Funktion im Folgenden etwas genauer. <span class="clisting">ProtocolHandlerRegistry</span> definiert ausschließlich klassenbezogene Datenelemente und Methoden. Zunächst ist da eine Liste von Exemplaren von <span class="clisting">ProtocolHandler</span>, die in Zeile  definiert wird. In dieser werden mögliche Bearbeiter für Protokolle abgelegt. Zum Einfügen in diese Liste dient die Operation <span class="clisting">register</span> in Zeile .</p>
+<p>Wenn nun über die Operation <span class="clisting">getProtocolHandler</span> in Zeile  ein Protokollbearbeiter für eine bestimmte URL angefordert wird, wird die Liste der registrierten Bearbeiter durchlaufen und jedes Element davon mittels der Operation <span class="clisting">canHandle</span> befragt (Zeile ). Das erste Element der Liste, das hier mit <span class="clisting">true</span> antwortet, wird dann zurückgeliefert (Zeile ).</p>
+<p>Für das Http-Protokoll wird hier ein Exemplar der Klasse <span class="clisting">HttpHandler</span> zurückgegeben. Durch die Umsetzung der Operation <span class="clisting">canHandle</span> erklärt sich diese Klasse für die Bearbeitung aller URLs zuständig, die mit <span class="clisting">http</span> beginnen.</p>
+<div class="listing"><pre class="prettyprint">class HttpHandler { 
+    // ... 
+    public Boolean canHandle(String protocol) { 
+        return protocol.equalsIgnoreCase("HTTP"); 
+    } 
+    // ... 
+}</pre></div>
+<p>Damit die konkreten Unterklassen von <span class="clisting">ProtocolHandler</span> weitgehend automatisch jeweils ein Exemplar bei der Klasse <span class="clisting">ProtocolHandlerRegistry</span> registrieren, ist es notwendig, dass möglichst beim Laden der Klasse in die Laufzeitumgebung ein Exemplar der Klasse erstellt und bei der Klasse <span class="clisting">ProtocolHandler</span> registriert wird. In Listing 7.12 ist dargestellt, wie das in Java möglich ist.</p>
+<div class="listing"><pre class="prettyprint">public class HttpHandler implements ProtocolHandler { 
+    static { 
+        Protocol<span class="clisting">HandlerRegistry</span>.register(new HttpHandler()); 
+    } 
+    // ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.12    </strong>Registrierung beim Laden einer Klasse in Java</p>
+<p>Der mit <span class="clisting">static</span> gekennzeichnete Code wird beim Laden der Klasse in die Laufzeitumgebung ausgeführt. Damit wäre also nach dem Laden der Klasse <span class="clisting">HttpHandler</span> ein Exemplar der Klasse für die Bearbeitung des Http-Protokolls registriert. Allerdings müssen Sie dabei die technischen Randbedingungen der verwendeten Programmiersprache, in unserem Beispiel von Java, beachten. Eine Klasse wird in Java erst dann geladen, wenn sie zum ersten Mal angesprochen wird. Deshalb muss bei der Initialisierung unserer Applikation mindestens ein Zugriff auf die Klasse erfolgen. Dies geschieht typischerweise durch einen Aufruf von <span class="clisting">Class.forName</span> mit dem Namen der benötigten Klasse. In Listing 7.13 ist aufgeführt, wie zwei Bearbeiterklassen geladen werden und sich damit bei der Registratur eintragen.</p>
+<div class="listing"><pre class="prettyprint">Class.forName("de.galileocomputing.oobook.HttpHandler");     
+Class.forName("de.galileocomputing.oobook.FtpHandler");
+
+ProtocolHandler handler = 
+     Protocol<span class="clisting">HandlerRegistry</span>.getProtocolHandler("http");
+
+String content = handler.getContent("http://www.mopo.de"); 
+System.out.println(content);</pre></div>
+<p class="tabunter"><strong>Listing 7.13    </strong>Laden von Klassen und Verwendung eines Protokollbearbeiters</p>
+<p>Wenn Sie nun ein weiteres Protokoll unterstützen wollen, so genügt es, wenn Sie eine Klasse umsetzen, welche die Schnittstelle <span class="clisting">ProtocolHandler</span> implementiert. Diese wird sich dann mit einem Exemplar in der Registratur eintragen. Dies geschieht analog zum Bearbeiter für das Http-Protokoll. Sie können die Registrierung natürlich auch über eine Konfigurationsdatei steuern, die dann von einer Initialisierungsroutine ausgewertet wird, so dass die neue Klasse im existierenden Code überhaupt nicht mehr angesprochen werden muss.</p>
+<p>Das vorgestellte Vorgehen kombiniert zwei eigenständige Bestandteile. Zum einen wird eine Registratur <span class="clisting">ProtocolHandlerRegistry</span> verwendet, die für die konkrete Auswahl eines Protokollbearbeiters zuständig ist. Intern verwendet die Registratur dann eine Variante des Musters der Zuständigkeitskette, um eine Anfrage an verschiedene Objekte weiterzuleiten, von denen dann eines sich selbst für die angefragte Aufgabe zuständig erklärt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Entwurfsmuster »Zuständigkeitskette« (Chain of Responsibility)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Reihe von Objekten erhält die Möglichkeit, eine Aufgabe zu erledigen. Dabei werden die Objekte der Reihe nach befragt, ob sie die Aufgabe erledigen können. Beantwortet ein Objekt diese Frage positiv, so wird diesem die Aufgabe zur Erledigung zugewiesen. Im anderen Fall wird die Anfrage an das nächste Objekt in der Kette weitergereicht. </p>
+</td>
+</tr>
+</table><br><p><strong><em>Vorsicht: 
+doppelte  
+Produkte</em></strong></p>
+<p>Bei der Verwendung einer Variante der Zuständigkeitskette machen wir die Annahme, dass die Registrierung von verschiedenen Produkten durch den nutzenden Client in einer konsistenten Art und Weise erfolgt und dass Doppelregistrierungen entweder verhindert werden oder keine negativen Konsequenzen haben. In den meisten praktischen Fällen wird es aber sinnvoll sein, Doppelregistrierungen in so einem Fall zu vermeiden und bei der zweiten Registrierung für die gleiche Aufgabe einen Fehler zu melden.</p>
+<p>Alternativ kann auch die Registratur erweitert werden, so dass für die Auswahl eines konkreten Bearbeiters nicht ausschließlich diese selbst verantwortlich sind, sondern bei mehreren möglichen Bearbeitern ein weiteres Auswahlkriterium greift.</p><a id="mj91442f54dd3e6454d2343a346244a94c" name="mj91442f54dd3e6454d2343a346244a94c"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">7.2.5 Fabrikmethoden  <a href="#t2t37"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Fabrikmethoden haben in der Regel einen anderen Anwendungskontext, als das bei abstrakten Fabriken der Fall ist. Allerdings werden abstrakte Fabriken und Fabrikmethoden häufig unter dem Begriff Fabrik zusammengefasst. Dabei haben beide durchaus unterschiedliche Ausgangsbedingungen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Fabrikmethode
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Fabrikmethoden sind Methoden, die innerhalb einer Klassenhierarchie dafür zuständig sind, klassenspezifische Objekte (Produkte) zu erstellen, die dann von der betreffenden Klasse genutzt werden. Die Produkte werden dabei ebenfalls in einer Hierarchie organisiert.</p>
+</td>
+</tr>
+</table><br><p>Abbildung 7.13 zeigt den grundsätzlichen Aufbau der beteiligten Klassen bei der Verwendung einer Fabrikmethode.</p>
+<div class="bildbox">
+<p><a name="IDASETQ"></a><a onClick="OpenWin('bilder/07_13.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_13.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.13    </strong>Fabrikmethode zur Erstellung konkreter Klassen</p>
+<p><strong><em>Kovariante  
+Rückgabetypen</em></strong></p>
+<p>In der Abbildung ist die Fabrikmethode <span class="clisting">erstelleProdukt</span> zu sehen. In den konkreten Unterklassen der abstrakten Klasse <span class="clisting">Hersteller</span> werden diese so implementiert, dass sie das jeweils benötigte konkrete Produkt zurückgibt.</p>
+<p>Wenn es die Programmiersprache erlaubt, können Sie dabei auch die Möglichkeit von <span class="ckursiv">kovarianten Rückgabetypen</span> ausnutzen. Wir haben kovariante Rückgabetypen bereits in Abschnitt 5.4.4, »Die Problemstellungen der Mehrfachvererbung«, vorgestellt. Wenn Sie diesen Mechanismus ausnutzen, kann die Methode <span class="clisting">erstelleProdukt</span> in der Klasse <span class="clisting">KonkreterHersteller</span> so überschrieben werden, dass sie nicht mehr das abstrakte Produkt <span class="clisting">Rückgabe</span> spezifiziert, sondern die Klasse <span class="clisting">KonkretesProdukt</span>.</p>
+<p><strong><em>Fabrikmethoden am Beispiel</em></strong></p>
+<p>Die Arbeitsweise von Fabrikmethoden lässt sich gut an einem Beispiel illustrieren. Betrachten wir dazu die Verwaltung von JDBC-Treibern in den Java-Bibliotheken. Diese verwenden nämlich Fabrikmethoden, um die Beziehungen zwischen Verbindungen und Statements konsistent zu gestalten. [JDBC war früher tatsächlich die Abkürzung für Java Database Connectivity. Heutzutage ist JDBC keine Abkürzung mehr, sondern einfach ein Name einer Spezifikation und einer Bibliothek, die es Java ermöglicht, mit den Datenbanken zu kommunizieren. Wenn Sie sich jetzt fragen, was das soll, sind Sie bestimmt kein Marketingmensch.
+] </p>
+<p><strong><em>Kurzüberblick: JDBC</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">JDBC (Java Database Connectivity)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>JDBC7 ist ein standardisierter Mechanismus, um von Java-Programmen aus auf (vorwiegend relationale) Datenbanken zuzugreifen. JDBC-Treiber sind Module, die diesen Mechanismus für konkrete Typen von Datenquellen umsetzen. So gibt es zum Beispiel JDBC-Treiber, die diesen Mechanismus speziell für Oracle-Datenbanken umsetzen, andere, die über ODBC-Mechanismen (Open Database Connectivity) auf eine Datenbank zugreifen. </p>
+</td>
+</tr>
+</table><br><p>JDBC basiert darauf, dass für die Umsetzung von Treibern für spezielle Datenquellen vor allem zwei Schnittstellen realisiert werden: <span class="clisting">Connection</span> und <span class="clisting">Statement</span>.</p>
+<p>In Abbildung 7.14 sind die Beziehungen zwischen den beiden Schnittstellen und den sie realisierenden Klassen am Beispiel von JDBC-Treibern für eine Oracle-Datenbank und für ODBC aufgeführt.</p>
+<p>In der Abbildung wird bereits deutlich, dass eine Klassenstruktur vorliegt, die Abbildung 7.13 ähnlich ist: Die Schnittstelle <span class="clisting">Connection</span> entspricht der Schnittstelle <span class="clisting">Hersteller</span>, <span class="clisting">Statement</span> entspricht der Schnittstelle <span class="clisting">Produkt</span>. Die Fabrikmethode heißt in diesem Fall <span class="clisting">createStatement</span>.</p>
+<div class="bildbox">
+<p><a name="IDAMGTQ"></a><a onClick="OpenWin('bilder/07_14.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_14.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.14    </strong>Fabrikmethode bei JDBC-Verbindungen</p>
+<p>Die konkreten Realisierungen, wie zum Beispiel <span class="clisting">JdbcOracleConnection</span>, setzen die Fabrikmethode so um, dass die jeweils korrespondierenden konkreten <span class="clisting">Statement</span>-Klassen darüber erstellt werden.</p>
+<p>In Listing 7.14 ist die Verwendung der Fabrikmethode in Zeile  zu sehen.</p>
+<div class="listing"><pre class="prettyprint">Class.forName( "sun.jdbc.odbc.JdbcOdbcDriver" );   
+Connection connection = DriverManager.getConnection(  
+           "jdbc:odbc:mydb", "User", "Password" ); 
+Statement statement = connection.createStatement();   
+ResultSet result = 
+      statement.executeQuery("SELECT * FROM mytable;");</pre></div>
+<p class="tabunter"><strong>Listing 7.14    </strong>Verwendung eines JDBC-Treibers</p>
+<p>Der Aufruf von <span class="clisting">DriverManager.getConnection</span> in Zeile  hat dabei ein Exemplar von <span class="clisting">JdbcOdbcDriver</span> geliefert, die entsprechende Klasse ist in Zeile  geladen worden. [Das Laden und Registrieren des JDBC-Treibers erfolgt nach dem Muster, das wir im vorigen Abschnitt, <span class="ckursiv">Registraturen für Objekte</span>, vorgestellt haben. Dabei wird ein Exemplar der Klasse beim <span class="clisting">DriverManager</span> registriert, sobald die Klasse geladen wird.
+]  Der Aufruf von <span class="clisting">createStatement</span> wird nun in diesem Fall auch ein Exemplar von <span class="clisting">JdbcOdbcStatement</span> liefern. Bei der Verwendung von <span class="clisting">Connection</span> und <span class="clisting">Statement</span> wissen Sie allerdings nichts über diese konkreten Klassen, sondern arbeiten alleine mit den Schnittstellen.</p>
+<p>Wenn Sie einen neuen JDBC-Treiber für ein eigenes Datenformat zur Verfügung stellen wollen, müssen Sie Implementierungen sowohl für die <span class="clisting">Connection</span> als auch für ein neues <span class="clisting">Statement</span> bereitstellen. [Falls Sie tatsächlich einen eigenen JDBC-Treiber schreiben wollen, finden Sie im Online-Magazin JavaPro eine Schritt-für-Schritt-Anleitung dazu: <span class="ckursiv">http://www.ftponline.com/javapro/2001_12/magazine/features/jodonahue/default.aspx</span>
+]  Die Erweiterungsmöglichkeit wird in diesem Fall über die <span class="ckursiv">Fabrikmethode</span> <span class="clisting">createStatement</span> sichergestellt. Die konkreten Klassen der Statements können direkt den konkreten Klassen der Connections zugeordnet werden.</p>
+<p><strong><em>Zwei Hierarchien</em></strong></p>
+<p>Auffallend ist die Struktur des Klassendiagramms: Sie haben zwei Hierarchien vorliegen, die miteinander in Beziehung stehen. Dabei verwenden die Exemplare der einen Hierarchie die Exemplare der anderen Hierarchie. In unserem JDBC-Szenario haben wir allerdings den Spezialfall, dass das von der Fabrikmethode erstellte Objekt in der Regel nicht intern von den Realisierungen von <span class="clisting">Connection</span> genutzt wird. In anderen Szenarien, in denen Fabrikmethoden eingesetzt werden, ist die Methode möglicherweise gar nicht Teil der nach außen sichtbaren Schnittstelle, sondern wird nur intern genutzt.</p>
+<p><strong><em>Unterschied zu abstrakter Fabrik</em></strong></p>
+<p>Aber was ist denn nun eigentlich der Unterschied zwischen Fabrikmethode und abstrakter Fabrik? Relevant für die Fabrikmethode sind folgende Eigenschaften:</p>
+<ul class="gp">
+<li>Die Fabrikmethode existiert nicht an einer eigens dafür erstellten Klasse, sondern sie ist eine zusätzliche Methode in einer bereits existierenden Klassenhierarchie.</li>
+</ul>
+<ul class="gp">
+<li>Die erzeugenden Klassen haben in der Regel eine konkrete technische oder fachliche Aufgabenstellung. Im Rahmen dieser Aufgabenstellung benötigen sie Exemplare von Klassen, die in einer dazu korrespondierenden parallelen Hierarchie aufgebaut sind.</li>
+</ul>
+<ul class="gp">
+<li>Die konkreten abgeleiteten Klassen der Erzeuger nutzen nun die Fabrikmethode, um Exemplare der jeweils benötigten konkreten Produktklassen zu erstellen.</li>
+</ul>
+<p>Auch abstrakte Fabriken nutzen in der Regel Fabrikmethoden, um ihre Produkte zu erzeugen. Der entscheidende Unterschied ist aber: Die Klassenhierarchie, die für die abstrakte Fabrik aufgebaut wird, hat ausschließlich den Zweck, diese Produkte zu erzeugen.</p>
+<p><strong><em>Anwendung der Fabrikmethode</em></strong></p>
+<p>Voraussetzung für eine sinnvolle Anwendung der Fabrikmethode außerhalb von abstrakten Fabriken ist dagegen immer, dass Sie bereits zwei Klassenhierarchien vorliegen haben, die in einer Nutzungsbeziehung stehen. Im Gegensatz zum Vorgehen bei der abstrakten Fabrik wird also keine neue Hierarchie von Klassen eingeführt, sondern lediglich eine existierende Hierarchie um eine Operation erweitert.</p>
+<p>Wenn Sie Klassen nur einführen, damit sie eine Fabrikmethode umsetzen, dann haben Sie eher eine einfache Variante der abstrakten Fabrik vorliegen.</p>
+<p>Anwendungsfälle für Fabrikmethoden finden sich häufig in den technischen Bereichen von Bibliotheken und Frameworks. Parallele Hierarchien, die direkt aufeinander abbilden, deuten auf mögliche Einsatzszenarien von Fabrikmethoden.</p>
+<p>Allerdings kann es auch vorkommen, dass Sie technisch die Erstellung von Objekten über Fabrikmethoden durchführen könnten, sich dies aber aus Gründen der Modularisierung verbietet.</p>
+<p><strong><em>Objekte sorgen für ihre  
+Darstellung.</em></strong></p>
+<p>So kann es zum Beispiel für bestimmte Objekte sinnvoll sein, eine Standarddarstellung in einer Benutzeroberfläche zu definieren. Diese Darstellung wird sich in der Regel aus der Klassenzuordnung eines Objekts direkt ergeben. Zum Beispiel könnten wir festlegen, dass ein Exemplar einer Klasse <span class="clisting">TextDocument</span> immer über ein Exemplar von <span class="clisting">TextView</span> dargestellt wird, solange nichts anderes angegeben wird. Das Einfachste wäre es nun, wenn Sie eine Fabrikmethode verwenden könnten, welche die entsprechende Darstellung in einer graphischen Benutzeroberfläche erzeugt. In Abbildung 7.15 sind die resultierenden Beziehungen dargestellt.</p>
+<p>In der Abbildung wird auch bereits das Problem deutlich. Nach dem <span class="ckursiv">Prinzip einer einzigen Verantwortung</span> soll sich ein Modul möglichst nur mit einer klar definierten Aufgabe beschäftigen. Im vorliegenden Beispiel schaffen Sie nun aber eine Abhängigkeit vom Bereich (Domäne) der Fachobjekte zum Bereich der Darstellung. Damit wird die Aufgabe der Darstellung teilweise mit in den Bereich der Fachobjekte verlagert. Die Klasse <span class="clisting">TextDocument</span> muss nun die Klasse <span class="clisting">TextView</span> kennen und ist damit eng an den Darstellungsbereich gekoppelt. In einer Java-Anwendung würden zum Beispiel auf einmal Swing-Klassen im Bereich unserer Geschäftslogik auftauchen. Im aufgeführten Beispiel entstehen außerdem zyklische Abhängigkeiten, da wiederum die Klassen aus dem Bereich Darstellung die Klassen aus dem Bereich der Fachobjekte benötigen.</p>
+<div class="bildbox">
+<p><a name="IDAYJTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_012.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_012.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.15    </strong>Eine Fabrikmethode, die zyklische Abhängigkeiten verursacht</p>
+<p><strong><em>Separate Fabrik</em></strong></p>
+<p>Um diese Abhängigkeiten zu vermeiden, sollten Sie also in solch einem Fall die Erstellung der zugehörigen Darstellungsobjekte in eine separate Klasse auslagern, die dann wiederum mit den Mechanismen der statischen oder der abstrakten Fabrik arbeitet. Abbildung 7.16 illustriert diese modifizierte Variante, bei der die unerwünschten Abhängigkeiten nicht vorliegen.</p>
+<div class="bildbox">
+<p><a name="IDACKTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_013.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_013.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.16    </strong>Fabrikmethode durch eine Fabrik ersetzt</p>
+<p><strong><em>Bereiche  
+entkoppeln</em></strong></p>
+<p>Durch den Einsatz einer Klasse <span class="clisting">ViewFactory</span>, die dem Bereich der Darstellung zugeordnet ist, wird die Abhängigkeit der Fachobjekte von ihrer Darstellung aufgehoben. Die Klasse <span class="clisting">ViewFactory</span> ist nun dafür zuständig, zu einem Dokument ein Objekt zu erstellen, welches das Dokument darstellen kann. Damit bestehen die Abhängigkeiten wieder ausschließlich in der zulässigen Richtung.</p>
+<p>Es gibt allerdings noch eine andere Möglichkeit, die unerwünschte Kopplung aufzuheben: Sie können die Methoden der Klassen aus dem Bereich der Fachobjekte unterteilen in solche, die sich mit der Fachlichkeit beschäftigen, und solche, die sich mit der Darstellung beschäftigen. Dann können Sie die eine Gruppe in einem Quellcode-Modul realisieren, die andere Gruppe von Methoden in einem separaten Modul. So können Sie den fachlichen Teil der Klasse <span class="clisting">Document</span> und ihrer Unterklassen im Quelltextmodul »Fachobjekte« definieren und den darstellungsspezifischen Teil (die typspezifischen Fabrikmethoden für die Ansichtsobjekte) im Quelltextmodul »Darstellung«. Damit bestehen zwar die zyklischen Abhängigkeiten zwischen den Klassen weiter, sie bestehen aber nicht zwischen den Quellcode-Modulen.</p>
+<p><strong><em>Verfahren in Ruby</em></strong></p>
+<p>Dieses Verfahren setzt allerdings voraus, dass es von der verwendeten Programmiersprache unterstützt wird. Beispiele für Programmiersprachen, die eine solche Möglichkeit bieten, sind Ruby und C#. In Abbildung 7.17 ist dargestellt, wie die Klasse <span class="clisting">TextDocument</span> auf zwei unterschiedliche Ruby-Module aufgeteilt werden kann.</p>
+<div class="bildbox">
+<p><a name="IDAXKTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_014.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_014.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.17    </strong>Umsetzung einer Klasse in zwei Modulen</p>
+<p>Die Klasse <span class="clisting">TextDocument</span> ist hier in zwei Bestandteile zerlegt, die jeweils in eigenen Modulen liegen und sich mit unterschiedlichen Bereichen der Funktionalität beschäftigen. Listing 7.15 zeigt die Umsetzung des Beispiels im Ruby-Quellcode. [Der Mechanismus der Klassenergänzung (Introductions) erlaubt generell eine Erweiterung von Klassen über verschiedene Quellcode-Module. Introductions stellen wir in Abschnitt 9.3.5 im Detail vor.
+] </p>
+<p><strong><em>Keine zyklischen Abhängigkeiten</em></strong></p>
+<div class="listing"><pre class="prettyprint"><span class="cfett">Datei: business.rb &#8211; die fachliche Funktionalität</span> 
+ 
+class TextDocument 
+  # verschiedene fachliche Methoden 
+  def fachlicheOperation1()     
+    return "fachliche Operation  wird ausgeführt..." 
+  end 
+  def fachlicheOperation2()     
+    return "fachliche Operation  wird ausgeführt..." 
+  end 
+  # und so weiter 
+end<span class="cfett"> 
+Datei: views.rb &#8211; hier geht es um die Darstellbarkeit</span> 
+class TextDocument 
+  def createView()   
+    return TextView.new(self)   
+  end 
+end 
+ 
+class TextView   
+  def initialize(textDocument) 
+   # Implementierung des Konstruktors der Ansichtsklasse 
+  end 
+end<span class="cfett"> 
+ 
+Verwendung:</span> 
+ 
+require "business.rb" 
+require "views.rb"  <span class="cfett"> 
+...</span></pre></div>
+<div class="listing"><pre class="prettyprint"># document referenziert ein Exemplar der Klasse TextDocument 
+# Aufruf einer fachlichen Methode 
+print document.text 
+# Nutzung der Fabrikmethode aus views.rb 
+view = document.createView   </pre></div>
+<p class="tabunter"><strong>Listing 7.15    </strong>Eine Klasse in mehreren Modulen (Ruby)</p>
+<p><strong><em>Partielle Klassen</em></strong></p>
+<p>Im Quelltext des Moduls <span class="clisting">business.rb</span> werden die fachlichen Operationen umgesetzt (Zeilen ). Im Modul <span class="clisting">views.rb</span> findet sich die Fabrikmethode an Zeile , die ein Exemplar von <span class="clisting">TextView</span> konstruiert und dabei das Dokument selbst übergibt (). Die Klasse <span class="clisting">TextView</span> selbst wird im gleichen Quelltextmodul umgesetzt (). Wird nun in einer Anwendung eine Darstellung der Dokumente benötigt, kann das Modul <span class="clisting">views.rb</span> eingebunden werden wie in Zeile . Damit kann ein Aufruf der Fabrikmethode in Zeile  erfolgen.</p>
+<p>Der fachliche Teil der Dokumentenklassen ist dabei nicht vom darstellenden Teil abhängig. Diese Vorgehensweise verursacht also keine zyklischen Abhängigkeiten zwischen den Quelltextmodulen <span class="clisting">business.rb</span> (Fachlogik) und <span class="clisting">views.rb</span> (Darstellung). In einer Anwendung, in der die Fachobjekte nicht dargestellt werden müssen, wird das Quelltextmodul <span class="clisting">views.rb</span> nicht eingebunden. In diesem Fall haben die Dokumentenklassen keine Fabrikmethode für ihre Ansichtsobjekte zugeordnet. Nur wenn die Darstellung zum Funktionsumfang Ihrer Anwendung gehört, fügen Sie das Quelltextmodul <span class="clisting">views.rb</span> hinzu und ergänzen die Dokumentenklassen damit um die Fähigkeit, ein Ansichtsobjekt zu konstruieren.</p>
+<p><strong><em>Verfahren in C#</em></strong></p>
+<p>Eine ähnliche Vorgehensweise wie in Ruby ist bei C# und verwandten Programmiersprachen aus der .NET-Familie ab der Version 2 möglich. Die sogenannten <span class="ckursiv">partiellen Klassen</span> bieten die Möglichkeit, den Quelltext einer Klasse in verschiedene Quelltextmodule zu verteilen. Die komplette Klasse wird zur Übersetzungszeit aus den verschiedenen partiellen Klassen zusammengesetzt. Schließen Sie bestimmte Klassenpartitionen von der Übersetzung aus, wird Ihre Anwendung die in diesen Partitionen enthaltene Funktionalität nicht enthalten. Selbstverständlich ist die Anwendung nur dann übersetzbar, wenn die restlichen Quelltexte eine vollständige Klasse bilden.</p>
+<p>Der Unterschied zwischen C# und Ruby besteht darin, dass C# die Ergänzung der Klassen, beziehungsweise das Zusammenführen der partiellen Klassen, nur zur Übersetzungszeit zulässt, Ruby dagegen auch zur Laufzeit die Struktur der Klasse anpassen kann.</p>
+<p>Java bietet keine Möglichkeit der Ergänzung der Klassen, doch verschiedene aspektorientierte Erweiterungen wie zum Beispiel AspectJ oder JBoss-AOP bieten diese Funktionalität auch in der Welt von Java an. Wir werden in Abschnitt 9.3.5, »Introductions«, genauer auf diese Möglichkeiten eingehen.</p><a id="mj7e0c800eda7165eac4272a1955efef1a" name="mj7e0c800eda7165eac4272a1955efef1a"></a><a name="t36"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t37"></a><h3 class="t3">7.2.6 Erzeugung von Objekten als Singletons  <a href="#t2t38"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t36"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Exemplare von Singleton-Klassen sind die einsamsten Objekte, die sich in Programmen finden.</p>
+<p><strong><em>Diskussion:  
+Bitte kein Roman</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ich glaube, du hast dich da gerade im Genre dieses Buchs vertan. Man könnte ja denken, da schreibt Rosamunde Pilcher.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> O.k., o.k. Werde ich halt diese Formulierungen für den großen Roman aufheben, den ich immer schon einmal schreiben wollte. Ich komme ja gleich wieder zu einer sachlichen Darstellung zurück.</span><p><strong><em>Singletons als Entwurfsmuster?</em></strong></p>
+<p>Also noch einmal. Singleton-Klassen sind Klassen, die aufgrund ihrer Methoden sicherstellen, dass in jeder Anwendung höchstens ein Exemplar dieser Klasse existieren kann.</p>
+<p>Die besondere Eigenschaft von Singletons ist es, dass von ihnen genau ein Exemplar existiert. Dies ist in manchen Kontexten eine geforderte Eigenschaft. Wenn Sie innerhalb einer Applikation Fehlermeldungen auf ein einheitliches Ausgabemedium, zum Beispiel eine Datei, ausgeben wollen, macht es Sinn, dass der Zugriff applikationsweit über ein einziges Objekt koordiniert wird. Wenn mehrere Objekte den Zugriff auf das Ausgabemedium durchführen würden, würde das Schreiben der Fehlermeldungen möglicherweise nicht synchronisiert, und die Meldungen würden sich möglicherweise wechselseitig überschreiben.</p>
+<div class="bildbox">
+<p><a name="IDAVNTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_015.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_015.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.18    </strong>Singleton mit zugehörigen Operationen</p>
+<p>So weit, so einfach. Es stellen sich aber bei genauerem Hinsehen zwei Fragen, eine sehr technische und eine konzeptionelle.</p>
+<ul class="gp">
+<li>Eine technische Frage: Wie können wir den Zugriff auch bei nebenläufigen Programmen sicher und effizient gestalten?</li>
+</ul>
+<ul class="gp">
+<li>Eine konzeptionelle Frage: In welchen Fällen sollen wir ein Singleton einsetzen?</li>
+</ul>
+<h4 class="t4">Technisch korrekte Umsetzung von Singletons</h4>
+<p>Technische Fragen sind in der Regel leichter zu beantworten als konzeptionelle, deshalb fangen wir einmal mit der technischen Frage als Lockerungsübung an. Betrachten wir deshalb in Listing 7.16 eine Umsetzung eines Singletons in Java, die unsere technischen Anforderungen erfüllt: Sie arbeitet effizient und auch in nebenläufigen Programmen korrekt.</p>
+<div class="listing"><pre class="prettyprint">public class OneAndOnlyOne { 
+ 
+   // Privater Konstruktor 
+   private OneAndOnlyOne () {} 
+ 
+   // Geschachtelte Klasse Inner 
+   private static class Inner { 
+     private static OneAndOnlyOne INSTANCE = 
+                                    new OneAndOnlyOne (); 
+   } 
+   // Zugriff auf das einzige Exemplar 
+   public static OneAndOnlyOne getInstance() { 
+     return Inner.INSTANCE; 
+   } 
+   // Fachliche Methoden des Singletons 
+   // ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.16    </strong>Korrekte Umsetzung eines Singletons in Java</p>
+<p>Die vorgestellte Umsetzung arbeitet korrekt und effizient:</p>
+<ul class="gp">
+<li>Es gibt keine Möglichkeit, dass mehr als ein Exemplar von <span class="clisting">OneAndOnlyOne</span> erzeugt wird.</li>
+</ul>
+<ul class="gp">
+<li>Der Zugriff auf dieses einzige Exemplar wird immer ein komplett konstruiertes Exemplar liefern und nicht einen möglicherweise inkonsistenten Zwischenzustand.</li>
+</ul>
+<ul class="gp">
+<li>Das Exemplar wird erst dann erstellt, wenn es tatsächlich benötigt wird. Die Lösung geht also effizient mit Ressourcen um.</li>
+</ul>
+<p><strong><em>Problematische Implementierungen</em></strong></p>
+<p>In der Praxis finden sich allerdings häufig auch andere Implementierungen von Singletons, die auf den ersten Blick einfacher und effizienter zu sein scheinen. Wir stellen im Folgenden einige davon vor und werden auf der Grundlage der bestehenden Probleme die Lösung von Listing 7.16 herleiten und vorstellen, warum diese korrekt arbeitet. Diese Lösung sollten Sie im praktischen Einsatz vorziehen, weil die im Folgenden vorgestellten Alternativen nicht in allen Fällen korrekt und effizient arbeiten.</p>
+<h4 class="t4">Alternative Umsetzungen von Singletons: mögliche Probleme</h4>
+<p>Beginnen wir als mit der ersten problematischen Variante, aufgeführt in Listing 7.17.</p>
+<div class="listing"><pre class="prettyprint">public class OneAndOnlyOne { 
+    private static OneAndOnlyOne instance = null;    
+ 
+    // Privater Konstruktor verhindert Aufruf von außen 
+    private OneAndOnlyOne() {}   
+ 
+    //! Zugriff auf das einzige Exemplar 
+    public static OneAndOnlyOne getInstance()  
+    { 
+        if (instance == null)  
+        { 
+            instance = new OneAndOnlyOne(); 
+        } 
+        return instance; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.17    </strong>Singleton in Java: Probleme durch fehlende Synchronisation</p>
+<p>Die Klasse hat ein klassenbezogenes Datenelement <span class="clisting">instance</span> (Zeile ). In Zeile  ist der Konstruktor der Klasse als <span class="clisting">private</span> deklariert. Dadurch wird sichergestellt, dass keine Exemplare der Klasse konstruiert werden können außer durch den Aufruf des Konstruktors in der klassenbezogenen Methode <span class="clisting">getInstance()</span> in Zeile . Dabei wird in Zeile  zunächst überprüft, ob das Exemplar schon angelegt wurde. Nur wenn dies nicht der Fall ist, wird der private Konstruktor aufgerufen und das neue Exemplar angelegt. Dadurch, dass ein Exemplar erst beim Zugriff über <span class="clisting">getInstance</span> angelegt wird, geht diese Umsetzung effizient mit Ressourcen um: Erfolgt kein solcher Zugriff, wird auch kein Exemplar konstruiert. Dieses Verfahren wird später <span class="ckursiv">Initialisierung</span> (Lazy Initialization) genannt.</p>
+<p><strong><em>Problem bei nebenläufiger Ausführung</em></strong></p>
+<p>Die in Listing 7.17 aufgeführte Lösung hat aber einen offensichtlichen Mangel: Sie wird nicht in Programmen funktionieren, in denen nebenläufige Ausführungspfade erlaubt sind. In Java wird diese Nebenläufigkeit über sogenannte <span class="ckursiv">Threads</span> umgesetzt. Dass Java-Programme Nebenläufigkeit aufweisen, ist eher die Regel als die Ausnahme.</p>
+<p>Wenn wir das erwähnte Listung genau so umsetzen, kann es passieren, dass zwei dieser Threads gleichzeitig die Operation <span class="clisting">getInstance</span> aufrufen. Wenn zu diesem Zeitpunkt das Exemplar von <span class="clisting">OneAndOnlyOne</span> noch nicht angelegt ist, wird die Prüfung aus Zeile  für beide das Ergebnis liefern: »noch kein Exemplar angelegt«. Und schon sind beide Aufrufe munter dabei, jeweils ein neues Exemplar zu konstruieren, und vorbei ist es mit der Einzigartigkeit von <span class="clisting">OneAndOnlyOne</span>. Die Umsetzung aus Listing 7.17 arbeitet also in Programmen, in denen Threads eingesetzt werden, nicht korrekt.</p>
+<p><strong><em>Synchronisation der Zugriffsmethode</em></strong></p>
+<p>Gut, das sollte sich leicht beheben lassen, denn Java bietet Sprachmittel, mit denen sich eine Synchronisation von Methodenaufrufen erreichen lässt. In Listing 7.18 ist eine angepasste Methode <span class="clisting">getInstance</span> gezeigt.</p>
+<div class="listing"><pre class="prettyprint">    public static<span class="cfett"> synchronized</span> OneAndOnlyOne getInstance() 
+    { 
+        if (instance == null) 
+        { 
+            instance = new OneAndOnlyOne(); 
+        } 
+        return instance; 
+    }</pre></div>
+<p class="tabunter"><strong>Listing 7.18    </strong>Synchronisierte Methode »getInstance«</p>
+<p>Über das Schlüsselwort <span class="clisting">synchronized</span> wird der in Java vorhandene Mechanismus zur Synchronisation einer Methode verwendet. Dadurch wird sichergestellt, dass immer nur ein Thread gleichzeitig diese Methode ausführen kann. Damit ist auch sichergestellt, dass es nur genau ein Exemplar von <span class="clisting">OneAndOnlyOne</span> geben wird, weil ein Folgeaufruf bereits ein Exemplar vorfinden und deshalb kein neues konstruieren wird.</p>
+<p><strong><em>Synchronisation ist teuer.</em></strong></p>
+<p>Aber die Sache hat einen anderen Haken: Die Synchronisation von Methoden ist teuer. Wenn mehrere Threads parallel die Methode nutzen, entstehen unnötige Wartezeiten. Es ist nicht ungewöhnlich, dass die Ausführungszeit einer Methode durch das Schlüsselwort <span class="clisting">synchronized</span> einfach einmal um das 50- bis 100fache ansteigt. Und irgendwie erscheint das unverhältnismäßig: Sie erwarten, dass das Exemplar genau einmal konstruiert wird; dann ist es aber möglich, dass darauf tausendfach oder vielleicht sogar millionenfach Zugriffe über <span class="clisting">getInstance</span> erfolgen. Die von Singletons gekapselten Ressourcen sind in einer Anwendung oft recht populär. Und nur wegen des einen Aufrufs, der das Exemplar einmal konstruiert, sollen wir danach immer noch alle Threads in eine Warteschlange packen?</p>
+<p><strong><em>Sperre mit  
+zweifacher  
+Prüfung</em></strong></p>
+<p>Diese Fragen legen eine neue Variante der Lösung nahe, die das Problem zu lösen scheint. Diese Variante wird in der Regel als <span class="ckursiv">Sperre mit zweifacher Prüfung</span> (englisch <span class="ckursiv">double-checked Locking</span>) bezeichnet. Die Umsetzung ist in Listing 7.19 dargestellt.</p>
+<div class="listing"><pre class="prettyprint">public class OneAndOnlyOne { 
+    private static OneAndOnlyOne instance = null; 
+   <span class="cfett"> private static Object justForSync = new Object();</span>    
+ 
+    private OneAndOnlyOne() {} 
+ 
+    //! Zugriff auf das einzige Exemplar 
+    public static OneAndOnlyOne getInstance() { 
+        if (instance == null) {  
+           <span class="cfett"> synchronized(justForSync) {</span>  
+               <span class="cfett"> if (instance == null) {</span>  
+                    instance = new OneAndOnlyOne(); 
+                } 
+            } 
+        } 
+        return instance; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.19    </strong>Sperre mit doppelter Prüfung: nicht korrekt vor Java 5</p>
+<p><strong><em>Problem  
+scheinbar gelöst</em></strong></p>
+<p>Es scheint, dass dieser Code Ihr Problem löst. Sie prüfen erst einmal in Zeile  ohne die teure Synchronisation, ob das Exemplar bereits erstellt wurde. Wenn ja (und das wird fast immer der Fall sein), geben Sie es einfach zurück, keine Wartezeiten, kein Problem. Wenn nein, wird in Zeile  doch ein synchronisierter Abschnitt betreten. Dort wird in Zeile  noch einmal geprüft, ob das Exemplar immer noch nicht erstellt ist, denn das könnte ja seit der Prüfung eine Zeile vorher passiert sein. Erst nach dieser Prüfung wird das Exemplar dann konstruiert.</p>
+<p><strong><em>Bis Java 1.4 funktioniert die Sperre mit doppelter Prüfung nicht korrekt.</em></strong></p>
+<p>Allerdings führt ein sehr technisches Problem dazu, dass diese Umsetzung in Java vor der Version 5 nicht in allen Fällen korrekt arbeitet. Das Problem liegt darin, dass die Konstruktion des Exemplars von <span class="clisting">OneAndOnlyOne</span> in diesem Szenario in den Java-Versionen vor der Version 5 keine atomare Operation ist, deren Auswirkungen auf einen Schlag sichtbar werden. So ist es möglich, dass ein Thread beim Zugriff über <span class="clisting">getInstance</span> ein Exemplar vorfindet, das zwar bereits grundsätzlich angelegt, aber noch nicht komplett initialisiert ist. Das Speichermodell von Java bis zur Version 1.4 erlaubt jedenfalls solche Situationen. [Falls Sie sich für die technischen Hintergründe interessieren, finden Sie diese in einem Artikel der Javaworld unter <span class="ckursiv">http://www.javaworld.com/javaworld/ 
+jw–02-2001/jw-0209-double.html</span>.
+]  In so einer Situation könnte <span class="clisting">getInstance</span> also inkonsistente Daten liefern. Ab Java 5 arbeitet die Sperre mit doppelter Prüfung korrekt, sofern unsere Variable mit dem Schlüsselwort <span class="clisting">volatile</span> markiert wird. [Das Schlüsselwort <span class="clisting">volatile</span> ist auch in den früheren Java-Versionen verfügbar und soll eine Variable so markieren, dass ihre Initialisierung vor dem nächsten folgenden Zugriff abgeschlossen sein soll. Nur funktioniert das eben vor Java 5 nicht so, wie das für die Sperre mit doppelter Prüfung notwendig wäre.
+]  Allerdings haben Sie auch hier einen Performance-Nachteil, da der Zugriff auf Variablen, die mit diesem Schlüsselwort markiert sind, gesondert abgesichert wird.</p>
+<p><strong><em>Späte  
+Initialisierung</em></strong></p>
+<p>Die bisher diskutierten problematischen Varianten haben alle das <span class="ckursiv">Prinzip der späten Initialisierung</span> (engl. <span class="ckursiv">Lazy Initialization</span>) verfolgt. Das Exemplar der Klasse wurde dabei erst dann explizit angelegt, wenn auch tatsächlich darauf zugegriffen wurde.</p>
+<p><strong><em>Statische  
+Initialisierung</em></strong></p>
+<p>Als bessere Alternative steht aber die Variante der statischen Initialisierung zur Verfügung. Diese bringt uns so langsam wieder in die Nähe unserer präferierten Lösung aus Listing 7.16.</p>
+<div class="listing"><pre class="prettyprint">public class OneAndOnlyOne { 
+    private static OneAndOnlyOne instance = 
+            new OneAndOnlyOne(); 
+    // ... 
+    //! Zugriff auf das einzige Exemplar 
+    public static OneAndOnlyOne getInstance() 
+    { 
+        return instance(); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.20    </strong>Statische Initialisierung eines Singletons</p>
+<p>In Listing 7.20 wird unser Exemplar direkt konstruiert, wenn die Klasse <span class="clisting">OneAndOnlyOne</span> initialisiert wird. Damit sorgt also die Laufzeitumgebung der Programmiersprache (in diesem Fall die virtuelle Maschine von Java) dafür, dass vor einem Zugriff das Exemplar von <span class="clisting">OneAndOnlyOne</span> auf jeden Fall bereits erzeugt ist, bevor darauf zugegriffen wird. Im Fall von Java haben Sie sogar den Vorteil, dass die Klasse erst geladen wird, wenn der erste Zugriff erfolgt. Damit liegt praktisch ein Verhalten vor, das mit der späten Initialisierung vergleichbar ist.</p>
+<p>Allerdings: Falls außer der statischen Variablen für das Exemplar des Singletons noch weitere Klassenvariablen existieren, wird dieses Exemplar auch initialisiert, sobald auf eine der anderen Variablen zugegriffen wird. Durch eine kleine Modifikation unserer Lösung lässt sich das aber lösen. Wenn Sie das Exemplar des Singletons in eine geschachtelte Klasse auslagern, wird diese erst geladen, wenn sie wirklich benötigt wird. Wir greifen deshalb in Listing 7.21 die Umsetzung aus Listing 7.16 wieder auf und stellen deren Bestandteile vor.</p>
+<div class="listing"><pre class="prettyprint">public class OneAndOnlyOne { 
+ 
+   public static String TEST = "Test";     
+ 
+   private static class Inner {    
+     private static OneAndOnlyOne INSTANCE =    
+                   new OneAndOnlyOne(); 
+   } 
+ 
+   public static OneAndOnlyOne getInstance() {    
+     return Inner.INSTANCE; 
+   } 
+ 
+   private OneAndOnlyOne() { };   
+ 
+   public void test() { 
+     System.out.println("Testing"); 
+   } 
+   public static void main(String[] args) { 
+     System.out.println(TEST);  
+     getInstance().test();   
+   } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.21    </strong>Korrekte Umsetzung eines Singletons (ausführlich)</p>
+<p>In Zeile  ist das klassenbezogene Datenelement <span class="clisting">TEST</span> definiert. Damit beim Zugriff auf dieses Element unser Exemplar des Singletons noch nicht konstruiert wird, ist in Zeile  eine geschachtelte Klasse <span class="clisting">Inner</span> definiert. Bei der Initialisierung dieser Klasse wird in Zeile  das Exemplar unseres Singletons konstruiert. Die Zugriffsmethode <span class="clisting">getInstance</span> in Zeile  liefert dann auch das über die geschachtelte Klasse referenzierte Exemplar. Der Konstruktor in Zeile  ist weiterhin privat. Wird nun, wie in Zeile , auf das klassenbezogene Datenelement <span class="clisting">TEST</span> zugegriffen, so wird zwar die Klasse <span class="clisting">OneAndOnlyOne</span> geladen, nicht aber die geschachtelte Klasse <span class="clisting">Inner</span>. Noch ist also unser Exemplar nicht konstruiert. Erst beim Zugriff über <span class="clisting">getInstance()</span> in Zeile  kommt es auch zum Zugriff auf die Klasse <span class="clisting">Inner</span>, die damit geladen wird und das Exemplar des Singletons erstellt.</p>
+<p>Eine Restriktion dieser Lösung sollten wir allerdings nicht verschweigen: Der Konstruktor sollte bei dieser Lösung keine Exceptions werfen. Fehler, die beim Laden einer Klasse auftreten, sind nicht in einer definierten Weise behandelbar.</p>
+<h4 class="t4">Welches Singleton soll es sein?</h4>
+<p>Wenn auf eine Behandlung von Fehlern bei der Konstruktion eines Singletons verzichtet werden kann, ist eine Umsetzung von Singletons unter Verwendung von statischer Initialisierung die beste Variante. In Sprachen wie Java, die eine dynamische Initialisierung von Klassen beim ersten Zugriff vornehmen, kann dabei des Exemplar des Singletons zusätzlich in eine geschachtelte Klasse ausgelagert werden, um die Initialisierung möglichst spät durchzuführen.</p>
+<p>Nur falls eine Behandlung von Fehlern bei der Konstruktion notwendig ist, sollte ein anderes Verfahren zum Einsatz kommen. Die Sperre mit doppelter Prüfung ist eine Alternative. Sie muss aber vom Speichermodell der verwendeten Programmiersprache korrekt unterstützt werden. Dies ist für die Java-Version bis einschließlich 1.4 nicht der Fall.</p>
+<p>Falls auch die Sperre mit doppelter Prüfung nicht anwendbar ist, sollte eine komplette Synchronisation der Zugriffsmethode erfolgen.</p>
+<h4 class="t4">Wann sollen Singletons eingesetzt werden?</h4>
+<p>Das technische Problem lässt sich also klar beschreiben. Was war aber noch mal mit dem konzeptionellen Problem? In welchen Fällen sollten Singletons denn überhaupt zum Einsatz kommen?</p>
+<p>Das Problem liegt darin, dass die Verwendung von Singletons in vielen Fällen verlockend erscheint, in denen ihre Anwendung nicht adäquat ist. Die Verwendung von Singletons führt zu einer engen Kopplung zwischen der Singleton-Klasse und den nutzenden Klassen. Die nutzenden Klassen müssen genaue Kenntnis davon haben, welche Klasse die Funktionalität des Singletons implementiert. Eine Variante davon nur für einen Teilbereich einer Applikation zu erzeugen, ist in der Regel nicht möglich.</p>
+<p><strong><em>Einzigartigkeit notwendig?</em></strong></p>
+<p>Außerdem müssen Sie sich die Frage stellen, ob Sie die zentrale Eigenschaft des Singletons wirklich benötigen. Diese zentrale Eigenschaft ist die Restriktion, dass es höchstens ein Objekt davon geben kann. Aber häufig wird das gar nicht Ihre Anforderung sein. Die Anforderung ist eher: Ich will konsistent und effizient auf eine bestimmte Ressource zugreifen. Als Nutzer eines Moduls zur Protokollierung ist es Ihnen meist ziemlich egal, ob es davon ein Exemplar gibt oder mehrere.</p>
+<p><strong><em>Diskussion:  
+Sind Singletons nur globale  
+Variablen?</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Im schlechtesten Fall sind Singletons doch nur ein Ersatz für eine globale Variable. Ich habe ein Objekt, das von jeder Stelle im Programm zugreifbar und möglicherweise auch änderbar ist.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ja, es ist richtig, dass man Singletons dazu verwenden kann. Aber fast alle Möglichkeiten der Objektorientierung kann ich missbrauchen. Wir müssen eben immer gut überlegen, ob eine Klasse wirklich alle Kriterien für ein Singleton erfüllt. Das Kriterium »ich brauch einmal was, was einfach von jeder Stelle des Programms aus zugreifbar ist« ist dabei natürlich bei weitem nicht ausreichend.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Auf einer Konferenz mit Schwerpunkt Java-Programmierung habe ich einmal zwei Vorträge hintereinander gehört, der erste davon von Erich Gamma, der zu Entwurfsmustern vortrug. Befragt, ob er nicht einiger der Muster schon überdrüssig sei, meinte er, das Singleton-Pattern sei dasjenige, das er für am problematischsten hielte. In vielen Anwendungen sei es mittlerweile so, dass man eben Singletons einsetze und dann darauf verweise, dass man ja Entwurfsmuster im Einsatz habe, also die neuesten Modellierungstechniken verwende. Gleich im Anschluss sprach dann ein Firmenvertreter über eine Anwendung und hatte dabei zehn Folien für die Erläuterung des dort zentralen Singleton-Entwurfsmusters reserviert. Er war offensichtlich recht konsterniert, da er den Vortrag von Erich Gamma auch gehört hatte, und ging diesen Teil seines eigenen Vortrags ziemlich hastig durch.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ja, sehr nette Geschichte das, hat aber mit unserem Thema doch nur am Rande zu tun?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Ja, nur am Rande. Aber ich denke schon, dass Singletons zu häufig verwendet werden, weil sie eben so einfach zu implementieren sind und man sich über die Verwendung dann weniger Gedanken machen muss als zum Beispiel über eine Delegationsbeziehung. Wenn wir zusätzlich den Mechanismus der Dependency Injection verwenden, können wir Singletons praktisch komplett aus unseren Programmen entfernen. Zumindest sind sie dann im Programm selbst nicht mehr als Singletons erkennbar.</span><p>Die Einzigartigkeit eines Singletons ist also in der Regel keine Anforderung, sondern eher eine Variante der Umsetzung von Konsistenzbedingungen. Ein Modul, das Singletons nutzt, benötigt in der Regel einfach einen bestimmten Dienst. Ob dieser als Singleton vorliegt, ist nicht entscheidend. Wenn jemand dem nutzenden Modul ein Objekt übergeben würde, das diesen Dienst erbringt, wäre das genauso akzeptabel wie die Nutzung eines Singletons. Im folgenden Abschnitt werden Sie den Mechanismus der Dependency Injection kennen lernen, der unter anderem auch die Verwendung von Singletons vor einem nutzenden Modul versteckt.</p><a id="mj7dcd47135763da11d4d4dc6876f5e60f" name="mj7dcd47135763da11d4d4dc6876f5e60f"></a><a name="t37"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t38"></a><h3 class="t3">7.2.7 Dependency Injection  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t37"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In Abschnitt 7.2 und in den folgenden Abschnitten haben Sie gesehen, wie Sie über Fabriken eine Entkopplung von konkreten Klassen erreichen können. Aber warum müssen wir uns überhaupt mit Fabriken beschäftigen?</p>
+<p><strong><em>Fabriken außer Sichtweite</em></strong></p>
+<p>Seien Sie doch einmal ehrlich: Im Idealfall wollen Sie Fabriken doch gar nicht sehen. Das Stahlwerk im Industriegebiet nebenan ist ja auch aus gutem Grund kein beliebtes Ausflugsziel. Mit den Fabriken für Objekte ist es wie mit realen Fabriken: Interessant sind nur die erstellten Produkte, die Fabrik selbst kann ruhig hinter dichtem Baumbestand versteckt sein.</p>
+<p>Eine in der Praxis erprobte Möglichkeit, Fabriken für nutzende Module unsichtbar zu machen, ist die sogenannte <span class="ckursiv">Dependency Injection</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Dependency Injection (Übergabe an abhängige Module)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Dependency Injection ist eine spezielle Form der Umkehrung des Kontrollflusses. Dabei werden genutzte Module von außen an das nutzende Modul übergeben. Die Übergabe kann dabei über einen Konstruktor, eine Setter-Methode oder spezielle Schnittstellen erfolgen. Die Kontrolle über das Erzeugen oder Auffinden der genutzten Module wird dabei an ein weiteres Modul transferiert. Deshalb findet eine Umkehrung des Kontrollflusses statt.</p>
+</td>
+</tr>
+</table><br><p>Der Begriff <span class="ckursiv">Dependency Injection</span> wurde von Martin Fowler geprägt, um dieses Verfahren vom generellen Mechanismus der Umkehrung des Kontrollflusses abzugrenzen. [Der Artikel von Martin Fowler zu diesem Thema ist verfügbar unter <span class="ckursiv">http://www.martinfowler.com/articles/injection.html</span>.
+]  Wir halten den Begriff allerdings für etwas unglücklich, da er in seiner wörtlichen Übersetzung <span class="ckursiv">Einspritzung von Abhängigkeiten</span> durchaus missverständlich ist. Das gewählte Vorgehen soll nämlich Abhängigkeiten zwischen Modulen und Klassen gerade aufheben, indem diese von einer weiteren Komponente verwaltet werden.</p>
+<p>Aber was ist nun genau eigentlich Dependency Injection? Mit welchen Abhängigkeiten beschäftigt sich das Verfahren? Es geht dabei um das Erstellen von Objekten, von denen ein Modul abhängt, oder das Verfahren, wie solche Objekte gefunden werden, falls sie bereits existieren. Am besten betrachten wir dazu einfach einmal die Abhängigkeiten, um die es hier konkret geht, an einem Beispiel.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Kunden und  
+Risikoprüfung</em></strong></p>
+<p>Nehmen wir an, Sie wollen Kunden, von denen Sie die Daten bereits erfasst haben, erst dann in Ihrem System endgültig einrichten, wenn eine entsprechende Risikoprüfung durchgeführt worden ist. Wir machen hier die leicht vereinfachende Annahme, dass diese Prüfung alleine aufgrund des Nachnamens durchgeführt wird. [Obwohl: Wer weiß schon wirklich, wie zum Beispiel die Schufa bei der Einstufung von Kreditwürdigkeit vorgeht. Möglicherweise führen hier wirklich bestimmte Nachnamen (wie zum Beispiel »Zuiop«) zur Abwertung.
+]  Für die Risikoprüfung haben Sie eine Schnittstelle definiert, die Ihnen einfach sagt, ob Sie den Kunden annehmen oder ablehnen sollen. In Abbildung 7.19 sind die Beziehungen zwischen den Klassen aufgeführt, unter der Annahme, dass die Klasse <span class="clisting">KundenVerwaltung</span> immer eine Risikoprüfung verwendet, die eine Bewertung bei der Schufa einholt.</p>
+<div class="bildbox">
+<p><a name="IDAEXTQ"></a><a onClick="OpenWin('bilder/07_19.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_19.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.19    </strong>Beziehungen zwischen Kunden und der Schufa-Prüfung</p>
+<p>Für das Einrichten eines Kunden führt die Klasse <span class="clisting">KundenVerwaltung</span> zunächst eine Überprüfung durch, indem ein Exemplar der Klasse <span class="clisting">RisikoPruefungSchufa</span> befragt wird, ob der betreffende Kunde auch angenommen werden kann.</p>
+<p>Die Implementierung, die diese Prüfung an die Schufa weiterleitet, verursacht allerdings eine Reihe von Abhängigkeiten. Die Umsetzung könnte zum Beispiel wie in Listing 7.22 aussehen.</p>
+<div class="listing"><pre class="prettyprint">class RisikoPruefungSchufa implements RisikoPruefung { 
+    public boolean annehmen(String name) { 
+        SchufaConnector connector = getSchufaConnector(); 
+        connector.connect(getAuthentication()); 
+        SchufaScore score = connector.getSchufaScore(name); 
+        return (score &gt;= getScoreLimit()); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.22    </strong>Verbindung zur Schufa</p>
+<p>Es ist also schon ersichtlich, dass Sie in diesem Fall eine direkte Verbindung zu einem Schufa-Server brauchen, um die Prüfung korrekt ausführen zu können, außerdem eine entsprechende Zugangskennung. Es lässt sich schon absehen, dass beides für Entwicklertests eher schwierig zu bekommen sein wird.</p>
+<p>Die Kundenverwaltung nutzt dann die Schufa, um zuerst zu prüfen, ob das Risiko bezüglich eines Kunden überschaubar ist, bevor er im System eingerichtet wird.</p>
+<div class="listing"><pre class="prettyprint">class KundenVerwaltung { 
+    // ... 
+    void einrichten(Kunde kunde) { 
+        RisikoPruefungSchufa pruefung =      
+                new RisikoPruefungSchufa(); 
+        if (pruefung.annehmen(kunde.name())) { 
+            // ... Kunde einrichten 
+        } 
+    } 
+}</pre></div>
+<p><strong><em>Konstruktor im fachlichen Code</em></strong></p>
+<p>In Zeile  sehen Sie, dass der Aufruf eines Konstruktors direkt in unserem Code stattfindet. Dieses Szenario ist doch auch im Kontext der Fabriken schon einmal aufgetaucht. Das resultierende Problem ist, dass Sie die Klasse <span class="clisting">KundenVerwaltung</span> anpassen müssten, wenn Sie aus irgendeinem Grund die Art der Risikoprüfung austauschen wollen. Das wird aber sehr wahrscheinlich in mindestens einem Fall vorkommen: Beim Test Ihres Systems benötigen Sie ebenfalls eine Risikobewertung. Wenn Sie dabei zum Beispiel die Kreditwürdigkeit von Herr Zuiop prüfen wollen, werden Sie dazu sicherlich nicht eine Anfrage bei der Schufa auslösen wollen. Zum einen könnte das die ohnehin angeschlagene Kreditwürdigkeit Ihres Bekannten Qwert Zuiop weiter reduzieren. Zum anderen werden Sie für lokale Entwicklertests in der Regel keinen Zugriff auf die Schufa-Server haben. Für einen Test Ihrer eigenen Module wird es aber in der Regel ausreichen, wenn Sie ein Modul einsetzen können, das Ihnen simulierte Antworten auf die Anfragen zur Risikoprüfung liefert.</p>
+<p><strong><em>Diskussion:  
+Abstrakte Fabrik als Lösung?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Moment mal, das Problem hatten wir doch schon gelöst. Das ist doch ein klassischer Fall für eine abstrakte Fabrik. Soll doch unsere Kundenverwaltung einfach eine Fabrik verwenden, die ihr die konkrete Risikoprüfung zur Verfügung stellt.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Du hast Recht, das würde die unmittelbare Abhängigkeit zwischen der Risikoprüfung und unserer Kundenverwaltung zunächst aufheben. Aber damit haben wir für diesen Fall das Problem erst einmal nur verlagert. Wir müssen nun die Fabrik im Code konkret benennen. Damit haben wir doch wieder ein Kopplung, zwar nicht zwischen konkretem Prüfungsverfahren und unserer Kundenverwaltung, aber zwischen der Fabrik für Prüfungsverfahren und der Kundenverwaltung. Auch wenn du die Fabrik als Singleton implementierst, musst du direkt im Code enscheiden, welche Fabrik denn nun verwendet werden soll.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Aber diese Abhängigkeit kann ich doch auflösen, indem ich mich nicht auf eine konkrete Fabrik festlege, sondern der Klasse <span class="clistingk">KundenVerwaltung</span> nur die abstrakte Fabrik bekannt mache. Und die konkrete wird dann von außen übergeben.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Hier haben wir so ein bisschen ein Henne-Ei-Problem. Wer übergibt nun die Fabrik an unsere Kundenverwaltung? Und da sind wir genau an dem Punkt, an dem Frameworks für Dependency Injection ins Spiel kommen. Diese sorgen dafür, dass unser Code sich nicht darum kümmern muss, wie und wann dein konkretes Prüfungsverfahren an unser Kundenobjekt übergeben wird. Das übernimmt dann der Container für uns. Dieser agiert dabei auch als Fabrik für unsere Risikoprüfung.</span><p>Schauen Sie sich also einfach einmal eine auf Dependency Injection basierende Variante unseres Codes an. In Abbildung 7.20 sind die veränderten Beziehungen dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAQYTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_016.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_016.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.20    </strong>Dependency Injection: Übergabe über Setter-Methode</p>
+<p>Die wichtigste Änderung ist, dass die Klasse <span class="clisting">KundenVerwaltung</span> nun ein Datenelement <span class="clisting">pruefung</span> enthält, das über die ebenfalls neue Methode <span class="clisting">setRisikoPruefung</span> mit einem Wert belegt wird. Die Anpassungen sind auch in Listing 7.23 dargestellt. Die Änderungen sehen dabei zunächst nicht sehr spektakulär aus.</p>
+<div class="listing"><pre class="prettyprint">class KundenVerwaltung { 
+    RisikoPruefung pruefung;    
+    // ... 
+    void setRisikoPruefung(RisikoPruefung pruefung) {   
+        this.pruefung = pruefung; 
+    } 
+    void einrichten(Kunde kunde) { 
+        if (pruefung.annehmen(kunde.name())) {   
+            // ... Kunde einrichten 
+        } 
+    } 
+    // ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.23    </strong>Klasse KundenVerwaltung mit Dependency Injection</p>
+<p>In Zeile  wird für die genutzte Risikoprüfung ein Datenelement definiert. Dazu haben wird die abstrakte Schnittstelle <span class="clisting">RisikoPruefung</span> verwendet. In Zeile  ist die Methode <span class="clisting">setRisikoPruefung</span> definiert, mit der die konkrete Variante der Prüfung an die Kundenverwaltung übergeben wird. In Zeile  wird dann diese Risikoprüfung verwendet, um einen Kunden vor dem Einrichten zu überprüfen.</p>
+<p>Auf den ersten Blick sieht es so aus, als hätten Sie eine triviale Änderung vorgenommen: Sie haben einfach die Verantwortung dafür, welche Variante der Risikoprüfung verwendet und wie diese erstellt wird, von der Klasse <span class="clisting">KundenVerwaltung</span> weggeschoben. Schließlich ist noch unklar, wer denn die Methode <span class="clisting">setRisikoPruefung</span> aufrufen soll.</p>
+<p><strong><em>Umkehrung des Kontrollflusses</em></strong></p>
+<p>Die Änderung ist bei genauerer Betrachtung allerdings sehr relevant, und sie bietet Ihnen auch eine Reihe von neuen Möglichkeiten. Sie haben nämlich die Kontrolle darüber, welche konkrete Prüfung verwendet wird, an ein übergeordnetes Modul abgegeben. Sie haben den Kontrollfluss umgekehrt. Dabei wird die Kopplung zwischen nutzendem und genutztem Modul reduziert und das Zusammenspiel zwischen den beiden an ein drittes Modul delegiert.</p>
+<p>Auf dieser Grundlage können Sie nun aufsetzen, um die Zusammenarbeit zwischen den Modulen per Konfiguration zu regeln. Dies bedeutet zunächst einmal einfach, dass Sie ein weiteres Modul haben, dem die Regeln bekannt sind, welche Objekte von welchen anderen genutzt werden. Diese Regeln können entweder im Code des Moduls stehen oder als Konfigurationsinformation ausgelagert sein, für das generelle Vorgehen spielt das keine Rolle. Die Entscheidung, ob Code oder separate Repräsentation (zum Beispiel in einer XML-Datei), sollte eher davon abhängen, ob Änderungen per Konfiguration wesentlich einfacher vorgenommen werden können.</p>
+<p><strong><em>Dependency Injection  
+Framework</em></strong></p>
+<p>Ein sogenanntes <span class="ckursiv">Dependency Injection Framework</span> kann die Aufgabe übernehmen, auf Basis der Konfigurationsinformation die Übergabe der genutzten Objekte an die nutzenden Objekte durchzuführen. Schauen wir uns das am Beispiel von Spring an. Spring ist ein sogenannter leichtgewichtiger (engl. <span class="ckursiv">lightweight</span>) Container, dessen primäres Ziel es ist, die Komplexitäten, die bisher mit Containern (vor allem EJB-Containern) verbunden waren, abzubauen. Spring unterstützt das Verfahren der Dependency Injection in zwei Varianten. [Die Webseite zu Spring finden Sie unter der Adresse <span class="ckursiv">http://www.springframework.org</span>.
+] </p>
+<p>In Listing 7.24 ist eine Konfiguration aufgeführt, die in Spring dazu führt, dass die Schufa-Risikoprüfung zusammen mit der Kundenverwaltung verwendet wird.</p>
+<div class="listing"><pre class="prettyprint">&lt;beans&gt; 
+  &lt;bean id="Verwaltung" class="KundenVerwaltung"&gt;   
+    &lt;property name="RisikoPruefung"&gt;  
+      &lt;ref local="RisikoPruefung"/&gt; 
+  &lt;/property&gt; 
+  &lt;/bean&gt; 
+  &lt;bean id="RisikoPruefung" class="RisikoPruefungSchufa"&gt;  
+  &lt;/bean&gt; 
+&lt;/beans&gt;</pre></div>
+<p class="tabunter"><strong>Listing 7.24    </strong>Konfiguration für Setter Injection in Spring</p>
+<p>In Zeile  wird festgelegt, dass das Objekt [In Spring wird der Begriff <span class="ckursiv">Bean</span> für alle Objekte verwendet, die unter der Kontrolle des Spring-Frameworks erzeugt werden.
+]  mit der Identifikation <span class="clisting">Verwaltung</span> zur Klasse <span class="clisting">KundenVerwaltung</span> gehört. Wird dieses Objekt erstellt, so werden seine Eigenschaften so gesetzt, wie sie in den ab Zeile  folgenden Properties beschrieben sind. In diesem Fall wird die Eigenschaft <span class="clisting">RisikoPruefung</span> mit dem in Zeile  beschriebenen Objekt verknüpft. Für diese wiederum ist festgelegt, dass sie durch die Klasse <span class="clisting">RisikoPruefungSchufa</span> realisiert wird.</p>
+<p>Die verwendete Klasse kann nun einfach per Konfiguration ausgetauscht werden. Soll in einem Testszenario die Simulation der Prüfung verwendet werden, so kann der Eintrag einfach geändert werden:</p>
+<div class="listing"><pre class="prettyprint">   &lt;bean id="RisikoPruefung" class="RisikoPruefungTest"&gt;</pre></div>
+<p>Damit diese Zuordnung automatisch funktionieren kann, muss der Lebenszyklus der betroffenen Objekte unter die Kontrolle des Containers gestellt werden. In Spring dürfen die Objekte deshalb nicht direkt konstruiert werden, sondern sie werden über den sogenannten Applikationskontext erzeugt. In Listing 7.25 ist ein einfaches Beispiel dafür aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">void test(Kunden kunde) { 
+  ApplicationContext context =                  
+     new FileSystemXmlApplicationContext("config.xml"); 
+  KundenVerwaltung verwaltung =                 
+    (KundenVerwaltung) context.getBean("KundenVerwaltung"); 
+  verwaltung.einrichten(kunde);               
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.25    </strong>Verwendung eines Applikationskontextes</p>
+<p>Dabei wird in Zeile  ein Applikationskontext auf Basis einer XML-Konfigurationsdatei angelegt. Diese enthält unter anderem die Einträge aus Listing 7.24. In Zeile  wird ein Exemplar der Klasse <span class="clisting">KundenVerwaltung</span> unter Verwendung des Applikationskontexts konstruiert. Auf der Grundlage der Konfiguration wird diesem Objekt bereits ein Exemplar der Klasse <span class="clisting">RisikoPruefungSchufa</span> übergeben. Die Operation <span class="clisting">einrichten</span> in Zeile  kann in der Folge aufgerufen werden und wird die Prüfung gegenüber der Schufa verwenden. In unserem Code ist die konkrete Klasse <span class="clisting">RisikoPruefungSchufa</span> allerdings nirgendwo sichtbar.</p>
+<p><strong><em>Diskussion:  
+Konfigurierbare Fabrik</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Jetzt mal langsam, hier muss ich noch einmal nachhaken. Wir hatten doch im Abschnitt über konfigurierbare Fabriken schon eine Möglichkeit beschrieben, wie wir die konkrete Objekterzeugung über Konfigurationseinstellungen und die Nutzung von Reflexion auslagern können.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Dependency Injection geht hier noch einen Schritt weiter. Der konkrete Typ des erzeugten Objekts wird dabei ebenfalls per Konfiguration festgelegt, das ist schon richtig. Allerdings wird die Kontrolle über die Objekterzeugung und die Wahl des konkreten Typs komplett an ein anderes Modul, den sogenannten Container, abgegeben. In der Regel ist es auch so, dass der Container die Kontrolle über den Lebenszyklus der genutzten Objekte hat.</span><h4 class="t4">Drei Varianten von Dependency Injection</h4>
+<p>In den oben stehenden Beispielen wurde das genutzte Modul grundsätzlich über eine Setter-Methode übergeben. Dies ist aber nicht die einzige Möglichkeit der Übergabe. Es lassen sich drei unterschiedliche Arten von Dependency Injection unterscheiden:</p>
+<ul class="gp">
+<li>Setter Injection</li>
+</ul>
+<ul class="gp">
+<li>Constructor Injection</li>
+</ul>
+<ul class="gp">
+<li>Interface Injection</li>
+</ul>
+<p>In Abbildung 7.21 ist die Klasse <span class="clisting">KundenVerwaltung</span> so angepasst, dass sie alle drei Arten unterstützt.</p>
+<div class="bildbox">
+<p><a name="IDAD2TQ"></a><a onClick="OpenWin('bilder/07_21.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_21.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.21    </strong>Verschiedene Arten von Dependency Injection</p>
+<p><strong><em>Setter Injection</em></strong></p>
+<p><span class="cfett">Setter Injection</span> haben Sie bereits im obigen Beispiel gesehen, da hier die Risikoprüfung über eine Setter-Methode an die Kundenverwaltung übergeben wird. Das benötigte Modul kann dann über das Framework, das die Kontrolle ausübt, mittels Aufruf der Setter-Methode (in unserem Beispiel <span class="clisting">setRisikoPruefung</span>) eingebracht werden.</p>
+<p><strong><em>Constructor  
+Injection</em></strong></p>
+<p><span class="cfett">Constructor Injection</span> sorgt dafür, dass die benötigten Module über den Konstruktor übergeben werden. Die abhängigen Klassen müssen Konstruktoren definieren, die als Argument ein Exemplar der benötigten Klasse nehmen. In unserem Beispiel würden Sie zu diesem Zweck einfach statt der zusätzlichen Setter-Methode einen Parameter zum Konstruktor hinzufügen.</p>
+<div class="listing"><pre class="prettyprint">class KundenVerwaltung { 
+ 
+    RisikoPruefung pruefung; 
+ 
+    KundenVerwaltung(RisikoPruefung pruefung) { 
+        this.pruefung = pruefung; 
+    }</pre></div>
+<p><strong><em>Interface Injection</em></strong></p>
+<p><span class="cfett">Interface Injection</span> basiert darauf, dass eine explizite Schnittstelle zur Verfügung steht, mit der genutzte Module ihren Nutzern zugeordnet werden können. In unserem Beispiel würden Sie also eine Schnittstelle <span class="clisting">InjectRisikoPruefung</span> einführen.</p>
+<div class="listing"><pre class="prettyprint">interface InjectRisikoPruefung { 
+    void injectRisikoPruefung(RisikoPruefung pruefung); 
+}</pre></div>
+<p>Diese muss vom nutzenden Modul implementiert werden, in diesem Fall also von der Klasse <span class="clisting">KundenVerwaltung</span>.</p>
+<div class="listing"><pre class="prettyprint">class KundenVerwaltung implements InjectRisikoPruefung { 
+    RisikoPruefung pruefung; 
+ 
+    public void injectRisikoPruefung( 
+        RisikoPruefung pruefung) { 
+        this.pruefung = pruefung; 
+    }</pre></div>
+<p>Die Verwendung von Interface Injection hat aber den Nachteil, dass hier mehr Abhängigkeiten entstehen als bei der Verwendung von Constructor Injection oder Setter Injection. Dadurch, dass die konkreten Klassen alle spezifischen Schnittstellen implementieren müssen, sind sie natürlich auch von diesen abhängig. Bei Verwendung von Konstruktoren oder Setter-Methoden sind die Klassen dagegen von nichts abhängig, was sie nicht direkt benötigen. Bei Interface Injection muss für jede Art der Abhängigkeit eine Schnittstelle definiert werden. Diese Notwendigkeit entfällt bei den anderen Varianten ebenfalls.</p>
+<h4 class="t4">Einsatz von Dependency Injection</h4>
+<p><strong><em>Was kann  
+Dependency Injection?</em></strong></p>
+<p>Dependency Injection eignet sich gut, um das Zusammenstellen von Anwendungen aus verschiedenen Modulen zu unterstützen. Damit erlaubt das Verfahren eine Verwaltung von verschiedenen Konfigurationen. Alle Module, die über das Framework eingeschoben werden, können Bestandteil einer Konfiguration sein. So können verschiedene Testkonfigurationen aufgebaut werden, oder möglicherweise kann auch für den Betrieb zwischen lokaler Umsetzung von Diensten oder eine Nutzung von Diensten auf einem Server umgeschaltet werden.</p>
+<p>Allerdings ist Dependency Injection auch kein genereller Ersatz für Fabriken. Der Fokus bei Dependency Injection liegt auf der Zusammenstellung von verschiedenen Konfigurationen und der Entkopplung von Modulen, die sich nicht gegenseitig kennen müssen. Allerdings zahlen Sie, wie sollte es auch anders sein, einen Preis für die Entkopplung: In unserem Code ist nicht mehr direkt sichtbar, welches Modul nun verwendet wird. Die Anwendung kann nur im Zusammenhang mit ihrer Konfiguration komplett betrachtet werden.</p>
+<h4 class="t4">Alternative: Service Locator</h4>
+<p>Dependency Injection ist auch nicht der einzige Weg, über eine Konfiguration festzulegen, welche konkrete Umsetzung eines Dienstes verwendet wird. Sie können eine Entkopplung auch darüber erreichen, dass Sie über einen Namen (zum Beispiel den der benötigten Schnittstelle) die zuständige Implementierung bei einem zentralen Modul erfragen. Durch die Indirektion über dieses sogenannte <span class="ckursiv">Diensteverzeichnis</span> (engl. <span class="ckursiv">Service Locator</span>) erreichen Sie auch, dass beide betroffenen Module keine Kenntnis mehr voneinander haben.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Diensteverzeichnis (Service Locator)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Diensteverzeichnis ist ein Objekt, das für alle Dienste, die eine Applikation benötigt, eine Realisierung kennt und diese im Bedarfsfall liefern kann. Für die betroffenen Dienste muss eine abstrakte Schnittstelle zur Verfügung stehen. Auf Anfrage liefert das Diensteverzeichnis zu jeder Schnittstelle eine Realisierung.</p>
+</td>
+</tr>
+</table><br><p>Der entscheidende Unterschied zwischen der Verwendung eines Service Locators und dem Mechanismus der Dependency Injection ist aber, dass beim Service Locator die Umkehrung des Kontrollflusses nicht stattfindet, weil unser nutzendes Modul immer noch aktiv nach dem zu nutzenden Modul fragen muss, indem es den Service Locator anspricht. Diese Abhängigkeit muss nicht in allen praktischen Fällen ein Problem darstellen. Wir müssen dann aber sicherstellen können, dass ein korrekt arbeitender Service Locator immer zusammen mit unserem Modul zur Verfügung steht.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_07_002.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="7.2 Fabriken als Abstraktionsebene für die Objekterzeugung"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

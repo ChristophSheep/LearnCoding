@@ -1,0 +1,472 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 8 Module und Architektur</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 8 Module und Architektur">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 8 Module und Architektur">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_07_006.htm">
+<link rel="next" href="oop_kapitel_08_002.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_006.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_08_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="#mj60c9688f17924d226cdb97426647a8db" class="navh">8 Module und Architektur</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mja2d01e503382e2717dd4e4b6d5af155e" class="navh">8.1 Module als konfigurierbare und änderbare Komponenten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj9ff88cb4811c8d4de4438fe4891b736c" class="navh">8.1.1 Relevanz der Objektorientierung für Softwarearchitektur</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mje6021c7137941b7706b962e8c1e7187b" class="navh">8.1.2 Erweiterung von Modulen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_08_002.htm#mj4935355bc9f710a2ab390d7564cec058" class="navnav">8.2 Die Präsentationsschicht: Model, View, Controller (MVC)</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_08_002.htm#mjf6f1da1c87b5a2c16e7ce43bcf004e87" class="navnav">8.2.1 Das Beobachter-Muster als Basis von MVC</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_08_002.htm#mj5ca7aa1f43a06f28977d2230339fcda7" class="navnav">8.2.2 MVC in Smalltalk: Wie es ursprünglich mal war</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_08_002.htm#mj65bb3d1734dfc99f31e8c1078e1a5b48" class="navnav">8.2.3 MVC: Klärung der Begriffe</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_08_002.htm#mjd4e5b73bafb2fd382a547949f220ff0e" class="navnav">8.2.4 MVC in Webapplikationen: genannt »Model 2«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_08_002.htm#mj469f1bdbcff2b09817fec4aee1eed023" class="navnav">8.2.5 MVC mit Fokus auf Testbarkeit: Model-View-Presenter</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main">
+<p class="anleser"><em>Wir betrachten in diesem Kapitel anhand einer Reihe von Beispielen, wie objektorientierte Entwürfe in größere Kontexte eingebunden werden. Dabei diskutieren wir die verschiedenen Arten, mit denen Module in diesen Kontexten angepasst und erweitert werden können. Am Beispiel des Musters Model-View-Controller stellen wir vor, wie objektorientierte Verfahren Beiträge zu einer kompletten Systemarchitektur leisten können.</em></p><a id="mj60c9688f17924d226cdb97426647a8db" name="mj60c9688f17924d226cdb97426647a8db"></a><h1 class="t1">8 Module und Architektur</h1><a id="mja2d01e503382e2717dd4e4b6d5af155e" name="mja2d01e503382e2717dd4e4b6d5af155e"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">8.1 Module als konfigurierbare und änderbare Komponenten  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Module sind die Bausteine, aus denen sich Software zusammensetzt. Die Mechanismen der Objektorientierung sollen uns helfen, diese Module zu definieren und interagieren zu lassen. Wir geben in diesem Abschnitt einen Überblick über die verschiedenen Möglichkeiten, Module erweiterbar zu halten und aus diesen Modulen ein funktionierendes System aufzubauen. Aber zunächst stellen wir die Frage: »Gibt es überhaupt so etwas wie eine objektorientierte Architektur?«</p><a id="mj9ff88cb4811c8d4de4438fe4891b736c" name="mj9ff88cb4811c8d4de4438fe4891b736c"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">8.1.1 Relevanz der Objektorientierung für Softwarearchitektur  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Der Begriff Softwarearchitektur allein kann Grundlage für ganze Workshops sein. Eine einheitliche Definition werden Sie auch in der Literatur nicht finden.</p>
+<p><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"> Deshalb versuchen wir, den Begriff Architektur anhand der Eigenschaften zu beschreiben, die Softwarearchitekturen häufig zugeschrieben werden:</p>
+<ul class="gp">
+<li>Architektur ist das, was in einem Softwaresystem wichtig oder auch nur schwer zu ändern ist. [Als Konsequenz ist dann ein Softwarearchitekt in einem Projekt jemand, der wichtig ist oder dessen Meinung schwer zu ändern ist.
+] </li>
+</ul>
+<ul class="gp">
+<li>Architektur ist auch das, was wir jemandem, der nichts über unser System weiß, als Erstes vorstellen, damit er einen Überblick über das System erhält.</li>
+</ul>
+<ul class="gp">
+<li>Architektur hat Auswirkungen auf die Entwickler eines Systems, weil sie Vorgaben macht, wie bestimmte Dinge umzusetzen sind.</li>
+</ul>
+<p>Objektorientierung ist nicht in erster Linie ein Verfahren zum Architekturentwurf. Wir sprechen deshalb in der Regel von <span class="ckursiv">objektorientiertem Systemdesign</span>, nicht von einer objektorientierten Architektur.</p>
+<p>Allerdings hat ein objektorientiertes Design Rückwirkungen auf die Systemarchitektur, und umgekehrt kann eine Systemarchitektur die Anwendung von objektorientierten Verfahren erleichtern oder erschweren.</p>
+<p><strong><em>Diskussion:  
+Sind Architekturen schwer zu ändern?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Muss es denn wirklich immer so sein, dass eine Architektur schwer zu ändern ist? Ich denke, dass wir Architekturen auch so anlegen können, dass wir mögliche Änderungen schon mit in Betracht ziehen und die Architektur selbst änderbar halten.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Kannst du dafür ein Beispiel nennen? Nach meiner Erfahrung ändert man Architekturen nur mit größerem Aufwand. In der Praxis wirft man oft eine Architektur komplett weg und beschäftigt sich dann mit einer neuen Architektur.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Da kann ich dir ein konkretes Beispiel nennen. In einem unserer Projekte haben wir eine Architektur auf Basis eines J2EE-Applikationsservers verwendet. Dabei haben wir aber explizit mit Pojos, also reinen Java-Objekten, gearbeitet und zum Beispiel die Mechanismen von Enterprise Java Beans nicht genutzt. In der Folge konnten wir unsere Architektur für bestimmte Szenarien einfach auf eine reine Client-Server-Architektur umstellen, in der die komplette Logik inklusive des Datenzugriffs in den Client verlagert ist. Wir konnten praktisch durch Konfiguration unsere Architektur von Thin-Client auf einen Fat-Client umstellen.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Das ist sicherlich ein guter Ansatz. Allerdings sehe ich es eher so, dass eure Architektur beide Varianten umfasst. Damit sind praktisch beide Verteilungsverfahren Teil eurer Architektur. Das spricht zwar für deren Qualität, aber eine Änderung der Architektur liegt eben beim Umschalten des Verteilungsverfahrens nicht vor. Änderungen an der Architektur selbst wären immer noch vergleichsweise schwer durchzuführen.</span><a id="mje6021c7137941b7706b962e8c1e7187b" name="mje6021c7137941b7706b962e8c1e7187b"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">8.1.2 Erweiterung von Modulen  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Beim Entwurf von Modulen ist die Fragestellung zentral, wie sich diese Module später erweitern lassen. Wir stellen eine Reihe von etablierten Verfahren vor, mit denen Erweiterbarkeit unterstützt wird.</p>
+<h4 class="t4">Vererbung</h4>
+<p>Wenn wir eine Möglichkeit suchen, um existierende Module zu erweitern, fällt uns im Bereich der Objektorientierung natürlich die Möglichkeit der Vererbung ein. Der einfachste (aber eben auch naive) Ansatz für eine Modulerweiterung ist es, für eine Klasse, die uns zur Nutzung zur Verfügung gestellt wird, eine abgeleitete Klasse zu definieren und stattdessen diese zu nutzen. Eine denkbare Architektur eines Systems wäre es also, während der Weiterentwicklung die existierende Hierarchie von Klassen immer weiter aufzufächern und neue Unterklassen einzuführen, sobald neue Anforderungen erkennbar werden. Dies führt aber in der Regel auch dazu, dass existierende Hierarchien geändert werden müssen. Dies ist in der Regel nur dann möglich, wenn es sich um interne Module handelt und die explizite Hierarchie der Klassen nicht nach außen offen gelegt ist.</p>
+<p>In dieser Form ist Vererbung also als Basis für Erweiterungen eines Systems nicht gut geeignet. Sie haben auch bereits in Abschnitt 5.3.2, »Das Problem der instabilen Basisklassen«, gesehen, welche Probleme durch eine solche Nutzung von Vererbungsbeziehungen entstehen können.</p>
+<p><strong><em>Abgeleitete  
+Klassen</em></strong></p>
+<p>Natürlich können Sie trotzdem Vererbung zur Erweiterung von Modulen einsetzen. Stellen Module eine dokumentierte Menge von Klassen und damit Operationen zur Verfügung, so können Sie für diese Klassen abgeleitete Klassen erstellen, die begrenzte Änderungen einführen. Wenn Sie dann in Ihrer Applikation ein Exemplar der abgeleiteten Klasse erstellen, wird dieses das geänderte Verhalten zeigen.</p>
+<h4 class="t4">Fabriken als Erweiterungspunkte</h4>
+<p>Damit dieser Ansatz sinnvoll funktionieren kann, müssen sich die Entwickler eines Moduls allerdings bereits intensiv Gedanken gemacht haben, was die über Ableitung von Klassen nutzbaren <span class="ckursiv">Erweiterungspunkte</span> des Moduls sind.</p>
+<p>In Abschnitt 7.2, »Fabriken als Abstraktionsebene für die Objekterzeugung«, haben wir gesehen, wie uns verschiedene Verfahren zur Objekterzeugung definierte Möglichkeiten bieten, Module nachträglich noch zu erweitern. Fabriken sind auch ein zentraler Mechanismus, mit dem sogenannte Container arbeiten. Durch diese Methodik lassen sich begrenzte und definierte Anpassungen an Modulen vornehmen.</p>
+<p>Einen ähnlichen Zweck verfolgt auch das Entwurfsmuster »Strategie«, das Sie in Abschnitt 2.5.1 kennen gelernt haben. Mit Hilfe des Entwurfsmusters lässt sich das Verhalten von existierenden Klassen anpassen.</p>
+<p>Beide Mechanismen bieten uns Möglichkeiten, eigene Funktionalitäten in existierende Module einzubringen, ohne diese Module öffnen zu müssen. Sie sind also Beispiele für Vorgehensweisen, die uns helfen, das zentrale Prinzip <span class="ckursiv">Offen für Erweiterung, geschlossen für Änderung</span> umzusetzen.</p>
+<h4 class="t4">Frameworks</h4>
+<p>Eine eigene Sichtweise auf Erweiterbarkeit nehmen Frameworks ein. Diese haben als zentrales Konzept die <span class="ckursiv">Umkehr des Kontrollflusses</span> (Inversion of Control).</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Frameworks (Anwendungsrahmen)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Das Grundkonzept von Frameworks ist es, einen Rahmen für eine Anwendung oder einen Anwendungsbereich zur Verfügung zu stellen. Damit legen Frameworks eine Art Schablone für diesen Bereich fest, die bei der Entwicklung einer konkreten Anwendung dann ausgeprägt wird.</p>
+<p>Die Entwicklung einer Anwendung auf Basis von Frameworks besteht darin, dass Klassen und Methoden umgesetzt werden, die aus dem bereits existierenden Framework heraus aufgerufen werden. Damit liegt die Steuerung des Kontrollflusses komplett bei den Framework-Klassen. Das Frameworks zugrunde liegende Prinzip wird deshalb auch Umkehrung des Kontrollflusses (Inversion of Control) oder <span class="ckursiv">Hollywood-Prinzip</span> genannt.<a href="#Rxx98504">2</a></p>
+</td>
+</tr>
+</table><br><p><strong><em>Ablaufsteuerung</em></strong></p>
+<p>Der intuitive Normalfall bei der Entwicklung eines Programms in einer prozeduralen Programmiersprache ist es, dass der Programmablauf durch den von Ihnen geschriebenen Code bestimmt wird. Sie schreiben auf, was ausgeführt werden soll, und genau in dieser Reihenfolge passiert es dann auch.</p>
+<p>Mit den Mitteln der objektorientierten Programmierung wird bereits ein relevanter Teil der Ablaufsteuerung nicht mehr explizit beschrieben, sondern an Mechanismen der Programmiersprache abgegeben. Bei Aufruf einer polymorphen Operation entscheidet der Typ eines Objekts zur Laufzeit darüber, welche Methode nun genau aufgerufen wird.</p>
+<p>Wenn Sie nun aber die Kontrolle darüber, wann im Programmablauf unsere implementierte Funktionalität tatsächlich aufgerufen wird, an ein anderes Modul abgeben, sprechen wir von einer <span class="ckursiv">Umkehrung des Kontrollflusses</span>. Frameworks sind Zusammenstellungen von Klassen, die den Rahmen für den Ablauf von solchen Anwendungen liefern. Eine Anwendung, die ein Framework nutzt, ist damit von der Aufgabe entbunden, den Kontrollfluss selbst zu steuern. Sie stellt nur noch im Rahmen dieses Kontrollflusses benötigte fachliche Implementierungen zur Verfügung, der Kontrollfluss ist damit umgekehrt worden.</p>
+<p><strong><em>Schablonenmethoden</em></strong></p>
+<p>Ebenfalls häufig in Frameworks anzutreffen sind neben den bereits erwähnten Fabriken die Schablonenmethoden. Wir haben diese in Abschnitt 5.3.1, »Überschreiben von Methoden«<span class="ckursiv">,</span> bereits vorgestellt. Schablonenmethoden geben einen Rahmen vor, innerhalb dem Operationen aufgerufen werden, die erst von abgeleiteten Klassen implementiert werden müssen. Dadurch können Frameworks über abstrakte Klassen eine Sequenz von Aktionen steuern.</p>
+<p>In Abschnitt 8.2 werden Sie den Ansatz Model-View-Controller (MVC) für die Steuerung des Kontrollflusses in der Präsentationsschicht kennen lernen. In einem MVC-Framework können zum Beispiel die Klassen, die für konkrete Darstellungen auf dem Bildschirm zuständig sind, als Ableitungen von abstrakten Klassen umgesetzt werden. Diese müssen dann für ihre korrekte Aktualisierung sorgen. Die Erstellung dieser auch <span class="ckursiv">Views</span> genannten Klassen und die Interaktion mit anderen Komponenten kann jedoch vom Framework übernommen werden.</p>
+<p><strong><em>Swing, MFC</em></strong></p>
+<p>Typische Beispiele sind hierbei Frameworks, die den Ablauf für Interaktionen an einer Benutzeroberfläche steuern. So bringen zum Beispiel die GUI-Frameworks Swing und Microsoft Foundation Classes (MFC) Bestandteile mit, die generell die Interaktion innerhalb eines MVC-Ansatzes regeln. Die vom Anwendungsprogrammierer eingebrachten Module fügen sich in den Ablauf des Frameworks ein. Die neu umgesetzte Funktionalität wird vom Framework innerhalb dessen eigenem Kontrollfluss aufgerufen.</p>
+<p><strong><em>Frameworks:  
+Probleme</em></strong></p>
+<p>Frameworks haben allerdings in der Praxis mit ein paar Problemen zu kämpfen. Das Hauptproblem ist dabei, die vorzusehenden Erweiterungspunkte zu bestimmen, ohne schon alle konkreten Anwendungsfälle zu kennen. Werden zu wenige oder die falschen Erweiterungspunkte eingebaut, ist das Framework zu unflexibel. Werden zu viele Erweiterungspunkte eingebaut, wird das Framework zu komplex und schwierig zu warten.</p>
+<p><strong><em>Was soll  
+erweiterbar  
+sein?</em></strong></p>
+<p>In der Praxis ist es nicht einfach, die Punkte zu bestimmen, die für Erweiterungen zugänglich sein sollen. Oft wird zu viel von den Eigenschaften der Framework-Klassen öffentlich gemacht. Ist diese öffentlich gemachte Information dann einmal von Framework-Anwendern verwendet worden, kann sie praktisch nicht mehr geändert werden und verhindert zu einem gewissen Grad notwendige Umbauarbeiten innerhalb des Frameworks. Nach unserer Erfahrung hat ein Framework diesen Zustand erreicht, wenn häufiger der Satz fällt: »Aber ihr verwendet das Framework doch ganz falsch! Dafür war diese Methode nie gedacht!« In diesem Fall wurde zu viel von den Interna des Frameworks offen gelegt, oder dieses ist einfach insgesamt zu komplex geworden.</p>
+<p><strong><em>JUnit</em></strong></p>
+<p>Frameworks haben sich deshalb meist dort bewährt, wo sie für einen klar definierten und überschaubaren Einsatzbereich konzipiert worden sind. Ein gutes Beispiel ist das JUnit-Framework, das erfolgreich für den Test von Java-Modulen eingesetzt wird. Zunächst einmal weist JUnit ein sauberes Design auf.</p>
+<p>Ein weiterer sehr wichtiger Punkt ist aber, dass der von JUnit abgedeckte Bereich so eingegrenzt ist, dass die notwendigen Erweiterungspunkte des Frameworks überschaubar geblieben sind. Deshalb ist JUnit für den gewählten Einsatzbereich auch so nützlich und stabil. Erst die Erweiterung der Sprache Java um die Annotations führte zu größeren Änderungen von JUnit.</p>
+<p><strong><em>Frameworks für technische Abläufe</em></strong></p>
+<p>In den meisten Anwendungsfällen versuchen Frameworks, die technischen Abläufe zu kapseln, so dass die Umsetzung der Fachlichkeit erfolgen kann, ohne sich mit allen technischen Details beschäftigen zu müssen. JUnit und die bereits erwähnten MVC-Frameworks sind Beispiele hierfür. Komplexer wird die Aufgabenstellung, wenn Gemeinsamkeiten von fachlichen Abläufen und Objekten über ein Framework strukturiert werden sollen. Sofern dies innerhalb eines Unternehmens mit einer weitgehend homogenen Sicht auf Objekte und Prozesse geschieht und außerdem das entstehende Framework auf beobachteten Gemeinsamkeiten verschiedener Bereiche basiert, ist eine Framework-Umsetzung auch noch aussichtsreich.</p>
+<p><strong><em>Fachliche  
+Frameworks</em></strong></p>
+<p>Die Ausdehnung von Frameworks auf die Fachlichkeit von Geschäftsanwendungen über verschiedene Unternehmen und Branchen hinweg hat sich dagegen als sehr komplexe Aufgabe erwiesen. IBM hat mit den San Francisco Framework Classes gegen Ende der 90er-Jahre einen Versuch unternommen, Frameworks auf den fachlichen Bereich von Unternehmensanwendungen auszudehnen. Ziel war es dabei, die Gemeinsamkeiten von Geschäftsobjekten und der zugeordneten Prozesse über ein fachliches Framework abzubilden. Die spezifischen Ausprägungen sollten dann über die Mittel der zur Verfügung stehenden Erweiterungspunkte an die fachlichen Anforderungen erfolgen. Die San Francisco Classes wurden allerdings nie wirklich erfolgreich. Microsoft arbeitet mit den Microsoft Business Classes an einem neuen Versuch, mit dem es aber noch keine praktischen Erfahrungen gibt.</p>
+<p>Nach unserer Einschätzung sind Frameworks, die relevante Teile von Fachlichkeit bereits abbilden, nur dann realistisch einsetzbar, wenn nicht nur das Framework, sondern auch die Geschäftsprozesse selbst anpassbar sind. Der klassische Ansatz von SAP illustriert das, dort gibt die Software einen relevanten Teil der Prozesse vor, ein nutzendes Unternehmen muss sich weitgehend daran anpassen.</p>
+<h4 class="t4">Container</h4>
+<p>In der Praxis hat sich eine besondere Form von Frameworks etabliert, deren Fokus darauf liegt, den Lebenszyklus von Objekten selbst zu verwalten. Diese Frameworks werden als Container bezeichnet.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Container
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Container sind eine spezielle Form von Frameworks, die sich um den Lebenszyklus von Objekten kümmern. Für die so verwalteten Objekte bieten Container dann Basisdienste an und machen diese für einen Anwender nutzbar.</p>
+<p>Der Begriff Container rührt daher, dass die Objekte einer Applikation im Container enthalten sind. Sie werden also komplett unter dessen Kontrolle gestellt. Dafür, dass sie die Dienste eines Containers in Anspruch nehmen können, müssen Objekte, die von einem Container verwaltet werden, im Gegenzug ebenfalls eine Leistung erbringen. Der mit dem Container geschlossene Kontrakt erfordert dabei häufig, dass sich die vom Nutzer des Containers eingebrachten Komponenten eine Reihe von Schnittstellen zur Verfügung stellen bzw. implementieren und sich an bestimmte Konventionen halten.</p>
+<p>Ein Beispiel dafür sind die Container für Enterprise Java Beans. Dort wird ein EJB-Container als Bestandteil eines Applikationsservers gesehen, der für eine Reihe von übergreifenden Aufgaben zuständig ist. Über Konfiguration wird festgelegt, welche Eigenschaften den Objekten zugeordnet werden. </p>
+</td>
+</tr>
+</table><br><p>Container im Allgemeinen sind aber Laufzeitumgebungen, in denen Objekte verwaltet werden und dort bestimmte Services nutzen können. Es ist also nicht grundsätzlich notwendig, dass ein solcher Container Teil eines Applikationsserver ist.</p>
+<p><strong><em>Leichtgewichtige Container</em></strong></p>
+<p>Diese Bindung an Applikationsserver aufzuheben ist eine Zielsetzung der sogenannten leichtgewichtigen Container. Ein Beispiel für solche Container ist der Ansatz des Spring-Frameworks, bei dem die fachlichen Klassen alle als einfache Java-Klassen, sogenannte Pojos, umgesetzt werden. [Der Begriff <span class="ckursiv">Pojo</span> für Plain Old Java Objects wurde von Martin Fowler eingeführt. Die Motivation war, den guten alten Java-Klassen durch einen hippen Namen wieder zu mehr Präsenz zu verhelfen. Überhaupt gelingt es Martin Fowler häufig, Begriffe für Vorgehensweisen und Sachverhalte zu prägen. So stammt auch der Begriff Dependency Injection für eine bestimmte Form der Umkehrung des Kontrollflusses von ihm und Rod Johnson. Value Objects in der J2EE-Spezifikation wurden zu Data Transfer Objects, nachdem Martin Fowler diese Benennung kritisiert hatte. ] </p>
+<h4 class="t4">Dependency Injection</h4>
+<p>Den Mechanismus der Dependency Injection haben wir bereits in Abschnitt 7.2.7 beschrieben. Dependency Injection ist ein Mechanismus, der als Bestandteil einer Architektur verwendet werden kann. Über Dependency Injection werden die Abhängigkeiten zwischen genutzten Modulen und ihren Nutzern aus dem Code extrahiert. Der Container, der unsere Objekte verwaltet, ist dafür zuständig, die genutzten Objekte bereitzustellen. Die Entscheidung, ob dabei ein einziges Exemplar ausreicht oder ob für jeden Nutzungsfall ein eigenes Exemplar notwendig ist, liegt in der Konfiguration beziehungsweise beim Container. Bei Nutzung dieses Mechanismus ist es zum Beispiel auch nicht mehr notwendig, mit Singletons zu arbeiten. Ein Singleton wäre in diesem Fall durch Konfiguration über den Container zu erreichen, wir haben aber bei keiner Klasse mehr die unbedingte Voraussetzung, dass nur ein Exemplar davon existieren kann.</p>
+<h4 class="t4">Plugins</h4>
+<p>Am Beispiel der freien Entwicklungsplattform Eclipse ist zu sehen, dass sich komplexe Applikationen auch auf der Grundlage von sogenannten <span class="ckursiv">Plugins</span> aufbauen lassen.</p>
+<p>Plugin ist wieder ein recht schillernder Begriff. Wir setzen unsere Definition auf der Beschreibung von Martin Fowler auf, der eine große Erfahrung in der Definition von schwammigen Begriffen mitbringt. [Siehe auch [Fowler 2003] oder auch <span class="ckursiv">http://www.martinfowler.com/eaaCatalog/plugin.html</span>.
+] </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Plugin
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Plugin ist ein Modul, das an einem Erweiterungspunkt eines Programms eingesetzt werden kann. Dabei wird über eine zentrale Konfiguration gesteuert, welches Plugin verwendet werden soll und wie das Plugin selbst konfiguriert wird.</p>
+<p>Ein Plugin löst zwei Probleme durch eine zentrale, zur Laufzeit ausgewertete Konfiguration: Konfigurationsinformation, die in Fabriken über die Applikation verteilt ist, ist schwer zu pflegen. Außerdem soll eine Änderung der Konfiguration nicht erfordern, dass ein Neubauen oder eine erneute Auslieferung notwendig wird. </p>
+</td>
+</tr>
+</table><br><p>Plugins, wie sie von Eclipse verwendet werden, basieren auf der Definition von Erweiterungspunkten. Hier ist es zum einen möglich, eigene Erweiterungen einzubringen. Auf der anderen Seite können diese aber bereits wieder selbst Erweiterungsmöglichkeiten definieren, so dass eine gestaffelte Erweiterung der Plattform möglich wird. Diese Möglichkeit wird von Eclipse ganz klassisch als Konzept der Erweiterungspunkte (<span class="clisting">extension points</span>) bezeichnet.</p>
+<p>Es deutet einiges darauf hin, dass Eclipse mit diesem Konzept zumindest für den zunächst gewählten Anwendungsbereich (nämlich eine Entwicklungsplattform) auf einem guten Weg ist. Der Ansatz vermeidet viele Fallen der klassischen Frameworks und hält die Komplexität durch seine klare Aufgabentrennung über Erweiterungspunkte in überschaubarem Rahmen.</p>
+<p><strong><em>Einfacher Einbau der Erweiterungspunkte</em></strong></p>
+<p>Was hier ebenfalls wichtig ist und was nicht bei allen Komponentenmodellen bisher beachtet wurde: Es muss einfach sein, einen Erweiterungspunkt einzubauen, sobald klar wird, dass dieser benötigt wird. Damit sind wir nicht gezwungen, von vornherein alle möglichen Erweiterungspunkte in unserem Modul vorwegzunehmen.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_08_001.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="8 Module und Architektur"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_006.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_08_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

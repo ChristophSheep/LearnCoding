@@ -1,0 +1,530 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 6.2 Speicherung in Datenbanken</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 6.2 Speicherung in Datenbanken">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 6.2 Speicherung in Datenbanken">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_06_001.htm">
+<link rel="next" href="oop_kapitel_06_003.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_06_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_06_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6" class="navnav">6 Persistenz</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_06_001.htm#mj7c2a056ec1dfeac2229b1fb85c0e36d0" class="navnav">6.1 Serialisierung von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mjbd38b9e270be21fbb00edcc8ce26a7cd" class="navh">6.2 Speicherung in Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj1b05252e9b69b82768610d09fb6fc3d4" class="navh">6.2.1 Relationale Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjc05ff1bffed71d95850cc8397fa56212" class="navh">6.2.2 Struktur der relationalen Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj69af567b73ef41ffbbb8e5e072376df0" class="navh">6.2.3 Begriffsdefinitionen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_06_003.htm#mjd2117313ff67a912fd368065166ffb83" class="navnav">6.3 Abbildung auf relationale Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_003.htm#mj74a9a5ecb728d5307a0fc21d6ec2ef9d" class="navnav">6.3.1 Abbildung von Objekten in relationalen Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_003.htm#mjf8f90d6389516f03d3fc7d8cea5fe76a" class="navnav">6.3.2 Abbildung von Beziehungen in relationalen Datenbanken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_003.htm#mj0e2023160a7634a4eac30b19482f0854" class="navnav">6.3.3 Abbildung von Vererbungsbeziehungen auf eine relationale Datenbank</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_06_004.htm#mjcb211e5113a744c438c6611dc39084bc" class="navnav">6.4 Normalisierung und Denormalisierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mjb2d04eb1b4c3f9d8c3c58601fc80ce55" class="navnav">6.4.1 Die erste Normalform: Es werden einzelne Fakten gespeichert</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mjbc06a32922168bcbe16f5ebc29155d09" class="navnav">6.4.2 Die zweite Normalform: Alles hängt vom ganzen Schlüssel ab</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mj3baa93dbfa4964f9eb161a54e80449e9" class="navnav">6.4.3 Die dritte Normalform: Keine Abhängigkeiten unter den Nichtschlüssel-Spalten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mja09896a3c0def58f650ceeb0095eb2c7" class="navnav">6.4.4 Die vierte Normalform: Trennen unabhängiger Relationen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_06_004.htm#mj5d506b0fd2c19e48f0eb50a5e2a3fe38" class="navnav">6.4.5 Die fünfte Normalform: Einfacher geht&#8217;s nicht</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mjbd38b9e270be21fbb00edcc8ce26a7cd" name="mjbd38b9e270be21fbb00edcc8ce26a7cd"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">6.2 Speicherung in Datenbanken  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Diejenigen Objekte einer Anwendung, bei denen die zugehörigen Daten länger benötigt werden als nur bis zum Beenden des Programms, werden in der Regel in Datenbanken gespeichert. Der weitaus größte Teil von Anwendungen nutzt dabei die relationalen Datenbanken. Die Daten von Objekten werden dabei in Tabellen der relationalen Datenbank gespeichert und wieder ausgelesen, wenn das Objekt aus diesen Daten wieder hergestellt werden soll.</p>
+<p>Wir gehen deshalb in den folgenden Abschnitten genauer auf die Zusammenarbeit von objektorientierten Systemen mit relationalen Datenbanken ein. Wir werden zunächst ab Abschnitt 6.2.1 einen kurzen Überblick über die Grundstrukturen von relationalen Datenbanken geben. Abschnitt 6.3 geht darauf ein, wie ein Objektmodell auf relationale Datenbanken abgebildet werden kann. Schließlich stellen wir in Abschnitt 6.4 den Prozess der Normalisierung einer relationalen Datenbank vor und zeigen für die verschiedenen Normalformen, dass unsere zuvor definierten Abbildungsregeln zur Einhaltung der Normalform führen.</p><a id="mj1b05252e9b69b82768610d09fb6fc3d4" name="mj1b05252e9b69b82768610d09fb6fc3d4"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">6.2.1 Relationale Datenbanken  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><strong><em>Relationale Datenbanken  
+als Standard</em></strong></p>
+<p>Insbesondere für die Speicherung der Daten in Unternehmen haben sich die relationalen Datenbanksysteme durchgesetzt. In den relationalen Datenbanken werden keine Objekte, sondern Fakten und die Relationen dieser Fakten untereinander gespeichert. Wenn die Daten einer objektorientierten Anwendung in einer relationalen Datenbank gespeichert werden, müssen wir also eine Vorgehensweise definieren, nach der die Informationen über die gespeicherten Objekte auf die Fakten und Relationen in der Datenbank abgebildet werden. Diesem Thema werden wir uns in diesem Abschnitt widmen.</p>
+<p><strong><em>Was ist mit Objektdatenbanken?</em></strong></p>
+<p>Man kann sich die Frage stellen, warum die relationalen Datenbanken nicht von objektorientierten Datenbanken abgelöst worden sind. Immerhin gibt es das objektorientierte Programmieren seit mehreren Dekaden, und die ersten objektorientierten Datenbanken sind auch schon mehr als 15 Jahre alt.</p>
+<p>Wir können hier keine Antwort auf diese Frage geben, nur eine Vermutung: Die Stärke der Objektorientierung ist es, die Komplexität der Programme zu verringern, indem sie den Programmablauf und die dazugehörigen Daten zu Objekten bündelt. Die Aufgabe einer Datenbank ist jedoch eine andere. Ihr Zweck besteht darin, Daten zu enthalten. Es ist nicht die primäre Aufgabe der Datenbank, die Abläufe und Prozesse, die mit diesen Daten arbeiten, zu verwalten. Ein Unternehmen benutzt eine Datenbank, um Daten zu speichern. Die Geschäftsprozesse ändern sich häufig, die Daten bleiben. Dies und die Reife der relationalen Datenbanksysteme gehören unserer Meinung nach zu den Hauptgründen, warum relationale Datenbanksysteme noch für lange Zeit die meistgenutzten Systeme für die Speicherung von Unternehmensdaten sein werden.</p><a id="mjc05ff1bffed71d95850cc8397fa56212" name="mjc05ff1bffed71d95850cc8397fa56212"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">6.2.2 Struktur der relationalen Datenbanken  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Widmen wir also den relationalen Datenbanksystemen und deren Verwendung in objektorientierten Anwendungen etwas Zeit.</p>
+<p>Um Objekte aus einer relationalen Datenbank laden und sie dort wieder speichern zu können, müssen wir beschreiben, welche Daten eines Objekts in welchen Strukturen der Datenbank gespeichert werden. Diese Abbildung der Objektdaten auf die Datenbankstrukturen muss vor allem die folgenden Informationen beinhalten:</p>
+<ul class="gp">
+<li>Welche Attribute in der Datenbank stehen mit welchen Attributen von Klassen in Beziehung?</li>
+</ul>
+<ul class="gp">
+<li>Wie werden Vererbungsbeziehungen in der Datenbank abgebildet?</li>
+</ul>
+<ul class="gp">
+<li>Wie sind die Beziehungen zwischen den Objekten in der Datenbank abgebildet?</li>
+</ul>
+<p><strong><em>Objektrelationale Mapper</em></strong></p>
+<p>Die resultierenden Aufgaben werden in der Praxis in der Regel von verschiedenen Werkzeugen, den sogenannten objektrelationalen Mappern, gut erledigt. Beispiele für solche Mapper sind Toplink (Oracle) und Hibernate (freie Software). Eine weitere Form stellt auch das konfigurierbare Mapping für Entity Beans in J2EE dar.</p>
+<p>Obwohl also in der Praxis Werkzeuge wie die oben genannten eine ganze Menge Arbeit bei der Abbildung abnehmen, ist es sinnvoll, die verschiedenen Möglichkeiten eines Mappings aus der relationalen Welt in die Welt der Objekte zu verstehen. Auch hier gilt wieder: Transparenz ist nur bis zu einem gewissen Grad möglich. Spätestens wenn die Abbildung in Bezug auf Performanz und Effizienz optimiert werden muss, ist ein Blick hinter die Kulissen notwendig.</p><a id="mj69af567b73ef41ffbbb8e5e072376df0" name="mj69af567b73ef41ffbbb8e5e072376df0"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">6.2.3 Begriffsdefinitionen  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Bevor wir uns der Abbildung von Objekten auf relationale Datenbanken widmen, sollten wir einige Begriffe definieren, die wir verwenden werden.</p>
+<h4 class="t4">Funktionen</h4>
+<p>In der Mathematik ist eine Funktion eine eindeutige Abbildung der Elemente einer Menge auf die Elemente einer anderen Menge. Meistens wird eine Funktion als eine Berechnungsvorschrift definiert. So kann man zum Beispiel eine Funktion <span class="ckursiv">f(x) = sin(x) + 2x²</span> definieren, die jedem <span class="ckursiv">x</span> aus der <span class="ckursiv">Domäne</span> der reellen Zahlen einen ebenfalls reellen Wert zuordnet.</p>
+<div class="bildbox">
+<p><a name="IDAWESQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_02_001.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_02_001.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.1    </strong>Relation »Kreis« zwischen den Koordinaten x und y</p>
+<p>Doch es ist nicht nötig, dass es eine solche Vorschrift gibt, man kann eine Funktion auch durch das Aufzählen der Werte für die jeweiligen Argumente definieren. Und genau darum geht es bei den Datenbanken &#8211; die Fakten zu speichern, die sich nicht aus einer Formel berechnen lassen.</p>
+<p>So können wir die Funktion <span class="ckursiv">Land(Stadt)</span> definieren, die für jede (gespeicherte) Stadt das dazugehörige Land zurückgibt. Hier gibt es aber keine Möglichkeit, die Daten zu berechnen, wir müssen sie also speichern.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Stadt
+</td>
+<td class="tabellenkopf">Land
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="ckursiv">Berlin</span></p>
+</td>
+<td class="tabellentext">
+<p><span class="ckursiv">Deutschland</span></p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="ckursiv">Köln</span></p>
+</td>
+<td class="tabellentext">
+<p><span class="ckursiv">Deutschland</span></p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="ckursiv">London</span></p>
+</td>
+<td class="tabellentext">
+<p><span class="ckursiv">Vereinigtes Königreich</span></p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="ckursiv">Linz</span></p>
+</td>
+<td class="tabellentext">
+<p><span class="ckursiv">Österreich</span></p>
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p><span class="ckursiv">…</span></p>
+</td>
+<td class="tabellentext">
+<p><span class="ckursiv">…</span></p>
+</td>
+</tr>
+</table><br><p>Eine Funktion kann durchaus auch mehrere Parameter haben. So kann zum Beispiel eine Funktion <span class="ckursiv">Film(Kinosaal, Uhrzeit)</span> eindeutig bestimmen, welcher Film in welchem Saal eines Multiplexkinos zu welcher Uhrzeit läuft.</p>
+<p><strong><em>Funktion:  
+eindeutige  
+Beziehung</em></strong></p>
+<p>Eine Funktion ist also eine <span class="ckursiv">eindeutige</span> Beziehung zwischen einem Argument, oder einem ganzen Tupel von Argumenten, und einem Wert der Funktion. Doch nicht alle interessanten Beziehungen zwischen Fakten lassen sich als eine Funktion formulieren. Denn manche Beziehungen sind nicht eindeutig.</p>
+<p>Für die Beziehung der Koordinaten <span class="ckursiv">x</span> und <span class="ckursiv">y</span> einer Kreislinie mit dem Mittelpunkt (<span class="ckursiv">0</span>,<span class="ckursiv">0</span>) und dem Radius <span class="ckursiv">1</span> gilt zum Beispiel die Formel <span class="ckursiv">x²+y²=1</span>, nur für die Werte <span class="ckursiv">1</span> und <span class="ckursiv">&#8211;1</span> von <span class="ckursiv">x</span> lässt sich ein eindeutiger Wert von <span class="ckursiv">y</span> bestimmen (<span class="ckursiv">0</span>). Alle anderen Werte von <span class="ckursiv">x</span> haben entweder gar keinem oder zwei zugehörige Werte von <span class="ckursiv">y</span>. Man kann zwar im Allgemeinen keinen eindeutigen Wert <span class="ckursiv">y</span> zu einem beliebigen <span class="ckursiv">x</span> bestimmen, man kann aber immer eindeutig entscheiden, ob ein Paar (<span class="ckursiv">x</span>, <span class="ckursiv">y</span>) zu der Kreislinie gehört oder nicht.</p>
+<h4 class="t4">Relation: Beziehung zwischen Mengen</h4>
+<p>Eine solche Beziehung zwischen Elementen mehrerer Mengen nennt man eine <span class="ckursiv">Relation</span>. Für die Definition einer Relation ist die Eindeutigkeit nicht wichtig, ausschlaggebend ist nur, dass man bestimmen kann, ob ein Tupel der Elemente der Argumentmengen (der <span class="ckursiv">Domänen</span>) zu der Relation gehört oder nicht. Die Relation definiert keine Reihenfolge der Tupel, sie bestimmt nur, ob ein Tupel zu ihr gehört oder nicht.</p>
+<p>Aus der Sicht der Datenbanksysteme sind Relationen, für die es eine Berechnungsformel gibt, nicht besonders interessant. Die Datenbanksysteme gibt es, um Informationen über Relationen zu speichern, für die es eben keine solche Formel gibt.</p>
+<h4 class="t4">RDBMS</h4>
+<p>Die relationalen Datenbanksysteme (RDBMS für <span class="ckursiv">Relational Database Management System</span>) verwalten also Informationen über Relationen zwischen den Fakten aus verschiedenen Domänen.</p>
+<p>Ein Element einer Relation ist ein <span class="ckursiv">Tupel</span>, der aus Elementen der Domänen dieser Relation besteht. Bei den gespeicherten Daten spricht man auch von <span class="ckursiv">Datensätzen</span> (engl. <span class="ckursiv">Record</span>) einer Relation, die aus <span class="ckursiv">Feldern</span> (engl. <span class="ckursiv">Field</span>) bestehen. In einer relationalen Datenbank gibt es verschiedenartige Relationen. Gespeichert werden die <span class="ckursiv">Tabellen</span>, von den Tabellen können andere Relationen abgeleitet werden &#8211; die Ansichten (engl. <span class="ckursiv">View</span>) und die Abfragen (engl. <span class="ckursiv">Queries</span>). Wenn wir uns die tabellarische Darstellung einer Relation ansehen, ist recht schnell klar, warum wir die Begriffe <span class="ckursiv">Zeile</span> beziehungsweise <span class="ckursiv">Spalte</span> als Synonyme für die Begriffe <span class="ckursiv">Datensatz</span> und <span class="ckursiv">Feld</span> verwenden. In Abbildung 6.2 ist eine Relation am Beispiel dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAKSSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_02_002.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_02_002.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 6.2    </strong>Relation Stadt-Land</p>
+<h4 class="t4">Funktionale Abhängigkeit</h4>
+<p>Die Funktionen gehören auch zu den Relationen. Wenn man immer anhand einiger Felder die Werte anderer Felder in einem Datensatz eindeutig bestimmen kann, spricht man von einer <span class="ckursiv">funktionalen Abhängigkeit</span>. So besteht in unseren Beispielen eine funktionale Abhängigkeit zwischen der Stadt und dem Land, in dem die Stadt liegt, nicht aber umgekehrt, denn in einem Land können mehrere Städte liegen. [Wir gehen hier von der vereinfachten Sichtweise aus, dass eine Stadt immer nur in einem Land liegt.
+]  Es besteht auch eine funktionale Abhängigkeit zwischen einem Kinosaal und einer Uhrzeit einerseits und einem Film andererseits, es besteht jedoch keine funktionale Abhängigkeit zwischen einem Kinosaal alleine und einem Film, denn um den Film eindeutig bestimmen zu können, brauchen wir auch die Uhrzeit.</p>
+<h4 class="t4">Schlüssel</h4>
+<p>Wenn wir anhand der Werte einiger Spalten einer Relation den kompletten Datensatz eindeutig bestimmen können, bilden die Spalten einen <span class="ckursiv">Schlüssel</span> der Relation. Man sollte hier nicht die Bedeutung des Wortes »bestimmen« mit der Bedeutung des Wortes »berechnen« verwechseln. Dass wir anhand der Werte der Spalten eines Schlüssels die Werte der anderen Spalten der Relation eindeutig bestimmen können, bedeutet nicht, dass man den Wert nach einer Formel berechnen kann, sondern dass es eine fachliche Regel gibt, die besagt, dass es zu einer Kombination der Werte der Schlüsselspalten nur einen einzigen Datensatz in der Relation geben kann.</p>
+<p>Es besteht also immer eine funktionale Abhängigkeit zwischen einem Schlüssel einer Relation und allen anderen Spalten dieser Relation. Eine Relation kann auch mehrere Schlüssel haben. So kann man zum Beispiel einen Mitarbeiterdatensatz sowohl über die E-Mail-Adresse des Mitarbeiters als auch über seine Personalausweisnummer eindeutig identifizieren. Und offensichtlich, wenn einige Spalten einen Schlüssel bilden, entsteht so auch ein Schlüssel (ein Überschlüssel), wenn man weitere Spalten hinzufügt.</p>
+<p><strong><em>Tabellen ohne Schlüssel?</em></strong></p>
+<p>Obwohl die meisten relationalen Datenbanken es zulassen, dass man Tabellen ohne einen Schlüssel anlegt, ist dies sehr selten eine gute Idee. Denn wenn in einer Tabelle gleiche Datensätze vorkommen können, kann man sie nicht eindeutig identifizieren &#8211; zumindest nicht mit den Mitteln der relationalen Theorie. Ein Tupel kann nämlich zu einer Relation entweder gehören oder nicht gehören, es kann zu der Relation jedoch nicht »mehrfach« gehören. Eine derartige Information kann für die Anwendung zwar relevant sein, man sollte aber über eine alternative Speichermöglichkeit nachdenken &#8211; über eine, die sich als eine Relation abbilden lässt.</p>
+<p><strong><em>Schlüsselkandidat 
+Primärschlüssel 
+Alternativschlüssel</em></strong></p>
+<p>In der Praxis wählt man einen der Schlüssel einer Tabelle aus und deklariert ihn als den <span class="ckursiv">Primärschlüssel</span> der Tabelle. Andere Schlüssel der Tabelle nennt man auch ihre <span class="ckursiv">Alternativschlüssel</span>, alle zusammen nennt man auch <span class="ckursiv">Schlüsselkandidaten</span>. Welcher der Schlüssel zum Primärschlüssel ausgewählt werden sollte, ist eine technische Entscheidung. Die Theorie befasst sich nicht mit der effizienten technischen Umsetzung der Datenbanken, dies wird dem jeweiligen Datenbankhersteller überlassen. Dem Anwender der Datenbank müssen die technischen Möglichkeiten der verwendeten Datenbank jedoch bekannt sein, damit er sie effektiv nutzen kann. Relationale Datenbanken verwenden verschiedene Hilfsmittel, um die gesuchten Datensätze effektiv zu finden.</p>
+<h4 class="t4">Index</h4>
+<p>Zu den meistverwendeten solcher Hilfsmittel gehören die Indizes. Für welche Spaltengruppen ein Index angelegt werden sollte, ist aber keine Entscheidung, die relationale Theorie beantworten kann. Um eine solche Entscheidung zu treffen, müssen wir wissen, anhand welcher Spalten die Datensätze meistens gesucht werden. Und da man in den meisten Fällen einen Index für den Primärschlüssel anlegen wird, ist es oft eine gute Idee, den Schlüssel zum Primärschlüssel zu machen, nach dem häufiger gesucht wird. Da wir aber Indizes auch für andere Spalten anlegen können, ist dies lediglich ein Hinweis.</p>
+<h4 class="t4">Fremdschlüssel</h4>
+<p>In einer relationalen Datenbank werden meistens mehrere Relationen verwaltet. Manche werden Spalten aus den gleichen Domänen haben. So kann man zum Beispiel eine Tabelle der Mitarbeiter mit der Spalte E–Mail-Adresse und eine andere Tabelle der E-Mails mit der Spalte Absender-Adresse aus der gleichen Domäne der E-Mail-Adressen haben. Eine Absenderadresse ist in der Tabelle der E-Mails kein Schlüssel, denn ein Mitarbeiter kann mehrere Mails verschickt haben, sie identifiziert aber eindeutig einen Datensatz in der Tabelle der Mitarbeiter.</p>
+<p>Wenn eine Spaltengruppe einer Relation einen Datensatz einer anderen Relation eindeutig bestimmen kann, spricht man von einem <span class="ckursiv">Fremdschlüssel</span>.</p>
+<h4 class="t4">NULL-Werte</h4>
+<p>Bisher haben wir davon gesprochen, dass eine Relation aus Element-Tupeln besteht, die zu dieser Relation gehören. Eine solche Relation kann als eine Tabelle in einer relationalen Datenbank gespeichert werden. Wir könnten für das Speichern unserer Kontaktdaten eine Relation mit folgenden Feldern definieren: (<span class="ckursiv">Vorname, Nachname, Straße, Hausnummer, Postleitzahl, Stadt, Telefonnummer, Faxnummer, E-Mail</span>). Nun, in einer solchen Relation könnten wir keine Daten von Leuten, die kein Faxgerät besitzen oder deren Adresse wir nicht kennen, speichern.</p>
+<p><strong><em>Mehrere  
+Relationen</em></strong></p>
+<p>Stattdessen könnten wir mehrere Relationen definieren:</p>
+<ul class="gp">
+<li>(Vorname, Nachname, <span class="ckursiv">Straße, Hausnummer, Postleitzahl, Stadt</span>)</li>
+</ul>
+<ul class="gp">
+<li>(Vorname, Nachname, <span class="ckursiv">Telefonnummer</span>)</li>
+</ul>
+<ul class="gp">
+<li>(Vorname, Nachname, <span class="ckursiv">Faxnummer</span>)</li>
+</ul>
+<ul class="gp">
+<li>(Vorname, Nachname, <span class="ckursiv">E-Mail</span>)</li>
+</ul>
+<p>Alle vier Relationen haben einen Schlüssel, der aus den Spalten (<span class="ckursiv">Vorname</span>, <span class="ckursiv">Nachname</span>) besteht &#8211; wir gehen jetzt vereinfacht davon aus, dass wir Menschen mit gleichen Namen durch einen Namenszusatz zum Beispiel in der Spalte <span class="ckursiv">Vorname</span> eindeutig auseinander halten können.</p>
+<p>In der Datenbank müssten wir für jeden Kontakt, den wir speichern möchten, also bis zu vier Einträge mit dem Vor- und dem Nachnamen erzeugen. Dies könnte wenig effizient sein, wenn wir für die meisten Kontakte tatsächlich alle vier Einträge speichern würden.</p>
+<p>Eine Abhilfe bieten hier die NULL-Werte. Man kann in einer Tabelle bestimmen, welche Spalten einen Wert haben müssen und welche leer bleiben können. Auf diese Art kann man mehrere fachliche Relationen in einer Tabelle speichern und so den Speicherplatz effektiver nutzen. Die Schlüssel-Spalten können natürlich keinen NULL-Wert enthalten.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_06_002.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="6.2 Speicherung in Datenbanken"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_06_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_06_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

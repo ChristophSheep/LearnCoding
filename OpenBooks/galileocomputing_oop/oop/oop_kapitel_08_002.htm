@@ -1,0 +1,614 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 8.2 Die Präsentationsschicht: Model, View, Controller (MVC)</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 8.2 Die Präsentationsschicht: Model, View, Controller (MVC)">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 8.2 Die Präsentationsschicht: Model, View, Controller (MVC)">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_08_001.htm">
+<link rel="next" href="oop_kapitel_09_001.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_08_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_09_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db" class="navnav">8 Module und Architektur</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_08_001.htm#mja2d01e503382e2717dd4e4b6d5af155e" class="navnav">8.1 Module als konfigurierbare und änderbare Komponenten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_08_001.htm#mj9ff88cb4811c8d4de4438fe4891b736c" class="navnav">8.1.1 Relevanz der Objektorientierung für Softwarearchitektur</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_08_001.htm#mje6021c7137941b7706b962e8c1e7187b" class="navnav">8.1.2 Erweiterung von Modulen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj4935355bc9f710a2ab390d7564cec058" class="navh">8.2 Die Präsentationsschicht: Model, View, Controller (MVC)</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf6f1da1c87b5a2c16e7ce43bcf004e87" class="navh">8.2.1 Das Beobachter-Muster als Basis von MVC</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj5ca7aa1f43a06f28977d2230339fcda7" class="navh">8.2.2 MVC in Smalltalk: Wie es ursprünglich mal war</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj65bb3d1734dfc99f31e8c1078e1a5b48" class="navh">8.2.3 MVC: Klärung der Begriffe</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjd4e5b73bafb2fd382a547949f220ff0e" class="navh">8.2.4 MVC in Webapplikationen: genannt »Model 2«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj469f1bdbcff2b09817fec4aee1eed023" class="navh">8.2.5 MVC mit Fokus auf Testbarkeit: Model-View-Presenter</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj4935355bc9f710a2ab390d7564cec058" name="mj4935355bc9f710a2ab390d7564cec058"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">8.2 Die Präsentationsschicht: Model, View, Controller (MVC)  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Ein sehr erheblicher Teil der Funktionalität auch von objektorientierten Systemen spielt sich bei der Interaktion mit dem Anwender von Software ab. Für die Modellierung dieser Interaktion in der Präsentationsschicht gibt es verschiedene Ansätze. Am weitesten verbreitet ist dabei der sogenannte <span class="ckursiv">MVC-Ansatz</span> (Model-View-Controller).</p>
+<p>Mit Model-View-Controller (MVC) wird ein Interaktionsmuster in der Präsentationsschicht von Software beschrieben. MVC ist wohl einer der schillerndsten Begriffe im Bereich der objektorientierten Programmierung. Viele Varianten haben sich herausgebildet, teilweise einfach aufgrund eines falschen Verständnisses des ursprünglichen MVC-Musters, teilweise als Weiterentwicklung oder Anpassung an neue Anwendungsfälle.</p>
+<p>Da es sich bei MVC nach wie vor um das wichtigste und verbreitetste Muster für die Präsentationsschicht von objektorientierten Anwendungen handelt, gehen wir in diesem Kapitel ausführlich darauf ein.</p><a id="mjf6f1da1c87b5a2c16e7ce43bcf004e87" name="mjf6f1da1c87b5a2c16e7ce43bcf004e87"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">8.2.1 Das Beobachter-Muster als Basis von MVC  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Eine ganz zentrale Art von Information in objektorientierten Systemen ist die Information darüber, dass ein Objekt seinen Zustand geändert hat.</p>
+<p><strong><em>Interaktionen in der Präsentationsschicht</em></strong></p>
+<p>Die Interaktionen, die hierbei entstehen, können komplex sein. Nach dem <span class="ckursiv">Prinzip einer Verantwortung</span> sollten Sie aber vermeiden, dass die betroffenen Objekte sich gegenseitig kennen müssen. Für derartige Fälle bietet es sich an, das Entwurfsmuster »Beobachtetes&#8211;Beobachter« anzuwenden. Das Muster wird auch kurz Beobachter-Muster genannt. In Abschnitt 5.4, »Mehrfachvererbung«, hatten wir es bereits an einem Beispiel vorgestellt. Abbildung 8.1 zeigt die bei der Anwendung des Musters beteiligten Klassen noch einmal in der Übersicht für den allgemeinen Fall.</p>
+<div class="bildbox">
+<p><a name="IDATDSQ"></a><a onClick="OpenWin('bilder/06_moduleundarchitektur_001.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_moduleundarchitektur_001.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 8.1    </strong>Beobachter und beobachtete Objekte</p>
+<p>In der Abbildung ist zu sehen, dass sich die Beobachter über die Operation <span class="clisting">anmelden()</span> registrieren können. Wenn sie das getan haben, werden sie über Änderungen des Zustands im beobachteten Objekt informiert. Dies geschieht darüber, dass dieses Objekt nach Änderungen seine eigene Operation <span class="clisting">benachrichtigen()</span> aufruft. Diese wird alle registrierten Beobachter durchgehen und deren Operation <span class="clisting">aktualisieren()</span> aufrufen. Damit haben alle Beobachter die Möglichkeit, auf die Zustandsänderung zu reagieren.</p>
+<p>Innerhalb von MVC wird das Muster verwendet, um Änderungen an einem Modell an die Objekte zu kommunizieren, die das Modell darstellen, die sogenannten Views. Dabei sollen die Modelle nichts darüber wissen müssen, von welchen Objekten sie denn nun dargestellt werden.</p><a id="mj5ca7aa1f43a06f28977d2230339fcda7" name="mj5ca7aa1f43a06f28977d2230339fcda7"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">8.2.2 MVC in Smalltalk: Wie es ursprünglich mal war  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Für einen Überblick beginnen wir direkt am Anfang: MVC wurde zusammen mit der objektorientierten Programmiersprache Smalltalk eingeführt. Bei MVC handelte es sich ursprünglich um ein Konzept, das die Interaktionen eines Benutzers (vor allem über Mausaktionen) sauber von den dadurch veränderten Daten und deren Darstellung trennen sollte.</p>
+<p><strong><em>Controller:  
+Verarbeitung  
+von Eingaben</em></strong></p>
+<p>Dabei ist der <span class="ckursiv">Controller</span> für die Verarbeitung der Eingaben (zum Beispiel Mausklicks) zuständig und für deren Kommunikation an das Modell. Das <span class="ckursiv">Model</span> ist passiv, es wird vom Controller befragt und modifiziert. Der <span class="ckursiv">View [</span>Es ist gängig, den englischen Begriff <span class="ckursiv">View</span> für eine Darstellungskomponente zu verwenden. Allerdings herrscht Uneinigkeit darüber, ob der Artikel nun als »der View« oder »die View« zu wählen ist. Wir verwenden im Folgenden die Version »der View«.
+]  befragt das Modell, um auf dieser Grundlage seine Darstellung anzupassen.</p>
+<p>Wie aus Abbildung 8.2 hervorgeht, ist die Beziehung zwischen View und Controller klar definiert: Sie treten immer als Paar auf, und jeder kennt den jeweils anderen. Ein Modell kann aber von beliebig vielen View-/Controller-Paaren betreut werden, was die Möglichkeit von verschiedenen Sichten auf dasselbe Modell eröffnet.</p>
+<div class="bildbox">
+<p><a name="IDAXESQ"></a><a onClick="OpenWin('bilder/06_moduleundarchitektur_002.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_moduleundarchitektur_002.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 8.2    </strong>Beziehung zwischen Model, View und Controller in Smalltalk</p>
+<p>Die Interaktion über das Beobachter-Muster findet zwischen Model und View statt. In Abbildung 8.3 ist dargestellt, wie das Muster für die Zusammenarbeit dieser beiden Bestandteile eingesetzt wird.</p>
+<div class="bildbox">
+<p><a name="IDA2ESQ"></a><a onClick="OpenWin('bilder/06_moduleundarchitektur_003.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_moduleundarchitektur_003.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 8.3    </strong>Beobachter-Muster in MVC</p>
+<p>Im dargestellten Beispiel werden Änderungen am einem <span class="clisting">KundenModell</span> an alle beteiligten Views kommuniziert. In diesem Fall hat ein Kunde lediglich einen Namen zugeordnet. Bei Änderungen an diesem Namen ruft das Modell die Operation <span class="clisting">aktualisieren</span> auf. Wenn sich <span class="clisting">KundenHtmlView</span> beim Modell durch Aufruf der Operation <span class="clisting">anmelden()</span> als Beobachter registriert hat, wird dieser mit benachrichtigt und kann in der Methode <span class="clisting">aktualisieren()</span> die Anzeige des Namens anpassen.</p><a id="mj65bb3d1734dfc99f31e8c1078e1a5b48" name="mj65bb3d1734dfc99f31e8c1078e1a5b48"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">8.2.3 MVC: Klärung der Begriffe  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Obwohl die ursprünglich in Smalltalk eingeführte Trennung in Model, View und Controller recht eindeutig ist, werden wir in Diskussionen sehr unterschiedliche Verständnisse dessen antreffen, was denn nun ein Modell und was ein Controller ist.</p>
+<p>Das rührt unter anderem daher, dass uns bestimmte Aufgaben, für die zum Beispiel ein Controller in Smalltalk zuständig war, mittlerweile ganz selbstverständlich abgenommen werden. Deshalb klären wir hier zunächst einmal, was denn mit Model, View und Controller gemeint ist.</p>
+<h4 class="t4">Was ist denn nun eigentlich ein Controller?</h4>
+<p>Ein Controller hat in MVC eine recht generische Aufgabe: Er muss die Interaktionen eines Benutzers über die verschiedenen Eingabemöglichkeiten wie Tastatur oder Maus entgegennehmen und in konsolidierter Form weiterleiten.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Controller in MVC (Eingabe-Controller)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Controller hat in der MVC-Variante von Smalltalk die Aufgabe, die Anwendung von den Komplexitäten der Eingabemechanismen abzuschotten. Zum Beispiel ist er dafür zuständig, Mausereignisse einem konkreten Bildschirmbereich zuzuordnen. </p>
+<p>Die Funktionalität des Controllers ist mittlerweile meist recht selbstverständlich in grundlegende Bibliotheken integriert, die Anwendungsprogrammierer in der Regel gar nicht mehr zu Gesicht bekommen.</p>
+</td>
+</tr>
+</table><br><p>Sie benötigen eben in der Regel keinen explizit angegebenen Controller mehr, um einen Mausklick auch einem konkreten Eingabeelement eines Views zuzuordnen. Diese Dinge werden Ihnen meist durch Module abgenommen, die in Betriebssystem oder Basisbibliotheken integriert sind.</p>
+<p>Wir verwenden für diese Art von Controller den Begriff <span class="ckursiv">Eingabe-Controller</span>. Ein Anwendungsentwickler muss sich aber nur noch selten direkt mit Eingabe-Controllern beschäftigen.</p>
+<p>Sie sollten den Eingabe-Controller auch möglichst klar unterscheiden von einem Applikations-Controller, der Abläufe innerhalb einer Applikation steuert. Zum Beispiel ist dieser dafür zuständig, einen Folgedialog aufgrund einer Benutzereingabe zu ermitteln. Dies hat aber mit der ursprünglichen Verwendung in MVC nur wenig zu tun. MVC ist nämlich auch in Smalltalk nie ein komplettes Architekturmodell gewesen, sondern eine Lösung für eine ganz bestimmte Teilaufgabe: die Interaktionen in der Präsentationsschicht sauber zu trennen.</p>
+<h4 class="t4">Was ist denn nun eigentlich ein Modell?</h4>
+<p>Auch in Bezug auf das Modell innerhalb von MVC gibt es hin und wieder Unklarheiten. Möglicherweise kommt das auch daher, dass gerade in Smalltalk praktisch jedes Objekt als Modell agieren kann.</p>
+<p>Das heißt aber lediglich, dass zumindest in der Theorie jedes Smalltalk-Objekt darstellbar ist und auf Nachrichten reagieren kann, die möglicherweise eine Zustandsänderung bewirken. Entscheidend dabei ist aber, dass das Modell den Zustand des gesamten Konstrukts verwaltet und als Referenz für die Darstellung dient.</p>
+<p>In der Regel wird das Modell zwar weitere Komponenten in Anspruch nehmen, die dann die fachliche Funktionalität umsetzen, das Modell selbst ist aber nur durch die oben genannten Eigenschaften definiert.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Modell in MVC
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Modell in MVC muss also folgende Eigenschaften aufweisen:</p>
+<ul class="gp">
+<li>Es muss einen Zustand verwalten können.</li>
+</ul>
+<ul class="gp">
+<li>Es muss darstellbar sein.</li>
+</ul>
+<ul class="gp">
+<li>Es muss auf Aufforderungen zu Änderungen reagieren können.</li>
+</ul>
+<p>Damit hat ein Modell zunächst überhaupt nichts mit der Logik in der Domäne zu tun, auch nicht unbedingt mit Persistenz.</p>
+</td>
+</tr>
+</table><br><h4 class="t4">Und schließlich noch der View</h4>
+<p>Views im MVC-Modell sind die Komponenten, die für die Darstellung des Modells verantwortlich sind. Die Darstellungsarten sind dabei nicht eingeschränkt. Grundsätzlich könnte ein View die Daten des Modells auch durch die Nutzung eines Sprachgenerierungsmoduls vorlesen. Allerdings erscheint für diesen Fall die Bezeichnung View nicht mehr völlig adäquat.</p>
+<p>Views sollten sich ausschließlich mit der Darstellung beschäftigen und möglichst keine fachliche Logik enthalten. Allerdings werden in einigen Fällen Funktionen des Controllers mit im View integriert.</p>
+<h4 class="t4">View und Controller zusammengefasst</h4>
+<p>Controller erledigen in der Regel sehr gleichförmige Aufgaben. Schon bei Smalltalk gibt es einen kleinen Satz von Standard-Controllern, deren Exemplare dann jeweils einem View und einem Modell zugeordnet werden.</p>
+<p>Sowohl bei den Microsoft Foundation Classes (MFC) als auch bei der Java-Oberflächenbibliothek Swing ist denn auch der Controller keine eigenständige Entität mehr. Bei Microsoft nennt sich das Ganze dann <span class="clisting">Document-View</span>, bei Swing wird das Verfahren hin und wieder auch <span class="clisting">Model-Delegate</span> genannt.</p>
+<p>Auch wenn die Begriffe hier schon wieder etwas verwirrend sind, es handelt sich doch in beiden Fällen um eine Modellierung, bei der View und Controller zusammenfallen. Bei Microsoft eben im View, bei Swing im Delegate &#8211; der Oberflächenkomponente, die für die Anzeige und für die Behandlung von Benutzereingaben zuständig ist.</p>
+<h4 class="t4">Vorsicht, Falle Nummer 1: MVC ist kein Schichtenmodell</h4>
+<p>Wir haben in der Praxis und in der Literatur schon häufiger eine Interpretation von MVC vorgefunden, die unserer Meinung nach einfach falsch ist.</p>
+<p>MVC ist ein Muster für Interaktionen in der Präsentationsschicht. Es setzt damit bereits voraus, dass wir uns grundsätzlich auf eine Architektur eingelassen haben, die Schichten vorsieht und die Präsentation vom Rest der Anwendung trennt.</p>
+<p><strong><em>MVC ist keine komplette  
+Architektur.</em></strong></p>
+<p>In der Praxis und in der Literatur haben wir aber häufiger eine Interpretation von MVC gesehen, die dieses Muster zur kompletten Architektur für eine Applikation erhoben hat. Außerdem wird häufig auch die Rolle des Modells überdehnt, indem diesem die Verantwortung für Geschäftslogik, Persistenz oder andere zentrale Aspekte zugeschoben wird.</p>
+<p>Sie sollten auf keinen Fall MVC mit der Schichtenarchitektur verwechseln. Das Modell ist nämlich nicht für die Umsetzung der Schicht der Anwendungslogik zuständig. Natürlich können beide Aufgaben (Bereitstellung der Anwendungslogik und Darstellbarkeit in der Präsentationsschicht) in der Praxis von denselben Objekten übernommen werden. So können Sie natürlich eine Enterprise Java Bean als Modell verwenden, um diese direkt über die Präsentationsschicht darzustellen. Die Modell-Eigenschaft ist dabei aber nach wie vor völlig unabhängig von den anderen Eigenschaften der EJB, wie z. B. die Fähigkeit, Daten persistent zu machen.</p>
+<h4 class="t4">Vorsicht, Falle Nummer 2: Nicht jeder View braucht eine eigene Controllerklasse</h4>
+<p>Durch die bestehende 1:1-Verbindung zwischen Views und Controllern in MVC könnte man leicht auf die Idee kommen, dass diese Beziehung nicht nur für die Exemplare, sondern auch für die Klassen gelten könnte.</p>
+<p>Dies ist aber schon bei der ursprünglichen Version von MVC in Smalltalk nie so geplant gewesen. Dort bekommt zwar jeder View sein spezielles und eigenes Exemplar eines Controllers zugewiesen, da auch ein Controller einen Zustand besitzt, der direkt mit dem View zusammenhängt. Aber in Smalltalk gab es eine kleine Anzahl von Controller-Klassen, und deren Exemplare wurden zusammen mit den jeweiligen spezifischen Views erzeugt.</p>
+<p>Auch waren in Smalltalk die Controller für Aufgaben zuständig, die Sie heute in der Regel bei der Entwicklung einer Applikation gar nicht mehr als Aufgabe wahrnehmen, weil sie von Bibliotheken übernommen werden, die wir mittlerweile ganz selbstverständlich voraussetzen. Sie müssen sich eben in der Regel nicht mehr damit beschäftigen, wie Sie aus den Koordinaten eines Mausklicks darauf schließen könnten, welches Element der Oberfläche davon nun wie betroffen ist. Das war aber eine der Aufgaben von Controllern im ursprünglichen MVC.</p><a id="mjd4e5b73bafb2fd382a547949f220ff0e" name="mjd4e5b73bafb2fd382a547949f220ff0e"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">8.2.4 MVC in Webapplikationen: genannt »Model 2«  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Mit Bezug auf Webapplikationen wird ebenfalls von einer Verwendung des MVC-Musters gesprochen. Sun hat in frühen Versionen der J2EE-Spezifikation zwei Varianten des empfohlenen MVC-Musters eingeführt, die Model 1 und Model 2 genannt wurden. [Auszusprechen als Model One und Model Two.
+]  Diese Begriffe haben sich gehalten, obwohl sie in der Spezifikation mittlerweile nicht mehr enthalten sind.</p>
+<p><strong><em>Model 1</em></strong></p>
+<p>Model 1 ist dabei eine sehr einfache Variante, bei der Zugriffe auf Modelle (meist Java Beans) direkt aus JSP-Seiten [JSP (Java Server Pages) sind ein standardisierter Mechanismus, wie Java-Code in HTML-Seiten integriert werden kann. Eine JSP-Seite ist ein HTML-Dokument, das bei seiner Anzeige dynamisch modifiziert und mit Daten angereichert wird.
+]  heraus erfolgen. Die folgende Abbildung zeigt eine Interaktion auf Basis dieses Modells.</p>
+<div class="bildbox">
+<p><a name="IDA5QSQ"></a><a onClick="OpenWin('bilder/06_moduleundarchitektur_004.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_moduleundarchitektur_004.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 8.4    </strong>Model 1 für Webapplikationen</p>
+<p>Model 1 ist sehr einfach und überschaubar, allerdings nur für relativ kleine Anwendungen zu empfehlen. Änderungen an der Navigationsstruktur durch die verschiedenen Seiten sind nur mit großem Aufwand durchzuführen, da dafür direkt in die JSP-Seiten eingegriffen werden muss.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Model 1 für Webapplikationen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Model 1 ist eine einfache Architektur für die Interaktion mit der Präsentationsschicht von Webapplikationen. Es existiert keinerlei Controller, sondern der View (eine JSP-Seite) kommuniziert direkt mit dem Modell. Das Modell wird dabei in der Regel durch eine sogenannte Java Bean repräsentiert. Java Beans sind einfache Java-Klassen, die sich an Konventionen für die Namen von Operationen halten, die auf ihre Daten zugreifen.</p>
+<p>Bei Verwendung von Model 1 liegt die Entscheidung darüber, welche Folgeseite angezeigt wird, alleine bei der aktuellen JSP-Seite. Als Reaktion auf eine bestimmte Benutzereingabe wird direkt dort über die in der Folge zu präsentierende JSP-Seite entschieden. </p>
+</td>
+</tr>
+</table><br><p><strong><em>Model 2</em></strong></p>
+<p>Model 2 für Webapplikationen lagert die Entscheidung darüber, welche Folgeseiten aufgerufen werden, in eine eigene Komponente aus und erlaubt damit mehr Flexibilität.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Model 2 für Webapplikationen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Beim Model 2 für Webapplikationen erfolgt die Steuerung für die Dialogabfolge durch eine eigene Komponente, den sogenannten Controller. Der Controller übernimmt dabei Aufgaben, die gegenüber der ursprünglichen Variante in MVC angepasst sind. Die Aufgabenverteilung ist bei Verwendung von Model 2 damit die folgende:</p>
+<ul class="gp">
+<li>Der View: Eine JSP-Seite, die Daten darstellt und Dateneingaben vom Benutzer annimmt. Diese Seite kann Logik enthalten, allerdings entscheidet sie nicht darüber, welche JSP als Folgeseite angezeigt wird.</li>
+</ul>
+<ul class="gp">
+<li>Der Controller: Ein Servlet, das grundsätzlich von JSP aus aufgerufen wird und aufgrund der vorgenommenen Eingaben entscheidet, welche Aktion ausgeführt werden soll und welche Folgeseite aufgerufen wird.</li>
+</ul>
+<ul class="gp">
+<li>Das Modell: Ein Objekt, das die darzustellenden Daten hält, meist eine Java Bean. </li>
+</ul>
+</td>
+</tr>
+</table><br><p>Eine Umsetzung der Model 2-Variante von MVC bietet das verbreitete Framework Jakarta Struts. In Abbildung 8.5 ist dargestellt, wie eine Interaktion auf Basis dieses Modells erfolgt.</p>
+<div class="bildbox">
+<p><a name="IDAZSSQ"></a><a onClick="OpenWin('bilder/06_moduleundarchitektur_005.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_moduleundarchitektur_005.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 8.5    </strong>Model 2 für Webapplikationen</p>
+<p>Hier wird ersichtlich, dass der Controller gegenüber Smalltalk weitere Aufgaben bekommen hat: Er steuert einen Teil der Applikationslogik, ist also nicht mehr nur für die Kommunikation der Benutzerinteraktion an Modell und View zuständig. Sie haben es hier mit einer Erweiterung des MVC-Musters zu tun.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Online-Banking  
+in Struts</em></strong></p>
+<p>Als Beispiel stellen wir im Folgenden den Auszug einer kleinen Banking-Anwendung vor, die zur Anmeldung die Eingabe einer PIN erfordert. Zunächst einmal gibt es bei Struts einen zentralen Controller (ein Servlet), der die Reaktion auf Benutzereingaben (in der Regel der Klick auf einen Button) auswertet. Dabei entscheidet das Servlet auf der Grundlage einer Konfiguration in XML, was als Reaktion auf die Eingabe als Nächstes passieren soll. Diese Entscheidung wird auf der Grundlage einer Beschreibung getroffen, wie sie als Beispiel in Listing 8.1 aufgeführt ist.</p>
+<div class="listing"><pre class="prettyprint">... 
+&lt;struts-config&gt; 
+    &lt;form-beans&gt;  
+          &lt;form-bean name="logonForm" 
+                  type="banking.logon.LogonForm"/&gt; 
+          &lt;form-bean name="transferAmountForm" 
+                 type="banking.transfer.TransferAmountForm"/&gt; 
+    &lt;/form-beans&gt; 
+    &lt;action-mappings&gt;  
+    &lt;!-- Karteneingabe --&gt; 
+        &lt;action path="/logon" 
+               type="banking.logon.LogonAction" 
+               name="logonForm"&gt; 
+                  &lt;forward name="cardsuccess" 
+                   path="/logon/PIN_Kontoservice.jsp" /&gt; 
+        &lt;/action&gt; 
+        &lt;!-- PIN-Eingabe --&gt; 
+        &lt;action path="/pinentry"  
+        type="banking.logon.PinEntryAction" 
+        name="logonForm"&gt;         
+        &lt;forward name="wrongpin" 
+                  path="/logon/reenterpin.jsp"&gt; 
+        &lt;forward name="lastwrongpin" 
+                  path="/logon/retaincard.jsp"&gt; 
+        &lt;forward name="success"  
+                  path="/kontoservice/Kontoservice.jsp"/&gt; 
+        &lt;/action&gt; 
+&lt;!&#8212; Weitere Aktionen --&gt; 
+        ... 
+    &lt;/action-mappings&gt; 
+&lt;/struts-config&gt;</pre></div>
+<p class="tabunter"><strong>Listing 8.1    </strong>Ablaufbeschreibung für Struts-Anwendung</p>
+<p>In Listing 8.1 wird also festgelegt, welche JSP-Seiten als Folgeseiten aufgerufen werden. In Zeile  wird dabei zunächst bestimmt, welche Eingabemasken und welche Klassen für deren Datenhaltung verwendet werden. In Zeile  beginnen die sogenannten <span class="ckursiv">Action-mappings</span>, die festlegen, welche JSP-Seiten nach einer Aktion angezeigt werden sollen. Die Aktion, die als Reaktion auf die PIN-Eingabe ausgelöst wird, ist in Zeile  definiert. Ausgeführt wird die Aktion, die über die Klasse <span class="clisting">PinEntryAction</span> festgelegt wird. Diese wiederum entscheidet über ihren Status (<span class="clisting">success</span>, <span class="clisting">wrongpin</span> oder <span class="clisting">lastwrongpin</span>) mittelbar, welche JSP-Seite als Nächstes angezeigt wird. In Zeile  ist zum Beispiel festgelegt, dass bei erfolgreicher PIN-Eingabe die JSP-Seite <span class="clisting">Kontoservice.jsp</span> angezeigt wird.</p>
+<p>In Listing 8.2 ist die Umsetzung der Aktion aufgeführt, die nach Eingabe einer PIN aufgerufen wird.</p>
+<div class="listing"><pre class="prettyprint">package banking.logon; 
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+import javax.servlet.http.HttpSession; 
+ 
+import banking.base.BankingSession; 
+import banking.base.SecurityInfo; 
+ 
+import org.apache.struts.action.*; 
+public class PinEntryAction extends Action 
+{ 
+ 
+  public ActionForward perform( ActionMapping mapping, 
+        ActionForm form, 
+        HttpServletRequest request, 
+        HttpServletResponse response) 
+  { 
+  LogonForm theForm = (LogonForm) form; 
+  // Die Pin ist enthalten im übergebenen Formular 
+  String encodedpin = theForm.getEncodedPin(); 
+        // Die verschlüsselte Version der PIN speichern 
+        HttpSession session = request.getSession(); 
+        BankingSession bankingsession = 
+        (BankingSession)session.getAttribute("bankingsession"); 
+        SecurityInfo securityInfo = 
+           bankingsession.getSecurityInfo(); 
+        securityInfo.setEncodedPin(encodedpin);  
+        return mapping.findForward("success");  
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 8.2    </strong>Aktion bei PIN-Eingabe</p>
+<p>Die Klasse <span class="clisting">PinEntryAction</span> aus Listing 8.2 merkt sich also die verschlüsselte Version der PIN (Zeile ) und signalisiert dann den Erfolg der PIN-Eingabe (Zeile ). Eventuelle Fehlersituationen und andere Rückgabewerte sind der Einfachheit halber im Code nicht dargestellt.</p>
+<p><strong><em>Modell: einfache Java Bean</em></strong></p>
+<p>Unser Modell sieht in diesem Fall ganz einfach aus, es handelt sich um eine simple Java Bean, welche die Daten aufnehmen kann, die im View (der entsprechenden JSP-Seite) eingesammelt werden. In Listing 8.3 ist das Modell aufgeführt, von dem die Daten zur PIN-Eingabe gehalten werden.</p>
+<div class="listing"><pre class="prettyprint">package banking.logon; 
+import org.apache.struts.action.ActionForm; 
+public class LogonForm extends ActionForm { 
+ 
+protected String track2; 
+protected String track3; 
+protected String encodedpin; 
+public String getTrack2() { return track2; } 
+public String getTrack3() { return track3; } 
+public String getEncodedPin() { return encodedpin; } 
+ 
+public void setTrack2(String track2){this.track2=track2;} 
+public void setTrack3(String track3){this.track3=track3;} 
+public void setEncodedPin(String encodedpin) 
+          {this.encodedpin = encodedpin; } 
+ 
+}</pre></div>
+<p class="tabunter"><strong>Listing 8.3    </strong>Modell für die Eingabe</p>
+<p>Das Modell dient hier zur Aufnahme der Eingaben, die in diesem Fall die Daten der PIN und der verwendeten Bankkarte umfassen. Die Angaben über die PIN werden durch die zugeordnete Aktion in die Session übernommen und können bei späteren Überprüfungen erneut verwendet werden.</p><a id="mj469f1bdbcff2b09817fec4aee1eed023" name="mj469f1bdbcff2b09817fec4aee1eed023"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">8.2.5 MVC mit Fokus auf Testbarkeit:  
+Model-View-Presenter  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Ein Aspekt, der in der Regel bei der Modellierung der Präsentationsschicht nur unzureichend betrachtet wird, ist die Testbarkeit der resultierenden Applikation.</p>
+<p><strong><em>Tests von  
+Oberflächen  
+sind schwierig.</em></strong></p>
+<p>Es ist ein Erfahrungswert, dass Tests unter Beteiligung von grafischen Benutzeroberflächen wesentlich schwieriger zu automatisieren sind als Tests von Softwarekomponenten, die ohne eine grafische Darstellung auskommen.</p>
+<p>Es gibt eine ganze Reihe von Produkten, die versuchen, dieses Problem durch automatisierte Tests unter Beteiligung von grafischen Oberflächen zu lösen. Besser ist es aber, bereits beim Design unserer Software sicherzustellen, dass der überwiegende Teil ohne Beteiligung von grafischen Benutzeroberflächen getestet werden kann. Ein Muster in der Präsentationsschicht, welches das Problem angeht, wurde von Martin Fowler kategorisiert und nennt sich Model-View-Presenter.</p>
+<p>Grundgedanke ist es dabei, die eigentliche Darstellung (den View) komplett von technischer und fachlicher Logik freizuhalten.</p>
+<p>Je direkter eine Applikation mit den Darstellungskomponenten gekoppelt ist, desto schwieriger wird es, sie komplett zu testen.</p>
+<div class="bildbox">
+<p><a name="IDA1USQ"></a><a onClick="OpenWin('bilder/06_moduleundarchitektur_006.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein06_moduleundarchitektur_006.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 8.6    </strong>Beziehung Model-View-Presenter</p>
+<p>Beim Ansatz des Model-View-Presenters werden Ereignisse direkt vom View verarbeitet. Aber der View delegiert diese direkt weiter an die Presenter-Klasse. Diese wiederum gibt möglicherweise Rückmeldungen an den View. Warum ist es nun aber sinnvoll, in der Kommunikation zwischen View und Presenter eine Abstraktionsschicht über eine Schnittstellenklasse einzuziehen?</p>
+<p><strong><em>Abstraktion über eine Schnittstellenklasse</em></strong></p>
+<p>Nun, eine Möglichkeit ist die Wiederverwendung von Presenter-Klassen, wenn ein Presenter mit mehreren verschiedenen Views zusammenarbeiten soll, die lediglich dasselbe Interface implementieren. Dieser Fall ist in der Praxis aber eher selten.</p>
+<p>Viel wichtiger ist die daraus entstehende Möglichkeit, den View für Testzwecke durch ein Ersatzobjekt (ein sogenanntes Mock Object) zu ersetzen. Damit haben Sie die Möglichkeit, sämtliche Logik Ihres Programms weitgehend automatisiert zu testen. Lediglich die konkrete Darstellung bleibt außen vor, aber diese ist in der Regel weniger fehleranfällig als andere Teile. Sie können durch einen Test der Presenter-Klasse zum Beispiel auch feststellen, ob Querabhängigkeiten zwischen Oberflächenelementen korrekt ausgewertet werden.</p>
+<p><strong><em>Diskussion:  
+Ist MVP zu viel Aufwand?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Testbarkeit schön und gut. Aber ist das jetzt nicht etwas übertrieben? Überleg mal: Für jeden Dialog, jedes Fenster in unserer Anwendung müssen wir nun noch einmal ein Interface definieren und auch noch eine zusätzliche Presenter-Klasse, die wir uns eigentlich auch schenken könnten.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> O.k., ich gebe zu, dass das nach unnötiger Komplexität aussieht. Ich denke auch nicht, dass es für alle Softwaresysteme Sinn macht. Aber meine Erfahrung ist einfach, dass oft eine ganze Menge Aufwand in GUI-spezifische Anwendungsteile versenkt wird, weil diese nicht vernünftig testbar sind.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Aber ist denn nicht der Einsatz von GUI-spezifischen Testtools genau für solche Fälle gedacht? Wir werfen da Rational Robot oder unseren Test-Director an, der testet das ganze System mit den GUI-Komponenten zusammen durch.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Das ist nicht das Gleiche. Regressionstests sind nach meiner Erfahrung viel einfacher zu erstellen und auch zu pflegen, wenn sie sich nur mit Source-Code beschäftigen. Sobald ich Makros dazu schreiben, mich auf Beschriftungen in Dialogen verlassen und ein externes Tool (anstelle eines simplen von mir geschriebenen Testprogramms) anwerfen muss, wird das ganze Verfahren selbst schon sehr kompliziert und fehleranfällig.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Na gut, zugegeben, das Testen wird einfacher. Aber ob damit der zusätzliche Aufwand in der Implementierung wettgemacht wird, davon bin ich noch nicht komplett überzeugt. Und warum überhaupt eine zusätzliche Klasse, die View-Klasse selbst würde doch völlig ausreichen, warum teste ich nicht diese direkt?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Ja, das ist ein guter Punkt. Allerdings sind in der Praxis die View-Klassen eben oft stark mit der ganz konkreten Darstellung verbunden und lassen sich eben nicht davon unabhängig verwenden. Genau diese Trennung versuchen wir mit unserer neu eingezogenen Schnittstelle erst zu erreichen.</span><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_08_002.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="8.2 Die Präsentationsschicht: Model, View, Controller (MVC)"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_08_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_09_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

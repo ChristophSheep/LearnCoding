@@ -1,0 +1,904 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 5.3 Die Vererbung der Implementierung</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 5.3 Die Vererbung der Implementierung">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 5.3 Die Vererbung der Implementierung">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_05_002.htm">
+<link rel="next" href="oop_kapitel_05_004.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_05_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14" class="navnav">5 Vererbung und Polymorphie</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_001.htm#mje769296ccaf3ae315b0d51e75287d395" class="navnav">5.1 Die Vererbung der Spezifikation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mj9593b3442d74dcb313fed8d0adfcfc86" class="navnav">5.1.1 Hierarchien von Klassen und Unterklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjf4a1d7882a3f31bce76f5fc0e36fe27a" class="navnav">5.1.2 Unterklassen erben die Spezifikation von Oberklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjf24806ff4eeca6b9ec42217606b969bb" class="navnav">5.1.3 Das Prinzip der Ersetzbarkeit </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjb47b8cf703b67dbc87a9e7fb9b8751c4" class="navnav">5.1.4 Abstrakte Klassen, konkrete Klassen und Schnittstellen-Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mj60d6f50d874cf992b1fbe672cc0a7d4a" class="navnav">5.1.5 Vererbung der Spezifikation und das Typsystem</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mja01ba6ec04515aa1bd9707d45880ad9c" class="navnav">5.1.6 Sichtbarkeit im Rahmen der Vererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_002.htm#mj34d525fdf8bf9b40cdbf2807b9bb2199" class="navnav">5.2 Polymorphie und ihre Anwendungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjc3ecdad3da1f241382712b9dc94960bb" class="navnav">5.2.1 Dynamische Polymorphie am Beispiel</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjf4754b5db8c6e16dccab007f73c3a48a" class="navnav">5.2.2 Methoden als Implementierung von Operationen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjcecc846fe8a9e04e80aaef4c72983098" class="navnav">5.2.3 Anonyme Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mj7d8e0a558bb121f6759f3cac9e60684b" class="navnav">5.2.4 Single und Multiple Dispatch</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjf40bf0e266ddbbbdf13e9d8c595202da" class="navnav">5.2.5 Die Tabelle für virtuelle Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mje40df564b385a2f2ef85664fe5964be8" class="navh">5.3 Die Vererbung der Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj4775d703fdbfd6031f8317189db10135" class="navh">5.3.1 Überschreiben von Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj38e0fa066f121e7525f4ab5a0775c70a" class="navh">5.3.2 Das Problem der instabilen Basisklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjc3c0ce6022ae471884f1dbb63c77bc82" class="navh">5.3.3 Problem der Gleichheitsprüfung bei geerbter Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_004.htm#mj4744a80ac0ff520167d0124d73dba2b2" class="navnav">5.4 Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj24431884d901efc513af9f03f390f35b" class="navnav">5.4.1 Mehrfachvererbung: Möglichkeiten und Probleme</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj8be5a8d347008ce6a4243ad9b458d4dc" class="navnav">5.4.2 Delegation statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mjf93d2964b661c11e0412548a9486d31f" class="navnav">5.4.3 Mixin-Module statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj079fb2023e60f4e9a4af05511c818fdf" class="navnav">5.4.4 Die Problemstellungen der Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_005.htm#mje3cdab009c7e71d5ab9a4a88fee35441" class="navnav">5.5 Statische und dynamische Klassifizierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_005.htm#mj854788ce700510087a70ffc87d35cb00" class="navnav">5.5.1 Dynamische Änderung der Klassenzugehörigkeit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_005.htm#mja85bbac4fb34a5938c3be9f5c65d922c" class="navnav">5.5.2 Entwurfsmuster »Strategie« statt dynamischer Klassifizierung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mje40df564b385a2f2ef85664fe5964be8" name="mje40df564b385a2f2ef85664fe5964be8"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">5.3 Die Vererbung der Implementierung  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>In Abschnitt 4.2 haben Sie gesehen, wie die Vererbung der Spezifikation mit der Einteilung von Klassen in Unter- und Oberklassen zusammenhängt.</p>
+<p>Wenn Sie eine solche Einteilung gefunden haben, die auch das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> nicht verletzt, können Sie eine weitere Möglichkeit der Objektorientierung nutzen: die Vererbung der Implementierung.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Vererbung der Implementierung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Unterklassen erben die in den Oberklassen bereits implementierte Funktionalität. Die Exemplare der Unterklassen erben damit neben den Verpflichtungen auch alle Methoden, alle Daten und alle Fähigkeiten ihrer Oberklassen, sofern diese zur Schnittstelle der Oberklasse gehören oder durch Sichtbarkeitsregeln für die Nutzung in Unterklassen freigegeben sind. Diese Funktionalität kann unverändert übernommen oder in Teilen von den Unterklassen überschrieben werden.</p>
+</td>
+</tr>
+</table><br><p>In Abschnitt 2.4, »Die Vererbung«, haben wir ein Beispiel vorgestellt, bei dem eine Hierarchie von Regelungen im Steuerrecht besteht und die Regelungen der höheren Ebene jeweils auch für die darunter liegenden Ebenen gelten, von diesen im Einzelfall aber überschrieben werden können. Diese Hierarchie können wir nun in Form der Klassen repräsentieren, die in Abbildung 5.44 dargestellt sind.</p>
+<p><strong><em>Hierarchie in Form der Klassen</em></strong></p>
+<div class="bildbox">
+<p><a name="IDAZFSQ"></a><a onClick="OpenWin('bilder/05_44.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_44.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.44    </strong>Vererbung von Steuerregelungen</p>
+<p>In der vorgestellten Hierarchie überschreibt das Steuerrecht der Bundesrepublik (die Klasse <span class="clisting">SteuerRegelungDesBundes</span>) die Methode <span class="clisting">getKörperschaftssteuerSatz</span> der EU. Dagegen wird die Methode <span class="clisting">getZinsabschlag</span> direkt von der Klasse <span class="clisting">SteuerRegelungDerEU</span> geerbt. Auch die Klassen <span class="clisting">SteuerRegelungDerLänder</span> und <span class="clisting">SteuerRegelungDerKommunen</span> erben alle von <span class="clisting">SteuerRegelungDesBundes</span> umgesetzten Methoden. Sie fügen aber selbst auch wieder neue Operationen und Methoden hinzu.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Vererbung der Implementierung und die Programmiersprachen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In den objektorientierten Sprachen wird unterschiedlich konsequent zwischen Vererbung der Spezifikation und Vererbung der Implementierung getrennt. Wenn Sie von einer Klasse erben, die auch Implementierungen bereitstellt, haben Sie in den meisten Sprachen gar keine Wahl. Sie können nicht einfach die Spezifikation erben, Sie bekommen die Implementierung auf jeden Fall dazu, ob Sie wollen oder nicht. Allerdings bieten einige Sprachen sogenannte Schnittstellen-Klassen an, die gar keine Implementierungen zur Verfügung stellen können. Über diesen Mechanismus ist also auch eine reine Vererbung der Spezifikation möglich. </p>
+</td>
+</tr>
+</table><br><p>Es ergeben sich drei Varianten der Vererbung:</p>
+<ul class="gp">
+<li><span class="cfett">Reine Vererbung der Spezifikation</span> 
+Die Schnittstellen-Klassen (Interfaces) in Java oder C# stellen zum Beispiel einen Mechanismus zur Verfügung, mit dem alleine die Spezifikation einer Klasse geerbt werden kann. Da Schnittstellen-Klassen selbst keine Methoden implementieren können, können Sie deren Implementierung auch nicht vererben. </li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Vererbung von Spezifikation und Implementierung</span> 
+Dies ist der Normalfall, wenn eine abgeleitete Klasse von einer Klasse erbt, die Implementierungen bereitstellt. Wird zum Beispiel in Java über das Schlüsselwort <span class="clisting">extends</span> eine abgeleitete Klasse definiert, so erbt diese Klasse von ihrer Basisklasse Spezifikation und Implementierung.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Reine Vererbung der Implementierung</span> 
+Eine reine Vererbung der Implementierung ist zum Beispiel in der Sprache C++ über die private Vererbung möglich, die wir in Abschnitt 5.1.6 vorgestellt haben. Dabei wird die Spezifikation der Basisklasse nicht geerbt, die abgeleitete Klasse übernimmt als nicht die Schnittstelle der Basisklasse, sondern nur deren Implementierungen zur internen Nutzung.</li>
+</ul>
+<p>Im folgenden Abschnitt 5.3.1 gehen wir genauer darauf ein, wie geerbte Methoden helfen, Redundanzen in unserem Code zu vermeiden und wie das Überschreiben von Methoden Ihnen Mittel an die Hand gibt, die Zusammenarbeit zwischen Oberklassen und Unterklassen zu strukturieren.</p>
+<p>Wir wollen aber auch nicht verschweigen, dass die Vererbung der Implementierung zu einer Reihe von konzeptionellen Problemen führen kann. Diese Probleme und mögliche Lösungen stellen wir anschließend in den Abschnitten 5.3.2 und 5.3.3 vor.</p><a id="mj4775d703fdbfd6031f8317189db10135" name="mj4775d703fdbfd6031f8317189db10135"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">5.3.1 Überschreiben von Methoden  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Die konkreten Unterklassen einer abstrakten Oberklasse müssen für alle ihre abstrakten Methoden eine Implementierung bereitstellen. Doch jede Unterklasse kann auch für die nicht abstrakten Methoden ihre eigene spezielle Implementierung bereitstellen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Überschreiben von Methoden
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn eine Unterklassen für eine Operation eine Methode implementiert, für die es bereits in einer Oberklasse eine Methode gibt, so überschreibt die Unterklasse die Methode der Oberklasse. Wird die Operation auf einem Exemplar der Unterklasse aufgerufen, so wird die überschriebene Implementierung der Methode aufgerufen. </p>
+<p>Das ist unabhängig davon, welchen Typ die Variable, über die das Objekt referenziert wird, hat. Entscheidend ist der Typ des Objekts selbst, nicht der Typ der Variablen. Die Unterstützung der dynamischen Polymorphie durch die objektorientierten Programmiersprachen ermöglicht dieses Verfahren.</p>
+</td>
+</tr>
+</table><br><p>Betrachten wir ein einfaches Beispiel für das Überschreiben einer Methode. In Abbildung 5.45 ist eine Generalisierungsbeziehung zwischen der Klasse <span class="clisting">FarbigerKreis</span> und der Klasse <span class="clisting">Kreis</span> dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDABRSQ"></a><a onClick="OpenWin('bilder/05_45.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_45.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.45    </strong>»FarbigerKreis« erbt von »Kreis«.</p>
+<p>In unserem Beispiel repräsentieren die Exemplare der Klasse <span class="clisting">Kreis</span> Kreise, die auf dem Bildschirm dargestellt werden können. Die Klasse <span class="clisting">Kreis</span> kennt das Konzept der Farbe nicht, sie zeichnet die Kreise in der Standardfarbe. Die Spezialisierung der Klasse <span class="clisting">Kreis</span>, die Unterklasse <span class="clisting">FarbigerKreis</span> definiert für jedes ihrer Exemplare das Attribut <span class="clisting">myColor</span>. Die Implementierung der Methode <span class="clisting">anzeigen</span> muss für diese Klasse daher erweitert werden, so dass die Farbe beim Zeichnen des Kreises auf dem Bildschirm verwendet wird. In Listing 5.26 ist die Umsetzung der Methode <span class="clisting">anzeigen</span> an einem Beispiel in Java dargestellt.</p>
+<div class="listing"><pre class="prettyprint">class FarbigerKreis extends Kreis { 
+ 
+    protected Color myColor; 
+ 
+    ... 
+ 
+    public void anzeigen() { 
+        Graphics context = getGraphics(); 
+        Color oldColor = context.getColor(); 
+        context.setColor(myColor); 
+        super.anzeigen(); 
+        context.setColor(oldColor); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.26    </strong>Überschriebene Methode der Klasse »FarbigerKreis« anzeigen</p>
+<p><strong><em>Aufruf weiterer Implementierungen</em></strong></p>
+<p>Eine überschreibende Methode kann ihre eigene selbstständige Implementierung haben, sie kann aber auch, wie in unserem Beispiel, die geerbte Implementierung aufrufen und sie nur erweitern. In unserem Beispiel sorgt der Aufruf von <span class="clisting">super.anzeigen()</span> für diesen zusätzlichen Aufruf.</p>
+<p>Mit welcher Syntax die überschriebene Methode aufgerufen wird, hängt von der Programmiersprache ab. In Java wird die geerbte überschriebene Methode mit dem Aufruf <span class="cfett">super</span><span class="clisting">.methodeName(</span>…<span class="clisting">)</span> aufgerufen. In C# verwendet man dazu das Schlüsselwort <span class="cfett">base</span>. In C++ gibt es kein Schlüsselwort, mit dem man die überschriebene Methode aufrufen kann, stattdessen verwendet man den Klassennamen der Klasse, in der die Methode implementiert ist.</p>
+<p>Wenn es für C++ eine grafische Bibliothek mit Klassen mit gleichen Namen wie in Javas AWT gäbe, sähe die Methode <span class="clisting">anzeigen</span> der Klasse <span class="clisting">FarbigerKreis</span> in C++ so aus:</p>
+<div class="listing"><pre class="prettyprint">    void anzeigen() { 
+        Graphics* context = GetGraphics(); 
+        Color* oldColor = context-&gt;getColor(); 
+        context-&gt;setColor(myColor); 
+       <span class="cfett"> Kreis::anzeigen();</span> 
+        context-&gt;setColor(oldColor); 
+    }</pre></div>
+<p>Ein Schlüsselwort wie <span class="clisting">super</span> kann es in C++ nicht geben, weil C++ die Mehrfachvererbung der implementierenden Klassen unterstützt, und es wäre nicht eindeutig, welche der Oberklassen gemeint ist. Viele Entwickler, die in C++ nur die einfache Vererbung verwenden, deklarieren für jede Klasse ein Makro, das die Funktion eines solchen Schlüsselwortes übernimmt.</p>
+<p><strong><em>Vererbung der Implementierung: Probleme und Alternativen</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Vermeidung von Redundanzen durch Vererbung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Vorteil der Vererbung von Implementierungen ist es, dass Methoden in Unterklassen nicht neu umgesetzt werden müssen. Dadurch werden Redundanzen im Quellcode vermieden. Allerdings legen Sie sich durch die Vererbungsbeziehung bereits auf eine recht starre Struktur fest. Spätere Erweiterungen sind nur mit größeren Eingriffen möglich. Wenn Sie zum Beispiel feststellen, dass ihr Kreis nicht nur Farben, sondern auch eine Schraffierung beinhaltet und diese nicht nur für Kreise, sondern auch für andere geometrische Formen gelten soll, wird die Klassenhierarchie bereits sehr komplex, obwohl sie eigentlich zwei ganz einfache zusätzliche Attribute modelliert haben.</p>
+</td>
+</tr>
+</table><br><p>Redundanzen können auch auf andere Arten vermieden werden, indem die gemeinsam genutzte Funktionalität in ein separates Modul ausgelagert wird. Im weiteren Verlauf werden Sie mehrere Alternativen zur Vererbung der Implementierung kennen lernen. In Abschnitt 5.3.2 werden Sie an einem Beispiel sehen, wie eine Vererbungsbeziehung in eine Delegationsbeziehung umgewandelt werden kann.</p>
+<p>Die Alternative der Delegation greifen wir auch in Abschnitt 5.4.2 auf. In Abschnitt 5.5.2, »Entwurfsmuster ›Strategie‹ statt dynamischer Klassifizierung«, werden Sie außerdem eine weitere Alternative zur Vererbung der Implementierung kennen lernen. Das Entwurfsmuster »Strategie« basiert auf der Delegation und erlaubt größere Flexibilität als Vererbungsbeziehungen.</p>
+<p><strong><em>Implementierung von geschützten Methoden</em></strong></p>
+<p>Eine weitere Aufgabe erfüllt die Vererbung der Implementierung bei Daten und Methoden von Klassen, die nicht zur Schnittstelle der Klasse gehören. Diese werden in der Regel für die Umsetzung von Operationen genutzt, die selbst zur Schnittstelle gehören. In Abschnitt 5.1.6 haben wir die Sichtbarkeitsstufe »Geschützt« vorgestellt. Methoden, die mit dieser Sichtbarkeit markiert sind, gehören nicht zur Schnittstelle einer Klasse. Sie sind aber explizit dafür vorgesehen, dass ihre Implementierung von Unterklassen geerbt und möglicherweise überschrieben werden kann.</p>
+<p><strong><em>Überschreiben von Methoden verhindern</em></strong></p>
+<p>Durch die Vererbung der Implementierung können Sie auch erzwingen, dass Unterklassen in Teilen die Funktionalität ihrer Oberklassen nutzen müssen. Dabei kann eine Oberklasse verbieten, dass ihre Unterklassen bestimmte Teile der Implementierung verändern. Diese Fähigkeit kann wichtig sein, um Verträge zwischen Klassen und ihren potenziellen Unterklassen zu definieren.</p>
+<p>Im nächsten Abschnitt werden wir ein Beispiel für eine solche Situation vorstellen und den Mechanismus der Schablonenmethode einführen, mit dem die Interaktion zwischen Ober- und Unterklasse strukturiert werden kann.</p>
+<h4 class="t4">Das Entwurfsmuster »Schablonenmethode«</h4>
+<p>In manchen Situationen ist es vorhersehbar, dass das Überschreiben einer Methode durch eine Unterklasse dazu führt, dass die Operationen der Oberklasse nicht mehr korrekt arbeiten. Dies kann vor allem dann passieren, wenn die ursprüngliche Implementierung durch eine Unterklasse komplett ersetzt wird. Damit sind möglicherweise Konsistenzbedingungen der Oberklasse gefährdet.</p>
+<p><strong><em>Methoden paarweise aufrufen</em></strong></p>
+<p>Nehmen Sie an, dass eine Klasse <span class="clisting">FileController</span> zwei Methoden <span class="clisting">start</span> und <span class="clisting">end</span> implementiert, die immer paarweise aufgerufen werden müssen. In Abbildung 5.46 ist die Klasse dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAGVSQ"></a><a onClick="OpenWin('bilder/05_46.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_46.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.46    </strong>Methoden zum paarweisen Aufruf</p>
+<p>Die Klasse <span class="clisting">FileController</span> implementiert eine Methode <span class="clisting">output</span>, die Daten in eine Datei schreibt. Die Ausgabe auf diese Datei geschieht in der Methode <span class="clisting">output()</span>, diese wiederum ruft die Methoden <span class="clisting">start()</span> und <span class="clisting">end()</span> auf. Die Methode <span class="clisting">start()</span> öffnet die Datei, und die Methode <span class="clisting">end()</span> schließt sie wieder. Zwischen den Aufrufen von <span class="clisting">start()</span> und <span class="clisting">end()</span> werden Daten in diese Datei geschrieben.</p>
+<p>Die Methode <span class="clisting">output()</span> sieht dann so aus:</p>
+<div class="listing"><pre class="prettyprint">public void work() { 
+    start(); 
+    ... // hier geschieht die Bearbeitung der Datei 
+    end(); 
+}</pre></div>
+<p>Nehmen wir an, wir möchten in der Unterklasse <span class="clisting">ExtendedFileController</span> das Verhalten der Exemplare so abändern, dass Sie an den Anfang der Datei eine Kopfzeile und an das Ende der Datei eine Fußzeile hinzufügen.</p>
+<p>Die überschriebenen Methoden würden in Java dann wie in Listing 5.27 aussehen.</p>
+<div class="listing"><pre class="prettyprint">... 
+public void start() { 
+    super.start(); 
+    write("Kopfzeile"); 
+} 
+ 
+public void end() { 
+    write("Fußzeile"); 
+    super.end(); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.27    </strong>Überschriebene Methoden</p>
+<p>Dies wäre eine korrekte Erweiterung der Methoden der Oberklasse und würde Ihren Absichten entsprechen. Doch was würde passieren, wenn wir in der überschreibenden Methode <span class="clisting">end()</span> den Aufruf der geerbten Methode <span class="clisting">end()</span> vergessen hätten? Die Methode <span class="clisting">start()</span> würde die Datei öffnen, die Methode <span class="clisting">end()</span> würde sie aber nicht schließen. Dies wäre ein Fehler, der vom Compiler unentdeckt bliebe.</p>
+<p>In Situationen wie diesen stehen Sie vor einem Dilemma. Einerseits müssen Sie sicherstellen, dass die ursprüngliche Implementierung der Methoden <span class="clisting">start()</span> und <span class="clisting">end()</span> aufgerufen wird, andererseits möchten Sie das Verhalten der Objekte beim Öffnen und Schließen der Datei erweiterbar machen, abgeleiteten Klassen also erlauben, dass sie die Methoden überschreiben.</p>
+<p>Einen Ausweg aus diesem Dilemma bietet das Entwurfsmuster »Schablonenmethode«.</p>
+<p>In unserem Beispiel können wir also die Methode <span class="clisting">output()</span> zu einer Schablonenmethode machen und sie um die benötigten Erweiterungspunkte erweitern. In Abbildung 5.47 ist der Aufbau der Methode dargestellt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Entwurfsmuster »Schablonenmethode« (engl. Template Method)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Schablonenmethode implementiert einen vorgegebenen groben Ablauf und bietet definierte Erweiterungspunkte für bestimmte Schritte dieses Ablaufes. Die Schablonenmethode basiert darauf, dass nur ein definierter Teil von Methoden durch eine Unterklasse überschrieben werden kann. Dadurch kann eine Unterklasse gezwungen werden, eine Implementierung von der Oberklasse unverändert zu übernehmen. Diese Möglichkeit stellt ein wichtiges Mittel zur Strukturierung von objektorientierten Anwendungen dar.</p>
+</td>
+</tr>
+</table><br><div class="bildbox">
+<p><a name="IDAYXSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_030.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_030.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.47    </strong>Umsetzung einer Schablonenmethode</p>
+<p>Der Gesamtablauf der Schablonenmethode <span class="clisting">output() </span>(siehe Markierung ) kann nicht geändert werden, da die Methode nicht polymorph ist. Die Methoden <span class="clisting">afterStart()</span>  und <span class="clisting">beforeEnde()</span>  sind polymorph und können überschrieben werden. Somit unterscheiden sich Details des Ablaufes der Methode <span class="clisting">output()</span> für die Exemplare der Klasse <span class="clisting">AbgeleiteteKlasse</span> von dem Ablauf für die Exemplare der Klasse <span class="clisting">Basisklasse</span>.</p>
+<p>Unsere neue Methode <span class="clisting">output()</span> sieht im Quellcode jetzt so aus:</p>
+<div class="listing"><pre class="prettyprint">public void work() { 
+    start(); 
+    afterStart(); 
+    ... // hier geschieht die Bearbeitung der Datei 
+    beforeEnd(); 
+    end(); 
+}</pre></div>
+<p>Wir haben den Ablauf der Methode <span class="clisting">output()</span> um die Aufrufe der neuen Methoden <span class="clisting">afterStart()</span> und <span class="clisting">beforeEnd()</span> erweitert. In der Basisklasse machen diese Methoden in unserem Beispiel nichts, sie sind nicht abstrakt, sie haben bloß eine leere Implementierung.</p>
+<p>In der abgeleiteten Klasse können wir jetzt darauf verzichten, die Methoden <span class="clisting">start()</span> und <span class="clisting">end()</span> zu überschreiben. Stattdessen überschreiben wir die Methoden <span class="clisting">afterStart()</span> und <span class="clisting">beforeEnd()</span>.</p>
+<div class="listing"><pre class="prettyprint">public void afterStart() { 
+    write("Kopfzeile"); 
+} 
+ 
+public void beforeEnd() { 
+    write("Fußzeile"); 
+}</pre></div>
+<p><strong><em>Methoden für Überschreiben sperren</em></strong></p>
+<p>Die Methoden <span class="clisting">start()</span> und <span class="clisting">end()</span> <span class="ckursiv">müssen</span> also nicht mehr überschrieben werden. Um jedoch sicherzustellen, dass die ursprünglichen Implementierungen dieser Methoden in der Methode <span class="clisting">output()</span> aufgerufen werden, müssen wir dafür sorgen, dass die Methoden nicht überschrieben werden <span class="ckursiv">können</span>.</p>
+<p>In dynamisch typisierten Programmiersprachen haben Sie hier wenige Chancen, doch statisch typisierte Programmiersprachen bieten uns vielfältige Möglichkeiten, die Überschreibbarkeit der Methoden zu gestalten. Schauen wir uns die Möglichkeiten in den verschiedenen Programmiersprachen im Folgenden kurz an.</p>
+<p><strong><em>C++</em></strong></p>
+<p>In C++ sind Methoden normalerweise nicht überschreibbar, und sie werden auch nicht dynamisch polymorph aufgerufen. Eine Methode wird erst dann überschreibbar und dynamisch polymorph, wenn sie mit dem Schlüsselwort <span class="clisting">virtual</span> bezeichnet wird. Damit sind Methoden automatisch für das Überschreiben gesperrt, wenn das Schlüsselwort <span class="clisting">virtual</span> nicht angegeben wird.</p>
+<p>Damit lässt sich die beschriebene Schablonenmethode in C++ einfach umsetzen, indem die Methoden <span class="clisting">output</span>, <span class="clisting">start</span> und <span class="clisting">end</span> nicht mit dem Schlüsselwort <span class="clisting">virtual</span> markiert werden.</p>
+<p><strong><em>Java</em></strong></p>
+<p>Im Gegensatz zu C++ sind in Java Methoden, die wir nicht anders markieren, von vornherein überschreibbar. Wir können allerdings die Methoden, deren Überschreibbarkeit wir verhindern möchten, mit dem Schlüsselwort <span class="clisting">final</span> markieren. Solche Methoden können in den Unterklassen nicht mehr überschrieben werden. Enthält eine Unterklasse eine Methode mit der gleichen Signatur wie eine finale Methode in der Oberklasse, kommt es zu einem Übersetzungsfehler. [Eine Ausnahme bilden die privaten Methoden.
+]  Für die Umsetzung der Template-Methode aus unserem Beispiel würden Sie also die Methoden <span class="clisting">output</span>, <span class="clisting">start</span> und <span class="clisting">end</span> mit dem Schlüsselwort final markieren.</p>
+<p>In Java können auch ganze Klassen so markiert werden, dass überhaupt keine Unterklassen von ihnen existieren können.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Finale Klassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Finale Klassen sind Klassen, die keine Unterklassen haben können. Finale Klassen können deshalb auch nicht abstrakt sein, sie wären sonst völlig nutzlos: Man kann keine Exemplare der Klasse erstellen, aber auch keine Unterklassen bilden. Abstrakte Klassen können aber finale Methoden haben.</p>
+</td>
+</tr>
+</table><br><p><strong><em>C#</em></strong></p>
+<p>In C# müssen Methoden, die überschrieben werden dürfen, ähnlich wie in C++, als virtuell bezeichnet werden. Dazu dient auch hier das Schlüsselwort <span class="clisting">virtual</span>. Abstrakte Methoden werden mit dem Schlüsselwort <span class="clisting">abstract</span> markiert.</p>
+<p>Während in C++ eine einmal als <span class="clisting">virtual</span> markierte Methode in allen weiteren Unterklassen überschreibbar bleibt, können Sie in C# das weitere Überschreiben einer virtuellen Methode mit dem Schlüsselwort <span class="clisting">sealed</span> verhindern. Wird das Schlüsselwort <span class="clisting">sealed</span> auf eine Klasse angewandt, darf diese Klasse keine Unterklassen haben.</p><a id="mj38e0fa066f121e7525f4ab5a0775c70a" name="mj38e0fa066f121e7525f4ab5a0775c70a"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">5.3.2 Das Problem der instabilen Basisklassen  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Leider lässt sich die Vererbung der Implementierung durch die Programmiersprachen auch nutzen, wenn keine korrekte Vererbung der Spezifikation vorliegt. Deshalb soll an dieser Stelle noch ein Wort der Warnung ausgesprochen werden.</p>
+<p><strong><em>Vererbung und Alternativen</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Vererbung und alternative Nutzungsbeziehungen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn eine Klasse die Funktionalität einer anderen Klasse nutzen soll, können wir dies durch Vererbung oder eine Beziehung (Assoziation, Aggregation oder Komposition) zwischen den Exemplaren dieser Klassen erreichen. Die Vererbung kann in bestimmten Fällen zwar einfacher scheinen, doch Sie sollten immer auf das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> achten und sich fragen: Sind die Exemplare der Unterklasse fachlich auch in allen Fällen Exemplare der Oberklasse? Und wir müssen auch die Frage stellen, ob wir erwarten, dass dies auch in Zukunft so bleibt. Änderungen an einer Oberklasse können nämlich dazu führen, dass nicht mehr alle abgeleiteten Klassen echte Unterklassen im Sinn des <span class="ckursiv">Prinzips der Ersetzbarkeit</span> sind.</p>
+<p>Die treibende Kraft bei der Modellierung von Vererbungsbeziehungen sollte deshalb nie die Vererbung der Implementierung sein, sondern die Vererbung der Spezifikation. </p>
+</td>
+</tr>
+</table><br><p>Ein konkretes Problem, das bei der Verwendung von Vererbung der Implementierung auftreten kann, ist eine sehr enge Kopplung zwischen Basisklassen und den davon abgeleiteten Klassen. Dieses Problem wird auch als <span class="ckursiv">Fragile Base Class Problem</span> bezeichnet: das Problem der instabilen Basisklasse. [Hin und wieder wird unter der Bezeichnung Fragile Base Class Problem auch verstanden, dass Änderungen an Basisklassen, die im Source-Code unproblematisch sind, zu Problemen mit bereits in Bibliotheken vorliegenden und ausgelieferten Unterklassen führen. Dieses Problem sehen wir eher als Teil des sogenannten Problems der instabilen binären Schnittstellen (Fragile Binary Interface Problem), das wir bereits im Abschnitt 5.2.5, »Die Tabelle für virtuelle Methoden«, vorgestellt haben.
+] </p>
+<p><strong><em>Fragile Base  
+Class Problem</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Fragile Base Class Problem (Problem der instabilen Basisklassen)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Mit Fragile Base Class Problem17 wird ein Problem bei der Nutzung von Vererbung der Implementierung bezeichnet. Dabei kann der problematische Fall auftreten, dass Anpassungen an einer Basisklasse zu unerwartetem Verhalten von abgeleiteten Klassen führen.</p>
+<p>Anpassungen an Basisklassen können häufig nicht vorgenommen werden, ohne den Kontext der abgeleiteten Klassen mit einzubeziehen. Damit wird eine Wartung von objektorientierten Systemen, die in größerem Maß die Vererbung der Implementierung nutzen, stark erschwert. Deshalb muss zur Entwurfszeit darauf geachtet werden, dass die Vererbung der Implementierung nicht eingesetzt wird, wenn spätere Änderungen an den Basisklassen wahrscheinlich sind, die Auswirkungen auf abgeleitete Klassen haben. In der Praxis ist das allerdings meist schwer vorauszusehen. Im Zweifelsfall sollten Sie deshalb eine reine Vererbung der Spezifikation vorziehen. Die Vermeidung von Redundanzen, die von der Vererbung der Implementierung ermöglicht wird, kann auch über Delegationsbeziehungen erreicht werden, wie Sie im Beispiel weiter unten sehen werden.</p>
+</td>
+</tr>
+</table><br><p>Das Problem der instabilen Basisklassen tritt dann auf, wenn sich abgeleitete Klassen auf Implementierungen der Basisklassen verlassen. Es könnte nun der Einwand kommen, dass das dann eben eine inkorrekte Nutzung von abgeleiteten Klassen ist, weil diese sich ausschließlich auf die Spezifikation der Basisklasse verlassen sollten. Das ist in der Theorie richtig. In der Praxis können diese Fälle aber sehr subtil sein, und wenn die Spezifikation der Basisklassen nicht sehr exakt ist, gibt es ausreichend Spielraum für abgeleitete Klassen, inkorrekte Annahmen zu machen.</p>
+<p>Betrachten wir das Ganze am besten an einem Beispiel. In Abbildung 5.48 sind eine Basisklasse <span class="clisting">Well</span> (Brunnen) und die davon abgeleitete Klasse <span class="clisting">LoggingWell</span> zu sehen.</p>
+<div class="bildbox">
+<p><a name="IDAH5SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_031.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_031.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.48    </strong>Instabile Basisklasse »Well«</p>
+<p><span class="clisting">Well</span> modelliert einen Brunnen, der durch die Operation <span class="clisting">rain()</span> aufgefüllt wird. Durch die Operation <span class="clisting">pump()</span> wird dem Brunnen Wasser entnommen. Außerdem gibt es noch eine Operation <span class="clisting">empty()</span>, die den Brunnen komplett leert.</p>
+<p>Da der Wasserstand des Brunnens für die Versorgung der umliegenden Bevölkerung wichtig ist, hat die Dorfverwaltung eine Klasse <span class="clisting">LoggingWell</span> in Auftrag gegeben. Diese fügt Funktionalität hinzu, die alle Änderungen am Wasserstand des Brunnens mitprotokollieren soll. Dazu überschreibt die Klasse die Methoden <span class="clisting">rain</span> und <span class="clisting">pump</span>. In Listing 5.28 ist die Umsetzung der beiden Klassen in Java zu sehen.</p>
+<div class="listing"><pre class="prettyprint">class Well { 
+    private int level; 
+    public int getLevel() { 
+      return level; 
+    } 
+    public void rain(int days) { 
+      level += days / 3; 
+    } 
+    public void pump(int buckets) { 
+      level -= Math.min(level, buckets); 
+    } 
+ 
+    public void empty() {  
+        pump(level); 
+    } 
+} 
+ 
+class LoggingWell extends Well { 
+ 
+    public void rain(int days) {      
+      System.out.println("it is raining " 
+              + days + " days ..."); 
+      super.rain(days); 
+    } 
+ 
+    public void pump(int buckets) {    
+      System.out.println("taking " 
+              + buckets + " buckets from well"); 
+      super.pump(buckets); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.28    </strong>Erweiterung von »Well« durch »LoggingWell«</p>
+<p>Da die Operation <span class="clisting">empty()</span> in der Klasse <span class="clisting">Well</span> in Zeile  darüber umgesetzt ist, dass <span class="clisting">pump</span> mit dem aktuellen Pegelstand aufgerufen wird, ist das Verhalten von <span class="clisting">LoggingWell</span> auch korrekt: Es werden alle Änderungen des Wasserstands über die Methoden <span class="clisting">rain</span> und <span class="clisting">pump</span> (Zeilen  und ) protokolliert.</p>
+<p>Nun könnte aber jemand eine interne Optimierung der Klasse <span class="clisting">Well</span> vornehmen. Die Methode <span class="clisting">empty() </span>muss ja lediglich dazu führen, dass der Wasserstand auf 0 sinkt. Diese Optimierung könnte dann einfach so aussehen:</p>
+<div class="listing"><pre class="prettyprint">    public void empty() { 
+        level = 0; 
+    }</pre></div>
+<p>Die Klasse <span class="clisting">Well</span> wird nach wie vor ohne Probleme funktionieren. Allerdings hat nun <span class="clisting">LoggingWell</span> ein Problem: Das Leeren des Brunnens wird komplett an der Protokollierung vorbeigehen. <span class="clisting">LoggingWell</span> hält damit seine Spezifikation nicht mehr ein, die ja genau alle Änderungen des Wasserstands beobachten soll.</p>
+<p>Hat sich nun <span class="clisting">LoggingWell</span> unzulässig auf die konkrete Implementierung der Operation <span class="clisting">empty()</span> in der Basisklasse verlassen? Mag sein, aber das gleiche Problem würde auch dann auftreten, wenn die Klasse <span class="clisting">Well</span> eine völlig neue Operation erhalten würde, die ebenfalls den Wasserstand verändert.</p>
+<p><span class="clisting">LoggingWell</span> ist also ein Opfer der instabilen Basisklasse <span class="clisting">Well</span> geworden. Und das Unschöne daran ist: Durch Tests hatten Sie keine Chance, das Problem zu erkennen, da vor der Anpassung der Basisklasse alle Operationen gemäß Spezifikation gearbeitet haben.</p>
+<p>In Abbildung 5.49 ist ein alternatives Klassendesign aufgeführt, das die beschriebenen Probleme ausschließt.</p>
+<div class="bildbox">
+<p><a name="IDAJBTQ"></a><a onClick="OpenWin('bilder/05_49.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_49.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.49    </strong>Design ohne instabile Basisklasse</p>
+<p>Dabei setzen nun die zwei Klassen <span class="clisting">Well</span> und <span class="clisting">LoggingWell</span> beide die Schnittstelle <span class="clisting">WellInterface</span> um. Die Klasse <span class="clisting">LoggingWell</span> verwendet ein Exemplar der Klasse <span class="clisting">Well</span> und delegiert die Aufrufe der Operationen an dieses. Zusätzlich zur Delegation protokolliert die Klasse aber auch noch die Aufrufe. In Listing 5.29 ist wieder die Java-Umsetzung dargestellt, allerdings ohne die Klasse <span class="clisting">Well</span>, die sich nicht verändert, abgesehen davon, dass sie nun die Schnittstelle <span class="clisting">WellInterface</span> implementiert, die in Zeile  definiert ist.</p>
+<div class="listing"><pre class="prettyprint">interface WellInterface {     
+    public void rain(int days); 
+    public void pump(int buckets); 
+    public void empty(); 
+} 
+ 
+class LoggingWell implements WellInterface { 
+    Well well = new Well();     
+ 
+    public void rain(int days) { 
+      System.out.println("it is raining " 
+                   + days + " days ..."); 
+      well.rain(days);     
+    } 
+    public void pump(int buckets) { 
+      System.out.println("getting " 
+                   + buckets + " buckets from well"); 
+      well.pump(buckets);   
+    } 
+ 
+    public void empty() { 
+      System.out.println("well is getting emptied"); 
+      well.empty();   
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.29    </strong>Vererbung durch Delegation ersetzt</p>
+<p>In Zeile  wird das Exemplar von <span class="clisting">Well</span> angelegt, an das die Methodenaufrufe delegiert werden. In den mit  markierten Zeilen erfolgt dann die Delegation.</p>
+<p>Dieses Design vermeidet das Problem der instabilen Basisklasse, ohne wesentlich höhere Aufwände in der Umsetzung zu erfordern. Eine Änderung der Schnittstelle würde nun auch <span class="clisting">LoggingWell</span> dazu zwingen, eine neue Operation umzusetzen. Und eine Änderung an der Klasse <span class="clisting">Well</span> ohne Änderung der Schnittstelle <span class="clisting">WellInterface</span> würde <span class="clisting">LoggingWell</span> nicht betreffen, da seine eigene Außenschnittstelle damit nicht erweitert wird.</p>
+<p>Sie können aus diesem Beispiel nicht schließen, dass Vererbung der Implementierung grundsätzlich problematisch ist und vermieden werden sollte. Es gibt durchaus Fälle, in denen durch Vererbung der Implementierung Quelltextredundanzen vermieden werden können. Wenn sich allerdings wie in unserem vorgestellten Beispiel eine Lösung auf Basis von reiner Vererbung der Spezifikation und Delegation einfach umsetzen lässt, dann sollten Sie das auch tun.</p><a id="mjc3c0ce6022ae471884f1dbb63c77bc82" name="mjc3c0ce6022ae471884f1dbb63c77bc82"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">5.3.3 Problem der Gleichheitsprüfung bei geerbter  
+Implementierung  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Die Prüfung auf Gleichheit ist etwas, was intuitiv sehr einfach ist. Wenn Sie prüfen wollen, ob zwei Datumswerte gleich sind, müssen Sie die Bestandteile des Datumsobjekts einzeln vergleichen. Damit können Sie zum Beispiel die Frage beantworten, ob zwei Termine am gleichen Tag stattfinden.</p>
+<p>Wenn allerdings Hierarchien von Klassen ins Spiel kommen, die ihre Implementierung voneinander erben, ist dieser Vergleich auf einmal gar nicht mehr so einfach anzustellen, und es werden ganz besondere Anforderungen an eine korrekte Umsetzung eines Vergleichs gestellt. Wir werden das gleich an einem Beispiel vorstellen, vorher wollen wir aber noch die Erwartungshaltung an eine Prüfung auf Gleichheit formulieren.</p>
+<p><strong><em>Formale  
+Eigenschaften  
+der Gleichheitsprüfung</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Formale Kriterien für Gleichheitsprüfung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Der Kontrakt, den eine Prüfung auf Gleichheit einhalten muss, lässt sich aus den mathematischen Bedingungen für die Gleichheitsprüfung heraus formulieren. </p>
+<p>Die Gleichheitsprüfung ist reflexiv: </p>
+<p>           A ist gleich A.</p>
+<p>Die Gleichheitsprüfung ist symmetrisch: </p>
+<p>           A ist gleich B ® B ist gleich A.</p>
+<p>Die Gleichheitsprüfung ist transitiv: </p>
+<p>           A ist gleich B und B ist gleich C ® A ist gleich C.</p>
+<p>Eine Umsetzung der Gleichheitsprüfung muss diese Bedingungen einhalten, damit sie korrekt arbeitet.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Gleichheitsprüfung bei Vererbungsbeziehung</em></strong></p>
+<p>Problematisch wird diese Prüfung im Bereich der Objektorientierung, wenn wir Objekte prüfen, die zu unterschiedlichen Klassen gehören, die aber in einer Vererbungsbeziehung zueinander stehen.</p>
+<p>Greifen wir zur Illustration unser Beispiel aus Abschnitt 5.3.1 wieder auf. In Abbildung 5.50 ist ein angepasste Version der Klassen <span class="clisting">Kreis</span> und <span class="clisting">FarbigerKreis</span> zu sehen.</p>
+<div class="bildbox">
+<p><a name="IDA3ETQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_032.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_032.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.50    </strong>Gleichheitsprüfung für Kreise</p>
+<p>Beide Klassen haben jeweils eine Methode <span class="clisting">equals</span> zugeordnet, die Exemplare der Klasse auf Gleichheit prüfen soll. Im Folgenden illustrieren wir das Vorgehen und mögliche Probleme an Beispielen in Java.</p>
+<p><strong><em>Methode equals</em></strong></p>
+<p>Da in Java bereits die Klasse <span class="clisting">Object</span> eine Methode <span class="clisting">equals</span> umsetzt, überschreiben wir diese Methode für die Klassen <span class="clisting">Kreis</span> und <span class="clisting">FarbigerKreis</span>. Zwei Kreise sollen aufgrund des Radius verglichen werden, zwei farbige Kreise aufgrund von Radius und Farbe.</p>
+<p>In Abbildung 5.51 sind drei Objekte dargestellt, die wir testweise für einen Vergleich heranziehen wollen.</p>
+<div class="bildbox">
+<p><a name="IDAWFTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_033.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_033.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.51    </strong>Objekte zum Vergleich</p>
+<p>Die gezeigten Objekte haben alle denselben Radius 10, die zwei Exemplare der Klasse <span class="clisting">FarbigerKreis</span> unterscheiden sich allerdings in der Farbe.</p>
+<p><strong><em>Gleichheitsprüfung durchführen</em></strong></p>
+<p>Um die oben formulierten Kriterien für eine Gleichheitsprüfung einzuhalten, müssen Sie die Vergleichsoperation sehr restriktiv umsetzen. Wir stellen zunächst die beiden Möglichkeiten vor, welche die oben genannten Kriterien einhalten, bevor wir noch einige Varianten auflisten, die intuitiv besser scheinen, aber eben nicht korrekt sind.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><span class="cfett">Erste Option:</span> Exemplare verschiedener Klassen sind ungleich.</td>
+</tr>
+</table><br><p>Vergleiche zwischen Exemplaren verschiedener Klassen werden grundsätzlich mit ungleich beantwortet, auch wenn diese Klassen in einer Generalisierungsbeziehung stehen, also eine Klasse von der anderen erbt.</p>
+<p><strong><em>Möglichkeit 1: Verschiedene Klassen =&gt; dann ungleich</em></strong></p>
+<p>Eine Möglichkeit für die Umsetzung ist es, die Exemplare von unterschiedlichen Klassen grundsätzlich als ungleich zu betrachten. In Listing 5.30 ist eine mögliche Umsetzung dieses Vorgehens in Java aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">class Kreis { 
+    public boolean equals(Object obj) { 
+        if (obj.getClass() == this.getClass()) {   
+            Kreis andererKreis = (Kreis) obj; 
+            return this.radius == andererKreis.radius; 
+        } else { 
+            return false; 
+        } 
+        // ... 
+ 
+class FarbigerKreis { 
+  public boolean equals(Object obj) { 
+    if (super.equals(obj)) {     
+        FarbigerKreis andererKreis = (FarbigerKreis) obj; 
+        return this.farbe == andererKreis.farbe; 
+    } 
+    return false; 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.30    </strong>Vergleich nur o.k. bei gleicher Klassenzugehörigkeit</p>
+<p>Dies führt allerdings in unserem Beispiel dazu, dass alle drei Kreise <span class="clisting">FarbigA</span>, <span class="clisting">FarbigB</span> und <span class="clisting">KreisA</span> <span class="ckursiv">jeweils als ungleich</span> von den anderen betrachtet werden, da ein Vergleich eines Exemplars von <span class="clisting">Kreis</span> mit einem Exemplar von <span class="clisting">FarbigerKreis</span> und auch umgekehrt grundsätzlich das Ergebnis <span class="clisting">false</span> liefert.</p>
+<p>In Zeile  wird die Klassenzugehörigkeit der Objekte verglichen, und dieser Vergleich schlägt in diesen Fällen fehl. Dadurch dass die Prüfung für einen farbigen Kreis in Zeile  an die Oberklasse delegiert wird, greift der Klassenvergleich auch hier. Bei einem Vergleich mit gleicher Klassenzugehörigkeit wie zwischen <span class="clisting">FarbigA</span> und <span class="clisting">FarbigB</span> kommen dann die inhaltlichen Kriterien zum Tragen, und die unterschiedlichen Farben führen korrekt zum Ergebnis <span class="clisting">false</span>.</p>
+<p>Beim Vergleich zwischen einem Kreis und einem farbigen Kreis würden wir zwar eher die Aussage erwarten: <span class="clisting">kann ich nicht sagen, weil mir Informationen fehlen</span>. Die Definition der Gleichheitsprüfung erlaubt aber eine solche Rückmeldung nicht, so dass wir im Fall von unterschiedlichen Klassen die Aussage <span class="clisting">ungleich</span> treffen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><span class="cfett">Zweite Option:</span> Kriterium der Basisklasse ist alleine gültig.</td>
+</tr>
+</table><br><p>Die Umsetzung der Vergleichsoperation der Basisklasse wird für alle Unterklassen verbindlich gemacht. Damit gibt es eindeutig definierte Kriterien für den Vergleich, die unabhängig von der Klassenzugehörigkeit der verglichenen Objekte sind.</p>
+<p>Wenn Sie die zweite Option für unser Beispiel umsetzen, wird das Vergleichskriterium der Basisklasse, in diesem Fall der Radius, das einzige Kriterium für den Vergleich bleiben.</p>
+<p>In Java können Sie das sicherstellen, indem Sie die Methode <span class="clisting">equals</span> in der Klasse <span class="clisting">Kreis</span> als <span class="clisting">final</span> deklarieren. Damit entfällt für die Unterklasse die Möglichkeit, überhaupt eine Vergleichsoperation <span class="clisting">equals</span> zu definieren.</p>
+<div class="listing"><pre class="prettyprint">    final public boolean equals(Object obj) { 
+        // ... Prüfung auf null und Identität weggelassen 
+        if (obj instanceof Kreis) { 
+            Kreis andererKreis = (Kreis) obj; 
+            return this.radius == andererKreis.radius; 
+        } else { 
+            return false; 
+        } 
+    }</pre></div>
+<p>Damit ist die Vergleichsoperation für die Klasse <span class="clisting">Kreis</span> und alle ihre Unterklassen klar spezifiziert und anwendbar. Die Methode wird jedes Exemplar genau dann als gleich zu einem anderen betrachten, wenn beide den gleichen Radius haben. Wenn Sie diese Variante wählen, sind die in unserem Beispiel ausgewerteten Kreise <span class="clisting">FarbigA</span>, <span class="clisting">FarbigB</span> und <span class="clisting">KreisA</span> <span class="ckursiv">alle gleich</span>, da sie alle denselben Radius aufweisen.</p>
+<p>Ob diese Variante sinnvoll ist, hängt vom Kontext der Anwendung ab. Wenn die Vergleichsoperation so sinnvoll einsetzbar ist, bietet diese Umsetzung eine praktikable Lösung.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Warum kein inhaltlicher Vergleich von Exemplaren verschiedener Klassen?
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Die bisher aufgeführten Lösungen arbeiten zwar korrekt, sind aber nicht völlig intuitiv. Warum sollten wir nicht auch <span class="clisting">KreisA</span>, der den Radius 10 hat, mit <span class="clisting">FarbigA</span> vergleichen, der ebenfalls den Radius 10 hat, und ein O.k. bekommen? Und trotzdem beim Vergleich eines farbigen Kreises mit einem Kreis ebenfalls möglicherweise eine Gleichheit feststellen?</p>
+<p>Es gibt verschiedene Umsetzungsmöglichkeiten, die solche Vergleiche auch zulassen und in der Praxis auch zu finden sind. Aber alle arbeiten nicht korrekt im Sinne der Kriterien für die Gleichheitsoperation. Im Folgenden stellen wir deshalb einige gängige Umsetzungen der Prüfung auf Gleichheit vor und erläutern, warum diese nicht korrekt arbeiten.<span class="inlinefussnote"> </span><a href="#Rxx35690">18</a></p>
+</td>
+</tr>
+</table><br><p>Gehen wir also die in Listing 5.31 aufgeführte Variante an, die einen Vergleich auch inhaltlich zwischen Exemplaren von <span class="clisting">Kreis</span> und <span class="clisting">FarbigerKreis</span> zulässt.</p>
+<p><strong><em>Erste fehlerhafte Umsetzung</em></strong></p>
+<div class="listing"><pre class="prettyprint">class Kreis { 
+    public boolean equals(Object obj) { 
+        if (obj instanceof Kreis) {    
+            Kreis andererKreis = (Kreis) obj; 
+            return this.radius == andererKreis.radius; 
+        } else { 
+            return false; 
+        } 
+    } 
+} 
+class FarbigerKreis { 
+  public boolean equals(Object obj) { 
+    if (obj instanceof FarbigerKreis) {    
+        FarbigerKreis andererKreis = (FarbigerKreis) obj; 
+        return (super.equals(andererKreis)   
+                &amp;&amp; this.farbe == andererKreis.farbe);   
+    } 
+    return false; 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.31    </strong>Inkorrekte Umsetzung: Vergleich auch auf Farbe</p>
+<p>Wir prüfen zunächst in Zeile , ob das zu vergleichende Objekt ebenfalls ein Exemplar der Klasse <span class="clisting">Kreis</span> ist. Nur in diesem Fall führen wir den Vergleich über den Radius durch, sonst betrachten wir die beiden Objekte als ungleich.</p>
+<p>Zwei farbige Kreise können nur gleich sein, wenn es sich bei beiden um farbige Kreise handelt (Zeile ). Außerdem müssen sie den gleichen Radius haben, geprüft über den Aufruf der Basisklasse in Zeile , und die gleiche Farbe, geprüft in Zeile .</p>
+<p>Aber wenn Sie nun zwischen Kreisen unsere Vergleiche durchführen, sehen Sie, dass die Symmetriebedingung verletzt wird.</p>
+<p>Die Ausgabe einer Prüfung auf die Bedingung der Symmetrie ergibt Folgendes:</p>
+<div class="listing"><pre class="prettyprint">KreisA und FarbigA sind gleich 
+Symmetrie verletzt: FarbigA ist aber nicht gleich KreisA</pre></div>
+<p>Zwar klappt der Vergleich, wenn Sie die Operation <span class="clisting">equals</span> auf einem Exemplar der Klasse <span class="clisting">Kreis</span> aufrufen. Die verwendete Methode <span class="clisting">equals</span> der Klasse <span class="clisting">Kreis</span> stellt fest, dass es sich auch beim übergebenen Objekt A um ein Exemplar der Klasse <span class="clisting">Kreis</span> handelt, die resultierende Prüfung auf Gleichheit des Radius ist erfolgreich. Wenn aber nun umgekehrt die Operation auf einem Exemplar der Klasse <span class="clisting">FarbigerKreis</span> aufgerufen wird, wird die Methode der Klasse <span class="clisting">FarbigerKreis</span> zum Einsatz kommen. Und bei dieser führt die Prüfung, ob es sich beim übergebenen Objekt A um ein Exemplar von <span class="clisting">FarbigerKreis</span> handelt, zu einem negativen Ergebnis.</p>
+<p><strong><em>Zweite  
+fehlerhafte Umsetzung</em></strong></p>
+<p>So geht es also nicht. Aber warum soll denn die Methode von <span class="clisting">FarbigerKreis</span> gleich aufgeben, wenn ihr ein Exemplar von Kreis übergeben wird? Sie könnte in diesem Fall die Prüfung doch an die Methode der Klasse <span class="clisting">Kreis</span> weiterreichen. In Zeile  des unten stehenden Listings ist die Anpassung vorgenommen.</p>
+<div class="listing"><pre class="prettyprint">public boolean equals(Object obj) { 
+    if (obj instanceof FarbigerKreis) { 
+        FarbigerKreis andererKreis = (FarbigerKreis) obj; 
+        return (super.equals(andererKreis)   
+                &amp;&amp; this.farbe == andererKreis.farbe); 
+    } 
+    return super.equals(obj); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.32    </strong>Vermeintliche Korrektur: nicht viel besser</p>
+<p>Nun klappt das auch mit der Symmetriebedingung, weil die Methode <span class="clisting">equals</span> der Klasse <span class="clisting">FarbigerKreis</span> den Aufruf einfach an die Methode der Oberklasse <span class="clisting">Kreis</span> weitergibt. Da dann nur noch der Radius verglichen wird, klappt dann auch der Vergleich Aber etwas anderes scheint schief zu gehen.</p>
+<div class="listing"><pre class="prettyprint">KreisA und FarbigA sind gleich 
+FarbigA und KreisA sind gleich 
+KreisA und FarbigA sind gleich, 
+              KreisA und FarbigB sind gleich 
+Transitivität verletzt: 
+              FarbigA und FarbigB sind nicht gleich</pre></div>
+<p>Wir haben ein anderes Problem eingebaut. Jetzt gilt zwar unsere Symmetriebedingung. Nun liefert aber jeder Vergleich eines Kreises mit jedem beliebigen anderen farbigen Kreis <span class="clisting">true</span>, sofern dieser den gleichen Radius hat. Wenn die betreffenden farbigen Kreise aber unterschiedliche Farben haben, wie in unserem Beispiel, sind diese natürlich nicht gleich. Die Transitivitätsbedingung ist ganz klar verletzt.</p>
+<p><strong><em>Zurück auf  
+den Anfang</em></strong></p>
+<p>Offensichtlich führt unser Versuch, Kreise und farbige Kreise in allen Situationen vergleichbar zu halten, zu dem Problem. Deshalb sind diese Umsetzungen nicht korrekt. Damit sind die am Anfang des Abschnitts vorgestellten beiden Varianten vorzuziehen, da diese die Semantik der Gleichheitsoperation korrekt umsetzen.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_05_003.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="5.3 Die Vererbung der Implementierung"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_05_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

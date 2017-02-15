@@ -1,0 +1,793 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 4 Die Struktur objektorientierter Software</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 4 Die Struktur objektorientierter Software">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 4 Die Struktur objektorientierter Software">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_03_007.htm">
+<link rel="next" href="oop_kapitel_04_002.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_03_007.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_04_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="#mjeef1696ba84bfb83a6a296431f59525b" class="navh">4 Die Struktur objektorientierter Software</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj7b6b81a0c8972299dbdd92524d8707c3" class="navh">4.1 Die Basis von allem: das Objekt</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj561db4b7b51ddab563d9357086a75f16" class="navh">4.1.1 Eigenschaften von Objekten: Objekte als Datenkapseln</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjd18cdb9194cd0684bdfa301683893159" class="navh">4.1.2 Operationen und Methoden von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj41885f11bf43f1afc60b76e0afbe7b6c" class="navh">4.1.3 Kontrakte: Ein Objekt trägt Verantwortung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj4bba9c78108c5ebe6a1e25d09da23b23" class="navh">4.1.4 Die Identität von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj62d09a1cbb82ce7738613ddee041cc52" class="navh">4.1.5 Objekte haben Beziehungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_002.htm#mj1267a0a54c9f28f7e90497952f29dd59" class="navnav">4.2 Klassen: Objekte haben Gemeinsamkeiten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mjff74dbd3ea0281a9773d7cd8126e9c8b" class="navnav">4.2.1 Klassen sind Modellierungsmittel</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj7012e3ccb719d6c513e60ff574e1c59b" class="navnav">4.2.2 Kontrakte: die Spezifikation einer Klasse</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj2695596f673a2fc50b338aa48ddfcc9c" class="navnav">4.2.3 Klassen sind Datentypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mjc85ceff1ceeab068dd628ab5076d0d70" class="navnav">4.2.4 Klassen sind Module</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj1cf8ce74da5d16b89eb3efa0ae9bf182" class="navnav">4.2.5 Sichtbarkeit von Daten und Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mja2d7825b1c1c07dd16d08858ed4e2186" class="navnav">4.2.6 Klassenbezogene Methoden und Attribute</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj8fefd5a44232563aae6ce704fc4d92c1" class="navnav">4.2.7 Singleton-Methoden: Methoden für einzelne Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_003.htm#mjf8802262d55361c06e93e627e44e539e" class="navnav">4.3 Beziehungen zwischen Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj0ff05dc78b1417fb2771d4f29cbc6c1a" class="navnav">4.3.1 Rollen und Richtung einer Assoziation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj36d410616a672dcba508d9ae14c749a3" class="navnav">4.3.2 Navigierbarkeit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj4e980b9907659670b9dec829430e1e5f" class="navnav">4.3.3 Multiplizität </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj160479d0824fb412e545da4b151a77fa" class="navnav">4.3.4 Qualifikatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mjeb1a3ff160181940bb222e7f0e97402c" class="navnav">4.3.5 Beziehungsklassen, Attribute einer Beziehung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj8fc9eae8c02cefd02bf024b5dda0bbe1" class="navnav">4.3.6 Implementierung von Beziehungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj8118cb8c892c6648834fb351f4be17aa" class="navnav">4.3.7 Komposition und Aggregation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mjc62b233e44c20911b6cee2de3c15a801" class="navnav">4.3.8 Attribute</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj344620f0b2ee4df48d645d45e973920c" class="navnav">4.3.9 Beziehungen zwischen Objekten in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_004.htm#mj0e24bd346a5e2c3a8c2f91eec5a74cd5" class="navnav">4.4 Klassen von Werten und Klassen von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mjea3fc9fb362ce0dd9c3af96496b7796d" class="navnav">4.4.1 Werte in den objektorientierten Programmiersprachen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mj925becc3655976ef8cb6eee567f97833" class="navnav">4.4.2 Entwurfsmuster »Fliegengewicht«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mjfca6187c7c9d3b4fdc70dec4c511e84c" class="navnav">4.4.3 Aufzählungen (Enumerations)</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_004.htm#mjd80f28e5e2134c13382e2859c64f48ee" class="navnav">4.4.4 Identität von Objekten</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main">
+<p class="anleser"><em>In diesem Kapitel beschreiben wir die grundlegende Struktur von objektorientierten Softwaresystemen. Wir beginnen dabei mit dem Grundlegenden: mit dem Objekt an sich. Danach gehen wir auf die Klassifizierung von Objekten ein und werden uns dann detailliert mit den Klassen und den Beziehungen zwischen Objekten beschäftigen.</em></p><a id="mjeef1696ba84bfb83a6a296431f59525b" name="mjeef1696ba84bfb83a6a296431f59525b"></a><h1 class="t1">4 Die Struktur objektorientierter Software</h1><a id="mj7b6b81a0c8972299dbdd92524d8707c3" name="mj7b6b81a0c8972299dbdd92524d8707c3"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">4.1 Die Basis von allem: das Objekt  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>In diesem Abschnitt werden Sie zunächst das zentrale Konstrukt der objektorientierten Programmierung kennen lernen, nämlich das namensgebende Objekt. Ausgehend von einer formalen Definition werden wir die wichtigsten Eigenschaften von Objekten vorstellen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Objekte in der objektorientierten Programmierung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Objekt ist ein Bestandteil eines Programms, der Zustände enthalten kann. Diese Zustände werden von dem Objekt vor einem Zugriff von außen versteckt und damit geschützt. </p>
+<p>Außerdem stellt ein Objekt anderen Objekten Operationen zur Verfügung. Von außen kann dabei auf das Objekt ausschließlich zugegriffen werden, indem eine Operation auf dem Objekt aufgerufen wird.</p>
+<p>Ein Objekt legt dabei selbst fest, wie es auf den Aufruf einer Operation reagiert. Die Reaktion kann in Änderungen des eigenen Zustands oder dem Aufruf von Operationen auf weiteren Objekte bestehen.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Objekt = Daten + Funktionalität</em></strong></p>
+<p>Technisch betrachtet ist ein Objekt im Sinne des objektorientierten Programmierens also eine Zusammenfassung von Daten (Zuständen des Objekts) und der dazugehörigen Funktionalität (den vom Objekt unterstützten Operationen).</p>
+<p>Zentral ist hier zunächst die Aussage, dass ein Objekt seine Zustände vor einem direkten Zugriff von außen schützt. Das Objekt kapselt also die Daten, die seinen Zustand ausmachen. Häufig wird der Aufruf einer Operation auf einem Objekt auch als Senden einer Nachricht an das Objekt bezeichnet.</p>
+<p>Im folgenden Abschnitt <a href="#Rxx_ref222302053">4.1.1</a> stellen wir zunächst die Fähigkeiten von Objekten zur Datenkapselung vor, bevor wir dann in Abschnitt <a href="#Rxx_ref222302795">4.1.2</a> auf die von Objekten zur Verfügung gestellten Operationen genauer eingehen. Anschließend stellen wir in Abschnitt <a href="#Rxx_ref222302802">4.1.3</a> vor, wie Objekte für die von ihnen zur Verfügung gestellten Operationen verantwortlich sind und Kontrakte dafür festlegen können. Dass ein Objekt immer eine klar definierte Identität hat, die es von allen anderen Objekten unterscheidet, ist Gegenstand von Abschnitt <a href="#Rxx_ref222302808">4.1.4</a>. Die Vorstellung von Objekten wird mit Abschnitt <a href="#Rxx_ref222302813">4.1.5</a> abgeschlossen mit einem Überblick über die Arten von Beziehungen, die Objekte miteinander haben.</p>
+<p><strong><em>Diskussion:  
+Ist Java überhaupt objektorientiert?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Wenn wir die oben genannte Definition von Objekten nehmen, dann sind doch viele Objekte, die zum Beispiel in Java-Programmen verwendet werden, gar keine echten Objekte.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wieso meinst du das? Objekte in Java-Programmen haben doch eigene Daten und stellen nach außen hin Operationen zur Verfügung.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ja, schon. Aber die Definition fordert ja, dass die Zustände eines Objekts grundsätzlich nicht direkt nach außen sichtbar gemacht werden. In Java kann es aber durchaus sein, dass die Daten eines Objekts nach außen sichtbar sind. Die zugehörige Klasse muss die Datenelemente lediglich als <span class="clistingk">public</span> deklarieren. Außerdem kann ich in Java bei Aufruf einer Operation auch noch andere Dinge tun, als den internen Zustand des Objekts ändern oder Operationen auf anderen Objekten aufrufen.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Du hast Recht. Viele Programmiersprachen, die als objektorientiert gelten, erzwingen es nicht, dass man darin auch rein objektorientierte Programme erstellt. So ist es zum Beispiel in Java möglich, die Kapselung der Daten aufzuheben, indem die Daten eines Objekts über die Sichtbarkeitsregeln der zugeordneten Klasse komplett öffentlich gemacht werden. Diese Daten gehören damit nicht mehr zum geschützten internen Objektzustand.  Smalltalk zum Beispiel erzwingt viel stärker als Java die Verwendung von rein objektorientierten Verfahren. Allerdings hat sich auch in Java die Konvention herausgebildet, dass Datenelemente in der Regel nicht direkt öffentlich gemacht werden. Stattdessen werden häufig sogenannte Getter- und Setter-Methoden definiert, mit denen diese Datenelemente ausgelesen oder neu gesetzt werden können.</span><a id="mj561db4b7b51ddab563d9357086a75f16" name="mj561db4b7b51ddab563d9357086a75f16"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">4.1.1 Eigenschaften von Objekten: Objekte als Datenkapseln  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Ein Objekt hat Eigenschaften, die ihm direkt zugeordnet werden können. Ein Haus hat seine Breite, Tiefe, Höhe, Wohnfläche, es hat eine Farbe, eine Lage, ein Alter. Wenn wir das Haus in einer objektorientiert entwickelten Anwendung abbilden wollen, erstellen wir ein Objekt <span class="clisting">Haus</span>, das diese Werte als seine Eigenschaften verwalten wird. In <a href="#Rxx_ref222300385">Abbildung 4.1</a> ist eine Sichtweise auf ein Haus dargestellt, die einige der Eigenschaften beschreibt.</p>
+<div class="bildbox">
+<p><a name="IDA0QSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_001.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_001.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.1    </strong>Grundriss eines Hauses</p>
+<p>Dass ein Objekt bestimmte Eigenschaften hat, ist allerdings nicht gleichbedeutend damit, dass das Objekt auch für alle diese Eigenschaften jeweils direkt zugeordnete Daten besitzt. Deshalb unterscheiden wir bei Objekten zwischen den Daten des Objekts und den zugeordneten Eigenschaften.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Daten eines Objekts
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Objekt kann Werte zugeordnet haben, die nur von ihm selbst verändert werden können. Diese Werte sind die Daten, die das Objekt besitzt. Von außen sind die Daten des Objekts nicht sichtbar und nicht zugreifbar.</p>
+</td>
+</tr>
+</table><br><p>Daten sind also die Repräsentanten des internen Zustands eines Objekts. Ein Objekt <span class="clisting">Haus</span> könnte also durchaus als Wert das Alter des Hauses als Dateneintrag besitzen. Alternativ (und in den meisten Fällen sinnvoller) kann das Baujahr gespeichert werden. Die Art der Datenhaltung innerhalb des Objekts ist nach außen aber nicht sichtbar.</p>
+<p><strong><em>Objekte  
+besitzen Daten.</em></strong></p>
+<p>Ein Objekt besitzt also Daten. Im Gegensatz zu Datenstrukturen im strukturierten Programmieren, wo Datenstrukturen die Daten lediglich enthalten, kann man bei Objekten wirklich vom <span class="ckursiv">Besitzen</span> sprechen. Beim strukturierten Programmieren kann jedes Unterprogramm auf die Daten einer Datenstruktur zugreifen. Beim objektorientierten Programmieren entscheidet das Objekt selbst, wer und wie auf die Daten zugreifen und sie ändern kann.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Eigenschaften (Attribute) von Objekten
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Objekte haben Eigenschaften, die von außen erfragt werden können. Dabei kann von außen nicht unterschieden werden, ob eine Eigenschaft direkt auf Daten des Objekts basiert oder ob die Eigenschaft auf der Grundlage von Daten berechnet wird. Eigenschaften, die nicht direkt auf Daten basieren, werden abgeleitete Eigenschaften genannt.</p>
+</td>
+</tr>
+</table><br><p>Die Eigenschaften eines Objekts müssen nicht notwendigerweise voneinander unabhängig sein. Die Fläche eines Hauses wird mit seiner Breite und Tiefe zusammenhängen. Wie die Eigenschaften zusammenhängen, wie sie sich ändern lassen und wie sie sich bei einer Änderung beeinflussen, das gehört zu der logischen Funktionalität des Objekts. Für die Verwaltung der Daten, auf welche die Eigenschaften des Objekts abgebildet werden, ist die Implementierung des Objekts zuständig.</p>
+<p><strong><em>Kapselung  
+von Daten</em></strong></p>
+<p>Die Kapselung der Daten wird durch ein Objekt selbst sichergestellt. Nur das Objekt selbst sollte mit seinen Daten arbeiten und die Datenstrukturen kennen. Die Kapselung der Daten ist besonders dann wichtig, wenn die abgebildeten Eigenschaften des Objekts voneinander abhängig sind. In solchen Fällen werden oft nur bestimmte Eigenschaften direkt auf Daten abgebildet, die Werte der anderen werden aus den gespeicherten Daten berechnet.</p>
+<p>Machen wir es nun etwas spannender und spielen ein wenig mit der elektrischen Spannung und dem Strom. Unser Beispielobjekt wird eine Stromleitung repräsentieren, für die das Ohm´sche Gesetz gilt:</p>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li><span class="ckursiv">U = R·I</span></li>
+</ul>
+</li>
+</ul>
+<p>Für die übertragene Leistung der Leitung gilt:</p>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li><span class="ckursiv">W = U·I</span></li>
+</ul>
+</li>
+</ul>
+<p>Dabei ist <span class="ckursiv">U</span> die elektrische Spannung, <span class="ckursiv">R</span> der Widerstand der Leitung, <span class="ckursiv">I</span> der übertragene Strom, und <span class="ckursiv">W</span> ist die übertragene Leistung.</p>
+<div class="bildbox">
+<p><a name="IDAFTSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_002.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_002.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.2    </strong>Schematische Darstellung eines Stromkreises</p>
+<p>Wir betrachten hier vier Eigenschaften der elektrischen Leitung, brauchen aber nur zwei davon als Daten zu speichern. Die nicht gespeicherten Werte können durch die oben aufgeführten Gleichungen berechnet werden. Für die Anwender des Objekts ist es nicht relevant, welche zwei Werte es sind. Sie können zum Beispiel den Wert für Stromstärke und Widerstand speichern und die Werte für Spannung und Leistung bei Bedarf daraus berechnen.</p>
+<p>Die Implementierung der Funktionalität des Objekts ist gekapselt und spielt für die Anwender des Objekts keine Rolle. Es ist nun abhängig von der Betrachtungsebene, die Sie einnehmen wollen, wie Sie die Eigenschaften des Objekts <span class="clisting">ElektrischeLeitung</span> in einem Modell abbilden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Darstellung eines Objekts in UML
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In der Sprache UML bildet man ein Objekt einfach als ein Rechteck ab. In <a href="#Rxx_ref222300398">Abbildung 4.3</a> ist ein Beispiel dafür zu sehen. Oben in dem Rechteck steht der unterstrichene Name des Objekts, und darunter in getrennten Abteilungen befinden sich die Daten und die Operationen bzw. die Methoden des Objekts. Laut der UML-Spezifikation bezeichnet man abgeleitete Eigenschaften eines Objekts mit einem Schrägstrich. </p>
+</td>
+</tr>
+</table><br><p>Die UML-Diagramme können verwendet werden,</p>
+<ul class="gp">
+<li>um die nach außen sichtbare Schnittstelle darzustellen und</li>
+</ul>
+<ul class="gp">
+<li>um sie für die Darstellung der gekapselten Struktur der Implementierung zu nutzen.</li>
+</ul>
+<p><strong><em>Darstellung der äußeren Struktur</em></strong></p>
+<p>Für die Darstellung der äußeren Struktur der Objekte ist es nicht relevant, welche der Eigenschaften direkt als Daten gespeichert werden und welche von ihnen abgeleitet sind und berechnet sind. In so einer Darstellung bezeichnet man mit einem Schrägstrich die voneinander abhängigen Eigenschaften des Objekts. Alternativ oder zusätzlich kann man die Art der Abhängigkeit, zum Beispiel eine Formel, in geschweiften Klammern angeben.</p>
+<p>In Abbildung 4.3 sehen Sie eine Darstellung des Objekts <span class="clisting">elektrischeLeitung</span>, in der alle Eigenschaften aufgeführt sind. Dort ist allerdings nicht festgelegt, welche davon durch Daten repräsentiert und welche aus den Daten abgeleitet werden.</p>
+<p>In dem mit  markierten Kästchen wird eine Einschränkung in geschweiften Klammern angegeben. Hier werden die Abhängigkeiten der Attribute untereinander angezeigt. In dem mit  versehenen Abteil des Kästchens finden Sie die Attribute oder die Datenelemente des Objekts. Sie sind in unserem Beispiel nicht unabhängig und daher mit vorangestellten Schrägstrichen versehen. Wie Sie an der Markierung  erkennen, wird ein Objekt in UML in einem rechteckigen Kästchen dargestellt. Der Name des Objekts wird unterstrichen und der Typ des Objekts steht dabei hinter einem Doppelpunkt.</p>
+<div class="bildbox">
+<p><a name="IDA3USQ"></a><a onClick="OpenWin('bilder/04_03.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_03.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.3    </strong>Darstellung der äußeren Struktur eines Objekts</p>
+<p><strong><em>Darstellung der Implementierung</em></strong></p>
+<p>Bei der Implementierung müssen Sie sich dann allerdings entscheiden, welche Eigenschaften des Objekts direkt auf Daten abbilden und welche sich aus diesen Daten ableiten. In <a href="#Rxx_ref222300421">Abbildung 4.4</a> ist diese Entscheidung getroffen.</p>
+<div class="bildbox">
+<p><a name="IDAHVSQ"></a><a onClick="OpenWin('bilder/04_04.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_04.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.4    </strong>Implementierungssicht auf ein Objekt</p>
+<p>An dem oberen Hinweispfeil der Markierung  sehen Sie, dass die Eigenschaften <span class="clisting">widerstand</span> und <span class="clisting">spannung</span> direkt als Daten repräsentiert werden. Für die anderen Eigenschaften ist angegeben, wie sie sich aus den Daten ableiten. Die Eigenschaften <span class="clisting">strom</span> und <span class="clisting">leistung</span> sind also abgeleitete Eigenschaften.</p>
+<h4 class="t4">Warum ist Datenkapselung wichtig?</h4>
+<p>Bisher haben wir in diesem Abschnitt vorgestellt, wie ein Objekt seine Eigenschaften verwaltet und die ihm zugeordneten Daten nach außen vor einem direkten Zugriff schützt. Dabei wurde auch deutlich, dass von außen nicht ersichtlich sein soll, welche Eigenschaften überhaupt als Daten repräsentiert werden.</p>
+<p>Aber warum ist dies eigentlich eine wünschenswerte Vorgehensweise? In vielen Fällen könnte es doch viel einfacher sein, wenn die betroffenen Daten direkt geändert werden könnten.</p>
+<p><strong><em>Strukturierte  
+Programmierung</em></strong></p>
+<p>Betrachten Sie deshalb als Ausgangspunkt die Situation und die damit verbundenen Probleme, wie sie in der strukturierten Programmierung vorliegen. Die Trennung der Daten vom Code bringt dort nämlich ein Problem mit sich: Da es nur eingeschränkt möglich ist, die Datenstrukturen konkreten Routinen zuzuordnen, ist es nötig, dass die Strukturen der Daten für jeden Teil des Programms sichtbar und zugänglich sind.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Zugriff auf Daten eines Kreises</em></strong></p>
+<p>Nehmen Sie als Beispiel eine Datenstruktur, die einen Kreis auf dem Bildschirm beschreibt. Diese Struktur würde die x- und y-Koordinaten des Mittelpunkts, den Radius, die Farbe und andere Attribute des Kreises beinhalten. <a href="#Rxx_ref222300430">Abbildung 4.5</a> zeigt einen Kreis und verschiedene Aufrufer, die Änderungen an der Kreisstruktur vornehmen.</p>
+<div class="bildbox">
+<p><a name="IDAMWSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_003.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_003.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.5    </strong>Unregulierter Zugriff auf Daten eines Kreises</p>
+<p>Wie in der Abbildung ersichtlich, arbeiten nun mehrere Routinen mit den Daten des Kreises. Die Prozedur <span class="clisting">paintCircle</span> benötigt die Daten, um den Kreis auf dem Bildschirm darzustellen, die Prozedur <span class="clisting">moveCircle</span> ändert die Daten in der Datenstruktur und veranlasst, dass die Darstellung aktualisiert wird. Andere Prozeduren können die Daten modifizieren, um zum Beispiel den Radius des Kreises zu ändern oder um Schnittpunkte mit einer Geraden zu berechnen oder um festzustellen, ob die Position des Mauszeigers sich gerade innerhalb des Kreises befindet.</p>
+<p>Hier liegt schon ein erstes Problem: Die Prozedur <span class="clisting">moveCircle</span> ist dafür vorgesehen, den Kreis zu verschieben und die Darstellung zu aktualisieren. Es lässt sich aber nicht verhindern, dass ein Aufrufer direkt die Koordinaten des Kreises ändert. In diesem Fall bleibt die Aktualisierung der Anzeige aus.</p>
+<p>Wenn Sie die Struktur des Kreises ändern und zum Beispiel eine neue Eigenschaft <span class="clisting">Füllmuster</span> hinzufügen: Wie finden Sie heraus, welche Stellen im Programm angepasst werden müssen, damit diese Eigenschaft korrekt behandelt wird?</p>
+<p><strong><em>Datenkapselung als Lösung</em></strong></p>
+<p>Hier bietet die Datenkapselung in Objekten eine elegante Lösung. Wenn Sie statt einer reinen Datenstruktur ein Objekt <span class="clisting">Kreis</span> verwenden, wird der Zugriff auf die nun internen Daten des Objekts nur noch über die vom Objekt zugelassenen Verfahren erfolgen können. In <a href="#Rxx_ref222300442">Abbildung 4.6</a> ist dargestellt, dass bei einem Objekt alle Versuche, direkt auf die internen Daten zuzugreifen, abgewiesen werden.</p>
+<div class="bildbox">
+<p><a name="IDADXSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_004.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_004.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.6    </strong>Kein direkter Zugriff auf Daten des Objekts »Kreis«</p>
+<p>Eine komplette Blockade des Zugriffs auf die Daten alleine ist natürlich noch nicht ausreichend. Stattdessen muss ein Objekt auch Operationen anbieten, mit denen es modifiziert werden kann. In unserem Beispiel sind das die Operationen <span class="clisting">move()</span> und <span class="clisting">paint()</span>, die direkt auf dem Objekt aufgerufen werden. Dabei ruft die Operation <span class="clisting">move()</span> selbst wieder die Operation <span class="clisting">paint()</span> auf und stellt so sicher, dass der Kreis nach einem Verschieben auch korrekt neu angezeigt wird.</p>
+<p>Im folgenden Abschnitt werden wir Operationen als Bestandteil der Schnittstelle eines Objekts vorstellen.</p>
+<p><strong><em>Diskussion: Nachteile der Datenkapselung</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Das mit der Datenkapselung ist ja eine nette Idee. Aber wenn immer nur das Objekt selbst mit seinen Daten arbeiten kann, hat das in bestimmten Situationen auch Nachteile.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Ja, du hast tatsächlich Recht. Diese Regel kann dazu führen, dass das Prinzip einer einzigen Verantwortung verletzt wird. Wir bürden damit nämlich dem Objekt alle Verantwortungsbereiche auf, die nur unter Verwendung seiner Daten bearbeitet werden können. Es gibt durchaus Fälle, in denen die Kapselung der Daten in Frage gestellt wird.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> An welche Fälle denkst du dabei?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Nehmen wir als Beispiel einmal an, dass unsere Anwendung einen Architekten beim Entwerfen von Häusern unterstützen soll. [Die Softwareentwicklung oder zumindest der Entwurf von Software wird häufig mit dem Bauwesen und der Bauarchitektur verglichen. Wir glauben nicht, dass diese Analogie stimmt und dass sie eher verwirrt, als für besseres Verständnis sorgt. Zum Glück wird diese Analogie nur von den Softwareentwicklern und nicht von den Baumeistern verwendet. Es wäre tragisch, wenn die Erzeugnisse der Bauarchitekten so häufig abstürzen würden wie die Endprodukte mancher Softwarearchitekten. Dennoch konnten wir es uns nicht verkneifen, einen Bauarchitekten zumindest in einem Beispiel zu erwähnen.
+]  Diese objektorientierte Anwendung wird Objekte enthalten, die Häuser repräsentieren. Auf dieser Grundlage können wir statische Berechnungen durchführen oder den Energiebedarf des Hauses ermitteln. Gleichzeitig aber sollten diese Daten in eine Datei gespeichert und wieder ausgelesen werden. Wenn wir jetzt darauf bestehen, dass nur ein Objekt, das Objekt <span class="clistingk">Haus</span>, auf die Daten zugreifen kann, würde dieses Objekt zumindest zwei Verantwortungen tragen müssen: die für die fachliche Funktionalität und die für die Datenspeicherung.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Wäre es denn so schlimm, wenn in diesem Fall ein Objekt eben einmal die Verantwortung für zwei Aufgaben übernimmt?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Das ist ja noch nicht alles. Bei einer strikten Datenkapselung würden wir die Aufgabe der Speicherung zumindest teilweise auch über andere speicherbare Objekte verteilen. Eine Verantwortung wäre also keineswegs einem Modul zugeordnet, sondern diffus über die ganze Anwendung verschmiert und mit anderen Verantwortungen vermischt. Kaum das Ergebnis, das wir erreichen wollten.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Aber was dabei auffällt: Die zwei angesprochenen Aspekte der Funktionalität liegen in verschiedenen Domänen der Anwendung: eine in der fachlichen Domäne »Bauwesen«, die andere in der technischen Domäne »Datenspeicherung«.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Da hast du Recht. Wir sollten deshalb die Forderung nach der Kapselung der Daten leicht umformulieren: Auf die Daten eines Objekts in einer Domäne sollte innerhalb dieser Domäne nur das Objekt selbst zugreifen. Die Bauwesenfunktionalität des Objekts <span class="clistingk">Haus</span> sollte also nicht direkt auf die Daten der Objekte <span class="clistingk">Zimmer</span> zugreifen.</span><p>Die Kapselung der Daten führt also nicht automatisch dazu, dass das <span class="ckursiv">Prinzip einer einzigen Verantwortung</span> eingehalten werden kann. Die klare Strukturierung der verschiedenen Aspekte einer Anwendung ist eins der Probleme, für deren Lösung die Objektorientierung alleine manchmal nicht ausreicht. Eine mögliche Lösung für dieses Problem werden wir in Kapitel 9, »Aspekte und Objektorientierung«, vorstellen.</p><a id="mjd18cdb9194cd0684bdfa301683893159" name="mjd18cdb9194cd0684bdfa301683893159"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">4.1.2 Operationen und Methoden von Objekten  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wir haben nun also gesehen, wie ein Objekt die ihm zugeordneten Daten vor unerwünschten Zugriffen schützt und warum das wünschenswert ist. Der zweite Bestandteil, der in der Definition des Begriffs Objekt auftaucht, ist die Fähigkeit von Objekten, auf den Aufruf von Operationen zu reagieren.</p>
+<p>Ein Objekt stellt dem Rest der Anwendung <span class="ckursiv">Operationen</span> bereit. Operationen stellen das Verhalten und die Funktionalität des Objekts dar, es sind die ausführbaren Routinen, die das Objekt anderen Teilen der Anwendung anbietet.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Operationen von Objekten
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Operationen spezifizieren, welche Funktionalität ein Objekt bereitstellt. Unterstützt ein Objekt eine bestimmte Operation, sichert es einem Aufrufer damit zu, dass es bei einem Aufruf die Operation ausführen wird. Durch die Operation wird dabei zum einen die Syntax des Aufrufs vorgegeben, also zum Beispiel für welche Parameter Werte eines bestimmten Typs zusammen mit dem Aufruf übergeben werden müssen.</p>
+<p>Zum anderen werden dadurch auch Zusicherungen darüber gemacht, welche Resultate die Operation haben wird.</p>
+</td>
+</tr>
+</table><br><p>Wenn wir nun alle Operationen zusammenfassen, die ein Objekt unterstützt, so haben wir eine komplette Beschreibung der Funktionalität des Objekts vorliegen. Wir kennen damit also die <span class="ckursiv">Schnittstelle</span> des Objekts zur Außenwelt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Schnittstelle eines Objekts
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Die Schnittstelle eines Objekts ist die Menge der Operationen, die das Objekt unterstützt. Die Schnittstelle sagt nichts über die konkrete Realisierung der Operationen aus.</p>
+</td>
+</tr>
+</table><br><p>Wenn ein Objekt eine Operation unterstützt, so muss dieses Objekt zur Umsetzung der Operation eine <span class="ckursiv">Methode</span> besitzen. Eine Operation entspricht immer einer Methode des Objekts. Welche Methode einer Operation eines konkreten Objekts entspricht, ist eine interne Angelegenheit des Objekts. Die gleiche Operation kann bei verschiedenen Objekten unterschiedlichen Methoden entsprechen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Methoden
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Methoden von Objekten sind die konkreten Umsetzungen von Operationen. Während Operationen die Funktionalität nur abstrakt definieren, sind Methoden für die Realisierung dieser Funktionalität zuständig.</p>
+</td>
+</tr>
+</table><br><p>Die konkrete Implementierung der Methoden eines Objekts ist nur für das Objekt selbst relevant. Andere Objekte, welche die Funktionalität des Objekts verwenden &#8211; die also Operationen des Objekts nutzen &#8211;, müssen und sollen die Implementierung der Methoden nicht kennen. Getreu dem Motto: »Was ich nicht weiß, macht mich nicht heiß« &#8211; oder in diesem Fall »... macht mich nicht abhängig«.</p>
+<p><strong><em>Trennung der Schnittstelle von der Implementierung</em></strong></p>
+<p>Ein Objekt kapselt also die Implementierung der Operationen und trennt so die Schnittstelle des Objekts von der Implementierung. Die Methoden eines Objekts können mit den Daten des Objekts und mit den Parametern der Methoden arbeiten.</p>
+<p>Ein Objekt kann Methoden haben, die nur es selbst verwenden kann, nicht jede Methode muss also einer Operation entsprechen. Wir werden auf dieses Thema in Abschnitt <a href="#Rxx_ref222302832">4.2.5</a>, »<a href="#Rxx_ref222302832">Sichtbarkeit von Daten und Methoden</a>«, näher eingehen.</p>
+<p>Die meisten Objekte besitzen ihre eigenen Daten. Auch wenn zwei Objekte zu demselben Typ gehören, hat jedes der Objekte seine eigenen Daten. Eine elektrische Leitung kann zum Beispiel die Spannung 230 V haben, eine andere nur 12 V. Bei den Methoden ist es ein wenig anders, denn das Verhalten der Objekte, die zum demselben Typ (derselben Klasse) gehören, unterliegt meistens denselben Regeln. Deswegen werden die Methoden, welche die Operationen der Objekte umsetzen, in der Regel den Klassen und nicht direkt einzelnen Objekten zugeordnet (zum Thema Klassen und Klassifizierung der Objekte siehe Abschnitt <a href="#Rxx_ref222302885">4.2</a>).</p>
+<p>Da man Operationen und Methoden für ganze Klassen der Objekte und nicht für die einzelnen Objekte selbst deklariert, bietet der UML-Standard keine Möglichkeit, die Operationen und Methoden für einzelne Objekte darzustellen. Man stellt sie immer für ganze Klassen der Objekte dar.</p>
+<div class="bildbox">
+<p><a name="IDAT4SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_005.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_005.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.7    </strong>Mögliche Operationen und Methoden einer elektrischen Leitung</p>
+<p>In <a href="#Rxx_ref222300453">Abbildung 4.7</a> sehen Sie die Operationen der Klasse <span class="clisting">ElektrischeLeitung</span>. Diese können von jedem Objekt, das zu dieser Klasse gehört, also von jeder elektrischen Leitung, genutzt werden. Dabei werden die Operationen und Methoden einer ganzen Klasse von Objekten unter den Attributen (siehe Markierung ) angegeben. Wie Sie in der Abbildung an den Markierungen  und  erkennen, ist es bei den dargestellten einzelnen Objekten nicht mehr notwendig, alle Operationen und Methoden anzugeben. Welche Operationen ein Objekt unterstützt, und welche Methoden es für ihre Umsetzung verwendet, ergibt sich aus der Klassenzugehörigkeit des Objekts.</p>
+<p>Wir werden im Folgenden das aufgeführte Beispiel in der Sprache JavaScript umsetzen.</p>
+<p><strong><em>Warum Beispiele in JavaScript?</em></strong></p>
+<p>JavaScript ist eine einfache objektorientierte Skriptsprache [In Anhang A.1 finden Sie eine kurze Übersicht über die objektorientierten Eigenschaften von JavaScript.
+] . Sie wird meistens verwendet, um Internetseiten dynamisch zu gestalten, kann aber auch als Skriptsprache unter Windows verwendet werden. Allerdings unterstützt JavaScript nicht alle Konzepte der Objektorientierung. Datenkapselung wird in JavaScript nicht ausreichend unterstützt, da auf die Daten von Objekten direkt zugegriffen werden kann.</p>
+<p>Aber JavaScript ist auch eine objektorientierte Programmiersprache, die ohne Klassen auskommt. Wir verwenden sie deshalb an dieser Stelle als Beispiel, um zu zeigen, dass ein Arbeiten mit Objekten auch möglich ist, ohne diese Objekte bereits konkreten Klassen zuzuordnen.</p>
+<p>In <a href="#Rxx_ref222296366">Listing 4.1</a> sind die Methoden aus Abbildung 4.7 für ein Objekt <span class="clisting">elektrisch</span> umgesetzt.</p>
+<div class="listing"><pre class="prettyprint">if (typeof(window) != "undefined") {  
+    echo = window.alert; 
+} else if (typeof(WScript) != "undefined") { 
+    echo = function(text) { 
+        Wscript.Echo(text); 
+    } 
+} 
+elektrisch = new Object;  
+elektrisch.spannung = 230.0;  
+elektrisch.widerstand = 1000.0; 
+elektrisch.spannungLesen = function() {  
+    return this.spannung; 
+} 
+elektrisch.spannungSetzen = function(spannung) {  
+    this.spannung = spannung; 
+} 
+elektrisch.widerstandLesen = function() {  
+    return this.widerstand; 
+} 
+elektrisch.widerstandSetzen = function(widerstand) {  
+    if (widerstand &gt; 0) this.widerstand = widerstand; 
+} 
+elektrisch.stromLesen = function() { 
+    return this.spannungLesen() / this.widerstandLesen();  
+} 
+elektrisch.stromSetzen = function(strom) { 
+    if (strom &gt; 0) { 
+        this.widerstand = this.spannung / strom;  
+    } 
+} 
+elektrisch.leistungBerechnen = function() { 
+    return this.spannungLesen() * this.stromLesen();  
+} 
+elektrisch.aus = function() {  
+    this.spannung = 0; 
+    echo("Die elektrische Leitung wurde abgeklemmt"); 
+} 
+elektrisch.stromSetzen(1); 
+echo("Strom: " + elektrisch.stromLesen() + "A"); 
+echo("Leistung: " + elektrisch.leistungBerechnen() + "W"); 
+echo("Widerstand: " + elektrisch.widerstandLesen() + "Ohm"); 
+elektrisch.aus();</pre></div>
+<p class="tabunter"><strong>Listing 4.1    </strong>Umsetzung und Verwendung einer elektrischen Leitung </p>
+<p><strong><em>JavaScript kommt ohne Klassen aus.</em></strong></p>
+<p>Das Beispiel in <a href="#Rxx_ref222296366">Listing 4.1</a> zeigt ein Objekt, das eine Reihe von Operationen anbietet.</p>
+<p>In der mit  markierten Zeile haben wir unser Objekt <span class="clisting">elektrisch</span> erstellt, in den mit  markierten Zeilen wurden dem Objekt Werte für zwei Datenelemente zugeordnet. Das Objekt speichert in dieser Implementierung den Wert für die Spannung und den Widerstand. Der Zugriff auf diese Eigenschaften des Objekts wird durch die Methoden <span class="clisting">spannungLesen, spannungSetzen, widerstandLesen</span> und <span class="clisting">widerstandSetzen</span> bereitgestellt . Der lesende Zugriff auf die Eigenschaft <span class="clisting">Stromstärke</span> wird durch die Methode <span class="clisting">stromLesen</span> ermöglicht. Wie man sieht, wird das Ohm´sche Gesetz verwendet, um die Stromstärke  zu berechnen.</p>
+<p>Die Leistung wird in der Methode <span class="clisting">leistungBerechnen</span>  berechnet. In der Methode <span class="clisting">stromSetzen</span> gehen wir davon aus, dass die Spannung gleich bleibt, und ändern den Widerstand der Leitung, den wir nach unseren Gleichungen berechnen .</p>
+<p>Anschließend geben wir aus, wie viel Strom durch unsere Leitung bei 230 V fließt, wie groß der elektrische Widerstand ist und wie viel Leistung die Leitung verbraucht. Zum Schluss klemmen wir die Beispielleitung von der Batterie ab , um Energie zu sparen.</p>
+<p>Falls Sie sich gefragt haben, was die Anfangszeilen des Skripts im mit  markierten Abschnitt bedeuten: Je nachdem, in welchem Kontext es verwendet wird, stehen dem Skript unterschiedliche Objekte zur Verfügung. Die Funktion <span class="clisting">echo</span> kann sowohl in einer DHTML-Seite als auch beim Ausführen des Skripts über den Windows Scripting Host verwendet werden.</p>
+<p>Im folgenden Abschnitt sehen Sie nun, welche Rolle Operationen spielen, wenn die Verantwortlichkeit eines Objekts festgelegt wird.</p><a id="mj41885f11bf43f1afc60b76e0afbe7b6c" name="mj41885f11bf43f1afc60b76e0afbe7b6c"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">4.1.3 Kontrakte: Ein Objekt trägt Verantwortung  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Sie haben gesehen, welche Rolle Operationen und Methoden spielen, wenn die Schnittstelle eines Objekts festgelegt wird. Wir werden in diesem Abschnitt kurz darauf eingehen, wie denn für eine solche Operation sichergestellt werden kann, dass Objekte diese auch sinnvoll umsetzen.</p>
+<p><strong><em>Methoden und Bedingungen</em></strong></p>
+<p>Intuitiv ist klar, dass ein Objekt, das eine Operation unterstützt, diese auch inhaltlich sinnvoll durchführen muss. Das heißt also, die Methode, welche die Operation umsetzt, muss bestimmten Bedingungen genügen, sonst würden wir nicht davon sprechen, dass die Operation wirklich unterstützt wird.</p>
+<p>Betrachten wir ein Beispiel dafür. Wenn ein Objekt eine Operation <span class="clisting">ueberweisen(Ausgangskonto, Zielkonto, Betrag)</span> anbietet, die zwei Kontonummern und einen Betrag als Werte übergeben bekommt, erwarten wir, dass der Betrag vom ersten Konto auf das zweite umgebucht wird. Wenn wider Erwarten in solch einem Fall der Betrag von beiden Konten abgebucht würde, könnten Sie wohl kaum von einer korrekten Unterstützung der Operation durch das Objekt sprechen.</p>
+<p>Wie können Sie nun aber festlegen und prüfen, ob die Umsetzung einer Operation das einhält, was sie verspricht? Helfen kann hier zumindest eine grundlegende Übereinkunft, dass Aufrufer und Aufgerufener einen Vertrag, einen sogenannten <span class="ckursiv">Kontrakt</span> eingehen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Kontrakt (Vertrag) bezüglich einer Operation
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Objekte gehen einen Kontrakt ein, der die Rahmenbedingungen beim Aufruf einer Operation regelt. </p>
+<p>Eine Operation hat <span class="ckursiv">Vorbedingungen</span>, für deren Einhaltung der Aufrufer zu sorgen hat. Außerdem hat die Operation <span class="ckursiv">Nachbedingungen</span>, für deren Einhaltung das aufgerufene Objekt verantwortlich ist. Zusätzlich können für ein Objekt <span class="ckursiv">Invarianten</span> definiert werden. Diese sind unveränderliche Bedingungen, die für das Objekt immer gelten sollen. </p>
+Mehr zu Vorbedingungen, Nachbedingungen und Invarianten finden Sie in Abschnitt <a href="#Rxx_ref222302915">4.2.2</a>.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Bedeutung von Kontrakten</em></strong></p>
+<p>Diese Definition sieht zunächst einmal so aus, als würde sie nur wiederholen, was für gute Bibliotheken mit klar definierten Anwendungsschnittstellen ebenfalls gilt: Es muss gut dokumentiert werden, was ein Aufrufer an Werten zu übergeben hat und was eine Anwendungsschnittstelle daraufhin an Leistung anbietet. </p>
+<p>Tatsächlich ist der Abschluss von Verträgen zwischen einem Aufrufer und einem Aufgerufenen nichts, was nur mit objektorientierter Programmierung möglich wäre. Der Kontrakt wird hier aber sehr wichtig, weil wir über die Interna von Objekten bei einem Aufruf nichts wissen. Das Einzige, auf das wir uns verlassen können, sind die Zusicherungen, die ein Objekt für seine Operationen und seine Eigenschaften macht.</p>
+<p>Werfen Sie noch einmal einen Blick auf das Beispiel unserer elektrischen Leitung.</p>
+<div class="bildbox">
+<p><a name="IDAZCTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_006.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_006.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.8    </strong>Eigenschaften von elektrischen Leitungen</p>
+<p>Für das Objekt, das die elektrische Leitung repräsentiert, gelten die fachlichen Anforderungen, dass die Eigenschaften immer die aufgeführten Gleichungen erfüllen und dass der Widerstand und die Leistung immer positiv sein werden. In <a href="#Rxx_ref222300475">Abbildung 4.8</a> sind die entsprechenden Eigenschaften mit Bezug zur physikalischen Beschreibung von idealen Leitungen dargestellt.</p>
+<p>Ein Objekt muss sicherstellen, dass die aufgeführten Gleichungen gelten. Dies ist Bestandteil des Kontrakts, den das Objekt mit anderen Objekten schließt.</p>
+<p>In Abschnitt 4.2.2 werden wir genauer auf Kontrakte eingehen und diese dann auch für Klassen von Objekten formulieren. Dort werden wir auch Vorbedingungen, Nachbedingungen und Invarianten als Bestandteile eines Kontrakts beschreiben.</p><a id="mj4bba9c78108c5ebe6a1e25d09da23b23" name="mj4bba9c78108c5ebe6a1e25d09da23b23"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">4.1.4 Die Identität von Objekten  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Ein Objekt hat immer seine eigene Identität. Mehrere Objekte können die gleichen Daten besitzen (also gleich sein), und dennoch können sie unterschieden werden, weil jedes der Objekte eine eigene, unterscheidbare Identität besitzt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Identität von Objekten
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Objekte haben immer eine eigene Identität. Zwei Objekte können dadurch immer unterschieden werden, auch wenn sie zu einem Zeitpunkt exakt den gleichen Zustand aufweisen. Das Kriterium, nach dem Objekte grundsätzlich unterschieden werden können, wird Identitätskriterium genannt. </p>
+<p>In vielen Programmiersprachen ist die Adresse des Objekts im Speicherbereich das generell verfügbare Identitätskriterium. In objektorientierten Anwendungen können auch andere Kriterien verwendet werden, wie zum Beispiel die Übereinstimmung einer eindeutigen Kennung.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Unterscheidung Objekte und Werte</em></strong></p>
+<p>Der Besitz der Identität ist etwas, was Objekte von Werten, also zum Beispiel Zahlen oder Datumsangaben, unterscheidet. Bei Werten stellt sich die Frage nach der Identität nicht, interessant ist nur die Gleichheit. Wenn Sie die Zahl 6 durch 2 teilen, erhalten Sie eine 3. Dabei ist es irrelevant, »welche Hälfte« von der 6 Sie als Ergebnis bekommen haben, denn die Zahl 3 ist ein Wert, der keine Identität besitzt. Alle Zahlen 3 sind gleich und austauschbar.</p>
+<p>Wenn Sie allerdings von sechs Dateien drei löschen, können Sie durchaus sagen, welche der sechs Dateien gelöscht worden sind &#8211; und das können Sie auch dann, wenn alle sechs Dateien den gleichen Inhalt haben. Sie können z. B. durch ihre Position im Dateisystem unterschieden werden.</p>
+<p><strong><em>JavaScript  
+und Identität</em></strong></p>
+<p>Betrachten Sie die Frage der Identität noch einmal anhand unseres JavaScript-Beispiels mit der elektrischen Leitung. Wir verwenden diesmal mehr als eine elektrische Leitung. In <a href="#Rxx_ref222301856">Listing 4.2</a> ist die Umsetzung in JavaScript gezeigt, in <a href="#Rxx_ref222300482">Abbildung 4.9</a> findet sich die Darstellung der resultierenden Referenzen.</p>
+<div class="listing"><pre class="prettyprint">elektrischeLeitung = new Object; 
+elektrischeLeitung.spannungSetzen(230.0);  
+elektrischeLeitung.widerstandSetzen(1000.0);  
+ 
+dieselbeLeitung = elektrischeLeitung;  
+andereLeitung = new Object; 
+andereLeitung.spannungSetzen(230.0);  
+andereLeitung.widerstandSetzen(1000.0); 
+dieselbeLeitung.spannungSetzen(110.0);  
+alert(elektrischeLeitung.spannungLesen());</pre></div>
+<p class="tabunter"><strong>Listing 4.2    </strong>Mehrere Referenzen auf dasselbe Objekt</p>
+<div class="bildbox">
+<p><a name="IDABFTQ"></a><a onClick="OpenWin('bilder/04_09.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_09.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.9    </strong>Mehrere Variablen referenzieren dasselbe Objekt.</p>
+<p>In den mit  markierten Zeilen werden dem Objekt <span class="clisting">elektrischeLeitung</span> seine Werte zugeordnet. Dabei ist der Wert 230.0 einfach ein Wert, der sich in nichts von dem Wert 230.0 unterscheiden kann, der in Zeile  erneut verwendet wird. Dagegen hat das Objekt <span class="clisting">elektrischeLeitung</span> eine Identität und kann deshalb auch auf verschiedene Weise referenziert werden. Die beiden Variablen <span class="clisting">elektrischeLeitung</span> und <span class="clisting">dieselbeLeitung</span> verweisen aufgrund der Zuweisung in Zeile  auf <span class="ckursiv">dasselbe Objekt</span>, also eine elektrische Leitung, wie auch aus Abbildung 4.9 deutlich wird. Wenn wir nun für <span class="clisting">dieselbeLeitung</span> die Spannung heruntersetzen (Zeile ), wird auch die Abfrage der Spannung für <span class="clisting">elektrischeLeitung</span> den geänderten Wert liefern.</p>
+<p>In objektorientierten Sprachen werden häufig auch Werte als Objekte abgebildet &#8211; das heißt, Datenstrukturen, die keine fachliche Identität haben, werden als Objekte gehandhabt und bekommen technisch bedingt eine Identität. Wenn Sie also Objekte vergleichen möchten, sollten Sie immer darauf achten, ob Sie die Gleichheit, also den Wert, oder die Identität vergleichen möchten.</p>
+<p>Mit der Frage der Identität von Objekten befassen wir uns ausführlicher in Abschnitt <a href="#Rxx_ref222296479">4.4.4</a>.</p><a id="mj62d09a1cbb82ce7738613ddee041cc52" name="mj62d09a1cbb82ce7738613ddee041cc52"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">4.1.5 Objekte haben Beziehungen  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Ein Objekt steht in der Anwendung nicht allein, sondern arbeitet mit anderen Objekten zusammen. Dabei stellt es den anderen Objekten seine eigene Funktionalität zur Verfügung und nutzt die Funktionalität anderer Objekte. Ein Objekt hat also Beziehungen zu anderen Objekten, die selbst eine eigene Identität haben.</p>
+<p>Bei der Beschreibung der Beziehung können wir der Beziehung einen <span class="ckursiv">Namen</span> geben, oder wir können zusätzlich oder stattdessen die <span class="ckursiv">Rollen</span> der Objekte in der Beziehung benennen. <a href="#Rxx_ref222300501">Abbildung 4.10</a> zeigt einige wohl bekannte Objekte mit ihren Beziehungen.</p>
+<div class="bildbox">
+<p><a name="IDARGTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_007.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_007.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.10    </strong>Beziehungen zwischen den Objekten der antiken Mythologie</p>
+<p>Wir werden uns die verschiedenen Beziehungen zwischen Objekten in Abschnitt <a href="#Rxx_ref222302966">4.3</a> genauer anschauen. Zunächst werden wir uns aber mit einem weiteren grundlegenden Konzept der Objektorientierung beschäftigen: mit den Klassen.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_04_001.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="4 Die Struktur objektorientierter Software"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_03_007.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_04_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

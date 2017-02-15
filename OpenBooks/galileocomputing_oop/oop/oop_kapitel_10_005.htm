@@ -1,0 +1,882 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 10.5 Ein Container für Dienste in PHP</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 10.5 Ein Container für Dienste in PHP">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 10.5 Ein Container für Dienste in PHP">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_10_004.htm">
+<link rel="next" href="oop_kapitel_10_006.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_10_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_006.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec" class="navnav">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_001.htm#mj650ecca145548f0d632594fe8ffc0eb9" class="navnav">10.1 OOP in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_001.htm#mj3cddea9177147d48be4a19073305ce9f" class="navnav">10.1.1 Klassen in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_001.htm#mj64ce19731869346193bea822aac6177b" class="navnav">10.1.2 Dynamische Natur von PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_002.htm#mj777eb917fb36b59bdc046c5b15330927" class="navnav">10.2 Das entwickelte Framework &#8211; Trennung der Anliegen &#8211; Model View Controller</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_002.htm#mj1347057e4ca234e143f84ac3d48c2143" class="navnav">10.2.1 Trennung der Daten von der Darstellung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_003.htm#mj143f7b7967800fbc9e4212f3732fec4a" class="navnav">10.3 Ein Dienst in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_003.htm#mjc22ab53407bbed20d06449ea4ab6bf73" class="navnav">10.3.1 Datenmodell</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_003.htm#mjddeded4df39daa61407f491d183939f0" class="navnav">10.3.2 Dienste &#8211; Version 1</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_004.htm#mj8db7d030dd0fecb5d5f38c3b3c5fff3f" class="navnav">10.4 Ein Klient in Ajax</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_004.htm#mj6fd9781fec12ec813977e6c6f02e6378" class="navnav">10.4.1 Bereitstellung der Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_004.htm#mj6615fa4f2574779912a147f3ee2962d5" class="navnav">10.4.2 Darstellung der Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj84d41f973bb38a7ebb9ae77e397862dc" class="navh">10.5 Ein Container für Dienste in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj444254068bed671d4c406143e181a811" class="navh">10.5.1 Dispatcher</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf1fba7eb918b8d0e1decb950d5f3e98d" class="navh">10.5.2 Fabrik</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj8fd79f59364e2c74a3e078afd836f9d0" class="navh">10.5.3 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj46b9937615aaf41cc11a90277e35bb3c" class="navh">10.5.4 Sicherheit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_006.htm#mj1e0a9cd22e5214a5bb797ebb58f113cc" class="navnav">10.6 Ein Klient ohne JavaScript</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_007.htm#mj2c164a142d4a479519051aa6ee0722f9" class="navnav">10.7 Was noch übrigbleibt</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj84d41f973bb38a7ebb9ae77e397862dc" name="mj84d41f973bb38a7ebb9ae77e397862dc"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">10.5 Ein Container für Dienste in PHP  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Wir haben unseren ersten »Webdienst« in der Datei <span class="ckursiv">kontakte.php</span> implementiert. Manche Teile des Quelltextes befassen sich mit der Verwaltung der Kontakte, andere kümmern sich um die Verbindung mit der Datenbank, um die Authentifizierung des Benutzers oder um das Parsen der HTTP-Abfragen und die Kodierung der Daten im JSON-Format.</p>
+<p>Bis auf die Auflistung der Kontakte in der Methode <span class="clisting">auflisten</span> sind die aufgelisteten Anliegen nicht für unseren Dienst <span class="clisting">Kontakte</span> spezifisch. Wenn wir sie von unserem ersten Dienst lösen, können wir sie bei anderen Diensten wiederverwenden.</p>
+<p>Demonstrieren wir das an der zweiten Operation unseres Dienstes <span class="clisting">Kontakte</span>: an der Operation <span class="clisting">speichern</span>. Die Operation <span class="clisting">speichern</span> wird die Änderungen, die wir im Browser vornehmen, in der Datenbank speichern. Sie wird (zuerst) zwei Parameter haben: den Parameter <span class="clisting">bearbeitet</span>, der ein assoziatives Array von geänderten Einträgen enthalten wird, und den Parameter <span class="clisting">neu</span>, der ein Array von neuen Werten enthalten wird. So wird <span class="clisting">bearbeitet[etg_id]</span> den neuen Wert des Eintrages mit der Id <span class="clisting">etg_id</span> enthalten, und <span class="clisting">neu[knt_id][ett_id]</span> die Werte der neuen Einträge vom Kontakttyp mit der Id <span class="clisting">ett_id</span> für den Kontakt mit der Id <span class="clisting">knt_id</span>. Dem aufmerksamen Leser wird nicht entgangen sein, dass wir die INPUT-Felder in Listing 10.7 entsprechend genannt haben.</p>
+<p>Die Methode <span class="clisting">speichern</span> wird die bearbeiteten Einträge aktualisieren, oder, wenn der Wert leer ist, löschen und die neuen Einträge einfügen. Da die neuen Einträge vor dem Einfügen in die Datenbank keine eigenen Ids haben, müssen wir dem Klienten die neuerzeugten Ids zurückgeben &#8211; sonst könnte er die neuen Einträge nicht mehr aktualisieren.</p>
+<p>Wir müssen noch darauf achten, dass wir ausschließlich die Kontakte des angemeldeten Benutzers bearbeiten und mehrwertige Einträge dort nicht zulassen, wo sie eindeutig sein müssen.</p>
+<p>Hier unsere Methode <span class="clisting">speichern</span>:</p>
+<div class="listing"><pre class="prettyprint">class Kontakte { 
+... 
+public function speichern($bearbeitet = array(), $neu = array()) { 
+    $db = self::db(); 
+    try { 
+        // Geänderte Einträge speichern 
+        $stmt = $db-&gt;prepare(" 
+            UPDATE eintrag e  
+            INNER JOIN kontakt k ON k.knt_id = e.knt_id 
+            SET e.etg_wert = ?  
+            WHERE etg_id = ? AND k.bnz_id = ? 
+        "); 
+        if (!$stmt)  
+             throw new SQLException($db-&gt;error, $db-&gt;errno); 
+        $benutzerid = $this-&gt;benutzerId(); 
+        $stmt-&gt;bind_param("sii",  
+               $wert, $eintragid, $benutzerid);         
+        foreach($bearbeitet as $eintragid =&gt; $wert) { 
+            if (trim($wert)) $stmt-&gt;execute(); 
+        } 
+        $stmt-&gt;close(); 
+         
+        // Leere Einträge löschen 
+        $stmt = $db-&gt;prepare(" 
+            DELETE FROM eintrag e  
+            USING eintrag e  
+            INNER JOIN kontakt k ON e.knt_id = k.knt_id 
+            WHERE e.etg_id = ? 
+            AND k.bnz_id = ? 
+        "); 
+        if (!$stmt)  
+            throw new SQLException($db-&gt;error, $db-&gt;errno); 
+        $benutzerid = $this-&gt;benutzerId(); 
+        $stmt-&gt;bind_param("ii", $eintragid, $benutzerid); 
+         
+        foreach($bearbeitet as $eintragid =&gt; $wert) { 
+            if (!trim($wert)) $stmt-&gt;execute(); 
+        } 
+        $stmt-&gt;close(); 
+         
+        // Neue Einträge einfügen 
+        $stmt = $db-&gt;prepare(" 
+            INSERT INTO eintrag (knt_id, ett_id, etg_wert) 
+            SELECT ?, ?, ? 
+            FROM kontakt k 
+            WHERE k.knt_id = ? 
+            AND k.bnz_id = ? 
+            AND NOT EXISTS ( 
+              SELECT * FROM eintrag e  
+              INNER JOIN eintragstyp t ON e.ett_id = t.ett_id  
+              WHERE e.knt_id = ? AND e.ett_id = ?  
+                    AND t.ett_eindeutig) 
+        "); 
+        if (!$stmt)  
+            throw new SQLException($db-&gt;error, $db-&gt;errno);         
+        $stmt-&gt;bind_param("iisiiii",  
+           $kontaktid, $eintragstypid, $wert, 
+           $kontaktid, $benutzerid, $kontaktid, $eintragstypid); 
+        $eingefuegt = array(); 
+        foreach ($neu as $kontaktid =&gt; $eintraege) { 
+            foreach ($eintraege as $eintragstypid =&gt; $werte) { 
+                foreach ($werte as $wertid =&gt; $wert) { 
+                    if (trim($wert)) { 
+                        $stmt-&gt;execute(); 
+                        if ($stmt-&gt;affected_rows &gt; 0) {                               
+                           $eingefuegt[$kontaktid] 
+                              [$eintragstypid][$wertid]  
+                              = $stmt-&gt;insert_id; 
+                        } 
+                    } 
+                } 
+            } 
+        } 
+        $stmt-&gt;close(); 
+        $db-&gt;close(); 
+        return $eingefuegt; 
+         
+    } catch (Exception $e) { 
+        if ($stmt) $stmt-&gt;close(); 
+        if ($db) $db-&gt;close(); 
+        throw $e; 
+    } 
+}  
+... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 10.8    </strong>Die Funktion »speichern« in »kontakte.php«</p>
+<p>Nun haben wir unsere neue Methode, doch wie ruft sie der Klient auf? Erinnern Sie sich noch an das Listing 10.4, in dem wir HTTP-Parameter an die Methode <span class="clisting">auflisten</span> übergaben, um dann ihr Ergebnis im JSON-Format auszugeben?</p>
+<p>In den folgenden beiden Abschnitten 10.5.1 und 10.5.2 werden wir ein Verfahren vorstellen, das uns in gleicher Weise die Einbindung der Methoden zum Auflisten und zum Speichern erlaubt.</p><a id="mj444254068bed671d4c406143e181a811" name="mj444254068bed671d4c406143e181a811"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">10.5.1 Dispatcher  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Zurzeit bewirkt der Aufruf der PHP-Seite <span class="ckursiv">kontakte.php</span> den Aufruf der Methode <span class="clisting">auflisten</span>. Wir könnten eine andere PHP-Seite programmieren, die die Methode <span class="clisting">speichern</span> aufruft. Allerdings wäre das nicht besonders elegant, wenn wir für jede Methode jedes Dienstes eine neue PHP-Datei erstellen müssten.</p>
+<p>Geschickter ist es, den Namen der Methode in einem HTTP-Parameter zu übergeben und diesen Parameter in einem <span class="ckursiv">Dispatcher</span> zu verwenden, um zu entscheiden, welche Methode aufgerufen wird.</p>
+<p>Der Dispatcher könnte vereinfacht etwa so aussehen:</p>
+<div class="listing"><pre class="prettyprint">$operation = $_GET['$operation']; 
+if ($operation == 'auflisten') { 
+  ... 
+  $ergebnis = $kontakte-&gt;auflisten($kontaktid); 
+} else if ($operation == 'speichern') { 
+  ... 
+  $ergebnis = $kontakte-&gt;speichern($bearbeitet, $neu); 
+} 
+echo json_encode($ergebnis);</pre></div>
+<p>Wenn wir dies tun, dürfen wir nicht vergessen, den Ajax-Aufruf in <span class="ckursiv">kontakte.js</span> zu ändern:</p>
+<div class="listing"><pre class="prettyprint"><span class="clisting">$.getJSON( 
+    'kontakte.php?$operation=auflisten', 
+    kontakteAuflisten);</span></pre></div>
+<p><strong><em>Wiederholungen vermeiden!</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wir haben jetzt zwar die Notwendigkeit, für jede Methode eine neue PHP-Datei erstellen zu müssen, aber so richtig elegant ist diese Lösung auch nicht. Wir haben einen Dispatcher, den wir für jede neue Methode des Dienstes anpassen müssen. So müssen wir die Tatsache, dass unser Dienst eine bestimmte Methode hat, an mehreren Stellen deklarieren: in der Klasse, die den Dienst implementiert, und dann noch in dem Dispatcher. Das geht doch gegen das Prinzip, dass man Wiederholungen vermeiden soll.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> In der Tat. So sollten wir den Dispatcher nicht lassen. Denn PHP bietet uns eine Möglichkeit, mit der wir ihn viel eleganter implementieren können. Wir können mit Reflexion die aufzurufende Methode finden, ihre Parameter erforschen und sie dann aufrufen. Den Quelltext des Dispatchers brauchen wir dann nicht an jede neue Methode anzupassen.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Na, dann aber los!</span><p><strong><em>Reflexion in PHP</em></strong></p>
+<p>Hier der Dispatcher, der die Methode über Reflexion aufruft:</p>
+<div class="listing"><pre class="prettyprint">$kontakte = new Kontakte(); 
+$operation = $_GET['$operation']; 
+ 
+$refDienst = new ReflectionObject($kontakte);  
+$refMethode = $refDienst-&gt;getMethod($operation); 
+$refParameter = $refMethode-&gt;getParameters(); 
+ 
+$aufrufParameter = Array(); 
+foreach($refParameter as $p =&gt; $param) { 
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'  
+      &amp;&amp; array_key_exists($param-&gt;getName(), $_POST)) { 
+        $wert = $_POST[$param-&gt;getName()]; 
+    } else if (array_key_exists($param-&gt;getName(), $_GET)) { 
+        $wert = $_GET[$param-&gt;getName()]; 
+    } else if ($param-&gt;isDefaultValueAvailable()) {  
+        $wert = $param-&gt;getDefaultValue();  
+    } else { 
+        $wert = null; 
+    } 
+    $aufrufParameter[$p] = $wert; 
+} 
+$ergebnis =  
+    $refMethode-&gt;invokeArgs($kontakte, $aufrufParameter);  
+ 
+if ($ergebnis !== null) { 
+    header('Content-type: text/plain; charset=UTF-8'); 
+    echo json_encode($ergebnis); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 10.9    </strong>Ein Dispatcher, der Reflexion verwendet </p>
+<p>Ab Zeile  holen wir uns das Reflexionsobjekt [Den Begriff »Reflexion« haben wir in Abschnitt 9.1.2, »Lösungsansätze zur Trennung von Anliegen«, eingeführt. Reflexion bezieht sich grundsätzlich darauf, dass wir auf Informationen zugreifen, die zur Struktur des Programms selber gehören. In diesem Fall greifen wir auf die Information zu, welche Methoden ein Objekt zur Verfügung stellt und welche Parameter diese Methoden haben.
+]  zu unserem Dienst, und zwar zu der Methode, die wir aufrufen möchten, und zu ihrer Parameterliste. Dann füllen wir die Liste <span class="clisting">$aufrufParameter</span> mit den Werten aus dem HTTP-Aufruf. Wenn kein entsprechender HTTP-Parameter übergeben worden ist, verwenden wir in Zeile , falls angegeben, den Standardwert des Parameters. Dies wäre zum Beispiel bei der Methode <span class="clisting">auflisten </span>für den Parameter <span class="clisting">$kontaktid </span>die <span class="clisting">&#8211;1</span>. Falls wir weder einen HTTP-Parameter noch den Standardwert finden, verwenden wir <span class="clisting">NULL</span> für den Wert des Parameters.</p>
+<p>Schließlich rufen wir die Methode in Zeile  auf und geben das Ergebnis im JSON-Format zurück.</p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Einen Makel hat der Dispatcher allerdings noch immer. Er verwendet stets ein Exemplar der Klasse <span class="clistingk">Kontakte</span> als Dienst. So müssten wir für jeden Dienst einen eigenen Dispatcher bauen.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Stimmt. Lass uns also den Dispatcher so ändern, dass der Name des Dienstes auch als ein HTTP-Parameter übergeben wird. So können wir den Dispatcher vollständig von einem konkreten Dienst abkoppeln.</span><a id="mjf1fba7eb918b8d0e1decb950d5f3e98d" name="mjf1fba7eb918b8d0e1decb950d5f3e98d"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">10.5.2 Fabrik  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Da wir den Dispatcher von der Klasse <span class="clisting">Kontakte</span> trennen wollen, ist es sinnvoll, ihn auch in eine eigene PHP-Datei auszulagern. Legen wir also die Datei <span class="ckursiv">dispatcher.php</span> an:</p>
+<div class="listing"><pre class="prettyprint">class Dispatcher { 
+ 
+  public static function httpRequestBehandeln() {  
+      $dienstName = $_GET['$dienst']; 
+      $operationsName = $_GET['$operation'];         
+      $dienst = self::dienstErstellen($dienstName); 
+      $ergebnis =  
+          self::methodeAufrufen($dienst, $operationsName);                 
+      if ($ergebnis !== NULL) { 
+          header('Content-type: text/plain; charset=UTF-8'); 
+          echo json_encode($ergebnis); 
+      } 
+  } 
+ 
+  private static function dienstErstellen($dienstName) {  
+      require_once("dienst.$dienstName.php"); 
+      $refDienst = new ReflectionClass($dienstName); 
+      return $refDienst-&gt;newInstance();         
+  } 
+ 
+  private static function methodeAufrufen($dienst, $operation) { 
+      ... 
+  } 
+} 
+ 
+Dispatcher::httpRequestBehandeln();</pre></div>
+<p class="tabunter"><strong>Listing 10.10    </strong>Die Datei »dispatcher.php«</p>
+<p><strong><em>Fabrikmethode</em></strong></p>
+<p>Der Dispatcher bietet eine einzige öffentliche Methode, <span class="clisting">httpRequestBehandeln</span> , in der wir mit der <span class="ckursiv">Fabrikmethode</span> <span class="clisting">dienstErstellen</span>  ein Exemplar des benötigten Dienstes erstellen und die gewünschte Methode aufrufen.</p>
+<p>In der Fabrikmethode <span class="clisting">dienstErstellen</span> gehen wir davon aus, dass die Klasse des Dienstes in einer Datei mit dem Namen <span class="ckursiv">dienst.NameDesDienstes.php</span> programmiert wurde. Diese Namenskonvention ist nur eine kleine Sicherheitsmaßnahme, um zu verhindern, dass jede öffentliche Methode jeder Klasse unserer Anwendung als ein Dienst über den Dispatcher aufgerufen werden kann.</p>
+<p>Selbstverständlich müssen wir jetzt die Datei <span class="ckursiv">kontakte.php</span> in <span class="ckursiv">dienst.Kontakte.php</span> umbenennen und den Ajax-Aufruf in <span class="ckursiv">kontakte.js</span> anpassen.</p><a id="mj8fd79f59364e2c74a3e078afd836f9d0" name="mj8fd79f59364e2c74a3e078afd836f9d0"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">10.5.3 Dependency Injection  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Jetzt haben wir also die Infrastruktur, die es uns ermöglicht, PHP-Dienste einfach zu schreiben. Dabei brauchen wir uns keine Gedanken mehr über die Übertragung der Parameter und der Ergebnisse zu machen, denn das macht ja der Dispatcher.</span><span class="ckursiv">Lass uns jetzt den Dienst <span class="clistingk">Kontakte</span> fertigschreiben, um die Methode <span class="clistingk">benutzerId</span> richtig zu implementieren.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Gute Idee! Wie wollen wir das machen?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Lass uns einen neuen Dienst implementieren, es geht jetzt so einfach. Der Dienst <span class="clistingk">Sicherheit</span> wird eine Methode <span class="clistingk">einloggen</span> haben, mit der sich der Benutzer anmelden kann. Seine Daten können dann in der Websession gespeichert werden, und die Methode <span class="clistingk">benutzerId</span> der Klasse <span class="clistingk">Kontakte</span> könnte die Daten aus der Session einfach verwenden.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Gute Idee! Allerdings würde der neue Dienst auch einen Zugriff auf die Datenbank brauchen. Der ist aber zurzeit in der Klasse <span class="clistingk">Kontakte</span> implementiert. Ich möchte den Quelltext auf keinen Fall kopieren. Wir sollten ihn in eine Oberklasse für alle Dienste verschieben, um ihn in allen Diensten verwenden zu können.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wirklich in allen Diensten? Was ist, wenn bestimmte Dienste nicht auf die Datenbank zugreifen müssen? Was, wenn bestimmte Dienste auf eine andere Datenbank zugreifen möchten? Ich finde, dass die Oberklasse nicht der ideale Platz für die Erstellung der Datenbankverbindung ist.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Du hast recht. Zum Glück haben wir noch eine andere Stelle, an der wir die Datenbankverbindung den Diensten, die sie brauchen, zur Verfügung stellen können. Wir haben den Dispatcher. Er kann die Klasse des Dienstes untersuchen und wenn dieser eine Datenbankverbindung braucht, ihm eine bereitstellen.</span><p><strong><em>Dependency Injection</em></strong></p>
+<p>Die in der Diskussion beschriebene Technik, haben wir unter dem Namen <span class="ckursiv">Dependency Injection</span> bereits in Abschnitt 7.2.7 vorgestellt. Wenn wir sie im Dispatcher umsetzen, werden unsere Dienste nicht mehr die Datenbankverbindung selbst erstellen müssen. Sie werden nur deklarieren müssen, dass sie eine Datenbankverbindung benötigen, und der Dispatcher wird ihnen eine zur Verfügung stellen. Unser Dispatcher wird so langsam zu einem Container für die Dienste.</p>
+<p>Grundsätzlich haben wir zwei Möglichkeiten, wie wir hier die Dependency Injection implementieren können. Wir können dem Dienst die Datenbankverbindung als einen Parameter des Konstruktors übergeben, oder wir übergeben sie dem bereits erstellen Exemplar des Dienstes über eine Setter-Methode. [Man könnte sie sogar als eine öffentliche Variable des Dienstes setzen. Öffentliche Objektvariablen verursachen aber auch in PHP einen Quelltextgeruch, den nicht jeder mag.
+] </p>
+<p>Beide Vorgehensweisen haben ihre Vor- und Nachteile. Die Konstruktor-Variante kommuniziert sehr deutlich, dass der Dienst die eingefügte Ressource benötigt. Wenn die Ressource im Laufe der Lebenszeit des Dienstes nicht ausgetauscht werden darf, ist es auch vorteilhaft, sie im Konstruktor zu übergeben, denn ein Konstruktor kann für ein Objekt nur einmal aufgerufen werden.</p>
+<p>Bei der Variante mit der Setter-Methode können wir die Ressource bei einem Dienst zwischendurch ändern. So kann der Container dasselbe Exemplar eines Dienstes zu unterschiedlichen Zeiten in unterschiedlichen Kontexten verwenden.</p>
+<p>Wenn die Übergabe und eventuelle spätere Verwaltung der Ressource beim Empfänger komplexer ist und sich nicht in einem Schritt bewerkstelligen lässt, verwendet man oft auch die dritte Variante der Dependency Injection: Bei dieser implementiert das empfangende Objekt eine definierte Schnittstelle, in der die Operationen für die Übergabe und die Verwaltung der Ressource beim Empfänger beschrieben werden.</p>
+<p>In unserer Anwendung werden wir nur mit einer Datenbank arbeiten und daher die zugewiesene Datenbankverbindung nie ändern. Wir können auch davon ausgehen, dass ein Dienst, der auf die Datenbank zugreift, dies bei fast allen seinen Operationen machen wird, also braucht er sie für seine gesamte Lebenszeit. Daher spricht alles dafür, den Exemplaren solcher Dienste die Datenbankverbindung direkt in ihrem Konstruktor zu übergeben. [Die Implementierung der Konstruktor-Variante und der Setter-Variante ist in PHP etwa gleich einfach. In anderen Programmiersprachen und anderen Containern kann die Implementierung der verschiedenen Varianten unterschiedlich komplex sein. Das kann die Wahl der Variante beeinflussen.
+] </p>
+<p>Wie aber erkennen wir, welchen Diensten wir die Datenbankverbindung übergeben sollen? Wir könnten dies in der Konfiguration unserer Anwendung spezifizieren oder die Dienste so programmieren, dass der Dispatcher selbst entdecken kann, ob einem Dienst die Datenbankverbindung übergeben werden soll.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Convention over Configuration
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bestimmte Einstellungen von Softwarekomponenten konfigurierbar zu machen ist sehr nützlich, weil die Komponente so in mehreren Umgebungen eingesetzt werden kann, ohne selbst geändert werden zu müssen. Allerdings können Konfigurationsdateien auch ziemlich lästig werden und die Verwendung der Komponente verkomplizieren &#8211; vor allem dann, wenn man die Komponente auf die »übliche« Art verwenden möchte.</p>
+<p>Das Designprinzip <span class="ckursiv">Convention over Configuration</span> besagt, dass man Software so entwickeln soll, dass sie sich nach einer Konvention richtet und nur Abweichungen von der Konvention durch die Konfiguration bestimmt werden müssen.</p>
+<p>So kann man zum Beispiel in einem Werkzeug für objekt-relationales Mapping der Benennungskonvention folgen, die besagt, dass die Exemplare einer Klasse in einer Tabelle gespeichert werden, die denselben Namen trägt wie die Klasse. </p>
+<p>In diesem Falle würde man zum Beispiel die Exemplare der Klasse <span class="clisting">Kunde</span> in der Tabelle <span class="ckursiv">KUNDE </span>speichern. Dies in einer Konfigurationsdatei bestimmen zu müssen wäre eine Verletzung des <span class="ckursiv">Prinzips der Vermeidung der Wiederholungen</span>, denn der Name der Tabelle ist bereits durch den Namen der Klasse bestimmt.</p>
+<p>Es kann aber Fälle geben, in denen man von der Konvention abweichen muss &#8211; schließlich handelt es sich um eine Konvention und nicht um ein Gesetz. Und genau nur solche Abweichungen von der Konvention muss man durch die Konfiguration bestimmen.</p>
+<p>Durch diese Vorgehensweise behalten wir die volle Flexibilität der Softwarekomponente, und gleichzeitig reduzieren wir enorm die Komplexität ihrer Konfiguration.</p>
+</td>
+</tr>
+</table><br><p>Auch in unserer Anwendung definieren wir also eine Konvention:</p>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>1.</strong></td>
+<td valign="top" width="100%" align="left"> Die Werte der Parameter des Konstruktors, die nicht mit einem Unterstrich beginnen, werden durch die Parameter des HTTP-Aufrufs bestimmt.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>2.</strong></td>
+<td valign="top" width="100%" align="left"> Wenn der Konstruktor eines Dienstes einen Parameter mit dem Namen $_db hat, übergeben wir über diesen Parameter die Datenbankverbindung an den Konstruktor. [In anderen Programmiersprachen könnte man eine Konvention definieren, die sich nach den Typen der Parameter richtet. Da man in PHP keine Typen der Parameter deklarieren kann, müssen wir uns an den Namen der Parameter orientieren &#8211; also geht es hier um eine Namenskonvention.
+] </td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<p>Wir werden also die Parameter der Konstruktoren der Dienste genauso behandeln wie die Parameter der Methoden.</p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wir haben jetzt eine Konvention definiert. Um allerdings dem Prinzip Convention over Configuration zu folgen, sollten wir aber noch die Möglichkeit schaffen, Abweichungen zu konfigurieren.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ja, das sollten wir in der Tat. Wir werden das sofort tun, wenn wir die erste Abweichung brauchen.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Das wird wohl nicht in diesem Buch sein, nicht wahr?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Das hoffe ich. Wenn aber jemand unser kleines Framework in einer komplexeren PHP-Anwendung verwenden möchte, kann er oder sie damit rechnen, dass wir ihn/sie nicht im Stich lassen!</span><p>Hier also unser angepasster Dispatcher:</p>
+<div class="listing"><pre class="prettyprint">class Dispatcher { 
+  private $db; 
+  public function __construct() { 
+    $this-&gt;db = new mysqli('localhost', 'buch', 'buch', 'buch'); 
+    $this-&gt;db-&gt;set_charset("utf8"); 
+  } 
+ 
+  public function __destruct() {  
+    if ($this-&gt;db) $this-&gt;db-&gt;close(); 
+  } 
+  public function httpRequestBehandeln() {  
+    $dienstName = $_GET['$dienst']; 
+    $operationsName = $_GET['$operation']; 
+    $dienst = self::dienstErstellen($dienstName); 
+    $ergebnis = self::methodeAufrufen($dienst, $operationsName); 
+    if ($ergebnis !== NULL) { 
+      header('Content-type: text/plain; charset=UTF-8'); 
+      echo json_encode($ergebnis); 
+    } 
+  } 
+ 
+  private function dienstErstellen($dienstName) { 
+    require_once("dienst.$dienstName.php"); 
+    $refDienst = new ReflectionClass($dienstName); 
+    $refConstructor = $refDienst-&gt;getConstructor();<span class="cfett"> 
+    if (!$refConstructor) return $refDienst-&gt;newInstance(); 
+    $initParameter = self::parameterSetzen($refConstructor); 
+    return $refDienst-&gt;newInstanceArgs($initParameter);</span>  
+  } 
+ 
+  private function parameterSetzen($operation) { 
+    $aufrufParameter = Array(); 
+    $refParameter = $operation-&gt;getParameters(); 
+    foreach($refParameter as $p =&gt; $param) { 
+      $parameterName = $param-&gt;getName(); 
+      <span class="cfett">if ($parameterName == '_db') { 
+        $wert = $this-&gt;db; 
+      }</span> else if ($parameterName[0] != '_'  
+             &amp;&amp; $_SERVER['REQUEST_METHOD'] == 'POST' 
+             &amp;&amp; array_key_exists($parameterName, $_POST)) { 
+                $wert = $_POST[$parameterName]; 
+      } else if ($parameterName[0] != '_' 
+             &amp;&amp; array_key_exists($parameterName, $_GET)) { 
+        $wert = $_GET[$parameterName]; 
+      } else if ($param-&gt;isDefaultValueAvailable()) { 
+        $wert = $param-&gt;getDefaultValue(); 
+      } else { 
+        $wert = null; 
+      } 
+      $aufrufParameter[$p] = $wert; 
+    } 
+    return $aufrufParameter; 
+  } 
+ 
+  private function methodeAufrufen($dienst, $operation) { 
+    $refDienst = new ReflectionObject($dienst); 
+    $refMethode = $refDienst-&gt;getMethod($operation); 
+    $aufrufParameter = self::parameterSetzen($refMethode); 
+    return $refMethode-&gt;invokeArgs($dienst, $aufrufParameter);  
+  } 
+} 
+ 
+$dispatcher = new Dispatcher();  
+$dispatcher-&gt;httpRequestBehandeln();</pre></div>
+<p class="tabunter"><strong>Listing 10.11    </strong>Dispatcher mit Dependency Injection</p>
+<p>In Zeile  sehen Sie, dass wir den Aufruf des Dispatchers geändert haben. Vorher haben wir die Methode <span class="clisting">httpRequestBehandeln</span> als eine Klassenmethode verwendet, jetzt verwenden wir sie als Methode eines konkreten Exemplars des Dispatchers.</p>
+<p>Vorher hat die Klasse <span class="clisting">Dispatcher</span> keine Objektvariablen verwendet, deren Exemplare hatten also keinen Objektzustand, und wir konnten alle ihre Methoden als Klassenmethoden aufrufen. Jetzt aber verwalten die Exemplare des Dispatchers eine Datenbankverbindung. Sie erstellen sie in ihrem Konstruktor  und schließen sie dann in ihrem Destruktor . Wir müssen also die Methoden eines konkreten Exemplars verwenden.</p>
+<p>Damit die Dependency Injection für den bereits implementierten Dienst <span class="clisting">Kontakte</span> funktioniert, müssen wir auch ihn ändern. Er soll nicht mehr seine eigene Datenbankverbindung erstellen, und auf keinen Fall darf er die übergebene Datenbankverbindung schließen:</p>
+<div class="listing"><pre class="prettyprint">class Kontakte { 
+   // Diese Methode brauchen wir nicht mehr  
+   // private static function db(); 
+ 
+  private $db; 
+ 
+  public function __construct($_db) {  
+    $this-&gt;db = $_db; 
+  } 
+ 
+  public function auflisten($kontaktid = -1) {  
+    // $db = self::db(); Wir erstellen die Verbindung nicht mehr  
+    try { 
+        $stmt = <span class="cfett">$this-&gt;db</span>-&gt;prepare("...");  
+          ... 
+        $stmt-&gt;close(); 
+      // $db-&gt;close(); Wir schließen die Verbindung nicht  
+    } catch (Exception $e) { 
+      if ($stmt) $stmt-&gt;close(); 
+      // if ($db) $db-&gt;close(); Auch hier nicht  
+      throw $e; 
+   }
+... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 10.12    </strong>Anpassungen im Dienst »Kontakte«</p>
+<p>Die Methode <span class="clisting">db </span>, mit der wir früher die Datenbankverbindung erstellt haben, können wir jetzt löschen. Stattdessen programmieren wir einen Konstruktor mit dem Parameter <span class="clisting">_db</span> . In den Fachmethoden brauchen wir dann die Datenbankverbindung nicht mehr selbst erstellen , und wir dürfen sie auch nicht am Ende schließen , denn sie gehört dem Dispatcher. Wenn wir die Datenbankverbindung in der Methode brauchen, steht sie uns als Objektvariable  zur Verfügung.</p><a id="mj46b9937615aaf41cc11a90277e35bb3c" name="mj46b9937615aaf41cc11a90277e35bb3c"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">10.5.4 Sicherheit  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Jetzt können wir uns endlich der Sicherheit widmen. Wir werden einen neuen Dienst implementieren, mit dem wir Benutzer erstellen und authentisieren können &#8211; einen Dienst, mit dem unsere Anwendung beim Einloggen und Ausloggen der Benutzer verwendet wird.</p>
+<p>In typischen Webanwendungen ist die Erstellung eines Benutzerkontos ein Prozess, der aus mehreren Schritten besteht:</p>
+<p>Zuerst wählt der Benutzer einen Benutzernamen und ein Kennwort aus und gibt seine Daten, wie zum Beispiel die E-Mail-Adresse, ein. Anschließend muss er in der Regel die Richtigkeit der eingegebenen E-Mail-Adresse noch bestätigen, um sein neues Konto zu aktivieren.</p>
+<p>Diesen ganzen Prozess zu implementieren würde den Rahmen dieses Kapitels sprengen, daher vereinfachen wir uns an dieser Stelle die Arbeit. Bei uns wird ein neues Benutzerkonto immer dann angelegt, wenn sich ein Benutzer mit einem noch nicht angelegten Benutzernamen anmeldet. Bei der ersten Anmeldung bestimmt der Benutzer seinen Benutzernamen und auch sein Kennwort. Seine E-Mail-Adresse werden wir nicht kennen, also können wir ihm nicht helfen, wenn er sein Kennwort vergisst. Aber hey, dies ist eine Beispielanwendung, und es gibt wohl gute Gründe, warum echte Webanwendungen einen komplizierteren Anmeldeprozess haben. </p>
+<p>Unser Sicherheitsdienst wird nach einer erfolgreichen Anmeldung die Benutzerdaten in der Websession speichern und <span class="clisting">TRUE</span> zurückgeben. Schlägt die Anmeldung fehl, gibt der Dienst <span class="clisting">FALSE</span> zurück. Der Dispatcher wird die Benutzerdaten aus der Websession lesen und sie an andere Dienste übergeben. Wie? Selbstverständlich durch Dependency Injection!</p>
+<p>Hier also unser Sicherheitsdienst:</p>
+<div class="listing"><pre class="prettyprint">class Sicherheit { 
+  private $db; 
+  public function __construct($_db) { 
+    $this-&gt;db = $_db; 
+  } 
+ 
+  public function ausloggen() {  
+    unset($_SESSION['benutzer']); 
+    return TRUE; 
+  } 
+ 
+  public function einloggen($benutzername, $kennwort) { 
+    if (!trim($benutzername) || !trim($kennwort))  
+      return FALSE;  
+    $kennworthash = md5("Adressbuch.$benutzername.$kennwort"); 
+    $benutzerid = NULL; 
+ 
+    try { 
+      $stmt = $this-&gt;db-&gt;prepare(" 
+            SELECT bnz_id, bnz_kennworthash FROM benutzer 
+            WHERE bnz_benutzername = ? 
+        "); 
+ 
+      if (!$stmt) { 
+        throw new SQLException($this-&gt;db-&gt;error,  
+                               $this-&gt;db-&gt;errno); 
+      } 
+      $stmt-&gt;bind_param("s", $benutzername); 
+      $stmt-&gt;bind_result($benutzerid, $hash); 
+      $stmt-&gt;execute(); 
+       
+      if ($stmt-&gt;fetch()) { 
+        // Der Benutzer existiert 
+        if ($hash != $kennworthash) {  
+          // Aber das Kennwort ist falsch 
+          $benutzerid = NULL; 
+        } 
+      } else { 
+        // Der Benutzer existiert nicht, wir legen ihn an 
+        $stmt-&gt;close(); 
+        $stmt = $this-&gt;db-&gt;prepare("  
+           INSERT INTO benutzer (bnz_benutzername, 
+                                 bnz_kennworthash) 
+           VALUES (?, ?)"); 
+        if (!$stmt) { 
+          throw new SQLException($this-&gt;db-&gt;error,  
+                                 $this-&gt;db-&gt;errno); 
+        } 
+        $stmt-&gt;bind_param("ss", $benutzername, $kennworthash); 
+        if (!$stmt-&gt;execute()) { 
+          throw new SQLException($this-&gt;db-&gt;error,  
+                                 $this-&gt;db-&gt;errno); 
+        } 
+        if ($stmt-&gt;affected_rows &gt; 0) { 
+          $benutzerid = $stmt-&gt;insert_id; 
+        } 
+      } 
+      $stmt-&gt;close(); 
+       
+      if ($benutzerid) { 
+        $_SESSION['benutzer'] = Array(   
+          'id' =&gt; $benutzerid, 
+          'name' =&gt; $benutzername); 
+        return TRUE; 
+      } else { 
+        unset($_SESSION['benutzer']);  
+        return FALSE; 
+      }             
+    } catch (Exception $e) { 
+      if ($stmt) $stmt-&gt;close(); 
+      throw $e; 
+    } 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 10.13    </strong>Der Dienst »Sicherheit« in »dienst.Sicherheit.php«</p>
+<p>Das Ausloggen  ist sehr einfach, wir löschen nur die Daten aus der Websession. Die Methode <span class="clisting">einloggen</span> ist etwas komplizierter, denn hier müssen wir</p>
+<ul class="gp">
+<li>überprüfen, ob der Benutzername und das Kennwort überhaupt eingegeben wurden ,</li>
+</ul>
+<ul class="gp">
+<li>wenn der Benutzername bereits belegt ist, das Kennwort überprüfen ,</li>
+</ul>
+<ul class="gp">
+<li>wenn ein unbelegter Benutzername eingegeben wurde, einen neuen Benutzer erstellen </li>
+</ul>
+<ul class="gp">
+<li>und schließlich die Benutzerdaten in der Websession speichern  oder, wenn das Einloggen fehlgeschlagen ist, die Daten eines vorher angemeldeten Benutzers aus der Session löschen .</li>
+</ul>
+<p>Wie schon besprochen, stehen noch zwei Änderungen an: Wir müssen den Dispatcher ändern, so dass er die Benutzerdaten den Diensten, die sie brauchen, injiziert. Und wir müssen den Dienst <span class="clisting">Kontakte</span> so ändern, dass er die Daten empfangen kann.</p>
+<p>Hier die Anpassungen am Dispatcher:</p>
+<div class="listing"><pre class="prettyprint">public function httpRequestBehandeln() { 
+  session_start();  
+  ... 
+  session_write_close();  
+} 
+ 
+private function parameterSetzen($operation) { 
+  $aufrufParameter = Array(); 
+  $refParameter = $operation-&gt;getParameters(); 
+  foreach($refParameter as $p =&gt; $param) { 
+    $parameterName = $param-&gt;getName(); 
+    if ($parameterName == '_benutzerId') {  
+      if ($_SESSION &amp;&amp; array_key_exists('benutzer', $_SESSION))  
+        $wert = $_SESSION['benutzer']['id']; 
+      } else { 
+        $wert = NULL; 
+      } 
+    } else if ($parameterName == '_db') { 
+      $wert = $this-&gt;db; 
+    } else if (... 
+  ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 10.14    </strong>Anpassungen am Dispatcher</p>
+<p>Wir müssen sicherstellen, dass der HTTP-Aufruf mit einer Session assoziiert wird, also müssen wir in der Methode <span class="clisting">httpRequestBehandeln</span> die Session am Anfang starten  und sie am Ende beenden sowie in den dauerhaften Sessionspeicher schreiben .</p>
+<p>In der Methode <span class="clisting">parameterSetzen</span>  übergeben wir die Id des eingeloggten Benutzers an den aufgerufenen Konstruktor oder die Methode, die einen Parameter mit dem Namen <span class="clisting">_benutzerId</span> hat. [Gut, dass wir in unserer Namenskonvention bestimmt haben, dass die Namen von Parametern, die von dem HTTP-Aufruf übernommen werden, nicht mit einem Unterstrich beginnen dürfen. So können wir jetzt sicher sein, dass keine Operation und kein Konstruktor eines bestehenden Dienstes den Namen <span class="clisting">_benutzerId</span> bereits zu einem anderen Zweck verwendet.
+] </p>
+<p>Die Anpassungen im Dienst <span class="clisting">Kontakte</span> sind auch sehr einfach:</p>
+<div class="listing"><pre class="prettyprint">class Kontakte { 
+ 
+    private $db; 
+    <span class="cfett">private $benutzerId;</span> 
+     
+    public function __construct($_db, <span class="cfett">$_benutzerId</span>) { 
+        $this-&gt;db = $_db; 
+        <span class="cfett">$this-&gt;benutzerId = $_benutzerId;</span> 
+    } 
+ 
+    private function benutzerId() { 
+        return <span class="cfett">$this-&gt;benutzerId</span>; 
+    } 
+ 
+    ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 10.15    </strong>Anpassungen am Dienst »Kontakte«</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_10_005.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="10.5 Ein Container für Dienste in PHP"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_10_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_006.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

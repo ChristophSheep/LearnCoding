@@ -1,0 +1,661 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 10.4 Ein Klient in Ajax</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 10.4 Ein Klient in Ajax">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 10.4 Ein Klient in Ajax">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_10_003.htm">
+<link rel="next" href="oop_kapitel_10_005.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_10_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_005.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec" class="navnav">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_001.htm#mj650ecca145548f0d632594fe8ffc0eb9" class="navnav">10.1 OOP in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_001.htm#mj3cddea9177147d48be4a19073305ce9f" class="navnav">10.1.1 Klassen in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_001.htm#mj64ce19731869346193bea822aac6177b" class="navnav">10.1.2 Dynamische Natur von PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_002.htm#mj777eb917fb36b59bdc046c5b15330927" class="navnav">10.2 Das entwickelte Framework &#8211; Trennung der Anliegen &#8211; Model View Controller</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_002.htm#mj1347057e4ca234e143f84ac3d48c2143" class="navnav">10.2.1 Trennung der Daten von der Darstellung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_003.htm#mj143f7b7967800fbc9e4212f3732fec4a" class="navnav">10.3 Ein Dienst in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_003.htm#mjc22ab53407bbed20d06449ea4ab6bf73" class="navnav">10.3.1 Datenmodell</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_003.htm#mjddeded4df39daa61407f491d183939f0" class="navnav">10.3.2 Dienste &#8211; Version 1</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj8db7d030dd0fecb5d5f38c3b3c5fff3f" class="navh">10.4 Ein Klient in Ajax</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj6fd9781fec12ec813977e6c6f02e6378" class="navh">10.4.1 Bereitstellung der Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj6615fa4f2574779912a147f3ee2962d5" class="navh">10.4.2 Darstellung der Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_005.htm#mj84d41f973bb38a7ebb9ae77e397862dc" class="navnav">10.5 Ein Container für Dienste in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mj444254068bed671d4c406143e181a811" class="navnav">10.5.1 Dispatcher</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mjf1fba7eb918b8d0e1decb950d5f3e98d" class="navnav">10.5.2 Fabrik</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mj8fd79f59364e2c74a3e078afd836f9d0" class="navnav">10.5.3 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mj46b9937615aaf41cc11a90277e35bb3c" class="navnav">10.5.4 Sicherheit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_006.htm#mj1e0a9cd22e5214a5bb797ebb58f113cc" class="navnav">10.6 Ein Klient ohne JavaScript</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_007.htm#mj2c164a142d4a479519051aa6ee0722f9" class="navnav">10.7 Was noch übrigbleibt</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj8db7d030dd0fecb5d5f38c3b3c5fff3f" name="mj8db7d030dd0fecb5d5f38c3b3c5fff3f"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">10.4 Ein Klient in Ajax  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Jetzt legen wir das PHP-Handbuch für wenige Minuten aus der Hand, denn die nächsten Seiten sind JavaScript und Ajax gewidmet.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Ajax
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In der Welt der Webanwendungen steht Ajax für <span class="ckursiv">Asynchronous JavaScript and XML</span>. Die Idee dahinter ist, dass der Browser statt ganzen HTML-Seiten nur Daten lädt, die gebraucht werden. Diese Daten werden dann in der aktuellen Seite verwendet.</p>
+<p>Die Daten werden in einen JavaScript-Programm mit dem Objekt <span class="clisting">XMLHttpRequest</span> geladen. <span class="clisting">XMLHttpRequest</span> kann entweder synchron oder asynchron aufgerufen werden. Bei einem synchronen Aufruf wartet das JavaScript-Programm (und somit meistens der ganze Browser), bis die Daten geladen werden. Bei einem asynchronen Aufruf läuft das Programm weiter. Während des Ladens der Daten werden Callback-Funktionen aufgerufen, in denen man die Daten verarbeiten kann.</p>
+<p>Die Möglichkeit, Daten in eine bereits geladene Seite asynchron nachzuladen, gibt es bereits mit Java-Applets und IFRAME seit den 90er Jahren. Ende des letzten Jahrhunderts implementierte Microsoft <span class="clisting">XMLHttpRequest</span> als eine Ac-tiveX-Komponente. Bald zogen andere Browserhersteller nach. Den Namen Ajax gibt es erst seit 2005, und erst 2006 hat sich das W3C der Standardisierung des Objekts <span class="clisting">XMLHttpRequest</span> angenommen.</p>
+<p>Obwohl das »x« in Ajax für XML steht, kann man mit dieser Technologie auch andere Datenformate laden.</p>
+</td>
+</tr>
+</table><br><a id="mj6fd9781fec12ec813977e6c6f02e6378" name="mj6fd9781fec12ec813977e6c6f02e6378"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">10.4.1 Bereitstellung der Daten  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wir haben jetzt eine Funktion programmiert, die uns die Kontakte eines Benutzers auflisten kann. Bevor wir diese Funktion von einem Klienten aufrufen können, müssen wir das Datenformat definieren, in dem wir die Daten übertragen. Hier bietet sich XML an, denn man kann es in PHP einfach erstellen und im Browser einfach verarbeiten. Eine beliebte einfachere Alternative zu XML in Ajax-Anwendungen ist JSON (JavaScript Object Notation).</p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wofür entscheiden wir uns denn? Für XML oder JSON, und warum?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> In PHP kann man beides einfach erzeugen, also hilft uns die Tatsache, dass wir die Daten in PHP erstellen, bei dieser Entscheidung nicht. Wir sollten uns darauf konzentrieren, was wir mit den Daten im Browser machen. Um die Kontaktdaten anzuzeigen, könnten wir sie im XML-Format einfach mit XSLT in die gewünschte HTML-Form transformieren. Um die Daten in JavaScript einfacher zu bearbeiten, ist es jedoch vorteilhafter, sie im JSON-Format zu übertragen.</span><span class="ckursiv">In unserer Anwendung werden wir die Daten mit JavaScript im Browser bearbeiten, also schlage ich vor, dass wir sie zuerst nach JSON übertragen. Glücklicherweise ist dies keine Entweder-Oder-Entscheidung. Wir können eine Schnittstelle bauen, die mehrere Formate unterstützt.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Sind XML und JSON die einzigen Formate, die wir in unserer Anwendung in Betracht ziehen sollten?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Für unsere Beispielanwendung reichen erst einmal XML und JSON. In der Praxis findet man häufig auch andere Formate. Oft wird einfach HTML oder einfacher Text verwendet, der in bestimmte Elemente geladen wird. Beliebt ist auch JavaScript, mit dem man nicht nur Daten, sondern auch lauffähige Quelltexte übertragen kann.</span><span class="ckursiv">Wenn wir unsere Dienste auch anderen Klienten, also nicht nur dem Browser, zur Verfügung stellen wollten, könnten wir auch andere Formate und Aufrufprotokolle unterstützen. Um zum Beispiel aus unserem Dienst einen echten Webservice zu machen, könnten wir die Daten in SOAP [SOAP stand ursprünglich für »Simple Object Access Protocol«. Es ist ein XML-basiertes Protokoll für den Aufruf von Webservices. In SOAP kann man nicht nur die eigentlichen Nutzdaten übertragen, sondern auch zusätzliche Informationen, die für die Zustellung und Verarbeitung der Nachricht benötigt werden. Mehr über SOAP erfahren Sie unter <span class="ckursiv">http://www.w3.org/TR/soap/</span>. Wenn Sie sich über die Standards und Empfehlungen informieren wollen, die es erlauben, zueinander kompatible Webservices zu bauen, empfehlen wir Ihnen diese Adresse: <span class="ckursiv">http://www.ws-i.org/</span> ]  übertragen.</span><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">JSON
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>JSON steht für <span class="ckursiv">JavaScript Object Notation</span>. Es basiert auf der Notation, in der in JavaScript Objekte und die Werte ihrer Eigenschaften initialisiert werden.</p>
+<p>Genauer gesagt ist JSON eine vereinfachte Version der Initialisierungsform der Objekte in JavaScript. In JavaScript kann man als Werte der Objekteigenschaften auch Funktionen, berechnete Ausdrucke und Referenzen auf Variablen angeben. Dagegen kann man in JSON ausschließlich Konstanten verwenden. In einem JavaScript-Quelltext kann man Kommentare verwenden, die JSON-Grammatik dagegen kennt keine Kommentare.</p>
+<p>Hier folgt das Beispiel eines in JavaScript korrekten Quelltextfragments, das in JSON jedoch nicht korrekt wäre:</p>
+<div class="listing"><pre class="prettyprint">{ "name" : lastName, // Referenz auf eine Variable 
+  "age" : now() &#8211; 1970, // Ausdruck 
+  "emails" : ["gregor.rayman@gmail.com"]  // OK, ein Array</span><a href="#Rxx57995"><sup>9  </sup></a> 
+  "send" : function(text) { // Eine Methode  
+     sendMail(this.email, text); 
+  } 
+}</pre></div>
+<p>Dieser Text dagegen wäre korrekt, sowohl in JavaScript als auch in JSON:</p>
+<div class="listing"><pre class="prettyprint">{ "name" : "Gregor",  
+  "age" : 38,  
+  ["gregor.rayman@gmail.com", "rayman@grayman.de"] 
+}</pre></div>
+<p>Obwohl es der Name anders suggeriert, kann man JSON in jeder Programmiersprache und nicht nur in JavaScript verwenden. Die Grammatik von JSON ist sehr einfach, und entsprechend leicht lassen sich die Parser in verschiedenen Programmiersprachen entwickeln. Als Beweis für diese Einfachheit geben wir hier die komplette Grammatik von JSON auf dem Seitenrand wieder. </p>
+</td>
+</tr>
+</table><br><p>Vervollständigen wir also die erste PHP-Datei unserer Anwendung um die folgenden Zeilen, damit sie die aus der Datenbank geladenen Daten dem Klienten zurückgibt:</p>
+<div class="listing"><pre class="prettyprint">$kontakte = new Kontakte();  
+header('Content-type: text/plain; charset=UTF-8');  
+if ($_SERVER['REQUEST_METHOD'] == 'POST' &amp;&amp;  
+    array_key_exists('kontaktid', $_POST)) { 
+    $kontaktid = $_POST['kontaktid']; 
+} else if (array_key_exists('kontaktid', $_GET)) { 
+    $kontaktid = $_GET['kontaktid']; 
+} else { 
+    $kontaktid = -1; 
+} 
+echo json_encode($kontakte-&gt;auflisten($kontaktid)); </pre></div>
+<p class="tabunter"><strong>Listing 10.4    </strong>Aufruf einer Operation unseres Dienstes</p>
+<p>In Zeile  erstellen wir ein Exemplar unseres Dienstes. In Zeile  zeigen wir an, dass die Daten, die wir schicken, einfacher Text und kein HTML sind. [Dies ist eigentlich nicht notwendig, um die Daten in unserem JavaScript-Programm im Browser verarbeiten zu können. Während der Entwicklung ist es jedoch ganz angenehm, wenn der Browser die Daten als einfachen Text darstellt, wenn wir die Seite direkt aufrufen.
+]  </p>
+<p>Der Quelltext ab Zeile  ist dafür verantwortlich, den Parameter <span class="clisting">kontaktid</span> aus dem Request abzufragen. Wenn kein Parameter <span class="clisting">kontaktid</span> angegeben wurde, verwenden wir den Wert &#8211;1, der dafür sorgt, dass alle Kontakte des Benutzers zurückgegeben werden.</p>
+<p>In Zeile  geben wir schließlich die Daten im JSON-Format aus. Die Funktion <span class="clisting">json_encode</span> ist in PHP ab der Version 5.2 ein Teil der Standardinstallation. In früheren Versionen kann sie nachinstalliert werden.</p><a id="mj6615fa4f2574779912a147f3ee2962d5" name="mj6615fa4f2574779912a147f3ee2962d5"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">10.4.2 Darstellung der Daten  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In unserer Anwendung wollten wir die Geschäftslogik von der Darstellungslogik trennen. Dies ist uns bisher gelungen, denn bis jetzt konnten wir uns ausschließlich der Geschäftslogik widmen, ohne die Darstellungslogik in Betracht zu ziehen.</p>
+<p>Begeben wir uns nun auf die andere Seite unserer Trennlinie, und kümmern wir uns um die Darstellung der Kontaktdaten.</p>
+<p>Wir fangen klein an, mit einer einfachen HTML-Seite, in die wir die Kontaktdaten einbetten werden:</p>
+<div class="listing"><pre class="prettyprint">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt; 
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;  
+&lt;head&gt; 
+&lt;meta http-equiv="Content-Type" 
+      content="text/xhtml;charset=utf-8" /&gt; 
+&lt;title&gt;Kontakte&lt;/title&gt; 
+&lt;link rel="stylesheet" type="text/css" href="kontakte.css" /&gt;  
+&lt;script type="text/javascript" src="jquery-1.3.js"&gt;&lt;/script&gt;  
+&lt;script type="text/javascript" src="kontakte.js"&gt;&lt;/script&gt;  
+&lt;/head&gt; 
+&lt;body&gt; 
+    &lt;h1&gt;Kontakte&lt;/h1&gt;     
+    &lt;div id="kontakte"&gt; 
+      &lt;!-- Hier werden die Kontaktdaten dynamisch geladen --&gt; 
+    &lt;/div&gt; 
+&lt;/body&gt; 
+&lt;/html&gt;</pre></div>
+<p class="tabunter"><strong>Listing 10.5    </strong>Die Datei »kontakte.html«</p>
+<h4 class="t4">Trennung der Anliegen in HTML</h4>
+<p><strong><em>Trennung der Anliegen in HTML: 
+Struktur, 
+Stil, 
+Verhalten</em></strong></p>
+<p>In unserer Beispielanwendung möchten wir die Trennung der Anliegen demonstrieren. Wir haben bereits die Geschäftslogik von der Darstellungslogik getrennt. Mit der Trennung der Anliegen möchten wir innerhalb der Darstellungslogik weitermachen. </p>
+<p>Eine HTML-Seite hat ihre <span class="ckursiv">Struktur</span>, die als DOM-Struktur [DOM steht für »Document Object Model«. Es ist ein standardisiertes Objektmodell, mit dem man den Inhalt eines XML- oder HTML-Dokuments beschreiben kann.
+]  des HTML-Dokuments beschrieben werden kann. Wie in Zeile  sichtbar, haben wir uns für die strikte Variante von XHTML entschieden, weil diese großen Wert auf die Trennung der Struktur von den anderen Aspekten einer HTML-Seite legt.</p>
+<p>Den Stil, also die Farben, Zeichensätze, Ränder und andere visuelle Aspekte der HTML-Seite, beschreiben wir in der Datei <span class="ckursiv">kontakte.css</span>, wie in Zeile  angegeben.</p>
+<p>Die Trennung der Anliegen <span class="ckursiv">Struktur</span> und <span class="ckursiv">Darstellung</span> gehört seit der Einführung der Cascading Style Sheets (CSS) zu den guten Praktiken jedes professionellen Webdesigners. Obwohl die kleinen Unterschiede in der Umsetzung des CSS-Standards der verschiedenen Browser manchmal Probleme bereiten, stellen die CSS ein großartiges Werkzeug für die Trennung der Struktur vom Stil einer HTML-Seite dar. </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Cascading Style Sheets (CSS)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>CSS ist eine Beschreibungssprache, mit der vor allem (aber nicht ausschließlich) die Darstellung von HTML- und XML-Dokumenten beschrieben wird. Das Ziel ist dabei, die Struktur der Dokumente von ihrer Darstellung zu trennen. So kann über CSS zum Beispiel festgelegt werden, wie bestimmte Elemente einer HTML-Seite in einem Browser formatiert und dargestellt werden.</p>
+</td>
+</tr>
+</table><br><p>Für die Trennung des <span class="ckursiv">Verhaltens</span> der Seite von ihren anderen Aspekten gibt es zurzeit keine standardisierten Verfahren. Man kann das HTML-Dokument mit JavaScript bearbeiten und den Ereignissen der HTML-Elemente JavaScript-Routinen zuweisen.</p>
+<p>Eine Möglichkeit, wie man JavaScript-Routinen den Ereignissen der HTML-Elemente zuordnet, ist, die Attribute <span class="clisting">on</span><span class="clistingk">Ereignis</span> wie zum Beispiel <span class="clisting">onclick</span> oder <span class="clisting">onmouseover</span> wie in folgendem Quelltext zu verwenden:</p>
+<div class="listing"><pre class="prettyprint">&lt;button onclick="lert('Hello World');"&gt;Hello&lt;/button&gt;</pre></div>
+<p>Dies hat jedoch den Nachteil, dass die Struktur des Dokuments und sein Verhalten miteinander vermischt sind. Und das auch, wenn sich der Inhalt des <span class="clisting">onclick</span>-Attributes auf einen Aufruf einer Funktion aus einer verlinkten JavaScript-Datei beschränkt. </p>
+<p>Eine andere Möglichkeit, JavaScript den Ereignissen der HTML-Elemente zuzuweisen, besteht darin, die Werte der <span class="clisting">on</span><span class="clistingk">Ereignis</span>-Attribute nicht direkt in den HTML-Quelltext einzugeben, sondern sie dynamisch in JavaScript zu setzen:</p>
+<div class="listing"><pre class="prettyprint"> &lt;button id="hiButton"&gt;Hi&lt;/button&gt; 
+ &lt;script type="ext/javascript"&gt; 
+     var button = document.getElementById('hiButton'); 
+     button.onclick = function(event) { 
+         alert('Hi World'); 
+     }; 
+ &lt;/script&gt;</pre></div>
+<p>Diese Vorgehensweise ermöglicht es uns, das dynamische Verhalten der Seite von ihrer Struktur fast vollständig zu trennen. Das Einzige, was in der Struktur der HTML-Seite bleiben muss, ist ein Link auf die JavaScript-Datei, in der das dynamische Verhalten der Seite programmiert wird. Genau dies tun wir in Zeile  unseres Quelltextes <span class="ckursiv">kontakte.html </span>(Listing 10.5). </p>
+<p>Wenn wir uns jedoch die zwei letzten Quelltextbeispiele anschauen, wird offensichtlich, warum viele die Verwendung der <span class="clisting">on</span><span class="clistingk">Ereignis</span>-Attribute der Zuweisung der Ereignisse in JavaScript vorziehen: Die Verwendung der <span class="clisting">on</span><span class="clistingk">Ereignis</span>-Attribute ist einfacher, der Quelltext ist kürzer und weniger fehleranfällig. </p>
+<p>Wenn es bloß etwas gäbe, das es uns ermöglichen würde, das Verhalten von der Struktur der HTML-Seiten zu trennen und dabei unseren Quelltext genauso kurz und bündig zu lassen wie bei der Verwendung der <span class="clisting">on</span><span class="clistingk">Ereignis</span>-Attribute!</p>
+<h4 class="t4">jQuery</h4>
+<p>Glücklicherweise gibt es so etwas! JavaScript ist eine sehr mächtige Skriptsprache, und es gibt verschiedene Bibliotheken, die uns bei unserem Problem helfen können.</p>
+<p>In unserer Beispielanwendung werden wir das zu Recht beliebte Framework jQuery verwenden:</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">jQuery
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>jQuery ist eine JavaScript-Bibliothek, die die Durchsuchung, Manipulation, Ereignisbearbeitung, Ajax-Interaktion und Animation von HTML-Seiten für uns vereinfacht. jQuery unterstützt alle einigermaßen modernen Browser, weswegen sich ein Webentwickler nicht mit den Unterschieden zwischen den einzelnen Browsern beschäftigen muss.</p>
+<p>Die vollständige Dokumentation finden Sie auf <span class="ckursiv"><a href="http://www.jquery.com">www.jquery.com</a></span>, hier folgt le-diglich eine extrem verkürzte Einführung: </p>
+<p>Die wichtigste Funktion der Bibliothek jQuery ist die Funktion <span class="clisting">jQuery</span>. Das Verhalten dieser Funktion ist abhängig von den Parametern:</p>
+<p><span class="clisting">jQuery(selektor, context)</span> gibt eine jQuery-Liste der Elemente des HTML-Dokuments bzw. des Kontextparameters zurück, die dem Selektor entsprechen. So gibt <span class="clisting">jQuery("p")</span> eine Liste aller P-Elemente des Dokuments zurück, <span class="clisting">jQuery("#hiButton")</span> eine Liste mit dem einzigen Element, das die Id <span class="clisting">hiButton</span> hat, und <span class="clisting">jQuery("input[name *= 'neu']")</span> eine Liste aller INPUT-Elemente, deren Name mit »neu« anfängt.</p>
+<p><span class="clisting">jQuery(html)</span> erstellt ein HTML-Element, das man anschließend in das HTML-Dokument einfügen kann: <span class="clisting">jQuery("&lt;p&gt;Hello&lt;/p&gt;")</span> erstellt also ein neues    P-Element mit dem Text »Hello«.</p>
+<p><span class="clisting">jQuery(func)</span> stellt sicher, dass die Funktion <span class="clisting">func</span> aufgerufen wird, wenn das HTML-Dokument vollständig geladen ist, jedoch noch bevor es angezeigt wird.</p>
+<p>Die jQuery-Liste, die von der Funktion <span class="clisting">jQuery(selector)</span> oder <span class="clisting">jQuery(html)</span> zurückgegeben wurde, stellt viele Methoden bereit, mit denen man alle ihre Elemente mit sehr wenig Quelltext manipulieren kann. So kann man zum Beispiel die Hintergrundfarbe aller H1-Elemente auf Gelb setzen:</p>
+<p><span class="clisting">jQuery('h1').css('background-color', 'yellow')</span></p>
+<p>Um die Quelltexte noch etwas knapper zu halten, kann man statt <span class="clisting">jQuery</span> auch das Dollarzeichen verwenden. Denn <span class="clisting">$</span> ist in JavaScript ein gültiger Bezeichner. So kann man den eben genannten Aufruf auch so schreiben:</p>
+<p><span class="clisting">$('h1').css('background-color', 'yellow')</span></p>
+</td>
+</tr>
+</table><br><p>Um mit jQuery das Ereignis <span class="ckursiv">Click</span> auf der Taste mit einer JavaScript-Routine zu verknüpfen, kann man also Folgendes schreiben:</p>
+<div class="listing"><pre class="prettyprint">&lt;script type="text/javascript"&gt; 
+$( function() {<span class="cfett"> 
+   $('#hiButton').bind('click', </span>function(event) { 
+       alert("Hi World"); 
+   }<span class="cfett">);</span> 
+}); 
+&lt;/script&gt; 
+&lt;button id="hiButton"&gt;Hi&lt;/button&gt;</pre></div>
+<p>Immer noch ziemlich lang, nicht wahr? Nun, nur der fett dargestellte Quelltext verbindet das Ereignis <span class="ckursiv">Click</span> mit der Taste <span class="clisting">hiButton</span>. </p>
+<p>Stellen wir uns aber vor, dass wir nicht nur eine Taste, sondern viele Tasten auf unserer Seite mit einer JavaScript-Routine verknüpfen möchten:</p>
+<div class="listing"><pre class="prettyprint">&lt;script type="text/javascript"&gt; 
+$( function() { 
+   $(<span class="cfett">'.greet'</span>).bind('click', function(event) {  
+       alert(<span class="cfett">$(event.target).text()</span> + " world");  
+   }); 
+}); 
+&lt;/script&gt; 
+&lt;button class="greet"&gt;Hi&lt;/button&gt; 
+&lt;button class="greet"&gt;Hello&lt;/button&gt; 
+&lt;button class="greet"&gt;Good morning&lt;/button&gt;</pre></div>
+<p>In diesem Beispiel haben wir dem Ereignis <span class="ckursiv">Click</span> aller Elemente, die der CSS-Klasse <span class="clisting">greet</span> zugehören, eine Funktion zugeordnet, die die Welt mit dem Text des Elementes grüßt.</p>
+<p>In diesem Beispiel sehen wir zwei jQuery-Selektoren: <span class="clisting">'.greet'</span> in Zeile  selektiert alle Elemente, die der CSS-Klasse <span class="clisting">greet</span> zugehören. <span class="clisting">'button.greet'</span> würde nur die BUTTON-Elemente dieser Klasse auswählen.</p>
+<p>In Zeile  befindet sich ein Element, das wir bereits kennen &#8211; das Element <span class="clisting">event.target</span>, das in unserem Beispiel die angeklickte Taste referenziert. Wozu soll das denn gut sein? Wir haben das Element doch bereits. <span class="clisting">$(event.target)</span> gibt eigentlich nicht genau das Element <span class="clisting">event.target</span>, sondern eine jQuery-Liste zurück, die viele nützliche Funktionen bereitstellt. In unserem Beispiel verwenden wir die Funktion <span class="clisting">text()</span>, die den Textinhalt des angeklickten Elements zurückgibt.</p>
+<h4 class="t4">Darstellung der Kontakte</h4>
+<p>Entwickeln wir jetzt die JavaScript-Routine, die unsere Kontakte mit Ajax lädt und sie an der richtigen Stelle der HTML-Seite einfügt. Die Datei <span class="ckursiv">kontakte.js</span> wird in die Seite <span class="ckursiv">kontakte.html</span> in Zeile   in Listing 10.5 geladen.</p>
+<div class="listing"><pre class="prettyprint">$(function() {  
+    $.getJSON('kontakte.php', kontakteAuflisten); 
+});</pre></div>
+<p>Die jQuery-Funktion <span class="clisting">getJSON</span> startet einen asynchronen Ajax-Aufruf. Wenn die Antwort des Aufrufes zurückkommt, werden die Daten an die Funktion <span class="clisting">kontakteAuflisten</span> übergeben.</p>
+<p>Wir können die Funktion <span class="clisting">getJSON</span> nicht direkt in unser Skript einbinden, denn dann würde der Browser sie sofort aufrufen &#8211; noch bevor die HTML-Seite komplett geladen wäre und noch bevor das DIV-Element, in dem wir die Kontakte anzeigen wollen, geladen wäre. Deswegen betten wir den Ajax-Aufruf in eine anonyme Funktion in Zeile , die wir als einen Parameter der Funktion <span class="clisting">jQuery</span> (in unserem Quelltext als <span class="clisting">$</span> abgekürzt) übergeben. Dies bewirkt, dass unsere anonyme Funktion erst aufgerufen wird, nachdem die HTML-Seite komplett geladen wurde, aber noch bevor sie angezeigt wird.</p>
+<p>Implementieren wir jetzt die Funktion <span class="clisting">kontakteAuflisten</span>:</p>
+<div class="listing"><pre class="prettyprint">$(function() { 
+ 
+    function kontakteAuflisten(data) {  
+        var kontakte = $("&lt;ul&gt;");  
+        for (var id in data.daten) { 
+            var kontakt = $("&lt;li&gt;");  
+            kontakte.append(kontakt);  
+            kontakt.append( 
+                kontaktAnzeigen(id, data.daten[id]) 
+            ); 
+        } 
+        $("#kontakte").append(kontakte);         
+    } 
+     
+    $.getJSON('kontakte.php', kontakteAuflisten); 
+});</pre></div>
+<p class="tabunter"><strong>Listing 10.6    </strong>Die Datei »kontakte.js«</p>
+<p>Die Funktion <span class="clisting">kontakteAuflisten</span> in Zeile  ist innerhalb unserer anonymen Funktion deklariert &#8211; es ist also eine lokale Funktion, die nicht den globalen Namensraum unserer Anwendung »besetzt«. Die Deklaration entspricht der Deklaration einer lokalen Variablen, und wir könnten sie auch so schreiben: </p>
+<div class="listing"><pre class="prettyprint"><span class="clisting">var kontakteAuflisten = function(data) { ... }</span></pre></div>
+<p>Der Aufruf <span class="clisting">$.getJSON('kontakte.php', kontakteAuflisten)</span> stellt sicher, dass das JSON-Objekt, das von <span class="ckursiv">kontakte.php</span> zurückgegeben wurde, als Parameter <span class="clisting">data</span> an die Funktion <span class="clisting">kontakteAuflisten</span> übergeben wird.</p>
+<p>Wir werden die Kontakte in einer Liste darstellen; eine einfache Liste wird in HTML mit dem Element UL markiert, und ihre Einträge werden zu LI-Elementen. In den mit  markierten Zeilen erzeugen wir solche Elemente wieder mit der Funktion <span class="clisting">jQuery</span> beziehungsweise <span class="clisting">$</span>.</p>
+<p>Schließlich fügen wir mit der Funktion <span class="clisting">append</span> die erzeugten Elemente anderen Elementen zu. In Zeile  fügen wir also unsere komplette Liste der Kontakte zu der HTML-Seite hinzu, und zwar zu dem HTML-Element, das die Id <span class="clisting">kontakte</span> hat.</p>
+<p>Jetzt müssen wir nur die Funktion <span class="clisting">kontaktAnzeigen</span> implementieren, die einen Kontakt darstellt. Wir möchten die Kontaktdaten editierbar machen, also werden wir sie in INPUT-Elementen darstellen. Wenn die Einträge mehrwertig sein dürfen, werden wir immer ein zusätzliches INPUT-Element hinzufügen, um neue Werte eintragen zu können.</p>
+<div class="listing"><pre class="prettyprint">function kontaktAnzeigen(id, kontakt) { 
+  var dl = $("&lt;dl&gt;");  
+  for (var i in kontakt) { 
+    var eintraege = kontakt[i];             
+    dl.append($("&lt;dt&gt;").text(eintraege.name + ":"));  
+    if (eintraege.eintrag instanceof Array) { 
+      for (var j in eintraege.eintrag) { 
+        dl.append($("&lt;dd&gt;").append( 
+             $("&lt;input&gt;")  
+               .attr('name',  
+                 'bearbeitet[' +  eintraege.eintrag[j].id + ']') 
+               .val(eintraege.eintrag[j].wert))); 
+      } 
+      dl.append($("&lt;dd&gt;")
+           .append($("&lt;input name='neu[" + id + "]["  
+             + eintraege.id + "]["  
+             + kontaktAnzeigen.neuerEintrag++ + "]' &gt;")));  
+    } else { 
+      dl.append($("&lt;dd&gt;").append( 
+         $("&lt;input&gt;")
+            .attr('name', 
+                  'bearbeitet[' + eintraege.eintrag.id + ']') 
+            .val(eintraege.eintrag.wert))); 
+    } 
+  } 
+  return dl; 
+}; 
+kontaktAnzeigen.neuerEintrag = 0;</pre></div>
+<p class="tabunter"><strong>Listing 10.7    </strong>Die Funktion »kontaktAnzeigen« in »kontakte.js«</p>
+<p>Jeden Kontakt werden wir als eine Definitionsliste darstellen. Deswegen erzeugen wir in Zeile  ein DL-Element. Die Namen der Eintragstypen fügen wir in diese Liste als DT-Elemente ein, die Werte der Einträge als DD-Elemente. </p>
+<p><strong><em>Verkettung der Aufrufe (Invocation Chaining)</em></strong></p>
+<p>In den Zeilen, die mit  markiert sind, sehen wir eine Technik, die in jQuery so häufig verwendet wird, dass wir sie nicht unangesprochen lassen können: die <span class="ckursiv">Verkettung der Aufrufe (Invocation Chaining).</span></p>
+<p>Wenn eine Methode eines Objekts nicht dazu dient, einen Wert zurückzugeben, so gibt sie einfach das Objekt selbst zurück. In unserem Beispiel verwenden wir die Methoden <span class="clisting">text</span>, <span class="clisting">attr</span> und <span class="clisting">val</span>, die den Text oder ein Attribut von Elementen beziehungsweise den Wert von Formularfeldern setzen. Alle diese Methoden geben das Objekt, zu dem sie gehören, zurück. Auf diese Weise kann man den Aufruf dieser Methoden verketten und den Quelltext kompakter schreiben sowie sich viele temporäre lokale Variablen sparen. Übrigens, die Methode <span class="clisting">append</span> verhält sich genauso.</p>
+<p>Die Verkettung der Aufrufe wurde als Standardverhalten von Java 7 vorgeschlagen. Wenn dieser Vorschlag angenommen wird, wird jede (nichtstatische) Methode, die <span class="clisting">void</span> »zurückgibt«, das Objekt, zu dem sie gehört, zurückgeben. So könnte man ähnlich wie in jQuery statt</p>
+<div class="listing"><pre class="prettyprint">var dd = $("&lt;dd&gt;"); 
+var input = $("input"); 
+input.attr("name", name); 
+input.val(wert); 
+dd.append(input);</pre></div>
+<p>einfach</p>
+<div class="listing"><pre class="prettyprint">$("&lt;dd&gt;").append($("&lt;input&gt;").attr("name", name).val(wert));</pre></div>
+<p>schreiben.</p>
+<p>In jQuery ist es nicht notwendig, die Attribute und Texte der erstellten Elemente mit den Funktionen <span class="clisting">attr</span>, <span class="clisting">text</span> und <span class="clisting">val</span> zu setzen, man kann sie auch wie in Zeile  von Listing 10.7 direkt in dem Parameter der Funktion <span class="clisting">$</span> übergeben [Bei dieser Vorgehensweise sollte man aufpassen, wenn man die Zeichenkette aus Variablen zusammensetzt &#8211; sie können HTML-Steuerungszeichen wie <span class="clisting">&lt;</span>, <span class="clisting">&amp;</span> oder <span class="clisting">&gt;</span> enthalten.
+] .</p>
+<p>Was wir bisher programmiert haben, kann man noch lange nicht Version 1.0 nennen, aber einen Grund zur Freude haben wir doch: Wir haben jetzt eine lauffähige Anwendung, mit der wir uns die Kontaktdaten in einer Webanwendung anschauen können. Hier zum Beweis ein Screenshot:</p>
+<div class="bildbox">
+<p><a name="IDATYSQ"></a><a onClick="OpenWin('bilder/10_screenshot_1.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein10_screenshot_1.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 10.3    </strong>Der erste Screenshot unserer Beispielanwendung</p>
+<p>Funktional, aber nicht besonders attraktiv, nicht wahr? Nun, mit wenigen Zeilen CSS lässt sich die Darstellung etwas verbessern:</p>
+<div class="bildbox">
+<p><a name="IDAYYSQ"></a><a onClick="OpenWin('bilder/10_screenshot_2.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein10_screenshot_2.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 10.4    </strong>Der erste Screenshot mit ein wenig Stil</p>
+<p>Unsere Anwendung kann jetzt die Kontakte anzeigen, und wir können sogar die Daten im Browser bearbeiten. Speichern können wir sie allerdings noch nicht. Dazu müssen wir jetzt zu PHP zurückkehren und weitere Dienste programmieren.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_10_004.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="10.4 Ein Klient in Ajax"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_10_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_005.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

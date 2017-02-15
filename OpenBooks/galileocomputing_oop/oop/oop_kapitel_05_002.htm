@@ -1,0 +1,1365 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 5.2 Polymorphie und ihre Anwendungen</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 5.2 Polymorphie und ihre Anwendungen">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 5.2 Polymorphie und ihre Anwendungen">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_05_001.htm">
+<link rel="next" href="oop_kapitel_05_003.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_05_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14" class="navnav">5 Vererbung und Polymorphie</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_001.htm#mje769296ccaf3ae315b0d51e75287d395" class="navnav">5.1 Die Vererbung der Spezifikation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mj9593b3442d74dcb313fed8d0adfcfc86" class="navnav">5.1.1 Hierarchien von Klassen und Unterklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjf4a1d7882a3f31bce76f5fc0e36fe27a" class="navnav">5.1.2 Unterklassen erben die Spezifikation von Oberklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjf24806ff4eeca6b9ec42217606b969bb" class="navnav">5.1.3 Das Prinzip der Ersetzbarkeit </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mjb47b8cf703b67dbc87a9e7fb9b8751c4" class="navnav">5.1.4 Abstrakte Klassen, konkrete Klassen und Schnittstellen-Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mj60d6f50d874cf992b1fbe672cc0a7d4a" class="navnav">5.1.5 Vererbung der Spezifikation und das Typsystem</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_001.htm#mja01ba6ec04515aa1bd9707d45880ad9c" class="navnav">5.1.6 Sichtbarkeit im Rahmen der Vererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj34d525fdf8bf9b40cdbf2807b9bb2199" class="navh">5.2 Polymorphie und ihre Anwendungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjc3ecdad3da1f241382712b9dc94960bb" class="navh">5.2.1 Dynamische Polymorphie am Beispiel</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf4754b5db8c6e16dccab007f73c3a48a" class="navh">5.2.2 Methoden als Implementierung von Operationen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjcecc846fe8a9e04e80aaef4c72983098" class="navh">5.2.3 Anonyme Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj7d8e0a558bb121f6759f3cac9e60684b" class="navh">5.2.4 Single und Multiple Dispatch</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf40bf0e266ddbbbdf13e9d8c595202da" class="navh">5.2.5 Die Tabelle für virtuelle Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_003.htm#mje40df564b385a2f2ef85664fe5964be8" class="navnav">5.3 Die Vererbung der Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mj4775d703fdbfd6031f8317189db10135" class="navnav">5.3.1 Überschreiben von Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mj38e0fa066f121e7525f4ab5a0775c70a" class="navnav">5.3.2 Das Problem der instabilen Basisklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mjc3c0ce6022ae471884f1dbb63c77bc82" class="navnav">5.3.3 Problem der Gleichheitsprüfung bei geerbter Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_004.htm#mj4744a80ac0ff520167d0124d73dba2b2" class="navnav">5.4 Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj24431884d901efc513af9f03f390f35b" class="navnav">5.4.1 Mehrfachvererbung: Möglichkeiten und Probleme</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj8be5a8d347008ce6a4243ad9b458d4dc" class="navnav">5.4.2 Delegation statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mjf93d2964b661c11e0412548a9486d31f" class="navnav">5.4.3 Mixin-Module statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj079fb2023e60f4e9a4af05511c818fdf" class="navnav">5.4.4 Die Problemstellungen der Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_005.htm#mje3cdab009c7e71d5ab9a4a88fee35441" class="navnav">5.5 Statische und dynamische Klassifizierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_005.htm#mj854788ce700510087a70ffc87d35cb00" class="navnav">5.5.1 Dynamische Änderung der Klassenzugehörigkeit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_005.htm#mja85bbac4fb34a5938c3be9f5c65d922c" class="navnav">5.5.2 Entwurfsmuster »Strategie« statt dynamischer Klassifizierung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj34d525fdf8bf9b40cdbf2807b9bb2199" name="mj34d525fdf8bf9b40cdbf2807b9bb2199"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">5.2 Polymorphie und ihre Anwendungen  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Polymorphie ist eine der wichtigsten Fähigkeiten, die Sie bei der Umsetzung von objektorientierten Systemen nutzen können. Wörtlich bedeutet der Begriff ins Deutsche übersetzt »Vielgestaltigkeit«.</p>
+<p>Im Bereich der Objektorientierung bezieht sich Polymorphie darauf, dass verschiedene Objekte bei Aufruf derselben Operation unterschiedliches Verhalten an den Tag legen können.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Dynamische Polymorphie (oder Laufzeitpolymorphie)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Objektorientierte Systeme, die dynamische Polymorphie unterstützen, sind in der Lage, einer Variablen Objekte unterschiedlichen Typs zuzuordnen. Dabei beschreibt der Typ der Variablen selbst lediglich eine Schnittstelle. Der Variablen können dann aber alle Objekte zugewiesen werden, deren Klasse diese Schnittstelle implementiert. Welche Methode beim Aufruf einer Operation aufgerufen wird, hängt davon ab, welche Klassenzugehörigkeit das Objekt hat, das der Variablen zugeordnet ist. Der Typ der Variablen ist nicht entscheidend. Der Aufruf der Operation erfolgt damit polymorph, also abhängig vom konkreten Objekt. Wenn der Variablen während der Laufzeit des Programms Objekte mit unterschiedlicher Klassenzugehörigkeit zugewiesen werden, so werden jeweils andere Methoden aufgrund des Aufrufs derselben Operation ausgeführt. Im Folgenden werden wir die dynamische Polymorphie einfach kurz als Polymorphie bezeichnen.</p>
+</td>
+</tr>
+</table><br><p>Diese Fähigkeit hört sich zunächst nicht wirklich spektakulär an. Sie bildet aber die Grundlage dafür, dass objektorientierte Systeme so entwickelt werden können, dass sie innerhalb von Grenzen flexibel auf Änderungen von Anforderungen reagieren können.</p>
+<p>In den meisten Fällen ist es allerdings zur Übersetzungszeit eines Programms noch gar nicht klar, mit welchen Objekten eine Variable konkret belegt sein wird. Deshalb kann in der Regel erst zur Laufzeit eines Programms entschieden werden, welche Methode beim Aufruf einer Operation ausgeführt werden soll. Der Mechanismus der <span class="ckursiv">späten Bindung</span> erlaubt es, die Zuordnung auch erst zu diesem Zeitpunkt zu treffen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Späte Bindung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Objektorientierte Systeme sind in der Regel in der Lage, die Zuordnung einer konkreten Methode zum Aufruf einer Operation erst zur Laufzeit eines Programms vorzunehmen. Dabei wird abhängig von der Klassenzugehörigkeit des Objekts, auf dem die Operation aufgerufen wird, entschieden, welche Methode verwendet wird.</p>
+<p>Diese Fähigkeit, eine Methode dem Aufruf einer Operation erst zur Laufzeit zuzuordnen, wird späte Bindung genannt. Dies rührt daher, dass für die Zuordnung der Methode der spätest mögliche Zeitpunkt gewählt wird, um die Methode an den Aufruf einer Operation zu binden.</p>
+</td>
+</tr>
+</table><br><p>Die Polymorphie ist die technische Voraussetzung dafür, dass die Konzepte der Vererbung der Spezifikation und das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> in Ihren Programmen auch effektiv genutzt werden können.</p>
+<p>Bevor wir die dynamische Polymorphie an einem Beispiel erläutern, stellen wir noch kurz ihren kleinen Bruder vor, die sogenannte <span class="ckursiv">Überladung</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Überladung (statische Polymorphie)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Von Überladung sprechen wir, wenn der Aufruf einer Operation anhand des konkreten Typs von Variablen oder Konstanten auf eine Methode abgebildet wird. Im Gegensatz zur dynamischen Polymorphie spielen die Inhalte der Variablen bei der Entscheidung, welche konkrete Methode aufgerufen wird, keine Rolle. Überladung kann nur von Sprachen mit statischem Typsystem unterstützt werden. Zu Sprachen, die Überladung unterstützen, gehören unter anderem C++ und Java. Überladung ist so etwas wie der kleine Bruder der dynamischen Polymorphie. Sie hilft dabei, Programme lesbarer und überschaubarer zu gestalten. Sie reicht aber nicht aus, um das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> für Unterklassen in unseren Programmen praktisch nutzbar zu machen.</p>
+</td>
+</tr>
+</table><br><a id="mjc3ecdad3da1f241382712b9dc94960bb" name="mjc3ecdad3da1f241382712b9dc94960bb"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">5.2.1 Dynamische Polymorphie am Beispiel  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Betrachten wir im Folgenden ein sehr einfaches Beispiel, bei dem dynamische Polymorphie zum Einsatz kommt. Daran anschließend werden wir zeigen, wie die Umsetzung ohne Polymorphie aussieht und welche Nachteile wir uns damit einhandeln würden. Wir verwenden für das erste Beispiel eine Umsetzung in C++, für das zweite die Sprache C, um deren Restriktionen in Bezug auf dynamische Polymorphie auszunutzen.</p>
+<p><strong><em>Umsetzung mit Polymorphie</em></strong></p>
+<p>In Abbildung 5.21 ist eine minimale Klassenhierarchie dargestellt, die wir für unser Beispiel verwenden werden.</p>
+<div class="bildbox">
+<p><a name="IDARHSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_015.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_015.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.21    </strong>Umsetzung einer Operation print</p>
+<p>Die Abbildung zeigt die Umsetzung der Hierarchie in der Sprache C++ und die Nutzung der polymorphen Operation <span class="clisting">print()</span>.</p>
+<div class="listing"><pre class="prettyprint">class Data { 
+    virtual void print() = 0;  
+}; 
+ 
+class Text: public Data { 
+    virtual void print() {  
+        printf("Druck eines einfachen Texts\n"); 
+    } 
+}; 
+// Umsetzungen für BitmapImage und PdfData entsprechend 
+// ... 
+ 
+void printList(Data** dataList) { 
+    Data** element; 
+    Data* data;     
+    for (element=dataList; *element != NULL; ++element) {  
+        data = *element;  
+        data-&gt;print();  
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.12    </strong>Verteilung von Methodenaufrufen durch Polymorphie</p>
+<p>In Zeile  deklarieren Sie, dass alle Exemplare der Klasse <span class="clisting">Data</span> die Operation <span class="clisting">print</span> unterstützen. Durch das Schlüsselwort <span class="clisting">virtual</span> wird die Operation auch als polymorph markiert.</p>
+<p>In den mit  markierten Zeilen wird diese Operation von der Unterklasse <span class="clisting">TextData</span> umgesetzt. Die Umsetzungen für <span class="clisting">BitmapData</span> und <span class="clisting">PdfData</span> sind nicht dargestellt.</p>
+<p>In Zeile  wird die Variable <span class="clisting">data</span> deklariert. Ihr Typ ist ein Zeiger auf ein Exemplar der Klasse <span class="clisting">Data</span>, die hierfür als Schnittstelle verwendet wird. Weil die dynamische Polymorphie unterstützt wird, kann die Variable aber auch Zeiger auf Exemplare aller Unterklassen von <span class="clisting">Data</span> aufnehmen.</p>
+<p>In Zeile  wird über eine Liste von Exemplaren der Klasse <span class="clisting">Data</span> iteriert. Das jeweils aktuelle Element wird in Zeile  der Variablen <span class="clisting">data</span> zugewiesen. Diese zeigt nun auf ein Exemplar einer Unterklasse von <span class="clisting">Data</span>.</p>
+<p>In Zeile  wird die Operation <span class="clisting">print()</span> auf der Variablen <span class="clisting">data</span> aufgerufen. Der Aufruf wird jeweils einer Methode zugeordnet. Wenn <span class="clisting">data</span> aktuell auf ein Exemplar von <span class="clisting">TextData</span> zeigt, wird die Methode der Klasse <span class="clisting">TextData</span> aufgerufen. Wenn <span class="clisting">data</span> auf ein Exemplar von <span class="clisting">BitmapImage</span> zeigt, wird die Methode <span class="clisting">print()</span> von <span class="clisting">BitmapImage</span> aufgerufen.</p>
+<p>Die Umsetzung und Verwendung der Operation <span class="clisting">print()</span> sieht also schon sehr kompakt aus.</p>
+<p><strong><em>Umsetzung ohne Polymorphie</em></strong></p>
+<p>Betrachten wir nun, was wir uns einhandeln würden, wenn wir die Polymorphie in diesem Fall nicht nutzen könnten. In Listing 5.13 versuchen wir, eine Version in der Sprache C umzusetzen, welche die gleiche Funktionalität realisiert. Dabei können wir nicht mehr auf Klassen zurückgreifen, sondern definieren lediglich Datenstrukturen über das Schlüsselwort <span class="clisting">struct</span>. Die Datenstruktur <span class="clisting">Data</span> enthält dabei einen Zeiger auf beliebige andere Strukturen, so dass sie die Daten unserer Unterklassen (nun Datenstrukturen) <span class="clisting">TextData</span>, <span class="clisting">BitmapData</span> und <span class="clisting">PdfData</span> referenzieren kann.</p>
+<div class="listing"><pre class="prettyprint">#define STOP 0              
+#define PLAIN_TEXT 1        
+#define RASTER_IMAGE 2      
+ 
+struct Data { 
+    int type;   
+    void * data; // Zeiger auf konkrete Daten 
+}; 
+typedef struct Data Data; 
+ 
+struct TextData { 
+    // hier stehen die eigentlichen Daten 
+};</pre></div>
+<div class="listing"><pre class="prettyprint">// entsprechende Strukturen für BitmapImage und PdfData 
+// ... 
+ 
+void printPlainText(TextData* text) { 
+    printf("Druck eines einfachen Texts\n"); 
+} 
+// entsprechende Umsetzungen für BitmapImage und PdfData 
+// ...</pre></div>
+<p><strong><em>Verteilung  
+nach Typ</em></strong></p>
+<div class="listing"><pre class="prettyprint">void dispatchPrint(Data* data) {      
+    switch (data-&gt;type) {             
+        case PLAIN_TEXT: 
+            printPlainText((char*)data-&gt;data); 
+            break; 
+        case RASTER_IMAGE: 
+            printRasterImage((RasterImage*)data-&gt;data); 
+            break; 
+        default:                       
+            printf("Fehler: Unbekannter Typ der Daten\n"); 
+    } 
+} 
+ 
+void printList(Data* dataList) { 
+    Data* d; 
+    for (d = dataList; d-&gt;type != STOP; ++d) { 
+        dispatchPrint(d); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.13    </strong>Aufruf der Operation print ohne dynamische Polymorphie</p>
+<p>Einige Unterschiede, die diese Lösung komplexer machen, sind bereits klar aus dem Listing ersichtlich.</p>
+<ul class="gp">
+<li>In den mit  markierten Zeilen ist zu sehen, dass explizite Typinformation benötigt wird, um die verschiedenen Datenstrukturen zu unterscheiden. Das war in unserer Variante mit Polymorphie nicht der Fall.</li>
+</ul>
+<ul class="gp">
+<li>Es ist eine explizite Verteilung der Aufrufe der verschiedenen print-Routinen durch eine Methode <span class="clisting">dispatchPrint()</span> in Zeile  notwendig. Dies ist in der Variante mit Polymorphie nicht notwendig.</li>
+</ul>
+<ul class="gp">
+<li>Die Zuordnung der korrekten Routine muss in Zeile  anhand des Typs erfolgen, der in der allgemeinen Datenstruktur <span class="clisting">Data</span> mitgeführt wird. Auch dies ist in der Variante mit Polymorphie nicht notwendig.</li>
+</ul>
+<ul class="gp">
+<li>Es kann zu Fehlerfällen kommen, in denen eine Datenstruktur an die Routine <span class="clisting">dispatchPrint()</span> übergeben wird, für die in der Verteilung keine Routine vorhanden ist (). In der Variante mit Polymorphie ist sichergestellt, dass zu einem Objekt auch eine Methode <span class="clisting">print()</span> vorhanden ist, da diese dem Objekt selbst zugeordnet ist.</li>
+</ul>
+<p>Neben den direkt aus den Listings zu entnehmenden Vorteilen der Polymorphie gibt es einen weiteren Vorteil, der mit späteren Änderungen am Programm zu tun hat.</p>
+<p><strong><em>Erweiterbarkeit</em></strong></p>
+<p>Wenn Sie das Programm um die Fähigkeit erweitern wollen, auch Vektorgrafiken zu drucken, müssen Sie in der Variante mit Polymorphie nichts weiter tun, als eine neue Unterklasse <span class="clisting">VectorImage</span> der Klasse <span class="clisting">Data</span> zu erstellen, die eine Methode <span class="clisting">print()</span> realisiert, um eine Vektorgrafik zu drucken.</p>
+<p>Wenn Sie die Polymorphie nicht zur Verfügung haben, müssen Sie nicht nur eine Routine <span class="clisting">printVectorGraphics</span> implementieren, Sie müssen auch die Prozedur <span class="clisting">dispatchPrint</span> anpassen und einen neuen Typ dafür definieren, der dann mit der Datenstruktur <span class="clisting">Data</span> zusammen verwendet wird. Sie müssen also stark in den vermeintlich bereits fertig gestellten Quelltext eingreifen.</p>
+<p><strong><em>Verteilung durch Programmiersprache</em></strong></p>
+<p>Mit Hilfe der dynamischen Polymorphie können Sie also die beschriebene Aufgabenstellung mit weniger Quelltext umsetzen, und Sie halten den Änderungsaufwand im Fall von Anpassungen geringer.</p>
+<p><strong><em>Zuordnung  
+beim Aufruf einer Operation</em></strong></p>
+<p>Die Zuordnung beim Aufruf einer Operation zu einer konkreten Methode übernimmt ein von der Programmiersprache (oder deren Laufzeitsystem) bereitgestellter Mechanismus, ein sogenannter <span class="ckursiv">Dispatcher</span>.</p>
+<p>Wenn Sie im Beispiel aus Listing 5.12 das Programm um weitere druckbare Dateitypen erweitern, werden diese automatisch in die Entscheidungslogik des Programms integriert. Der Dispatcher wird die Zuordnung der Methode für Exemplare von neu erstellten Klassen mit übernehmen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Dispatcher in objektorientierten Programmiersprachen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Dispatcher ist ein durch eine objektorientierte Programmiersprache zur Verfügung gestellter Mechanismus, der die Verantwortung dafür hat, für jede aufgerufene Operation die korrekte Methode auszuführen. Die Entscheidung darüber, welche Methode ausgeführt wird, hängt in der Regel von der Klassenzugehörigkeit des Objekts ab, auf dem eine Operation aufgerufen wird. Die konkrete auszuführende Methode kann erst bestimmt werden, wenn der tatsächliche Typ des Objekts, auf dem die Operation durchgeführt wird, bekannt ist. In den meisten Fällen ist dies erst zur Laufzeit möglich, so dass ein Dispatcher auch zur Laufzeit zur Verfügung stehen muss.<sup>9  </sup></p>
+</td>
+</tr>
+</table><br><p><strong><em>Diskussion:  
+Polymorphie ohne Objekte?</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Ist denn eigentlich dynamische Polymorphie etwas, was nur im Kontext von objektorientierten Sprachen funktioniert? [In bestimmten Fällen lässt sich der tatsächliche Typ bereits zur Kompilierungszeit bestimmen. Das bietet eine Möglichkeit zur Optimierung der Performance des Programms, denn die dynamische Bestimmung der aufzurufenden Routine (Dynamic Dispatch) ist nicht ohne Laufzeitkosten.
+] </span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Nein, man kann dynamische Polymorphie in praktisch jeder Programmiersprache anwenden. Eines der bekanntesten Beispiele der Anwendung von dynamischer Polymorphie hängt sogar sehr eng mit der Sprache C zusammen.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Welches Beispiel meinst du?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Die Sprache C und das Betriebssystem Unix entstanden sozusagen Hand in Hand. In Unix (und ähnlichen Systemen wie z. B. Linux) betrachtet man alle an den Rechner angeschlossenen Geräte als Dateien. Man benutzt die gleichen C-Funktionen, um auf tatsächliche Dateien, den Drucker, die Maus, das Netzwerk und so weiter zuzugreifen. Ähnlich, wenn auch nicht so konsequent, macht man es unter Windows. Ein anderes Beispiel ist, dass man auf eine Datei zugreifen kann, als ob deren Inhalt einfach im Speicher liegen würde. Das alles sind Beispiele von dynamisch polymorpher Funktionalität, die in diesem Fall vom Betriebssystem bereitgestellt wird.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Die dynamische Polymorphie wird also nicht von der Objektorientierung ermöglicht?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Nein, sie wird aber erheblich einfacher gemacht.</span><p>Die Polymorphie gibt Ihnen einen sehr breit nutzbaren Abstraktionsmechanismus an die Hand. Polymorphie bildet damit eine ganz zentrale Voraussetzung für die objektorientierte Vorgehensweise.</p>
+<p>In den folgenden Abschnitten werden Sie einige Anwendungen für Polymorphie kennen lernen. Zunächst stellen wir Ihnen an einem Beispiel vor, wie unterschiedliche Methoden auf Grundlage der Polymorphie dieselbe Operation umsetzen und welche Mechanismen zum Einsatz kommen, um die richtige Methode zu finden. In Abschnitt 5.2.3 gehen wir auf die sogenannten anonymen Klassen ein, für deren Nutzung die Polymorphie zentral ist. In Abschnitt 5.2.4 werden wir dann Aufrufe von Operationen zeigen, die eine komplexere Verteilung auf der Grundlage von Polymorphie erfordern, und diese am konkreten Beispiel des Entwurfsmusters »Besucher« erläutern. Schließlich werden wir in Abschnitt 5.2.5 auch noch auf die technische Realisierung von Polymorphie eingehen und als Beispiel die sogenannte Tabelle für virtuelle Methoden vorstellen.</p><a id="mjf4754b5db8c6e16dccab007f73c3a48a" name="mjf4754b5db8c6e16dccab007f73c3a48a"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">5.2.2 Methoden als Implementierung von Operationen  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Klassen deklarieren in der Regel eine Reihe von Operationen, die sich auf den Exemplaren dieser Klassen aufrufen lassen. In Abschnitt 4.2.4 haben Sie gesehen, dass diese Operationen auch innerhalb der Klassen umgesetzt werden können, und zwar in Form von Methoden.</p>
+<p><strong><em>Operationen  
+bilden auf  
+Methoden ab.</em></strong></p>
+<p>Eine Klasse, die eine Operation über eine Methode umsetzt, implementiert diese Operation. Allerdings muss die Klasse, die eine Methode umsetzt, nicht unbedingt diejenige sein, die auch die Operation spezifiziert. In so einem Fall spricht man davon, dass eine Klasse die Schnittstelle einer anderen Klasse ganz oder teilweise <span class="ckursiv">implementiert</span>.</p>
+<p>In Abbildung 5.22 implementieren drei Klassen die von der Schnittstellen-Klasse <span class="clisting">ProtocolHandler</span> spezifizierte Operation <span class="clisting">getContent()</span> über unterschiedliche Methoden.</p>
+<p>Im Beispiel sind die Methoden in der statisch typisierten Sprache Java umgesetzt. Bei Sprachen mit statischem Typsystem muss die Referenz auf ein Objekt (also eine Variable oder ein Parameter) den Typ der Schnittstelle deklarieren, damit die Operation überhaupt aufgerufen werden kann. Zur Laufzeit wird der Dispatcher der Programmiersprache dann für eine Variable vom Typ der Schnittstelle entscheiden, welche der Methoden aufgerufen wird.</p>
+<p>In Listing 5.14 ist der Parameter <span class="clisting">handler</span> der statischen Methode <span class="clisting">getText</span> in Zeile  vom Typ der Schnittstelle <span class="clisting">ProtocolHandler</span>. Der Aufruf der Operation <span class="clisting">getContent</span> in Zeile  wird eine der drei Methoden aus Abbildung 5.22 aufrufen, abhängig davon, ob zur Laufzeit des Programms ein Exemplar von <span class="clisting">HttpProtocolHandler</span>, <span class="clisting">FtpProtocolHandler</span> oder <span class="clisting">SecureHttpProtocolHandler</span> vorliegt.</p>
+<div class="bildbox">
+<p><a name="IDANWSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_016.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_016.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.22    </strong>Verschiedene Java-Methoden für die Operation »getContent«</p>
+<p><strong><em>Statisch typisierte Sprachen</em></strong></p>
+<div class="listing"><pre class="prettyprint">static String getText(ProtocolHandler handler,    
+                      String location) { 
+   String description = "Presenting " + location + ": \n" ; 
+   description += handler.getContent(location);  
+   return description; 
+}</pre></div>
+<div class="listing"><pre class="prettyprint">public static void main(String[] args) { 
+  ProtocolHandler handler = new HttpProtocolHandler();    
+  System.out.println(getText(handler,"http://www.mopo.de")); 
+  handler = new FtpProtocolHandler();  
+  System.out.println(getText(handler,"ftp://ftp.share.de")); 
+  handler = new SecureHttpProtocolHandler(); 
+  System.out.println(getText(handler,"https://www.bank.de")); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.14    </strong>Verschiedene Methoden werden für die Operation »getContent« aufgerufen.</p>
+<p>In den Zeile ,  und  werden jeweils Exemplare der unterschiedlichen Klassen konstruiert und an <span class="clisting">getText()</span>übergeben. Die Ausgaben unterscheiden sich dann auch, da jeweils unterschiedliche Methoden aufgerufen werden:</p>
+<div class="listing"><pre class="prettyprint">Presenting http://www.mopo.de: 
+content of Http-Connection 
+Presenting ftp://ftp.share.de: 
+content of Ftp-Connection 
+Presenting https://www.bank.de: 
+content of Http-Connection (secure)</pre></div>
+<p>Die Verteilung einer Operation auf verschiedene Methoden ist in den statisch typisierten Sprachen also nur möglich, wenn alle beteiligten Objekte eine gemeinsame, explizit deklarierte Schnittstelle implementieren.</p>
+<p><strong><em>Dynamisch typisierte Sprachen</em></strong></p>
+<p>Anders in den dynamisch typisierten Sprachen. Dort ist es durchaus möglich, eine Operation erfolgreich auf verschiedenen Objekten aufzurufen, deren Klassen in keiner Beziehung zueinander stehen. Die Objekte müssen also nicht unbedingt eine explizite gemeinsame Schnittstelle implementieren.</p>
+<p>Betrachten wir diese Situation an einem Beispiel in der dynamisch typisierten Sprache Python. In Abbildung 5.23 ist das Klassenmodell so angepasst, dass es technisch die Situation in dynamisch typisierten Sprachen darstellt. Die beiden Klassen unterstützen zwar beide die Operation <span class="clisting">getContent()</span>, dies wird aber nicht über eine explizite gemeinsame Schnittstelle modelliert.</p>
+<div class="bildbox">
+<p><a name="IDAJXSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_017.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_017.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.23    </strong>Unabhängige Klassen mit der gleichen Schnittstelle</p>
+<p>In Listing 5.15 ist die Verwendung der Operation <span class="clisting">getContent()</span> am Beispiel in Python dargestellt.</p>
+<div class="listing"><pre class="prettyprint">class HttpProtocolHandler:    
+   def getContent(self, location):  
+     print "content of Http-Connection " 
+ 
+class FtpProtocolHandler:     
+   def getContent(self, location):  
+     print "content of Ftp-Connection" 
+ 
+if random.random() &lt; 0.5:     
+   handler = HttpProtocolHandler() 
+else: 
+   handler = FtpProtocolHandler() 
+handler.getContent("http://www.mopo.de")    
+# was wird hier wohl ausgegeben?</pre></div>
+<p class="tabunter"><strong>Listing 5.15    </strong>Abwechselnder Aufruf von zwei Methoden</p>
+<ul class="gp">
+<li>In den mit  markierten Zeilen werden die beiden beteiligten Klassen konstruiert. Diese stehen in keiner Beziehung zu anderen Klassen.</li>
+</ul>
+<ul class="gp">
+<li>In den mit  markierten Zeilen werden dann die Methoden umgesetzt, welche die Operation <span class="clisting">getContent()</span> implementieren.</li>
+</ul>
+<ul class="gp">
+<li>In Zeile  wird eher zufällig entschieden, ob die Variable <span class="clisting">handler</span> ein Exemplar von <span class="clisting">HttpProtocolHandler</span> oder von <span class="clisting">FtpProtocolHandler</span> zugewiesen bekommt. </li>
+</ul>
+<ul class="gp">
+<li>Da beide Klassen die Operation <span class="clisting">getContent()</span> unterstützen, ist der Aufruf in Zeile  unabhängig von der konkreten Klassenzugehörigkeit erfolgreich. Beim Aufruf einer Operation wird einfach für das betroffene Objekt überprüft, ob das Objekt selbst oder eine der Klassen, zu denen es gehört, für eine Operation dieses Namens eine Methode umgesetzt haben.</li>
+</ul>
+<p>In manchen Sprachen lässt sich aber in die Suche nach der Methode zu einer Operation eingreifen. In Python und Ruby werden solche Modifikationen des Suchverfahrens unterstützt. Auf diese Weise können Sie zum Beispiel erreichen, dass ein Objekt den Aufruf von Operationen, die es nicht selbst unterstützt, an ein anderes Objekt weiterleitet, also delegiert.</p>
+<p><strong><em>Umsetzung eines Proxy in Ruby</em></strong></p>
+<p>Betrachten wir diese Möglichkeit ebenfalls wieder an einem Beispiel. Nehmen Sie an, Sie möchten in Ruby ein Objekt als sogenannten Proxy [Proxy lässt sich mit »Stellvertreter« übersetzen. Ein Proxy ist meist ein Objekt (oder ein Dienst), das stellvertretend für andere Objekte Nachrichten entgegennimmt und diese falls notwendig in möglicherweise modifizierter Form an die anderen Objekte weiterleitet. Ein klassisches Beispiel für einen Proxy ist ein Dienst, der Aufrufe von Webseiten empfängt und selbst entscheidet, ob diese aus einem Zwischenspeicher bedient werden können oder an den Zielserver weitergeleitet werden müssen.
+]  für andere Objekte einsetzen. Ihr Proxy soll alle Aufrufe von Operationen protokollieren und dann an das eigentliche Objekt weiterreichen.</p>
+<p>Die Modellierung in Abbildung 5.24, die auch in Listing 5.16 umgesetzt wird, nutzt die Möglichkeit von Ruby, die Methode <span class="clisting">method_missing</span> zu überschreiben.</p>
+<div class="bildbox">
+<p><a name="IDALYSQ"></a><a onClick="OpenWin('bilder/05_24.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_24.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.24    </strong>Eine Proxy-Klasse in Ruby</p>
+<p>Die Modellierung sieht vor, dass beliebige Operationen auf Exemplaren der Klasse <span class="clisting">LoggingProxy</span> aufgerufen werden können. Diese halten selbst eine Referenz auf das Objekt, das eigentlich den Aufruf erhalten sollte, und leiten den Aufruf weiter, nachdem ein Protokolleintrag geschrieben wurde.</p>
+<p>In Zeile  von Listing 5.16 ist dargestellt, wie die Methode <span class="clisting">method_missing</span> überschrieben wird. Durch dieses Überschreiben können alle Aufrufe von Operationen an ein anderes Objekt weitergeleitet werden.</p>
+<div class="listing"><pre class="prettyprint">class EigentlicheKlasse 
+  def sinnvolleOperation  
+    print "Ich führe eine sinnvolle Aktion aus\n" 
+  end 
+end 
+ 
+class LoggingProxy 
+  def initialize(ziel)   
+    @ziel = ziel 
+  end 
+  def method_missing(symbol, *args)   
+    print "Aufruf von " + symbol.to_s 
+    @ziel.send(symbol, *args)    
+  end 
+end 
+ 
+eigentlichesObjekt = EigentlicheKlasse.new 
+proxy = LoggingProxy.new(eigentlichesObjekt) 
+ 
+proxy.sinnvolleOperation 
+# Ausgegeben wird: 
+#  Aufruf von beispielMethode 
+#  Ich führe eine sinnvolle Aktion aus</pre></div>
+<p class="tabunter"><strong>Listing 5.16    </strong>Umsetzung eines Proxy in Ruby</p>
+<p><strong><em>Fallback in Ruby: method_missing</em></strong></p>
+<p>Wenn ein Objekt in Ruby keine Methode mit dem Namen der aufgerufenen Operation besitzt, wird die Methode <span class="clisting">method_missing</span> mit dem Namen der fehlenden Methode und den Parametern des ursprünglichen Aufrufes aufgerufen. Im Beispiel protokollieren wir den Aufruf, der an das Objekt <span class="clisting">proxy</span> adressiert ist, und leiten ihn zum Objekt <span class="clisting">eigentlichesObjekt</span> weiter, das bei der Initialisierung in Zeile  übergeben wurde. In Zeile  wird dann über die Operation <span class="clisting">send</span> der Aufruf an das eigentliche Objekt weitergeleitet. Dies ist nützlich, wenn man den Namen, wie in unserem Falle, nicht von vornherein kennt, sondern einfach alle Aufrufe weiterleiten möchte. Neben allen anderen Aufrufen wird so auch die Operation <span class="clisting">sinnvolleOperation</span> weitergeleitet, für die in Zeile  die entsprechende Methode umgesetzt ist.</p>
+<p><strong><em>Diskussion:  
+Verwendung von method_missing</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Macht die Verwendung eines Konstrukts wie <span class="clistingk">method_missing</span> unsere Anwendung nicht sehr unübersichtlich? Wenn wir das zum Extrem treiben, können doch beliebige Methoden auf unserem Objekt aufgerufen werden, die dann alle über <span class="clistingk">method_missing</span> behandelt werden.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wir müssen tatsächlich aufpassen, dass wir durch die Weiterleitung von Methodenaufrufen keine unübersichtliche Struktur schaffen. Das Verfahren ist auch nicht generell geeignet, um Delegationsbeziehungen umzusetzen. Speziell für die Umsetzung von Proxys, also reinen Stellvertreter-Objekten, ist die Möglichkeit aber dennoch nützlich. Es geht dabei ja gar nicht um eine inhaltliche Auswertung, sondern um das reine Weiterleiten eines Aufrufs. Dies lässt sich mit den gezeigten Verfahren einfach und elegant umsetzen.</span><p>Bei der Umsetzung von Methoden werden Objekte in der Regel auch wieder Operationen auf weiteren Objekten aufrufen. Zu diesen Objekten bestehen dann Abhängigkeiten. Da Sie in der Regel Abhängigkeiten minimieren sollten, ist in diesen Fällen zu prüfen, ob die Abhängigkeit kritisch ist und ob es Alternativen dazu gibt. Das Demeter-Prinzip formuliert einen Anhaltspunkt, welche Abhängigkeiten unbedenklich sind und welche überprüft werden sollten. [Wir haben hier den gängigen englischen Begriff <span class="ckursiv">Law of Demeter</span> ganz bewusst mit »<span class="ckursiv">Das Demeter-Prinzip</span>« übersetzt. Dies soll deutlich machen, dass es sich auch und speziell bei diesem Prinzip eben nur um eine Leitlinie handelt, von der Sie in bestimmten Fällen abweichen können und auch sollten.
+]  </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Das Demeter-Prinzip (Law of Demeter)</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Methode, die zu einem Objekt gehört, darf Operationen auf anderen Objekten nur aufrufen, wenn diese auf einem Objekt aus der folgenden Liste aufgerufen werden:</p>
+<ul class="gp">
+<li>das Objekt selbst</li>
+</ul>
+<ul class="gp">
+<li>ein Objekt, das vom Objekt selbst referenziert wird</li>
+</ul>
+<ul class="gp">
+<li>ein Objekt, das als Parameterwert an die Methode übergeben wurde</li>
+</ul>
+<ul class="gp">
+<li>ein Objekt, das innerhalb der Methode selbst angelegt wurde</li>
+</ul>
+<p>Das Prinzip hat seinen Namen nach dem Demeter-Projekt an der Northeastern University in Boston erhalten.<sup>12  </sup> Ein etwas eingängigerer Name ist »Sprich nur mit deinen Freunden«.</p>
+</td>
+</tr>
+</table><br><p>Wenn Sie das Demeter-Prinzip vollständig umsetzen, dann sind innerhalb von Methoden keine sogenannten verketteten Aufrufe mehr erlaubt. [Das Projekt beschäftigte sich mit Mechanismen, die Zugriffe auf Objekte über Zugriffsketten durch Traversierungsobjekte kapseln sollten. Der Name des Projekts wiederum gründet auf die griechische Göttin Demeter. Diese war unter anderem für die Fruchtbarkeit der Felder zuständig. Die Analogie dabei sollte sein, dass auch Software nach und nach in kleinen Schritten wachsen sollte.
+] </p>
+<p><strong><em>Beispiel für  
+Demeter-Prinzip</em></strong></p>
+<p>Betrachten wir am besten an einem Beispiel, was denn nun verkettete Aufrufe sind. Nehmen Sie an, Sie wollen eine Steuerung für einen Roboter umsetzen. Die Steuerung prüft regelmäßig, ob der Batteriezustand des Roboters noch in Ordnung ist. Falls nein, weist die Steuerung den Roboter an, zur Aufladestation zu fahren, und gibt der Batterie des Roboters das Signal, dass sie sich dort aufladen kann. In Abbildung 5.25 ist eine Modellierung dieses Szenarios aufgeführt, die das Demeter-Prinzip verletzt.</p>
+<div class="bildbox">
+<p><a name="IDAL1SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_018.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_018.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.25    </strong>Verletzung des Demeter-Prinzips</p>
+<p>Um zu sehen, warum das so ist, müssen Sie einen Blick auf den resultierenden Quelltext werfen. In Listing 5.17 ist zu sehen, dass das Prinzip verletzt wird, weil in Zeile  ein verketteter Aufruf enthalten ist. Der Zugriff auf eine Operation <span class="clisting">istAufgeladen()</span> einer Roboterbatterie über die Methode <span class="clisting">batterie()</span> in Zeile  ist nach dem Demeter-Prinzip nicht erlaubt.</p>
+<div class="listing"><pre class="prettyprint">class RoboterSteuerung { 
+... 
+public void pruefeZustand(RasenmaeherRoboter roboter) 
+{ 
+    if (!roboter.batterie().istAufgeladen())  
+    { 
+       roboter.fahreZuAufladeStation(); 
+       roboter.batterie().aufladen(); 
+    } 
+} 
+// ...</pre></div>
+<p class="tabunter"><strong>Listing 5.17    </strong>Verletzung des Demeter-Prinzips</p>
+<p>Das Batterie-Objekt, das vom Aufruf <span class="clisting">roboter.batterie()</span> geliefert wird, ist kein Objekt aus der Kriterienliste der Demeter-Prinzips: Es ist nicht das Objekt selbst (ein Exemplar von <span class="clisting">RoboterSteuerung</span>), es wird aber auch nicht direkt von der Steuerung referenziert. Ebenso wenig ist die Batterie aber als Parameterwert an die Methode <span class="clisting">pruefeZustand()</span> übergeben worden, und sie wurde auch nicht innerhalb der Methode angelegt.</p>
+<p><strong><em>Nutzen des Demeter-Prinzips</em></strong></p>
+<p>Wenn wir dem Prinzip folgen, reduzieren wir die Abhängigkeiten in unserem Code. Eine Methode kennt bei Einhaltung des Prinzips nur die ihr ohnehin bekannten Objekte. Wenn Sie über diese bereits bekannten Objekte hinaus auf weitere Objekte zugreifen, um mit diesen zu arbeiten, haben Sie neue Abhängigkeiten geschaffen, da Sie nun die Schnittstelle dieser Objekte kennen müssen. Die Kopplung zwischen Modulen wird dadurch verstärkt. Das Demeter-Prinzip wirkt dem entgegen.</p>
+<p>In Abbildung 5.26 ist eine angepasste Modellierung zu sehen, die das Demeter-Prinzip nicht verletzt. Die Aufrufe der Steuerung erfolgen nun alle gegenüber dem Roboter, der diejenigen Operationen, die sich auf die Batterie beziehen, an diese weiterleitet.</p>
+<div class="bildbox">
+<p><a name="IDAR2SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_019.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_019.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.26    </strong>Korrigierte Version ohne Verletzung des Demeter-Prinzips</p>
+<p><strong><em>Nachteile  
+des Prinzips</em></strong></p>
+<p>Das Demeter-Prinzip komplett einzuhalten, ist in der Praxis meist nicht möglich und kann durchaus auch relevante Nachteile haben. Sie erhalten bei kompletter Einhaltung des Prinzips in vielen Anwendungen für diesen Fall eine große Anzahl von Methoden, die Aufrufe einfach weiterreichen.</p>
+<p>Sie sollten sich aber bei einer Verletzung des Demeter-Prinzips bewusst sein, dass Sie Abhängigkeiten geschaffen haben, und prüfen, ob diese für Ihre Anwendung nachteilig sind.</p><a id="mjcecc846fe8a9e04e80aaef4c72983098" name="mjcecc846fe8a9e04e80aaef4c72983098"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">5.2.3 Anonyme Klassen  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In der Regel haben Klassen einen Namen zugeordnet und können somit zur Konstruktion von beliebig vielen Objekten verwendet werden. Es gibt allerdings auch Situationen, in denen einfach genau ein Objekt erstellt werden soll, das ganz spezifische Eigenschaften hat. Um so ein Objekt zu erstellen, können anonyme Klassen verwendet werden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Anonyme Klassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Anonyme Klassen sind Klassen, die keine Namen haben. Da anonyme Klassen keinen Namen haben, können Sie auch keine Variable mit dieser Klasse als Typ deklarieren. Sie können allerdings Variablen deklarieren, die den Typ einer Oberklasse haben.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Beispiel Java</em></strong></p>
+<p>Betrachten wir im Folgenden ein Beispiel in der Sprache Java, in dem wir ein Objekt (nicht eine Klasse) mit einer modifizierten Methode ausstatten.</p>
+<p>In Abschnitt 5.1.6, »Sichtbarkeit im Rahmen der Vererbung«, haben wir ein Beispiel zum Umgang mit Sammlungen vorgestellt. Dabei haben wir zwei abstrakte Klassen <span class="clisting">Collection</span> und <span class="clisting">Iterator</span> spezifiziert. Stellen Sie sich jetzt eine Situation vor, in der Sie eine Methode aufrufen wollen, die eine Sammlung als Parameter verlangt. Sie möchten eine Sammlung herstellen, die genau einen Eintrag enthält. Um dies zu erreichen, können Sie anonyme Klassen verwenden. Sie erstellen dabei eine anonyme Unterklasse der Klasse <span class="clisting">Collection</span>, wie im folgenden Java-Beispiel dargestellt.</p>
+<div class="listing"><pre class="prettyprint">final Object element = null; // Der Eintrag in der Sammlung 
+ 
+// anonyme Unterklasse von Collection 
+Collection myCollection = new Collection() {  
+  public Iterator iterator() {  
+    // anonyme Unterklasse von Iterator 
+    return new Iterator() {  
+      private boolean first = true; 
+      public boolean hasNext() {  
+        if (first) { 
+          first = false; 
+          return true; 
+        } 
+        return false; 
+      } 
+ 
+      public Object next() {  
+        return element; 
+      } 
+    }; 
+  } 
+};</pre></div>
+<p>Durch den Aufruf in Zeile  wird ein Exemplar einer anonymen Klasse erstellt, die als Unterklasse von Collection definiert ist. Dieses Exemplar ist der Variablen <span class="clisting">myCollection</span> zugewiesen. Das Exemplar besitzt außerdem die Methode <span class="clisting">iterator()</span>, die ab Zeile  definiert wird. Der Aufruf der Methode wiederum wird ein Exemplar einer anonymen Unterklasse der Klasse Iterator liefern, da in Zeile  solch ein Exemplar erzeugt wird. Dieses Exemplar der anonymen Klasse hat nun wiederum modifizierte Methoden <span class="clisting">hasNext</span> und <span class="clisting">next</span> zugeordnet, wie sie in der anonymen Klasse in den mit  markierten Zeilen definiert wurden.</p>
+<p><strong><em>Anonyme Klassen und Ereignisse</em></strong></p>
+<p>Eine andere, häufig anzutreffende Anwendung von anonymen Klassen findet man bei der Behandlung von Ereignissen. Bei deren Bearbeitung wird häufig eine spezielle Form von anonymen Klassen verwendet. Wir gehen auf diese Anwendung in Abschnitt 7.4.4, »Funktionsobjekte und ihr Einsatz als Eventhandler«, ein.</p><a id="mj7d8e0a558bb121f6759f3cac9e60684b" name="mj7d8e0a558bb121f6759f3cac9e60684b"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">5.2.4 Single und Multiple Dispatch  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Sie haben in den vorangegangenen Abschnitten den Begriff der Polymorphie kennen gelernt. Dabei wird für den Aufruf einer Operationen zur Laufzeit eines Programms anhand der Klassenzugehörigkeit eines Objekts entschieden, welche Methode wirklich aufgerufen wird.</p>
+<p>Sie werden in diesem Abschnitt erfahren, wie die Polymorphie dazu verwendet werden kann, die konkrete aufzurufende Methode aufgrund des Typs aller beteiligten Objekte zu bestimmen. Außerdem werden Sie mit dem Entwurfsmuster des Besuchers (Visitor) einen Anwendungsfall für eine solche Verteilung kennen lernen. Dabei werden Sie auch sehen, wie dieser Anwendungsfall in einer Programmiersprache wie Java umgesetzt werden kann, die eigentlich die aufzurufende Methode nicht anhand mehrerer Objekte auswählen kann.</p>
+<p>In Abschnitt 5.2 haben wir beschrieben, wie ein in eine Sprache integrierter Dispatcher dafür sorgt, dass Aufrufe von Operationen den entsprechenden Methoden zugeordnet werden. Abhängig davon, ob diese Zuordnung nur ein Objekt oder mehrere Objekte als Grundlage für die Verteilung heranzieht, unterscheiden wir zwischen Single Dispatch und Multiple Dispatch.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Single Dispatch
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Der technische Mechanismus des Dispatchers sorgt in einem objektorientierten System dafür, dass Aufrufe von Operationen zur Laufzeit konkreten Methoden zugeordnet werden. Verwendet ein Dispatcher für die Zuordnung einer Methode zum Aufruf einer Operation ausschließlich Informationen über ein Objekt und dessen Klassenzugehörigkeit, wird diese Verteilung Single Dispatch genannt. </p>
+</td>
+</tr>
+</table><br><p>Ein Beispiel für Single Dispatch haben wir bereits in Abschnitt 5.2 gegeben. Im Beispiel von Listing 5.12 erfolgt eine Verteilung auf der Basis eines Objekts: das Objekt, das unsere Daten repräsentiert und entweder zur Klasse <span class="clisting">BitmapImage</span>, <span class="clisting">TextData</span> oder <span class="clisting">PdfData</span> gehört.</p>
+<p>Dass eine Operation zu einem Objekt gehört, ist aber in manchen Fällen eine zu stark vereinfachte Sicht der Dinge. Wenn Sie eine spezielle Grafik über die Operation <span class="clisting">ausgeben</span> auf ein spezielles Ausgabemedium ausgeben wollen, kann die notwendige Aktion von beiden beteiligten Objekten abhängen: von der Art der Grafik und von der Art des Ausgabemediums. Bitmapgrafiken lassen sich einfach auf dem Bildschirm darstellen, Vektorgrafiken einfach in ein PDF-Format bringen. Eine Bitmapgrafik im PDF-Format auszugeben erfordert aber eine ganze andere Aktion, und Vektorgrafiken auf dem Bildschirm sind wieder separat zu behandeln. Abbildung 5.27 stellt die Beispielhierarchie vor, in der jeweils zwei verschiedene Arten von Grafiken und Ausgabemedien aufgeführt sind.</p>
+<div class="bildbox">
+<p><a name="IDAT5SQ"></a><a onClick="OpenWin('bilder/05_27.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_27.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.27    </strong>Hierarchie von Grafiktypen und Ausgabemedien</p>
+<p>In so einem Fall ist es also notwendig, zwei oder mehr Objekte mit einzubeziehen, wenn eine Methode ausgewählt werden soll.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Multiple Dispatch
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Verwendet ein Dispatcher für die Zuordnung einer Methode zum Aufruf einer Operation Information über mehrere Objekte und deren Klassenzugehörigkeit, wird diese Verteilung Multiple Dispatch genannt.</p>
+</td>
+</tr>
+</table><br><p>Möglicherweise erscheint es Ihnen nicht intuitiv, dass eine Operation nicht einem Objekt zugeordnet ist, sondern mehreren. Tatsächlich legen die gängigen Programmiersprachen nahe, dass eine Operation immer genau einem Objekt zugeordnet ist. Das wird schon durch die Syntax nahe gelegt, die z. B. in Java <span class="clisting">object.operation(param1, param2 ...)</span> lautet. Aber das ist einfach eine Festlegung der Programmiersprache. Wir werden später in diesem Abschnitt kurz auf die Programmiersprache CLOS (Common Lisp Object System) eingehen, in der Multiple Dispatch direkt unterstützt wird.</p>
+<p>Da Sie aber sehr wahrscheinlich in der Praxis eher mit einer Sprache arbeiten, die direkt nur Single Dispatch unterstützt, erläutern wir hier zunächst, wie sie eine vergleichbare Verteilung auch in Sprachen wie Java umsetzen können.</p>
+<h4 class="t4">Multiple Dispatch ohne Unterstützung durch die Programmiersprache</h4>
+<p>Bei Programmiersprachen wie Java, deren Dispatcher nur anhand eines Objekts entscheidet, müssen Sie selbst dafür sorgen, dass bei mehreren Objekten die Verteilung korrekt durchgeführt wird. Hier gibt es die Möglichkeit, eine Verteilungskette aufzubauen. Dabei bekommt eine Operation ein Objekt als Parameterwert übergeben und ruft auf diesem Objekt wiederum eine Operation auf, so dass dabei erneut der Dispatcher zum Einsatz kommt.</p>
+<p>Betrachten Sie also noch einmal das Beispiel, in dem wir unterschiedliche Grafiken auf unterschiedliche Medien ausgeben wollen. In Abbildung 5.28 sind die beteiligten Klassen und die benötigten Operationen aufgeführt, damit wir auch hier eine korrekte Zuordnung einer Operation <span class="clisting">ausgeben</span> erreichen.</p>
+<div class="bildbox">
+<p><a name="IDAJBTQ"></a><a onClick="OpenWin('bilder/05_28.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_28.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.28    </strong>Klassenhierarchie für Multiple Dispatch in Java</p>
+<p>Wie Sie der Abbildung entnehmen können, ist die eigentliche Ausgabe-Operation den Medien zugeordnet. Auf einem Exemplar der Klasse <span class="clisting">Bildschirm</span> könnten wir also die Operation <span class="clisting">ausgeben</span> aufrufen und ein Exemplar der Klasse Grafik als Parameterwert übergeben:</p>
+<div class="listing"><pre class="prettyprint">public class ChainOfDispatch { 
+    static void print(Grafik grafik, AusgabeMedium medium) 
+    { 
+        medium.ausgeben(grafik); 
+    }</pre></div>
+<p>Damit das funktioniert, müssen aber nun die Methoden, welche die Operation <span class="clisting">ausgeben</span> umsetzen, dafür sorgen, dass eine Weiterverteilung erfolgt. Abbildung 5.29 zeigt den Ablauf bei dieser Weiterverteilung.</p>
+<div class="bildbox">
+<p><a name="IDAWBTQ"></a><a onClick="OpenWin('bilder/05_29.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_29.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.29    </strong>Aufruffolge bei Verteilung über eine Kette von Objekten</p>
+<p>Wenn Sie den dazugehörigen Source-Code aus Listing 5.18 betrachten, sehen Sie, dass ein Exemplar der Klasse <span class="clisting">PdfDatei</span> den Aufruf in Form einer Operation <span class="clisting">ausgebenAlsPdfDatei</span> weiterleitet, ein Exemplar der Klasse <span class="clisting">Bildschirm</span> aber in Form der Operation <span class="clisting">ausgebenAufBildschirm</span>. Als Parameterwert übergibt das Objekt durch die Angabe von <span class="clisting">this</span> sich selbst.</p>
+<div class="listing"><pre class="prettyprint">class PdfDatei extends AusgabeMedium { 
+    void ausgeben(Grafik grafik) 
+    { 
+        grafik.ausgebenAlsPdfDatei(this); 
+    } 
+} 
+class Bildschirm extends AusgabeMmedium { 
+    void ausgeben(Grafik grafik) 
+    { 
+        grafik.ausgebenAufBildschirm(this); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.18    </strong>Umsetzung von Dispatch-Methoden</p>
+<p>Die Operationen <span class="clisting">ausgebenAufBildschirm</span> und <span class="clisting">ausgebenAlsPdfDatei</span> werden nun von den abgeleiteten Klassen <span class="clisting">BitmapGrafik</span> und <span class="clisting">VektorGrafik</span> unterschiedlich umgesetzt, wie in Listing 5.19 dargestellt. Da die Operationen auf einem Exemplar der Klasse <span class="clisting">Grafik</span> aufgerufen werden, erfolgt die konkrete Methodenzuordnung bei Aufruf einer der beiden Operationen wiederum über den Dispatcher.</p>
+<div class="listing"><pre class="prettyprint">class BitmapGrafik extends Grafik { 
+    void ausgebenAlsPdfDatei(AusgabeMedium medium) 
+    { 
+        System.out.println("Bitmapgrafik als PDF-Datei"); 
+    } 
+    void ausgebenAufBildschirm(AusgabeMedium medium) 
+    { 
+       System.out.println("Bitmapgrafik auf Bildschirm"); 
+    } 
+} 
+class VektorGrafik extends Grafik { 
+    void ausgebenAlsPdfDatei(AusgabeMedium medium) 
+    { 
+        System.out.println("Vektorgrafik als PDF-Datei"); 
+    } 
+    void ausgebenAufBildschirm(AusgabeMedium medium) 
+    { 
+        System.out.println("Vektorgrafik auf Bildschirm"); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.19    </strong>Umsetzung der weiteren Verteilung</p>
+<p>Als Beleg dafür, dass die Verteilung funktioniert, erstellen wir nun Exemplare der jeweiligen konkreten Klassen und prüfen, ob die Zuordnung korrekt erfolgt.</p>
+<div class="listing"><pre class="prettyprint">    public static void main(String[] args) 
+    { 
+        PdfDatei pdfdatei = new PdfDatei(); 
+        Bildschirm bildschirm = new Bildschirm(); 
+        VektorGrafik vektorgrafik = new VektorGrafik(); 
+        BitmapGrafik bitmapgrafik = new BitmapGrafik(); 
+ 
+        graphik_auf_medium(vektorgrafik, pdfdatei); 
+        graphik_auf_medium(bitmapgrafik, pdfdatei); 
+        graphik_auf_medium(vektorgrafik, bildschirm); 
+        graphik_auf_medium(bitmapgrafik, bildschirm); 
+    }</pre></div>
+<p>Wie erwartet erhalten wir die jeweils zugeordneten Ausgaben:</p>
+<div class="listing"><pre class="prettyprint">Vektorgrafik als PDF-Datei 
+Bitmapgrafik als PDF-Datei 
+Vektorgrafik auf Bildschirm 
+Bitmapgrafik auf Bildschirm</pre></div>
+<p><strong><em>Diskussion:  
+Wo ist die  
+Praxisrelevanz?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Hm, das scheint mir aber doch eher ein praxisfernes Beispiel zu sein. Wann wollen wir schon eine Verteilung auf der Basis von mehreren Objekten vornehmen? In aller Regel reicht uns doch ein Objekt für die Verteilung.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> In Abschnitt 5.2.4, »Das Entwurfsmuster ›Besucher‹: Multiple Dispatch im Einsatz«, werden wir sehen, dass dieses Verfahren die technische Grundlage für das Entwurfsmuster »Besucher« bildet. Und dafür gibt es eine ganze Reihe von praktischen Anwendungen.</span><h4 class="t4">Multiple Dispatch mit Unterstützung durch die Programmiersprache</h4>
+<p><strong><em>CLOS und  
+Multiple Dispatch</em></strong></p>
+<p>Einige Programmiersprachen unterstützen das Konzept des Multiple Dispatch direkt. Dadurch lässt sich die beschriebene Aufgabenstellung wesentlich kompakter lösen. Am Beispiel der Programmiersprache CLOS sehen Sie in diesem Abschnitt einen kurzen Überblick über die wesentlich kompaktere Umsetzung unseres Beispiels aus dem vorigen Abschnitt unter Verwendung von CLOS.</p>
+<p>Eine direkte Darstellung in UML ist nicht möglich, da die UML davon ausgeht, dass eine Operation auch immer einem konkreten Objekt und damit einer Klasse zugeordnet werden kann. Somit müssen Sie für diesen Fall auf ein UML-Diagramm verzichten. Die Hierarchie der beteiligten Klassen bleibt aber auch für das Beispiel in CLOS diejenige aus Abbildung 5.28.</p>
+<p><strong><em>Polymorphe Methoden in CLOS</em></strong></p>
+<p>Operationen auf Objekten, also polymorphe Methoden, werden in CLOS über das Makro <span class="clisting">defmethod</span> umgesetzt. Dabei wird die Methode nicht einer konkreten Klasse zugeordnet. Vielmehr werden alle Parameter, die Klassen zugeordnet sind, für die Methodenzuordnung herangezogen. In Listing 5.20 sehen Sie, dass die Umsetzung in CLOS wesentlich direkter möglich ist, auch wenn die Syntax möglicherweise etwas gewöhnungsbedürftig ist.</p>
+<div class="listing"><pre class="prettyprint">;; Definition der Methoden, die über zwei Parameter verteilen 
+(defmethod ausgeben((bitmap BitmapGrafik)(pdf PdfDatei)) 
+    (print "Ausgabe von Bitmap als PDF") 
+) 
+(defmethod ausgeben((bitmap BitmapGrafik)(bs Bildschirm)) 
+    (print "Ausgabe von Bitmap auf Bildschirm") 
+) 
+(defmethod ausgeben ((vektor VektorGrafik)(pdf PdfDatei)) 
+    (print "Ausgabe von Vektorgrafik als PDF") 
+) 
+ 
+(defmethod ausgeben((vektor VektorGrafik)(bs Bildschirm)) 
+    (print "Ausgabe von Vektorgraphik auf Bildschirm") 
+)</pre></div>
+<p class="tabunter"><strong>Listing 5.20    </strong>Multiple Dispatch in CLOS</p>
+<p>Im aufgeführten Beispiel haben wir vier verschiedene Umsetzungen der Operation <span class="clisting">ausgeben</span>. Welche davon im konkreten Fall aufgerufen wird, ist abhängig von den Objekten, die für die beiden Parameter jeweils übergeben werden.</p>
+<p><strong><em>CLOS flexibler  
+als andere  
+OO-Sprachen</em></strong></p>
+<p>Damit bietet CLOS mehr Möglichkeiten für polymorphe Methoden als andere objektorientierte Sprachen. Allerdings geht hier auch die intuitive Vorstellung verloren, dass eine Methode immer genau zu einer Klasse beziehungsweise eine Operation immer zu genau einem Objekt gehört. Wir können hier nicht mehr davon sprechen, dass wir eine Operation auf einem Objekt durchführen.</p>
+<p><strong><em>Diskussion: Methode und Objekt</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Das ist aber doch gar nicht intuitiv. Hier sind ja Operationen und Methoden überhaupt nicht mehr einer Klasse zugeordnet. Wir sehen hier gar nicht mehr, dass eine Operation auf einem Objekt ausgeführt wird. Je nachdem, welche Parameter ich übergebe, passieren ganz unterschiedliche Dinge.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Du hast Recht, das läuft der gängigen Vorgehensweise der objektorientierten Programmierung entgegen und ist tatsächlich zunächst nicht intuitiv. Wie wir gesehen haben, bietet der Ansatz auf der anderen Seite aber auch mehr Flexibilität. In der Praxis haben sich aber doch eher Sprachen durchgesetzt, die eine Operation genau einem Objekt zuordnen.</span><h4 class="t4">Das Entwurfsmuster »Besucher«: Multiple Dispatch im Einsatz</h4>
+<p>Im letzten Abschnitt haben Sie die Möglichkeiten des Multiple Dispatch, also der Polymorphie, die sich auf mehrere Objekte bezieht, kennen gelernt. Jetzt werden Sie eine praktische Anwendung dafür kennen lernen. Zunächst stellen wir dazu das Entwurfsmuster »Besucher« vor, bei dem Multiple Dispatch die Basis bildet.</p>
+<p>Bevor Sie das Muster gleich an einem Beispiel kennen lernen, finden Sie in Abbildung 5.30 zunächst die Sicht auf die Klassenstruktur des Entwurfsmusters.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Entwurfsmuster »Besucher« (engl. Visitor)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Das Entwurfsmuster »Besucher« kapselt eine Operation als ein Objekt. Dieses Objekt wird durch eine bestehende Struktur von anderen Objekten, zum Beispiel eine Baumstruktur, hindurchgereicht. Es besucht also jedes Objekt in der Struktur. Dabei führt es die gekapselte Operation auf jedem der Objekte aus. Der grundlegende Vorteil des Entwurfsmusters ist es, dass neue Operationen definiert werden können, die auf der gesamten Struktur ausgeführt werden, ohne dass die in der Struktur enthaltenen Objekte oder deren Klassen selbst angepasst werden müssen.</p>
+</td>
+</tr>
+</table><br><div class="bildbox">
+<p><a name="IDAXFTQ"></a><a onClick="OpenWin('bilder/05_30.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_30.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.30    </strong>Klassenstruktur des Entwurfsmusters »Besucher«</p>
+<p>Wenn Sie Abbildung 5.30 mit Abbildung 5.28 vergleichen, in der unser Beispiel zu Multiple Dispatch aufgeführt ist, werden Sie bereits eine starke Ähnlichkeit feststellen. Ein Aufruf der Operation <span class="clisting">willkommen</span> auf einem Element der Struktur führt dazu, dass unterschiedliche Operationen auf dem übergebenen Besucherobjekt aufgerufen werden, je nachdem, zu welcher Klasse das Element gehört.</p>
+<p>So richtig interessant wird dieses Verfahren allerdings erst dann, wenn die Elemente wirklich in einer Struktur angeordnet sind, zum Beispiel in der Form eines Baums. Dies ist zum Beispiel dann der Fall, wenn eine Art der Elemente wiederum andere Elemente enthalten kann. Betrachten wir diese Situation an einem konkreten Beispiel.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Preisberechnung</em></strong></p>
+<p>Nehmen Sie an, Sie sind Besitzer des kleinen Computerladens aus Abbildung 5.31.</p>
+<div class="bildbox">
+<p><a name="IDABGTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_020.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_020.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.31    </strong>Ein kleiner Computerladen</p>
+<p>Da Ihr kleines Startup-Unternehmen noch im Aufbau ist, verkauft es genau drei Arten von Produkten:</p>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>1.</strong></td>
+<td valign="top" width="100%" align="left"> Einzelne Computerteile. Dazu gehören zum Beispiel Grafikkarten, Festplatten oder Tastaturen.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>2.</strong></td>
+<td valign="top" width="100%" align="left"> Dienstleistungen. Dazu gehören die Installation eines Betriebssystems auf dem Rechner oder die Einbindung des Rechners in ein lokales Netzwerk.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>3.</strong></td>
+<td valign="top" width="100%" align="left"> Von Ihnen zu einem sinnvollen Ganzen zusammengesetzte oder zusammengestellte Teile und Dienstleistungen. Dazu gehört zum Beispiel ein von Ihnen zusammengeschraubter Rechner oder auch ein aufeinander abgestimmter Satz von Peripheriegeräten. Ihr Rundum-sorglos-Premium-Paket besteht zum Beispiel aus komplett montiertem Rechner mit allen notwendigen Peripheriegeräten wie Drucker, Scanner und der kompletten Installation und Inbetriebnahme vor Ort.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<p>Um diese verschiedenen Produkte abzubilden, wählen Sie die Klassenstruktur aus Abbildung 5.32.</p>
+<div class="bildbox">
+<p><a name="IDAMGTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_021.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_021.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.32    </strong>Klassenstruktur für Produkte eines Computerladens</p>
+<p>Zusammengesetzte Produkte können also beliebig viele weitere Produkte enthalten, die selbst wieder zusammengesetzt sein können.</p>
+<p>Das Preismodell, das Sie für Ihre Produkte ansetzen, ist ebenfalls ein sehr einfaches. Jedes Hardwareteil hat seinen Preis direkt zugeordnet, so dass bei einem Einzelverkauf natürlich unmittelbar klar ist, was zum Beispiel eine Grafikkarte kostet. Ihre Dienstleistung rechnen Sie mit einem Stundensatz von 40 Euro ab, dabei setzen Sie für Standardaufgaben aber eine feste Stundenzahl an. Wenn Sie ein zusammengesetztes Produkt verkaufen, also zum Beispiel einen kompletten Rechner, setzen Sie zusätzlich zu den Einzelpreisen noch einmal einen festen Betrag für jeden Bestandteil an, um damit Ihren Aufwand für das Zusammenbauen einzurechnen. Bei einem Rechner sind das zum Beispiel 5 Euro pro eingebautem Teil. Ein sehr simples Preismodell, zugegeben, aber für einen Kunden auch einfach nachvollziehbar. Jedenfalls einfacher als die meisten gängigen Mobilfunktarife.</p>
+<p>Nun möchten Sie natürlich für jedes verkaufte Paket auch den Preis berechnen können. Und nicht nur das: Sie möchten auch für jedes verkaufte Teil in Ihrem Lagerbestand vermerken, dass nun ein Exemplar weniger davon auf Lager ist.</p>
+<p>Hier bietet sich das Entwurfsmuster »Besucher« für die Umsetzung an. In Abbildung 5.33 ist die Klassenhierarchie der Produkte angepasst, so dass die Produkte Besucher empfangen können.</p>
+<div class="bildbox">
+<p><a name="IDAUGTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_022.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_022.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.33    </strong>Produkte mit der Fähigkeit, Besucher zu empfangen</p>
+<p>Wenn Sie auf Basis dieser Struktur eine Preisberechnung durchführen wollen, rufen Sie einfach die Operation <span class="clisting">willkommen</span> auf dem obersten Element der Struktur auf, also zum Beispiel auf Ihrem Rundum-sorglos-Paket, das ja ein Exemplar der Klasse <span class="clisting">ZusammengesetztesProdukt</span> ist. Als Wert für den Parameter <span class="clisting">besucher</span> geben Sie eine Umsetzung eines Besuchers an, welche die Preise der einzelnen Elemente addiert. Wie diese Umsetzung aussieht, werden Sie gleich noch sehen. Die Produktstruktur selbst sorgt dafür, dass der Besucher von einem Produkt zum nächsten weitergereicht wird. Der dazu notwendige Code am Beispiel einer Implementierung in Java ist in Listing 5.21 zu sehen. Bei einem zusammengesetzten Produkt wird die Operation <span class="clisting">willkommen</span> auch auf allen enthaltenen Produkten aufgerufen.</p>
+<div class="listing"><pre class="prettyprint">class ZusammengesetztesProdukt extends Produkt { 
+... 
+    void willkommen(ProduktBesucher besucher) { 
+        besucher.besucheZusammengesetztesProdukt(this); 
+        Iterator&lt;Produkt&gt; iter = produkte.iterator(); 
+        while (iter.hasNext()) { 
+            Produkt produkt = iter.next(); 
+            produkt.willkommen(besucher); 
+        } 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.21    </strong>Weiterreichen eines Besuchers</p>
+<p>Für Hardwareteile und Dienstleistungen erfolgt dagegen einfach ein Aufruf der Operation zum Besuch eines spezifischen Produkts, Listing 5.22 zeigt das am Beispiel.</p>
+<div class="listing"><pre class="prettyprint">Hardwareteil extends Produkt {
+    ...
+    void willkommen(ProduktBesucher besucher) {
+        besucher.besucheHardwareteil(this); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.22    </strong>Besuch eines Stücks Hardware</p>
+<p><strong><em>Multiple  
+Dispatch 
+im Einsatz</em></strong></p>
+<p>Hier sehen Sie auch den Auftritt für das Verfahren des Multiple Dispatch, das Sie in Abschnitt 5.2.4 kennen gelernt haben. Die erste Verteilung auf Basis der Polymorphie ist nämlich nun bereits erfolgt: Es ist aufgrund der konkreten Klassenzugehörigkeit eines Produkts eine konkrete Umsetzung der Operation <span class="clisting">willkommen</span> gewählt worden. Mit dem nun dargestellten Aufruf von <span class="clisting">besucheHardwareteil</span> wird wiederum eine Verteilung vorgenommen, die aufgrund der Klassenzugehörigkeit des Besuchers eine Zuordnung vornimmt.</p>
+<p>In Abbildung 5.34 ist die Darstellung um die Klassenstruktur der Besucher erweitert.</p>
+<p>Eine Preisberechnung auf einem zusammengesetzten Produkt sieht anders aus als auf einem Hardwareteil oder einer Dienstleistung. Deshalb sind für den <span class="clisting">PreisBesucher</span> jeweils spezifische Berechnungen umgesetzt, die in Listing 5.23 aufgeführt sind.</p>
+<div class="bildbox">
+<p><a name="IDAXHTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_023.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_023.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.34    </strong>Klassenstruktur von Produkten und deren Besuchern</p>
+<div class="listing"><pre class="prettyprint">class PreisBesucher implements ProduktBesucher { 
+ 
+    double gesamtpreis; 
+    ... 
+ 
+    public void besucheZusammengesetztesProdukt( 
+                ZusammengesetztesProdukt gruppe) { 
+        gesamtpreis += gruppe.anzahlElemente() 
+                * gruppe.zusatzPreisProElement(); 
+    } 
+ 
+    public void besucheHardwareteil(Hardwareteil hardware) { 
+        gesamtpreis += hardware.preis(); 
+    } 
+ 
+    public void besucheDienstleistung(Dienstleistung 
+                                 dienstleistung) { 
+        gesamtpreis += 
+                  dienstleistung.erwarteterZeitaufwand() 
+                * dienstleistung.stundensatz(); 
+    } 
+...</pre></div>
+<p class="tabunter"><strong>Listing 5.23    </strong>Unterschiedliche Varianten der Preisberechnung</p>
+<p><strong><em>Vorteil des  
+Entwurfsmusters »Besucher«</em></strong></p>
+<p>In Abbildung 5.34 sehen Sie außer dem <span class="clisting">PreisBesucher</span> auch gleich noch eine weitere Klasse <span class="clisting">LagerAktualisierungsBesucher</span>, die ebenfalls die Schnittstelle von <span class="clisting">ProduktBesucher</span> implementiert. Weitere ließen sich hinzufügen, ohne dass Sie irgendeine Änderung an der Struktur Ihrer Produktklassen vornehmen müssten. Es ist der wichtigste Vorteil des Entwurfsmusters »Besucher«, dass neue Operationen auf der bestehenden Produktstruktur hinzugefügt werden können, ohne dass diese selbst angepasst werden muss.</p>
+<p>Wie läuft aber nun so ein kompletter Besuch ab? In Abbildung 5.35 ist ein Beispiel dargestellt, wie denn nun so eine konkrete Rechnerkonfiguration zusammengesetzt sein könnte.</p>
+<p>Das Komplettpaket, das Sie verkauft haben, besteht in diesem Fall aus der Installation (einer Dienstleistung) und zwei weiteren Paketen: den internen Komponenten des Rechners und der Peripherie. Ein <span class="clisting">PreisBesucher</span> durchläuft den entstandenen Baum und klappert dabei die jeweiligen Knoten ab. Dabei wird er an den Knoten die jeweils spezifische Preisberechnung durchführen.</p>
+<div class="bildbox">
+<p><a name="IDAWITQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_024.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_024.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.35    </strong>Beispiel für zusammengesetzte Produkte</p>
+<p>Der Besucher, der über den Aufruf <span class="clisting">rechnerpaket.willkommen (besucher)</span> seine Arbeit aufnimmt, wird in diesem Fall einen Gesamtpreis von 1135 Euro ermitteln:</p>
+<ul class="gp">
+<li>1075 Euro Einzelpreise der Bauteile</li>
+</ul>
+<ul class="gp">
+<li>20 Euro für die internen Komponenten (jeweils 5 Euro für die vier enthaltenen Elemente)</li>
+</ul>
+<ul class="gp">
+<li>40 Euro für die Installation. Diese Dienstleistung wird mit einer Stunde Arbeitszeit bei einem Stundensatz von 40 Euro berechnet.</li>
+</ul>
+<p>Wenn Sie die Rechnung überprüfen wollen, können Sie dies tun, indem Sie den Produktbaum selbst durchgehen und die Berechnungen durchführen. Alternativ und einfacher können Sie sich aber auch das ausführbare Beispiel von der Webseite zum Buch (<span class="ckursiv"><a href="http://www.objektorientierte-programmierung.de">www.objektorientierte-programmierung.de</a></span>) laden und die Berechnung darüber durchführen lassen.</p>
+<p>In Listing 5.24 ist zur Ergänzung der Source-Code in Java aufgeführt, mit dem ein Rechnerpaket zusammengestellt und die Preisberechnung darauf durchgeführt wird.</p>
+<p><strong><em>Source-Code- 
+Beispiel</em></strong></p>
+<div class="listing"><pre class="prettyprint">public static void main(String[] args) { 
+    // Konfiguration eines einfachen Rechners, 
+    // Hardware mit ihrem Preis in Euro angelegt. 
+    Hardwareteil festplatte = new Hardwareteil(200); 
+    Hardwareteil cpu = new Hardwareteil(300); 
+    Hardwareteil cdbrenner = new Hardwareteil(120); 
+    Hardwareteil platine = new Hardwareteil(100); 
+ 
+    Hardwareteil bildschirm = new Hardwareteil(250); 
+    Hardwareteil tastatur = new Hardwareteil(25); 
+    Hardwareteil gehäuse = new Hardwareteil(80);</pre></div>
+<p><strong><em>Interne Komponenten als Zusammensetzung</em></strong></p>
+<div class="listing"><pre class="prettyprint">     // Zusammengesetzte Produkte werden mit einem 
+    // Zusatzpreis in Euro pro enthaltenem Produkt angelegt. 
+    ZusammengesetztesProdukt interneKomponenten = 
+                new ZusammengesetztesProdukt(5); 
+    interneKomponenten.add(festplatte); 
+    interneKomponenten.add(cpu); 
+    interneKomponenten.add(platine); 
+    interneKomponenten.add(cdbrenner); 
+ 
+    ZusammengesetztesProdukt peripherie = 
+                new ZusammengesetztesProdukt(0); 
+    peripherie.add(tastatur); 
+    peripherie.add(bildschirm); 
+    // Eine Dienstleistung wird mit einem Stundensatz 
+    // in Euro und der erwarteten Arbeitszeit in Stunden 
+    // angelegt 
+    Dienstleistung installation = 
+               new Dienstleistung(40,1); 
+ 
+    ZusammengesetztesProdukt rechner = 
+               new ZusammengesetztesProdukt(0); 
+    rechner.add(interneKomponenten); 
+    rechner.add(peripherie); 
+    rechner.add(gehäuse); 
+    rechner.add(installation);</pre></div>
+<p><strong><em>Besucher wird  
+losgeschickt.</em></strong></p>
+<div class="listing"><pre class="prettyprint">   <span class="cfett"> PreisBesucher besucher = new PreisBesucher();</span> 
+   <span class="cfett"> rechner.willkommen(besucher);</span> 
+ 
+    System.out.println( 
+             "Gesamtpreis für Rechnerkonfiguration: " 
+           + besucher.gesamtpreis()); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.24    </strong>Source-Code für Zusammenstellung eines Rechners</p>
+<p><strong><em>Bestandteile des Entwurfsmusters des Besuchers</em></strong></p>
+<p>Das Entwurfsmuster des Besuchers besteht, wie Sie gesehen haben, aus zwei Bestandteilen.</p>
+<ul class="gp">
+<li>Zum einen beschreibt es eine Navigation über eine zusammengesetzte Struktur.</li>
+</ul>
+<ul class="gp">
+<li>Der Kern ist aber der andere Bestandteil, die Umsetzung des Double Dispatch. Dieser erlaubt es uns, Methoden abhängig von der Klasse des Besuchers und des besuchten Elements aufzurufen.</li>
+</ul>
+<p><strong><em>Die Prinzipien von Besuchern</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Das Entwurfsmuster und die Prinzipien 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Die Verwendung eines Besuchers hilft Ihnen dabei, zwei Prinzipien der Objektorientierung besser umzusetzen. Das <span class="ckursiv">Prinzip einer einzigen Verantwortung</span> wird dadurch unterstützt, dass eine Besucherklasse sich auf eine ganz konkrete Aufgabe beschränken kann, zum Beispiel einen Preis berechnen. Sie ist nicht dafür zuständig, über eine Struktur von Elementen zu navigieren, und sie muss über diese Elementstruktur auch nur ein begrenztes Wissen haben.</p>
+<p>Das Prinzip <span class="ckursiv">Offen für Erweiterung, geschlossen für Änderung</span> wird dadurch unterstützt, dass weitere Arten von Besuchern für eine Struktur von Elementen hinzugefügt werden können, ohne dass in diese Struktur eingegriffen werden muss. Damit ist das System offen für Erweiterung durch neue Besucher, aber geschlossen für Änderungen an der Repräsentation der Struktur von Elementen.</p>
+<p>Allerdings kann das Muster auch zu einer engen Kopplung zwischen Besuchern und den besuchten Objekten führen. Die besuchten Objekte müssen nämlich ihre Schnittstelle so gestalten, dass ein Besucher auf die benötigten Informationen zugreifen kann. Damit kann es passieren, dass die Datenkapselung zum Teil aufgeweicht wird. Ein Beispiel dafür ist die Berechnung der Zusatzkosten für zusammengesetzte Produkte im Beispiel dieses Abschnitts: Die Information über die Anzahl der enthaltenen Produkte wurde nur offen gelegt, weil der Preisbesucher diese Information zur Preisberechnung benötigt. Die Verwendung des Musters sollte also wie bei allen Entwurfsmustern das Ergebnis einer bewussten Abwägung sein. Die Vorteile kommen vor allem dann zur Geltung, wenn zu erwarten ist, dass nachträglich häufig neue Operationen hinzukommen, die ebenfalls auf der gesamten Elementstruktur ausgeführt werden sollen.</p>
+</td>
+</tr>
+</table><br><p>Bei der Vorstellung des Entwurfsmusters »Besucher« haben Sie ja nun auch einiges über zusammengesetzte Strukturen von Elementen erfahren und wie diese genutzt werden. Dadurch haben Sie neben dem Entwurfsmuster »Besucher« auch gleich noch ein weiteres Entwurfsmuster mit kennen gelernt, ohne dass dieses namentlich genannt wurde: das <span class="ckursiv">Entwurfsmuster »Kompositum«</span>. Wir stellen es nun auch offiziell vor.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Entwurfsmuster »Kompositum« (Composite)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Das Kompositum-Muster wird angewendet, um eine einheitliche Behandlung von Elementen in Strukturen zu ermöglichen, die aus zusammengesetzten Elementen bestehen können. Durch eine gemeinsame Oberklasse oder Schnittstelle wird eine einheitliche Sicht auf die beteiligten Elemente ermöglicht. Sowohl die zusammengesetzten Elemente also auch die atomaren Elemente, aus denen sie sich zusammensetzen, erben die Spezifikation dieser Oberklasse. Damit ist eine einheitliche Behandlung dieser Elemente möglich. Insbesondere wird es möglich, alle Elemente einer zusammengesetzten Struktur zu durchlaufen und definierte Operationen darauf auszuführen. Das Durchlaufen der Struktur von Elementen wird auch als Traversieren der Elemente bezeichnet.</p>
+</td>
+</tr>
+</table><br><p>Ein Beispiel für eine solche zusammengesetzte Struktur sind hierarchische Dateisysteme. Es gibt eine ganze Reihe von Aspekten, unter denen eine Datei und ein Verzeichnis, das Dateien enthält, gleich behandelt werden können. In Abbildung 5.36 ist die Klassenstruktur des Musters dargestellt. Sie kennen die Ausprägung dieser Struktur auch schon aus unserem Beispiel in Abbildung 5.32.</p>
+<div class="bildbox">
+<p><a name="IDA2LTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_025.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_025.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.36    </strong>Klassenstruktur des Entwurfsmusters »Kompositum«</p>
+<p><strong><em>Einsatz</em></strong></p>
+<p>Das Entwurfsmuster »Kompositum« ist vor allem dann sinnvoll anwendbar, wenn Elemente und zusammengesetzte Elemente gleich behandelt werden sollen und können. In der Regel wird ein Kompositum bei Aufruf einer Operation diesen Aufruf auch an alle in ihm enthaltenen Elemente weiterleiten. Im Fall eines Dateisystems könnte zum Beispiel die Operation <span class="clisting">loeschen()</span> für ein Verzeichnis so implementiert sein, dass sie die Operation zunächst an alle enthaltenen Verzeichnisse und Dateien delegiert, um dann erst das Verzeichnis selbst zu löschen.</p><a id="mjf40bf0e266ddbbbdf13e9d8c595202da" name="mjf40bf0e266ddbbbdf13e9d8c595202da"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">5.2.5 Die Tabelle für virtuelle Methoden  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In den vorhergehenden Abschnitten haben Sie die Konzepte der Polymorphie und ihrer Anwendungen kennen gelernt. Damit diese Konzepte in der Praxis funktionieren, müssen objektorientierte Sprachen und deren Laufzeitsysteme einen technischen Mechanismus bereitstellen, der die Umsetzung der späten Bindung konkret realisiert.</p>
+<p>In diesem Abschnitt erfahren Sie deshalb am Beispiel von C++ einiges über die sogenannte Virtuelle-Methoden-Tabelle. Diese dient der Realisierung der späten Bindung in C++. In der Praxis ist es nützlich, die Grundlagen der technischen Umsetzung zu kennen. Die Überraschung über einige in der Praxis auftretende Phänomene hält sich dann eher in Grenzen.</p>
+<p><strong><em>Späte Bindung</em></strong></p>
+<p>Rein abstrakt ist der Mechanismus der späten Bindung recht einfach zu beschreiben: Welche Methode eines Objekts aufgerufen wird, entscheidet sich erst zur Laufzeit eines Programms, abhängig davon, welchen Typ das Objekt hat, auf dem die Methode aufgerufen wird.</p>
+<p><strong><em>Beispiel C++</em></strong></p>
+<p>Am Beispiel der Sprache C++ stellen wir im Folgenden vor, was die praktischen Konsequenzen sein können. Wir werden feststellen, dass C++ das Prinzip <span class="ckursiv">Offen für Erweiterung, geschlossen für Änderung</span> für das Thema »späte Bindung« nur sehr begrenzt unterstützt. In der Praxis greift hier das <span class="ckursiv">Gesetz der lückenhaften Abstraktion (Law of leaky Abstractions)</span>, das von Joel Spolsky formuliert wurde: <span class="ckursiv">Jede nichttriviale Abstraktion ist zu einem bestimmten Grad lückenhaft. [</span>Joel Spolsky: <span class="ckursiv">http://www.joelonsoftware.com/articles/LeakyAbstractions.html</span>
+] </p>
+<h4 class="t4">Fragile Binary Interface Problem</h4>
+<p>Ein bestimmtes Problem, dass Änderungen an Software erschwert werden, hat folgenden Grund: Änderungen an Basisklassen können dazu führen, dass davon abhängige Bibliotheken nicht mehr korrekt arbeiten. Es wird auch als <span class="ckursiv">Problem der zerbrechlichen binären Schnittstellen</span> (Fragile Binary Interfaces) bezeichnet.</p>
+<p>Das beschriebene Problem tritt auf, weil Bibliotheken und ausführbare Module so konstruiert sind, dass eine Änderung an Teilen, die im Bereich der Quelltexte ohne Probleme möglich ist, zu Problemen führt, wenn nur ein Teil der genutzten Bibliotheken neu erstellt und ausgeliefert wird. Dieses Problem besteht nicht nur bei objektorientierten Sprachen. Dort kommen allerdings einige spezifische neue Probleme hinzu, die sich zum großen Teil im Bereich der Abbildung von Operationen auf Methoden bewegen.</p>
+<p><strong><em>Fragile Binary Interface Problem</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Das Problem der zerbrechlichen binären Schnittstellen  
+(engl. Fragile Binary Interface Problem)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In vielen objektorientierten Sprachen führen Änderungen  an Basisklassen oder Schnittstellen dazu, dass davon abhängige, bereits kompilierte Klassen (insbesondere abgeleitete Klassen) nicht mehr wie erwartet arbeiten. Der Grund liegt darin, dass durch Änderungen an Basisklassen das Layout der konstruierten Objekte im Speicher geändert wird. Wenn man die abhängigen Klassen selbst nicht neu kompiliert, können Zugriffe auf ihre Exemplare oder aus ihren Exemplaren zu Fehlern führen. Diese kann man durch eine Neukompilierung des gesamten Programmes beseitigen. Das Problem ist zum Beispiel in den gängigen objektorientierten Sprachen C++, Java und C# präsent.</p>
+</td>
+</tr>
+</table><br><p>Da für diese Abbildung in der Regel die sogenannte Virtuelle-Methoden-Tabelle (VMT) verwendet wird, können die resultierenden Probleme nur verstanden werden, wenn die Grundstruktur dieser Tabelle bekannt ist. Wir stellen deshalb im Folgenden die Umsetzung dieser VMT und ihr Verhalten bei Änderungen vor.</p>
+<h4 class="t4">Die Virtuelle-Methoden-Tabelle (VMT)</h4>
+<p>Um späte Bindung zu realisieren, wird zur Laufzeit eines Programms für einen Methodenaufruf eine zusätzliche Abstraktionsebene benötigt, mittels der aufgrund des konkreten Typs eines Objekts entschieden wird, welche Methode denn nun aufgerufen werden soll.</p>
+<p>Bei Sprachen, die nicht interpretiert, sondern kompiliert werden, wird zur Umsetzung dieser Abstraktionsebene in der Regel ein Konstrukt eingeführt, das als Virtuelle-Methoden-Tabelle bezeichnet wird (kurz auch vtable oder VMT). Polymorphe Methoden, also solche, die in Ableitungen überschrieben werden können, werden in C++ als virtuelle Methoden bezeichnet, daher auch der Name Virtuelle-Methoden-Tabelle.</p>
+<p><strong><em>Statische  
+Polymorphie</em></strong></p>
+<p>Machen wir keinen Gebrauch von später Bindung, so kann für ein Programm bereits vor der Laufzeit (also z. B. beim Durchlauf eines Compilers) eine direkte Zuordnung von Methodenaufrufen vorgenommen werden. Für jede Aufrufstelle einer Operation ist völlig klar, welche Methode damit genau gemeint ist. Wir haben nur statische Polymorphie vorliegen.</p>
+<p>Bei der Verwendung von später Bindung ist das nicht so: Eine Variable, die als Referenz auf den Typ einer Basisklasse definiert ist, kann zur Laufzeit auch auf ein Exemplar einer abgeleiteten Klasse verweisen. Erst zur Laufzeit können wir also entscheiden, welche Methode aufgerufen werden muss.</p>
+<p><strong><em>Objekterstellung und VMT</em></strong></p>
+<p>Um das leisten zu können, wird in C++ jeder Klasse, die mindestens eine virtuelle Methode besitzt, eine eigene VMT zugeordnet. In dieser Tabelle ist verzeichnet, welche Operation für genau dieses Objekt auf welche Methode abgebildet wird. Bei seiner Erstellung über einen Konstruktor wird jedem Objekt mitgegeben, welche VMT das Objekt verwenden soll. Bei der Konstruktion eines Objekts ist bekannt, von welcher Klasse dieses Objekt ein Exemplar ist. Also kann zu diesem Zeitpunkt auch entschieden werden, welche VMT das Objekt verwenden muss. Die VMT ist also die zusätzliche Zwischentabelle, über die zur Laufzeit dann entschieden wird, welche konkrete Methode bei Aufruf einer Operation angesteuert wird. Es wird damit zu einer Eigenschaft des Objekts (nicht mehr der Klasse), welche Methode aufgerufen wird.</p>
+<p>Aber Moment: Ein Objekt kann ja ein Exemplar von mehreren Klassen sein, da wir möglicherweise eine Hierarchie von Klassen vorliegen haben. Welche VMT greift denn in diesem Fall?</p>
+<p>In Abbildung 5.37 ist eine sehr einfache Hierarchie dargestellt, die zwei virtuelle Methoden nutzt: <span class="clisting">print</span> und <span class="clisting">save</span>.</p>
+<div class="bildbox">
+<p><a name="IDACQTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_026.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_026.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.37    </strong>Einfache Hierarchie mit virtuellen Methoden</p>
+<p>Die Zuordnung der VMTs zu konkreten Exemplaren ist in Abbildung 5.38 dargestellt. Dabei ist zu sehen, dass jedes Exemplar einer Klasse einen Verweis auf deren VMT erhält. Die VMT selbst ist hauptsächlich eine Tabelle von Zeigern auf Funktionen. Da die abgeleiteten Klassen nur jeweils eine der virtuellen Methoden überschreiben, enthält ihre VMT jeweils auch einen Funktionszeiger auf eine Methode der jeweiligen Superklasse.</p>
+<div class="bildbox">
+<p><a name="IDAHQTQ"></a><a onClick="OpenWin('bilder/05_38.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_38.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.38    </strong>Abstrakte Darstellung der Zuordnung von Methoden über VMT</p>
+<p><strong><em>Compiler generiert Funktionsaufruf.</em></strong></p>
+<p>Der Compiler generiert, wenn er den Aufruf einer virtuellen Methode findet, einen Aufruf der Funktion an einer bestimmten Position der VMT. Welche Methode zur Laufzeit aufgerufen wird, bestimmt sich also durch zwei Kriterien:</p>
+<ul class="gp">
+<li>den Zeiger auf die VMT der Klasse</li>
+</ul>
+<ul class="gp">
+<li>die Position der Methode in der Liste von virtuellen Methoden der Klasse</li>
+</ul>
+<p><strong><em>Reihenfolge virtueller Methoden</em></strong></p>
+<p>In Abbildung 5.38 wird ersichtlich, dass die virtuellen Methoden in einer bestimmten Reihenfolge in den jeweiligen VMTs abgelegt sind. In der Regel ist das die Reihenfolge, in der die Methoden in der Quelldatei definiert werden, ein Compiler kann sich aber auch für andere Reihenfolgen entscheiden. Führen abgeleitete Klassen neue virtuelle Methoden ein (in unserem Beispiel die Methode <span class="clisting">rotate</span> der Klasse <span class="clisting">Image</span>), so werden diese am Ende der Tabelle angefügt.</p>
+<h4 class="t4">Umsetzung von VMT: Das Open-Closed-Prinzip wird nicht unterstützt</h4>
+<p><strong><em>Mögliche Fehlersituationen</em></strong></p>
+<p>Betrachten wir nun die möglichen Fehlersituationen, die entstehen können, wenn wir Anpassungen an den virtuellen Methoden einer Klasse vornehmen. Grundsätzlich entstehen hier keine Probleme, wenn wir in allen Situationen alle beteiligten Source-Dateien komplett neu übersetzen. Dies ist in der Praxis aber oft nicht möglich und auch nicht erwünscht. Wir wollen oft durch eine Anpassung von virtuellen Methoden eine lokale Änderung vornehmen, die zu einer Erweiterung des Programms führt, ohne dass wir alle betroffenen Module kennen und neu übersetzen müssen.</p>
+<p><strong><em>Virtuelle Methode überschreiben</em></strong></p>
+<p>Was passiert also, wenn wir eine virtuelle Methode in einer abgeleiteten Klasse überschreiben?</p>
+<p>Die Antwort ist hier: Es hängt davon ab. Und zwar von zwei Randbedingungen: Hatte die Klasse bereits vorher andere virtuelle Methoden überschrieben? Und nutzt der Compiler diese Information zu Optimierungen aus?</p>
+<p>Nur wenn eine Klasse selbst virtuelle Methoden einführt oder überschreibt, ist es auch notwendig, dass die Klasse eine eigene VMT erhält. Im anderen Fall wird diese nämlich genau gleich der VMT der direkten Oberklasse sein. Ein Compiler kann diese Information ausnutzen und sich die VMT für diese Klasse sparen, auch wenn eine von deren Superklassen bereits virtuelle Methoden eingeführt hat. Exemplare dieser Klasse bekommen dann bei der Konstruktion einen Verweis auf die VMT der Oberklasse zugewiesen. Eine Teilhierarchie für einen solchen Fall ist in Abbildung 5.39 dargestellt, Abbildung 5.40 zeigt, wie die VMT der Klasse <span class="clisting">InterpolatedImage</span> einfach eingespart wird.</p>
+<div class="bildbox">
+<p><a name="IDA2RTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_027.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_027.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.39    </strong>Abgeleitete Klasse ohne eigene virtuelle Methoden</p>
+<p>So weit, so optimiert. Aber was passiert, wenn wir nun einer solchen Klasse selbst eine virtuelle Methode geben und die Code-Stellen, an denen ein Exemplar der Klasse konstruiert wird, nicht neu kompilieren? Ganz klar: Es wird eine neue VMT für diese Klasse erstellt, aber kein Objekt wird darauf verweisen, weil ja dort immer noch die alte VMT (diejenige der direkten Oberklasse) referenziert wird.</p>
+<div class="bildbox">
+<p><a name="IDABSTQ"></a><a onClick="OpenWin('bilder/05_40.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_40.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.40    </strong>Verweis auf VMT der Superklasse</p>
+<p><strong><em>Keine Verhaltensänderung</em></strong></p>
+<p>Der Effekt ist, dass das Verhalten unseres Programms sich durch die neue virtuelle Methode nicht ändert, was nicht unbedingt intuitiv erwartet würde.</p>
+<div class="bildbox">
+<p><a name="IDAHSTQ"></a><a onClick="OpenWin('bilder/05_41.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_41.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.41    </strong>Neue virtuelle Methode ohne Neukompilation der Objektkonstruktion</p>
+<p>Abbildung 5.41 stellt die Situation dar, nachdem die Klasse <span class="clisting">InterpolatedImage</span> die virtuelle Methode <span class="clisting">rotate</span> überschrieben hat. Die Stellen, an denen ein Exemplar von <span class="clisting">InterpolatedImage</span> konstruiert wird, wurden aber nicht neu kompiliert. Wir haben zwar eine schöne neue VMT für die Klasse erhalten, aber nirgends im ganzen Programm wird diese verwendet werden, da keine Verweise darauf existieren.</p>
+<p>OK, aber es ist ja nun eher die Ausnahme, dass eine Klasse noch keine virtuelle Methode hat. Zumindest einen virtuellen Destruktor sollten wir ihr verpasst haben.</p>
+<p><strong><em>Existierende  
+virtuelle Methode überschreiben</em></strong></p>
+<p>Was passiert also, wenn wir in einer solchen Klasse eine weitere virtuelle Methode überschreiben? Auch hier ändert sich die Virtuelle-Methoden-Tabelle der Klasse. Allerdings verschieben sich keine Einsprungpunkte für den Methodenaufruf, sondern es wird lediglich ein Zeiger in der VMT umgesetzt. Relevant ist das für die Klasse, die wir gerade modifiziert haben, und für alle davon abgeleiteten Klassen. Diese müssen wir also neu übersetzen. Falls wir das nicht tun, werden diese einfach dabei bleiben, die ihnen vorher bekannte Methode der betreffenden Basisklasse aufzurufen. Das ist nicht das, was wir erreichen wollen. Also müssen alle abgeleiteten Klassen, welche die neu überschriebene Methode nutzen sollen, auch neu kompiliert werden.</p>
+<p><strong><em>Komplett neue virtuelle Methode</em></strong></p>
+<p>Nun zu einer anderen Fehlersituation: Was passiert, wenn wir eine komplett neue virtuelle Methode zu einer Klasse hinzufügen?</p>
+<p>Zunächst einmal haben wir das bereits vorher beschriebene Problem, falls die Klasse vorher noch überhaupt keine virtuellen Methoden hatte. Aber es kommen zusätzliche Komplikationen dazu.</p>
+<div class="bildbox">
+<p><a name="IDA5STQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_028.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_028.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.42    </strong>Aufruf von Methoden über Offset in VMT</p>
+<p>Abbildung 5.42 illustriert noch einmal, dass der Aufruf einer virtuellen Methode über eine ganz konkrete Position in der VMT gemappt wird.</p>
+<p><strong><em>Funktionszeiger verschoben</em></strong></p>
+<p>Aber: Die VMT der betroffenen Klasse hat sich durch die Anpassung so verändert, dass die Funktionszeiger sich nun an anderer Stelle befinden. Bei Aufrufen von virtuellen Methoden der Klasse und von deren Ableitungen hat der Compiler aber bereits die Position der Methode in der VMT eingetragen. Wenn wir die Aufrufstellen aller virtuellen Methoden dieser und abgeleiteter Klassen nicht neu kompilieren, werden die veränderten Positionen in der VMT nicht berücksichtigt, und es wird ganz einfach die falsche Methode aufgerufen. Die Ursachensuche für die resultierenden Fehler gestaltet sich dann oft schwierig.</p>
+<p>Abbildung 5.43 illustriert das Problem. Wir nehmen dabei an, dass zu der Klasse <span class="clisting">Data</span> eine neue virtuelle Methode <span class="clisting">load</span> hinzugefügt wurde, ohne dass die Aufrufstellen von Methoden für die abgeleitete Klasse <span class="clisting">Image</span> neu kompiliert wurden.</p>
+<div class="bildbox">
+<p><a name="IDANTTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_029.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_029.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.43    </strong>Aufruf der falschen Funktion durch Veränderung der VMT</p>
+<p>Bei einem Aufruf der Methode <span class="clisting">rotate</span> auf einem Exemplar der Klasse <span class="clisting">Image</span> wird nach wie vor die dritte Methode in deren VMT aufgerufen. Aber: Das ist gar nicht mehr <span class="clisting">rotate</span>, sondern an dieser Stelle steht jetzt die Methode <span class="clisting">load</span> der Basisklasse <span class="clisting">Data</span>.</p>
+<p><strong><em>Technische  
+Konsequenzen</em></strong></p>
+<p>Zusammenfassend können wir also sagen: Bei der Objektkonstruktion entscheidet der Compiler, welche VMT verwendet wird, beim Aufruf einer virtuellen Methode, an welcher Stelle der VMT diese Methode erwartet wird.</p>
+<p>Ändert sich also die Information, welche VMT für eine Klasse verwendet wird, müssen die Stellen neu kompiliert werden, an denen Exemplare dieser Klasse konstruiert werden.</p>
+<p>Ändert sich die Position einer Methode in der VMT, so müssen alle Aufrufstellen aller virtuellen Methoden der betroffenen und abgeleiteten Klassen neu kompiliert werden.</p>
+<p><strong><em>Diskussion: Warum so  
+technisch?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Müssen wir uns denn wirklich auf dieser technischen Ebene mit dem Thema Polymorphie beschäftigen? Eigentlich würde ich mir ja von einer echten Programmiersprache erwarten, dass sie mich von diesen Details abschirmt.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Ja, schön wäre es. Aber wir leben nicht in einer idealen Welt, schon gar nicht, wenn es um die Entwicklung von Software geht. Das Beispiel von C++ zeigt ja bereits, dass wir schon eine ganze Menge technischer Restriktionen haben, die unsere Möglichkeiten für Änderungen in der Praxis einschränken.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> O.k., aber C++ ist ja auch eine etwas ältere Sprache. Bei Java zum Beispiel haben wir doch sicher weniger Probleme.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Bei Java sieht es zwar etwas besser aus, aber auch dort gibt es eine große Zahl von Situationen, bei denen wir durch technische Effekte mit Änderungen eine Anwendung in einen fehlerhaften Zustand bringen können. Die Situation ist zum Teil sogar noch etwas komplizierter, weil sich Änderungen an Klassen und Interfaces unterschiedlich verhalten. Wir haben auch hier eine lückenhafte Abstraktion vorliegen und müssen uns mit den Details der Umsetzung beschäftigen.</span><h4 class="t4">Konstruktion und Destruktion von Objekten mit  
+polymorphen Methoden</h4>
+<p>Einen besonderen Status haben polymorphe Methoden während der Konstruktion und Destruktion von Objekten.</p>
+<p>Ein Objekt durchläuft während der Konstruktion verschiedene Stufen, da die Konstruktoren der jeweiligen Klassenhierarchie sukzessive aufgerufen werden. Dabei wird der Konstruktor der Basisklasse zuerst aufgerufen, dann absteigend in der Klassenhierarchie die jeweils folgenden.</p>
+<p><strong><em>Objekt entsteht nach und nach.</em></strong></p>
+<p>Das Objekt wird also erst nach und nach zu dem speziellen Objekt, das es sein soll. Dadurch ergeben sich für den Aufruf von polymorphen Methoden in einem Konstruktor spezielle Randbedingungen, die zum Teil technisch bedingt sind und mit der gewählten Programmiersprache in Zusammenhang stehen.</p>
+<p>Am besten zeigen wir das anhand von Beispielen in C++ und Java, die sich an dieser Stelle unterschiedlich verhalten. Bei Java verhalten sich Methoden auch bei einem Aufruf im Konstruktor polymorph. Das heißt, wenn wir gerade ein Exemplar einer Subklasse konstruieren, wird bei polymorphen Methoden auch im Konstruktor der Basisklasse die Methode der Subklasse aufgerufen.</p>
+<p><strong><em>Polymorphie  
+im Konstruktor  
+in Java</em></strong></p>
+<div class="listing"><pre class="prettyprint">public class ClassA { 
+    protected Integer value1 = 1; 
+ 
+    ClassA() { 
+        polymorphicMethod("ClassA"); 
+    } 
+    void polymorphicMethod(String myclass) { 
+    System.out.println("ClassA aus Konstr. von " + myclass); 
+    } 
+} 
+public class ClassB extends ClassA { 
+ 
+    protected String valueB = "initial"; 
+    ClassB() { 
+        valueB = "set"; 
+        polymorphicMethod("ClassB"); 
+    } 
+    void polymorphicMethod(String myclass) { 
+        System.out.println("ClassB aus Konstr. von " 
+                + myclass + " valueB: " + valueB ); 
+    } 
+} 
+public class ClassC extends ClassB { 
+ 
+    protected String valueC = "initial"; 
+    ClassC() { 
+        valueC = "set"; 
+        polymorphicMethod("ClassC"); 
+    } 
+    void polymorphicMethod(String myclass) { 
+        System.out.println("ClassC aus Konstr. von " 
+    + myclass + " valueB/valueC: " + valueB + "/" + valueC); 
+    } 
+ 
+} 
+public static void main(String[] args) { 
+    ClassA a = new ClassA(); 
+    System.out.println(); 
+    ClassB b = new ClassB(); 
+    System.out.println(); 
+    ClassC c = new ClassC(); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.25    </strong>Polymorphe Methoden im Konstruktor bei Java</p>
+<p>In Listing 5.25 ist ein Beispiel für die Verwendung von polymorphen Methoden in einem Konstruktor in Java aufgeführt. Das gelistete Programm liefert die unten stehende Ausgabe:</p>
+<div class="listing"><pre class="prettyprint">ClassA aus Konstr. von ClassA 
+ 
+ClassB aus Konstr. von ClassA valueB: null 
+ClassB aus Konstr. von ClassB valueB: set 
+ 
+ClassC aus Konstr. von ClassA valueB/valueC: null/null 
+ClassC aus Konstr. von ClassB valueB/valueC: set/null 
+ClassC aus Konstr. von ClassC valueB/valueC: set/set</pre></div>
+<p><strong><em>Methodenaufrufe sind polymorph.</em></strong></p>
+<p>Erwartungsgemäß werden die Konstruktoren jeweils beginnend mit der Basisklasse aufgerufen. Beim Aufruf einer polymorphen Methode wird immer die Methode der speziellsten Klasse aufgerufen, Aufrufe werden also im Konstruktor nicht anders gehandhabt als in normalen Methoden. Allerdings wird hier auch das Problem dieser Aufrufe deutlich: Initialisierungen von Daten, die in abgeleiteten Klassen vorgenommen werden, sind beim Aufruf in einer Basisklasse noch nicht durchgeführt. [Die Behandlung der finalen Datenelemente ist hier einer andere. Diese werden bereits vor dem Aufruf des Konstruktors der obersten Klasse <span class="clisting">Object</span> initialisiert.
+]  Deshalb kann da schon der ein oder andere Nullzeiger-Zugriff passieren.</p>
+<p><strong><em>Keine Polymorphie in C++-Konstruktoren</em></strong></p>
+<p>Im Fall von C++ ist das Verhalten dann ganz anders. Hier verhalten sich Methoden im Konstruktor nicht völlig polymorph. Da die Virtuelle-Methoden-Tabelle erst nach und nach aufgebaut wird, kann im Konstruktor einer Basisklasse noch gar keine Methode von Subklassen aufgerufen werden. Wird jedoch in der Klasse, deren Konstruktor gerade aufgerufen wird, eine Methode einer Oberklasse überschrieben, so wird die überschriebene Variante aufgerufen. [Man hat hier eigentlich ein Beispiel einer dynamischen Klassifizierung. In C++ ändert sich während seiner Konstruktion die Klassenzugehörigkeit eines Objekts. Während wir in unserem Java-Beispiel bei dem Aufruf <span class="clisting">new C()</span> sofort ein Exemplar der Klasse <span class="clisting">C</span> bekommen, das durch die Konstruktoren nacheinander lediglich initialisiert wird, erhalten wir in C++ zuerst ein Exemplar der Klasse <span class="clisting">A</span>, das dann zu einem Exemplar der Klasse <span class="clisting">B</span> mutiert, um schließlich zu einem Exemplar der Klasse <span class="clisting">C</span> zu werden.
+] </p>
+<p>Hier die Ausgabe des dem obigen Java-Programm entsprechenden C++-Programms:</p>
+<div class="listing"><pre class="prettyprint">ClassA aus Konstr. von ClassA 
+ 
+ClassA aus Konstr. von ClassA 
+ClassB aus Konstr. von ClassB valueB: set 
+ 
+ClassA aus Konstr. von ClassA 
+ClassB aus Konstr. von ClassB valueB: set 
+ClassC aus Konstr. von ClassC valueB/valueC: set/set</pre></div>
+<p>Wir sehen dabei, dass hier immer die Methode der Klasse aufgerufen wird, in deren Konstruktor wir uns grade befinden. Das ist zumindest sicherer in Bezug auf die Initialisierung von Daten, wir sehen, dass die betroffenen Daten immer korrekt initialisiert sind.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_05_002.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="5.2 Polymorphie und ihre Anwendungen"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_05_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

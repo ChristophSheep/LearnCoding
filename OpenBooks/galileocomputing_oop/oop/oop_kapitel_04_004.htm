@@ -1,0 +1,870 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 4.4 Klassen von Werten und Klassen von Objekten</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 4.4 Klassen von Werten und Klassen von Objekten">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 4.4 Klassen von Werten und Klassen von Objekten">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_04_003.htm">
+<link rel="next" href="oop_kapitel_05_001.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_04_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b" class="navnav">4 Die Struktur objektorientierter Software</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_001.htm#mj7b6b81a0c8972299dbdd92524d8707c3" class="navnav">4.1 Die Basis von allem: das Objekt</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj561db4b7b51ddab563d9357086a75f16" class="navnav">4.1.1 Eigenschaften von Objekten: Objekte als Datenkapseln</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mjd18cdb9194cd0684bdfa301683893159" class="navnav">4.1.2 Operationen und Methoden von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj41885f11bf43f1afc60b76e0afbe7b6c" class="navnav">4.1.3 Kontrakte: Ein Objekt trägt Verantwortung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj4bba9c78108c5ebe6a1e25d09da23b23" class="navnav">4.1.4 Die Identität von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_001.htm#mj62d09a1cbb82ce7738613ddee041cc52" class="navnav">4.1.5 Objekte haben Beziehungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_002.htm#mj1267a0a54c9f28f7e90497952f29dd59" class="navnav">4.2 Klassen: Objekte haben Gemeinsamkeiten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mjff74dbd3ea0281a9773d7cd8126e9c8b" class="navnav">4.2.1 Klassen sind Modellierungsmittel</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj7012e3ccb719d6c513e60ff574e1c59b" class="navnav">4.2.2 Kontrakte: die Spezifikation einer Klasse</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj2695596f673a2fc50b338aa48ddfcc9c" class="navnav">4.2.3 Klassen sind Datentypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mjc85ceff1ceeab068dd628ab5076d0d70" class="navnav">4.2.4 Klassen sind Module</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj1cf8ce74da5d16b89eb3efa0ae9bf182" class="navnav">4.2.5 Sichtbarkeit von Daten und Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mja2d7825b1c1c07dd16d08858ed4e2186" class="navnav">4.2.6 Klassenbezogene Methoden und Attribute</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_002.htm#mj8fefd5a44232563aae6ce704fc4d92c1" class="navnav">4.2.7 Singleton-Methoden: Methoden für einzelne Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_04_003.htm#mjf8802262d55361c06e93e627e44e539e" class="navnav">4.3 Beziehungen zwischen Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj0ff05dc78b1417fb2771d4f29cbc6c1a" class="navnav">4.3.1 Rollen und Richtung einer Assoziation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj36d410616a672dcba508d9ae14c749a3" class="navnav">4.3.2 Navigierbarkeit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj4e980b9907659670b9dec829430e1e5f" class="navnav">4.3.3 Multiplizität </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj160479d0824fb412e545da4b151a77fa" class="navnav">4.3.4 Qualifikatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mjeb1a3ff160181940bb222e7f0e97402c" class="navnav">4.3.5 Beziehungsklassen, Attribute einer Beziehung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj8fc9eae8c02cefd02bf024b5dda0bbe1" class="navnav">4.3.6 Implementierung von Beziehungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj8118cb8c892c6648834fb351f4be17aa" class="navnav">4.3.7 Komposition und Aggregation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mjc62b233e44c20911b6cee2de3c15a801" class="navnav">4.3.8 Attribute</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_04_003.htm#mj344620f0b2ee4df48d645d45e973920c" class="navnav">4.3.9 Beziehungen zwischen Objekten in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj0e24bd346a5e2c3a8c2f91eec5a74cd5" class="navh">4.4 Klassen von Werten und Klassen von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjea3fc9fb362ce0dd9c3af96496b7796d" class="navh">4.4.1 Werte in den objektorientierten Programmiersprachen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj925becc3655976ef8cb6eee567f97833" class="navh">4.4.2 Entwurfsmuster »Fliegengewicht«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjfca6187c7c9d3b4fdc70dec4c511e84c" class="navh">4.4.3 Aufzählungen (Enumerations)</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjd80f28e5e2134c13382e2859c64f48ee" class="navh">4.4.4 Identität von Objekten</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj0e24bd346a5e2c3a8c2f91eec5a74cd5" name="mj0e24bd346a5e2c3a8c2f91eec5a74cd5"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">4.4 Klassen von Werten und Klassen von Objekten  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p><strong><em>Objekte haben Identität.</em></strong></p>
+<p>In objektorientierten Systemen unterscheiden wir zwischen Objekten und Werten. Ein Objekt hat seine Identität und kann sich im Laufe seiner Existenz verändern. Es kann verschiedene Objekte (mit unterschiedlicher Identität) geben, die zu einem Zeitpunkt fachlich gesehen gleich sind, sich aber zu einem späteren Zeitpunkt unterscheiden.</p>
+<p>Wenn wir eine Datei kopieren, hat die ursprüngliche Datei den gleichen Inhalt wie ihre Kopie. Die Originaldatei und ihre Kopie haben aber unterschiedliche Identitäten. Später, nachdem man eine der Dateien bearbeitet hat, sind es immer noch jeweils dieselben Dateien mit ihren Identitäten, sie sind aber nicht mehr gleich.</p>
+<p><strong><em>Werte haben keine eigene  
+Identität.</em></strong></p>
+<p>Werte dagegen haben keine Identität, und sie können sich nicht ändern. Eine 3 bleibt immer eine 3, und man kann sie nicht sinnvoll von einer in einem anderen Speicherbereich gespeicherten 3 unterscheiden.</p>
+<p>Im Folgenden werden wir zunächst die Behandlung von Werten in Programmiersprachen vorstellen und das Entwurfsmuster »Fliegengewicht« diskutieren. Dieses Entwurfsmuster erlaubt eine effiziente Verwaltung von Objekten, die in Teilen die Eigenschaften von Werten haben.</p><a id="mjea3fc9fb362ce0dd9c3af96496b7796d" name="mjea3fc9fb362ce0dd9c3af96496b7796d"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">4.4.1 Werte in den objektorientierten Programmiersprachen  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Manche objektorientierte Programmiersprachen unterscheiden zwischen Werten und Objekten und bringen eine kleine Auswahl von primitiven Wertetypen mit. So gehören in Java, C# oder C++ die Typen <span class="clisting">int</span><span class="ckursiv">,</span> <span class="clisting">float</span> oder <span class="clisting">char</span> zu den Bestandteilen der Programmiersprache.</p>
+<p>Häufig, ja fast immer, brauchen wir in Anwendungen, die wir entwickeln, auch andere Wertetypen. So können wir in einer mathematischen Anwendung einen Wertetyp für komplexe Zahlen oder für Matrizen brauchen und in fast jeder Anwendung einen Datentyp für eine Zeichenkette oder das Datum. Für jeden dieser Wertetypen gelten besondere Regeln, und man kann sie in verschiedenen Operationen verwenden, die ausprogrammiert werden müssen.</p>
+<p>Solche komplexen Werte haben also &#8211; ähnlich wie Objekte &#8211; ihre eigenen Datenstrukturen und ihre eigene Funktionalität. In der Umsetzung unterscheiden sie sich also prinzipiell nicht von den Objekten.</p>
+<p><strong><em>Werte als Objekte implementiert</em></strong></p>
+<p>Daher werden in den objektorientierten Programmiersprachen auch Werte als Objekte implementiert. Ob es sich bei einem Objekt um einen Wert oder um ein Objekt mit einer eigenen fachlichen Identität handelt, ist also eine konzeptionelle Entscheidung des Entwicklers. Die Implementierung ist die gleiche. Daher haben in den objektorientierten Programmiersprachen auch die Werte eine technische Identität und eine Lebensdauer. [Ausnahmen in einigen Sprachen sind primitive Wertetypen wie <span class="clisting">int</span> oder <span class="clisting">float</span>.
+]  Wir sprechen deshalb in diesem Fall von <span class="ckursiv">Wertobjekten</span> (engl. <span class="ckursiv">Value Objects</span>). Diese Wertobjekte werden jedoch so umgesetzt, dass die ihnen zugeordneten Daten nicht änderbar sind, nachdem das Objekt einmal angelegt wurde. [Im Rahmen der J2EE-Architektur wird der Begriff <span class="ckursiv">Value Object</span> (<span class="ckursiv">Wertobjekt</span>) hin und wieder in einer anderen Bedeutung gebraucht. Dort wird eine Datenstruktur damit bezeichnet, die für den Datenaustausch zwischen Server und Client verwendet wird. Mittlerweile hat sich dafür im J2EE-Sprachgebrauch aber der Begriff <span class="ckursiv">Data Transfer Object</span> etabliert.
+] </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Wertobjekte (Value Objects)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wertobjekte sind Objekte, deren Eigenschaften nach der Konstruktion nicht mehr verändert werden können. Wird eine Änderung an einem Wertobjekt benötigt, so wird nicht das Objekt selbst geändert, sondern eine geänderte Kopie des Objekts verwendet.<sup>21  </sup></p>
+</td>
+</tr>
+</table><br><p>In <a href="#Rxx_ref222300896">Abbildung 4.32</a> ist die Modellierung eines Datums als Wertobjekt dargestellt. Die Eigenschaften des Objekts sind dabei nicht änderbar. Sie sind mit der Eigenschaft <span class="clisting">{frozen}</span> markiert. So kann jedes Datumsobjekt von mehreren Konferenzobjekten referenziert werden. Wird der Termin einer Konferenz verschoben, wird diese mit einem anderen Datum assoziiert.</p>
+<div class="bildbox">
+<p><a name="IDAFRSQ"></a><a onClick="OpenWin('bilder/04_32.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_32.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.32    </strong>Datum als Wertobjekt</p>
+<p>Ein weiteres Beispiel für eine Klasse solcher Wertobjekte ist die Klasse <span class="clisting">String</span> in Java. Strings können nach ihrer Konstruktion nicht mehr verändert werden, alle ändernden Operationen liefern neue Exemplare der Klasse <span class="clisting">String</span>.</p>
+<p>Die Unterscheidung zwischen einem Wert und einem Objekt mit eigener Identität und Lebenszeit ist fachlich und auch technisch relevant.</p>
+<p>Wenn Sie mit Wertobjekten arbeiten, sollten Sie immer daran denken, dass Sie nicht deren Identität, sondern deren fachliche Gleichheit überprüfen müssen. So finden zum Beispiel zwei Ereignisse zum selben Zeitpunkt statt, wenn die Objekte, in denen der Zeitpunkt gespeichert wird, den gleichen Inhalt haben, auch wenn es sich dabei um zwei verschiedene Zeitpunktobjekte handelt. In <a href="#Rxx_ref222300910">Abbildung 4.33</a> sind die Auswirkungen dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAURSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_026.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_026.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.33    </strong>Datum als normales Objekt</p>
+<p>In dem abgebildeten Design ist das Datum kein Wertobjekt, sondern ein Objekt mit eigener Identität und änderbaren Attributen. Daher muss mit jeder Konferenz ein eigenes Datumsobjekt assoziiert werden. Wenn eine Konferenz verschoben wird, müssen nur die Attribute des Datums geändert werden.</p>
+<p><strong><em>Geringer Speicherbedarf  
+für Werte</em></strong></p>
+<p>Vor allem in Programmiersprachen mit automatischer Speicherverwaltung kann durch die Verwendung von Wertobjekten der Speicher effizienter genutzt werden. Da sich ein Wertobjekt nicht ändern kann, können mehrere andere Objekte sich auf dasselbe Wertobjekt beziehen, und man braucht sie nicht zu kopieren.</p>
+<p>Nehmen Sie an, Sie haben das Datum als ein nicht änderbares Wertobjekt implementiert. Die Klasse <span class="clisting">Besprechung</span> besitzt ein Datum, zu dem die Besprechung stattfindet. Nun können sich mehrere Besprechungen auf dasselbe Wertobjekt für das Datum beziehen, da mehrere Besprechungen am selben Tag (auch in unterschiedlichen Räumen) stattfinden können.</p>
+<p>Wird jetzt eine Besprechung verschoben, wird sie sich auf ein neues, auch nicht änderbares Datumswertobjekt beziehen. Wenn alle Besprechungen, die sich auf das ursprüngliche Datumswertobjekt bezogen haben, verschoben oder gelöscht werden, kann auch das aktuell nicht mehr benötigte Datumswertobjekt gelöscht werden. Wenn Ihre Programmiersprache eine automatische Speicherverwaltung für Objekte unterstützt, dann wird das automatisch passieren. Das genaue Verfahren dabei beschreiben wir in Abschnitt 7.3.2, »Was ist eine Garbage Collection?«.</p>
+<p>Wenn Sie nun aber die andere Modellierungsvariante aus <a href="#Rxx_ref222300910">Abbildung 4.33</a> wählen, in der ein Datum ein änderbares Objekt ist, müssen Sie auch andere Teile der Anwendung anpassen. Sie können in diesem Fall das Datumsobjekt zwar direkt ändern und einen Termin damit auf ein anderes Datum verschieben. Damit möchten Sie natürlich nicht gleich alle anderen Besprechungen, die zufällig am gleichen Tag stattfinden, mitverschieben. Wenn Sie die Modellierung aus <a href="#Rxx_ref222300896">Abbildung 4.32</a> gewählt hätten und dort das Datumsobjekt ändern würden, würde genau das passieren.</p>
+<p>Da Sie jede Besprechung unabhängig von den anderen Besprechungen verschieben wollen, müssen Sie in diesem Fall die Modellierung von <a href="#Rxx_ref222300910">Abbildung 4.33</a> wählen, in der jeder Termin sein eigenes Datumsobjekt zugeordnet hat.</p>
+<p><strong><em>Diskussion: Änderungen an Wertobjekten</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Sind denn Wertobjekte grundsätzlich nicht änderbar? Ich könnte mir vorstellen, dass es in einigen Fällen ganz sinnvoll sein kann, auch ein Wertobjekt zu ändern.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Die Definition eines Wertobjekts sagt aus, dass diese nicht änderbar sind. Natürlich können wir uns dafür entscheiden, einen bestimmten Wert änderbar zu machen. Dann haben wir aber kein Wertobjekt mehr vorliegen, sondern eben ein änderbares Objekt.</span><p>In manchen Fällen ist es durchaus auch sinnvoll, bestimmte Teile von Objekten als unveränderlich zu betrachten und nur einen kleinen Teil als wirklich veränderlich. Die auf dieser Basis möglichen Optimierungen wollen wir nun beschreiben.</p><a id="mj925becc3655976ef8cb6eee567f97833" name="mj925becc3655976ef8cb6eee567f97833"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">4.4.2 Entwurfsmuster »Fliegengewicht«  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Gerade haben Sie gesehen, für welche Anwendungsbereiche Wertobjekte sinnvoll sein können. Dabei haben wir auch erwähnt, dass sich die Tatsache, dass Wertobjekte nicht änderbar sind, zur Optimierung des Speicherverbrauchs ausnutzen lässt.</p>
+<p>Dadurch, dass Wertobjekte, die den gleichen Wert enthalten, nur einmal im Speicher existieren, ist oft eine relevante Reduktion des Speicherbedarfs zu erreichen. Die speicherschonende Mehrfachverwendung der Wertobjekte ist also eine sinnvolle Ausnutzung der Tatsache, dass Wertobjekte nicht änderbar sind.</p>
+<p>Die Anwendung dieses Verfahrens ist aber nicht auf Wertobjekte beschränkt. Das Entwurfsmuster Fliegengewicht (engl. <span class="ckursiv">Flyweight</span>) beschreibt eine Optimierung, die auf der gleichen Überlegung beruht.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Entwurfsmuster »Fliegengewicht« (engl. Flyweight)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn sehr viele große, in weiten Teilen übereinstimmende Objekte verwendet werden, können wir das Entwurfsmuster »Fliegengewicht« einsetzen, um den Speicherbedarf zu minimieren. Bei der Verwendung dieses Entwurfsmusters teilt man die häufig verwendeten Objekte in zwei Teile auf. </p>
+<p>Der leichte Teil enthält die identischen Informationen aller Objekte und kann mehrfach verwendet werden. Diesen Teil bezeichnen wir als Fliegengewicht. </p>
+<p>Der schwere Teil enthält die Informationen, in denen sich die Objekte unterscheiden. Statt viele nahezu gleiche Objekte zu verwenden, verwendet man nun die leichten Fliegengewichte und reichert diese mit der zusätzlich benötigten Information an. Diese Information wird in der Regel den Objekten bei der Verwendung über einen Kontext übergeben. </p>
+</td>
+</tr>
+</table><br><p>In <a href="#Rxx_ref222300952">Abbildung 4.34</a> ist die grundlegende Struktur des Entwurfsmusters dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAMUSQ"></a><a onClick="OpenWin('bilder/04_34.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_34.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.34    </strong>Struktur des Entwurfsmusters »Fliegengewicht«</p>
+<p>Ein Beispiel für die Anwendung des Musters ist ein Textbearbeitungsprogramm: In einem Text werden sehr viele Buchstaben verwendet. Jeder Buchstabe hat eine Farbe, eine Größe einen Umriss und so weiter. Der Umriss aller Buchstaben »a« einer Schriftart ist dabei immer der gleiche, wenn er auch für verschiedene Schriftgrößen skaliert werden muss. In <a href="#Rxx_ref222300964">Abbildung 4.35</a> sind die resultierenden Beziehungen dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAVUSQ"></a><a onClick="OpenWin('bilder/04_35.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_35.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.35    </strong>Anwendung auf Darstellung von Zeichen</p>
+<p>Wenn man das Muster »Fliegengewicht« einsetzt, trennt man die Informationen über die Buchstaben in zwei Teile auf. Es gehört zur Kontextinformation, welche Farbe und Größe der Buchstabe hat.</p>
+<p>Der Umriss der Buchstaben wird allerdings in den mehrfach verwendeten Fliegengewichtteilen gehalten. Pro Schriftart und Buchstaben gibt es also nur ein Fliegengewicht-Objekt. Dieses greift aber bei seiner Darstellung auf Informationen zurück, die ihm von außen übergeben werden. Eine Vorstellung des Entwurfsmusters findet sich auch in [Entwurfsmuster 2004].</p>
+<p>Neben der erwarteten Speicherersparnis [Ob man durch die Mehrfachverwendung eines Wertobjekts wirklich Speicher spart, hängt von der Größe solcher Wertobjekte und der Anzahl deren Besitzer ab. Denn zusätzlich zu dem Objekt selbst muss jeder Besitzer einen Zeiger bzw. eine Referenz auf das Objekt speichern, und die automatische Speicherverwaltung hat auch ihren Preis.
+]  hat die Mehrfachverwendung noch einen weiteren Vorteil, der beim Vergleich von Objekten zum Tragen kommt. Wenn sich zwei Objekte auf dieselbe Zeichenkette beziehen, ist sofort klar, dass die Zeichenkette mit sich selbst auch gleich ist. Vergleichen wir dagegen zwei Zeichenketten mit unterschiedlichen technischen Identitäten auf ihre Gleichheit, müssen wir ihre Zeichen so lange einzeln vergleichen, bis wir einen Unterschied finden.</p>
+<p>Im folgenden Abschnitt werden wir eine spezielle Art von Werten betrachten: die Aufzählungen oder Enumerations. Wir werden dabei die verschiedenen Möglichkeiten vorstellen, solche Werte als Objekte zu betrachten.</p><a id="mjfca6187c7c9d3b4fdc70dec4c511e84c" name="mjfca6187c7c9d3b4fdc70dec4c511e84c"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">4.4.3 Aufzählungen (Enumerations)  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Die Exemplare mancher Klassen sind fachlich vorgegeben und bereits bei der Erstellung der Software bekannt. Sie können während der Verwendung der Software aus fachlichen Gründen weder erstellt noch gelöscht werden. In einer Anwendung werden Sie zum Beispiel neue Kunden eingeben können und Kunden eventuell aus dem Kundenstamm löschen. Dies werden Sie aber kaum mit den Himmelsrichtungen Norden, Süden, Osten und Westen, den Wochentagen, den Monatsnamen oder den Farben der Spielfiguren beim Schach machen.</p>
+<p><strong><em>Aufzählungen als spezielle Klassen</em></strong></p>
+<p>Aufzählungen sind keine Spezialität der Objektorientierung. Die meisten Programmiersprachen kennen ein Konstrukt, um einem Datentyp eine endliche Menge von aufzählbaren Werten zuzuordnen. Allerdings lassen sich die zugehörigen Werte im Rahmen der Objektorientierung als Objekte mit zugehörigen Methoden umsetzen. Wir können damit Aufzählungen als spezielle Klassen betrachten, von denen eine genau definierte Menge von Exemplaren existiert.</p>
+<h4 class="t4">Aufzählungen als abgegrenzte Mengen von Objekten</h4>
+<p>In <a href="#Rxx_ref222300974">Abbildung 4.36</a> ist die Beziehung zwischen den Wochentagen und der zugehörigen Klasse aufgezeichnet. Es gibt genau sieben Exemplare der Klasse <span class="clisting">Wochentag</span>, die in unserem Modell jeweils eine spezifische Abkürzung zugeordnet haben, die sich über die Operation <span class="clisting">abkuerzung()</span> erfragen lässt. Außerdem gibt es eine Methode <span class="clisting">istWochenende</span>, mit der sich ein Objekt befragen lässt, ob es für einen Wochenendtag steht.</p>
+<p>In Java ab der Version 5 lässt sich diese Modellierung direkt auf ein Sprachkonstrukt abbilden. Mit dem Konstrukt <span class="ckursiv">enum</span> bietet Java die Möglichkeit, eine Klasse speziell für die Aufzählung von Objekten zu deklarieren, wobei die Objekte auch eigene Daten und Methoden haben können. In <a href="#Rxx_ref222301968">Listing 4.13</a> ist der entsprechende Quelltext für Java 5 dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAVWSQ"></a><a onClick="OpenWin('bilder/04_36.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_36.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.36    </strong>Objekte, die Wochentage repräsentieren</p>
+<div class="listing"><pre class="prettyprint">enum Wochentag { 
+    MONTAG("Mo"), DIENSTAG("Di"), MITTWOCH("Mi"), 
+    DONNERSTAG("Do"), FREITAG("Fr"), SAMSTAG("Sa"), 
+    SONNTAG("So"); 
+ 
+    private final String abkuerzung; 
+ 
+    Wochentag(String abkuerzung) { 
+       this.abkuerzung = abkuerzung; 
+    } 
+ 
+    public boolean istWochenende() { 
+        return this == SAMSTAG || this == SONNTAG 
+    } 
+ 
+    public String abkuerzung() { 
+        return abkuerzung; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 4.13    </strong>Aufzählung von Wochentagen in Java 5</p>
+<p><strong><em>Elemente einer Aufzählung mit Methoden</em></strong></p>
+<p>Dabei können sogar die einzelnen Einträge einer Aufzählung eigene Methoden haben und die Methoden der Klasse überschreiben. Hier eine andere Implementierung der Aufzählung <span class="clisting">Wochentag</span>, die das verdeutlicht. Die Objekte, die Samstag und Sonntag repräsentieren, haben die Methode <span class="clisting">istWochenende</span> überschrieben und werden sich damit auf Nachfrage selbst als Wochenendtage einordnen.</p>
+<div class="listing"><pre class="prettyprint">enum Wochentag { 
+    MONTAG, DIENSTAG, MITTWOCH, DONNERSTAG, FREITAG, 
+    SAMSTAG { 
+        @Override boolean istWochenende() { 
+            return true; 
+        } 
+    }, 
+    SONNTAG { 
+        @Override boolean istWochenende() { 
+            return true; 
+        } 
+    }; 
+    boolean istWochenende() { 
+        return false; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 4.14    </strong>Samstag und Sonntag mit eigenen Methoden</p>
+<h4 class="t4">Aufzählungen als typsichere Menge von numerischen Werten</h4>
+<p>Allerdings bieten nicht alle Programmiersprachen eine solche Objektsicht auf die Elemente von Aufzählungen. Die andere Sichtweise auf Aufzählungen ist es, einfach eine typsichere Verwendung von numerischen Werten zur Verfügung zu stellen. Operationen auf diesen Werten können dann in einer eigens dafür eingeführten Klasse realisiert werden. In <a href="#Rxx_ref222300982">Abbildung 4.37</a> ist diese Variante für das Beispiel zu den Wochentagen dargestellt. Die einzelnen Wochentage werden durch Zahlenwerte repräsentiert, Informationen über die einzelnen Tage werden über klassenbezogene Methoden der Klasse <span class="clisting">Woche</span> ausgewertet.</p>
+<div class="bildbox">
+<p><a name="IDAXXSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_027.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_027.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.37    </strong>Aufzählungen für typsicheren Zugriff</p>
+<p>Eine Umsetzung dieses Verfahrens in C# ist in <a href="#Rxx_ref222301979">Listing 4.15</a> dargestellt. Das gleiche Vorgehen wäre auch in der Sprache C++ möglich.</p>
+<div class="listing"><pre class="prettyprint">  enum Wochentag { 
+    MONTAG = 1, 
+    DIENSTAG = 2, 
+    MITTWOCH = 4, 
+    DONNERSTAG = 8, 
+    FREITAG = 16, 
+    SAMSTAG = 32, 
+    SONNTAG = 64, 
+  } 
+  class Woche { 
+    private static Wochentag WOCHENENDE = 
+      Wochentag.SAMSTAG | Wochentag.SONNTAG; 
+    public static bool istWochenende(Wochentag tag) { 
+      return 0 != (tag &amp; WOCHENENDE); 
+    } 
+  }</pre></div>
+<p class="tabunter"><strong>Listing 4.15    </strong>Aufzählung von Wochentagen in C#</p>
+<p><strong><em>Aufzählungen  
+als typsichere Zahlen in C#</em></strong></p>
+<p>Wie Sie sehen, sind Aufzählungen in C# keine echten Klassen mit eigenen Daten und Methoden, es sind einfach nur speziell bezeichnete und <span class="ckursiv">typsicher</span> gemachte ganze Zahlen. Werte, die keine eigene Identität haben. Die Vorteile dieser Vorgehensweise sind:</p>
+<ul class="gp">
+<li>Sie müssen sich keine Gedanken über die Gleichheit oder Identität beim Vergleichen machen.</li>
+</ul>
+<ul class="gp">
+<li>Sie können, wie in unserem Beispiel, kombinierte Werte einer Aufzählung als Bits einer Bitmenge in einer Variablen speichern.</li>
+</ul>
+<ul class="gp">
+<li>Das Speichern in einer Datei und das Wiederauslesen ist einfach &#8211; das Vorgehen entspricht der Behandlung der ganzen Zahlen.</li>
+</ul>
+<h4 class="t4">Aufzählungen in Java vor der Version 5</h4>
+<p>Sie haben in den vorausgehenden Abschnitten gesehen, dass Java ab der Version 5 eine Objektsicht auf Aufzählungen erlaubt.</p>
+<p>Auch in den Versionen vor Java 5 lassen sich typsichere Aufzählungen von Objekten realisieren. Allerdings müssen Sie dafür mehr Code schreiben als in der sehr kompakten Darstellung der Version 5. In <a href="#Rxx_ref222300991">Abbildung 4.38</a> ist die resultierende Klasse mit ihren Daten und Operationen aufgeführt.</p>
+<p>Dabei ordnen Sie jedem Exemplar von <span class="clisting">Wochentag</span> einen internen, zum Beispiel ganzzahligen Wert zu, der beim Serialisieren und beim Vergleichen verwendet wird. Die einzelnen Wochentage wiederum ordnen Sie als klassenbezogene Daten der Klasse <span class="clisting">Wochentag</span> zu. Jedem Wochentag ist ein eigener ganzzahliger Wert (<span class="clisting">value</span>) zugeordnet, der für Vergleiche herangezogen werden kann. <a href="#Rxx_ref222301987">Listing 4.16</a> zeigt die Umsetzung der Klasse <span class="clisting">Wochentag</span>.</p>
+<div class="bildbox">
+<p><a name="IDACZSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_028.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_028.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.38    </strong>Klasse für Wochentage in Java bis Version 4</p>
+<p><strong><em>Serialisierbarer Wochentag</em></strong></p>
+<div class="listing"><pre class="prettyprint">final class Wochentag implements Serializable {  
+    private static final long 
+        serialVersionUID = 3544667382522852404L; 
+ 
+    private static int COUNTER = 0; 
+ 
+    private final int value; 
+ 
+    public static final Wochentag MONTAG =      
+        new Wochentag(++COUNTER); 
+    public static final Wochentag DIENSTAG = 
+        new Wochentag(++COUNTER); 
+    public static final Wochentag MITTWOCH = 
+        new Wochentag(++COUNTER); 
+    public static final Wochentag DONNERSTAG = 
+        new Wochentag(++COUNTER); 
+    public static final Wochentag FREITAG = 
+        new Wochentag(++COUNTER); 
+    public static final Wochentag SAMSTAG = 
+        new Wochentag(++COUNTER); 
+    public static final Wochentag SONNTAG = 
+        new Wochentag(++COUNTER); 
+    public static final Wochentag[] VALUES = 
+        new Wochentag[] {MONTAG, DIENSTAG, MITTWOCH, 
+              DONNERSTAG, FREITAG, SAMSTAG, SONNTAG}; 
+ 
+    private Wochentag(int value) {  
+        this.value = value; 
+    } 
+ 
+    public boolean istWochenende() { 
+        return equals(SAMSTAG) || equals(SONNTAG); 
+    } 
+ 
+    public boolean equals(Object o) {  
+        if (!(o instanceof Wochentag)) return false; 
+        return value == ((Wochentag)o).value; 
+    } 
+ 
+    public int hashCode() {  
+        return value; 
+    } 
+    private Object readResolve() 
+            throws ObjectStreamException { 
+        for (int i = 0; i &lt; VALUES.length; ++i) { 
+            if (equals(VALUES[i])) return VALUES[i]; 
+        } 
+        throw new 
+            InvalidObjectException("Unbekannter Wochentag"); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 4.16    </strong>Typsichere Umsetzung von Wochentag-Objekten in Java bis Version 5</p>
+<p>Die Klasse <span class="clisting">Wochentag</span> in Zeile  ist hier eine ganz gewöhnliche Klasse in Java, sie hat allerdings einen privaten Konstruktor , so dass Exemplare dieser Klasse nur innerhalb des Quelltextes der Klasse selbst erstellt werden können. Dadurch soll sichergestellt werden, dass es nur die genau aufgezählten sieben Exemplare (ab Zeile ) gibt und niemand auf einmal neue Wochentage erfindet.</p>
+<p>Durch die Umsetzung der Operationen <span class="clisting">equals</span> und <span class="clisting">hashCode</span> in den Zeilen  und  stellt die Implementierung sicher, dass auch über verschiedene Classloader ins System gelangte Wochentage korrekt als gleich erkannt werden, dass sie den gleichen zugeordneten numerischen Wert haben. Durch die Umsetzung der Operation <span class="clisting">readResolve</span> in Zeile  wird außerdem sichergestellt, dass bei einem erneuten Einlesen nach einer Serialisierung keine neuen Objekte angelegt, sondern die bereits angelegten Objekte verwendet werden.</p>
+<p>Mit der beschriebenen Implementierung haben Sie also eine typsichere und serialisierbare Aufzählung von echten Objekten vorliegen, die eigene Daten, Operationen, Beziehungen und Methoden haben können. Allerdings sieht das nach ziemlich viel Code für so etwas Einfaches wie eine Aufzählung von Wochentagen aus. Und es gibt wirklich auch Lösungen, die scheinbar einfacher sind, nur leider nicht korrekt arbeiten.</p>
+<p>Werfen Sie deshalb noch einen kurzen Blick auf zwei weitere Varianten der Umsetzung und die Gründe, warum diese nicht empfehlenswert sind.</p>
+<p><strong><em>Fehleranfällige Variante 1: Klassenkonstanten</em></strong></p>
+<p>In Java gab es bis zur Version 5 kein spezielles Konstrukt für Aufzählungen. Stattdessen definierte man eine Reihe von Klassenkonstanten (in Java-Terminologie »finale statische Variable«). Je nach Bedarfsfall war der Typ der Variablen entweder eine ganze Zahl oder eine typisierte Objektreferenz.</p>
+<p>Wenn Sie ganze Zahlen als Typ der Aufzählung verwenden, haben Sie die Vorteile, die auch C# oder C++ bieten: Der Vergleich ist einfacher, weil Sie nicht zwischen der Gleichheit und der Identität unterscheiden müssen, die Serialisierung ist trivial, Sie können kombinierte Werte in einer Variablen speichern. Diese Vorgehensweise wird zum Beispiel häufig bei den Konstanten in den Benutzeroberflächenbibliotheken AWT und Swing verwendet.</p>
+<p>Doch im Vergleich zu C# oder C++ hat diese Vorgehensweise einen entscheidenden Nachteil: Sie ist nicht typsicher. In Java sind es eben nur speziell benannte ganze Zahlen. So können Sie in Java den Stil einer Schriftart irrtümlich deren Größe zuordnen, ohne dass der Compiler dieses Missgeschick bemerkt.</p>
+<p><strong><em>Fehleranfällige Variante 2: Objekte statt Konstanten</em></strong></p>
+<p>Um die Typsicherheit der Aufzählung zu erreichen, können Sie nun statt ganzer Zahlen besser Exemplare von Klassen verwenden, die spezifisch für jede Aufzählung definiert werden.</p>
+<div class="listing"><pre class="prettyprint">final class Wochentag { 
+  public static final Wochentag MONTAG = new Wochentag(); 
+  public static final Wochentag DIENSTAG = new Wochentag(); 
+  public static final Wochentag MITTWOCH = new Wochentag(); 
+  public static final Wochentag DONNERSTAG = new Wochentag(); 
+  public static final Wochentag FREITAG = new Wochentag(); 
+  public static final Wochentag SAMSTAG = new Wochentag(); 
+  public static final Wochentag SONNTAG = new Wochentag(); 
+ 
+  private Wochentag() {} 
+ 
+  public boolean istWochenende() { 
+      return this == SAMSTAG || this == SONNTAG; 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 4.17    </strong>Exemplare der Klasse Wochentag</p>
+<p><strong><em>Problem 1:  
+Deserialisierung</em></strong></p>
+<p>Das Problem mit dieser Implementierung ist, dass sie in komplexeren Situationen nicht funktioniert. Die Exemplare der Klasse lassen sich zwar leicht serialisierbar machen (indem die Klasse die leere Schnittstelle <span class="ckursiv">Serializable</span> zu implementieren angibt), die wieder deserialisierten Objekte werden aber neu erstellt und nicht durch die bestehenden sieben ersetzt. Sie erhalten plötzlich neue Wochentage &#8211; und das Schlimmste daran ist, so wie wir es implementiert haben, werden diese neuen Wochentage nicht zum Wochenende hinzugerechnet.</p>
+<p><strong><em>Problem 2:  
+Classloader</em></strong></p>
+<p>Ein anderes Problem besteht darin, dass in einer komplexen Java-Anwendung mehrere Classloader aktiv sein können und jeder dieser Classloader die Klasse <span class="clisting">Wochentag</span> erneut laden kann. So können wir plötzlich zwei Sonntage haben, die nicht identisch sind. Dies kann schnell zu einem fehlerhaften Verhalten unserer Anwendung führen, wenn der Vergleich von zwei Wochentag-Objekten, die beide für den Sonntag stehen, fehlschlägt.</p>
+<p>Aufgrund dieser beiden Probleme landen wir dann wieder bei der Implementierung aus <a href="#Rxx_ref222301987">Listing 4.16</a>, die gerade mit Serialisierung und Deserialisierung umgehen kann und Vergleiche auch dann korrekt durchführt, wenn die Klasse <span class="clisting">Wochentage</span> mehrfach ins System geladen wurde.</p>
+<p><strong><em>Identitäten  
+von Objekten</em></strong></p>
+<p>Eine Frage, die bei Wertobjekten und Aufzählungen relativ einfach zu beantworten war, ist die nach der Identität von Objekten. Die Frage »Sind zwei Objekte denn identisch?« ist aber für Objekte nicht immer völlig klar zu beantworten. Im folgenden Abschnitt stellen wir vor, wie die Identität von Objekten definiert wird, und zeigen Beispiele, in denen die Frage nach der Identität unterschiedlich beantwortet wird.</p><a id="mjd80f28e5e2134c13382e2859c64f48ee" name="mjd80f28e5e2134c13382e2859c64f48ee"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">4.4.4 Identität von Objekten  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In der realen Welt ist die Frage nach der Identität in der Regel etwas, was wir sehr einfach beantworten können. Wenn wir einen Kollegen abends in der Kneipe treffen, [Oder in Sportverein, Kirche, Moschee oder im Karnevalsumzug, es soll ja nur ein Beispiel sein.
+]  fragen wir uns nicht: »Hm, ist der nun derselbe oder nur der gleiche Kollege?« Nein, in der Regel ist klar: Das ist genau der, den wir auch von der Arbeit kennen.</p>
+<p>Probleme treten hier meist erst auf, wenn wir mit den Namen von Objekten oder Personen hantieren.</p>
+<p>Ist der Herr Qwert Zuiop [Dieses Beispiel ist ganz und gar fiktiv. Ähnlichkeiten mit lebenden Personen sind rein zufällig und bedauerlich.
+] , über den ich gerade in der Zeitung lese, dass er Tausende von Anlegern um ihr Geld betrogen hat, vielleicht mein Anlageberater, der auch Qwert Zuiop heißt? Ich weiß es nicht ganz genau, obwohl sich ein mulmiges Gefühl und ein gewisser Verdacht breit machen.</p>
+<p>In unserem Beispiel entsteht die Frage nach der Identität dadurch, dass wir den gleichen Namen in zwei verschiedenen Kontexten beobachten. Die Frage ist hier: Beziehen sich die beiden Namen auf dieselbe Person?</p>
+<p><strong><em>Mehrere Referenzen auf Objekte</em></strong></p>
+<p>Im Bereich der Objekte wäre die Entsprechung dazu die Fragestellung, ob sich zwei Referenzen auf dasselbe Objekt beziehen. Diese Fragestellung entspricht der Fragestellung, ob die jeweiligen Referenzen gleich sind. In Java werden Objekte grundsätzlich als Referenzen behandelt, deshalb können wir hier über den Operator <span class="clisting">==</span> feststellen, ob zwei Variablen auf dasselbe Objekt verweisen.</p>
+<div class="listing"><pre class="prettyprint">Berater qwert_zuiop_berater = new Berater(1); 
+Berater qwert_zuiop_zeitung = qwert_zuiop_berater; 
+if (qwert_zuiop_berater == qwert_zuiop_zeitung) { 
+    System.out.println("sorry, du bist pleite"); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 4.18    </strong>Zwei identische Berater</p>
+<p><strong><em>Zwei identische Objekte</em></strong></p>
+<p>Aber in objektorientierten Systemen können auch Objekte, die wir über diese Prüfung nicht als identisch erkennen, unter einem bestimmten Aspekt identisch sein. Jetzt stellt sich natürlich die Frage: Wie können denn in einem System überhaupt mehrere Objekte angelegt werden, die wir als identisch betrachten, die also auf unsere Nachfrage antworten würden: Ja, wir beide, ich und mein Kumpel, wir sind eigentlich das identische Objekt. Hört sich ja ein bisschen nach einem Anfall von Schizophrenie an.</p>
+<p>Schauen wir uns dazu aber einfach unser Beispiel in etwas modifizierter Form an. Dazu passen wir zunächst unsere Beraterklasse an. Wir gehen davon aus, dass es für alle Berater eine übergreifend eindeutige Kennung gibt, so eine Art laufende Nummer im internationalen Beratungsgeschäft, die auch in einer zentralen Beraterdatenbank gepflegt wird. Die Datenbank sorgt dafür, dass diese Kennungen nicht doppelt vergeben werden. In <a href="#Rxx_ref222301000">Abbildung 4.39</a> ist das Vorgehen dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAN2SQ"></a><a onClick="OpenWin('bilder/04_39.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_39.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.39    </strong>Eindeutige Datenbankkennungen für Berater</p>
+<p>Dabei verweisen nun die Variablen <span class="clisting">qwert_zuiop_berater</span> und <span class="clisting">qwert_ zuiop_zeitung</span> auf dasselbe Objekt im Speicher. Die beiden verweisen damit auf das identische Objekt. Die Variable <span class="clisting">meinBerater</span> verweist auf ein anderes Objekt. Da dieses aber dieselbe Datenbankkennung aufweist, wird es ebenfalls als identisch mit dem anderen Objekt betrachtet.</p>
+<p>Eine Umsetzung und Anwendung dieser Prüfung ist in <a href="#Rxx_ref222302009">Listing 4.19</a> aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">class Berater { 
+    int ID; 
+    Berater(int ID) {    
+        this.ID = ID; 
+    } 
+    boolean istIdentisch(Berater andererBerater) {  
+        return this.ID == andererBerater.ID; 
+    } 
+}
+
+    // ...
+
+    Berater qwert_zuiop_berater = new Berater(102);   
+    Berater qwert_zuiop_zeitung = qwert_zuiop_berater; 
+    Berater meinBerater = new Berater(102);  
+    if (meinBerater.istIdentisch(qwert_zuiop)) {  
+        System.out.println("sorry, immer noch pleite"); 
+    }</pre></div>
+<p class="tabunter"><strong>Listing 4.19    </strong>Anwendung einer eindeutigen Kennung für Prüfung der Identität</p>
+<p>Die bei der Konstruktion eines Beraterobjekts in Zeile  übergebene Kennung wird bei der Identitätsprüfung in Zeile  verwendet. Den in den Zeilen  und  konstruierten Objekten ist dieselbe Kennung zugeordnet. Dadurch stellt sich bei der Prüfung in Zeile  heraus, dass die beiden identisch sind und das angesparte Geld wahrscheinlich futsch ist.</p>
+<p>Möglich wird diese Prüfung erst dadurch, dass wir unseren Objekten in diesem Fall einen eindeutigen Schlüssel zuordnen können. Damit schaffen wir eine modifizierte Art von Objektidentität: die Identität mit Bezug auf einen Schlüssel. Da dieser Schlüssel meist auf einen Schlüssel in einer Datenbank abbildet, sprechen wir in diesem Fall von Datenbankidentität.</p>
+<p><strong><em>Datenbankidentität</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Datenbankidentität
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bei Objekten, die in Datenbanken gespeichert werden, kann eine eindeutige Kennung für diese Objekte über den zum Objekt gehörenden Eintrag in der Datenbank verwaltet werden. Objekten wird beim Erstellen und Speichern von der Datenbank eine eindeutige Kennung zugeordnet. Beim Laden von Objekten aus der Datenbank wird diese Kennung ebenfalls wieder dem Objekt zugeordnet.</p>
+<p>Datenbankidentität wird eine Umsetzung der Prüfung auf Identität genannt, bei der die von der Datenbank vergebene Kennung als Identitätskriterium verwendet wird.</p>
+</td>
+</tr>
+</table><br><p>In Kapitel 6, »Persistenz«, werden Sie im Detail erfahren, welche Rolle diese über die Datenbank vergebenen Kennungen im Rahmen der Persistenz von Objekten spielen.</p>
+<p><strong><em>Betrachtungsebenen</em></strong></p>
+<p>Hier haben Sie also einen modifizierten Begriff von Identität: Sie haben zwei unterschiedliche Objekte vorliegen, die aber auf einer anderen Betrachtungsebene auf genau ein Objekt abbilden. Im Fall des Beraters Zuiop haben Sie also durchaus zwei Objekte mit zunächst unterschiedlicher Objektidentität vorliegen. Wenn Sie diese allerdings auf der Ebene der gespeicherten Daten betrachten, beziehen sich beide wieder auf dasselbe Objekt, in diesem Fall denselben Datensatz. Unter diesem Aspekt sind beide Objekte identisch.</p>
+<p>So lässt sich auch erklären, wie überhaupt zwei identische Objekte in Ihr System kommen können. Sie könnten zum Beispiel Herrn Qwert Zuiop über zwei Abfragen in der Datenbank geladen haben. Die erste Abfrage liefert einfach alle Berater aus dem Gebiet von Hamburg. Die zweite Abfrage liefert alle betrügerischen Berater. Und da Herr Zuiop in beiden Listen auftaucht, kann es uns passieren, dass wir auf einmal zwei Objekte im System haben, die sich auf denselben Datensatz in der Datenbank beziehen. Die beiden Zuiops sind unter dem Aspekt der Datenbank identisch.</p>
+<p><strong><em>Frage nach  
+der Identität</em></strong></p>
+<p>Nicht immer ist die Frage nach der Identität also einfach zu beantworten. Wir unterscheiden eine Reihe von Situationen, bei denen sich die Frage nach Objektidentität jeweils unterschiedlich beantworten lässt.</p>
+<ul class="gp">
+<li>Wertobjekte haben keine relevante Identität. Die Zahl 17 ist immer die Zahl 17, unabhängig davon, in welchem Kontext sie auftaucht.</li>
+</ul>
+<ul class="gp">
+<li>Identische Objekte können technisch unterschieden sein. Ein Beispiel dafür sind zweifach geladene Objekte mit gleicher Datenbankidentität.</li>
+</ul>
+<ul class="gp">
+<li>Es gibt fachliche Objekte, die auf einer Betrachtungsebene eine Identität haben, auf einer anderen Betrachtungsebene aber auf mehrere Objekte mit jeweils eigener Identität abgebildet werden. Zum Beispiel handelt es sich bei einem Babyfoto und einem Foto eines erwachsenen Menschen auf der Ebene der Fotos um zwei verschiedene Objekte, auch wenn der fotografierte Mensch derselbe ist. So kann man auch zum Beispiel zwei verschiedene Versionen desselben Objekts auf einer anderen Ebene als zwei eigenständige Objekte betrachten.</li>
+</ul>
+<ul class="gp">
+<li>Es gibt Abbildungen aufgrund von technischen Abstraktionen. Stateless Session Beans können technisch in beliebig vielen Exemplaren vorliegen, die verwendete Fassade stellt diese jedoch nach außen als ein und dasselbe Objekt dar.</li>
+</ul>
+<p>Um den letzten Fall zu erläutern, werfen wir zunächst einen Blick auf die sogenannten <span class="ckursiv">Enterprise Java Beans</span>.</p>
+<p><strong><em>Enterprise  
+Java Beans</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Enterprise Java Beans
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Enterprise Java Beans (EJB) sind in Java programmierte Klassen, die bestimmte Dienste implementieren. Diese Klassen laufen auf einem Server, in einem EJB-Container. Je nach dem, wie der Zustand der Beans verwaltet wird, unterscheidet man folgende Arten der Enterprise Java Beans:</p>
+<p>Die <span class="ckursiv">Session Beans</span> sind Objekte, die keinen fachlich gespeicherten Zustand haben. Sie existieren nur für die Dauer der Konversation (<span class="ckursiv">Session</span>) zwischen einem Client und dem Server. Dabei unterscheidet man zwischen Stateful und Stateless Session Beans. Die Stateful Session Beans merken sich den Zustand (<span class="ckursiv">State</span>) der Konversation zwischen den Aufrufen, die Stateless Session Beans merken sich den Zustand der Session zwischen den Aufrufen nicht.</p>
+<p>Im Gegensatz zu den Stateful Session Beans, die an eine Session gebunden sind, kann der Server ein Exemplar der Stateless Session Beans nacheinander in mehreren Sessions verwenden, und er kann auch innerhalb einer Session nacheinander mehrere Exemplare verwenden. </p>
+<p><span class="ckursiv">Entity Beans</span> sind Objekte, deren Lebensdauer über eine Session hinausgeht. Dies unterscheidet sie von Session Beans, denn der Zustand der Entity Beans muss auch zwischen den Sessions gespeichert werden. Über Entity Beans lassen sich somit persistente Dienste abbilden. Über einen Primärschlüssel werden diese Beans eindeutig identifiziert, so dass sie persistent gespeichert und anschließend wieder geladen werden können.</p>
+<p>Der Vollständigkeit halber erwähnen wir hier noch die sogenannten <span class="ckursiv">Message Driven Beans</span>. Diese werden verwendet, um Nachrichten asynchron zu verarbeiten. </p>
+</td>
+</tr>
+</table><br><p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Verschiedene Beans</em></strong></p>
+<p>Am Beispiel der verschiedenen Arten von Beans lassen sich die unterschiedlichen Sichten auf die Identität von Objekten gut erläutern. Jedes EJB-Objekt weist eine Methode <span class="clisting">IsIdentical</span> auf. Ein EJB-Objekt ist abhängig von der Art seiner Erzeugung ein Exemplar einer der beschriebenen Arten von Enterprise Beans. Abhängig davon, um welche Art von Enterprise Bean es sich handelt, verhält sich die Abfrage auf Identität unterschiedlich.</p>
+<ul class="gp">
+<li>Exemplare von Stateless Session Beans, die über die gleiche Fabrik (EJB-Home) erzeugt worden sind, sind aus Sicht eines nutzenden Clients alle identisch.</li>
+</ul>
+<ul class="gp">
+<li>Exemplare von Stateful Session Beans, die über die gleiche Fabrik erzeugt worden sind, sind nur dann identisch, wenn es sich tatsächlich um dasselbe Objekt handelt.</li>
+</ul>
+<ul class="gp">
+<li>Exemplare von Entity Beans (persistente Objekte) sind dann identisch, wenn sie den gleichen Wert für ihren Primärschlüssel aufweisen.</li>
+</ul>
+<p><strong><em>Stateless  
+Session Beans</em></strong></p>
+<p>Alle Exemplare einer Stateless Session Bean werden als identisch betrachtet. Da es keinen Zustand gibt, sind diese Exemplare völlig ununterscheidbar und gelten damit alle als identisch:</p>
+<div class="listing"><pre class="prettyprint">MyStatelessBean beanA = MyStatelessBeanHome.create(); 
+MyStatelessBean beanB = MyStatelessBeanHome.create(); 
+assert(beanA.IsIdentical(beanB));</pre></div>
+<p>Aus der Sicht des Servers, des <span class="ckursiv">Containers</span> der Beans, handelt es sich bei den Exemplaren der Stateless Session Beans möglicherweise um unterschiedliche Objekte, die unterschiedliche Identitäten, Lebenszyklen und Daten haben, aus der Sicht des Clients handelt es sich aber um dasselbe Objekt, da er sie in keiner Weise aufgrund ihres Verhalten unterscheiden kann. Faktisch weiß er gar nicht, dass hier möglicherweise mehrere Exemplare vorhanden sind.</p>
+<p>Diese Situation ähnelt den Anrufen bei der Auskunft. Als Anrufer braucht man nicht zu unterscheiden, mit wem man spricht, denn der konkrete Ansprechpartner ist für die Dienstleistung irrelevant. Als Betreiber eines Callcenters muss man aber die einzelnen Mitarbeiter selbstverständlich als Individuen behandeln. Diese Analogie ist in <a href="#Rxx_ref222301011">Abbildung 4.40</a> dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAZBTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_029.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_029.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 4.40    </strong>Einheitliche Sicht auf ein Callcenter</p>
+<p><strong><em>Stateful  
+Session Beans</em></strong></p>
+<p>Anders sieht es bei Stateful Session Beans aus. Diese haben eine eigene Identität, die aber nicht über einen expliziten Schlüssel bekannt ist. Die Identität ist wichtig, ihre Verwaltung ist aber eine interne Angelegenheit des Containers, der die Beans verwaltet.</p>
+<div class="listing"><pre class="prettyprint">MyStatefulBean beanA = MyStatefulBeanHome.create(); 
+MyStatefulBean beanB = MyStatefulBeanHome.create(); 
+MyStatefulBean beanC = beanA; 
+assert(beanA.IsIdentical(beanC)); 
+assert(!(beanA.IsIdentical(beanB)));</pre></div>
+<p>In diesem Fall sind nur solche Beans identisch, die dasselbe Objekt referenzieren. Dies entspricht der Situation, in der es lediglich mehrere Referenzen auf dasselbe Objekt geben kann. Die Objekte haben dabei aber keine weiter eingegrenzte Identität, die über ihr Objektsein hinausgeht.</p>
+<p><strong><em>Entity Beans</em></strong></p>
+<p>Schließlich haben wir noch die persistente Variante, die Entity Beans. Diese benötigen, damit sie gespeichert werden können, einen eindeutigen Schlüssel, der mit der Methode <span class="clisting">getPrimaryKey()</span> erfragt werden kann. Es wäre in diesem Fall zwar ein Fehler, wenn mehrere Objekte mit dem gleichen Primärschlüssel existieren würden. Allerdings könnte ein Container auch hier wieder aus Effizienzgründen mehrere Objekte mit dem gleichen Primärschlüssel verwalten. Er ist dann aber dafür verantwortlich, diese Objekte nach außen wie ein einziges wirken zu lassen.</p>
+<div class="listing"><pre class="prettyprint">MyEntityBean beanA = MyEntityBeanHome.create("key1"); 
+MyEntityBean beanB = 
+           MyEntityBeanHome.findByPrimaryKey("key1"); 
+assert(beanA.IsIdentical(beanB));</pre></div>
+<p>Auf der Seite des Servers haben wir damit allerdings nichts darüber ausgesagt, ob es sich hier wirklich um das identische Objekt handelt. Beziehen sich nun <span class="clisting">beanA</span> und <span class="clisting">beanB</span> auf genau dasselbe Objekt, das vom Container verwaltet wird? Wir wissen es nicht, und es interessiert uns an dieser Stelle auch nicht. <span class="clisting">beanA</span> und <span class="clisting">beanB</span> sind für uns identisch, der Primärschlüssel identifiziert unser Objekt eindeutig. Der Rest ist Sache des Containers, der uns die gewünschte Abstraktionsebene bereitstellt.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_04_004.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="4.4 Klassen von Werten und Klassen von Objekten"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_04_003.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

@@ -1,0 +1,903 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung - Das umfassende Handbuch</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - Das umfassende Handbuch">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="description" content="Objektorientierte Programmierung – Das umfassende Handbuch">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="next" href="#naechstes#"><script type="text/javascript" language="JavaScript"><!--
+function OpenWin(url,name,height,width)
+{
+  var InfoWin =window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+  InfoWin.focus();
+}
+--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="navh2" href="#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_01_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%">In diesem Buch finden Sie alles, was Sie brauchen, um sich in die objektorientierte Programmierung einzuarbeiten. Die beiden Autoren erläutern alle Prinzipien und ihre Umsetzung anschaulich und verständlich anhand einer Vielzahl typischer Beispiele. Als Sprachen werden C++, Java, Ruby, C# und PHP eingesetzt.<br /><br />Anhand eines größeren Projekts bekommen Sie zudem einmal von Anfang bis Ende gezeigt, wie Sie OOP konsequent realisieren können. Des Weiteren bietet das Buch eine Einführung in die aspektorientierte Programmierung.<br /><br />Nutzen Sie die HTML-Version zum Reinschnuppern oder als immer verfügbare Ergänzung zu Ihrem Buch.<br><br>Auf unserer Katalogseite steht Ihnen ab sofort zusätzlich eine <a href="http://www.galileocomputing.de/2103?GPP=opoop"><strong>Volltextsuche im Buch</strong></a> zur Verfügung.<br /><br />Die gedruckte Version des Buches erhalten Sie in unserem Online-Shop - versandkostenfrei innerhalb Deutschlands und Österreichs.<br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><img src="common/pfeil_rechts5.gif" alt="" border="0">Zum Online-Shop</a></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td>
+  <h1 class="t1">Inhaltsverzeichnis</h1>
+  <h2 class="inhalt1">
+    <a href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_01_001.htm#mj311565c5c46a3b13daf9951e408cac80">1.1 Was ist Objektorientierung?</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_01_002.htm#mj76dcfb99844b65256d72e05c0b621f9c">1.2 Hallo liebe Zielgruppe</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_01_003.htm#mj431067e1d24bca6b013fd468c4ae9a1c">1.3 Was bietet dieses Buch (und was nicht)?</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_01_003.htm#mj586e7f39aec7605bbe601cd5800a4e52">1.3.1 Bausteine des Buchs</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_01_003.htm#mj37bb8099c240c8a773076ebfe27077a7">1.3.2 Crosscutting Concerns: übergreifende Anliegen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_01_003.htm#mj6f77364a42f1b0556dc51743b4c43418">1.3.3 Die Rolle von Programmiersprachen</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_01_004.htm#mj0dac8b5e2e90db455669f21ff09193e3">1.4 Warum überhaupt Objektorientierung?</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_01_004.htm#mj662afe3e1923c53c81d44a8cf184a842">1.4.1 Gute Software: Was ist das eigentlich?</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_01_004.htm#mje1cae1436f90985328f07e355d75125a">1.4.2 Die Rolle von Prinzipien</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_01_004.htm#mjd108a0434f36179f3e4f266b6a41fe70">1.4.3 Viele mögliche Lösungen für ein Problem</a>
+  </h5>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_02_001.htm#mj8e4a1c9caa27e8ace9def004dbb191bd">2.1 Die strukturierte Programmierung als Vorläufer  
+der Objektorientierung</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_02_002.htm#mjd081ab77f1ee1d3bf3f15782d17777a4">2.2 Die Kapselung von Daten</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_02_003.htm#mj319619a59ad117d72682149b3f06c2e2">2.3 Polymorphie</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_02_004.htm#mj2cf0b8bd41e5934d43465c533d5b6ce0">2.4 Die Vererbung</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_02_004.htm#mj8598d2bb37ad82252cc8ce0ea7ad77c8">2.4.1 Vererbung der Spezifikation</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_02_004.htm#mj5acde6532e9e5ad023d4b910be51cbcd">2.4.2 Erben von Umsetzungen (Implementierungen)</a>
+  </h5>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_03_001.htm#mj3779726901d09a441b65ad53bd5975d9">3.1 Prinzip 1: Prinzip einer einzigen Verantwortung</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_03_002.htm#mje61a2510fb2b5b517d72db623f2ffa3b">3.2 Prinzip 2: Trennung der Anliegen</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_03_003.htm#mj637b1f986c2e9441d2d305cafc96f6ac">3.3 Prinzip 3: Wiederholungen vermeiden</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_03_004.htm#mj887f0556cf1d83e4d56c5875b300fe87">3.4 Prinzip 4: Offen für Erweiterung, geschlossen für Änderung </a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_03_005.htm#mjf3cd04445959793a762a62c9b9ff6c75">3.5 Prinzip 5: Trennung der Schnittstelle von der Implementierung</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_03_006.htm#mjf155956d6de05131afd30434fd85e74f">3.6 Prinzip 6: Umkehr der Abhängigkeiten</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_03_006.htm#mjc8b152bcef3e835d257ec67f78fbe37c">3.6.1 Umkehrung des Kontrollflusses</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_03_006.htm#mjabe2e315eab5476b96de870d159eb869">3.7 Prinzip 7: Mach es testbar</a>
+  </h3>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_04_001.htm#mj7b6b81a0c8972299dbdd92524d8707c3">4.1 Die Basis von allem: das Objekt</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_001.htm#mj561db4b7b51ddab563d9357086a75f16">4.1.1 Eigenschaften von Objekten: Objekte als Datenkapseln</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_001.htm#mjd18cdb9194cd0684bdfa301683893159">4.1.2 Operationen und Methoden von Objekten</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_001.htm#mj41885f11bf43f1afc60b76e0afbe7b6c">4.1.3 Kontrakte: Ein Objekt trägt Verantwortung</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_001.htm#mj4bba9c78108c5ebe6a1e25d09da23b23">4.1.4 Die Identität von Objekten</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_001.htm#mj62d09a1cbb82ce7738613ddee041cc52">4.1.5 Objekte haben Beziehungen</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_04_002.htm#mj1267a0a54c9f28f7e90497952f29dd59">4.2 Klassen: Objekte haben Gemeinsamkeiten</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_002.htm#mjff74dbd3ea0281a9773d7cd8126e9c8b">4.2.1 Klassen sind Modellierungsmittel</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_002.htm#mj7012e3ccb719d6c513e60ff574e1c59b">4.2.2 Kontrakte: die Spezifikation einer Klasse</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_002.htm#mj2695596f673a2fc50b338aa48ddfcc9c">4.2.3 Klassen sind Datentypen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_002.htm#mjc85ceff1ceeab068dd628ab5076d0d70">4.2.4 Klassen sind Module</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_002.htm#mj1cf8ce74da5d16b89eb3efa0ae9bf182">4.2.5 Sichtbarkeit von Daten und Methoden</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_002.htm#mja2d7825b1c1c07dd16d08858ed4e2186">4.2.6 Klassenbezogene Methoden und Attribute</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_002.htm#mj8fefd5a44232563aae6ce704fc4d92c1">4.2.7 Singleton-Methoden: Methoden für einzelne Objekte</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_04_003.htm#mjf8802262d55361c06e93e627e44e539e">4.3 Beziehungen zwischen Objekten</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_003.htm#mj0ff05dc78b1417fb2771d4f29cbc6c1a">4.3.1 Rollen und Richtung einer Assoziation</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_003.htm#mj36d410616a672dcba508d9ae14c749a3">4.3.2 Navigierbarkeit</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_003.htm#mj4e980b9907659670b9dec829430e1e5f">4.3.3 Multiplizität </a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_003.htm#mj160479d0824fb412e545da4b151a77fa">4.3.4 Qualifikatoren</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_003.htm#mjeb1a3ff160181940bb222e7f0e97402c">4.3.5 Beziehungsklassen, Attribute einer Beziehung</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_003.htm#mj8fc9eae8c02cefd02bf024b5dda0bbe1">4.3.6 Implementierung von Beziehungen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_003.htm#mj8118cb8c892c6648834fb351f4be17aa">4.3.7 Komposition und Aggregation</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_003.htm#mjc62b233e44c20911b6cee2de3c15a801">4.3.8 Attribute</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_003.htm#mj344620f0b2ee4df48d645d45e973920c">4.3.9 Beziehungen zwischen Objekten in der Übersicht</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_04_004.htm#mj0e24bd346a5e2c3a8c2f91eec5a74cd5">4.4 Klassen von Werten und Klassen von Objekten</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_004.htm#mjea3fc9fb362ce0dd9c3af96496b7796d">4.4.1 Werte in den objektorientierten Programmiersprachen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_004.htm#mj925becc3655976ef8cb6eee567f97833">4.4.2 Entwurfsmuster »Fliegengewicht«</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_004.htm#mjfca6187c7c9d3b4fdc70dec4c511e84c">4.4.3 Aufzählungen (Enumerations)</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_04_004.htm#mjd80f28e5e2134c13382e2859c64f48ee">4.4.4 Identität von Objekten</a>
+  </h5>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_05_001.htm#mje769296ccaf3ae315b0d51e75287d395">5.1 Die Vererbung der Spezifikation</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_001.htm#mj9593b3442d74dcb313fed8d0adfcfc86">5.1.1 Hierarchien von Klassen und Unterklassen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_001.htm#mjf4a1d7882a3f31bce76f5fc0e36fe27a">5.1.2 Unterklassen erben die Spezifikation von Oberklassen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_001.htm#mjf24806ff4eeca6b9ec42217606b969bb">5.1.3 Das Prinzip der Ersetzbarkeit </a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_001.htm#mjb47b8cf703b67dbc87a9e7fb9b8751c4">5.1.4 Abstrakte Klassen, konkrete Klassen und Schnittstellen-Klassen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_001.htm#mj60d6f50d874cf992b1fbe672cc0a7d4a">5.1.5 Vererbung der Spezifikation und das Typsystem</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_001.htm#mja01ba6ec04515aa1bd9707d45880ad9c">5.1.6 Sichtbarkeit im Rahmen der Vererbung</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_05_002.htm#mj34d525fdf8bf9b40cdbf2807b9bb2199">5.2 Polymorphie und ihre Anwendungen</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_002.htm#mjc3ecdad3da1f241382712b9dc94960bb">5.2.1 Dynamische Polymorphie am Beispiel</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_002.htm#mjf4754b5db8c6e16dccab007f73c3a48a">5.2.2 Methoden als Implementierung von Operationen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_002.htm#mjcecc846fe8a9e04e80aaef4c72983098">5.2.3 Anonyme Klassen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_002.htm#mj7d8e0a558bb121f6759f3cac9e60684b">5.2.4 Single und Multiple Dispatch</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_002.htm#mjf40bf0e266ddbbbdf13e9d8c595202da">5.2.5 Die Tabelle für virtuelle Methoden</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_05_003.htm#mje40df564b385a2f2ef85664fe5964be8">5.3 Die Vererbung der Implementierung</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_003.htm#mj4775d703fdbfd6031f8317189db10135">5.3.1 Überschreiben von Methoden</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_003.htm#mj38e0fa066f121e7525f4ab5a0775c70a">5.3.2 Das Problem der instabilen Basisklassen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_003.htm#mjc3c0ce6022ae471884f1dbb63c77bc82">5.3.3 Problem der Gleichheitsprüfung bei geerbter Implementierung</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_05_004.htm#mj4744a80ac0ff520167d0124d73dba2b2">5.4 Mehrfachvererbung</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_004.htm#mj24431884d901efc513af9f03f390f35b">5.4.1 Mehrfachvererbung: Möglichkeiten und Probleme</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_004.htm#mj8be5a8d347008ce6a4243ad9b458d4dc">5.4.2 Delegation statt Mehrfachvererbung</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_004.htm#mjf93d2964b661c11e0412548a9486d31f">5.4.3 Mixin-Module statt Mehrfachvererbung</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_004.htm#mj079fb2023e60f4e9a4af05511c818fdf">5.4.4 Die Problemstellungen der Mehrfachvererbung</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_05_005.htm#mje3cdab009c7e71d5ab9a4a88fee35441">5.5 Statische und dynamische Klassifizierung</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_005.htm#mj854788ce700510087a70ffc87d35cb00">5.5.1 Dynamische Änderung der Klassenzugehörigkeit</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_05_005.htm#mja85bbac4fb34a5938c3be9f5c65d922c">5.5.2 Entwurfsmuster »Strategie« statt dynamischer Klassifizierung</a>
+  </h5>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_06_001.htm#mj7c2a056ec1dfeac2229b1fb85c0e36d0">6.1 Serialisierung von Objekten</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_06_002.htm#mjbd38b9e270be21fbb00edcc8ce26a7cd">6.2 Speicherung in Datenbanken</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_002.htm#mj1b05252e9b69b82768610d09fb6fc3d4">6.2.1 Relationale Datenbanken</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_002.htm#mjc05ff1bffed71d95850cc8397fa56212">6.2.2 Struktur der relationalen Datenbanken</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_002.htm#mj69af567b73ef41ffbbb8e5e072376df0">6.2.3 Begriffsdefinitionen</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_06_003.htm#mjd2117313ff67a912fd368065166ffb83">6.3 Abbildung auf relationale Datenbanken</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_003.htm#mj74a9a5ecb728d5307a0fc21d6ec2ef9d">6.3.1 Abbildung von Objekten in relationalen Datenbanken</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_003.htm#mjf8f90d6389516f03d3fc7d8cea5fe76a">6.3.2 Abbildung von Beziehungen in relationalen Datenbanken</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_003.htm#mj0e2023160a7634a4eac30b19482f0854">6.3.3 Abbildung von Vererbungsbeziehungen auf eine relationale Datenbank</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_06_004.htm#mjcb211e5113a744c438c6611dc39084bc">6.4 Normalisierung und Denormalisierung</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_004.htm#mjb2d04eb1b4c3f9d8c3c58601fc80ce55">6.4.1 Die erste Normalform: Es werden einzelne Fakten gespeichert</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_004.htm#mjbc06a32922168bcbe16f5ebc29155d09">6.4.2 Die zweite Normalform: Alles hängt vom ganzen Schlüssel ab</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_004.htm#mj3baa93dbfa4964f9eb161a54e80449e9">6.4.3 Die dritte Normalform: Keine Abhängigkeiten unter den Nichtschlüssel-Spalten</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_004.htm#mja09896a3c0def58f650ceeb0095eb2c7">6.4.4 Die vierte Normalform: Trennen unabhängiger Relationen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_06_004.htm#mj5d506b0fd2c19e48f0eb50a5e2a3fe38">6.4.5 Die fünfte Normalform: Einfacher geht&#8217;s nicht</a>
+  </h5>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_07_001.htm#mj26b861834c431b683e4e1d0ac1938cba">7.1 Erzeugung von Objekten mit Konstruktoren und Prototypen</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_001.htm#mj6cd9b2d12e6d2f663e4c1128b111c5d9">7.1.1 Konstruktoren: Klassen als Vorlagen für ihre Exemplare</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_001.htm#mj29e4ea58eb12662f0f36f92b5ec8adaa">7.1.2 Prototypen als Vorlagen für Objekte</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_001.htm#mj51d93c2b5e445392072beadafdebd393">7.1.3 Entwurfsmuster »Prototyp«</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_07_002.htm#mj1c44c94f2295b431db9cb9b5ee03bc9f">7.2 Fabriken als Abstraktionsebene für die Objekterzeugung</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_002.htm#mjb223311c89407a9e76da180dc3f69036">7.2.1 Statische Fabriken</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_002.htm#mjaa0579b2fb6bb3ec6034cf05f1eecac9">7.2.2 Abstrakte Fabriken</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_002.htm#mjc5cb28a57eeadedfbc991e6786b00788">7.2.3 Konfigurierbare Fabriken</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_002.htm#mj081b9df6d2dc6eafff1ff31f2823b219">7.2.4 Registraturen für Objekte</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_002.htm#mj91442f54dd3e6454d2343a346244a94c">7.2.5 Fabrikmethoden</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_002.htm#mj7e0c800eda7165eac4272a1955efef1a">7.2.6 Erzeugung von Objekten als Singletons</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_002.htm#mj7dcd47135763da11d4d4dc6876f5e60f">7.2.7 Dependency Injection</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_07_003.htm#mj8ee9807b6d851ca17774d80d4e8b83bb">7.3 Objekte löschen</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_003.htm#mj7283bd45b7cfe614019b221ea52afec4">7.3.1 Speicherbereiche für Objekte</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_003.htm#mj61cf5d0c185ed5382c55f54cd3fe712c">7.3.2 Was ist eine Garbage Collection?</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_003.htm#mj77b12ff91a3d2c926b596ecf298bfde6">7.3.3 Umsetzung einer Garbage Collection</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_07_004.htm#mja44c8c090df304b5376fe244eb0505d7">7.4 Objekte in Aktion und in Interaktion</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_004.htm#mj461a627b534275782ce4985792ee15db">7.4.1 UML: Diagramme zur Beschreibung von Abläufen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_004.htm#mjf78234957c82aa740d796d46b611a52f">7.4.2 Nachrichten an Objekte</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_004.htm#mj10368deb9e22e623d5445b79601554b1">7.4.3 Iteratoren und Generatoren</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_004.htm#mj3f6bd50ca8e5f65f36567d80e2803893">7.4.4 Funktionsobjekte und ihr Einsatz als Eventhandler</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_004.htm#mj7e10a219a48a6476b1ea82aec6cc5ef4">7.4.5 Kopien von Objekten</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_004.htm#mj66aae429fecf9db6555945805016c62e">7.4.6 Sortierung von Objekten</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_07_005.htm#mj7468c23d82240bfb461b8090668d1a51">7.5 Kontrakte: Objekte als Vertragspartner</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_005.htm#mjed5c3bed5d1f32427a86656f31c3e743">7.5.1 Überprüfung von Kontrakten</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_005.htm#mjb272d58355d9d7a0899049eb6842697a">7.5.2 Übernahme von Verantwortung: Unterklassen in der Pflicht</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_005.htm#mja3c37a47a8407bc65b94f93f6a254ca2">7.5.3 Prüfungen von Kontrakten bei Entwicklung und Betrieb</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_07_006.htm#mjec595d98347a935335b712f91956664c">7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_006.htm#mj3963c0742069044978ac462cc56c5b5a">7.6.1 Exceptions in der Übersicht</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_006.htm#mje09bc3c4971db9aa83562a1fe7c4e034">7.6.2 Exceptions und der Kontrollfluss eines Programms</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_006.htm#mj21b606a3bb186e029d6b9c8c22764cc0">7.6.3 Exceptions im Einsatz bei Kontraktverletzungen</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_006.htm#mj05465a5863b658f1b916b7805e1ef3c9">7.6.4 Exceptions als Teil eines Kontraktes</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_006.htm#mjbf1f56f9665424db8d4cfc65f9adce59">7.6.5 Der Umgang mit Checked Exceptions</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_07_006.htm#mjd35575d7d7be5ba9875a7b50fa01d0d0">7.6.6 Exceptions in der Zusammenfassung</a>
+  </h5>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_08_001.htm#mja2d01e503382e2717dd4e4b6d5af155e">8.1 Module als konfigurierbare und änderbare Komponenten</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_08_001.htm#mj9ff88cb4811c8d4de4438fe4891b736c">8.1.1 Relevanz der Objektorientierung für Softwarearchitektur</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_08_001.htm#mje6021c7137941b7706b962e8c1e7187b">8.1.2 Erweiterung von Modulen</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_08_002.htm#mj4935355bc9f710a2ab390d7564cec058">8.2 Die Präsentationsschicht: Model, View, Controller (MVC)</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_08_002.htm#mjf6f1da1c87b5a2c16e7ce43bcf004e87">8.2.1 Das Beobachter-Muster als Basis von MVC</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_08_002.htm#mj5ca7aa1f43a06f28977d2230339fcda7">8.2.2 MVC in Smalltalk: Wie es ursprünglich mal war</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_08_002.htm#mj65bb3d1734dfc99f31e8c1078e1a5b48">8.2.3 MVC: Klärung der Begriffe</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_08_002.htm#mjd4e5b73bafb2fd382a547949f220ff0e">8.2.4 MVC in Webapplikationen: genannt »Model 2«</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_08_002.htm#mj469f1bdbcff2b09817fec4aee1eed023">8.2.5 MVC mit Fokus auf Testbarkeit: Model-View-Presenter</a>
+  </h5>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_09_001.htm#mj78bbe41d6052e596f380a32cbcde87fc">9.1 Trennung der Anliegen</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_001.htm#mj3202a01a0f16461d2dcf2538c41045f7">9.1.1 Kapselung von Daten</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_001.htm#mjabaf49447f557f766fce48f52bc5f934">9.1.2 Lösungsansätze zur Trennung von Anliegen</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_09_002.htm#mj309e7bff0d34f0b383d87b75c75e859a">9.2 Aspektorientiertes Programmieren</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_002.htm#mj720e7f8df2912088f1d696c0f9b223bc">9.2.1 Integration von aspektorientierten Verfahren in Frameworks</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_002.htm#mj6b3ed5ab812a3c5283e5eb6dae2a91a9">9.2.2 Bestandteile der Aspekte</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_002.htm#mj20edd38c45c1b557bab3a5df290c4da2">9.2.3 Dynamisches Crosscutting</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_002.htm#mjf0455268e97f15472aed064d45c1a0f2">9.2.4 Statisches Crosscutting</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_09_003.htm#mj4e8777e76ed3abd16003da610c2e4fb9">9.3 Anwendungen der Aspektorientierung</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_003.htm#mj9437623a0951fcf5d7d2ca5dd82953b4">9.3.1 Zusätzliche Überprüfungen während der Übersetzung</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_003.htm#mj2e79b3be4b26d4dc0b398732cd26b5fc">9.3.2 Logging</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_003.htm#mj7ed70e732bd6f9f6224eb978223d840e">9.3.3 Transaktionen und Profiling</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_003.htm#mj0c273b6c4bf0568d70f8862e7bba4377">9.3.4 Design by Contract</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_003.htm#mjc019b942674c4f95dfbf05ebd3dafd2a">9.3.5 Introductions</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_003.htm#mj64be25e8cd08b89dcb1d4b89466e3e91">9.3.6 Aspektorientierter Observer</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_09_004.htm#mje8d5d04454aca569e147e717a2537fa9">9.4 Annotations</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_004.htm#mj6c8390288339f7aa89de173bbbbe35a5">9.4.1 Zusatzinformation zur Struktur eines Programms</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_004.htm#mj4bc24ab65115a9307512cf40d385e31f">9.4.2 Annotations im Einsatz in Java und C#</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_09_004.htm#mjfda429a1743f505a522b2ac063ff9394">9.4.3 Beispiele für den Einsatz von Annotations</a>
+  </h5>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_10_001.htm#mj650ecca145548f0d632594fe8ffc0eb9">10.1 OOP in PHP</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_001.htm#mj3cddea9177147d48be4a19073305ce9f">10.1.1 Klassen in PHP</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_001.htm#mj64ce19731869346193bea822aac6177b">10.1.2 Dynamische Natur von PHP</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_10_002.htm#mj777eb917fb36b59bdc046c5b15330927">10.2 Das entwickelte Framework &#8211; Trennung der Anliegen &#8211; Model View Controller</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_002.htm#mj1347057e4ca234e143f84ac3d48c2143">10.2.1 Trennung der Daten von der Darstellung</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_10_003.htm#mj143f7b7967800fbc9e4212f3732fec4a">10.3 Ein Dienst in PHP</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_003.htm#mjc22ab53407bbed20d06449ea4ab6bf73">10.3.1 Datenmodell</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_003.htm#mjddeded4df39daa61407f491d183939f0">10.3.2 Dienste &#8211; Version 1</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_10_004.htm#mj8db7d030dd0fecb5d5f38c3b3c5fff3f">10.4 Ein Klient in Ajax</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_004.htm#mj6fd9781fec12ec813977e6c6f02e6378">10.4.1 Bereitstellung der Daten</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_004.htm#mj6615fa4f2574779912a147f3ee2962d5">10.4.2 Darstellung der Daten</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_10_005.htm#mj84d41f973bb38a7ebb9ae77e397862dc">10.5 Ein Container für Dienste in PHP</a>
+  </h3>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_005.htm#mj444254068bed671d4c406143e181a811">10.5.1 Dispatcher</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_005.htm#mjf1fba7eb918b8d0e1decb950d5f3e98d">10.5.2 Fabrik</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_005.htm#mj8fd79f59364e2c74a3e078afd836f9d0">10.5.3 Dependency Injection</a>
+  </h5>
+  <h5 class="inhalt3">
+    <a href="oop_kapitel_10_005.htm#mj46b9937615aaf41cc11a90277e35bb3c">10.5.4 Sicherheit</a>
+  </h5>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_10_006.htm#mj1e0a9cd22e5214a5bb797ebb58f113cc">10.6 Ein Klient ohne JavaScript</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_kapitel_10_006.htm#mj2c164a142d4a479519051aa6ee0722f9">10.7 Was noch übrigbleibt</a>
+  </h3>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_anhang_a_001.htm#mjb5e2bd58733bd765fbbe1bc61ec450ff">A.1 C++</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_anhang_a_002.htm#mj8265f473077d64afda7da6337bd744b4">A.2 Java</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_anhang_a_003.htm#mjeeef1c5295c7a096b8990dd1a94e648f">A.3 C#</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_anhang_a_004.htm#mj7f9b3c18f5cd03f5e90cae86b9ea8365">A.4 JavaScript</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_anhang_a_005.htm#mj83ac05981d18ea73151c71ccf32d4c82">A.5 CLOS</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_anhang_a_006.htm#mj3270da04ac1a6574c1bbf01519728d5a">A.6 Python</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_anhang_a_006.htm#mj7354351cc090b9acb8368fb5549f9126">A.7 Ruby</a>
+  </h3>
+  <div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing"></a></div>
+<h2 class="inhalt1">
+    <a href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a>
+  </h2>
+  <h3 class="inhalt2">
+    <a href="oop_anhang_b_001.htm#mjedc73d99c7ac46442473f812cfb2531b">B.1 Allgemeine Bücher zur Softwareentwicklung</a>
+  </h3>
+  <h3 class="inhalt2">
+    <a href="oop_anhang_b_002.htm#mj51a710c2a2c52f817e6c1a306066ecdf">B.2 Bücher über die UML und die verwendeten Programmiersprachen</a>
+  </h3>
+<br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_anhang_a_001.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="Index"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_01_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

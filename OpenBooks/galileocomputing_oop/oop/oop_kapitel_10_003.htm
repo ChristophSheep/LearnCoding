@@ -1,0 +1,529 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 10.3 Ein Dienst in PHP</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 10.3 Ein Dienst in PHP">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 10.3 Ein Dienst in PHP">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_10_002.htm">
+<link rel="next" href="oop_kapitel_10_004.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_10_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec" class="navnav">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_001.htm#mj650ecca145548f0d632594fe8ffc0eb9" class="navnav">10.1 OOP in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_001.htm#mj3cddea9177147d48be4a19073305ce9f" class="navnav">10.1.1 Klassen in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_001.htm#mj64ce19731869346193bea822aac6177b" class="navnav">10.1.2 Dynamische Natur von PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_002.htm#mj777eb917fb36b59bdc046c5b15330927" class="navnav">10.2 Das entwickelte Framework &#8211; Trennung der Anliegen &#8211; Model View Controller</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_002.htm#mj1347057e4ca234e143f84ac3d48c2143" class="navnav">10.2.1 Trennung der Daten von der Darstellung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj143f7b7967800fbc9e4212f3732fec4a" class="navh">10.3 Ein Dienst in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjc22ab53407bbed20d06449ea4ab6bf73" class="navh">10.3.1 Datenmodell</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjddeded4df39daa61407f491d183939f0" class="navh">10.3.2 Dienste &#8211; Version 1</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_004.htm#mj8db7d030dd0fecb5d5f38c3b3c5fff3f" class="navnav">10.4 Ein Klient in Ajax</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_004.htm#mj6fd9781fec12ec813977e6c6f02e6378" class="navnav">10.4.1 Bereitstellung der Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_004.htm#mj6615fa4f2574779912a147f3ee2962d5" class="navnav">10.4.2 Darstellung der Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_005.htm#mj84d41f973bb38a7ebb9ae77e397862dc" class="navnav">10.5 Ein Container für Dienste in PHP</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mj444254068bed671d4c406143e181a811" class="navnav">10.5.1 Dispatcher</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mjf1fba7eb918b8d0e1decb950d5f3e98d" class="navnav">10.5.2 Fabrik</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mj8fd79f59364e2c74a3e078afd836f9d0" class="navnav">10.5.3 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_10_005.htm#mj46b9937615aaf41cc11a90277e35bb3c" class="navnav">10.5.4 Sicherheit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_006.htm#mj1e0a9cd22e5214a5bb797ebb58f113cc" class="navnav">10.6 Ein Klient ohne JavaScript</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_10_007.htm#mj2c164a142d4a479519051aa6ee0722f9" class="navnav">10.7 Was noch übrigbleibt</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj143f7b7967800fbc9e4212f3732fec4a" name="mj143f7b7967800fbc9e4212f3732fec4a"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">10.3 Ein Dienst in PHP  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>In diesem Abschnitt werden wir einen Dienst realisieren, der Zugriffe auf die Kontaktdaten eines Anwenders in einer Datenbank ermöglicht. Dazu werden wir in Abschnitt 10.3.1 zunächst das zugehörige Datenmodell entwickeln. In Abschnitt 10.3.2 setzen wir darauf aufbauend den Dienst für die Kontaktverwaltung und die entsprechenden Operationen um.</p><a id="mjc22ab53407bbed20d06449ea4ab6bf73" name="mjc22ab53407bbed20d06449ea4ab6bf73"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">10.3.1 Datenmodell  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wir möchten, dass jeder <span class="ckursiv">Benutzer</span> unserer Anwendung seine eigenen <span class="ckursiv">Kontakte</span> verwalten kann und dass er zu jedem Kontakt beliebige <span class="ckursiv">Einträge</span> speichern kann &#8211; seien es Namen, Telefonnummern, Geburts- und Jahrestage, Adressen oder auch andere benutzerdefinierte <span class="ckursiv">Eintragstypen</span>.</p>
+<p>In dem vorherigen Satz haben wir die Substantive kursiv gesetzt, von denen wir meinen, dass wir sie als Klassen in unserem Modell verwenden können.</p>
+<p>Besprechen wir jetzt kurz, welche Attribute die jeweiligen Klassen haben sollten: Ein Benutzer muss einen Benutzernamen und ein Kennwort haben. Ein Kontakt ... nun, welche Einträge müssen wir bei einem Kontakt speichern? Sollten wir bei jedem Kontakt den Vor- und den Nachnamen speichern? Wie speichern wir dann aber den Namen der netten Pizzeria um die Ecke, bei der wir von Zeit zu Zeit anrufen? Ist »Primavera« der Vor- oder der Nachname? Überlassen wir diese Entscheidung lieber den Benutzern unserer Anwendung &#8211; lassen wir sie beliebige Eintragstypen definieren.</p>
+<p>Der Benutzer soll bestimmen, welche Einträge ein Kontakt haben kann, welche mehrfach vorkommen können und welche für einen Kontakt eindeutig sein müssen. </p>
+<div class="bildbox">
+<p><a name="IDA3DSQ"></a><a onClick="OpenWin('bilder/10_adressbuch_oo.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein10_adressbuch_oo.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 10.1    </strong>Klassendiagramm mit den wichtigsten  
+Klassen unserer Kontaktverwaltung</p>
+<p><strong><em>Diskussion: Modell der Kontaktverwaltung</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Hör mal, das kann doch nicht das Modell unserer Anwendung sein. Hier sehe ich nur die Daten und keine Funktionalität. Was ist zum Beispiel mit dem Dienst, der die Sicherheit der Anwendung gewährleisten soll,  von dem wir oben sprechen?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Du hast vollkommen recht. Hier haben wir nur die Entitäten modelliert, mit denen unsere Anwendung arbeitet, um daraus ein Datenmodell entwickeln zu können. Wir wollen die Daten in einer relationalen Datenbank speichern, und dazu müssen wir die Tabellenstruktur definieren.</span><span class="ckursiv">Selbstverständlich werden wir später auch die anderen Bereiche der Anwendung modellieren.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Dann lass uns also jetzt das Datenmodell entwickeln.</span><p>Wenn wir die Regeln aus Kapitel 6, »Persistenz«, beachten, kommen wir zu dem einfachen Datenmodell, das in Abbildung 10.2 dargestellt wird. Obwohl in unserer Anwendung jeder Benutzer einen eindeutigen Benutzernamen hat und somit der Benutzername ein <span class="ckursiv">natürlicher Schlüssel</span> der Relation <span class="ckursiv">Benutzer</span> ist, werden wir einen <span class="ckursiv">Ersatzschlüssel</span> als den <span class="ckursiv">Primärschlüssel</span> dieser Relation verwenden.</p>
+<p>Jeder gespeicherte Kontakt gehört nämlich einem Benutzer, und so muss jeder Datensatz der Tabelle <span class="ckursiv">Kontakt</span> auf einen Datensatz in der Tabelle <span class="ckursiv">Benutzer</span> verweisen &#8211; wir brauchen also einen <span class="ckursiv">Fremdschlüssel</span> für die Tabelle <span class="ckursiv">Kontakt</span>. Würden wir den Benutzernamen als den Primärschlüssel der Tabelle <span class="ckursiv">Benutzer</span> verwenden, müssten wir ihn auch in der Tabelle <span class="ckursiv">Kontakt</span> speichern. Dies wäre weniger effizient, als einen numerischen Ersatzschlüssel zu speichern, und eine mögliche Änderung des Benutzernamens zu implementieren wäre komplizierter.</p>
+<p>Da wir für einen Kontakt überhaupt keine Attribute definiert haben, bleibt uns nichts Weiteres übrig, als für die Tabelle <span class="ckursiv">Kontakt</span> ebenfalls einen Ersatzschlüssel zu definieren.</p>
+<p>Bei den anderen Tabellen sind wir ähnlich vorgegangen, und das Ergebnis ist das Datenmodell [Ein SQL-Skript für das Erstellen der Datenbankstruktur in einer MySQL-Datenbank befindet sich auf der Webseite zum Buch (<span class="ckursiv"><a href="http://www.objektorientierte-programmierung.de">www.objektorientierte-programmierung.de</a></span>).
+] , das in Abbildung 10.2 dargestellt ist.</p>
+<div class="bildbox">
+<p><a name="IDALFSQ"></a><a onClick="OpenWin('bilder/10_adressbuch_db.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein10_adressbuch_db.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 10.2    </strong>Datenmodell unserer Kontaktverwaltung</p>
+<p>Der interessierte Leser kann gerne überprüfen, ob [Wir sollten hier statt »ob« lieber »dass« schreiben, nicht wahr? ]  das Datenmodell normalisiert ist entsprechend der Regeln, die in Abschnitt 6.4, »Normalisierung und Denormalisierung«, beschrieben sind.</p>
+<p><strong><em>Diskussion:  
+Relationen im Datenmodell</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Um ehrlich zu sein, bin ich von diesem Datenmodell überhaupt nicht begeistert. Es ist zu allgemein. Wir haben gar nicht die wirkliche Datenstruktur der Kontakte analysiert. Dabei ist aber klar, dass die Benutzer meistens Namen, Telefonnummern, Adressen und E-Mail-Adressen ihrer Kontakte speichern werden. Ich verstehe schon, dass wir dem Benutzer die Freiheit geben sollten, eigene Eintragstypen zu definieren, aber auf diese Weise verlieren wir zum Beispiel die Möglichkeit, Indizes für bestimmte Einträge wie den Nachnamen anzulegen.</span><span class="ckursiv">Ich finde, mit etwas mehr Analyse und Design könnten wir ein viel besseres Datenmodell entwickeln.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Das stimmt. Es ist selten eine gute Idee, in einer relationalen Datenbank die Relationen in einer Name-Wert-Tabelle zu speichern, wie wir es in der Tabelle <span class="ckursiv">Eintrag</span> tun. Es ist meist besser, die Relationen ausführlicher zu analysieren und sie dann in »eigenen« Tabellen abzubilden. Dies würde aber dieses Kapitel in die Länge ziehen. Lassen wir hier dem Leser die Möglichkeit, unsere Beispielanwendung zu verbessern &#8211; zum Beispiel so, dass er das Datenmodell dahingehend verändert, dass Geburts- und Jahrestage in Spalten vom Typ DATE statt VARCHAR gespeichert werden. Und kehren wir zum Thema PHP zurück.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Na, dann aber los!</span><a id="mjddeded4df39daa61407f491d183939f0" name="mjddeded4df39daa61407f491d183939f0"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">10.3.2 Dienste &#8211; Version 1  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Der erste Dienst, den wir implementieren, soll Operationen bereitstellen, die den Zugriff auf die Kontaktdaten eines angemeldeten Benutzers ermöglichen. Die erste Operation, die wir implementieren, wird die Kontaktdaten des Benutzers auflisten.</p>
+<p>Wie wird sich der Benutzer aber anmelden? Und wie kommen die Kontaktdaten in die Datenbank? Gute Fragen! Bis wir entsprechende Dienste und Operationen implementieren, müssen wir einfach mit der Annahme leben, dass der Benutzer mit der Benutzer-Id 1 angemeldet ist und dass die entsprechenden Daten in der Datenbank existieren. [Auf der Webseite zum Buch (<span class="ckursiv"><a href="http://www.objektorientierte-programmierung.de">www.objektorientierte-programmierung.de</a></span>) finden Sie ein SQL-Skript, mit dem Sie die Beispieldaten in die Datenbank einfügen können.
+]  Wir werden bald Dienste zur Benutzerverwaltung und zur Kontaktdatenpflege implementieren.</p>
+<p>Unser erster Dienst würde also etwa so aussehen:</p>
+<div class="listing"><pre class="prettyprint">class Kontakte {</pre></div>
+<div class="listing"><pre class="prettyprint">   public function auflisten() { 
+      ...   } 
+}</pre></div>
+<p>Die Funktion <span class="clisting">auflisten</span> wird eine Liste der Kontakte zurückgeben. </p>
+<p>Jeder Kontakt selbst wird als eine Liste von Objekten zurückgegeben, die die Eigenschaften des Kontaktes repräsentieren. Diese Objekte haben drei Attribute: <span class="clisting">id</span> und <span class="clisting">name</span> kommen aus der Tabelle <span class="ckursiv">Eintragstyp</span> und das Attribut <span class="clisting">eintrag</span> ist ein Array, das die Werte aus der Tabelle <span class="ckursiv">Eintrag</span> enthält.</p>
+<p>Nur wenn in der Tabelle <span class="ckursiv">Eintragstyp</span> in der Spalte <span class="clisting">ett_eindeutig</span> spezifiziert ist, dass der Wert eindeutig ist, wird in dem Attribut <span class="clisting">eintrag</span> statt eines Arrays nur ein Wert zurückgegeben. Wir könnten zum Beispiel festlegen, dass es nur eine E-Mail-Adresse zu einem Kontakt geben kann, aber mehrere Telefonnummern.</p>
+<p>Hier also unsere erste Version des Dienstes:</p>
+<div class="listing"><pre class="prettyprint">class Kontakte { 
+    private static function db() {  
+        $db = new mysqli('localhost', 'buch', 'buch', 'buch'); 
+        $db-&gt;set_charset("utf8"); 
+        return $db; 
+    } 
+ 
+    private function benutzerId() {  
+        return 1; 
+    } 
+ 
+    public function auflisten($kontaktid = -1) {  
+        $db = self::db(); 
+        try { 
+            $stmt = $db-&gt;prepare(" 
+                SELECT k.knt_id, t.ett_id, t.ett_name, 
+                       t.ett_eindeutig, e.etg_id, e.etg_wert 
+                FROM kontakt k 
+                INNER JOIN eintrag e ON k.knt_id = e.knt_id 
+                INNER JOIN eintragstyp t ON t.ett_id = e.ett_id 
+                WHERE k.bnz_id = ? 
+                AND (k.knt_id = ? or ? = -1) 
+                ORDER BY k.knt_id, t.ett_reihenfolge,  
+                         t.ett_name, e.etg_id 
+            "); 
+ 
+            if (!$stmt)  
+                throw new SQLException($db-&gt;error, $db-&gt;errno); 
+            $benutzerid = $this-&gt;benutzerId(); 
+            $stmt-&gt;bind_param("iii",  
+                      $benutzerid, $kontaktid, $kontaktid); 
+            $stmt-&gt;bind_result($kontaktid, $typid,  
+                      $typname, $eindeutig, $wertid, $wert); 
+            $stmt-&gt;execute(); 
+ 
+            $daten = array(); 
+            $letzterKontakt = -1; 
+            $letzterTypid = null; 
+            while ($stmt-&gt;fetch()) { 
+                if ($kontaktid != $letzterKontakt) { 
+                    $letzterKontakt = $kontaktid; 
+                    $eintrag = -1; 
+                } 
+                if ($letzterTypid != $typid) { 
+                    ++$eintrag; 
+                    $daten[$kontaktid][$eintrag]-&gt;name = 
+                         $letzterTypname = $typname; 
+                    $daten[$kontaktid][$eintrag]-&gt;id = 
+                         $letzterTypid = $typid; 
+                } 
+                if ($eindeutig) { 
+                    $daten[$kontaktid][$eintrag]-&gt;eintrag = 
+                        Array('id' =&gt; $wertid, 'wert' =&gt; $wert); 
+                } else { 
+                    $daten[$kontaktid][$eintrag]-&gt;eintrag[] = 
+                       Array('id' =&gt; $wertid, 'wert' =&gt; $wert); 
+                } 
+            } 
+            $stmt-&gt;close(); 
+            $db-&gt;close(); 
+            $ergebnis = Array( "daten" =&gt; $daten ); 
+            return $ergebnis; 
+        } catch (Exception $e) { 
+            if ($stmt) $stmt-&gt;close(); 
+            if ($db) $db-&gt;close(); 
+            throw $e; 
+        } 
+ 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 10.3    </strong>Der Dienst »kontakte.php«</p>
+<p>Ab Zeile  haben wir eine einfache Methode implementiert, die eine MySQL-Datenbankverbindung erstellt. Wir gehen in diesem Beispiel davon aus, dass der Datenbankserver auf demselben Server wie unser Webserver installiert ist und dass der Datenbankname, der Datenbankbenutzername und dessen Kennwort alle <span class="ckursiv">buch</span> lauten. Diese Einstellungen sollten wir lieber in eine Konfigurationsdatei auslagern.</p>
+<p>Ab Zeile  »implementieren« wir die Methode, die uns die Id des aktuell angemeldeten Benutzers zurückgibt &#8211; zurzeit kennt unsere Anwendung nur einen einzigen Benutzer, der sich gar nicht anzumelden braucht.</p>
+<p>Schließlich implementieren wir ab Zeile  die Methode <span class="clisting">auflisten</span>, die uns entweder alle Kontakte des Benutzers (wenn das Argument <span class="clisting">$kontaktid</span> nicht angegeben wird oder den Wert &#8211;1 hat) oder einen spezifizierten Kontakt zurückgibt. </p>
+<p>So, jetzt haben wir unseren ersten Dienst implementiert, mit dem die Daten aus der Datenbank gelesen werden können. Doch wie übermitteln wir die Daten an die Darstellungslogik?</p>
+<p>Im folgenden Abschnitt 10.4, »Ein Klient in Ajax«, werden wir zeigen, wie die Darstellungslogik unter Verwendung von JavaScript und Ajax umgesetzt werden kann. In Abschnitt 10.5, »Ein Container für Dienste in PHP«, realisieren wir dann den Rahmen für die Verwendung von weiteren Diensten in unserer Anwendung. Schließlich zeigen wir in Abschnitt 10.6, »Ein Klient ohne JavaScript«, wie sich die Darstellungslogik einfach anpassen lässt, so dass die resultierenden Seiten rein HTML-basiert sind.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_10_003.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="10.3 Ein Dienst in PHP"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_10_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_10_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

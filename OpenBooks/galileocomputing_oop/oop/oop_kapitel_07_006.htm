@@ -1,0 +1,1081 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_07_005.htm">
+<link rel="next" href="oop_kapitel_08_001.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_005.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_08_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852" class="navnav">7 Abläufe in einem objektorientierten System</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_001.htm#mj26b861834c431b683e4e1d0ac1938cba" class="navnav">7.1 Erzeugung von Objekten mit Konstruktoren und Prototypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj6cd9b2d12e6d2f663e4c1128b111c5d9" class="navnav">7.1.1 Konstruktoren: Klassen als Vorlagen für ihre Exemplare</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj29e4ea58eb12662f0f36f92b5ec8adaa" class="navnav">7.1.2 Prototypen als Vorlagen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj51d93c2b5e445392072beadafdebd393" class="navnav">7.1.3 Entwurfsmuster »Prototyp«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_002.htm#mj1c44c94f2295b431db9cb9b5ee03bc9f" class="navnav">7.2 Fabriken als Abstraktionsebene für die Objekterzeugung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjb223311c89407a9e76da180dc3f69036" class="navnav">7.2.1 Statische Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjaa0579b2fb6bb3ec6034cf05f1eecac9" class="navnav">7.2.2 Abstrakte Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjc5cb28a57eeadedfbc991e6786b00788" class="navnav">7.2.3 Konfigurierbare Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj081b9df6d2dc6eafff1ff31f2823b219" class="navnav">7.2.4 Registraturen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj91442f54dd3e6454d2343a346244a94c" class="navnav">7.2.5 Fabrikmethoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7e0c800eda7165eac4272a1955efef1a" class="navnav">7.2.6 Erzeugung von Objekten als Singletons</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7dcd47135763da11d4d4dc6876f5e60f" class="navnav">7.2.7 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_003.htm#mj8ee9807b6d851ca17774d80d4e8b83bb" class="navnav">7.3 Objekte löschen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj7283bd45b7cfe614019b221ea52afec4" class="navnav">7.3.1 Speicherbereiche für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj61cf5d0c185ed5382c55f54cd3fe712c" class="navnav">7.3.2 Was ist eine Garbage Collection?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_003.htm#mj77b12ff91a3d2c926b596ecf298bfde6" class="navnav">7.3.3 Umsetzung einer Garbage Collection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_004.htm#mja44c8c090df304b5376fe244eb0505d7" class="navnav">7.4 Objekte in Aktion und in Interaktion</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj461a627b534275782ce4985792ee15db" class="navnav">7.4.1 UML: Diagramme zur Beschreibung von Abläufen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mjf78234957c82aa740d796d46b611a52f" class="navnav">7.4.2 Nachrichten an Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj10368deb9e22e623d5445b79601554b1" class="navnav">7.4.3 Iteratoren und Generatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj3f6bd50ca8e5f65f36567d80e2803893" class="navnav">7.4.4 Funktionsobjekte und ihr Einsatz als Eventhandler</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj7e10a219a48a6476b1ea82aec6cc5ef4" class="navnav">7.4.5 Kopien von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj66aae429fecf9db6555945805016c62e" class="navnav">7.4.6 Sortierung von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_005.htm#mj7468c23d82240bfb461b8090668d1a51" class="navnav">7.5 Kontrakte: Objekte als Vertragspartner</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjed5c3bed5d1f32427a86656f31c3e743" class="navnav">7.5.1 Überprüfung von Kontrakten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjb272d58355d9d7a0899049eb6842697a" class="navnav">7.5.2 Übernahme von Verantwortung: Unterklassen in der Pflicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mja3c37a47a8407bc65b94f93f6a254ca2" class="navnav">7.5.3 Prüfungen von Kontrakten bei Entwicklung und Betrieb</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mjec595d98347a935335b712f91956664c" class="navh">7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj3963c0742069044978ac462cc56c5b5a" class="navh">7.6.1 Exceptions in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mje09bc3c4971db9aa83562a1fe7c4e034" class="navh">7.6.2 Exceptions und der Kontrollfluss eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj21b606a3bb186e029d6b9c8c22764cc0" class="navh">7.6.3 Exceptions im Einsatz bei Kontraktverletzungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj05465a5863b658f1b916b7805e1ef3c9" class="navh">7.6.4 Exceptions als Teil eines Kontraktes</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjbf1f56f9665424db8d4cfc65f9adce59" class="navh">7.6.5 Der Umgang mit Checked Exceptions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjd35575d7d7be5ba9875a7b50fa01d0d0" class="navh">7.6.6 Exceptions in der Zusammenfassung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mjec595d98347a935335b712f91956664c" name="mjec595d98347a935335b712f91956664c"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Wie in unserem eigenen Leben, so gibt es auch im etwas profaneren Leben von Objekten Situationen, in denen Unerwartetes auftritt, das sie daran hindert, ihre Aufgaben wie geplant durchzuführen. In solchen Situationen kann ein Objekt den Kontrakt, den es eingegangen ist, nicht mehr erfüllen.</p>
+<p>Der Mechanismus der Ausnahmebehandlung (engl. <span class="ckursiv">Exception Handling</span>) bietet eine ganze Reihe von Möglichkeiten, mit solchen Situationen umzugehen. Außerdem stellen Exceptions einen etablierten und praktikablen Mechanismus dar, um generell mit Fehlersituationen in einem Programm umzugehen.</p>
+<p><strong><em>Was Sie in  
+diesem Abschnitt erwartet</em></strong></p>
+<p>In diesem Abschnitt stellen wir den Mechanismus der Ausnahmebehandlung vor. Sie werden sehen, dass Exceptions in den meisten Situationen besser zur Fehlerbehandlung geeignet sind als Fehlercodes. Anschließend gehen wir darauf ein, wie Ausnahmen und die damit verbundenen Techniken zur Spezifikation und Überprüfung von Kontrakten eingesetzt werden können. Außerdem werden wir Kriterien dafür vorstellen, in welchen Situationen eine Ausnahme so schwerwiegend ist, dass sie zum Beenden des Programms führen muss.</p><a id="mj3963c0742069044978ac462cc56c5b5a" name="mj3963c0742069044978ac462cc56c5b5a"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">7.6.1 Exceptions in der Übersicht  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><strong><em>Ein aus dem Leben gegriffenes Beispiel</em></strong></p>
+<p>Wahrscheinlich haben Sie selbst auch schon einmal die Erfahrung gemacht, dass es hin und wieder schwer sein kann, Zusagen einzuhalten, die Sie anderen gegeben haben. Es kann sein, dass etwas Unerwartetes dazwischenkommt, zum Beispiel weil Sie sich eine Erkältung zugezogen haben. Oder Sie haben sich selbst auf jemand anderen verlassen, der seine Zusagen nicht einhält.</p>
+<p>So kann es auch einem Objekt als Bestandteil eines Programms passieren, dass es aufgrund der Umstände den abgeschlossenen Kontrakt nicht einhalten kann. Die Gründe dafür sind eher selten in plötzlich auftretenden Erkältungen zu suchen. Aber wenn ein Objekt zum Beispiel zur Erfüllung seiner Aufgabe die Zuteilung von Arbeitsspeicher benötigt und kein weiterer Speicher mehr verfügbar ist, kann es seine Aufgabe beim besten Willen nicht erfüllen. [Im Bereich der Ausnahmebehandlung hat sich die Verwendung der englischen Begriffe auch im Deutschen etabliert. Wir benutzen deshalb im Folgenden die englischen Begriffe und geben bei der ersten Verwendung eine deutsche Übersetzung an.
+] </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Exception Handling (Ausnahmebehandlung)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Der Begriff des <span class="ckursiv">Exception Handling</span> bezeichnet ein Verfahren, bei dem bei Eintreten einer bestimmten Bedingung (einer Ausnahmesituation) der normale Kontrollfluss eines Programms verlassen wird. Die Kontrolle geht dann an den Mechanismus der Ausnahmebehandlung über. Es hängt nun davon ab, welche konkreten Mittel zur Behandlung einer Ausnahme das Programm aufweist, an welcher Stelle der Kontrollfluss wieder an das eigentliche Programm zurückgegeben wird.</p>
+</td>
+</tr>
+</table><br><p>Die Bedingungen, unter denen der Kontrollfluss eines Programms unterbrochen wird, werden dabei selbst als Exceptions (Ausnahmen) bezeichnet.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Exceptions (Ausnahmen)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Mit Exception (Ausnahme) wird eine Bedingung bezeichnet, die dazu führt, dass der normale Kontrollfluss eines Programms verlassen wird und die Kontrolle an das Exception Handling übergeht. Wir sprechen davon, dass eine Exception aufgetreten ist.</p>
+<p>In objektorientierten Systemen wird die Information über die aufgetretene Ausnahmesituation meistens durch ein Objekt repräsentiert, das an den Mechanismus der Ausnahmebehandlung übergeben wird. Dieses Objekt wird ebenfalls als Exception bezeichnet. Die Unterbrechung des Kontrollflusses bezeichnen wir auch als das Werfen einer Exception.</p>
+<p>Sogenannte Exception Handler definieren die Stelle, an der nach dem Werfen einer Exception die Kontrolle wieder an den regulären Programmablauf übergeht. Wir sprechen davon, dass durch die Exception Handler die Exception gefangen wird.</p>
+</td>
+</tr>
+</table><br><p>Betrachten Sie zunächst ein einfaches Beispiel in der Sprache Java. In Abbildung 7.57 sind drei Klassen dargestellt, die in unterschiedlicher Weise mit einer Exception vom Typ <span class="clisting">AktionNichtMöglichException</span> umgehen.</p>
+<div class="bildbox">
+<p><a name="IDA1QSQ"></a><a onClick="OpenWin('bilder/07_57.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_57.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.57    </strong>Klassen und Operationen, die Exceptions verwenden</p>
+<p>Die Klasse <span class="clisting">WirftException</span> tut das, was ihr Name verspricht: Sie wirft unter bestimmten Bedingungen eine Exception.</p>
+<div class="listing"><pre class="prettyprint">class WirftException { 
+    void kritischeOperationA() { 
+        bearbeiteTeil1(); 
+        aktionMitAusnahme(); 
+        bearbeiteTeil2(); 
+    } 
+    private void aktionMitAusnahme() { 
+      if (!AktionZurzeitMöglich()) { 
+         throw new AktionNichtMöglichException("zu spät"); 
+      } 
+    } 
+    ...</pre></div>
+<div class="listing"><pre class="prettyprint">class AktionNichtMöglichException extends RuntimeException  
+{ 
+    AktionNichtMöglichException(String grund) { 
+ 
+        super("Aktion nicht möglich: " + grund); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.45    </strong>Werfen einer Exception</p>
+<p>In der mit  markierten Zeile wird das Java-Statement <span class="clisting">throw</span> verwendet, um eine Exception der Klasse <span class="clisting">AktionNichtMöglichException</span> zu werfen. Diese Klasse wird in Zeile eingeführt. [In Java muss eine Operation für Exceptions explizit deklarieren, dass diese geworfen werden können. Diesen Mechanismus, der Checked Exceptions genannt wird, beschreiben wir in Abschnitt 7.6.4, »Exceptions als Teil eines Kontraktes«. Eine Ausnahme bilden die Klasse <span class="clisting">RuntimeException</span> und ihre Unterklassen, die wir deshalb in diesem Beispiel verwenden.
+] </p>
+<p>Aufgerufen wird die kritische Operation von der Klasse <span class="clisting">WeissNichtsVonException</span>. Allerdings führt diese keinerlei Fehlerbehandlung durch. Sie nutzt einfach eine Operation; da sie aber eine mögliche Fehlersituation gar nicht behandeln kann, muss sie das auch nicht tun.</p>
+<div class="listing"><pre class="prettyprint">class WeissNichtsVonException { 
+    void irgendeineOperation() { 
+      WirftException genutztesObjekt = new WirftException(); 
+      genutztesObjekt.kritischeOperationA(); 
+    } 
+}</pre></div>
+<p>Die Fehlerbehandlung erfolgt schließlich in der Klasse <span class="clisting">BehandeltException</span>. Diese ruft die kritische Operation zwar gar nicht selbst auf, da Exceptions aber von Aufrufer zu Aufrufer weitergereicht werden, bis ein entsprechender Exception Handler gefunden wird, kann sie die Fehlerbehandlung durchführen.</p>
+<div class="listing"><pre class="prettyprint">class BehandeltException { 
+    void nutzendeOperationA() { 
+       WeissNichtsVonException genutztesObjekt = 
+                   new WeissNichtsVonException(); 
+        try {  
+            genutztesObjekt.irgendeineOperation(); 
+        } 
+        catch (AktionNichtMöglichException exception){  
+            // Dann eben Plan B durchführen 
+            planB();        } 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.46    </strong>Fangen und Behandeln einer Exception</p>
+<p>Im sogenannten <span class="clisting">try-catch</span>-Block, der in Zeile  beginnt, wird festgelegt, wenn eine Exception vom Typ <span class="clisting">AktionNichtMöglichException</span> im <span class="clisting">try</span>-Teil des Blocks geworfen wird, wird diese im <span class="clisting">catch</span>-Teil gefangen (). In diesem Fall wird die Exception nicht nur gefangen, sondern auch behandelt, indem anstelle des gescheiterten Aufrufs einfach Plan B durchgeführt wird (). Der Kontrollfluss wird also beim Werfen der Exception komplett durch das Exception Handling übernommen. Nach der Behandlung der Exception und Ausführung von Plan B geht die Kontrolle wieder an das Programm über, und es wird mit der Bearbeitung von <span class="clisting">nutzendeOperationA</span> fortgefahren.</p>
+<p>Klassen von Exceptions können wie andere Klassen in Hierarchien organisiert werden. Ein <span class="clisting">catch</span>-Statement, das alle Exceptions einer bestimmten Klasse fängt, fängt dann auch alle Exceptions, die zu einer Unterklasse gehören.</p>
+<h4 class="t4">Einsatz von Exceptions: Was ist normal, und was die Ausnahme?</h4>
+<p>Mit einer Exception kann eine Methode signalisieren, dass sie ihre Aufgabe nicht erfüllen und den vereinbarten Kontrakt nicht einhalten kann. Die Ursachen, warum die Methode ihre Aufgabe nicht erfüllen kann, können verschieden sein. So ist es z. B. möglich, dass eine der Methoden, die unsere Methode benutzt, ihre Teilaufgabe nicht erfüllen kann. Denkbar ist auch, dass die vorhandenen Daten die Erfüllung der Aufgabe grundsätzlich nicht ermöglichen oder dass die benötigten Ressourcen nicht zur Verfügung stehen.</p>
+<p>In welchen Fällen sollte eine Methode also eine Exception werfen?</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Exceptions sind nicht der Normalfall
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Exceptions sollen verwendet werden, um ein gewöhnlich nicht erwartetes Ergebnis einer Operation zu kommunizieren. Was ein erwartetes Ergebnis ist und wann die Aufgabe einer Methode nicht erfüllt werden kann, hängt von der Definition des Kontrakts für die betreffende Operation ab. </p>
+</td>
+</tr>
+</table><br><p>Verdeutlichen wir das am Beispiel einer Klasse, die ein Wörterbuch repräsentiert. In Abbildung 7.58 ist diese Klasse mit zwei Operationen <span class="clisting">operator[]</span> und <span class="clisting">sucheWort</span> dargestellt.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Wörterbuch</em></strong></p>
+<p>Nehmen Sie an, dass Sie eine Operation für das Wörterbuch umsetzen wollen, die zu einem Schlüsselwort einen Wert zurückgeben soll. Was soll die entsprechende Methode machen, wenn es zu dem übergebenen Schlüssel keinen Eintrag im Wörterbuch gibt? Soll sie einen Null-Wert zurückgeben oder eine Exception werfen? Beide Vorgehensweisen haben ihre Berechtigung, und die Entscheidung, welche Sie verwenden sollten, hängt davon ab, wie Sie das Wörterbuch betrachten.</p>
+<div class="bildbox">
+<p><a name="IDATTSQ"></a><a onClick="OpenWin('bilder/07_58.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_58.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.58    </strong>Ein Wörterbuch mit zwei Zugriffsoperationen</p>
+<p>Zum einen können Sie das Wörterbuch als ein assoziatives Array betrachten, aus dem Sie vorher gespeicherte Daten auslesen wollen. In diesem Fall ist es die Aufgabe der Methode, zu dem übergebenen Schlüssel den zugehörigen Wert zurückzugeben. Es wird nicht erwartet, dass ein nicht vorhandener Schlüssel übergeben wird. Deshalb würde die Methode bei einem nicht vorhandenen Schlüssel eine Exception werfen.</p>
+<p>Die andere Sichtweise auf das Wörterbuch ist die einer Datenbank, in der bestimmte Einträge vorhanden sein können, aber nicht müssen. Damit lautet also die Aufgabe der Methode: »Schau nach, ob wir einen Eintrag zu diesem Schlüssel haben und, wenn ja, gib mir den Wert zurück.« Dafür ist es passender, die zugehörige Operation <span class="clisting">sucheWort</span> zu nennen. Ist ein Eintrag nicht vorhanden, ist der Rückgabewert ein Null-Wert.</p>
+<p>Beide Vorgehensweisen sind also möglich, und wie in Abbildung 7.58 dargestellt, können auch beide über verschiedene Operationen einer einzigen Klasse umgesetzt werden.</p>
+<p>Beim geschilderten Vorgehen würde ein Aufrufer also nie gezwungen, sich mit Exceptions zu beschäftigen, nur um zu prüfen, ob ein Eintrag existiert. Falls ein Aufrufer die Information braucht, ob ein Eintrag mit einem Schlüssel existiert, bietet es sich an, neben <span class="clisting">operator[]</span> auch eine Operation <span class="clisting">existiertEintrag()</span> zur Verfügung zu stellen.</p>
+<p>Eine ähnliche Situation liegt vor, wenn Sie die Operation <span class="clisting">dividieren</span> für Klassen von Zahlen betrachten. In Abbildung 7.59 ist die Klasse der natürlichen Zahlen und die der reellen Zahlen dargestellt. Beide setzen die Operation <span class="clisting">dividieren</span> um.</p>
+<div class="bildbox">
+<p><a name="IDAGUSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_046.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_046.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.59    </strong>Divisionsoperation für verschiedene Klassen von Zahlen</p>
+<p>Bei ganzen Zahlen macht es keinen Sinn, bei der Division einer ganzen Zahl durch 0 ein Ergebnis zu liefern. Es ist einfach nicht möglich, eine ganze Zahl durch 0 zu dividieren, deshalb ist es in diesem Fall korrekt, eine Exception zu werfen. Diese signalisiert, dass die Division gescheitert ist.</p>
+<p>Bei reellen Zahlen könnten Sie aber durchaus definieren, dass das Ergebnis einer Division durch 0 die positive oder negative Unendlichkeit oder bei 0/0 eine »Nichtzahl« ist. Die positive und negative Unendlichkeit und die »Nichtzahl« sind hier kein Indikator dafür, dass die Division gescheitert ist &#8211; es sind nur speziell definierte Werte, die den Wertebereich der reellen Zahlen pragmatisch erweitern.</p>
+<p>Dass eine Methode scheitert, bedeutet in diesem Kontext auch nicht unbedingt, dass das Programm einen Fehler hat oder sich in einem inkonsistenten Zustand befindet, sondern nur, dass die primäre Aufgabe der Methode nicht erfüllt werden konnte.</p>
+<h4 class="t4">Exceptions oder Fehlercodes?</h4>
+<p>Exceptions sind nicht die einzige Möglichkeit, das Scheitern einer Methode anzuzeigen. Eine andere häufig verwendete Vorgehensweise ist es, einen speziell definierten Wert als Ergebnis oder einen speziell für diesen Zweck definierten Ausgabeparameter zu benutzen, in dem ein Fehlercode zurückgegeben wird.</p>
+<p><strong><em>Vorteile von Exceptions</em></strong></p>
+<p>Exceptions haben aber zwei entscheidende Vorteile gegenüber Fehlercodes:</p>
+<ul class="gp">
+<li>Um das Scheitern einer aufgerufenen Operation weiter an den Aufrufer zu kommunizieren, brauchen Sie nichts zu tun. Wenn Sie die von der aufgerufenen Operation geworfene Exception nicht fangen, wird diese automatisch an den Aufrufer weitergeleitet.</li>
+</ul>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li>Bei Fehlercodes dagegen muss für jeden Aufruf einer Operation explizit überprüft werden, ob dabei eine Fehlersituation aufgetreten ist. Das heißt, dass die Methode in der Mitte der Aufrufkette, die weder den Grund des Scheiterns feststellt noch darauf irgendwie reagieren kann (außer selbst zu scheitern), die Fehlerbehandlung überhaupt nicht implementieren muss &#8211; und trotzdem wird der Grund des Scheiterns an die behandelnde Stelle signalisiert.</li>
+</ul>
+</li>
+</ul>
+<ul class="gp">
+<li>Eine nicht gefangene Exception meldet sich mit aller Deutlichkeit. Bei Fehlercodes dagegen kann es durchaus passieren, dass sie einfach ignoriert werden. Programmiersprachen können nicht kontrollieren, dass ein Fehlerstatus überhaupt ausgewertet wird.</li>
+</ul>
+<p>Fehlercodes sind allerdings viel besser als Exceptions geeignet, um Warnungen oder Hinweise, die sich auf die Ausführung einer Operation beziehen, an den Aufrufer zurückzumelden. Bei Warnungen und Hinweisen soll in der Regel gerade nicht der Kontrollfluss unterbrochen werden, da der Aufruf nicht komplett gescheitert ist. Eine Exception ist für einen solchen Fall ungeeignet, und Sie sollten Fehlercodes verwenden, die dann allerdings besser die Bezeichnung <span class="ckursiv">Statuscodes</span> tragen.</p><a id="mje09bc3c4971db9aa83562a1fe7c4e034" name="mje09bc3c4971db9aa83562a1fe7c4e034"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">7.6.2 Exceptions und der Kontrollfluss eines Programms  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Die Verwendung von Exceptions verändert den Kontrollfluss eines Programms. Beim Auftreten einer Exception wird die reguläre Abarbeitung des Programms abgebrochen und an anderer Stelle erst wieder aufgenommen, wenn die ausgelöste Exception in irgendeiner Weise behandelt worden ist.</p>
+<p><strong><em>Exceptions</em></strong></p>
+<p>Exceptions haben dabei den großen Vorteil, dass sie den normalen Ausführungspfad eines Programms von den möglichen fehlerhaften Ausführungspfaden frei halten. Wenn Sie Fehlercodes zur Übermittlung einer Fehlersituation verwenden, so müssen auch an der eigentlichen Fehlerbehandlung völlig unbeteiligte Methoden diese Codes weiterreichen. Betrachten Sie einfach einmal das sehr einfache Java-Beispiel aus Listing 7.47 mit einem Aufruf von drei Operationen, die alle möglicherweise scheitern, also eine Exception werfen können.</p>
+<div class="listing"><pre class="prettyprint">void eineOperation() 
+{ 
+  a(); 
+  b(); 
+  c(); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.47    </strong>Einfacher Aufruf von drei Operationen</p>
+<p><strong><em>Fehlercodes</em></strong></p>
+<p>Die Behandlung von möglichen Fehlern kann ein Aufrufer der Operation <span class="clisting">eineOperation</span> übernehmen, die Methode selbst ist völlig frei von Fehlerbehandlung. Wenn Sie diese Fehlermöglichkeiten nicht über Exceptions, sondern über Fehlercodes signalisieren, sieht das Ganze bereits etwas anders aus, zum Beispiel wie in Listing 7.48.</p>
+<div class="listing"><pre class="prettyprint">Errorcode eineOperation() 
+{ 
+  Errorcode result = Errorcode.OK; 
+  result = a(); 
+  if (result == Errorcode.OK) 
+  { 
+    result = b(); 
+    if (result != Errorcode.OK) { 
+      result = c(); 
+    } 
+  } 
+  return result; 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.48    </strong>Fehlerbehandlung durch Errorcodes</p>
+<p><strong><em>Zweck einer Methode</em></strong></p>
+<p>Der eigentliche Ablauf der Methode ist nun weit weniger klar, da die Behandlung der möglichen Fehler und des resultierenden Ablaufs den Großteil des Codes ausmacht. Außerdem wurde die Signatur der Methoden nur zum Zweck der Fehlerbehandlung angepasst, so dass sie jeweils einen <span class="clisting">Errorcode</span> als Ergebnis liefern. Das führt zu einer weiteren Vermischung der eigentlichen Aufgaben und der Fehlerbehandlung.</p>
+<p>Die Verwendung von Exceptions führt dazu, dass der eigentliche Zweck einer Methode viel klarer ersichtlich wird. Mit Exceptions ist der Weg, der zum Erfolg einer Methode führt, also die Implementierung der Umsetzung der eigentlichen Aufgabe der Methode, deutlicher. Um die Behandlung von Fehlern kümmern sich nur die Codestelle, an welcher der Fehler auftritt, sowie die Stelle, an der er behandelt werden kann.</p>
+<p>Die Ausführungspfade des Scheiterns sind implizit und automatisch da. Aber eben weil sie da sind, müssen Sie auch immer mit diesen zusätzlichen Ausführungspfaden rechnen. Code, der mit Exceptions arbeitet, hat deshalb eine besondere Qualitätsanforderung: Sie müssen immer damit rechnen, dass der Aufruf einer Operation durch eine Exception unterbrochen wird. Auch für diese Ausführungspfade muss sich das Programm korrekt verhalten. Diese Anforderung wird auch die Forderung nach Exception-Sicherheit (Exception Safety) genannt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Exception Safety
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Durch die Verwendung von Exceptions werden zusätzliche Ausführungspfade in ein Programm eingeführt. Ein Programm wird sicher bezüglich der Behandlung von Exceptions genannt (exception safe), wenn das Programm sich auch nach dem Durchlaufen dieser Pfade in einem korrekten Zustand befindet.  Von einem korrekten Zustand sprechen wir, wenn auch in diesem Fall die festgelegten Invarianten weiterhin gelten. Außerdem dürfen keine Speicherlecks entstehen, und auch die Freigabe von anderen belegten Ressourcen muss korrekt stattfinden.</p>
+</td>
+</tr>
+</table><br><p>Betrachten Sie zur Illustration ein einfaches Beispiel in C++. Ohne Exceptions ist dieser C++-Code korrekt:</p>
+<div class="listing"><pre class="prettyprint">   MeinObjekt* pMeinObjekt = new MeinObjekt(); 
+   meineOperation(pMeinObjekt); 
+   delete pMeinObjekt;</pre></div>
+<p>Wenn allerdings <span class="clisting">meineOperation(pMeinObjekt)</span> eine Exception wirft, haben Sie ein Speicherleck vorliegen, weil der Speicher, auf den <span class="clisting">pMeinObjekt</span> verweist, nie freigegeben wird. Weil der normale Kontrollfluss bei Auftreten einer Exception unterbrochen wird, wird der Code zum Freigeben von <span class="clisting">pMeinObjekt</span> in diesem Fall nicht durchlaufen. In Sprachen, die eine automatische dynamische Speicherverwaltung (Garbage Collection) aufweisen, besteht das Problem bezüglich der Anlage von neuen Objekten nicht. Andere Ressourcen können aber durchaus belegt bleiben, wenn eine Exception auftritt.</p>
+<p><strong><em>Freigabe von  
+Ressourcen</em></strong></p>
+<p>Deshalb ist es in Programmen, die mit Exceptions arbeiten, meist notwendig, die Freigabe von Ressourcen explizit zu behandeln und dies auch so abzusichern, dass diese Freigabe auch im Exception-Fall erfolgt. Werden Invarianten innerhalb einer Methode zeitweise verletzt, muss das Gelten der Invariante beim Auftreten einer Exception wieder hergestellt werden. Es ist in diesen Fällen möglich, dass wir die Betrachtung von Exceptions durch diese Randbedingungen doch wieder in Methoden einfügen müssen, die weder mit dem Auslösen noch mit dem eigentlichen Behandeln der Exception etwas zu tun haben.</p>
+<p><strong><em>Programme exception-sicher gestalten</em></strong></p>
+<p>Was ist nun konkret zu tun, um Programme exception-sicher zu gestalten? Betrachten wir dazu zwei Beispiele in Java und C++. Wir beginnen mit der Programmiersprache Java und verwenden dazu eine modifizierte Variante eines Beispiels aus Abschnitt 4.1. Dieses beschäftigt sich mit elektrischen Leitungen und den idealisierten Annahmen, die sich mit dem Verhältnis von Stromstärke, Spannung und Wiederstand beschäftigen.</p>
+<div class="bildbox">
+<p><a name="IDAZXSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_047.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_047.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.60    </strong>Invariante für Ohm´sches Gesetz</p>
+<p>Nehmen wir an, Sie haben sich für die in Abbildung 7.60 gezeigte Umsetzung entschieden: Die drei Attribute Spannung, Widerstand und Stromstärke haben Sie jeweils als Datenelemente <span class="clisting">voltage</span>, <span class="clisting">resistance</span> und <span class="clisting">current</span> umgesetzt. Bei jedem Zugriff von außen muss dann die angegebene Invariante greifen: U = R * I, hier also <span class="clisting">voltage = resistance * current</span>.</p>
+<p>Wird der Wert für die Spannung geändert, möchten Sie diese Änderung in einer Datei mitprotokollieren. Die Umsetzung der Operation <span class="clisting">setVoltage</span> muss in diesem Fall exception-sicher erfolgen. Listing 7.49 zeigt eine mögliche Umsetzung in Java.</p>
+<div class="listing"><pre class="prettyprint">  void setVoltage(Double voltage) 
+            throws IOException { 
+        FileOutputStream out = null; 
+        try { 
+            this.voltage = voltage; 
+            // Die Invariante U = R * I gilt nicht mehr 
+            out = new FileOutputStream(     
+                    "C:/logs/trace.txt");   
+            // Hier ist eine Datei geöffnet 
+            PrintStream p = new PrintStream(out);   
+            p.println("Setting voltage to " + voltage);  
+        } finally {  
+           if (out != null) { 
+               out.close(); 
+           } 
+           this.current = this.voltage / this.resistance; 
+        } 
+    }</pre></div>
+<p class="tabunter"><strong>Listing 7.49    </strong> Java: Exception-sichere Umsetzung von »setVoltage«</p>
+<p>Die Methode verwendet in den mit  markierten Zeilen Exemplare der Klassen <span class="clisting">FileOutputStream</span> und <span class="clisting">PrintStream</span>, um eine Protokollierung zu schreiben. Bei dieser Verwendung können Exceptions auftreten. Diese werden allerdings nicht behandelt, sondern die Behandlung bleibt anderen Aufrufebenen überlassen. Trotzdem muss die Methode dafür sorgen, dass im Fall einer Exception korrekt aufgeräumt wird.</p>
+<p>Dies geschieht im sogenannten <span class="clisting">finally</span>-Block, der in Zeile  umgesetzt ist. Der dort enthaltene Code wird in jedem Fall durchlaufen, auch wenn im davor aufgeführten <span class="clisting">try</span>-Block eine Exception auftritt. In unserem Beispiel werden dort zwei verschiedene Aktionen durchgeführt. Zum einen wird die möglicherweise bereits geöffnete Datei auf jeden Fall geschlossen. Wäre das nicht der Fall, würden die entsprechende Datei und die damit verbundenen Ressourcen nicht mehr freigegeben. Zum anderen wird die Stromstärke auf jeden Fall auf den Wert gesetzt, welcher der Invariante entspricht. Wenn dies nämlich nicht im <span class="clisting">finally</span>-Block stattfindet, kann eine Exception dazu führen, dass die für das Objekt definierte Invariante verletzt wird: Die Spannung ist bereits neu gesetzt, die resultierende Stromstärke hat aber weiter den alten Wert. Die Invariante <span class="clisting">inv: getVoltage() = getResistance() * getCurrent()</span> gilt dann nicht mehr, und das Objekt würde den geschlossenen Kontrakt verletzen.</p>
+<p>In Sprachen wie C++ können Objekte auf dem Stack angelegt und dann beim Verlassen des Sichtbarkeitsbereichs automatisch destruiert werden. In diesen Sprachen kann zur Herstellung von Exception Safety ein Mechanismus verwendet werden, der unter dem Namen <span class="ckursiv">Ressourcenbelegung ist Initialisierung</span> bekannt geworden ist.</p>
+<p><strong><em>RAII: Ressourcenbelegung ist  
+Initialisierung.</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Ressourcenbelegung ist Initialisierung  
+(engl. Resource Acquisition is Initialisation, RAII)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ressourcen wie zum Beispiel verwendete Dateien oder Sperren zur Synchronisation von nebenläufigen Programmteilen können dadurch verwaltet werden, dass sie im Konstruktor eines Objekts angelegt und im Destruktor desselben Objekts freigegeben werden.</p>
+<p>Werden solche Objekte in Programmiersprachen mit automatischer Verwaltung von Variablen (zum Beispiel C++) auf dem Stack angelegt, wird durch den Compiler sichergestellt, dass der Destruktor in jedem Fall beim Verlassen des Sichtbarkeitsbereichs aufgerufen wird. Damit werden im Destruktor die verwendeten Ressourcen in jedem Fall freigegeben, insbesondere auch dann, wenn der Sichtbarkeitsbereich deshalb verlassen wird, weil eine Exception aufgetreten ist. Dieses Verfahren ist ein wichtiges Mittel, um die Exception-Sicherheit eines Programms herzustellen.</p>
+</td>
+</tr>
+</table><br><p>In Abbildung 7.61 ist ein Beispiel aufgeführt, in dem eine Klasse RAII (für Resource Acquisition is Initialisation) explizit eine Ressource verwaltet.</p>
+<div class="bildbox">
+<p><a name="IDAXZSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_048.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_048.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.61    </strong>RAII-Objekt zur Absicherung von Ressourcen</p>
+<p>Betrachten Sie die zugehörige Umsetzung von Konstruktor und Destruktor in Listing 7.50, das eine Umsetzung in C++ aufführt. Dabei wird deutlich, dass die zugehörige Ressource im Konstruktor komplett angelegt und reserviert wird, im Destruktor wird die Ressource dann wieder freigegeben.</p>
+<div class="listing"><pre class="prettyprint">RAII::RAII() 
+{ 
+    pMyResource =<span class="cfett"> </span><span class="clisting">new</span> MyResource(); 
+    pMyResource-&gt;acquire(); 
+} 
+ 
+RAII::~RAII() 
+{ 
+    pMyResource-&gt;release(); 
+   <span class="cfett"> </span><span class="clisting">delete</span> pMyResource; 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.50    </strong>Verwaltung von Ressourcen in Konstruktor und Destruktor</p>
+<p>Die Verwendung des absichernden Objekts ist in Listing 7.51 dargestellt.</p>
+<div class="listing"><pre class="prettyprint"><span class="clisting">void</span> RAIITester::RunTest() 
+{ 
+   RAII raii; 
+  <span class="cfett"> </span><span class="clisting">bool</span> condition_red =<span class="cfett"> </span><span class="clisting">false</span>; 
+   MyResource* pResource = raii.GetResource(); 
+   // ... Aktionen mit der Ressource ausführen 
+  <span class="cfett"> </span><span class="clisting">if</span> (condition_red) { 
+      <span class="cfett"> </span><span class="clisting">throw</span> std::exception(); 
+   } 
+   // .. weitere Aktionen 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.51    </strong>RAII in Verwendung</p>
+<p>Dabei wird eine lokale Variable für ein Exemplar von <span class="clisting">RAII</span> angelegt, der dabei implizit aufgerufene Konstruktor sorgt dafür, dass die benötigte Ressource reserviert wird. Sobald der Sichtbarkeitsbereich von <span class="clisting">RunTest</span> verlassen wird, wird der Destruktor von <span class="clisting">RAII</span> aufgerufen, der dann die belegte Ressource in jedem Fall freigibt. Dies gilt auch in dem Fall, dass während des Ablaufs im Code eine Exception auftritt.</p>
+<p><strong><em>Vorteile von Exceptions  
+überwiegen.</em></strong></p>
+<p>Auch wenn Exceptions also die Notwendigkeit mit sich bringen, Code exception-sicher zu gestalten, überwiegen doch die Vorteile ihres Einsatzes. Weil Exceptions bestimmte Ausführungspfade verstecken, erhöhen sie die Übersichtlichkeit von Quelltexten, weil sie die wichtigen Abläufe klar erkennbar machen.</p>
+<p>Es bietet sich eine Analogie zur Verwendung von Polymorphie an: Aus dem Quelltext einer Methode, die eine Operation aufruft, können Sie nicht erkennen, welche konkrete Implementierung der Operation aufgerufen wird. Diese Information ist nicht offensichtlich, sie ist versteckt. Trotzdem, nein, gerade deswegen erhöht der Einsatz von virtuellen Methoden die Übersichtlichkeit des Quelltextes. Auch Exceptions erhöhen die Übersichtlichkeit und Wartbarkeit von Quelltexten, indem sie eine Reihe von Ausführungspfaden vor dem Programmierer verstecken.</p><a id="mj21b606a3bb186e029d6b9c8c22764cc0" name="mj21b606a3bb186e029d6b9c8c22764cc0"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">7.6.3 Exceptions im Einsatz bei Kontraktverletzungen  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In Abschnitt 7.5.2, »Übernahme von Verantwortung: Unterklassen in der Pflicht«, haben Sie ein Beispiel kennen gelernt, bei dem ein Aufrufer den Kontrakt bezüglich einer Operation verletzt hat. Der Aufruf der Operation <span class="clisting">tanken</span> an Ihrer Salatöl-Tankstelle hat in einem recht unerfreulichen Fall zu einer Verletzung von Vorbedingungen geführt. Die Vorbedingung hatten Sie durch eine sogenannte <span class="ckursiv">Assertion</span> abgesichert, so dass glücklicherweise kein Salatöl im Tank eines Diesel-LKW gelandet ist.</p>
+<p>Die verwendete Assertion führte im genannten Beispiel zu einer Exception vom Typ <span class="clisting">AssertionError</span>, die wiederum dazu führte, dass Ihr Programm abgebrochen wurde. Allerdings hatte das einen etwas unangenehmen Seiteneffekt: Es konnte nun überhaupt niemand mehr tanken, das ganze System stand.</p>
+<p>Damit stellt sich die grundsätzliche Frage: Wenn in einem Programm eine Verletzung eines Kontrakts festgestellt wird, sollte das Programm dann grundsätzlich abgebrochen werden, oder kann es trotzdem weiterarbeiten? Was soll also ein Programm machen, wenn es selbst erkennt, dass es fehlerhaft programmiert oder falsch konfiguriert ist?</p>
+<p><strong><em>Tote Programme lügen nicht.</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Tote Programme lügen nicht 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wird innerhalb eines Programms durch Überprüfung von Kontrakten zur Laufzeit eine Kontraktverletzung festgestellt, ist für die weitere Ausführung des Programms die korrekte Funktion nicht mehr gewährleistet. </p>
+<p>Eine Faustregel, wie das Programm sich in solchen Situationen verhalten soll, formulieren die Pragmatiker Andy Hunt und Dave Thomas im Buch <span class="ckursiv">The Pragmatic Programmer</span> ([Hunt 1999]): Dead programs tell no lies. Tote Programme lügen nicht. Diese Regel besagt, dass es oft besser ist, ein Programm zu beenden, das sich in einen undefinierten Zustand begeben hat. Damit wird verhindert, dass zum Beispiel die Datenbank durcheinander gebracht wird oder ein Patient eine falsche Dosis Strahlung erhält oder andere noch schlimmere Effekte entstehen. Da das Programm sich bei einer Kontraktverletzung nicht mehr in einem definierten Zustand befindet, ist theoretisch jeder Effekt möglich. </p>
+</td>
+</tr>
+</table><br><p>Durch ein komplettes Beenden wird erreicht, dass ein Programm nicht in einem undefinierten Zustand weiterläuft. Dadurch werden mögliche Folgeschäden vermieden. Das Programm soll außerdem wieder in einen definierten Zustand gebracht werden. Und Neustart ist eine ziemlich sichere Methode, wie man in einen definierten Zustand zurückfinden kann.</p>
+<p><strong><em>Diskussion:  
+Ist Neustart grundsätzlich  
+besser?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ist es für ein Serversystem nicht meistens besser, wenn es weiterläuft? Nicht jede Kontraktverletzung führt automatisch zu dramatischen Inkonsistenzen. Und wenn sich zum Beispiel ein Datenbankserver beendet, weil er in einer einzelnen Aktion eine Kontraktverletzung entdeckt hat, ist es doch reichlich unverhältnismäßig, den gesamten Server zu beenden. Die Folgen des Beendens könnten doch wesentlich kritischer sein: Möglicherweise ist eine ganze Reihe von Applikationen längere Zeit nicht verfügbar, und es entstehen hohe Kosten.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Das kann in der Praxis richtig sein. Dennoch bleibe ich dabei, dass bei einer Kontraktverletzung in der Regel ein Neustart des betroffenen Programms die korrekte Lösung ist. In deinem Beispiel ist aber eher die Frage, was das betroffene Programm oder der betroffene Programmteil ist. Wenn ein Fehler in einem Bereich auftritt, der nur Aktionen für genau einen angemeldeten Benutzer der Datenbank ausführt, dann reicht es, genau diesen Teil zu beenden und neu zu starten. Es wäre wirklich weit über das Ziel hinausgeschossen, wenn dann in jedem Fall die Datenbank heruntergefahren wird.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Und wenn die Kontraktverletzung in einem zentralen Teil des Datenbankservers festgestellt wird? Zum Beispiel beim Schreiben von Daten aus dem Arbeitsspeicher auf die Festplatte?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> In diesem Fall sollte wahrscheinlich sogar der komplette Server beendet werden, weil die Datenbank möglicherweise ihre zentralen Konsistenzbedingungen nicht mehr einhalten kann. In den meisten Fällen wird es dann besser sein, den Server neu zu starten, anstatt möglicherweise inkonsistente Daten zu schreiben.</span><p>Im Fall einer Kontraktverletzung muss also ein Teil der auf einem Rechner laufenden Software beendet und neu gestartet werden, um in einen definierten Zustand zurückzukehren. Welcher Teil das ist, hängt davon ab, wie stark ein Programmteil von den anderen Teilen eines Programms isoliert ist. Wenn ein Fehler in einem Programmteil andere Teile nicht beeinträchtigen kann, so müssen diese auch nicht durchgestartet werden. Wenn auf einem Webserver ein Servlet ausgeführt wird und in diesem tritt eine Kontraktverletzung auf, so ist es nicht notwendig, den Webserver durchzustarten, es wird ausreichen, die Verbindung für den aktuell angemeldeten Anwender zurückzusetzen.</p>
+<p>Aber wie wird eigentlich ein Programm am besten beendet, wenn eine Kontraktverletzung festgestellt wurde? Exceptions bieten hier eine Möglichkeit, Programme in definierter Weise zu beenden.</p>
+<p><strong><em>Exception bei erkannten Programmierfehlern</em></strong></p>
+<p>Im Fall eines Programmierfehlers sollte eine Exception geworfen werden, die signalisiert, dass eine Kontraktverletzung aufgetreten ist und dass ein Programmteil durchgestartet werden muss. Durch die Verwendung einer Exception ist es auch möglich, auf verschiedenen Ebenen des Programms notwendige Aufräumarbeiten durchzuführen, bevor das Programm beendet wird. So können zum Beispiel vom Programm angelegte temporäre Dateien noch gelöscht werden.</p>
+<p>Wenn der Programmteil in einer Umgebung eingesetzt wird, in der ein kompletter Neustart nicht notwendig ist, kann die Exception auch gefangen werden, um dann nur den Programmteil neu zu starten, in dem die Exception aufgetreten ist. Die Verwendung von Exceptions überlässt die Entscheidung, welcher Teil neu gestartet werden muss, den aufrufenden Stellen.</p>
+<p><strong><em>Alternativ:  
+Direkter Abbruch des Programms</em></strong></p>
+<p>Zur Illustration dieser Vorteile betrachten wir die zur Verfügung stehende Alternative. Die meisten Programmiersprachen bieten auch die Möglichkeit, unmittelbar das Beenden eines Programms auszulösen. In Java könnten Sie <span class="clisting">System.exit</span> aufrufen, in C++ kann der Aufruf von <span class="clisting">abort</span> oder <span class="clisting">exit</span> mit einem Fehlercode als Parameter verwendet werden. Dadurch wird das Programm direkt beendet, eine Behandlung von Exceptions kann nicht mehr stattfinden.</p>
+<p>Der einzige Vorteil dieser Vorgehensweise ist es, dass das Programm keinen weiteren Schaden mehr anrichten kann, weil es einfach direkt und unmittelbar beendet wird. Der sofortige Abbruch gleicht einem ehrenwerten Samurai, der sich seiner Unwürdigkeit bewusst wird und sich so für ein Seppuku entschließt. Kein gut gemeinter <span class="clisting">catch</span>-Block, der alle Exceptions fängt, kann ihn dazu bringen, in einem undefinierten Zustand weiterzumachen und so möglicherweise seinem Meister noch mehr Schaden zuzufügen.</p>
+<p><strong><em>Nachteile des sofortigen Abbruchs</em></strong></p>
+<p>Aber die Nachteile des unmittelbaren Abbruchs sind offensichtlich. Bei einem sofortigen Abbruch kann die Anwendung notwendige Aufräumarbeiten nicht mehr erledigen. Den belegten Speicherplatz gibt das Betriebssystem frei, es löscht auch die Locks an geöffneten Dateien. Wer löscht aber die temporären Dateien? Wer benachrichtigt den Webserver, dass die Session beendet ist? Eine geworfene Exception erlaubt der Anwendung einen geordneten Rückzug, indem sie vor ihrer Wiedergeburt den Frieden mit der Welt schließen kann.</p>
+<p>Ein weiterer Nachteil des sofortigen Abbruchs ist, dass er die Modularität des Programms verschlechtert. Eine Prozedur braucht nichts über das Programm zu wissen, in dem sie verwendet wird. Und wenn sie dieses Wissen nicht braucht, soll sie es auch nicht haben. Eine Prozedur, in der ein Programmierfehler festgestellt wurde, soll also nicht wissen, dass es in diesem Fall unsere Absicht ist, die Anwendung zu beenden. Vielleicht wird sie irgendwann in einer Anwendung verwendet, die ihre Teile besser isoliert und nur die Teile neu starten muss, in denen der Fehler aufgetreten ist. Wenn der sofortige Abbruch ausgelöst wird, sind solche Anpassungen nicht mehr möglich. [<span class="ckursiv">Code smell</span> lässt sich etwa mit »müffelnder Code« übersetzen. Martin Fowler hat den Begriff geprägt für Code, bei dem irgendetwas nicht in Ordnung ist, obwohl er in den meisten Situationen trotzdem funktioniert.
+] </p>
+<p><strong><em>Fangen aller Exceptions?</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Achtung Code Smell: catch(...) oder catch (Throwable)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Programmiersprachen, die Exceptions unterstützen, bieten in der Regel auch einen Mechanismus, um alle potenziell auftretenden Exceptions zu fangen. In C++ steht dafür das Statement <span class="clisting">catch(...)</span> zur Verfügung, in Java kann die Basisklasse aller Exceptions, Throwable, verwendet werden.</p>
+<p>Damit besteht auch die Möglichkeit, für bestimmte Programmteile jegliche Exception ohne Ansehen der konkreten Klassenzugehörigkeit einfach zu fangen und dann im Programmablauf weiterzumachen. Dieses Vorgehen ist ein starkes Indiz für problematischen Code, einen sogenannten Code Smell37. Ein <span class="clisting">catch</span>-Block dieser Art sollte entweder dafür sorgen, dass das Programm beendet wird, oder die Exception weiterwerfen, damit ein anderer Programmteil das erledigen kann. Einfach die Exception zu protokollieren und weiterzumachen führt dazu, dass auftretende Fehler und Kontraktverletzungen ignoriert werden. Die daraus resultierenden Folgefehler können wesentlich schwerwiegender und vor allem schwieriger zu finden sein.</p>
+</td>
+</tr>
+</table><br><p>Der unten stehende Java-Code »müffelt« also ziemlich stark:</p>
+<div class="listing"><pre class="prettyprint">try { 
+    // ... verschiedene Aktionen 
+} catch (Throwable t) { 
+    System.out.println(t.toString()); 
+}</pre></div>
+<p>Und auch der entsprechende C++-Code riecht nicht besser:</p>
+<div class="listing"><pre class="prettyprint">try { 
+    // ... verschiedene Aktionen 
+} catch (...) { 
+    cout &lt;&lt; "Non recoverable unexpected error"; 
+}</pre></div>
+<p>Beide Code-Stücke enthalten das Problem, dass sie alle möglichen Fehlerarten abfangen, diese aber weder behandeln noch die gefangene Exception weiterwerfen.</p><a id="mj05465a5863b658f1b916b7805e1ef3c9" name="mj05465a5863b658f1b916b7805e1ef3c9"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">7.6.4 Exceptions als Teil eines Kontraktes  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In Abschnitt 7.5.1, »Überprüfung von Kontrakten«, haben Sie gesehen, wie Kontrakte zwischen Klassen und Objekten formuliert werden können. Dabei werden unter anderem für den Aufruf von Operationen Vorbedingungen und Nachbedingungen festgelegt. Die Einhaltung der Vorbedingungen muss dabei durch den Aufrufer sichergestellt werden. Wenn diese eingehalten sind, sichert ein Objekt zu, dass anschließend die Nachbedingungen gelten.</p>
+<p>Nun, auch wenn der Aufrufer seinen Verpflichtungen nachgekommen ist und die Methode fehlerfrei implementiert wurde, kann es passieren, dass sie ihre Aufgabe nicht erledigen kann und scheitert. Damit müssen Sie bei jeder Methode rechnen, die Ressourcen nutzt, die außerhalb der Kontrolle des Programms stehen. Das Scheitern kann die Methode in diesem Fall dem Aufrufer durch das Werfen einer Exception signalisieren.</p>
+<p><strong><em>Kontrakte  
+formulieren</em></strong></p>
+<p>Wie aber lassen sich die Kontrakte, die das Verhalten bei einer Exception beschreiben, formulieren und formalisieren?</p>
+<p>Zunächst müssen wir hierfür klar machen, dass es ganz unterschiedliche Fehlersituationen sind, die in einem Programm entstehen können. Dabei sind zwei grundsätzliche Kategorien zu unterscheiden: Kontraktverletzungen durch Programmierfehler auf der einen Seite und bekannte Fehlersituationen, mit denen unser Programm umgehen kann, auf der anderen Seite.</p>
+<p><strong><em>Kontraktverletzungen durch  
+Programmierfehler</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Kontraktverletzungen durch Programmierfehler
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Programmierfehler entsteht dadurch, dass sich Methoden oder die Aufrufer von Operationen nicht entsprechend den Kontrakten verhalten, die für sie gelten. Wenn beim Ablauf einer Methode ein Programmierfehler festgestellt wird, kann das verschiedene Ursachen haben:</p>
+<ul class="gp">
+<li>Die Methode stellt fest, dass der Aufrufer sich nicht an seine Verpflichtungen aus dem Kontrakt hält. In diesem Fall liegt ein Programmierfehler bezüglich des Aufrufs der Operation vor. </li>
+</ul>
+<ul class="gp">
+<li>Die Methode stellt fest, dass die Umsetzungen der Operationen, die sie ihrerseits aufruft, sich nicht an deren Kontrakt halten. Es handelt sich also um einen Programmierfehler in den anderen Methoden. </li>
+</ul>
+<ul class="gp">
+<li>Die Methode selbst enthält einen Programmierfehler. </li>
+</ul>
+<ul class="gp">
+<li>Das Programm ist in einem inkonsistenten Zustand. Im Sinn eines Kontrakts heißt das, eine Invariante gilt zum aktuellen Zeitpunkt nicht. </li>
+</ul>
+</td>
+</tr>
+</table><br><p>Bei anderen Fehlern ist es aber schon bekannt, dass sie unter bestimmten Umständen auftreten können. Ein Programm muss mit diesen Fehlersituationen umgehen können.</p>
+<p><strong><em>Bekannte  
+Fehlersituationen</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Bekannte Fehlersituationen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bekannte Fehlersituationen sind solche, deren Behandlung im Programm vorgesehen ist. Beispiele für solche Fehler:</p>
+<ul class="gp">
+<li>Die externen Ressourcen, welche die Methode verwendet, stehen nicht zur Verfügung. Zum Beispiel kann eine Datei nicht geöffnet werden.</li>
+</ul>
+<ul class="gp">
+<li>Die Parameter beim Aufruf der Methode, obwohl sie den Bedingungen des Kontraktes entsprechen, können nicht verarbeitet werden. Ein Beispiel ist der Versuch, einen Eintrag in eine Tabelle einzufügen, dessen Primärschlüssel bereits belegt ist.  </li>
+</ul>
+<ul class="gp">
+<li>Die Operationen, welche die Methode aufruft, scheitern mit einer Exception, und die Methode selbst kann ohne die Ergebnisse der anderen Methoden ihre Aufgabe nicht erfüllen. </li>
+</ul>
+</td>
+</tr>
+</table><br><p>Es wäre ziemlich widersinnig, Kontrakte zwischen dem Aufrufer und der aufgerufenen Operation zu spezifizieren, die sich mit Programmierfehlern befassen. Die Kontrakte sollen uns grade helfen, Programmierfehler zu vermeiden, also sollte es unser Ziel sein, dass solche Programmierfehler in einem fertigen Programm nicht mehr auftauchen. Wenn uns die Umsetzung einer Operation beschreiben würde, dass sie aufgrund eines bestimmten Umsetzungsfehlers in manchen Situationen die Exception <span class="clisting">ProgrammingErrorException</span> wirft, würden wir dem zuständigen Programmierer mit gutem Recht sagen können: Dann beheb doch einfach den Fehler, anstatt in diesem Fall eine Exception zu werfen.</p>
+<p>Eine Methode kann und braucht also nicht zu versprechen, dass sie nie wegen eines Programmierfehlers scheitert. Einerseits ist dieses Versprechen sowieso immer implizit gegeben, anderseits dürfen Sie dem Versprechen nie glauben.</p>
+<p><strong><em>Kontrakt bezüglich Exception</em></strong></p>
+<p>Bei den als möglich bekannten Fehlern und den daraus resultierenden Exceptions sieht es anders aus. Eine Operation kann in zweierlei Hinsicht einen Kontrakt bezüglich Exceptions formulieren. Zum einen kann sie zusichern, dass sie in bestimmten Fehlersituationen eine ganz bestimmte Exception wirft. Zum anderen kann sie auch zusichern, dass sie bestimmte Exceptions unter gar keinen Umständen werfen wird. Im letzteren Fall hat ein Aufrufer den Vorteil, dass er sich um diese Exceptions auch auf keinen Fall kümmern muss.</p>
+<p>Beide Informationen können über eine Liste von Exception-Klassen angegeben werden, die von einer Operation ausgelöst werden können. Diese Liste wird über eine sogenannte <span class="clisting">throws</span>-Klausel einer Operation zugeordnet.</p>
+<p>Findet für bestimmte Klassen von Exceptions eine Überprüfung dieses Kontrakts durch den Compiler statt, werden diese in Anlehnung an die Java-Terminologie als <span class="ckursiv">Checked Exceptions</span> bezeichnet.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Checked Exceptions(überprüfte Exceptions)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Als Checked Exceptions<sup>38  </sup> werden solche Exception-Klassen bezeichnet, für die bereits zur Übersetzungszeit eines Programms Prüfungen stattfinden, die eine Behandlung der Exception erzwingen. Wird innerhalb einer Methode, welche die Operation <span class="clisting">myOperation</span> umsetzt, eine Exception vom Typ der Klasse <span class="clisting">CheckedException</span> geworfen, so muss diese entweder innerhalb der Methode wieder gefangen werden oder die Methode muss explizit deklarieren, dass sie diese Exception wirft. Deklariert die Operation <span class="clisting">myOperation</span>, dass sie eine Exception vom Typ <span class="clisting">CheckedException</span> wirft, so muss jede Methode, welche die Operation aufruft, diese Exception entweder fangen oder ebenfalls deklarieren, dass diese Exception geworfen wird.</p>
+</td>
+</tr>
+</table><br><p>Eine Methode, die eine Checked Exception in ihrer <span class="clisting">throws</span>-Klausel nicht aufführt, sichert damit zu, dass diese Checked Exception von ihr nie geworfen wird. Somit ist der Aufrufer von der Notwendigkeit befreit, solche Exceptions zu behandeln.</p>
+<p>Eine Operation kann im Rahmen des für sie gültigen Kontrakts versprechen, dass sie bestimmte Checked Exceptions nicht wirft. Sie tut es, indem sie diese Exceptions (oder ihre Oberklassen) nicht in ihrer <span class="clisting">throws</span>-Klausel angibt. Will oder kann eine Methode so eine Verpflichtung nicht übernehmen, muss sie alle Checked Exception-Klassen, die sie werfen möchte, in der <span class="clisting">throws</span>-Klausel aufzählen.</p>
+<p><strong><em>Checked Exceptions und Java</em></strong></p>
+<p>Betrachten wir ein einfaches Beispiel in der Programmiersprache Java, bei dem Checked Exceptions zum Einsatz kommen. In der Exception-Hierarchie von Java sind alle Exception-Klassen checked. Eine Ausnahme sind die Klasse <span class="clisting">RuntimeException</span> und ihre Unterklassen. In Listing 7.52 ist eine Situation dargestellt, in der ein Java-Compiler einen Fehler signalisieren würde.</p>
+<div class="listing"><pre class="prettyprint">class MyCheckedException extends Exception {     
+}</pre></div>
+<div class="listing"><pre class="prettyprint"> 
+public class CheckedExceptionExample { 
+ 
+    void eineOperation() { 
+        kritischeOperation(); 
+    } 
+ 
+    void kritischeOperation() {  
+        // ... 
+        if (!aktionIstMoeglich()) { 
+            throw new MyCheckedException();  
+        } 
+        // ... 
+    } 
+ 
+    private boolean aktionIstMoeglich() { 
+        return false; 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.52    </strong>Fehlerhafter Code mit Checked Exception</p>
+<p>In Zeile  wird eine neue Exception-Klasse deklariert. Als Unterklasse von Exception handelt es sich um eine Checked Exception. Innerhalb der Methode <span class="clisting">kritischeOperation</span> in Zeile  kann es dazu kommen, dass eine solche Exception geworfen wird (Zeile ). Ein Java-Compiler wird für diesen Code die Meldung generieren <span class="clisting">"Unhandled exception type MyCheckedException"</span>. Die Methode <span class="clisting">kritischeOperation</span> muss nämlich entweder die Exception fangen oder die Exception-Klasse in ihrer <span class="clisting">throws</span>-Klausel angeben. In Abbildung 7.62 ist zu sehen, dass zum Beispiel die Entwicklungsumgebung Eclipse in diesem Fall genau die beiden genannten Möglichkeiten zur Korrektur vorschlägt.</p>
+<div class="bildbox">
+<p><a name="IDAOETQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_049.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_049.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.62    </strong>Die IDE Eclipse und Checked Exceptions</p>
+<p>Wenn Sie die Exception nicht direkt behandeln können, ist also die Erweiterung der <span class="clisting">throws</span>-Klausel die einzige Alternative:</p>
+<div class="listing"><pre class="prettyprint">    void kritischeOperation() throws MyCheckedException { 
+        // ...</pre></div>
+<p>Im Fall unseres Beispiels verlagert dies allerdings nur das Problem, da nun der Aufruf aus <span class="clisting">eineOperation</span> heraus nicht mehr zulässig ist. <span class="clisting">eineOperation</span> ruft nämlich <span class="clisting">kritischeOperation</span> auf. Damit muss auch hier die Exception entweder gefangen oder die <span class="clisting">throws</span>-Klausel angepasst werden:</p>
+<div class="listing"><pre class="prettyprint">    void eineOperation() throws MyCheckedException { 
+        kritischeOperation(); 
+    }</pre></div>
+<p>Mit dieser Anpassung haben Sie die Aufgabe, die Exception zu behandeln, an die jeweiligen Aufrufer von <span class="clisting">eineOperation</span> delegiert.</p>
+<p><strong><em>Keine Checked Exceptions in C#</em></strong></p>
+<p>Der Mechanismus von Checked Exceptions wird in Java sehr intensiv genutzt. Bei anderen Sprachen wie zum Beispiel C# haben sich die Sprachdesigner explizit dagegen entschieden, diesen Mechanismus aufzunehmen. [Anders Hejlsberg, der Chefarchitekt der Sprache C#, begründet in einem Gespräch mit Bill Venners (<span class="ckursiv">http://www.artima.com/intv/handcuffs.html</span>), warum Checked Exceptions nicht in C# integriert wurden.
+]  Obwohl der Mechanismus der Checked Exceptions auf den ersten Blick sehr vernünftig aussieht, verursacht er in der Praxis oft mehr Probleme, als er löst.</p>
+<p>Eigentlich handelt es sich ja um eine einfache Idee: Es wird lediglich verlangt, dass eine Methode eine Exception entweder behandelt oder signalisiert, dass sie eine Behandlung der Exception nicht zusichern kann und das der Aufrufer tun muss.</p>
+<p>In den folgenden Abschnitten stellen wir deshalb an Java-Beispielen vor, auf welche Arten Checked Exceptions dort behandelt werden können und zu welchen Problemen das jeweilige Vorgehen führt. Dennoch müssen Sie gerade in Java mit den Checked Exceptions umgehen. Es ist dabei aber in der Praxis oft besser, die Checked Exceptions in andere Exceptions einzubetten, die selbst nicht überprüft werden.</p><a id="mjbf1f56f9665424db8d4cfc65f9adce59" name="mjbf1f56f9665424db8d4cfc65f9adce59"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">7.6.5 Der Umgang mit Checked Exceptions  <a href="#t2t37"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wenn Sie in einer Java-Methode eine Operation aufrufen, die in ihrer <span class="clisting">throws</span>-Klausel eine Checked Exception aufführt, müssen Sie in Ihrer Methode mit dieser Exception umgehen können. Ein Java-Compiler wird es Ihnen nicht erlauben, die benötigte Operation aufzurufen, wenn Sie nicht eine adäquate Behandlung der Exception vornehmen.</p>
+<p>Es gibt nun abhängig von der Art des Aufrufs und der Art der Exception verschiedene Möglichkeiten, was Sie tun können. Wenn Sie die Exception in Ihrer Methode so behandeln können, dass Sie trotz der Exception normal weiterarbeiten können, sind Sie natürlich aus dem Schneider. Sie können die Exception einfach fangen und dann weitermachen. Oft ist das aber nicht der Fall, und die Exception muss in irgendeiner Form weitergereicht werden. Bei Checked Exceptions bleiben Ihnen dann drei Möglichkeiten:</p>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>1.</strong></td>
+<td valign="top" width="100%" align="left"> Sie erweitern die throws-Klausel der Methode, so dass die Checked Exception darin enthalten ist.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>2.</strong></td>
+<td valign="top" width="100%" align="left"> Sie fangen die Exception und übersetzen sie in eine eigene Checked Exception.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>3.</strong></td>
+<td valign="top" width="100%" align="left"> Sie fangen die Exception und überführen sie in eine Exception, die nicht überprüft wird, eine Unchecked Exception.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<p>In den folgenden Abschnitten betrachten wir jeweils kurz die beschriebenen Möglichkeiten an Beispielen.</p>
+<h4 class="t4">Erweiterung der eigenen throws-Klausel</h4>
+<p>Die einfachste und schnellste Lösung, um mit einer Checked Exception umzugehen, ist die Erweiterung der eigenen <span class="clisting">throws</span>-Klausel. Wenn der Aufrufer die Exception nicht behandeln kann, führt diese Anpassung dazu, dass er die benötigte Operation nun aufrufen kann.</p>
+<p>Obwohl diese Vorgehensweise die einfachste ist, ist sie nicht ohne Probleme. Damit reichen Sie nämlich die internen Abhängigkeiten der Methodenimplementierung einfach weiter. Sie verlagern die Verantwortung, mit der Exception umzugehen, auf Ihre eigenen Aufrufer. Und da sich eine solche Abhängigkeit nicht aus der Spezifikation einer Operation ergibt, sondern aus der konkreten gewählten Umsetzung, wird die Art der Umsetzung relevant für die Schnittstelle. Wenn Sie die Implementierung später noch einmal ändern und eine andere Operation aufrufen, die wieder eine andere Checked Exception wirft, wären alle Ihre Aufrufer betroffen, wenn Sie diese einfach weiterreichen.</p>
+<p>Betrachten Sie dazu das Java-Beispiel aus Listing 7.53. Die dort aufgeführte Klasse <span class="clisting">CustomerProvider</span> benutzt JDBC, um den Zugriff auf eine Datenbank zu realisieren. Die dabei genutzte Operation <span class="clisting">executeQuery</span> in Zeile  enthält in ihrer <span class="clisting">throws</span>-Klausel die Klasse <span class="clisting">SQLException</span>. Diese gehört in Java zu den Checked Exceptions. Damit muss auch die Methode <span class="clisting">getCustomers</span> die Klasse in ihrer Liste führen, es resultiert die <span class="clisting">throws</span>-Klausel in Zeile .</p>
+<div class="listing"><pre class="prettyprint">public class CustomerFilter { 
+  public Customer getBestCustomer(CustomerProvider provider) 
+                    throws SQLException {  
+   Collection&lt;Customer&gt; customers = provider.getCustomers(); 
+    // ... weitere Aktionen 
+  } 
+} 
+ 
+public class CustomerProvider { 
+  ... 
+  public Collection&lt;Customer&gt; getCustomers() 
+                      throws SQLException {  
+    ResultSet rs = connection.executeQuery(...); 
+    // ... weitere Aktionen 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.53    </strong>Operationen mit Checked Exceptions</p>
+<p>Die Klasse <span class="clisting">CustomerFilter</span>, deren Methode <span class="clisting">getBestCustomer</span> den besten Kunden aussuchen soll, benutzt ein Exemplar von <span class="clisting">CustomerProvider</span>, das sie als Parameter bekommt, um an die Kundenliste zu kommen. Obwohl <span class="clisting">CustomerFilter</span> in keinerlei eigener Abhängigkeit zu JDBC steht, muss sie entweder die <span class="clisting">SQLException</span> behandeln, oder sie muss sie, wie in unserem Beispiel in Zeile , selbst in der <span class="clisting">throws</span>-Klausel deklarieren. In Abbildung 7.63 sind die entstehenden Abhängigkeiten aufgeführt.</p>
+<div class="bildbox">
+<p><a name="IDAIHTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_050.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_050.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.63    </strong>Abhängigkeiten durch erweiterte throws-Klausel</p>
+<p>Auch die Klasse <span class="clisting">CustomerProvider</span> weist nun eine Abhängigkeit zu <span class="clisting">SQLException</span> und damit zu JDBC auf. Das ist unangenehm, denn hier vermischen wir die Domäne der Kundenverwaltung mit der Domäne der JDBC-basierten Datenhaltung. Das fachliche Anliegen ist nicht mehr klar von den technischen Anliegen getrennt. Das läuft dem <span class="ckursiv">Prinzip der Trennung der Anliegen</span> zuwider.</p>
+<p>Die Option, Checked Exception einfach in die <span class="clisting">throws</span>-Klausel zu übernehmen, verlieren wir also, wenn die Domäne, die wir für die Implementierung einer Methode betreten, außerhalb der Domäne der Aufgabe liegt, die wir zu erfüllen haben. In unserem Beispiel benutzen wir die Methode <span class="clisting">executeQuery</span>, die in dem Bereich der JDBC-Datenhaltung liegt. Die Aufgabe der Methode <span class="clisting">getCustomers</span> liegt aber in dem Bereich Kundenverwaltung. Wir sollten den Quelltexten, die <span class="clisting">getCustomers</span> verwenden, die Abhängigkeit zu <span class="clisting">SQLException</span> und somit zu JDBC nicht aufzwingen. Eine Übernahme einer Exception in die eigene <span class="clisting">throws</span>-Klausel ist also nur dann anzuraten, wenn die Exception in derselben Domäne liegt wie die Methode, die Sie umsetzen.</p>
+<p>Eine Alternative zum einfachen Weiterreichen über die <span class="clisting">throws</span>-Klausel ist die sogenannte <span class="ckursiv">Exception Translation</span>.</p>
+<h4 class="t4">Exception Translation</h4>
+<p>Die Methode <span class="clisting">getCustomers</span> aus dem Beispiel in Listing 7.53 muss scheitern, wenn die verwendeten JDBC-Aufrufe scheitern. Wie Sie im vorigen Abschnitt gesehen haben, sollte <span class="clisting">getCustomers</span> aber keine <span class="clisting">SQLException</span> werfen. Sie kann allerdings eine Exception werfen, die der Domäne <span class="ckursiv">Kundenverwaltung</span> zugeordnet ist. Um dies zu verdeutlichen, haben wir in Abbildung 7.64 die Schnittstelle und die Implementierung klarer getrennt. Die Klasse <span class="clisting">CustomerProvider</span> ist nun eine Schnittstelle, zu der eine JDBC-spezifische Implementierung vorliegt. Diese wird über die Klasse <span class="clisting">JdbcCustomerProvider</span> realisiert. In der Abbildung ist die resultierende Klassenstruktur dargestellt.</p>
+<p>Die Abhängigkeit von <span class="clisting">CustomerProvider</span> und damit von <span class="clisting">CustomerFinder</span> zur <span class="clisting">SQLException</span> ist in dieser Variante beseitigt. Beide verwenden eine eigene Exception, die aus der Domäne <span class="ckursiv">Kundenverwaltung</span> stammt, nämlich <span class="clisting">CustomerException</span>.</p>
+<p>Der angepasste Quelltext für die Umsetzung der Operation <span class="clisting">getCustomers</span> ist in Listing 7.54 aufgeführt.</p>
+<div class="bildbox">
+<p><a name="IDAEJTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_051.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_051.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.64    </strong>Exception Translation und resultierende Abhängigkeiten</p>
+<div class="listing"><pre class="prettyprint">public class JdbcCustomerProvider implements CustomerProvider { 
+  public Collection&lt;Customer&gt; getCustomers() throws ð 
+CustomerException { 
+    try { 
+      ResultSet rs = connection.executeQuery(...); 
+      ... usw. ... 
+    } catch (SQLException sqle) {  
+        throw new CustomerException("Datenbankproblem!");  
+    } finally { 
+      // JDBC-Objekte schließen 
+      ... usw. ... 
+    } 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.54    </strong>Exception Translation für SQLException</p>
+<p>Eine auftretende <span class="clisting">SQLException</span> wird in Zeile  gefangen und in Zeile  in eine <span class="clisting">CustomerException</span> aus der eigenen Domäne übersetzt.</p>
+<p>Eine andere, zum Beispiel webbasierte, Implementierung <span class="clisting">HttpCustomerProvider</span> würde ihre internen Exceptions auch abfangen müssen und sie in <span class="clisting">CustomerExceptions</span> umwandeln. Dies wird durch die Schnittstelle <span class="clisting">CustomerProvider</span> erzwungen. Die Schnittstelle legt die Verpflichtung fest, keine anderen Checked Exceptions zu werfen als eine <span class="clisting">CustomerException</span>. Eine Implementierung der Schnittstelle kann keine Verpflichtung, die durch die Schnittstelle übernommen wurde, ablehnen. Sie kann sich aber zu mehr verpflichten und ihre <span class="clisting">throws</span>-Klausel leer lassen oder nur bestimmte Unterklassen von <span class="clisting">CustomerException</span> angeben.</p>
+<p>Diese Lösung der Exception Translation ist für viele Fälle anwendbar und ermöglicht es, eine Trennung zwischen unterschiedlichen Domänen auch in Bezug auf die Behandlung von Exceptions durchzuhalten. Allerdings wird der durch die Checked Exceptions geschlossene Kontrakt durch diesen Mechanismus häufig einfach umgangen.</p>
+<p>Im nächsten Abschnitt werden wir erläutern, warum auch die Exception Translation problematisch und eine Lösung unter Verwendung von normalen Unchecked Exceptions vorteilhaft sein kann.</p>
+<h4 class="t4">Eine Checked Exception als Unchecked Exception weiterreichen</h4>
+<p>Im vorigen Abschnitt haben wir die Exception <span class="clisting">CustomerException</span> in der Domäne <span class="ckursiv">Kundenverwaltung</span> vorgestellt. Diese domänenspezifische Exception kann grundsätzlich zwei Ursachen haben.</p>
+<p>Einerseits kann die Ursache tatsächlich in der Domäne <span class="ckursiv">Kundenverwaltung</span> liegen. Ein Beispiel für eine solche Ursache wäre, wenn Sie einen Kunden anlegen möchten, der noch nicht volljährig ist, und die Geschäftsbedingungen des Unternehmens lassen dies nicht zu. Eine Methode <span class="clisting">createCustomer</span> würde in diesem Falle eine <span class="clisting">CustomerException</span> werfen.</p>
+<p>Auch wenn die Ursache in der Domäne <span class="ckursiv">Kundenverwaltung</span> liegt, kann es trotzdem sein, dass der Fehler in einer anderen (technischen) Domäne festgestellt wird. Zum Beispiel kann ein Fehler beim Einfügen eines Datensatzes in der Datenbank bedeuten, dass eine Kundennummer bereits vergeben ist. In diesem Falle könnte die Methode <span class="clisting">createCustomer</span> die <span class="clisting">SQLException</span> abfangen und sie in eine <span class="clisting">CustomerException</span> übersetzen.</p>
+<p>Andererseits aber kann das Problem tatsächlich in der anderen, technischen Domäne liegen. Es kann sein, dass die Datenbank keinen Festplattenplatz mehr hat oder dass sie einfach überlastet ist oder dass der Datenbankserver gerade lichterloh brennt. Abbildung 7.65 zeigt einen solchen Fall.</p>
+<div class="bildbox">
+<p><a name="IDA4KTQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_052.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_052.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.65    </strong>Auslöser für eine ServerOnFireException</p>
+<p>Sie haben zwar die Schicht, in der die Datenhaltung geschieht, gekapselt und abstrahiert, aber Abstraktionen tendieren dazu, Lecks zu haben, [Diese These wird als <span class="ckursiv">Law of leaky Abstractions</span> von Joel Spolsky vertreten: <span class="ckursiv">http://www.joelonsoftware.com/articles/LeakyAbstractions.html</span>
+]  und Probleme in der Schicht der Datenhaltung werden hin und wieder auch in den anderen Schichten als solche sichtbar werden.</p>
+<p>Wenn der Datenbankserver brennt, lässt sich das kaum als eine sinnvolle Exception in der Domäne <span class="ckursiv">Kundenverwaltung</span> ausdrücken. Sie könnten zwar die <span class="clisting">SQLException</span> abfangen und eine nichts sagende <span class="clisting">CustomerException</span> werfen. Damit hätten Sie aber das Leck in der Abstraktion nicht behoben, Sie hätten es nur verschleiert &#8211; um letztendlich dem Benutzer eine Fehlermeldung der Art »Ein unerwarteter Fehler ist aufgetreten. [OK] [Cancel] [Dankeschön]« zu präsentieren.</p>
+<p>Damit berauben Sie den Benutzer der Chance, den tatsächlichen Fehler schnell zu identifizieren, ihn eventuell zu beheben und mit dem Feuerlöscher in den Serverraum zu rennen.</p>
+<p>Wenn ein Fehler auftritt, den Sie nicht einer Exception, die tatsächlich in unserer Domäne liegt, zuordnen können, sollten Sie diese Tatsache nicht verschleiern. Wenn dieser Fehler durch eine Checked Exception signalisiert wird, können und müssen Sie diese zwar in eine andere Exception übersetzen, Sie sollten die ursprüngliche Exception dabei aber nicht komplett ersetzen, sondern sie zumindest in die neue Exception einbetten.</p>
+<p>So gibt es zum Beispiel in Java Exceptions seit der Version 1.4 des JDK die Eigenschaft <span class="clisting">cause</span>, die im Konstruktor gesetzt werden kann und genau diesem Zweck dient. Mit diesem Mechanismus können Sie die ursprüngliche Exception in eine neue Exception einbetten. Der angepasster Quelltext ist in Listing 7.55 zu sehen.</p>
+<div class="listing"><pre class="prettyprint">public class JdbcCustomerProvider implements CustomerProvider { 
+  public Collection&lt;Customer&gt; getCustomers() 
+          throws CustomerException { 
+    try { 
+      ResultSet rs = connection.executeQuery(...); 
+      // ... 
+    } catch (SQLException sqle) { 
+      throw new CustomerException( 
+          "Datenbankproblem!", sqle); 
+    } finally { 
+      // JDBC-Objekte schließen 
+      // ... 
+    } 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.55    </strong>Eingebettete Exception in Java</p>
+<p>So weit, so gut. Sie werfen zwar eine <span class="clisting">CustomerException</span>, es ist aber in Wirklichkeit keine. Tatsächlich ist es eine verschleierte <span class="clisting">SQLException</span>, die Sie aber nicht direkt durchlassen dürfen, weil es der definierte Kontrakt verbietet.</p>
+<p>Sie haben also einen Weg gefunden, den Kontrakt zwar formal zu erfüllen, tatsächlich umgehen Sie ihn aber. Nicht gerade ein Zeichen hoher Moral, aber was bleibt Ihnen anderes übrig? Das System zwingt Sie zum Mogeln. Wäre <span class="clisting">SQLException</span> nicht checked, könnten Sie die Exception ganz offen durchlassen. So aber müssen sie diese in eine waschechte <span class="clisting">CustomerException</span> umwandeln.</p>
+<p>Den Kontrakt, der Sie dazu verpflichtet, keine <span class="clisting">SQLException</span> zu werfen, gibt es aus zwei Gründen: Sie wollen Ihrem Aufrufer die Mühe ersparen, dass er sich mit JDBC befassen muss. Und Sie wollen die Quelltextabhängigkeiten des direkten Aufrufers zu JDBC vermeiden. Schließlich kann es sein, dass er sonst gar nichts mit JDCB zu tun hat, es gibt ja keine logischen Abhängigkeiten zu JDBC.</p>
+<p>Die erste noble Absicht können Sie aber, wie sich gezeigt hat, leider nicht erfüllen. Die Abstraktionen haben Lecks, und Sie werden gezwungen, entweder die <span class="clisting">SQLException</span> unbehandelt einfach wegzufischen und sie durch eine <span class="clisting">CustomerException</span> zu ersetzen. Alternativ können Sie den Kontrakt auch beugen, indem Sie die <span class="clisting">SQLException</span> Ihrer <span class="clisting">throws</span>-Klausel hinzufügen und diese dann zum Aufrufer weiterreichen, wahrscheinlich noch weiter, bis zu einer Stelle, an der einem Benutzer dann die Exception angezeigt wird.</p>
+<p>Die zweite Absicht ist erfüllbar, und sie ist auch sehr wichtig. In den Quelltexten der Kundenverwaltungsschicht sollten tatsächlich keine JDBC-Bezüge stehen, wenn sie nicht unvermeidbar sind. Diese Absicht ließe sich aber mit viel weniger Tipparbeit erledigen, wenn Sie die <span class="clisting">SQLException</span> unchecked machen könnten.</p>
+<p>Bei <span class="clisting">SQLException</span> bleibt Ihnen nichts anderes übrig, aber wenn Sie eigene Exceptions definieren, spricht wenig dafür, diese als Checked Exceptions zu deklarieren.</p>
+<p>Die <span class="clisting">SQLExceptions</span> selbst ist checked, Sie können diese aber fangen und in eine Exception einbetten, die selbst nicht als checked deklariert ist. Dabei kann es sich je nach Bedarf der Anwendung um eine unspezifische <span class="clisting">SoftenedCheckedException</span> oder um eine spezifische <span class="clisting">SoftenedSQLException</span> handeln.</p><a id="mjd35575d7d7be5ba9875a7b50fa01d0d0" name="mjd35575d7d7be5ba9875a7b50fa01d0d0"></a><a name="t36"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t37"></a><h3 class="t3">7.6.6 Exceptions in der Zusammenfassung  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t36"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In den vorhergehenden Abschnitten haben Sie die verschiedenen Verwendungsmöglichkeiten von Exceptions kennen gelernt. In diesem Abschnitt finden Sie noch einmal eine kurze Zusammenfassung der vorgestellten Eigenschaften.</p>
+<ul class="gp">
+<li>Exceptions bieten einen etablierten und in vielen Fällen vorteilhaften Mechanismus zur Fehlerbehandlung. Sie verstecken die Pfade der Programmausführung im Fehlerfall und tragen so zur Übersichtlichkeit von Code bei.</li>
+</ul>
+<ul class="gp">
+<li>Exceptions können verwendet werden, um Verletzungen von Kontrakten beim Aufruf einer Operation zu signalisieren. Als Reaktion auf die Kontraktverletzung ist es meist notwendig, das betroffene Programm oder einen Programmteil neu zu starten. Die Verwendung von Exceptions erlaubt es, vorher abschließende Aufgaben durchzuführen, so dass Aufräumarbeiten vor dem Beenden möglich sind.</li>
+</ul>
+<ul class="gp">
+<li>Exceptions können auch selbst Teil des Kontrakts sein, der zwischen Aufrufer und Umsetzer einer Operation geschlossen wird.</li>
+</ul>
+<ul class="gp">
+<li>Die Checked Exceptions in Java ermöglichen das formelle Deklarieren eines Kontraktes zwischen dem Aufrufer und der Methode, indem sich die Methode verpflichtet, bestimmte Exceptions nicht zu werfen. Der Vorteil für den Aufrufer ist, dass er sich um solche Checked Exceptions nicht kümmern muss.</li>
+</ul>
+<ul class="gp">
+<li>Allerdings wird der Kontrakt in vielen Fällen nur formell eingehalten, und die ursprünglichen Checked Exceptions werden trotzdem geworfen, allerdings eingebettet in andere Checked oder Unchecked Exceptions. Die Verpflichtung des Kontraktes wird also häufig umgangen.</li>
+</ul>
+<ul class="gp">
+<li>Der Aufrufer kann oft auf den Vorteil, den er aus einem solchen Kontrakt ziehen könnte, verzichten, weil er die Exception durchaus behandeln könnte, indem er einfach dem Benutzer eine Fehlermeldung anzeigt.</li>
+</ul><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_07_006.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_005.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_08_001.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

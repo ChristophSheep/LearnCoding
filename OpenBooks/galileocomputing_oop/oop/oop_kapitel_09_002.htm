@@ -1,0 +1,685 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 9.2 Aspektorientiertes Programmieren</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 9.2 Aspektorientiertes Programmieren">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 9.2 Aspektorientiertes Programmieren">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_09_001.htm">
+<link rel="next" href="oop_kapitel_09_003.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_09_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_09_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73" class="navnav">9 Aspekte und Objektorientierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_001.htm#mj78bbe41d6052e596f380a32cbcde87fc" class="navnav">9.1 Trennung der Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_001.htm#mj3202a01a0f16461d2dcf2538c41045f7" class="navnav">9.1.1 Kapselung von Daten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_001.htm#mjabaf49447f557f766fce48f52bc5f934" class="navnav">9.1.2 Lösungsansätze zur Trennung von Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj309e7bff0d34f0b383d87b75c75e859a" class="navh">9.2 Aspektorientiertes Programmieren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj720e7f8df2912088f1d696c0f9b223bc" class="navh">9.2.1 Integration von aspektorientierten Verfahren in Frameworks</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj6b3ed5ab812a3c5283e5eb6dae2a91a9" class="navh">9.2.2 Bestandteile der Aspekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj20edd38c45c1b557bab3a5df290c4da2" class="navh">9.2.3 Dynamisches Crosscutting</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf0455268e97f15472aed064d45c1a0f2" class="navh">9.2.4 Statisches Crosscutting</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_003.htm#mj4e8777e76ed3abd16003da610c2e4fb9" class="navnav">9.3 Anwendungen der Aspektorientierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj9437623a0951fcf5d7d2ca5dd82953b4" class="navnav">9.3.1 Zusätzliche Überprüfungen während der Übersetzung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj2e79b3be4b26d4dc0b398732cd26b5fc" class="navnav">9.3.2 Logging</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj7ed70e732bd6f9f6224eb978223d840e" class="navnav">9.3.3 Transaktionen und Profiling</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj0c273b6c4bf0568d70f8862e7bba4377" class="navnav">9.3.4 Design by Contract</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mjc019b942674c4f95dfbf05ebd3dafd2a" class="navnav">9.3.5 Introductions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_003.htm#mj64be25e8cd08b89dcb1d4b89466e3e91" class="navnav">9.3.6 Aspektorientierter Observer</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_09_004.htm#mje8d5d04454aca569e147e717a2537fa9" class="navnav">9.4 Annotations</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_004.htm#mj6c8390288339f7aa89de173bbbbe35a5" class="navnav">9.4.1 Zusatzinformation zur Struktur eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_004.htm#mj4bc24ab65115a9307512cf40d385e31f" class="navnav">9.4.2 Annotations im Einsatz in Java und C#</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_09_004.htm#mjfda429a1743f505a522b2ac063ff9394" class="navnav">9.4.3 Beispiele für den Einsatz von Annotations</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj309e7bff0d34f0b383d87b75c75e859a" name="mj309e7bff0d34f0b383d87b75c75e859a"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">9.2 Aspektorientiertes Programmieren  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Aspektorientierte Mechanismen erweitern die objektorientierten Sprachen, indem sie definierte Verfahren anbieten, über die in die Struktur von Programmen eingegriffen werden kann. Die aktuellen Implementierungen der aspektorientierten Vorgehensweisen sind sehr unterschiedlich. Sie unterscheiden sich in ihrer Zielsetzung, ihrem Umfang und ihrer technischen Realisierung.</p><a id="mj720e7f8df2912088f1d696c0f9b223bc" name="mj720e7f8df2912088f1d696c0f9b223bc"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">9.2.1 Integration von aspektorientierten Verfahren in Frameworks  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Eine Basis für die aspektorientierte Vorgehensweise bilden die sogenannten Anwendungscontainer, in die immer häufiger Fähigkeiten der Aspektorientierung integriert werden.</p>
+<h4 class="t4">Container</h4>
+<p>Anwendungscontainer sind nicht notwendigerweise ein Framework, das die aspektorientierte Vorgehensweise generell ermöglicht, vielmehr übernehmen sie die Umsetzung bestimmter wichtiger technischer Aspekte wie Zugriffs- und Transaktionssicherheit, Persistenz, Lastverteilung und die Bereitstellung von verschiedenen Diensten.</p>
+<p>Die Container unterscheiden sich in der Art, in der sie mit den in ihnen laufenden Anwendungen kooperieren. Manche Container verlangen, dass die Anwendung nach bestimmten Mustern strukturiert wird, so dass sie dann nur in solchen Containern laufen kann. Auch wenn die Container eine große Hilfe bei der Trennung der ausgewählten technischen Anliegen von der fachlichen Aufgabe der Anwendung sind, zwingen sie die Anwendungsklassen, sich an bestimmte für sie spezifische Schnittstellen zu halten, und binden sie so an die Architektur der jeweiligen Containerspezifikation.</p>
+<p><strong><em>EJB-Container</em></strong></p>
+<p>Als ein Beispiel für solche Container in Java können die früheren Versionen der Enterprise Java Beans-Container dienen. Die fachliche Funktionalität der Enterprise Java Beans (EJB) ist von den technischen Aspekten, die von den EJB-Containern übernommen werden, im Wesentlichen getrennt. Die EJB sind aber von der EJB-API abhängig und können nur eingeschränkt ohne einen Container eingesetzt werden &#8211; auch wenn in bestimmten Kontexten die von den Containern bereitgestellten Aspekte gar nicht benötig werden.</p>
+<p>Andere Container fordern von den fachlichen Klassen keine speziellen Abhängigkeiten. Wenn die fachlichen Klassen innerhalb eines solchen Containers laufen, erhalten sie über den Container die Funktionalität bestimmter Aspekte zur Verfügung gestellt. Wenn allerdings Aspekte wie die Persistenz, die Sicherheit oder andere vom Container bereitgestellten Aspekte nicht benötig werden, können die fachlichen Klassen auch ohne den Container eingesetzt werden.</p>
+<p>Ein gutes Beispiel für eine erfolgreiche Umsetzung dieses Konzepts ist zum Beispiel das Framework Spring, das einen Container für Java-Klassen zur Verfügung stellt. Doch auch die neueren Spezifikationen der EJB bewegen sich in diese Richtung. So mussten zum Beispiel die persistenten Entity Beans vor der Version 3.0 der EJB-Spezifikation spezielle Schnittstellen implementieren. Ab der Version 3.0 der EJB-Spezifikation kann es sich um ganz einfache Java-Klassen handeln, die selbst nicht wissen müssen, dass sie in manchen Kontexten als EJB eingesetzt werden sollten.</p>
+<h4 class="t4">Aspektorientierte Frameworks</h4>
+<p>Im Gegensatz zu den Containern, die sich nur um bestimmte Aspekte kümmern und gleich deren Implementierung bereitstellen, besteht der Zweck von aspektorientierten Frameworks darin, den Programmierern die Entwicklung beliebiger Aspekte zu ermöglichen.</p>
+<p>Auch diese Frameworks unterscheiden sich bezüglich Umfang und der gewählten technischen Realisierung: Ändern sie das Programm während dessen Übersetzungszeit? Ändern sie die Klassen dynamisch während der Laufzeit des Programms, oder beschränken sie sich auf die Möglichkeiten von Reflexion und Introspektion?</p>
+<p>Mit der wachsenden Verbreitung und Popularität der Aspektorientierung werden immer mehr Container um solche generellen aspektorientierten Frameworks erweitert. Zum Beispiel bieten Spring oder JBoss [JBoss wurde ursprünglich als ein EJB-Container entwickelt. Mittlerweile unterstützt er neben der EJB-Funktionalität auch viele andere Bereiche. Das JBoss-AOP Framework kann auch außerhalb eines Containers verwendet werden, siehe auch <span class="ckursiv">http://labs.jboss.com/portal/jbossaop/index.html</span>. Informationen zu den AOP-Fähigkeiten von Spring finden sich unter <span class="ckursiv">http://www.springframework.org/docs/reference/aop.html</span>.
+]  auch den Einsatz von selbst entwickelten Aspekten an.</p><a id="mj6b3ed5ab812a3c5283e5eb6dae2a91a9" name="mj6b3ed5ab812a3c5283e5eb6dae2a91a9"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">9.2.2 Bestandteile der Aspekte  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Schauen wir uns die Konzepte der Aspektorientierung jetzt etwas näher an. Da sich im Deutschen noch keine allgemein akzeptierte Terminologie im Bereich der Aspektorientierung etabliert hat, werden wir für viele Konzepte lieber die im Englischen üblichen Bezeichnungen verwenden.</p>
+<p><strong><em>Crosscutting  
+Concerns  
+implementieren</em></strong></p>
+<p>Die aspektorientierte Vorgehensweise ermöglicht es, Anliegen, die sich kompakt und zusammenhängend spezifizieren lassen, auch kompakt und zusammenhängend zu implementieren. Und das auch, wenn sie Objekte verschiedener Klassen betreffen und so nach der puren objektorientierten Vorgehensweise in die Quelltexte vieler Module des Systems eingearbeitet werden müssten. Diese Anliegen werden übergreifende Anliegen, Crosscutting Concerns, genannt. Wir haben Sie bereits in Abschnitt 9.1 vorgestellt.</p>
+<p>Auch in den aspektorientierten Systemen werden die übergreifenden Anliegen in alle betroffenen Klassen eingearbeitet. Allerdings geschieht dies automatisiert, gesteuert durch die programmierten Aspekte. Den Prozess der Manipulation der Klassen durch die definierten Aspekte nennt man auch das <span class="ckursiv">Einweben</span> (engl. <span class="ckursiv">weave</span>) der Aspekte in das Geflecht der Klassen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Dynamisches Crosscutting, statisches Crosscutting
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Grundsätzlich unterscheiden wir zwei Arten der Manipulation von Klassen: </p>
+<ul class="gp">
+<li>Mit dem <span class="ckursiv">dynamischen</span> Crosscutting wird das Verhalten der Objekte modifiziert &#8211; es werden zusätzliche Schritte in die Ausführung der Methoden hinzugefügt. </li>
+</ul>
+<ul class="gp">
+<li>Durch das <span class="ckursiv">statische</span> Crosscutting werden die Strukturen des Programms selbst verändert. Einer Klasse können Sie hierdurch zusätzliche Datenelemente oder Methoden hinzufügen oder die Vererbungshierarchie anpassen. Wir können sogar teilweise die Programmiersprache selbst verändern, so dass bestimmte zusätzliche Übersetzungsüberprüfungen stattfinden.</li>
+</ul>
+</td>
+</tr>
+</table><br><a id="mj20edd38c45c1b557bab3a5df290c4da2" name="mj20edd38c45c1b557bab3a5df290c4da2"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">9.2.3 Dynamisches Crosscutting  <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p><strong><em>Interzeptor  
+Einschubmethode</em></strong></p>
+<p>Beim dynamischen Crosscutting erhalten Sie die Möglichkeit, eine Aktion innerhalb des Programms mit einer vorbereitenden Aktion oder einer abschließenden Aktion zu erweitern. Möglich ist es auch, die Aktion komplett durch eine neu definierte Aktion zu ersetzen, welche die ursprüngliche Aktion an einer definierten Stelle durchführt. Dabei kommen die sogenannten <span class="ckursiv">Interzeptoren</span> zum Einsatz.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Interzeptor (engl. Interceptor)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Interzeptoren unterbrechen den vorher definierten Programmfluss und klinken sich in dessen Ausführungspfad ein. An definierten Stellen kommen sogenannte Einschubmethoden zur Ausführung. </p>
+<p>Je nachdem, an welcher Stelle ein Interzeptor zum Einsatz kommt, werden die Methoden in <span class="clisting">before</span>-, <span class="clisting">after</span>- oder <span class="clisting">around</span>-Methoden unterschieden. </p>
+</td>
+</tr>
+</table><br><p><strong><em>Implementierung von Interzeptoren</em></strong></p>
+<p>Die aspektorientierten Frameworks haben mehrere Möglichkeiten, solche Interzeptoren zu implementieren. Sie können sie zum Beispiel während der Übersetzung der Quelltexte an den richtigen Stellen generieren. Eine andere Möglichkeit ist es, die Klassen zur Laufzeit zu modifizieren, so dass im Rahmen der Ausführung einer Methode jeweils entsprechende Interzeptoren aufgerufen werden. Eine technisch durchaus mögliche Lösung ist es auch, dynamisch Proxy-Klassen zu erzeugen, die statt der Originalklassen in der Anwendung verwendet werden. Aufrufe von Methoden auf den Proxy-Klassen können dann auf die Originalklassen umleiten, nachdem sie die <span class="clisting">before</span>- und bevor sie die <span class="clisting">after</span>-Einschubmethode ausgeführt haben.</p>
+<p>Um festzulegen, an welchen Stellen ein Interzeptor ausgeführt wird, werden die <span class="ckursiv">Joinpoints</span> verwendet.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Joinpoints
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Die Stellen, an denen Sie sich mit Interzeptoren in ein bestehendes Programm einklinken können, werden <span class="ckursiv">Joinpoints</span> genannt. Joinpoints können Methodenausführungen sein. Sie können aber auch andere Joinpoints definieren: die Zugriffe auf die Attribute eines Objekts, die Aufrufe der Operationen einer Klasse, die Erstellung von Objekten oder auch das Auslösen einer Exception. </p>
+</td>
+</tr>
+</table><br><p>Die ersten EJB-Container zum Beispiel konnten nur mit einem definierten Satz von Joinpoints umgehen und die EJB-Klassen und -Schnittstellen mussten diese Joinpoints explizit bereitstellen.</p>
+<p>Wir werden uns die verschiedenen Joinpoints gleich näher anschauen, zuerst beschreiben wir aber die anderen wichtigen Konstrukte einer aspektorientierten Anwendung.</p>
+<p>Die sogenannten <span class="ckursiv">Pointcuts</span> führen Joinpoints und Interzeptoren zusammen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Pointcut
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein <span class="ckursiv">Pointcut</span> definiert, an welchen konkreten Joinpoints Interzeptoren aufgerufen werden sollen. Während Joinpoints nur mögliche Einstiegspunkte für Interzeptoren definieren, legen Pointcuts fest, welche Joinpoints in einem konkreten Fall genutzt werden sollen. Ein Pointcut legt aber noch nicht fest, welche konkreten Interzeptoren verwendet werden.</p>
+</td>
+</tr>
+</table><br><p>Ein Pointcut kann mehrere Joinpoints beinhalten. Zum Beispiel können Sie einen Pointcut als »die Ausführung jeder Methode der Klasse <span class="clisting">Customer</span>, deren Name mit <span class="clisting">set</span> anfängt« definieren. Andererseits kann ein Joinpoint in mehreren Pointcuts enthalten sein. Sie können einen anderen Pointcut als »die Ausführung jeder öffentlichen Methode der Klasse <span class="clisting">Customer</span>« definieren. Die öffentliche Methode <span class="clisting">setName</span> wäre in beiden dieser Pointcuts enthalten.</p>
+<p>Nun fehlt uns aber noch ein Konstrukt, das auch festlegt, welche Interzeptoren denn verwendet werden sollen. Das erledigt ein <span class="ckursiv">Advice</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Advice
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein <span class="ckursiv">Advice</span> beschreibt, was wann an den Joinpoints eines Pointcuts passiert. Ein Advice ist also eine Anweisung, die festlegt, welche Interzeptoren an den durch einen Pointcut selektierten Joinpoints in den Programmfluss eingefügt werden und welcher Code an diesen Stellen ausgeführt wird. </p>
+</td>
+</tr>
+</table><br><p>Advices stellen damit einfach ein Stück Code dar, das die einzufügende Funktionalität repräsentiert.</p>
+<p>Mit den bisher definierten Begriffen können wir nun auch beschreiben, was einen Aspekt in der aspektorientierten Programmierung ausmacht.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Aspekt
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein <span class="ckursiv">Aspekt</span> fasst Pointcuts und Advices zusammen. So kann zum Beispiel ein Aspekt der Sicherheit aus mehreren konkreten Advices bestehen, die sich auf verschiedene Pointcuts beziehen. Zusätzlich kann ein Aspekt auch existierende Klassen modifizieren, indem er sogenannte Introductions definiert. Introductions werden wir in Abschnitt 9.2.4 vorstellen.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Beispiel</em></strong></p>
+<p>Bevor wir zu den verschiedenen Arten von Joinpoints kommen, betrachten wir am besten ein kurzes Beispiel, in dem Joinpoints, Pointcuts und Advices zu einem Aspekt zusammengefasst werden. In Listing 9.2 ist die Definition eines Aspekts in AspectJ, einer aspektorientierten Erweiterung zur Sprache Java, dargestellt.</p>
+<div class="listing"><pre class="prettyprint">public aspect Logging {   
+  pointcut toBeLogged() : 
+      execution (public * MyPackage.*(..));  
+ 
+  before(): toBeLogged() {  
+    System.out.println("Before " +                 
+       thisJoinPointStaticPart.toLongString());    
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 9.2    </strong>Definition eines einfachen Aspekts in AspectJ</p>
+<p>In Zeile  wird der Aspekt <span class="clisting">Logging</span> deklariert. Dieser beschreibt den technischen Aspekt der Protokollierung von Daten bei Methodenaufrufen. Der Aspekt definiert in Zeile  den Pointcut <span class="clisting">toBeLogged</span>. Betroffen ist die Ausführung (<span class="clisting">execution</span>) aller öffentlichen Methoden (<span class="clisting">public</span>) im Package <span class="clisting">MyPackage</span> (<span class="clisting">MyPackage.*</span>) mit beliebiger Parameterliste (<span class="clisting">(..)</span>). Dieser Pointcut legt damit die Menge der betroffenen Joinpoints fest. Ein Joinpoint ist dabei zum Beispiel die Ausführung einer konkreten Methode. Aus der Menge der möglichen Methodenausführungen selektiert der Pointcut diejenigen, bei denen die Methoden im Bereich <span class="clisting">MyPackage</span> deklariert wurden.</p>
+<p>Schließlich wird in Zeile  der zugehörige Advice festgelegt. Das ist der Code, der ausgeführt wird, wenn einer der Joinpoints erreicht wird, die durch den Pointcut <span class="clisting">toBeLogged</span> festgelegt werden. Im konkreten Fall handelt es sich um einen <span class="clisting">before</span>-Advice, der den Pointcut <span class="clisting">toBeLogged</span> verwendet.</p>
+<p>Der Code wird nun immer direkt in den mit  markierten Zeilen ausgeführt, bevor eine Methode ausgeführt wird, die im Bereich <span class="clisting">MyPackage</span> enthalten ist.</p>
+<h4 class="t4">Arten von Joinpoints</h4>
+<p>Prinzipiell kann man in die Programmstruktur an jeder beliebigen Stelle eingreifen &#8211; schließlich sind die Programme aus der Sicht eines Metaprogramms »nur« Daten. Doch die existierenden aspektorientierten Systeme können sich nur in bestimmte Arten von Joinpoints einklinken. Je nach System gibt es unterschiedliche Joinpoint-Arten, an denen Sie in das Programm eingreifen können. Die Joinpoints, deren Manipulation ein aspektorientiertes System ermöglicht, werden <span class="ckursiv">offen gelegte Joinpoints</span> (englisch <span class="ckursiv">Exposed Joinpoints</span>) genannt. Die meisten aspektorientierten Systeme legen die im Folgenden beschriebenen Joinpoints zumindest teilweise offen.</p>
+<ul class="gp">
+<li><span class="cfett">Ausführung einer Methode</span> (<span class="ckursiv">Method Execution</span>) 
+Dieser Joinpoint wird angesteuert, wenn eine konkrete Implementierung einer Methode einer Klasse ausgeführt wird. Ein Ausführungs-Joinpoint umfasst die Ausführung dieser Methode. Ein <span class="clisting">before execution</span>-Advice wird direkt vor dem Ausführen der Methode aktiviert, ein <span class="clisting">after execution</span>-Advice direkt danach. Ein <span class="clisting">aroundexecution-</span>Advice ersetzt die Ausführung der Methode. Wenn die Methode in einer Unterklasse überschrieben wird, so wird der Joinpoint nicht durchlaufen, es sei denn, die überschreibende Methode ruft die Originalmethode selbst auf. Da zum Beispiel eine abstrakte Methode keine Implementierung hat, kann man keinen Ausführungs-Joinpoint für diese Methode definieren.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Aufruf einer Operation</span> (<span class="ckursiv">Operation Call</span>) 
+Dieser Joinpoint liegt auf den Aufrufstellen einer Operation. Im Gegensatz zu den Ausführungs-Joinpoints geht es nicht um die konkrete Implementierung einer Methode, sondern um die Aufrufe der entsprechenden Operation. Also kann man durchaus einen Aufruf-Joinpoint auch für abstrakte Methoden definieren. Wenn für eine Methode sowohl ein Ausführungs- als auch ein Aufruf-Joinpoint durch entsprechende Advices ergänzt worden sind, dann werden die Advices in der folgenden Reihenfolge durchgeführt:</li>
+</ul>
+<div class="listing"><pre class="prettyprint">before call, before execution, die Methode selbst, after execution, after call</pre></div>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li>Wenn in einem <span class="clisting">before call</span>-Advice die Aufrufkette unterbrochen wird, zum Beispiel durch eine Exception, kann man verhindern, dass es zu der Ausführung der Methode und somit auch dem Erreichen des <span class="clisting">execution</span>-Joinpoints kommt.</li>
+</ul>
+</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Ausführung eines Konstruktors</span> (<span class="ckursiv">Constructor Execution</span>) <span class="cfett">und Aufruf eines Konstruktors</span> (<span class="ckursiv">Constructor Call</span>) 
+Diese Joinpoints umfassen die Erzeugung der Exemplare der Klassen. Je nach Programmiersprache kann und muss man unterscheiden, welchen Abschnitt des Konstruktionsvorganges eines Objekts der jeweilige Joinpoint umfasst.</li>
+</ul>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li>In Java zum Beispiel bewirkt der Aufruf eines Konstruktors, dass zuerst die Konstruktoren der Oberklassen in ihrer Vererbungshierarchie nacheinander ausgeführt werden, um schließlich den aufgerufenen Konstruktor auszuführen. In diesem Falle umfasst der <span class="clisting">constructor call</span>-Joinpoint die gesamte Konstruktion des Objekts, inklusive der Ausführung der Konstruktoren der Oberklasse; der <span class="clisting">constructor execution</span>-Joinpoint dagegen umfasst ausschließlich die Ausführung des Konstruktors der Klasse, nicht aber die Ausführung der Konstruktoren der Oberklassen.</li>
+</ul>
+</li>
+</ul>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li>Eng mit diesen Joinpoints sind in Java die <span class="ckursiv">Klassen-</span> und <span class="ckursiv">Objektinitialisierungs-Joinpoints</span> verbunden. Sie umfassen die Initialisierung der Klassen selbst beziehungsweise den Initialisierungsteil der Objekte, der außerhalb der Konstruktoren liegt.</li>
+</ul>
+</li>
+</ul>
+<ul class="gpeg">
+<li>
+<ul class="eg">
+<li>Ein <span class="clisting">before</span>- und ein <span class="clisting">after</span>-Advice an den <span class="clisting">constructor call</span>-Joinpoints aller Unterklassen einer Klasse wären also die Lösung für das Messen der Gesamtzeit, die für das Erstellen aller Exemplare einer Klasse und ihrer Unterklassen gebraucht wird.</li>
+</ul>
+</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Zugriff auf die Datenelemente</span> (<span class="ckursiv">Field Access</span>) 
+Diese Joinpoints umfassen auch das Lesen, das Ändern, das Erstellen und das Entfernen von Datenelementen der Exemplare einer Klasse. So können wir von <span class="clisting">field get</span>-, <span class="clisting">field set</span>-, <span class="clisting">field create</span>-, und <span class="clisting">field delete</span>-Joinpoints sprechen. In Java ist die Menge der Datenelemente, die ein Objekt hat, bereits zu Übersetzungszeit bekannt, somit können aus dieser Kategorie also nur die <span class="clisting">field get</span>- und <span class="clisting">field set</span>-Joinpoints existieren.</li>
+</ul>
+<p>Auch wenn die <span class="clisting">call-</span> und die Datenelement-Joinpoints innerhalb der Methoden liegen, lassen sie sich durch die Strukturelemente der Klassen beschreiben. Um sie definieren zu können, müssen wir nicht die Struktur der Methoden kennen. Um allerdings an diesen Joinpoints die entsprechenden Interzeptoren erstellen zu können, muss das aspektorientierte System die Struktur der Methoden analysieren und eventuell verändern.</p>
+<p>Natürlich kann man sich auch Joinpoints vorstellen, die sich nur durch die Struktur der Methoden selbst beschreiben lassen. So sind Joinpoints für den Zugriff auf lokale Variablen denkbar, für die Grenzen von <span class="clisting">for</span>-Schleifen oder in Java für die Grenzen der <span class="clisting">synchronized</span>-Blöcke. Uns ist zurzeit kein aspektorientiertes System bekannt, das solche Joinpoints offen legen würde.</p>
+<p><strong><em>Ausnahmebehandlung</em></strong></p>
+<p>Eine Ausnahme bildet hier die Ausnahmebehandlung. [Ausnahmsweise nennen wir hier die Exceptions deutsch »Ausnahmen«, nur aus reiner Freude an dem dadurch möglich gewordenen Wortspiel.
+]  Zum Beispiel sind in ApectJ, der aktuell populärsten aspektorientierten Erweiterung von Java, die <span class="clisting">catch</span>-Abschnitte offen gelegt.</p>
+<p><strong><em>AspectJ</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">AspectJ
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>AspectJ erweitert die Sprache Java um aspektorientierte Möglichkeiten. AspectJ selbst ist die Spezifikation dieser Erweiterung. Meistens wird jedoch auch die Umsetzung des Compilers für diese Spezifikation durch das AspectJ-Projekt damit gleichgesetzt. Diese Umsetzung von AspectJ erlaubt sowohl statisches als auch dynamisches Einweben von Aspekten. Zurzeit ist AspectJ die am weitesten verbreitete Variante von aspektorientierten Sprachen oder Spracherweiterungen. Personell besteht über Gregor Kiczales eine Kontinuität mit der Entwicklung von Metaobjekt-Protokollen. Gregor Kiczales war maßgeblich an der Entwicklung des Metaobjekt-Protokolls für das Common Lisp Object System beteiligt. Außerdem war er der Leiter des Teams, das AspectJ bei Xerox PARC entwickelte. Infomationen zu AspectJ finden Sie unter <span class="ckursiv">http://eclipse. org/aspectj/</span>.</p>
+<p>Neben AspectJ haben vor allem die Entwickler von Containern für Java-Anwendungen aspektorientierte Erweiterungen für die Sprache Java umgesetzt. So gibt es eine aspektorientierte Erweiterung, die zusammen mit dem Spring-Container entwickelt wurde (Spring-AOP), und eine Erweiterung, die für die Zusammenarbeit mit dem JBoss-Container umgesetzt wurde (JBoss-AOP). Beide Varianten sind aber auch eigenständig nutzbar.</p>
+</td>
+</tr>
+</table><br><h4 class="t4">Arten von Pointcuts</h4>
+<p>Es gibt verschiedene Arten von Pointcuts, jeder davon selektiert eine Menge der offen gelegten Joinpoints eines Programms. Jeder Pointcut spezifiziert eine Bedingung, die entscheidet, ob ein Joinpoint von diesem Pointcut erfasst wird oder nicht. Wir können diese Bedingungen auch miteinander kombinieren, so dass wir die Joinpoints, an deren Stelle ein Interzeptor erzeugt werden soll, ziemlich präzise bestimmen können.</p>
+<p>Grundsätzlich können wir zwischen zwei Arten von Pointcuts unterscheiden.</p>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>1.</strong></td>
+<td valign="top" width="100%" align="left"> Die statischen Pointcuts lassen sich bereits zur Übersetzungszeit der Anwendung bestimmen. Schon vor dem Programmstart können Sie die Stellen im Programm identifizieren, an denen die nötigen Interzeptoren eingefügt werden sollen.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>2.</strong></td>
+<td valign="top" width="100%" align="left"> Bei den dynamischen Pointcuts kann dagegen erst zur Laufzeit bestimmt werden, ob der hinzugefügte Interzeptor aktiviert werden soll.</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<p><strong><em>Statische  
+Pointcuts</em></strong></p>
+<p>Die statischen Pointcuts können zum Beispiel folgende Kriterien für die Selektion der Joinpoints anwenden:</p>
+<ul class="gp">
+<li>Die Art des Joinpoints. Ist es ein <span class="clisting">method call</span>-Joinpoint oder ein  <span class="clisting">field get</span>-Joinpoint?</li>
+</ul>
+<ul class="gp">
+<li>Die Klasse, um deren Methoden, Felder beziehungsweise Initialisierung es sich handelt. Ist es eine konkrete Klasse? Ist es eine Unterklasse einer Klasse? Endet der Name der Klasse auf <span class="clisting">Test</span>?</li>
+</ul>
+<ul class="gp">
+<li>Der Name und die Signatur der Methoden. Fängt der Name der Methode mit <span class="clisting">set</span> an? Hat die Methode bestimmte spezifizierte Argumenttypen? Hat sie einen Rückgabewert? Ist es eine öffentliche oder eine private Methode?</li>
+</ul>
+<ul class="gp">
+<li>Die Paketstruktur des Programms. Findet ein Aufruf im Paket <span class="clisting">A</span> oder in einem Unterpaket davon statt?</li>
+</ul>
+<p><strong><em>Dynamische Pointcuts</em></strong></p>
+<p>Alle diese Kriterien lassen sich bereits zur Übersetzungszeit bestimmen. Andere Kriterien sind jedoch nur zur Laufzeit bekannt. Die dynamischen Pointcuts können zum Beispiel folgende Kriterien anwenden:</p>
+<ul class="gp">
+<li>Gehört das aufrufende Objekte zu einer bestimmten Klasse?</li>
+</ul>
+<ul class="gp">
+<li>Gehört das aufgerufene Objekt zu einer bestimmten Klasse?</li>
+</ul>
+<ul class="gp">
+<li>Befindet sich das Programm an einer bestimmten Stelle seines Ablaufs?</li>
+</ul>
+<p>Wir werden uns die verschiedenen Arten von Pointcuts in Abschnitt 9.3 an Beispielen zur Anwendung der aspektorientierten Vorgehensweise anschauen.</p><a id="mjf0455268e97f15472aed064d45c1a0f2" name="mjf0455268e97f15472aed064d45c1a0f2"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">9.2.4 Statisches Crosscutting  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wir haben bereits erwähnt, dass die Funktionalität, die an Joinpoints ausgeführt werden kann, über sogenannte Advices beschrieben wird. Advices stellen in der Regel einfach ein Stück Code dar, das die einzufügende Funktionalität repräsentiert.</p>
+<p>Nun ist es aber durchaus möglich, dass die in einem Advice implementierte Funktionalität zusätzliche Daten braucht, die einem Objekt zugeordnet werden. Eine andere mögliche Anforderung ist es auch, dass wir die nach außen sichtbare Funktionalität einer Klasse erweitern möchten. Nehmen wir als Beispiel an, dass Sie alle Exemplare einer Klasse nach dem Observer-Muster beobachtbar machen möchten.</p>
+<p>Dazu müssen Sie die Definition der Klasse erweitern. Sie benötigen die sogenannten <span class="ckursiv">Introductions</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Introductions 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Introductions fügen in Klassendefinitionen neue Datenelemente und Methoden ein. Sie erweitern damit nachträglich eine bereits existierende Klasse. Eine spezielle Form von Introductions sind die sogenannten Mixins, die Sie bereits in Abschnitt 5.4.3, »Mixin-Module statt Mehrfachvererbung«, kennengelernt haben.</p>
+</td>
+</tr>
+</table><br><p>Neben den Mixins gibt es eine Reihe von weiteren Möglichkeiten zur Umsetzung von Introductions. Eine Variante von Introductions basiert auf der Veränderung der Klassenhierarchie. Damit können Sie in einem Aspekt zu einer Klasse nicht nur die nötigen Daten und Methoden hinzufügen, damit ihre Exemplare beobachtbar werden, Sie können sogar bestimmen, dass die Klasse eine Unterklasse einer andere Klasse, zum Beispiel von <span class="clisting">Observable</span>, werden soll.</p>
+<p><strong><em>Methoden 
+implementierung in Interfaces</em></strong></p>
+<p>Wenn Sie AspectJ verwenden, können Sie dabei sogar Methodenimplementierungen in explizite Schnittstellen (<span class="ckursiv">Interfaces</span>) einführen. Dies hilft Ihnen dabei, Schnittstellen von Klassen möglichst schmal zu halten, diese aber dennoch einfach nutzbar zu machen. Diese beiden Anforderungen sind grundsätzlich zunächst gegenläufig. Wir sprechen dabei von einer Abwägung zwischen minimalen und benutzerorientierten Schnittstellen. [Wir haben es hier (wieder) mit einer Begriffsprägung durch Martin Fowler zu tun. Er unterscheidet im Englischen zwischen <span class="ckursiv">Minimal Interface</span> und <span class="ckursiv">Human Interface</span>. Wir haben für Letzteres die Übersetzung »benutzerorientierte Schnittstelle« gewählt. Der zugehörige Artikel von Martin Fowler findet sich unter <span class="ckursiv">http://www.martinfowler.com/bliki/HumanInterface.html</span>.
+] </p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Minimale versus benutzerorientierte Schnittstellen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Bei der Definition einer abstrakten Schnittstelle verfolgt man zwei sich widersprechende Interessen.</p>
+<p>Einerseits möchte man nur das Nötigste spezifizieren, um die Entwicklung der Klassen, die diese Schnittstelle implementieren, zu erleichtern. Außerdem sollten die Operationen der Schnittstelle tatsächlich abstrakt sein und sich nicht auf die Aufrufe anderer Operationen abbilden lassen. Ließe sich eine Operation der Schnittstelle auf ihre anderen Operationen abbilden, würden alle Im-plementierungen dieser Schnittstelle den Code wiederholen.</p>
+<p>Andererseits, wenn die nicht abstrakten, aber häufig benutzten Operationen nicht in der Schnittstelle spezifiziert sind, wiederholt sich deren Implementierung an den Aufrufstellen.</p>
+<p>Nehmen wir als Beispiel die Schnittstelle einer nur lesbaren Liste, auf deren Elemente man über einen nullbasierten Index zugreifen kann. Um Ihre Schnittstelle komplett zu beschreiben, reichen zwei Operationen: <span class="clisting">get(i)</span>, die das Element an der <span class="clisting">i</span>-ten Stelle zurückgibt, und <span class="clisting">size()</span>, welche die Anzahl der Elemente liefert.</p>
+<p>Wenn wir aber häufig auf das letzte Element zugreifen, wäre es nett, die Methode <span class="clisting">last() { return get(size()-1); }</span> definieren zu können. Nun, diese Methode ist nicht abstrakt &#8211; sie lässt sich komplett auf die anderen Operationen der Schnittstelle abbilden. In einer Sprache wie Java, die keine Mehrfachvererbung der Implementierung zulässt, müsste man diese Methode entweder auf allen Aufrufstellen durch den Aufruf <span class="clisting">list.get (list.size()-1)</span> wiederholt ersetzen, oder man müsste sie in allen Klassen, welche die Schnittstelle implementieren, wiederholt ausprogrammieren.</p>
+<p>Weder die Minimalschnittstelle noch die »humane Schnittstelle« (mach es dem Aufrufer so einfach wie möglich) lösen unser Problem der Redundanzvermeidung.</p>
+<p>Wir könnten die Redundanz vermeiden, wenn wir die Schnittstelle als eine abstrakte Klasse mit der konkreten Methode <span class="clisting">last()</span> implementieren würden. In einer Programmiersprache ohne Mehrfachvererbung würden wir dadurch aber verhindern, dass die Unterklassen von anderen Klassen erben können. Sprachen mit der Mehrfachvererbung haben hier die Nase vorn.</p>
+<p>Die Fähigkeit von AspectJ, Schnittstellen um Methodenimplementierungen zu erweitern, hilft uns dabei, einen Kompromiss zwischen minimalen und benutzerorientierten Schnittstellen zu finden.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Zusätzliche  
+Warnungen und Fehlermeldungen</em></strong></p>
+<p>Ein anderer Anwendungsbereich von Introductions ist die Überprüfung zusätzlicher Bedingungen bei der Übersetzung von Programmen.</p>
+<p>In einem vernünftig entworfenen MVC-System würden Sie zum Beispiel verlangen, dass die Modell-Klassen nie direkt von den View-Klassen abhängig sind, sondern nur von einer abstrakten View- oder Observer-Schnittstelle.</p>
+<p>Durch die Spezifikation eines geeigneten Pointcuts könnten Sie alle Stellen finden, an denen aus dem Quelltext einer Modell-Klasse eine Methode einer konkreten View-Klasse aufgerufen wird. Die Existenz von Joinpoints, welche die Bedingungen dieses Pointcuts erfüllen, könnten Sie bei der Übersetzung des Programms als einen Fehler oder zumindest als eine Warnung signalisieren.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_09_002.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="9.2 Aspektorientiertes Programmieren"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_09_001.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_09_003.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

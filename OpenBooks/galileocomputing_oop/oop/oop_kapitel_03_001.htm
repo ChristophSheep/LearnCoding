@@ -1,0 +1,453 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 3 Die Prinzipien des objektorientierten Entwurfs</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 3 Die Prinzipien des objektorientierten Entwurfs">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 3 Die Prinzipien des objektorientierten Entwurfs">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_02_004.htm">
+<link rel="next" href="oop_kapitel_03_002.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_02_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_03_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="#mja6c3f342e440956adade4ec377b02c1a" class="navh">3 Die Prinzipien des objektorientierten Entwurfs</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj3779726901d09a441b65ad53bd5975d9" class="navh">3.1 Prinzip 1: Prinzip einer einzigen Verantwortung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_002.htm#mje61a2510fb2b5b517d72db623f2ffa3b" class="navnav">3.2 Prinzip 2: Trennung der Anliegen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_003.htm#mj637b1f986c2e9441d2d305cafc96f6ac" class="navnav">3.3 Prinzip 3: Wiederholungen vermeiden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_004.htm#mj887f0556cf1d83e4d56c5875b300fe87" class="navnav">3.4 Prinzip 4: Offen für Erweiterung, geschlossen für Änderung </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_005.htm#mjf3cd04445959793a762a62c9b9ff6c75" class="navnav">3.5 Prinzip 5: Trennung der Schnittstelle von der Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_006.htm#mjf155956d6de05131afd30434fd85e74f" class="navnav">3.6 Prinzip 6: Umkehr der Abhängigkeiten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_03_006.htm#mjc8b152bcef3e835d257ec67f78fbe37c" class="navnav">3.6.1 Umkehrung des Kontrollflusses</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_03_007.htm#mjabe2e315eab5476b96de870d159eb869" class="navnav">3.7 Prinzip 7: Mach es testbar</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main">
+<p class="anleser"><em>Prinzipien helfen uns, das Richtige zu tun. Dies gilt in der Softwareentwicklung genauso wie in unserem täglichen Leben. Wir müssen uns allerdings auch vor Prinzipienreiterei hüten und hin und wieder ein Prinzip beiseite legen können. In diesem Kapitel beschreiben wir die grundlegenden Prinzipien, die einem guten objektorientierten Softwareentwurf zugrunde liegen und warum ihre Einhaltung meistens eine gute Idee ist.</em></p><a id="mja6c3f342e440956adade4ec377b02c1a" name="mja6c3f342e440956adade4ec377b02c1a"></a><h1 class="t1">3 Die Prinzipien des objektorientierten Entwurfs</h1>
+<p>Software ist eine komplizierte Angelegenheit. Es ist nicht einfach, menschliche Sprache zu erkennen, einen Cache effektiv zu organisieren oder eine Flugbahn in Echtzeit zu berechnen. Mit dieser Art der Komplexität, Komplexität der verwendeten Algorithmen, beschäftigen wir uns in diesem Buch jedoch nicht.</p>
+<p><strong><em>Einfache Aufgaben &#8211; komplexe  
+Programme</em></strong></p>
+<p>Einen Text auszugeben, auf das Drücken einer Taste zu reagieren, Kundendaten aus einer Datenbank herauszulesen und sie zu bearbeiten &#8211; das sind einfache Programmieraufgaben. Und aus diesen einfachen Funktionen entstehen komplexe Programme. Unser Teufel steckt nicht im Detail, sondern in der großen Anzahl der einfachen Funktionen und der Notwendigkeit, diese zu organisieren.</p>
+<p><strong><em>Vorbereitung  
+auf Änderungen</em></strong></p>
+<p>Außerdem ändern sich die Anforderungen an Software in der Praxis sehr häufig. Auch das macht Softwareentwicklung zu einer komplizierten Angelegenheit, da wir immer auf diese Änderungen vorbereitet sein müssen.</p>
+<p>Es ist unsere Aufgabe &#8211; Aufgabe der Softwarearchitekten, Softwaredesigner und Softwareentwickler &#8211;, die Programme so zu organisieren, dass sie nicht nur für die Anwender, sondern auch für uns, als Beteiligte bei der Entwicklung von Software, beherrschbar werden und auch bleiben.</p>
+<p>In diesem Kapitel stellen wir Prinzipien vor, die bei der Beherrschung der Komplexität helfen. In den darauf folgenden Kapiteln werden wir zeigen, ob und wie diese Prinzipien in der objektorientierten Programmierung eingehalten werden können. Allerdings: Prinzipien kann man ja nie genug haben. Die Auflistung ist deshalb nicht vollständig, sie enthält aber die wichtigsten Prinzipien.</p><a id="mj3779726901d09a441b65ad53bd5975d9" name="mj3779726901d09a441b65ad53bd5975d9"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">3.1 Prinzip 1: Prinzip einer einzigen Verantwortung  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Das grundsätzliche Prinzip der Komplexitätsbeherrschung und Organisation lautet: <span class="ckursiv">Teile und herrsche</span>. Denn Software besteht aus Teilen.</p>
+<p>In diesem Kapitel wollen wir uns nicht mit spezifisch objektorientierten Methoden beschäftigen. Deswegen werden wir hier meistens nicht spezifisch über Objekte, Klassen und Typen schreiben, sondern verwenden stattdessen den Begriff <span class="ckursiv">Modul</span>.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Module
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Unter einem Modul versteht man einen überschaubaren und eigenständigen Teil einer Anwendung &#8211; eine Quelltextdatei, eine Gruppe von Quelltextdateien oder einen Abschnitt in einer Quelltextdatei. Etwas, was ein Programmierer als eine Einheit betrachtet, die als ein Ganzes bearbeitet und verwendet wird. Solch ein Modul hat nun innerhalb einer Anwendung eine ganz bestimmte Aufgabe, für die es die Verantwortung trägt. </p>
+</td>
+</tr>
+</table><br><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Verantwortung (Responsibility) eines Moduls 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Modul hat innerhalb eines Softwaresystems eine oder mehrere Aufgaben. Damit hat das Modul die Verantwortung, diese Aufgaben zu erfüllen. Wir sprechen deshalb von einer Verantwortung oder auch mehreren Verantwortungen, die das Modul übernimmt. </p>
+</td>
+</tr>
+</table><br><p><strong><em>Module und Untermodule</em></strong></p>
+<p>Module selbst können aus weiteren Modulen zusammengesetzt sein, den <span class="ckursiv">Untermodulen</span>. Ist ein Modul zu kompliziert, sollte es unterteilt werden. Ein mögliches Indiz dafür ist, dass der Entwickler das Modul nicht mehr gut verstehen und anpassen kann.</p>
+<p>Besteht ein Modul aus zu vielen Untermodulen, sind also die Abhängigkeiten zwischen den Untermodulen zu komplex und nicht mehr überschaubar, sollten Sie über die Hierarchie der Teilung nachdenken. Sie können dann zusammengehörige Untermodule in einem Modul zusammenfassen oder ein neues Modul erstellen, das die Abhängigkeiten zwischen den zusammenhängenden Untermodulen koordiniert und nach außen kapselt.</p>
+<p>Bevor wir uns die Beziehungen unter den Modulen genauer anschauen, betrachten wir zuerst die Module selbst und formulieren das Prinzip, das uns bei der Frage unterstützt, was wir denn in ein Modul aufnehmen sollen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Prinzip einer einzigen Verantwortung (Single Responsibility Principle)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Jedes Modul soll genau eine Verantwortung übernehmen, und jede Verantwortung soll genau einem Modul zugeordnet werden. Die Verantwortung bezieht sich auf die Verpflichtung des Moduls, bestimmte Anforderungen umzusetzen. Als Konsequenz gibt es dann auch nur einen einzigen Grund, warum ein Modul angepasst werden muss: Die Anforderungen, für die es verantwortlich ist, haben sich geändert. Damit lässt sich das Prinzip auch alternativ so formulieren: Ein Modul sollte nur einen einzigen, klar definierten Grund haben, aus dem es geändert werden muss.</p>
+</td>
+</tr>
+</table><br><p>Jedes Modul dient also einem Zweck: Es erfüllt bestimmte Anforderungen, die an die Software gestellt werden.</p>
+<p><strong><em>Code mit unklaren Aufgaben</em></strong></p>
+<p>Zumindest sollte es so sein. Viel zu oft findet man in alten, gewachsenen Anwendungen Teile von totem, nicht mehr genutztem Code, die nur deswegen noch existieren, weil einfach niemand bemerkt hat, dass sie gar keine sinnvolle Aufgabe mehr erfüllen. Noch problematischer ist es, wenn nicht erkennbar ist, welchen Zweck ein Anwendungsteil erfüllt. Es wird damit riskant und aufwändig, den entsprechenden Teil der Anwendung zu entfernen.</p>
+<p>Vielleicht kennen Sie eine verdächtig aussehende Verpackung im Kühlschrank der Kaffeeküche? Eigentlich kann der Inhalt nicht mehr genießbar sein. Aber warum sollten Sie es wegwerfen? Sie sind doch nicht der Kühlschrankbeauftragte, und außerdem haben Sie gehört, Ihr Boss solle den schwedischen Surströmming [Für diejenigen, die sich im Bereich skandinavischer Spezialitäten nicht auskennen: Surströmming ist eine besondere Konservierungsmethode für Heringe. Diese werden dabei in Holzfässern eingesalzen und vergoren. Nach der Abfüllung in Konservendosen geht die Gärung weiter, so dass sich die Dosen im Lauf der Zeit regelrecht aufblähen. Geschmackssache.
+]  mögen &#8211; warum sollten Sie das Risiko eingehen, den Boss zu verärgern?</p>
+<p>Sie sollten von Anfang an darauf abzielen, eine solche Situation gar nicht erst entstehen zu lassen, weder im Kühlschrank noch in der Software. Es sollte immer leicht erkennbar sein, welchem Zweck ein Softwaremodul dient und wem die Packung verdorbener Fisch im Bürokühlschrank gehört.</p>
+<div class="bildbox">
+<p><a name="IDAGGSQ"></a><a onClick="OpenWin('bilder/03_prinzipien_001.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein03_prinzipien_001.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 3.1    </strong>Ein Kühlschrank mit unklaren Verantwortlichkeiten</p>
+<p><strong><em>Vorteile des  
+Prinzips</em></strong></p>
+<p>Das <span class="ckursiv">Prinzip einer einzigen Verantwortung</span> hört sich vernünftig an. Aber warum ist es von Vorteil, diesem Prinzip zu folgen?</p>
+<p>Um das zu zeigen, sollten Sie sich vor Augen halten, was passiert, wenn Sie das Prinzip nicht einhalten. Die Konsequenzen gehen vor allem zu Lasten der Wartbarkeit der erstellten Software.</p>
+<p><strong><em>Anforderungen ändern sich.</em></strong></p>
+<p>Aus Erfahrung wissen Sie, dass sich die Anforderungen an jede Software ändern. Sie ändern sich in der Zeit, und sie unterscheiden sich von Anwender zu Anwender. Die Module unserer Software dienen der Erfüllung der Anforderungen. Ändern sich die Anforderungen, muss auch die Software geändert werden. Zu bestimmen, welche Teile der Software von einer neuen Anforderung oder einer Anforderungsänderung betroffen sind, ist die erste Aufgabe, mit der Sie konfrontiert werden.</p>
+<p>Folgen Sie dem <span class="ckursiv">Prinzip einer einzigen Verantwortung</span>, ist die Identifikation der Module, die angepasst werden müssen, recht einfach. Jedes Modul ist genau einer Aufgabe zugeordnet. Aus der Liste der geänderten und neuen Aufgaben lässt sich leicht die Liste der zu ändernden oder neu zu erstellenden Module ableiten.</p>
+<p><strong><em>Erhöhung der Wartbarkeit</em></strong></p>
+<p>Tragen jedoch mehrere Module dieselbe Verantwortung, müssen bei der Änderung der Aufgabe all diese Module angepasst werden. Das <span class="ckursiv">Prinzip einer einzigen Verantwortung</span> dient demnach der Reduktion der Notwendigkeit, Module anpassen zu müssen. Damit wird die Wartbarkeit der Software erhöht.</p>
+<p><strong><em>Erhöhung der Chance auf Mehrfachverwendung</em></strong></p>
+<p>Ist ein Modul für mehrere Aufgaben zuständig, wird die Wahrscheinlichkeit, dass das Modul angepasst werden muss, erhöht. Bei einem Modul, das mehr Verantwortung als nötig trägt, ist die Wahrscheinlichkeit, dass es von mehreren anderen Modulen abhängig ist, größer. Das erschwert den Einsatz dieses Moduls in anderen Kontexten unnötig. Wenn Sie nur Teile der Funktionalität benötigen, kann es passieren, dass die Abhängigkeiten in den gar nicht benötigten Bereichen Sie an einer Nutzung hindern. Durch die Einhaltung des <span class="ckursiv">Prinzips einer Verantwortung</span> erhöhen Sie also die Mehrfachverwendbarkeit der Module (auch Wiederverwendbarkeit genannt).</p>
+<p><strong><em>Diskussion: 
+Mehr Verantwortung, mehr Verwendungen?</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Dass die Wiederverwendbarkeit eines Moduls steigt, wenn ich ihm nur eine Verantwortung zuordne, ist nicht immer richtig. Wenn ich ein Modul habe, das viel kann, steigt doch auch die Wahrscheinlichkeit, dass eine andere Anwendung aus diesen vielen Möglichkeiten eine sinnvoll nutzen kann. Wenn ich also ein Modul schreibe, das meine Kundendaten verwaltet, diese dazu noch in einer Oracle-Datenbank speichert und gleichzeitig noch eine Weboberfläche zur Verfügung stellt, über die Kunden ihre Daten selbst administrieren können, habe ich doch einen hohen Wiederverwendungseffekt.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Wenn sich eine zweite Anwendung findet, die genau die gleichen Anforderungen hat, ist die Wiederverwendung natürlich so recht einfach. Aber was passiert, wenn jemand deine Oracle-Datenbank nicht benötigt und stattdessen MySQL verwendet? Oder seine Kunden gar nicht über eine Weboberfläche administrieren möchte, sondern mit einer lokal installierten Anwendung? In diesen Fällen ist die Wahrscheinlichkeit groß, dass die Abhängigkeiten zu Datenbank und Weboberfläche, die wir eingebaut haben, das Modul unbrauchbar machen. Wenn wir dagegen die Verantwortung für Kundenverwaltung, Speicherung und Darstellung in separate Module verlagern, steigt zumindest die Wahrscheinlichkeit, dass eines der Module erneut verwendet werden kann.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Du hast Recht. Eine eierlegende Wollmilchsau wäre vielleicht ganz nützlich, aber ich möchte mir nicht, nur um paar Frühstückseier zu bekommen, Sorgen wegen BSE und der Schweinepest machen müssen.</span><p>Abbildung 3.2 illustriert eine Situation, in der eine untrennbare Kombination eines Moduls aus Datenbank, Kunden- und Webfunktionalität nicht brauchbar wäre. Wenn die Module einzeln einsetzbar sind und so klar definierte Verantwortungen entstehen, könnte z. B. das Modul für die Kundendatenverwaltung in einer neuen Anwendung einsetzbar sein.</p>
+<div class="bildbox">
+<p><a name="IDA0QSQ"></a><a onClick="OpenWin('bilder/03_prinzipien_002.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein03_prinzipien_002.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 3.2    </strong>Mehrfachverwendung einzelner Module von Software</p>
+<p><strong><em>Regeln zur  
+Realisierung  
+des Prinzips</em></strong></p>
+<p>Wir stellen nun zwei Regeln vor, nach denen Sie sich richten können, um dem <span class="ckursiv">Prinzip einer einzigen Verantwortung</span> nachzukommen.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellentext">
+<ul class="gp">
+<li><span class="cfett">Regel 1: Kohäsion maximieren</span><br> 
+Ein Modul soll zusammenhängend (kohäsiv) sein. Alle Teile eines Moduls sollten mit anderen Teilen des Moduls zusammenhängen und voneinander abhängig sein. Haben Teile eines Moduls keinen Bezug zu anderen Teilen, können Sie davon ausgehen, dass Sie diese Teile als eigenständige Module implementieren können. Eine Zerlegung in Teilmodule bietet sich damit an.</li>
+</ul>
+<ul class="gp">
+<li><span class="cfett">Regel 2: Kopplung minimieren</span><br>
+Wenn für die Umsetzung einer Aufgabe viele Module zusammenarbeiten müssen, bestehen Abhängigkeiten zwischen diesen Modulen. Man sagt auch, dass diese Module gekoppelt sind. Sie sollten die Kopplung zwischen Modulen möglichst gering halten. Dies können Sie oft erreichen, indem Sie die Verantwortung für die Koordination der Abhängigkeiten einem neuen Modul zuweisen.</li>
+</ul>
+</td>
+</tr>
+</table><br><p>In Abbildung 3.3 sind zwei Gruppen von Modulen dargestellt. Der Grad der Kopplung ist in den beiden Darstellungen sehr unterschiedlich.</p>
+<div class="bildbox">
+<p><a name="IDAQSSQ"></a><a onClick="OpenWin('bilder/03_prinzipien_003.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein03_prinzipien_003.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 3.3    </strong>Module mit unterschiedlichem Grad der Kopplung</p>
+<p>In objektorientierten Systemen können Sie oft die Komplexität der Anwendung durch die Einführung von zusätzlichen Modulen reduzieren.</p>
+<p><strong><em>Vorsicht: Verschleierung von Abhängigkeiten</em></strong></p>
+<p>Hierbei sollten Sie aber darauf achten, dass Sie bestehende Abhängigkeiten durch die Einführung eines vermittelnden Moduls nicht verschleiern. Eine naive Umsetzung der geschilderten Regel könnte im Extremfall jegliche Kommunikation zwischen Modulen über ein zentrales Kommunikationsmodul leiten. Damit hätten Sie die oben dargestellte sternförmige Kommunikationsstruktur erreicht, jedes Modul korrespondiert nur mit genau einem weiteren Modul. Gewonnen haben wir dadurch allerdings nichts, im Gegenteil: Sie haben die weiterhin bestehenden Abhängigkeiten mit dem einfachen Durchleiten durch ein zentrales Modul verschleiert.</p>
+<p>Doch nach welchen Regeln sollten Sie vorgehen, um einen solchen Fehler nicht zu begehen? Hier können Ihnen die anderen Prinzipien eine Hilfe sein.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_03_001.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="3 Die Prinzipien des objektorientierten Entwurfs"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_02_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_03_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

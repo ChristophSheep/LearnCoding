@@ -1,0 +1,1189 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 5 Vererbung und Polymorphie</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 5 Vererbung und Polymorphie">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 5 Vererbung und Polymorphie">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_04_004.htm">
+<link rel="next" href="oop_kapitel_05_002.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_04_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="#mja0ce7d0f753d9cc45d224652305a1e14" class="navh">5 Vererbung und Polymorphie</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mje769296ccaf3ae315b0d51e75287d395" class="navh">5.1 Die Vererbung der Spezifikation</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj9593b3442d74dcb313fed8d0adfcfc86" class="navh">5.1.1 Hierarchien von Klassen und Unterklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf4a1d7882a3f31bce76f5fc0e36fe27a" class="navh">5.1.2 Unterklassen erben die Spezifikation von Oberklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjf24806ff4eeca6b9ec42217606b969bb" class="navh">5.1.3 Das Prinzip der Ersetzbarkeit </a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mjb47b8cf703b67dbc87a9e7fb9b8751c4" class="navh">5.1.4 Abstrakte Klassen, konkrete Klassen und Schnittstellen-Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj60d6f50d874cf992b1fbe672cc0a7d4a" class="navh">5.1.5 Vererbung der Spezifikation und das Typsystem</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mja01ba6ec04515aa1bd9707d45880ad9c" class="navh">5.1.6 Sichtbarkeit im Rahmen der Vererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_002.htm#mj34d525fdf8bf9b40cdbf2807b9bb2199" class="navnav">5.2 Polymorphie und ihre Anwendungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjc3ecdad3da1f241382712b9dc94960bb" class="navnav">5.2.1 Dynamische Polymorphie am Beispiel</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjf4754b5db8c6e16dccab007f73c3a48a" class="navnav">5.2.2 Methoden als Implementierung von Operationen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjcecc846fe8a9e04e80aaef4c72983098" class="navnav">5.2.3 Anonyme Klassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mj7d8e0a558bb121f6759f3cac9e60684b" class="navnav">5.2.4 Single und Multiple Dispatch</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_002.htm#mjf40bf0e266ddbbbdf13e9d8c595202da" class="navnav">5.2.5 Die Tabelle für virtuelle Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_003.htm#mje40df564b385a2f2ef85664fe5964be8" class="navnav">5.3 Die Vererbung der Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mj4775d703fdbfd6031f8317189db10135" class="navnav">5.3.1 Überschreiben von Methoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mj38e0fa066f121e7525f4ab5a0775c70a" class="navnav">5.3.2 Das Problem der instabilen Basisklassen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_003.htm#mjc3c0ce6022ae471884f1dbb63c77bc82" class="navnav">5.3.3 Problem der Gleichheitsprüfung bei geerbter Implementierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_004.htm#mj4744a80ac0ff520167d0124d73dba2b2" class="navnav">5.4 Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj24431884d901efc513af9f03f390f35b" class="navnav">5.4.1 Mehrfachvererbung: Möglichkeiten und Probleme</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj8be5a8d347008ce6a4243ad9b458d4dc" class="navnav">5.4.2 Delegation statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mjf93d2964b661c11e0412548a9486d31f" class="navnav">5.4.3 Mixin-Module statt Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_004.htm#mj079fb2023e60f4e9a4af05511c818fdf" class="navnav">5.4.4 Die Problemstellungen der Mehrfachvererbung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_05_005.htm#mje3cdab009c7e71d5ab9a4a88fee35441" class="navnav">5.5 Statische und dynamische Klassifizierung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_005.htm#mj854788ce700510087a70ffc87d35cb00" class="navnav">5.5.1 Dynamische Änderung der Klassenzugehörigkeit</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_05_005.htm#mja85bbac4fb34a5938c3be9f5c65d922c" class="navnav">5.5.2 Entwurfsmuster »Strategie« statt dynamischer Klassifizierung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main">
+<p class="anleser"><em>In diesem Kapitel erfahren Sie, wie Sie die Vererbung der Spezifikation im Zusammenspiel mit der Fähigkeit der dynamischen Polymorphie nutzen können, um Ihre Programme flexibler zu gestalten. Wir stellen zunächst Vererbung und Polymorphie vor, um dann an konkreten Aufgabenstellungen deren Möglichkeiten und Grenzen aufzuzeigen.</em></p><a id="mja0ce7d0f753d9cc45d224652305a1e14" name="mja0ce7d0f753d9cc45d224652305a1e14"></a><h1 class="t1">5 Vererbung und Polymorphie</h1>
+<p>In der objektorientierten Programmierung gibt es zwei unterschiedliche Konzepte, die beide als Vererbung bezeichnet werden.</p>
+<p><strong><em>Vererbung der Spezifikation</em></strong></p>
+<p>In diesem Abschnitt werden wir zunächst die Vererbung der Spezifikation betrachten. Diese ist eine der wichtigsten Techniken der Objektorientierung. Im Zusammenspiel mit der dynamischen Polymorphie, die Thema von Abschnitt 5.2 ist, stellt die Vererbung der Spezifikation das zentrale Modellierungsmittel der Objektorientierung dar.</p>
+<p><strong><em>Vererbung der Implementierung</em></strong></p>
+<p>In Abschnitt 5.3 stellen wir dann die Vererbung der Implementierung vor. Die Vererbung der Spezifikation und die Vererbung der Implementierung werden häufig pauschal unter dem Begriff der Vererbung zusammengefasst. Dabei sind die zugrunde liegenden Konzepte klar verschieden. Die Vererbung der Implementierung ist ein Mittel zur Vermeidung von Redundanzen, das aber wesentlich mehr konzeptuelle und praktische Probleme mit sich bringt als die Vererbung der Spezifikation.</p><a id="mje769296ccaf3ae315b0d51e75287d395" name="mje769296ccaf3ae315b0d51e75287d395"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">5.1 Die Vererbung der Spezifikation  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Bevor wir auf die Vererbung der Spezifikation zu sprechen kommen, beginnen wir zunächst mit der Einführung von Beziehungen zwischen Klassen.</p><a id="mj9593b3442d74dcb313fed8d0adfcfc86" name="mj9593b3442d74dcb313fed8d0adfcfc86"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">5.1.1 Hierarchien von Klassen und Unterklassen  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Bisher haben wir Klassen meist als Gruppierungen von gleichartigen Objekten betrachtet. Das ist für sich eine durchaus nützliche und praktikable Sicht.</p>
+<p>Die zentralen Mechanismen der Objektorientierung lassen sich jedoch erst nutzen, wenn auch Beziehungen zwischen Klassen möglich sind. Die wichtigste Beziehung, die zwischen zwei Klassen bestehen kann, ist, dass eine Klasse als Unterklasse einer anderen Klasse eingestuft wird.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Unterklassen und Oberklassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Klasse <span class="clisting">SpezielleKlasse</span> ist dann eine <span class="ckursiv">Unterklasse</span> der Klasse <span class="clisting">AllgemeineKlasse</span>, wenn <span class="clisting">SpezielleKlasse</span> die Spezifikation von <span class="clisting">AllgemeineKlasse</span> erfüllt, umgekehrt aber <span class="clisting">AllgemeineKlasse</span> nicht die Spezifikation von <span class="clisting">SpezielleKlasse</span>. Die Klasse <span class="clisting">AllgemeineKlasse</span> ist dann eine <span class="ckursiv">Oberklasse</span> von <span class="clisting">SpezielleKlasse</span>.</p>
+<p>Die Beziehung zwischen <span class="clisting">AllgemeineKlasse</span> und <span class="clisting">SpezielleKlasse</span> wird <span class="ckursiv">Spezialisierung</span> genannt. Die umgekehrte Beziehung zwischen <span class="clisting">SpezielleKlasse</span> und <span class="clisting">AllgemeineKlasse</span> heißt <span class="ckursiv">Generalisierung</span>.</p>
+</td>
+</tr>
+</table><br><p>In Abbildung 5.1 ist die UML-Darstellung dieser Beziehungen zwischen zwei Klassen aufgeführt.</p>
+<div class="bildbox">
+<p><a name="IDA5GSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_001.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_001.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.1    </strong>Darstellung von Unterklasse und Oberklasse in UML</p>
+<p>Diese Beziehungen können auch in komplexeren Hierarchien organisiert sein. So kann eine Klasse durchaus die Spezifikation von mehreren anderen Klassen erfüllen, also Unterklasse von mehreren Oberklassen sein. Auf der anderen Seite kann eine Oberklasse auch mehrere Unterklassen haben. In Abbildung 5.2 ist als Beispiel die Klasse <span class="clisting">Dokument</span> dargestellt.</p>
+<p>Die Klasse <span class="clisting">Dokument</span> ist Unterklasse der beiden Klassen <span class="clisting">Darstellbar</span> und <span class="clisting">Druckbar</span>. Sie ist aber auch Oberklasse der drei Klassen <span class="clisting">Arbeitsvertrag</span>, <span class="clisting">Kreditvertrag</span> und <span class="clisting">AGB</span>.</p>
+<div class="bildbox">
+<p><a name="IDATHSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_002.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_002.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.2    </strong>Mehrere Unter- und Oberklassen</p><a id="mjf4a1d7882a3f31bce76f5fc0e36fe27a" name="mjf4a1d7882a3f31bce76f5fc0e36fe27a"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">5.1.2 Unterklassen erben die Spezifikation von Oberklassen  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In Abschnitt 4.2.2, »Kontrakte: die Spezifikation einer Klasse«, haben wir erläutert, dass sich die Spezifikation einer Klasse aus den Vor- und Nachbedingungen für alle ihre Operationen zusammensetzt, ergänzt durch die für alle Exemplare der Klasse geltenden Invarianten. Eine Unterklasse erbt die Spezifikation ihrer Oberklasse. Damit gilt die Spezifikation der Oberklasse auch für die Unterklasse. Die Unterklasse ist an diese Spezifikation gebunden und kann sie nur auf klar definierte Weise modifizieren. Die Regeln für die Anpassung dieser Spezifikation stellen wir im nachfolgenden Abschnitt <a href="#Rxx_ref222307028">5.1.3</a> genauer vor.</p>
+<p>Unterklasse zu sein ist also mit einer Menge Verantwortung verbunden. Eine Unterklasse muss immer für die Verpflichtungen ihrer Oberklasse einstehen können.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Vererbung der Spezifikation  
+(Vererbung von Schnittstellen, engl. Interface Inheritance)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Unterklasse erbt grundsätzlich die Spezifikation ihrer Oberklasse. Die Unterklasse übernimmt damit alle Verpflichtungen und Zusicherungen der Oberklasse. Alternativ wird auch der Begriff <span class="ckursiv">Vererbung von Schnittstellen</span> benutzt. Verbung der Spezifikation drückt aber besser aus, dass eine Unterklasse die Verpflichtungen mit übernimmt, die sich aus der Spezifikation der Oberklasse ergeben. Es handelt sich eben nicht darum, einfach die Syntax einer Schnittstelle zu erben.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Beispiel zur  
+Vererbung der Spezifikation</em></strong></p>
+<p>Verdeutlichen wir diese doch recht abstrakte Definition an einem Beispiel. Werfen Sie dazu einen Blick auf die Benutzeroberfläche einer gewöhnlichen Anwendung. Sie besteht aus Fenstern, Dialogen, Menüs, dargestellten Tasten und anderen Steuerelementen, Bildern, Animationen, Geräuschen und einer ganzen Reihe von weiteren Elementen. Unsere Beispielaufgabe besteht darin, dem Benutzer zu ermöglichen, die Benutzeroberfläche an seine Bedürfnisse anzupassen. Er soll die Menüstruktur, die Tastenkürzel, die Symbolleisten und andere Steuerelemente an seinen Geschmack anpassen können. Er soll also die Steuerungsmöglichkeiten der Anwendung mit den Aktionen der Anwendung beliebig verknüpfen können. In Abbildung 5.3 ist eine Reihe von möglichen Steuerelementen exemplarisch dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAKRSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_003.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_003.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.3    </strong>Steuerelemente einer Anwendung</p>
+<p>In diesem kurzen Abschnitt lassen sich bereits zwei Klassen finden: die Klasse der <span class="ckursiv">Aktionen</span> und die Klasse der <span class="ckursiv">Steuerelemente</span>. Darüber hinaus gibt es in der Anwendung noch viele andere Klassen, mit denen Sie sich jetzt aber nicht zu beschäftigen brauchen. Schauen Sie sich stattdessen die Klasse der Steuerelemente genauer an. Zu dieser Klasse gehören die Menüs, die Symbolleistentasten, die Tastenkürzel, die Mausgesten und sogar die Befehle der Sprachsteuerung.</p>
+<p><strong><em>Gemeinsamkeiten von Steuerelementen</em></strong></p>
+<p>Alle diese Objekte &#8211; Exemplare der Klasse <span class="clisting">Steuerelement</span> &#8211; haben folgende Gemeinsamkeiten:</p>
+<ul class="gp">
+<li>Ihnen kann eine Aktion zugeordnet werden.</li>
+</ul>
+<ul class="gp">
+<li>Diese Aktion wird ausgelöst, wenn das Steuerelement aktiviert wird.</li>
+</ul>
+<ul class="gp">
+<li>Sie haben einen darstellbaren Namen, der dem Benutzer bei der Konfiguration der Oberfläche angezeigt wird.</li>
+</ul>
+<p><strong><em>Unterschiede  
+zwischen Steuerelementen</em></strong></p>
+<p>Doch sie haben nicht nur Gemeinsamkeiten, es bestehen auch ziemlich große Unterschiede zwischen den Steuerelementen. Den Menüs und den Symbolleistentasten kann man einen Namen, ein Symbol, einen erklärenden Text zuordnen, der dann in der Statuszeile erscheint, wenn man mit der Maus das Steuerelement berührt. Die Tastenkürzel, die Mausgesten und die Sprachsteuerungsbefehle haben diese Fähigkeiten nicht, dafür haben sie andere Fähigkeiten, welche die Menüs und die Symbolleistentasten nicht haben.</p>
+<p>Sie können die Klasse <span class="clisting">Steuerelement</span> also weiter unterteilen, und Sie können damit deren Exemplare weiter klassifizieren. Sie werden in diesem Beispiel feststellen, dass die Menüeinträge und die Symbolleistentasten sich nur durch die vom Benutzer zugewiesene Position unterscheiden. Deshalb ordnen Sie diese alle der Klasse <span class="clisting">Menü</span> zu, die anderen Steuerelemente ordnen Sie den Klassen <span class="clisting">Tastenkürzel</span>, <span class="clisting">Mausgeste</span> und <span class="clisting">Sprachbefehl</span> zu. In Abbildung 5.4 sind die Beziehungen zwischen den einzelnen Klassen dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAHSSQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_004.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_004.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.4    </strong>Steuerelemente und Aktionen</p>
+<p><strong><em>Unterklassen und Oberklassen</em></strong></p>
+<p>Die Klassen <span class="clisting">Menü</span>, <span class="clisting">Tastenkürzel</span>, <span class="clisting">Mausgeste</span> und <span class="clisting">Sprachbefehl</span> sind Unterklassen der Klasse <span class="clisting">Steuerelement</span>, die ihre Oberklasse ist. Die Klasse <span class="clisting">Steuerelement</span> beschreibt allgemein, was alle Steuerelemente der Anwendung gemeinsam haben. Die Klasse <span class="clisting">Steuerelement</span> einerseits und die Klassen <span class="clisting">Menü</span>, <span class="clisting">Tastenkürzel</span>, <span class="clisting">Mausgeste</span> und <span class="clisting">Sprachbefehl</span> andererseits stehen zueinander in einer Beziehung: Die Oberklasse <span class="clisting">Steuerelement</span> ist die Generalisierung der Unterklassen, die ihrerseits Spezialisierungen der Oberklasse sind.</p>
+<p><strong><em>Konformität</em></strong></p>
+<p>Jedes Exemplar einer der genannten Unterklassen ist gleichzeitig ein Exemplar der Oberklasse. Die Spezifikation der Klasse <span class="clisting">Steuerelement</span> gilt also für alle Exemplare jeder der genannten Unterklassen &#8211; sie sind also <span class="ckursiv">konform</span> mit der Spezifikation der Klasse <span class="clisting">Steuerelement</span>.</p>
+<p><strong><em>Vererbung der Spezifikation</em></strong></p>
+<p>Diese Konformität bezeichnen wir als Vererbung der Spezifikation. Die Unterklassen erben die Spezifikation ihrer Oberklassen. Damit hat die Unterklasse wie bereits gesehen zum einen eine große Verantwortung übernommen: Eine Unterklasse geht alle Verpflichtungen der Oberklasse ein. Aber wir haben auch viel gewonnen: Die Unterklasse kann nun an allen Stellen eingesetzt werden, an denen auch die Oberklasse verwendet werden kann.</p>
+<p><strong><em>Diskussion: Arbeitsverweigerung durch  
+Unterklasse</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Dass wir eine Unterklasse immer anstelle ihrer Oberklasse einsetzen können, ist nicht ganz richtig. Das kann ich dir mit ein paar Zeilen Java-Code skizzieren:</span><div class="listing"><pre class="prettyprint">class A { 
+    // macht etwas Sinnvolles 
+    void machwas() {System.out.println("ich mach ja schon");} 
+} 
+class B extends A{ 
+    // macht nix Sinnvolles 
+    void machwas() { throw new RuntimeException("nix mach ich");} 
+}</pre></div><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Es ist richtig, dass wir in deinem Beispiel ein Exemplar der Klasse <span class="clistingk">B</span> nicht anstelle eines Exemplars der Klasse <span class="clistingk">A</span> einsetzen können, da das Exemplar von <span class="clistingk">B</span> Arbeitsverweigerung betreibt. Aber das heißt einfach, dass <span class="clistingk">B</span> eben keine Unterklasse von <span class="clistingk">A</span> ist, auch wenn es durch die Modellierung in der Programmiersprache suggeriert wird. Nur weil du das Schlüsselwort <span class="clistingk">extends</span> hingeschrieben hast, muss das noch lange nicht heißen, dass wir wirklich eine Unterklasse vorliegen haben. Du hast einfach ein fehlerhaftes Design gebaut. Ich weiß natürlich, dass du ein solches Design nie wirklich verwenden würdest. Aber leider ist es ja nicht immer so offensichtlich, dass eine Klasse <span class="clistingk">B</span> eben keine Unterklasse einer Klasse <span class="clistingk">A</span> ist, sondern <span class="clistingk">A</span> nur technisch erweitert.</span><p>Anhand der kleinen Diskussion sehen Sie schon, dass die Frage, ob eine Klasse eine Unterklasse einer anderen Klasse ist, ganz zentral beim Design von objektorientierten Anwendungen ist. Gutes Design wird in echten Unterklassen resultieren, die auf jeden Fall dem <span class="ckursiv">Prinzip der Ersetzbarkeit</span> genügen, das wir im folgenden Abschnitt näher betrachten.</p><a id="mjf24806ff4eeca6b9ec42217606b969bb" name="mjf24806ff4eeca6b9ec42217606b969bb"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">5.1.3 Das Prinzip der Ersetzbarkeit   <a href="#t2t35"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> besagt, dass jedes Exemplar einer Klasse deren Spezifikation erfüllen muss. Das gilt auch dann, wenn das Objekt ein Exemplar einer Unterklasse der spezifizierten Klasse ist.</p>
+<p><strong><em>Exemplare von Unterklassen</em></strong></p>
+<p>Überall dort, wo in unserer Anwendung ein Exemplar der Klasse <span class="clisting">Steuerelement</span> erwartet wird, kann man Exemplare der Unterklassen verwenden, denn die Unterklassen erben alle Eigenschaften, die Funktionalität, die Beziehungen und die Verantwortlichkeiten der Oberklasse.</p>
+<p><strong><em>Trennung Schnittstelle von  
+Implementierung</em></strong></p>
+<p>Damit <span class="ckursiv">sind</span> die Exemplare der Unterklassen gleichzeitig Exemplare der Oberklasse in Bezug auf die der Oberklasse zugrunde liegende Spezifikation. Im Kontext funktioniert das natürlich nur, wenn Sie das <span class="ckursiv">Prinzip der Trennung der Schnittstelle von der Implementierung</span> auch von Seiten eines nutzenden Moduls einhalten. Ein nutzendes Modul darf sich nie auf Implementierungen des genutzten Moduls verlassen, sondern immer nur auf dessen Spezifikation.</p>
+<p>In Abbildung 5.5 ist dargestellt, dass das Objekt <span class="clisting">steuerung</span> (ein Exemplar von <span class="clisting">Aktionssteuerung</span>) mit einem Exemplar der Klasse <span class="clisting">Steuerelement</span> arbeitet.</p>
+<p>Da die Klassen <span class="clisting">Menü</span>, <span class="clisting">Tastenkürzel</span>, <span class="clisting">Mausgeste</span> und <span class="clisting">Sprachbefehl</span> alle Steuerelemente sind und die Spezifikation der Klasse <span class="clisting">Steuerelement</span> erfüllen, können deren Exemplare auch beliebig für das von <span class="clisting">steuerung</span> verwendete Steuerelement ersetzt werden.</p>
+<p><strong><em>Gemeinsame Funktionalität von Steuerelementen</em></strong></p>
+<p>Die Funktionen, die ein Steuerelement verwenden möchten, interessiert es nicht, ob es sich um das Menü »Neue Datei«, das Tastenkürzel <img src="common/icons/Alt.gif" align="top" alt="Taste Alt" title="Taste Alt"> + <img src="common/icons/N.gif" align="top" alt="Taste N" title="Taste N"> oder die Mausgeste »Links-Rechts« handelt, sie verwenden nur die allen Steuerelementen gemeinsame Funktionalität: einen darstellbaren Namen zu haben und einer auszulösenden Aktion zugeordnet sein zu können. Dabei kann die konkrete Umsetzung dieser Funktionalität für verschiedene Steuerelemente natürlich unterschiedlich sein, und sie können unterschiedliche, über die Basisfunktionalität hinausgehende Zusatzfunktionalität besitzen. Zum Beispiel kann der Benutzer den Namen der Menüs selbst bestimmen, der Name der Tastenkürzel ist aber fest und nicht änderbar.</p>
+<div class="bildbox">
+<p><a name="IDAXWSQ"></a><a onClick="OpenWin('bilder/05_05.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_05.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.5    </strong>Menüs, Tastenkürzel, Mausgesten und Sprachbefehle sind echte Steuerelemente.</p>
+<p>Sie haben hier ein fundamentales Prinzip der objektorientierten Systeme vorliegen: An jeder Stelle, an der ein Exemplar einer Oberklasse erwartet wird, kann auch ein Exemplar einer ihrer Unterklassen verwendet werden. Dieses Prinzip wird <span class="ckursiv">Prinzip der Ersetzbarkeit</span> genannt, auch als das Liskov´sche Substitutionsprinzip bekannt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Prinzip der Ersetzbarkeit
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn die Klasse B eine Unterklasse der Klasse A ist, dann können in einem Programm alle Exemplare der Klasse A durch Exemplare der Klasse B ersetzt worden sein, und es gelten trotzdem weiterhin alle zugesicherten Eigenschaften der Klasse A.</p>
+</td>
+</tr>
+</table><br><p>Der für die Oberklasse geschlossene Kontrakt mit Bezug auf Vorbedingungen, Nachbedingungen und Invarianten gilt also auch dann weiter, wenn Exemplare der Oberklasse durch Exemplare der Unterklasse ersetzt werden.</p>
+<p><strong><em>Diskussion:  
+Prinzip der  
+Ersetzbarkeit</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Das mit dem Prinzip der Ersetzbarkeit hört sich zwar ganz gut an, in der Praxis funktioniert es aber nicht immer.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Was meinst Du? Natürlich funktioniert es immer. Ein Exemplar einer Unterklasse ist doch gleichzeitig ein Exemplar der Oberklasse, also kann es überall dort verwendet werden, wo ein Exemplar der Oberklasse erwartet wird.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Eben nicht. Nehmen wir eine Umsetzung deines Beispiels in Java. Nehmen wir an, die Variable <span class="clistingk">element1</span> hält eine Referenz auf ein direktes Exemplar der Klasse <span class="clistingk">Steuerelement</span>. Wenn ich <span class="clistingk">element1.getClass(). getSimpleName()</span> aufrufe, bekomme ich die Zeichenkette »Steuerelement« zurück. Würde aber <span class="clistingk">element1</span> ein Exemplar der Klasse <span class="clistingk">Sprachbefehl</span> enthalten, liefert der gleiche Aufruf die Zeichenkette »Sprachbefehl«. Für bestimmte Operationen kann man sich also auf das Prinzip der Ersetzbarkeit nicht verlassen.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ich sehe, was du meinst. Aber trotzdem gilt das Prinzip der Ersetzbarkeit. Das Problem besteht in der Vermischung der fachlichen Konzepte mit deren technischer Umsetzung. In der fachlichen Definition der Klasse <span class="clistingk">Steuerelement</span> haben wir nicht beschrieben, dass deren Exemplare auf den Aufruf <span class="clistingk">getClass().getSimpleName()</span> mit der Zeichenkette »Steuerelement« antworten. Diese Eigenschaften gehören nicht zu der »Steuerelementigkeit« der Objekte, genauso wenig wie zum Beispiel die benötigte Speichergröße für ein Exemplar der Klasse. Die Funktionen, die Objekte der Klasse <span class="clistingk">Steuerelement</span> als solche verwenden und sich dabei auf das Prinzip der Ersetzbarkeit verlassen möchten, dürfen sich natürlich nur auf die Funktionalität der Klasse <span class="clistingk">Steuerelement</span> beziehen, die ihnen diese Klasse fachlich anbietet. Der Aufruf <span class="clistingk">getClass().getSimpleName()</span> gehört zum Beispiel nicht zu dieser fachlichen Funktionalität.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Na gut, aber was ist, wenn ich diese technischen Eigenschaften einer Klasse, wie du sie nennst, in die Beschreibung der Klasse aufnehme? Wird dann das Prinzip der Ersetzbarkeit nicht verletzt?</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Nein, das Prinzip sagt etwas anderes. Wenn ich als eine Eigenschaft der Exemplare der Klasse <span class="clistingk">Steuerelement</span> deklariere, dass der Aufruf <span class="clistingk">getClass().getSimpleName()</span> immer die Zeichenkette »Steuerelement« liefert, dann gehören die Exemplare der Klasse <span class="clistingk">Sprachbefehl</span> einfach nicht zu der Klasse <span class="clistingk">Steuerelement</span>. Die Klasse <span class="clistingk">Sprachbefehl</span> ist also in diesem Fall fachlich keine Unterklasse der Klasse <span class="clistingk">Steuerelement</span>, auch wenn die Sprache Java das anders sieht. Dadurch, dass du das Schlüsselwort <span class="clistingk">extends</span> in Java verwendest, hast du noch lange keine echte Unterklasse vorliegen. Eine Programmiersprache ist eben nur ein technisches Mittel, mit dem man bestimmte Konzepte umsetzen kann. Die Konzepte der Objektorientierung kann man in objektorientierten Sprachen wie Java sehr gut umsetzen, es heißt aber nicht, dass alle Konzepte immer direkt in die entsprechenden Konstrukte der Programmiersprache umgewandelt werden.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Na gut, ich sehe ein, dass technische Eigenschaften wie der Klassenname oder die benötigte Speichergröße nichts mit der fachlichen Funktionalität der Klasse <span class="clistingk">Steuerelement</span> zu tun haben. Trotzdem sind diese wichtig für andere Aspekte der Anwendung, zum Beispiel das Speichern einer Konfiguration.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Selbstverständlich. Nur handelt es sich hier nicht um die Verwendung der Objekte in deren Eigenschaft, ein Steuerelement zu sein. Also kann man nicht von einer Verletzung des Prinzips der Ersetzbarkeit sprechen.</span><p><strong><em>Unterklassen dürfen modifizieren</em></strong></p>
+<p>Eine Konsequenz aus dem <span class="ckursiv">Prinzip der Ersetzbarkeit</span> ist es, dass Unterklassen die Spezifikation, die sie von ihren Oberklassen erben, durchaus modifizieren können. Sie dürfen von einem Aufrufer aber nicht mehr fordern oder ihm weniger zusichern, als es die Oberklasse tut.</p>
+<p>Wenn das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> also nicht verletzt werden soll, dann kann für Exemplare von Unterklassen nur gelten, dass sie zwar mehr anbieten, aber nicht mehr verlangen als Exemplare ihrer Oberklassen. Dies gilt auch für den Kontrakt, den diese Exemplare von Unterklassen eingehen. Damit ergeben sich drei Konsequenzen für die Vorbedingungen, Nachbedingungen und Invarianten, die für eine Unterklasse gelten.</p>
+<p><strong><em>Die  
+Vorbedingungen</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Erste Konsequenz des Prinzips der Ersetzbarkeit für Unterklassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Unterklasse kann die Vorbedingungen für eine Operation, die durch die Oberklasse definiert wird, einhalten oder abschwächen. Sie darf die Vorbedingungen aber nicht verschärfen.</p>
+</td>
+</tr>
+</table><br><p>Falls eine Unterklasse die Vorbedingungen verschärfen würde, würde damit ohne Absprache mit den Partnern von diesen mehr verlangt als vorher.</p>
+<p><strong><em>Die  
+Nachbedingungen</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Zweite Konsequenz des Prinzips der Ersetzbarkeit für Unterklassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Unterklasse kann die Nachbedingungen für eine Operation, die durch eine Oberklasse definiert werden, einhalten oder erweitern. Sie darf die Nachbedingungen aber nicht einschränken.</p>
+</td>
+</tr>
+</table><br><p>Falls eine Unterklasse die Nachbedingungen lockern würde, würde diesen damit wieder ohne Absprache mit den Partnern des Kontrakts weniger geboten als vorher.</p>
+<p><strong><em>Invarianten</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Dritte Konsequenz des Prinzips der Ersetzbarkeit für Unterklassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Eine Unterklasse muss dafür sorgen, dass die für die Oberklasse definierten Invarianten immer gelten.</p>
+</td>
+</tr>
+</table><br><p>Die Partner des Kontrakts müssen sich auf die zugesicherten Invarianten verlassen können.</p>
+<p>Allerdings fordert das Prinzip nicht, dass durch die Ersetzung keine Verhaltensänderung eintritt. Natürlich wollen wir durch Einsatz von Unterklassen das Verhalten eines Programms ändern. Aber durch die Ersetzung bleiben die durch die Oberklasse zugesicherten Eigenschaften erhalten. Nach dem Aufruf von <span class="clisting">first()</span> auf einem Iterator gilt die Bedingung, dass anschließend der Iterator auf dem ersten Element einer Liste steht. Alle Unterklassen des Iterators sind ebenfalls an diese Bedingung gebunden.</p>
+<p><strong><em>Verletzung  
+des Prinzips</em></strong></p>
+<p>Nicht immer ist unmittelbar klar, dass das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> durch eine bestimmte Modellierung verletzt wird. Betrachten wir deshalb ein Beispiel, bei dem die Verletzung nicht auf den ersten Blick erkennbar ist. Die Klassenhierarchie in Abbildung 5.6 erscheint auf den ersten Blick plausibel.</p>
+<div class="bildbox">
+<p><a name="IDAO2SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_005.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_005.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.6    </strong>Verletzung des Prinzips der Ersetzbarkeit</p>
+<p><strong><em>Prüfung:  
+A ist ein B</em></strong></p>
+<p>Die Frage, ob ein Quadrat ein Rechteck ist, würden wir zunächst mit »Ja« beantworten. Klar, ein Quadrat ist ein Rechteck, und ein Kreis ist eine Ellipse, nur eben mit speziellen Bedingungen. Ein Quadrat ist eben ein spezielles Rechteck, und deshalb kann man es als Spezialisierung eines Rechtecks modellieren. [Robert C. Martin führt in einem Artikel, der ursprünglich im C++-Report erschienen ist, zum <span class="ckursiv">Prinzip der Ersetzbarkeit</span> das Beispiel zu Rechteck und Quadrat an. Wir verwenden es hier ebenfalls, weil es die grundlegende Problemstellung sehr plakativ verdeutlicht. Robert C. Martins Artikel findet sich unter http://www.objectmentor. com/resources/articles/lsp.pdf.
+]  Aber diese Prüfung alleine reicht eben nicht aus. Das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> fordert mehr, nämlich dass ein Quadrat in allen Kontexten an die Stelle eines Rechtecks treten kann.</p>
+<p><strong><em>Erweiterte  
+Prüfung:  
+Ersetzbarkeit</em></strong></p>
+<p>Aber ist das in unserem Fall wirklich gegeben? Wir haben der Klasse <span class="clisting">Rechteck</span> zwei Methoden <span class="clisting">skalierenX</span> und <span class="clisting">skalierenY</span> gegeben. Diese machen für ein Rechteck durchaus Sinn, denn sie skalieren jeweils das Rechteck in X- bzw. Y-Richtung. Einem Rechteck tut das auch überhaupt nicht weh. In der Abbildung sind auch die Vor- und Nachbedingungen für die Operation <span class="clisting">skalierenX</span> der Klasse <span class="clisting">Rechteck</span> angegeben.</p>
+<p>Nach dem <span class="ckursiv">Prinzip der Ersetzbarkeit</span> müssen diese beiden Operationen nun aber auch für ein Quadrat anwendbar sein. Aber was passiert, wenn Sie ein Quadrat lediglich in X-Richtung skalieren? Dann ist es aber ganz schnell vorbei mit der Quadrat-Eigenschaft, und Sie haben das Objekt in einen inkonsistenten Zustand gebracht. In diesem Fall gilt die in der Abbildung angegebene Invariante (<span class="clisting">laengeX = laengeY</span>) nicht mehr: Die Seitenlängen des Quadrats sind nicht mehr alle gleich.</p>
+<p><strong><em>Gründe für  
+Verletzung</em></strong></p>
+<p>Die Gründe, warum das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> von einer Unterklasse nicht eingehalten wird, können verschiedene sein. In der Regel ist es aber so, dass eine oder mehrere Operationen der Oberklasse nicht mehr anwendbar sind, weil sie zu einem Fehler oder zu einem inkonsistenten Zustand führen. Auch wenn Sie eine Methode, die in einer Basisklasse umgesetzt ist, in einer abgeleiteten Klasse leer überschreiben, liegt der Verdacht auf eine Verletzung des Prinzips nahe. In der Regel haben Sie dann die Basisklasse schlecht gewählt, da offensichtlich nicht alle Operationen von allen Unterklassen sinnvoll umgesetzt werden können.</p>
+<p>Sie sehen also, dass das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> klare Anforderungen an Klassenhierarchien stellt. Die Einhaltung des Prinzips ist eine zentrale Forderung, damit unsere Programme über den Einsatz von Unterklassen erweiterbar bleiben. In Abschnitt 7.5, »Kontrakte«, stellen wir weitere Beispiele dafür vor, wie das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> in der Praxis angewendet wird. Zunächst stellen wir aber die unterschiedlichen Arten vor, mit denen Klassen eine Schnittstelle und deren Umsetzung bereitstellen können.</p><a id="mjb47b8cf703b67dbc87a9e7fb9b8751c4" name="mjb47b8cf703b67dbc87a9e7fb9b8751c4"></a><a name="t34"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t35"></a><h3 class="t3">5.1.4 Abstrakte Klassen, konkrete Klassen und  
+Schnittstellen-Klassen  <a href="#t2t36"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t34"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wie wir bereits ausgeführt haben, sind Objekte in der Regel Exemplare von Klassen. Wir haben dabei nicht weiter eingeschränkt, von welchen Klassen es denn Exemplare geben kann. In diesem Abschnitt werden wir Klassen betrachten, von denen es gar keine Exemplare geben kann, und begründen, warum diese trotzdem sehr sinnvoll sein können.</p>
+<p><strong><em>Klassen mit  
+Spezifikationen</em></strong></p>
+<p>Es gibt Klassen, deren hauptsächliche Aufgabe darin besteht, eine Spezifikation bereitzustellen, die von Unterklassen geerbt werden kann. Diese werden für alle oder einen Teil der durch sie spezifizierten Operationen keine Methoden für deren Implementierung bereitstellen.</p>
+<p>Klassen können in dieser Hinsicht in drei Kategorien eingeteilt werden, abhängig davon, in welchem Umfang sie selbst für die von ihnen spezifizierte Schnittstelle auch Methoden bereitstellen:</p>
+<ul class="gp">
+<li>Konkrete Klassen</li>
+</ul>
+<ul class="gp">
+<li>Rein spezifizierende Klassen (Schnittstellen-Klassen)</li>
+</ul>
+<ul class="gp">
+<li>Abstrakte Klassen</li>
+</ul>
+<p>In den folgenden Abschnitten werden wir die drei Kategorien jeweils vorstellen. In Abbildung 5.7 sind im Überblick schon alle drei in UML-Notation zu sehen.</p>
+<p>Die Klasse <span class="clisting">ElektrischeLeitung</span> ist eine konkrete Klasse, <span class="clisting">Steuerelement</span> ist eine abstrakte Klasse, und <span class="clisting">Aktion</span> ist eine Schnittstellen-Klasse.</p>
+<h4 class="t4">Konkrete Klassen</h4><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Konkrete Klassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Konkrete Klassen stellen für alle von der Klasse spezifizierten Operationen auch Methoden bereit. Von konkreten Klassen können Exemplare erzeugt werden.</p>
+</td>
+</tr>
+</table><br><p>Wenn in einem Programm Objekte erstellt werden, müssen diese immer Exemplare einer konkreten Klasse sein. Die Klasse spezifiziert also &#8211; wie alle Klassen &#8211; selbst eine Schnittstelle, stellt aber auch für jede der darin enthaltenen Operationen konkrete Methoden zur Verfügung.</p>
+<div class="bildbox">
+<p><a name="IDAO5SQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_006.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_006.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.7    </strong>Konkrete Klasse, abstrakte Klasse und Schnittstellen-Klasse</p>
+<h4 class="t4">Schnittstellen-Klassen</h4><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Schnittstellen-Klassen (engl. Interfaces)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Schnittstellen-Klassen dienen alleine der Spezifikation einer Menge von Operationen. Sie stellen für keine der durch die Klasse spezifizierten Operationen eine Methode bereit. Von Schnittstellen-Klassen können keine Exemplare erstellt werden.</p>
+</td>
+</tr>
+</table><br><p>Schnittstellen-Klassen sind also Klassen, die keine Methoden implementieren. Sie stellen eine Spezifikation bereit, die von anderen Klassen geerbt werden kann.</p>
+<p>In UML wird eine Schnittstelle als eine Klasse des Stereotyps <span class="clisting">«interface»</span> oder <span class="clisting">«Schnittstelle»</span> dargestellt. Abbildung 5.8 zeigt ein einfaches Beispiel, das eine Schnittstelle <span class="clisting">ProtocolHandler</span> definiert. Die Schnittstelle umfasst zwei Operationen <span class="clisting">canHandle</span> und <span class="clisting">getContent</span>.</p>
+<div class="bildbox">
+<p><a name="IDAFBTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_007.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_007.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.8    </strong>Darstellung einer Schnittstelle in UML</p>
+<p><strong><em>Eine Klasse implementiert eine Schnittstelle.</em></strong></p>
+<p>Wenn eine Unterklasse einer Schnittstellen-Klasse Methoden für alle von der Schnittstelle spezifizierten Operationen bereitstellt, sprechen wir davon, dass diese Unterklasse die <span class="ckursiv">Schnittstelle implementiert</span>.</p>
+<div class="bildbox">
+<p><a name="IDANBTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_008.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_008.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.9    </strong>Die Klasse »HttpHandler« implementiert  
+die Schnittstelle »ProtocolHandler«.</p>
+<p>In Abbildung 5.9 sehen Sie die UML-Darstellung einer solchen implementierenden Klasse. Dabei implementiert die Klasse <span class="clisting">HttpHandler</span> die Schnittstelle <span class="clisting">ProtocolHandler</span>, weil sie für alle in der Schnittstelle enthaltenen Operationen Umsetzungen bereitstellt.</p>
+<p><strong><em>Einsatz</em></strong></p>
+<p>In den statisch typisierten Programmiersprachen werden rein spezifizierende Klassen benötigt, um Variablen und Parameter mit dem Typ der Schnittstelle verwenden zu können. Auch stellen rein spezifizierende Klassen eine sinnvolle Sicht in der Entwurfsphase von Software dar.</p>
+<p>In den dynamisch typisierten Programmiersprachen dagegen machen rein spezifizierende Klassen keinen Sinn. Eine Schnittstellen-Klasse wird in einem Programm benötigt, um als gemeinsamer Typ zu agieren für die Klassen, welche die Schnittstelle implementieren. In einer dynamisch typisierten Sprache werden diese Typen aber gar nicht deklariert, da es für eine rein spezifizierende Klasse keine Verwendung gibt.</p>
+<h4 class="t4">Abstrakte Klassen</h4>
+<p>Betrachten wir in diesem Abschnitt nun die abstrakten Klassen. Diese bilden eine Zwischenstufe zwischen den konkreten Klassen und den Schnittstellen-Klassen: Sie stellen in der Regel für einen Teil ihrer Operationen auch Methoden zur Verfügung.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Abstrakte Klassen
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Abstrakte Klassen stellen für mindestens eine der von der Klasse spezifizierten Operationen keine Methode bereit. Von einer abstrakten Klasse kann es keine direkten Exemplare geben. Alle Exemplare einer abstrakten Klasse müssen gleichzeitig Exemplare einer nicht abstrakten Unterklasse dieser Klasse sein.</p>
+</td>
+</tr>
+</table><br><p>Abstrakte Klassen können also für einen Teil der von ihnen spezifizierten Operationen eine Implementierung in Form von Methoden bereitstellen. Für die anderen Operationen werden die Methoden zwar auch deklariert, es wird jedoch keine Implementierung zur Verfügung gestellt. Diese Methoden werden auch abstrakte Methoden genannt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Abstrakte Methoden
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Abstrakte Methoden sind ein programmiersprachliches Konstrukt, das es erlaubt, eine Operation für eine Klasse zu definieren, ohne dafür eine Methodenimplementierung zur Verfügung zu stellen. Eine abstrakte Methode ist also eine Methode, die keine Implementierung hat. Sie dient nur zur Spezifikation einer Operation. Eine Implementierung für die durch die abstrakten Methoden deklarierten Operationen stellen dann die konkreten Unterklassen bereit.</p>
+</td>
+</tr>
+</table><br><p>Abstrakte Methoden sind damit eigentlich nichts anderes als Deklarationen von Operationen. Da sich diese in den Programmiersprachen nicht unbedingt von den Deklarationen von Methoden unterscheiden, sprechen wir in diesem Fall von abstrakten Methoden.</p>
+<p><strong><em>Beispiel für  
+abstrakte Klasse</em></strong></p>
+<p>Betrachten wir ein Beispiel, bei dem eine Kombination von abstrakten und nichtabstrakten Methoden sinnvoll ist. Nehmen Sie dafür an, dass Sie eine Klasse von geometrischen Formen umsetzen wollen. Die Formen sollen alle auf dem Bildschirm darstellbar und es soll ein Verschieben der Formen möglich sein.</p>
+<p>Eine Operation <span class="clisting">verschieben</span> können Sie bereits in der Oberklasse <span class="clisting">GeometrischeForm</span> implementieren, denn der Ablauf ist immer gleich:</p>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>1.</strong></td>
+<td valign="top" width="100%" align="left"> Die geometrische Form verstecken</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>2.</strong></td>
+<td valign="top" width="100%" align="left"> Die Koordinaten ändern</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>3.</strong></td>
+<td valign="top" width="100%" align="left"> Die geometrische Form auf der neuen Position anzeigen</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<p>Doch wie können Sie die Operationen <span class="clisting">verstecken</span> und <span class="clisting">anzeigen</span> implementieren, ohne den konkreten Typ der geometrischen Form zu kennen? Ein Kreis wird doch anders als ein Viereck dargestellt. Diese Methoden können also nur in den jeweiligen Unterklassen implementiert werden können. In Abbildung 5.10 sind die entsprechenden Klassen mit ihren Operationen dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDANETQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_009.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_009.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.10    </strong>Realisierung von abstrakten Methoden</p>
+<p><strong><em>Statisch typisierte Sprachen</em></strong></p>
+<p>In statisch typisierten Programmiersprachen wie C++, C# oder Java müssen Sie jede Operation, die Sie aufrufen möchten, deklarieren. Sie müssen also deklarieren, dass alle Exemplare der Klasse <span class="clisting">GeometrischeForm</span> die Operation <span class="clisting">verstecken</span> und <span class="clisting">anzeigen</span> unterstützen, ohne sie in der Klasse <span class="clisting">GeometrischeForm</span> zu implementieren. Dies geschieht darüber, dass die Klasse <span class="clisting">GeometrischeForm</span> die Methoden <span class="clisting">verstecken</span> und <span class="clisting">anzeigen</span> als abstrakte Methoden deklariert.</p>
+<p>Der Java-Quelltext für die Klasse <span class="clisting">GeometrischeForm</span> ist in Listing 5.1 aufgeführt.</p>
+<div class="listing"><pre class="prettyprint">public abstract class GeometrischeForm { 
+    protected int x; 
+    protected int y; 
+    protected Graphics2D graphics; 
+ 
+    ... // Teile des Quelltextes weggelassen 
+ 
+    public abstract void verstecken(); 
+    public abstract void anzeigen(); 
+ 
+    public void verschieben(int xNeu, int yNeu) { 
+        verstecken(); 
+        x = xNeu; 
+        y = yNeu; 
+        anzeigen(); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.1    </strong>Umsetzung der abstrakten Klasse »GeometrischeForm« in Java</p>
+<p>In unserem Beispiel deklarieren Sie also zwei <span class="ckursiv">abstrakte Methoden</span> <span class="clisting">verstecken</span> und <span class="clisting">anzeigen</span> in der Klasse <span class="clisting">GeometrischeForm</span>, die dann in der Methode <span class="clisting">verschieben</span> verwendet werden können. Durch die Deklaration der Methoden verspricht die Klasse <span class="clisting">GeometrischeForm</span>, dass alle ihre Exemplare diese zwei Operationen unterstützen. Die Klasse <span class="clisting">GeometrischeForm</span> erfüllt dieses Versprechen jedoch nicht selbst, dafür müssen ihre Unterklassen geradestehen.</p>
+<p>Da die Klasse <span class="clisting">GeometrischeForm</span> aber keine eigene Implementierung der zwei abstrakten Methoden bereitstellt, kann es keine Exemplare direkt von dieser Klasse geben. Alle Exemplare müssen zu Unterklassen gehören, die jeweils eine Implementierung für die beiden abstrakten Methoden bereitstellen. Dies macht die Klasse <span class="clisting">GeometrischeForm</span> zu einer <span class="ckursiv">abstrakten Klasse</span>.</p>
+<p>In unserem Beispiel realisiert zum Beispiel die Klasse <span class="clisting">Kreis</span> beide abstrakten Methoden. Damit ist die Klasse <span class="clisting">Kreis</span> eine konkrete Klasse, wir können Exemplare von ihr erzeugen.</p>
+<p>In Listing 5.2 ist die Umsetzung der konkreten Unterklasse <span class="clisting">Kreis</span> ausgeführt.</p>
+<div class="listing"><pre class="prettyprint">class Kreis extends GeometrischeForm { 
+ 
+    protected int radius; 
+ 
+    ... 
+ 
+    public void verstecken() { 
+        graphics.hideOval(x, y, radius, radius); 
+    } 
+    public void anzeigen() { 
+        graphics.drawOval(x, y, radius, radius); 
+    } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.2    </strong>Klasse »Kreis« realisiert abstrakte Methoden (Java-Beispiel).</p>
+<p><strong><em>Abstrakte Klasse ohne abstrakte Methoden</em></strong></p>
+<p>Eine Klasse, die abstrakte Methoden deklariert, ist immer selbst abstrakt. Doch es kann auch sinnvoll sein, eine Klasse als abstrakt zu deklarieren, auch wenn sie keine abstrakten Methoden deklariert. Dies ist dann der Fall, wenn es fachlich gefordert ist, dass die Exemplare einer Oberklasse immer zu einer ihrer Unterklassen gehören müssen.</p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Der Unterschied zwischen abstrakten Klassen und Schnittstellen-Klassen erscheint mir etwas künstlich. Eigentlich sind doch auch Schnittstellen-Klassen einfach nur abstrakte Klassen, nur dass bei ihnen eben alle Methoden abstrakt sind. Konzeptuell ist hier doch kein großer Unterschied.</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Da hast du Recht. Allerdings gibt es in den Programmiersprachen einige Randbedingungen, welche die Unterscheidung notwendig machen. Eine Klasse, die überhaupt keine Methoden implementiert, also eine reine Schnittstellen-Klasse ist, kann oft anders eingesetzt werden als eine andere abstrakte Klasse.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Und was sind das für geheimnisvolle Randbedingungen?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Da muss ich einen kleinen Vorgriff machen, wir haben ja bisher noch nicht von der Vererbung der Implementierung und von Mehrfachvererbung gesprochen. Aber eine Reihe von Programmiersprachen lassen Mehrfachvererbung nur für die Spezifikation zu. Damit kann eine Klasse von mehreren Schnittstellen-Klassen erben, sie kann aber nicht von mehreren Klassen erben, die Methodenimplementierungen bereitstellen. Und damit wird die Unterscheidung für die Programmiersprache relevant.</span><h4 class="t4">Schnittstellen-Klassen und abstrakte Klassen in den Programmiersprachen</h4>
+<p>Grundsätzlich kann eine Schnittstellen-Klasse in einer Programmiersprache immer als eine Klasse umgesetzt werden, die ausschließlich abstrakte Methoden deklariert. Betrachten wir im Folgenden kurz die Umsetzung von abstrakten Klassen und Schnittstellen-Klassen in den statisch typisierten Sprachen C++, Java und C#.</p>
+<p><strong><em>Schnittstellen und abstrakte Klassen in C++</em></strong></p>
+<p>In C++ werden Klassen nicht explizit als abstrakt markiert. Eine Klasse gilt genau dann als abstrakt, wenn sie mindestens eine abstrakte Methode aufweist. Eine Schnittstelle in C++ ist einfach eine Klasse, die keine objektbezogenen Datenelemente deklariert und bei der alle Methoden abstrakt sind. In C++ werden die abstrakten Methoden auch als <span class="ckursiv">rein virtuelle Methoden</span> bezeichnet (engl. <span class="ckursiv">pure virtual</span>) und durch eine Deklaration mit dem Zusatz <span class="clisting">= 0</span> gekennzeichnet. Listing 5.3 zeigt ein Beispiel für eine Schnittstellen-Klasse in C++.</p>
+<div class="listing"><pre class="prettyprint">class generalbehavior { 
+    virtual void dothis() = 0; 
+    virtual void dothat() = 0; 
+    virtual void checkresult() = 0; 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.3    </strong>Schnittstellen-Klasse in C++</p>
+<p>Eine Besonderheit in C++ ist es, dass eine abstrakte Methode eine Implementierung haben kann. Dies scheint zunächst ein Widerspruch zu sein und der Definition einer abstrakten Methode entgegenzustehen. Allerdings kann diese Implementierung nur unter expliziter Angabe des Klassennamens aufgerufen werden. Sie wird damit nie beim Aufruf einer Operation auf einem Objekt ausgeführt werden und gilt damit auch nicht als Implementierung der Operation. [Eine Ausnahme bilden hier die Destruktoren, die immer implizit beim Löschen eines Objekts aufgerufen werden.
+] </p>
+<p>In C++ können Sie eine Klasse nicht explizit als abstrakt deklarieren, sondern sie ist implizit genau dann abstrakt, wenn sie mindestens eine abstrakte Methode besitzt. Werden in einer abstrakten Klasse fachlich keine abstrakten Methoden benötigt, können Sie den Destruktor als abstrakt deklarieren und mit diesem Trick die Klasse selbst abstrakt machen.</p>
+<div class="listing"><pre class="prettyprint">class A { 
+  virtual ~A() = NULL  { 
+    // Implementierung 
+    // des Destruktors 
+  } 
+};</pre></div>
+<p><strong><em>Schnittstellen und abstrakte Klassen in Java und C#</em></strong></p>
+<p>C# hat sich die Behandlung von Schnittstellen-Klassen und abstrakten Klassen sehr genau bei Java abgeschaut. Deshalb stellen wir im Folgenden zwar die Variante von Java vor, alle Ausführungen gelten aber genauso für C#.</p>
+<p>Java bietet ein spezielles Sprachkonstrukt <span class="clisting">interface</span> für Schnittstellen-Klassen, um diese von den Klassen, die Methoden implementieren können, zu unterscheiden. Dabei kann eine Klasse mehrere dieser <span class="clisting">interfaces</span> implementieren. Im unten stehenden Beispiel ist die Deklaration einer reinen Schnittstellen-Klasse in Java dargestellt.</p>
+<div class="listing"><pre class="prettyprint">interface GeneralBehavior { 
+    void doThis(); 
+    void doThat(); 
+    void checkResult(); 
+}</pre></div>
+<p>In Java können Methoden und Klassen mit dem Schlüsselwort <span class="clisting">abstract</span> explizit als abstrakt markiert werden. Abstrakte Methoden in Java dürfen keine Implementierung haben. Randbedingung ist, dass eine Klasse mit abstrakten Methoden auch selbst als abstrakt deklariert werden muss.</p>
+<p>In Java ist es natürlich auch möglich, Schnittstellen-Klassen einfach als abstrakte Klassen ohne Daten und ohne Methodenimplementierungen umzusetzen. In der Regel sollten Sie das aber nicht tun. In Java kann eine Klasse zwar von mehreren Schnittstellen-Klassen erben, nicht aber von mehreren anderen Klassen, auch wenn diese abstrakt sind und keinerlei Methoden implementieren.</p>
+<p><strong><em>Diskussion:  
+Abstrakte Klassen vs. Interfaces  
+in Java</em></strong></p><span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Im obenstehenden Text gibt es eine kleine Einschränkung: In der Regel soll es also keine gute Idee sein, Schnittstellen-Klassen als komplett abstrakte Klassen umzusetzen. Was wäre denn eine Ausnahme von der Regel?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Die Ausnahme hängt leider mit technischen Restriktionen zusammen. Es nützen ja die schönsten Konzepte nichts, wenn in der Praxis dadurch technische Schwierigkeiten entstehen.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Wie meinst du das?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Durch die technische Umsetzung in Java führt eine Änderung an Interfaces dazu, dass bereits ausgelieferte Klassen, die von dem Interface erben, nicht mehr lauffähig sind. C# weist übrigens das gleiche Problem auf. Man spricht auch davon, dass so eine Änderung nicht binär kompatibel durchzuführen ist. Das Problem ist ein Teil dessen, was als Fragile Binary Interface Problem bekannt ist. Erweitern wir ein Interface um eine neue Operation, werden alle darauf basierenden Anwendungen nicht mehr arbeitsfähig sein, außer sie werden noch einmal komplett durch den Compiler gejagt. Bei einem Projekt wie zum Beispiel der Entwicklungsplattform Eclipse, bei der Tausende von Erweiterungen auf Schnittstellen basieren, kann das fatal sein.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Und bei abstrakten Klassen ist das besser?</span><br><br>
+<span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Bei abstrakten Klassen ist es zumindest möglich, neue Operationen und Methoden hinzuzufügen, ohne dass abgeleitete Klassen dadurch betroffen sind. Das erlaubt mehr Flexibilität. Diese Überlegungen sollten aber nur dann eine Rolle spielen, wenn es für ein Projekt sehr wichtig ist, dass Änderungen binär kompatibel erfolgen, und wenn Änderungen an Schnittstellen als wahrscheinlich eingeschätzt werden. [Unter <span class="ckursiv">http://www.artima.com/lejava/articles/designprinciples.html</span> erläutert Erich Gamma im Gespräch mit Bill Venners, warum in vielen Fällen bei der Entwicklung der freien IDE Eclipse rein abstrakte Klassen anstelle von Interfaces eingesetzt wurden.
+] </span><a id="mj60d6f50d874cf992b1fbe672cc0a7d4a" name="mj60d6f50d874cf992b1fbe672cc0a7d4a"></a><a name="t35"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t36"></a><h3 class="t3">5.1.5 Vererbung der Spezifikation und das Typsystem  <a href="#t2t37"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t35"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In Abschnitt 4.2.3, »Klassen sind Datentypen«, haben wir vorgestellt, wie Klassen als Datentypen agieren. Dabei haben wir das statische und dynamische Typsystem der Programmiersprachen vorgestellt.</p>
+<p><strong><em>Konsequenz von Änderungen an Oberklassen</em></strong></p>
+<p>In diesem Abschnitt wollen wir nun darauf eingehen, welche Möglichkeiten diese beiden Typsysteme jeweils bieten, wenn Klassenhierarchien angepasst werden sollen. Wir werden am Beispiel einer einfachen Klassenhierarchie zeigen, welche Konsequenzen Änderungen an Oberklassen haben können und wie in den beiden Typsystemen darauf reagiert werden kann.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Lesen aus Dateien</em></strong></p>
+<p>Betrachten wir zur Illustration eine Operation <span class="clisting">findLines</span> einer Klasse <span class="clisting">StreamHandler</span>, die bestimmte Zeilen aus einer Textdatei (einem Exemplar der Klasse <span class="clisting">File</span>) heraussucht. In Abbildung 5.11 sind die beiden Klassen dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDAVLTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_010.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_010.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.11    </strong>Operation »findLines« arbeitet auf einer Datei.</p>
+<p>Die Operation <span class="clisting">findLines</span> wurde in <span class="clisting">StreamHandler</span> mit der Prämisse umgesetzt, dass sie mit einem Exemplar von <span class="clisting">File</span> als Parameter aufgerufen wird. Exemplare der Klasse <span class="clisting">File</span> besitzen Operationen zum Lesen und Schreiben von Daten (<span class="clisting">read</span> und <span class="clisting">write</span>), zum Springen an eine beliebige Stelle in der Datei (<span class="clisting">seek</span>) und zum Sperren bestimmter Bereiche der Datei (<span class="clisting">lock</span>). Die beschriebene Funktion <span class="clisting">findLines</span> verwendet aber nur die Fähigkeit eines Dateiobjekts, Daten sequenziell über die Methode <span class="clisting">read</span> auszulesen.</p>
+<p>Nehmen wir an, Sie möchten die Operation <span class="clisting">findLines</span> nun auch für andere Datenquellen verwenden. Sie möchten, dass die Eingabedaten statt aus einer Datei auch aus Datenbanken oder Internetseiten stammen können.</p>
+<p>Eine denkbare Lösung wäre es nun, einfach für die neuen Datenquellen neue, völlig unabhängige Klassen wie <span class="clisting">HttpReader</span> und <span class="clisting">DBSource</span> umzusetzen.</p>
+<p>Diese mögliche Lösung ist in Abbildung 5.12 dargestellt. Diese Lösung führt jedoch zu Code-Redundanzen und damit zur Verletzung unseres Prinzips <span class="ckursiv">Wiederholungen vermeiden</span>. Die drei Methoden werden sich inhaltlich nicht unterscheiden, da alle die Operation <span class="clisting">read</span> aufrufen. Der einzige Unterschied liegt im Typ ihres Parameters.</p>
+<div class="bildbox">
+<p><a name="IDA1MTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_011.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_011.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.12    </strong>(UML-Diagramm) Nicht empfehlenswerte Lösung durch  
+Code-Redundanz</p>
+<p>In einem statischen Typsystem haben Sie aber zwei Möglichkeiten, eine solche Erweiterung auch ohne Code-Redundanzen vorzunehmen.</p>
+<p><strong><em>Problematische Lösung: Neue Unterklassen</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Möglichkeit 1</span> 
+Sie setzen neue Unterklassen der Klasse <span class="clisting">File</span> für die beschriebenen Datenquellen um. Allerdings müssten Sie bei diesen dann wiederum einige Fähigkeiten abklemmen, da die neuen Klassen keine Möglichkeit zum Springen an eine bestimmte Stelle oder zum Sperren einer Datei haben. Das könnten Sie umsetzen, indem Sie für die entsprechenden Methoden einfach eine Leerimplementierung oder eine Fehlermeldung einsetzen. In Abbildung 5.13 ist diese nicht empfehlenswerte Lösung dargestellt. Diese Variante verletzt das <span class="ckursiv">Prinzip der Ersetzbarkeit</span>, da die Unterklassen den Kontrakt der Basisklasse nicht einhalten.</li>
+</ul>
+<div class="bildbox">
+<p><a name="IDAMNTQ"></a><a onClick="OpenWin('bilder/05_13.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_13.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.13    </strong>Verletzung des Prinzips der Ersetzbarkeit durch Einschränkung</p>
+<p><strong><em>Bessere  
+Möglichkeit:  
+Neue Oberklasse</em></strong></p>
+<ul class="gp">
+<li><span class="cfett">Möglichkeit 2</span> 
+Alternativ können Sie eine neue Superklasse <span class="clisting">Source</span> zum Typ <span class="clisting">File</span> deklarieren, die nur die benötigten Gemeinsamkeiten der Dateien und der anderen Datenströme enthält. Diese Lösung ist in Abbildung 5.14 dargestellt. Die Klassen <span class="clisting">HttpReader</span> und <span class="clisting">DBSource</span> sind dann Unterklassen von <span class="clisting">Source</span>. Zudem passen Sie die Deklaration der Methode <span class="clisting">findLines</span> so an, dass sie statt eines Dateiobjekts ein Objekt dieses neuen generalisierten Typs Datenstrom als Parameter erwartet.</li>
+</ul>
+<div class="bildbox">
+<p><a name="IDAAOTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_012.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_012.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.14    </strong>Lösung durch neue Oberklasse</p>
+<p>Diese zweite Alternative ist die bessere, weil hier das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> nicht verletzt wird, [Manchmal haben Sie diese Möglichkeit eben nicht. Zum Beispiel dann, wenn Sie die Quelltexte der Klasse <span class="clisting">File</span> oder der Funktion, die Sie verwenden möchten, nicht ändern können.
+]  doch sie ist mit relativ viel Aufwand durch die Anpassung der Klassenhierarchie verbunden.</p>
+<p><strong><em>Dynamisches Typsystem erleichtert Anpassung.</em></strong></p>
+<p>In einer Sprache mit dynamischem Typsystem ist der Aufwand geringer. Sie implementieren einfach Klassen, welche die benötigte Funktionalität zum sequenziellen Lesen der Daten aus den verschiedenen Datenströmen bereitstellen, und rufen die Operation mit Exemplaren dieser neuen Klassen auf. In Abbildung 5.15 ist zu sehen, dass die Operation <span class="clisting">findLines</span> gar nicht angepasst werden musste.</p>
+<div class="bildbox">
+<p><a name="IDANOTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_013.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_013.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.15    </strong>Anpassung bei dynamischem Typsystem</p>
+<p>Da die Klassenzugehörigkeit der Parameter nicht formal festgelegt worden ist, genügt es völlig, dass die übergebenen Objekte die benötigte Operation <span class="clisting">read</span> unterstützen.</p>
+<p>Die Tatsache, dass Dateien und unsere neuen Klassen alle zu einer neuen Klasse <span class="clisting">Source</span> gehören und dass die Operation <span class="clisting">findLines</span> mit dieser neuen Klasse als Parameterwert umgehen kann, müssen Sie zur Dokumentation der Anwendung hinzufügen.</p>
+<p>Um das <span class="ckursiv">Prinzip der Trennung der Schnittstelle von der Implementierung</span> einzuhalten, müssen Sie auch die geänderten Vorbedingungen der Operation in Ihre Dokumentation aufnehmen.</p>
+<p><strong><em>Diskussion: Lösung für statisches Typsystem</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Nun sind wir ja in der Praxis nicht zu häufig mit dynamisch typisierten Sprachen zugange. Ein relevanter Teil von uns arbeitet ja dann doch mit Java oder C++ und kann diesen Vorteil der dynamisch typisierten Sprachen nicht nutzen. Und ehrlich gesagt: Es kann auch ganz schön anstrengend sein, erst zur Laufzeit darauf zu stoßen, dass eine Operation von einem Objekt nun gerade nicht unterstützt wird.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ich möchte mich ganz bewusst aus dem Streit heraushalten, welches Typsystem besser sei, das statische oder das dynamische. Beide haben ihre Vorteile. Die große Flexibilität des dynamischen Typsystem kann durchaus die Produktivität steigern. Das erkennt jeder, der wegen einer kleinen Typänderung in C++ ein großes Projekt neu kompilieren muss. Andererseits kann die statische Typisierung mit geeigneten Werkzeugen bereits zur Entwicklungszeit helfen, wenn die Tools zum Beispiel zeigen können, welche Methoden auf einer Variablen aufgerufen werden können oder an welchen Stellen eine Methode verwendet wird. Mit welchem Typsystem man schneller und bequemer fährt, ist letzten Endes eine Frage der Entwicklungswerkzeuge, die man verwendet.</span><h4 class="t4">Downcasts können auf Modellierungsfehler deuten</h4>
+<p>In den statisch typisierten Sprachen gibt es in der Regel die Möglichkeit, den Typ eines Objekts zum Typ einer Unterklasse zu konvertieren. Diese Möglichkeit wird auch Downcast genannt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Downcast
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In einer statisch typisierten Programmiersprache können Sie ein Objekt, das bisher über eine Variable des Typs einer Oberklasse referenziert wurde, auch einer Variablen mit dem Typ einer Unterklasse zuweisen. Dazu müssen Sie das Objekt explizit in den Typ der Unterklasse konvertieren. Diese Konvertierung wird Downcast genannt, da die Konvertierung aus Sicht der Klassenhierarchie nach unten, also hin zu einer spezielleren Klasse erfolgt. Diese Konvertierung kann natürlich nur klappen, wenn das Objekt zur Laufzeit tatsächlich auch ein Exemplar der Unterklasse ist. Die meisten Programmiersprachen bieten Operationen an, die eine Konvertierung versuchen und einen Fehler signalisieren, wenn es sich bei dem Objekt nicht um ein Exemplar der angegebenen Unterklasse handelt. Beispiele für solche Operationen sind die Cast-Operatoren in Java oder der Operator <span class="clisting">dynamic_cast</span> in C++.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Downcasts  
+deuten auf  
+Probleme.</em></strong></p>
+<p>Grundsätzlich sollten Sie in den meisten Programmen ohne Downcasts auskommen. Das <span class="ckursiv">Prinzip der Trennung der Schnittstelle von der Implementierung</span> legt nahe, dass Sie mit den zur Verfügung stehenden Schnittstellen einer Klasse arbeiten. Wenn Sie aber explizite Downcasts verwenden, kompromittieren Sie die Schnittstelle und legen deren Implementierungen bloß. Sie machen Annahmen darüber, welche Klassen diese Schnittstelle implementieren.</p>
+<p>Wenn Sie sich real existierenden Code anschauen, werden Sie allerdings doch recht häufig auf Downcasts stoßen. Es gibt zwar durchaus sinnvolle Verwendungen für Downcasts in technischen Komponenten wie Frameworks. Downcasts in reinen Anwendungsmodulen sollten aber misstrauisch machen.</p>
+<p><strong><em>Beispiel für  
+Probleme mit Downcasts</em></strong></p>
+<p>Betrachten Sie im Folgenden ein Beispiel für Downcasts, das zu Problemen führt. In Abbildung 5.16 ist eine Klasse <span class="clisting">GeschaeftspartnerAnzeige</span> dargestellt, welche die Klasse <span class="clisting">Geschaeftspartner</span> als Schnittstelle verwendet.</p>
+<div class="bildbox">
+<p><a name="IDASQTQ"></a><a onClick="OpenWin('bilder/05_16.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_16.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.16    </strong>Anzeige für Geschäftspartner verwendet Downcast.</p>
+<p>Trotz der Verwendung der Schnittstelle differenziert die Methode <span class="clisting">anrede()</span> aber intern nach Person und Organisation durch Verwendung von Downcasts und schafft dadurch zusätzliche Abhängigkeiten. In Listing 5.4 sehen Sie die zugehörige Umsetzung in der Sprache Java.</p>
+<div class="listing"><pre class="prettyprint">class GeschaeftspartnerAnzeige { 
+    // ... 
+  String anrede(Geschaeftspartner p) {   
+    if (p instanceof Person)  
+ 
+      return ((Person) p).vorname() 
+           + " " + ((Person) p).nachname(); 
+    if (p instanceof Organisation)  
+      return ((Organisation) o).bezeichnung();  
+   // und was ist mit anderen Geschäftspartnertypen? 
+   return "Unbekannter Geschäftspartnertyp"; 
+  } 
+  // .. 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.4    </strong>Typbestimmung zur Laufzeit</p>
+<p>In diesem Beispiel haben Sie in Zeile  eine Methode <span class="clisting">anrede()</span> vorliegen, welche die Anschriften eines Geschäftspartners ausgibt. Anhand der Typzugehörigkeit des Geschäftspartners entscheiden Sie, ob eine Bezeichnung der Organisation oder der Vor- und Nachname einer Person gedruckt werden sollen. Handelt es sich um eine Person (Zeile ), werden Vorname und Nachname verwendet. Dazu erfolgt in Zeile  ein Downcast auf die Unterklasse <span class="clisting">Person</span>. Handelt es sich um eine Organisation (Zeile ), wird die Bezeichnung der Organisation verwendet. Dazu erfolgt dann in Zeile  ein Downcast auf die Unterklasse <span class="clisting">Organisation</span>. Die Motivation für dieses Vorgehen ist es, dass die Methode die Anschriften aller möglichen Geschäftspartner ausgeben soll.</p>
+<p>Es entsteht durch dieses Vorgehen aber ein Problem: Wenn Sie später eine neue Art von Geschäftspartner implementieren, müssen Sie in diese Methode eingreifen, um auch diesen ausgeben zu können. Aber werden Sie diese Stelle dann überhaupt finden? Und was ist mit den ganzen anderen Stellen im Code, an denen möglicherweise genau die gleiche Unterscheidung stattfindet? Die Verwendung des Downcasts deutet darauf hin, dass Sie das <span class="ckursiv">Prinzip der Trennung der Schnittstelle von der Implementierung</span> verletzen.</p>
+<p><strong><em>Modellierung ohne Downcast</em></strong></p>
+<p>Durch eine Anpassung der Modellierung können Sie die Notwendigkeit des Downcasts beseitigen. Es gehört in diesem Beispiel zu den gemeinsamen Eigenschaften aller Geschäftspartner, dass sich für sie eine Anrede formulieren lässt. Da es aber eine gemeinsame Eigenschaft aller Geschäftspartner ist, gehört es auch zur Schnittstelle der Geschäftspartner. In Abbildung 5.17 ist die korrigierte Version dargestellt.</p>
+<div class="bildbox">
+<p><a name="IDASRTQ"></a><a onClick="OpenWin('bilder/05_17.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_17.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.17    </strong>Korrigierte Version ohne Downcast</p>
+<p>Diese vermeidet die beschriebenen Probleme. Wenn Sie jetzt eine neue Art von Geschäftspartner implementieren, werden Sie dort eine Methode <span class="clisting">anrede()</span> umsetzen. Die Notwendigkeit der Downcasts entfällt, und die Methode in der Klasse <span class="clisting">GeschaeftspartnerAnzeige</span> kann angepasst werden:</p>
+<div class="listing"><pre class="prettyprint">String anrede(Geschaeftspartner p) { 
+    return p.anrede(); 
+}</pre></div>
+<p>Immer wenn es möglich ist, sollten Sie also auf Downcasts verzichten. Meistens ist es besser, dynamische Polymorphie und das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> zu nutzen. Downcasts werden in der Praxis meist dann eingesetzt, wenn eine Modellierung eigentlich geändert werden müsste, also eine Anpassung der eigentlich verwendeten Schnittstelle benötigt würde, dies aber aus praktischen Gründen nicht möglich ist, zum Beispiel weil diese Schnittstelle gar nicht in Ihrer Verantwortung liegt. Wenn Sie in unserem Beispiel nur für die Klasse <span class="clisting">GeschaeftspartnerAnzeige</span> zuständig wären und die Schnittstelle der Klasse <span class="clisting">Geschaeftspartner</span> auf keinen Fall geändert werden kann, wäre ein Downcast die einzige Möglichkeit.</p>
+<p>Aber in so einem Fall sollten Sie sich immer klar machen, warum Sie dieses Vorgehen wählen. In den Fällen, in denen Sie die Modellierung der Schnittstelle ändern können, sollten Sie es auch tun.</p><a id="mja01ba6ec04515aa1bd9707d45880ad9c" name="mja01ba6ec04515aa1bd9707d45880ad9c"></a><a name="t36"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t37"></a><h3 class="t3">5.1.6 Sichtbarkeit im Rahmen der Vererbung  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t36"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>In Abschnitt 4.2.5, »Sichtbarkeit von Daten und Methoden«, haben Sie bereits die verschiedenen Sichtbarkeitsstufen für Eigenschaften und Methoden eines Objekts im Überblick kennen gelernt. Die Sichtbarkeitsstufe »Geschützt« beschäftigt sich mit der Sichtbarkeit von Methoden, die nicht zur Schnittstelle gehören, aber innerhalb von Methodenimplementierungen von abgeleiteten Klassen aufgerufen werden können.</p>
+<h4 class="t4">Sichtbarkeitsstufe »Geschützt« (protected)</h4>
+<p>Wie schon bei der Sichtbarkeitsstufe »Privat« müssen wir auch hier wieder zwischen der klassenbasierten und der objektbasierten Definition der Sichtbarkeit unterscheiden.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Sichtbarkeitsstufe »Geschützt«
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Auf geschützte Daten und Methoden dürfen neben den Methoden, die in derselben Klasse implementiert sind, auch die Methoden, die in ihren Unterklassen implementiert sind, zugreifen.</p>
+</td>
+</tr>
+</table><br><p><strong><em>Datenelemente können von  
+Basisklasse geerbt werden.</em></strong></p>
+<p>Die Daten und Methoden eines Objekts können in der Klasse, zu der das Objekt direkt gehört, deklariert worden sein. Die Elemente können aber auch von einer ihrer Basisklassen geerbt worden sein.</p>
+<p>Java, C# oder C++ folgen grundsätzlich diesem klassenbasierten Sichtbarkeitskonzept. Allerdings dürfen in Java auf geschützte Elemente nicht nur die Unterklassen zugreifen, sondern zusätzlich alle Klassen im gleichen Package.</p>
+<p><strong><em>C#</em></strong></p>
+<p>Hier ein Beispiel für den Zugriff auf geschützte Datenelemente in C#:</p>
+<div class="listing"><pre class="prettyprint">class B { 
+  private int x; 
+  protected int y; 
+} 
+ 
+class C: B { 
+  public void test() { 
+    x = 1; # Fehler. Privates x ist nicht in C deklariert 
+    y = 2; # OK. Geschütztes y ist in der 
+           # Oberklasse B deklariert 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.5    </strong>Zugriff auf geschützte Datenelemente in C#</p>
+<p>In Java, C# und C++ bezieht sich auch die Sichtbarkeitsstufe »Geschützt« nicht auf einzelne Objekte, sondern auf ganze Klassen.</p>
+<div class="listing"><pre class="prettyprint">class D: B { 
+  public void test(B b, D d) { 
+    d.y = 1; // OK. d gehört zur Klasse D 
+    b.y = 2; // Fehler. 
+    // b gehört nicht notwendigerweise zur Klasse D 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.6    </strong>Sichtbarkeitsstufe »Geschützt« an einem Beispiel in C#</p>
+<h4 class="t4">Sichtbarkeit der Vererbungsbeziehung</h4>
+<p>Die Verwendung von Sichtbarkeitsregeln ist nicht nur für Methoden und Datenelemente möglich. Konzeptuell sind Sichtbarkeitsregeln auch für die Beziehungen zwischen Klassen und abgeleiteten Klassen möglich.</p>
+<p>Der Standardfall ist es, dass die Vererbungsbeziehung öffentlich (public) ist: Es ist öffentlich sichtbar, dass die Unterklasse die Schnittstelle der Oberklasse ebenfalls unterstützt. Das ist das Wesen der Vererbung der Spezifikation.</p>
+<p>Es kann aber auch Fälle geben, in denen diese Vererbung nach außen nicht sichtbar sein soll. Die Vererbungsbeziehung selbst ist dann privat. Diese Art der Vererbung wird allerdings nur von wenigen Programmiersprachen unterstützt.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Private Vererbung
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn eine Klasse <span class="clisting">B</span> von einer Klasse <span class="clisting">A</span> privat erbt, so erbt sie nicht die Spezifikation dieser Klasse. Nach außen ist also nicht sichtbar, dass ein Exemplar von <span class="clisting">B</span> auch ein Exemplar von <span class="clisting">A</span> ist. Innerhalb der Methoden von <span class="clisting">B</span> können aber alle Operationen von <span class="clisting">A</span> genutzt werden. </p>
+</td>
+</tr>
+</table><br><p><strong><em>Private Vererbung in C++</em></strong></p>
+<p>Lassen Sie uns die private Vererbung am Beispiel von Vererbungsbeziehungen in der Sprache C++ etwas genauer betrachten. Wenn Sie eine Unterklasse <span class="clisting">B</span> einer Oberklasse <span class="clisting">A</span> vorliegen haben, können Sie in C++ bestimmen, ob die Tatsache, dass die Klasse <span class="clisting">B</span> eine Unterklasse von <span class="clisting">A</span> ist, nach außen sichtbar sein soll.</p>
+<p>Ist die Sichtbarkeit der Vererbung privat, so erbt die Klasse <span class="clisting">B</span> zwar die Funktionalität der Klasse <span class="clisting">A</span>, sie erbt jedoch nach außen keine Verpflichtungen der Klasse <span class="clisting">A</span> &#8211; denn nach außen ist die Klasse <span class="clisting">B</span> eben <span class="ckursiv">keine</span> Unterklasse von <span class="clisting">A</span>. Die Exemplare von <span class="clisting">B</span> müssen also nicht mit der Spezifikation von <span class="clisting">A</span> konform sein und sind nicht an das <span class="ckursiv">Prinzip der Ersetzbarkeit</span> gebunden.</p>
+<p><strong><em>Private Vererbung vs. Delegation</em></strong></p>
+<p>Die private Vererbung lässt sich immer in eine Delegationsbeziehung umwandeln, so dass jedes Exemplar von <span class="clisting">B</span> ein Exemplar von <span class="clisting">A</span> oder einer geeigneten Unterklasse besitzt. Für eine solche Struktur braucht man zwar etwas mehr Quelltext, dafür ist sie aber etwas verständlicher und eindeutiger. Abbildung 5.18 zeigt ein Beispiel für eine private Vererbungsbeziehung.</p>
+<div class="bildbox">
+<p><a name="IDAFXTQ"></a><a onClick="OpenWin('bilder/04_strukturvonooprogrammen_01_014.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein04_strukturvonooprogrammen_01_014.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.18    </strong>Private Vererbung in C++</p>
+<p><strong><em>Umwandlung  
+private Vererbung in Delegation</em></strong></p>
+<p>Die private Vererbung lässt sich in die Delegationsbeziehung umwandeln, die in Abbildung 5.19 dargestellt ist. Das äußere Verhalten in der Methode <span class="clisting">B::testB</span> bleibt dabei dasselbe.</p>
+<div class="bildbox">
+<p><a name="IDAVXTQ"></a><a onClick="OpenWin('bilder/05_19.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_19.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.19    </strong>Private Vererbung durch Delegation ersetzt</p>
+<p>Neben der öffentlichen und privaten Sichtbarkeit der Vererbung gibt es in C++ noch die geschützte Sichtbarkeit der Vererbung. Hier ist die Vererbung von außen nicht sichtbar, die Unterklassen der Klasse <span class="clisting">B</span> sehen aber, dass <span class="clisting">A</span> eine Oberklasse von <span class="clisting">B</span> ist.</p>
+<p><strong><em>Diskussion:  
+Was soll denn  
+die private  
+Vererbung?</em></strong></p><span class="ckursiv"><em><strong>Bernhard</strong></em><span class="cfett">:</span> Bei privater Vererbung können wir doch eigentlich gar nicht mehr von Vererbung sprechen. Es ist ja gerade Sinn der Vererbung, dass eine Unterklasse eben auf alle Pflichten der Oberklasse eingeht. Wenn dies nicht so ist, haben wir eine simple Delegationsbeziehung vorliegen und sollten diese auch explizit machen.</span><br><br>
+<span class="ckursiv"><em><strong>Gregor</strong></em><span class="cfett">:</span> Ich denke, diese Entscheidung kann man getrost einem Entwicklungsteam überlassen. Die private Vererbung kommt mit einem guten Stück weniger Code aus, da eine Reihe von Zugriffen nicht per Delegation weitergereicht werden müssen. Es sollte aber eine bewusste Designentscheidung in einem Team sein, für bestimmte Aufgaben private Vererbung zu nutzen. Private Vererbung kann außerdem als eine Art von Mixin genutzt werden. Wir mischen dabei intern verfügbare Funktionalität zu anderen Klassen hinzu.</span><h4 class="t4">Differenzierter Zugriff auf einzelne Klassen</h4>
+<p>Manchmal muss ein Objekt aus technischen Gründen anderen Objekten den Zugriff auf bestimmte Daten und Methoden ermöglichen, auch wenn diese nicht zu der spezifizierten Schnittstelle gehören. Die Sprache C++ hat für diese Beziehung die sympathische Beschreibung gewählt, dass Klassen, denen dieser Zugriff speziell erlaubt wird, befreundete Klassen sind.</p>
+<p>Um eine sehr sinnvolle Verwendung dieses differenzierten Zugriffs zu erläutern, werden wir zunächst ein Beispiel vorstellen, bei dem eine Sammlung von Objekten Iteratoren bereitstellt, mit denen die Sammlung sukzessive durchlaufen werden kann.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Iteratoren
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Ein Iterator ist ein Objekt, das es ermöglicht, eine Sammlung von anderen Objekten zu durchlaufen, ohne den Zustand der Sammlung selbst zu verändern. Iteratoren kapseln damit eine Sammlung und präsentieren diese nach außen so, als hätte diese einen Zustand, der ein aktuelles Element identifiziert.</p>
+</td>
+</tr>
+</table><br><p>Iteratoren bieten in der Regel Operationen, um auf das aktuelle Element zuzugreifen und um die Sammlung sukzessive zu durchlaufen.</p>
+<p>Die Spezifikation der Schnittstelle einer Sammlung könnte in Java so aussehen: [Java hat eine umfassende Sammlungsbibliothek, hier beschreiben wir nur ein sehr vereinfachtes Beispiel, nicht die Standardklassen aus Java.
+] </p>
+<div class="listing"><pre class="prettyprint">public interface Collection { 
+  public abstract Iterator iterator(); 
+  public abstract void add(Object element); 
+} 
+public interface Iterator { 
+  public abstract boolean hasNext(); 
+  public abstract Object next(); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.7    </strong>Schnittstellen-Klassen für Sammlungen und Iteratoren</p>
+<p>Jede Sammlung (<span class="ckursiv">Collection</span>) hat die Methode <span class="clisting">iterator()</span>, die einen neuen Iterator zurückgibt. Die Methode <span class="clisting">next()</span> liefert nach und nach immer das nächste Objekt der Sammlung, so lange, bis deren Methode <span class="clisting">hasNext()</span> den Wert <span class="clisting">false</span> zurückgibt. Auf diese Weise können Sie eine Sammlung mehrfach parallel abzählen.</p>
+<p><strong><em>Verlinkte Liste  
+als Sammlung</em></strong></p>
+<p>Eine einfache Implementierung einer Sammlung ist die verlinkte Liste. Jeder Eintrag der verlinkten Liste referenziert ein in der Sammlung enthaltenes Objekt und den nächsten Eintrag in der Liste. In Abbildung 5.20 ist das Zusammenspiel der beteiligten Klassen aufgeführt.</p>
+<div class="bildbox">
+<p><a name="IDAB0TQ"></a><a onClick="OpenWin('bilder/05_20.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_20.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 5.20    </strong>Zusammenspiel zwischen Iteratoren und Sammlungen</p>
+<p>Ein Iterator verwaltet in diesem Beispiel einen Eintrag <span class="clisting">currentEntry</span>, der auf das aktuelle Listenelement zeigt. Der Iterator benötigt dabei Zugriffe auf die Daten des Listenelements, um das darin enthaltene Element zu erfragen oder um das aktuelle Element weiterzubewegen auf den Folgeeintrag in der Liste. Dafür stellt die Klasse <span class="clisting">LinkedListEntry</span> die Operationen <span class="clisting">getItem()</span> und <span class="clisting">getNextEntry()</span> zur Verfügung.</p>
+<p>Die Anwendung eines Iterators ist in Listing 5.8 dargestellt. Dort werden zunächst drei Elemente einer Liste hinzugefügt. Die entsprechenden Zeilen sind mit  markiert.</p>
+<div class="listing"><pre class="prettyprint">String text1 = new String("erster Listeneintrag"); 
+String text2 = new String("zweiter Listeneintrag"); 
+String text3 = new String("dritter Listeneintrag"); 
+ 
+LinkedList list = new LinkedList(); 
+list.add(text1);    
+list.add(text2);    
+list.add(text3);    
+ 
+Iterator iterator = list.iterator();   
+while (iterator.hasNext()) {   
+    String text = (String)iterator.next(); 
+    System.out.println(text); 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.8    </strong>Verwendung des Iterators</p>
+<p>Anschließend wird die Liste in Zeile  nach ihrem Iterator befragt und dieser verwendet, um in Zeile  die Liste zu durchlaufen und jedes Element ausgeben zu lassen. [In Java ab der Version 5 lassen sich für die Umsetzung von Sammlungen und Iteratoren auch parametrisierte Klassen (Generics) verwenden. In unserem Beispiel haben wir darauf verzichtet, um die Darstellung einfacher zu halten.
+] </p>
+<p>In Listing 5.9 ist eine Implementierung aufgeführt, welche die in Abbildung 5.20 vorgestellten Klassen für Sammlungen und Iteratoren umsetzt.</p>
+<div class="listing"><pre class="prettyprint">public class LinkedList implements Collection { 
+  private LinkedListEntry firstEntry; 
+  public Iterator iterator() { 
+    return new LinkedListIterator(firstEntry); 
+  } 
+  // .. Methode add() weggelassen 
+} 
+ 
+public class LinkedListEntry { 
+  private Object item;    
+  private LinkedListEntry nextEntry;   
+  public Object getItem() {  
+    return item; 
+  } 
+  public LinkedListEntry getNextEntry() {   
+    return nextEntry; 
+  } 
+ 
+  ... // weitere Methoden, die Initialisierung zum Beispiel 
+} 
+ 
+public class LinkedListIterator implements Iterator { 
+  private LinkedListEntry currentEntry; 
+  public LinkedListIterator(LinkedListEntry firstEntry) { 
+    currentEntry = firstEntry; 
+  } 
+  public boolean hasNext() { 
+    return currentEntry != null; 
+  } 
+  public Object next() {    
+    Object result = currentEntry.getItem(); 
+    currentEntry = currentEntry.getNextEntry(); 
+    return result; 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.9    </strong>Zugriff auf Listenelemente in Java</p>
+<p><strong><em>Iterator braucht Zugriff auf Daten der Liste.</em></strong></p>
+<p>Die Klasse <span class="clisting">LinkedListEntry</span> muss den Zugriff auf ihre Elemente <span class="clisting">item</span> und <span class="clisting">nextEntry</span>, die in den mit  markierten Zeilen deklariert sind, zumindest lesend ermöglichen, sonst könnte der Iterator nicht darauf zugreifen. Deshalb wird in den mit  markierten Zeilen der Zugriff über die Operationen <span class="clisting">getItem()</span> und <span class="clisting">getNextEntry()</span> erlaubt. So kann die Iteratorklasse selbst in der Methode <span class="clisting">next()</span> in Zeile  darauf zugreifen und so ein jeweils aktuelles Element verwalten.</p>
+<p><strong><em>Datenkapselung verletzt</em></strong></p>
+<p>Aber warum sollten auch andere Klassen einen Zugriff auf diese Elemente der Klasse <span class="clisting">LinkedListEntry</span> erhalten? Schließlich handelt es sich hier nur um die Implementierungsdetails der verlinkten Liste, nicht um ein spezifiziertes Verhalten. Gleiches gilt auch für den Konstruktor der Klasse <span class="clisting">LinkedListIterator</span>. Nur die Klasse <span class="clisting">LinkedList</span> muss Exemplare von <span class="clisting">LinkedListIterator</span> erstellen können, für beliebige andere Klassen sollte dies nicht möglich sein.</p>
+<p><strong><em>Implementierungseinheit</em></strong></p>
+<p>Die Klassen <span class="clisting">LinkedList</span>, <span class="clisting">LinkedListEntry</span> und <span class="clisting">LinkedListIterator</span> bilden zusammen eine Implementierungseinheit. Für die Klassen dieser Einheit untereinander sollten lockerere Sichtbarkeitsregeln gelten als für Klassen von außerhalb.</p>
+<p>Als ersten Schritt könnte man die Sichtbarkeit der Klassen <span class="clisting">LinkedListEntry</span> und <span class="clisting">LinkedListIterator</span> und ihrer Methoden <span class="clisting">getItem()</span> und <span class="clisting">getNextEntry()</span> beziehungsweise des Konstruktors von <span class="clisting">LinkedListIterator</span> von <span class="ckursiv">Öffentlich</span> (Schlüsselwort <span class="clisting">public</span>) auf <span class="ckursiv">Geschützt innerhalb des Packages</span> (ohne ein Schlüsselwort) reduzieren. Dies würde bewirken, dass nur Klassen aus demselben Package den Zugriff erhalten.</p>
+<p>Dies ist aber meistens immer noch zu viel, denn schließlich werden in dem Package noch andere Implementierungen der Schnittstelle <span class="clisting">Sammlung</span> liegen.</p>
+<p>Eine gute Alternative bieten hier die geschachtelten Klassen. Dabei wird die Sichtbarkeit einer Klasse so eingeschränkt, dass sie nur innerhalb genau einer anderen Klasse sichtbar ist.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Geschachtelte Klassen (engl. Nested Classes oder Inner Classes)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Geschachtelte Klassen sind Klassen, die innerhalb einer anderen Klasse deklariert werden. Die geschachtelte Klasse erhält den Zugriff auf alle Elemente der äußeren Klasse, sogar auf die privaten Elemente. Die äußere Klasse erhält den vollen Zugriff auf die Elemente ihrer geschachtelten Klassen. Die geschachtelte Klasse ist dabei selbst ein Element der äußeren Klasse. Sie selbst kann für andere Klassen &#8211; wie andere Elemente der äußeren Klasse auch &#8211; sichtbar oder unsichtbar gemacht werden. </p>
+</td>
+</tr>
+</table><br><p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Geschachtelte Klassen in Java</em></strong></p>
+<p>Java bietet die Möglichkeit, geschachtelte Klassen zu nutzen. [Auch C# unterstützt geschachtelte Klassen. Dabei gelten ähnliche Sichtbarkeitsregeln wie in Java.
+]  Somit lässt sich das Beispiel aus Abbildung 5.20 auch über eine geschachtelte Klasse realisieren. In Listing 5.10 ist das modifizierte Beispiel zu sehen.</p>
+<div class="listing"><pre class="prettyprint">public class LinkedList implements Collection { 
+ 
+  // ... 
+  // innere Klasse, von außen nicht sichtbar 
+  private static class LinkedListEntry {   
+    Object item; 
+    LinkedListEntry nextEntry; 
+  } 
+ 
+  // diese innere Klasse ist von außen auch nicht sichtbar 
+  private static class LinkedListIterator  
+  implements Iterator { 
+ 
+    private LinkedListEntry currentEntry; 
+    LinkedListIterator(LinkedListEntry firstEntry) { 
+      currentEntry = firstEntry; 
+    } 
+    public boolean hasNext() { 
+      return currentEntry != null; 
+    } 
+    public Object next() { 
+      Object result = currentEntry.item; 
+      currentEntry = currentEntry.nextEntry; 
+      return result; 
+    } 
+  } 
+}</pre></div>
+<p class="tabunter"><strong>Listing 5.10    </strong>5.10 Geschachtelte Klassen</p>
+<p>In Listing 5.10 sind die Datenelemente <span class="clisting">item</span> und <span class="clisting">nextEntry</span> von außen nicht sichtbar, weil die geschachtelte Klasse <span class="clisting">LinkedListEntry</span> in Zeile  privat ist. Sie können hier also auf die Lesemethoden <span class="clisting">getItem()</span> und <span class="clisting">getNextEntry()</span> verzichten, weil die ebenfalls geschachtelte Klasse <span class="clisting">LinkedListIterator</span>, die in Zeile  zu sehen ist, direkt auf diese Dateneinträge zugreifen kann. Nach außen ist aber weder die Klasse <span class="clisting">LinkedListEntry</span> noch die Klasse <span class="clisting">LinkedListIterator</span> sichtbar. Alle Anwender der Klasse <span class="clisting">LinkedList</span> werden alleine mit der Schnittstellen-Klasse <span class="clisting">Iterator</span> arbeiten.</p>
+<p><strong><em>Geschachtelte Klassen in C#  
+und C++</em></strong></p>
+<p>C++ unterstützt auch geschachtelte Klassen, allerdings gelten für die geschachtelten Klassen dieselben Sichtbarkeitsregeln wie für alle anderen Klassen. Damit sind diese nicht nutzbar, um wie in Java damit die Kapselung von Daten zu erreichen.</p>
+<p>Wie bereits am Anfang dieses Kapitels erwähnt, bietet C++ einen anderen Mechanismus, um einer anderen Klasse den Zugriff auf Interna einer Klasse zu erlauben: Die Klasse deklariert, dass die privilegierte Klasse ihr »Freund« ist.</p>
+<p>Im Beispiel aus Abbildung 5.20 in Java haben wir eine Sammlung von Objekten der Klasse <span class="clisting">Object</span> implementiert, denn alle Klassen in Java sind direkte oder indirekte Unterklassen der Klasse <span class="clisting">Object</span>. In C++ gibt es eine solche generelle Oberklasse nicht. Daher enthält unser C++-Beispiel parametrisierte Klassen (<span class="ckursiv">Templates</span>) mit dem Typparameter <span class="clisting">T</span>. Parametrisierte Klassen haben wir bereits in Abschnitt 4.2.3 vorgestellt.</p>
+<p><strong><em><img src="common/icon_beispiel.jpg" align="top" alt="Icon Beispiel" title="Icon Beispiel"> 
+Geschachtelte Klassen in C++</em></strong></p>
+<p>Hier das Beispiel der Klasse <span class="clisting">LinkedListEntry</span> in C++:</p>
+<div class="listing"><pre class="prettyprint">template&lt;typename T&gt; class LinkedListEntry { 
+private: 
+    T* item; 
+    LinkedListEntry* nextEntry; 
+ <span class="cfett"> friend class LinkedListIterator&lt;T&gt;;</span>   
+}; 
+template&lt;typename T&gt; class LinkedListIterator { 
+private: 
+    LinkedListEntry&lt;T&gt;* currentEntry; 
+    LinkedListIterator(LinkedListEntry&lt;T&gt;* firstEntry) { 
+        currentEntry = firstEntry; 
+    } 
+public: 
+    bool hasNext() { 
+        return currentEntry != NULL; 
+    } 
+    T* next() {    
+        T* result = currentEntry-&gt;item; 
+        currentEntry = currentEntry-&gt;nextEntry; 
+        return result; 
+    } 
+ <span class="cfett"> friend class LinkedList&lt;T&gt;;</span>  
+};</pre></div>
+<p class="tabunter"><strong>Listing 5.11    </strong>Differenzierter Zugriff in C++</p>
+<p>In Zeile  erlaubt die Klasse <span class="clisting">LinkedListEntry</span> der Klasse <span class="clisting">LinkedListIterator</span> den Zugriff auf ihre internen Daten. [Durch die Angabe des Typparameters <span class="clisting">T</span> wird diese Freigabe allerdings auf die Iteratoren eingeschränkt, die Exemplare der gleichen Klasse verwalten, wie das für <span class="clisting">LinkedListEntry</span> der Fall ist.
+]  Was noch schöner ist: Die Freundschaft wird auch erwidert. Durch den Eintrag in Zeile  erklärt auch die Klasse <span class="clisting">LinkedListIterator</span> die Klasse <span class="clisting">LinkedListEntry</span> zum Freund. Nun kann in Zeile  innerhalb der Methode <span class="clisting">next()</span> der Klasse <span class="clisting">LinkedListIterator</span> auf private Datenelemente der Klasse <span class="clisting">LinkedListEntry</span> zugegriffen werden. Diese braucht keine öffentlichen Operationen mehr dafür bereitzustellen.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_05_001.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="5 Vererbung und Polymorphie"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_04_004.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_05_002.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>

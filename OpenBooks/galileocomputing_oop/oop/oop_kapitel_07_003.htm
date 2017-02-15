@@ -1,0 +1,761 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Galileo Computing :: Objektorientierte Programmierung – 7.3 Objekte löschen</title>
+<meta name="title" content="Galileo Computing :: Objektorientierte Programmierung - 7.3 Objekte löschen">
+<meta name="author" content="Bernhard Lahres, Gregor Rayman ">
+<meta name="publisher" content="Galileo Press 2009">
+<meta name="copyright" content="Galileo Press 2009">
+<meta name="Description" content="Objektorientierte Programmierung - Das umfassende Handbuch – 7.3 Objekte löschen">
+<meta name="audience" content="Alle">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta http-equiv="content-language" content="de">
+<link rel="stylesheet" type="text/css" href="common/galileo_open.css">
+<link rel="prev" href="oop_kapitel_07_002.htm">
+<link rel="next" href="oop_kapitel_07_004.htm"><script type="text/javascript"><!--
+    function OpenWin(url,name,height,width)
+    {
+      var InfoWin = window.open(url,name,"directories=0,height="+height+",width=" + width + ",hotkeys=0,location=0,menubar=0,resizable=1,screenX=150,screenY=10,left=150,top=10,scrollbars=1,status=1,titlebar=0,toolbar=0");
+      InfoWin.focus();
+    }
+    //--></script><link href="common/prettify.css" type="text/css" rel="stylesheet"><script type="text/javascript" src="common/prettify.js"></script></head>
+<body vlink="#000099" link="#000099" alink="#000099" onload="prettyPrint()">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#000066">
+<tr>
+<td height="74" valign="bottom" colspan="2"><a href="http://www.galileocomputing.de/katalog/openbook?GPP=opoop"><img src="common/galileocomputing_openbook.gif" width="200" height="56" border="0" alt="Galileo Computing < openbook >" title="Galileo Computing < openbook >"></a></td>
+<td width="80" height="74"><a href="http://www.galileocomputing.de/?GPP=opoop"><img src="common/galileocomputing.gif" border="0" alt="Galileo Computing - Professionelle Bücher. Auch für Einsteiger." title="Galileo Computing - Professionelle Bücher. Auch für Einsteiger."></a></td>
+</tr>
+</table>
+<div align="right"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Professionelle Bücher. Auch für Einsteiger.</a></div><br><table class="tbl" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td width="190" valign="top">
+<table class="tbl1" border="0" cellpadding="3" cellspacing="0" width="190" align="left">
+<tr>
+<td class="tbl2"><a class="nav" href="index.htm#_top">Inhaltsverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_01_001.htm#mj45fbcfa5f718dee20d62b2268af70c9f">1 Einleitung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_02_001.htm#mj8af1cb6d9a8026216ccb6940e4bfad18">2 Die Basis der Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_03_001.htm#mja6c3f342e440956adade4ec377b02c1a">3 Die Prinzipien des objektorientierten Entwurfs</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_04_001.htm#mjeef1696ba84bfb83a6a296431f59525b">4 Die Struktur objektorientierter Software</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_05_001.htm#mja0ce7d0f753d9cc45d224652305a1e14">5 Vererbung und Polymorphie</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_06_001.htm#mja65c078549db662a8e678c785a47f2f6">6 Persistenz</a></td>
+</tr>
+<tr>
+<td><a class="navh" href="##mj832cf99e6c67bcd07d36fe1057e6f852">7 Abläufe in einem objektorientierten System</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_08_001.htm#mj60c9688f17924d226cdb97426647a8db">8 Module und Architektur</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_09_001.htm#mjacb891de66e6e63ae41af14a9233ee73">9 Aspekte und Objektorientierung</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_kapitel_10_001.htm#mj69f5d6dcf2a5fe7063f7ee04820669ec">10 Objektorientierung am Beispiel: Eine Web-Applikation mit PHP 5 und Ajax</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_a_001.htm#mjdb72496a51af0b0ff3fb5fcab0d18236">A Verwendete Programmiersprachen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="oop_anhang_b_001.htm#mj2c1227d039810774e55bb3d2d75a3d8d">B Literaturverzeichnis</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="stichwort.htm#_top">Stichwort</a></td>
+</tr>
+<tr>
+<td><br><a href="http://download.galileo-press.de/openbook/oop/galileocomputing_oop.zip" class="navnav"><strong>Download:</strong><br>- ZIP, ca. 5,2 MB</a></td>
+</tr>
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav">Buch bestellen</a></td>
+</tr>
+<tr>
+<td><a class="navnav" href="#kommentar">Ihre Meinung?</a><br><br></td>
+</tr>
+</table>
+</td>
+<td width="10"><img src="common/spacer10.gif" width="10" height="10" alt="Spacer"></td>
+<td width="85%" valign="top" align="center"><div align="center">
+<table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a href="http://www.galileocomputing.de/?GPP=opoop" class="navnav">Galileo Computing /</a><a href="http://www.galileocomputing.de/katalog/openbook/?GPP=opoop" class="navnav"> &lt;openbook&gt; /</a><a href="index.htm" class="navnav">OOP</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" valign="top"><table width="100%" border="0" cellpadding="10" cellspacing="0" class="box">
+<tr>
+<td colspan="2"><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="buchtitel">Objektorientierte Programmierung</a><span class="autor"> von Bernhard Lahres, Gregor Rayman </span><br><span class="untertitel">Das umfassende Handbuch</span></td>
+</tr>
+<tr>
+<td valign="top" width="211"><dl>
+<dt><a href="http://www.galileocomputing.de/2103?GPP=opoop" class="navnav"><img src="common/9783836214018.gif" border="0" alt="Buch: Objektorientierte Programmierung" title="Buch: Objektorientierte Programmierung"></a></dt>
+<dd><br><a href="http://www.galileocomputing.de/2103?GPP=opoop"><span class="autor"><strong>Objektorientierte Programmierung</strong><br>2., aktualisierte und erweiterte Auflage, geb.<br>656 S., 49,90 Euro<br>Galileo Computing<br>ISBN 978-3-8362-1401-8</span></a></dd>
+</dl></td>
+<td width="80%"><table border="0">
+<tr>
+<td valign="baseline"><img src="common/pfeil_u.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="3" class="kap"><strong><a href="oop_kapitel_07_001.htm#mj832cf99e6c67bcd07d36fe1057e6f852" class="navnav">7 Abläufe in einem objektorientierten System</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_001.htm#mj26b861834c431b683e4e1d0ac1938cba" class="navnav">7.1 Erzeugung von Objekten mit Konstruktoren und Prototypen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj6cd9b2d12e6d2f663e4c1128b111c5d9" class="navnav">7.1.1 Konstruktoren: Klassen als Vorlagen für ihre Exemplare</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj29e4ea58eb12662f0f36f92b5ec8adaa" class="navnav">7.1.2 Prototypen als Vorlagen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_001.htm#mj51d93c2b5e445392072beadafdebd393" class="navnav">7.1.3 Entwurfsmuster »Prototyp«</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_002.htm#mj1c44c94f2295b431db9cb9b5ee03bc9f" class="navnav">7.2 Fabriken als Abstraktionsebene für die Objekterzeugung</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjb223311c89407a9e76da180dc3f69036" class="navnav">7.2.1 Statische Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjaa0579b2fb6bb3ec6034cf05f1eecac9" class="navnav">7.2.2 Abstrakte Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mjc5cb28a57eeadedfbc991e6786b00788" class="navnav">7.2.3 Konfigurierbare Fabriken</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj081b9df6d2dc6eafff1ff31f2823b219" class="navnav">7.2.4 Registraturen für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj91442f54dd3e6454d2343a346244a94c" class="navnav">7.2.5 Fabrikmethoden</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7e0c800eda7165eac4272a1955efef1a" class="navnav">7.2.6 Erzeugung von Objekten als Singletons</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_002.htm#mj7dcd47135763da11d4d4dc6876f5e60f" class="navnav">7.2.7 Dependency Injection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="#mj8ee9807b6d851ca17774d80d4e8b83bb" class="navh">7.3 Objekte löschen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj7283bd45b7cfe614019b221ea52afec4" class="navh">7.3.1 Speicherbereiche für Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj61cf5d0c185ed5382c55f54cd3fe712c" class="navh">7.3.2 Was ist eine Garbage Collection?</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="#mj77b12ff91a3d2c926b596ecf298bfde6" class="navh">7.3.3 Umsetzung einer Garbage Collection</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_004.htm#mja44c8c090df304b5376fe244eb0505d7" class="navnav">7.4 Objekte in Aktion und in Interaktion</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj461a627b534275782ce4985792ee15db" class="navnav">7.4.1 UML: Diagramme zur Beschreibung von Abläufen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mjf78234957c82aa740d796d46b611a52f" class="navnav">7.4.2 Nachrichten an Objekte</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj10368deb9e22e623d5445b79601554b1" class="navnav">7.4.3 Iteratoren und Generatoren</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj3f6bd50ca8e5f65f36567d80e2803893" class="navnav">7.4.4 Funktionsobjekte und ihr Einsatz als Eventhandler</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj7e10a219a48a6476b1ea82aec6cc5ef4" class="navnav">7.4.5 Kopien von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_004.htm#mj66aae429fecf9db6555945805016c62e" class="navnav">7.4.6 Sortierung von Objekten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_005.htm#mj7468c23d82240bfb461b8090668d1a51" class="navnav">7.5 Kontrakte: Objekte als Vertragspartner</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjed5c3bed5d1f32427a86656f31c3e743" class="navnav">7.5.1 Überprüfung von Kontrakten</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mjb272d58355d9d7a0899049eb6842697a" class="navnav">7.5.2 Übernahme von Verantwortung: Unterklassen in der Pflicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_005.htm#mja3c37a47a8407bc65b94f93f6a254ca2" class="navnav">7.5.3 Prüfungen von Kontrakten bei Entwicklung und Betrieb</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline" colspan="2"><strong><a href="oop_kapitel_07_006.htm#mjec595d98347a935335b712f91956664c" class="navnav">7.6 Exceptions: Wenn der Kontrakt nicht eingehalten werden kann</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj3963c0742069044978ac462cc56c5b5a" class="navnav">7.6.1 Exceptions in der Übersicht</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mje09bc3c4971db9aa83562a1fe7c4e034" class="navnav">7.6.2 Exceptions und der Kontrollfluss eines Programms</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj21b606a3bb186e029d6b9c8c22764cc0" class="navnav">7.6.3 Exceptions im Einsatz bei Kontraktverletzungen</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mj05465a5863b658f1b916b7805e1ef3c9" class="navnav">7.6.4 Exceptions als Teil eines Kontraktes</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjbf1f56f9665424db8d4cfc65f9adce59" class="navnav">7.6.5 Der Umgang mit Checked Exceptions</a></strong></td>
+</tr>
+<tr>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"> </td>
+<td valign="baseline" width="10"><img src="common/pfeil_rechts5.gif" width="10" height="10" border="0" alt="Pfeil"></td>
+<td valign="baseline"><strong><a href="oop_kapitel_07_006.htm#mjd35575d7d7be5ba9875a7b50fa01d0d0" class="navnav">7.6.6 Exceptions in der Zusammenfassung</a></strong></td>
+</tr>
+</table><br></td>
+</tr>
+</table>
+<table width="100%" cellpadding="20" cellspacing="0" border="0" bgcolor="#eeeeee">
+<tr>
+<td><div class="main"><a id="mj8ee9807b6d851ca17774d80d4e8b83bb" name="mj8ee9807b6d851ca17774d80d4e8b83bb"></a><a name="t21"></a><a name="t2t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div>
+<h2 class="t2">7.3 Objekte löschen  <a href="#t2t32"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><img src="common/15x15leer.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></h2>
+<p>Objekte haben in der Regel eine begrenzte Lebensdauer. Das heißt, dass sie irgendwann ihren Zweck erfüllt haben und innerhalb des laufenden Systems nicht mehr benötigt werden. Da ein Objekt durchaus Ressourcen belegt und diese immer begrenzt sind, sollten Objekte in solchen Fällen gelöscht werden.</p><a id="mj7283bd45b7cfe614019b221ea52afec4" name="mj7283bd45b7cfe614019b221ea52afec4"></a><a name="t31"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t32"></a><h3 class="t3">7.3.1 Speicherbereiche für Objekte  <a href="#t2t33"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t31"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Grundsätzlich gibt es drei Speicherbereiche, in denen Objekte und deren Datenelemente abgelegt werden können. Je nach Speicherbereich unterscheidet sich das Verfahren, nach dem die Lebensdauer der Objekte bestimmt wird.</p>
+<p><strong><em>Statischer  
+Speicher</em></strong></p>
+<p>Im <span class="ckursiv">statischen Speicher</span> werden Daten verwaltet, die für die gesamte Laufzeit der Anwendung oder zumindest bestimmter Module der Anwendung gültig sind. So werden zum Beispiel in C++ im statischen Speicher die globalen Variablen oder die klassenbasierten Datenelemente gehalten. Diese Daten werden beim Start der Anwendung, beziehungsweise beim Laden eines Moduls, erzeugt und erst beim Beenden der Anwendung gelöscht. Sie können nicht dynamisch während der Anwendung erzeugt oder gelöscht werden.</p>
+<p><strong><em>Dynamischer Speicher</em></strong></p>
+<p>Das kann man nur mit Objekten machen, deren Daten im <span class="ckursiv">dynamischen Speicher</span> gehalten werden. Beim dynamischen Speicher unterscheidet man zwischen dem <span class="ckursiv">Stack</span> und dem <span class="ckursiv">Heap</span>.</p>
+<p><strong><em>Stack</em></strong></p>
+<p>Der Stack wird verwendet, um lokale Variablen der Routinen zu speichern. Die Lebensdauer einer lokalen Variablen ist auf die Laufzeitdauer der Routine, in der sie deklariert wurde, beschränkt. Sie werden erzeugt, nachdem die Routine startet, und gelöscht, bevor sie endet. Sie werden immer in umgekehrter Reihenfolge ihrer Erzeugung gelöscht. Die durch solche Variable referenzierten Datenstrukturen werden sozusagen »aufeinander gestapelt«, daher auch der englische Name <span class="ckursiv">Stack</span>. In einer Anwendung kann es mehrere Stacks geben, jeder nebenläufige Thread hat einen eigenen. Die einfache Struktur und die klar definierte Lebensdauer der lokalen Variablen sind Vorteile des Stacks. Der Nachteil ist, dass die Datenstrukturen, die auf dem Stack gespeichert werden, nicht die Laufzeit einer Routine überstehen.</p>
+<p><strong><em>Heap</em></strong></p>
+<p>Diese Möglichkeit bietet der Heap. Auf dem Heap kann eine Datenstruktur zu beliebiger Zeit dynamisch erzeugt werden. Kann sie aber auch zu jeder beliebigen Zeit gelöscht werden? Das hängt von der verwendeten Programmiersprache ab.</p>
+<p>Im Gegensatz zur Objekterzeugung, die der Programmierer explizit bestimmen muss, gelten für das Entfernen der auf dem Heap angelegten Objekte ähnliche Regeln wie für das Entfernen der Objekte von dem Stack.</p>
+<p><strong><em>Regeln für das Entfernen von Objekten von Stack und Heap</em></strong></p>
+<p>Objekte sollen erst entfernt werden, wenn sie nicht mehr gebraucht werden, nicht früher. Nun, es wäre extrem schwierig festzustellen, ob ein Objekt tatsächlich noch gebraucht wird, und daher beschränkt man sich auf eine etwas entschärfte Forderung: Die Objekte sollten entfernt werden, wenn sie nicht mehr <span class="ckursiv">erreichbar </span>sind. Das heißt, sie sollten dann gelöscht werden, wenn sie von keinem aktiven Teil der Anwendung mehr referenziert werden.</p>
+<p>Der auf den ersten Blick einfachste Weg, mit nicht mehr benötigten Objekten umzugehen, ist es, das Aufräumen dem Programmierer zu überlassen. [Das ist nicht ganz korrekt. Noch einfacher ist es, einfach überhaupt nicht aufzuräumen und die nicht mehr gebrauchten Objekte im Speicher zu belassen. Dies ist jedoch nur für sehr kleine Systeme, die nur kurze Einsatzzeiten haben, wirklich praktikabel.
+]  In Sprachen, die keine automatische Speicherverwaltung integriert haben, geschieht dies in der Regel über eine spezielle Operation. In C++ wird das Löschen eines Objekts zum Beispiel über den <span class="clisting">delete</span>-Operator vorgenommen. Dieses Vorgehen ist jedoch sehr fehleranfällig, es bestehen vielfältige Möglichkeiten, Probleme in das System einzubauen. Es ist nämlich für einen Programmierer oft schwer zu entscheiden, wann ein bestimmtes Objekt wieder freigegeben werden kann. Wird ein Objekt gelöscht, obwohl es von anderen Objekten noch referenziert wird, kommt es zu Fehlern im späteren Programmablauf.</p><a id="mj61cf5d0c185ed5382c55f54cd3fe712c" name="mj61cf5d0c185ed5382c55f54cd3fe712c"></a><a name="t32"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t33"></a><h3 class="t3">7.3.2 Was ist eine Garbage Collection?  <a href="#t2t34"><img src="common/down.gif" width="15" height="15" border="0" alt="Zur nächsten Überschrift"></a><a href="#t2t32"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Um das zu vermeiden, haben Systeme wie Java in ihrem Laufzeitsystem eine automatische Speicherbereinigung integriert. Durch diesen Automatismus wird eine der häufigsten Fehlerquellen, nämlich Verweise auf bereits gelöschte Objekte, eliminiert.</p>
+<p>Dieser Mechanismus nennt sich Garbage Collection.</p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf"><img src="common/icon_hinweis.jpg" align="top" alt="Icon Hinweis" title="Icon Hinweis"><span class="cfett"> Garbage Collection (automatische Speicherbereinigung)
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>Wenn ein Objekt von keinem anderen Objekt oder sonstigen Systembestandteil mehr referenziert wird, kann es nicht mehr gefunden und somit auch nicht mehr genutzt werden. Trotzdem ist das Objekt noch da und belegt Systemressourcen. Und darin liegt die Analogie zu den Abfällen (engl. <span class="ckursiv">Garbage</span>): Diese liegen nur herum, brauchen Platz und ... fangen irgendwann an zu stinken. Bei Objekten ist Letzteres zwar nur in seltenen Fällen gegeben, aber genauso wie beim Abfall muss jemand die nutzlosen Objekte identifizieren und entsorgen. Dieser Mechanismus des Auffindens und Entsorgens wird Garbage Collection genannt.</p>
+</td>
+</tr>
+</table><br><p>Die Regel, Objekte, die nicht mehr erreichbar sind, zu entfernen, lässt sich zwar leicht formulieren, sie zu implementieren ist aber nicht so einfach. Aus diesem Grund gibt es verschiedene Verfahren, wie sich der Mechanismus der Garbage Collection umsetzen lässt. In den folgenden Abschnitten werden wir diese Verfahren beschreiben.</p>
+<p>Ein Garbage Collector ist zum Beispiel in den Programmiersprachen Java, C# und Smalltalk, genauer gesagt in deren Laufzeitsystem, bereits eingebaut. Da auch die Objekterzeugung durch dieses Laufzeitsystem erfolgt, hat das System die komplette Kontrolle über die verwalteten Objekte.</p>
+<p>Somit ist es in diesen Sprachen ausgeschlossen, dass Fehler dadurch auftreten, dass noch Referenzen auf bereits freigegebene Objekte existieren. Sofern eine solche Referenz aber noch existiert, wird der Mechanismus der automatischen Speicherbereinigung dafür sorgen, dass das referenzierte Objekt nicht gelöscht wird.</p>
+<p>Einige Programmiersprachen bieten auch die Integration einfacher Möglichkeiten des Cachings von Objekten, indem diese Objekte zu einem gewissen Grad vor der Garbage Collection geschützt werden. Dieser Mechanismus wird in Java als <span class="ckursiv">Nutzung von weichen Referenzen</span> (Soft References) bezeichnet.</p>
+<p><strong><em>Soft Reference und Caches</em></strong></p><br><table width="100%" border="0" cellspacing="1" cellpadding="3">
+<tr>
+<td class="tabellenkopf">Weiche Referenzen (Soft References) 
+</td>
+</tr>
+<tr>
+<td class="tabellentext">
+<p>In Java kann man einen von Speicherknappheit abhängigen Cache durch die Verwendung von weichen Referenzen (Klasse <span class="clisting">SoftReference</span>) implementieren. Ist ein Objekt nicht mehr direkt erreichbar, sondern nur noch über <span class="clisting">SoftReferences</span>, so wird es so lange vom Garbage Collector in Ruhe gelassen, wie dem Programm genügend Speicher zur Verfügung steht. Wird der Speicher knapp, werden auch die Objekte, die nur über <span class="clisting">SoftReferences</span> erreichbar sind, gelöscht.</p>
+</td>
+</tr>
+</table><br><a id="mj77b12ff91a3d2c926b596ecf298bfde6" name="mj77b12ff91a3d2c926b596ecf298bfde6"></a><a name="t33"></a><br><div align="center"><a href="#top"><img src="common/jupiters.gif" border="0" alt="Galileo Computing - Zum Seitenanfang"></a></div><a name="t2t34"></a><h3 class="t3">7.3.3 Umsetzung einer Garbage Collection  <img src="common/15x15leer.gif" width="15" height="15" border="0" alt="top"><a href="#t2t33"><img src="common/top.gif" width="15" height="15" border="0" alt="Zur vorigen Überschrift"></a></h3>
+<p>Wenden wir uns nun den verschiedenen Algorithmen zu, über die Verfahren zur automatischen Speicherbereinigung umgesetzt werden können.</p>
+<p><strong><em>Arten von  
+Garbage  
+Collection</em></strong></p>
+<p>Wir können drei grundsätzliche Arten von Garbage Collection unterscheiden:</p>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>1.</strong></td>
+<td valign="top" width="100%" align="left"> Zählen von Referenzen auf Objekte (Reference Counting)</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>2.</strong></td>
+<td valign="top" width="100%" align="left"> Markieren von referenzierten Objekten Markieren von referenzierten Objektenmit anschließender Bereinigung (Mark and SweepMark and Sweep)</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<table width="100%" border="0">
+<tr>
+<td valign="top" width="10"><strong>3.</strong></td>
+<td valign="top" width="100%" align="left"> Kopieren aller referenzierten Objekte in einen neuen Speicherbereich und Anpassen aller Verweise darauf (Copying Collection)</td>
+</tr>
+<tr>
+<td valign="baseline" width="16">     </td>
+<td valign="top" width="100%" align="left">     </td>
+</tr>
+</table>
+<p>Und dann gibt es noch eine ganze Reihe von Verfahren, welche die genannten kombinieren, um deren Nachteile weitgehend auszugleichen. Wir stellen hier die genannten Verfahren kurz vor. [Eine ausführliche Diskussion von optimierten Verfahren zur Garbage Collection findet sich zum Beispiel in der Dokumentation von Sun zur Garbage Collection der virtuellen Maschine ab Version 1.4. Die virtuelle Maschine von Java erlaubt aktuell die Auswahl aus vier unterschiedlichen Verfahren zur Garbage Collection. Der entsprechende Artikel findet sich unter <span class="ckursiv">http://java.sun.com/docs/hotspot/gc1.4.2/</span>.
+] </p>
+<p>Von den oben genannten Ansätzen ist der des Zählens von Referenzen am einfachsten. Wir beginnen deshalb mit dessen Vorstellung, um zunächst einmal seine Grenzen zu verstehen.</p>
+<h4 class="t4">Zählen von Referenzen (Reference Counting)</h4>
+<p>Ein einfacher und intuitiver Ansatz, um eine automatische Verwaltung des belegten Speichers zu erreichen, ist das sogenannte Zählen von Referenzen (Reference Counting).</p>
+<p><strong><em>Objekt führt Buch über Referenzen.</em></strong></p>
+<p>Dabei werden &#8211; wie durch den Namen impliziert &#8211; alle Referenzen auf ein Objekt gezählt, das Objekt selbst führt darüber Buch und merkt sich die Zahl der Referenzen. Gibt es keine Referenzen auf das Objekt mehr, kann es gelöscht werden. Wird eine neue Referenz hinzugefügt, wird das Objekt darüber benachrichtigt und der Zähler heraufgesetzt, wird eine Referenz entfernt, so wird der Zähler um eins heruntergesetzt.</p>
+<p>Dazu sind ein paar Voraussetzungen notwendig:</p>
+<ul class="gp">
+<li>Bei Ausführung jeder Operation, die eine Referenz hinzufügt, muss der Zähler des betroffenen Objekts hochgezählt werden. So wird zum Beispiel bei Nutzung des Zuweisungsoperators hochgezählt, da es danach einen weiteren Verweis auf das Objekt gibt.</li>
+</ul>
+<ul class="gp">
+<li>Bei Ausführung jeder Operation, die eine Referenz entfernt, muss der Zähler des betroffenen Objekts heruntergezählt werden. Auch hier ist der Zuweisungsoperator betroffen; wenn darüber einer Variablen ein neuer Wert zugewiesen wird, muss der Zähler für den bisherigen Wert heruntergezählt werden, da jetzt eine Referenz weniger existiert.</li>
+</ul>
+<ul class="gp">
+<li>Erreicht der Zähler den Stand 0, muss das betroffene Objekt gelöscht werden.</li>
+</ul>
+<p>In Abbildung 7.22 sind zwei Klassen dargestellt, die für die Umsetzung einer Speicherbereinigung in C++ verwendet werden können.</p>
+<div class="bildbox">
+<p><a name="IDA1TSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_017.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_017.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.22    </strong>Zählen von Referenzen in C++</p>
+<p>Dabei werden die eigentlichen Objekte (Exemplare der Klasse <span class="clisting">RefCounted</span>) in sogenannten Smart Pointern, in diesem Fall Exemplare der Klasse <span class="clisting">RefCountBasePtr</span>, gekapselt. Bei Konstruktion und Zuweisungen wird dann nur noch mit <span class="clisting">RefCountBasePtr</span> gearbeitet. Um auf das eigentliche Objekt durchzugreifen, das über <span class="clisting">m_pTarget</span> referenziert wird, ist der Operator <span class="clisting">-&gt;</span> überladen. Dieser wird beim Zugriff das enthaltene Exemplar von <span class="clisting">RefCounted</span> liefern. In Listing 7.26 ist die Umsetzung dargestellt. Dabei wird ersichtlich, dass der Referenzzähler auf dem eigentlichen Objekt jeweils angepasst wird.</p>
+<div class="listing"><pre class="prettyprint">class RefCountPtrBase 
+{ 
+public: 
+    RefCountPtrBase(RefCounted const* pTarget):     
+                     m_pTarget(pTarget) { 
+            m_pTarget-&gt;AddRef(); 
+    } 
+ 
+    RefCountPtrBase(RefCountPtrBase const&amp; another):  
+                     m_pTarget(another.m_pTarget) { 
+            m_pTarget-&gt;AddRef(); 
+    } 
+    ~RefCountPtrBase() {   
+            m_pTarget-&gt;Release(); 
+    } 
+    RefCountPtrBase&amp; operator= (RefCountPtrBase const&amp;   
+                                another) { 
+        another.m_pTarget-&gt;AddRef(); 
+        m_pTarget-&gt;Release();        
+        m_pTarget = another.m_pTarget; 
+        return *this; 
+    } 
+    // ... 
+} 
+ 
+class RefCounted 
+{ 
+   signed long mutable m_nRefCount; 
+   // ... 
+   void AddRef() {        
+      ++m_nRefCount; 
+   } 
+   void Release() {       
+      --m_nRefCount; 
+      if (0 == m_nRefCount) { 
+        delete this; 
+      } 
+   } 
+   // ... 
+}</pre></div>
+<p class="tabunter"><strong>Listing 7.26    </strong>Zählen von Referenzen  
+(Das aufgeführte Listing ist vereinfacht dargestellt. Die komplette Implementierung dieses Verfahrens finden Sie auf der Webseite zum Buch, www.objektorientierte-programmierung.de.)</p>
+<p>In Zeile  wird ein Konstruktor definiert, dem ein Exemplar von <span class="clisting">RefCounted</span> übergeben wird. Dabei wird auf ihm auch gleich der Referenzzähler erhöht, da es nun eine weitere Referenz auf das Objekt über den gerade konstruierten neuen Smart Pointer gibt. In Zeile  erfolgt das Gleiche für den Konstruktor, in dem eine Kopie angelegt wird. In Zeile  wird der Zähler ebenfalls heruntergezählt, weil gerade einer der Smart Pointer gelöscht wird. In Zeile  wird ein neues Exemplar von <span class="clisting">RefCounted</span> auf den Smart Pointer zugewiesen. Deshalb muss der Zähler für das bisher referenzierte Objekt heruntergezählt werden, für das neue Objekt erhöht (Zeilen mit der Markierung ).</p>
+<p>Für die Klasse <span class="clisting">RefCounted</span> sind die Operationen zum <span class="clisting">AddRef</span> und <span class="clisting">Release</span> umgesetzt. Dabei zählt <span class="clisting">AddRef</span> in Zeile  ganz einfach den Zähler hoch. <span class="clisting">Release</span> (Zeile ) setzt den Zähler herunter und gibt das Objekt frei, sobald der Zählerstand 0 erreicht.</p>
+<p><strong><em>Problem:  
+Zyklische  
+Referenzen</em></strong></p>
+<p>So weit, so einfach. Allerdings hat dieses Verfahren einen großen Haken, der es für den Einsatz in vielen Fällen unbrauchbar macht: Wenn irgendwo in unseren Objekten zyklische Referenzen auftauchen, werden die betroffenen Objekte nie den Zählerstand 0 erreichen und damit auch nie gelöscht werden. In diesem Fall gibt es nämlich auf jedes der beteiligten Objekte immer eine Referenz. Zyklische Referenzen sind aber in objektorientierten Anwendungen etwas sehr Normales und häufig.</p>
+<div class="bildbox">
+<p><a name="IDARVSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_018.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_018.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.23    </strong>Zyklische Verweise auf Objekte</p>
+<p>In Abbildung 7.23 sind solche zyklischen Verweise dargestellt. Auftreten können sie zum Beispiel, wenn Rückreferenzen bei Aggregationsbeziehungen gepflegt werden. Dabei hält das Aggregat eine Liste der aggregierten Objekte, diese wiederum halten eine Referenz auf das Aggregat. Diese Information ist dann zwar redundant, kann aber aus Gründen der Zugriffseffizienz sinnvoll sein. Im dargestellten Beispiel kennt ein Auftrag die Liste der in ihm enthaltenen Positionen, umgekehrt weiß aber auch jede Position, zu welchem Auftrag sie gehört.</p>
+<p><strong><em>Zählen von  
+Referenzen ist nicht vollständig.</em></strong></p>
+<p>Was wir aber brauchen, ist ein Verfahren, das konsistent und vollständig ist. Konsistent heißt in diesem Fall: Es wird nie ein Objekt aufgeräumt, das noch gebraucht wird. Diese Anforderung erfüllt das Zählen von Referenzen. Vollständig heißt in diesem Fall: Es werden alle Objekte, die nicht mehr gebraucht werden, auch wirklich weggeräumt. Diese Anforderung wird durch das Zählen von Referenzen nicht erfüllt.</p>
+<p>Allerdings kann das Zählen von Referenzen für Teile einer Applikation, in denen zyklische Referenzen nicht erwartet werden, eine einfache und ressourcenschonende Methode sein, um Speicher automatisch zu verwalten.</p>
+<p>So verwenden einige Klassen aus der C++-Standardbibliothek Referenzzähler, um ein automatisches Löschen von Objekten zu ermöglichen. Ein Beispiel dafür ist die <span class="clisting">string</span>-Klasse.</p>
+<h4 class="t4">Markieren und Löschen (Mark and Sweep)</h4>
+<p>Wenn also die Möglichkeit von zyklischen Referenzen besteht, ist das reine Mitzählen nicht ausreichend. In diesem Fall müssen alternative Verfahren zum Einsatz kommen. Eine gängige Alternative ist das sogenannte Mark-and-Sweep-Verfahren. Wörtlich übersetzt heißt das Verfahren <span class="ckursiv">Markieren und Ausfegen</span>.</p>
+<p><strong><em>Markierungsphase</em></strong></p>
+<p>Der Mark-and-Sweep-Algorithmus sucht zunächst alle Objekte, die von anderen referenziert werden, und markiert sie (Markierungsphase). Dazu ist es notwendig, dass ein Startpunkt (möglicherweise auch mehrere Startpunkte) bekannt ist, also Objekte, von denen wir wissen, dass sie nicht entfernt werden dürfen. [Existiert ein solcher Startpunkt nicht, können alle Objekte entfernt werden. Diese Situation tritt aber in praktischen Fällen nicht auf, da in der Regel ja zumindest mit der Applikation selbst (die in der Regel auch ein Objekt ist) weitergearbeitet werden soll.
+]  Zu solchen Objekten gehört zum Beispiel das Applikationsobjekt selbst. Diese Startobjekte werden nun markiert, also in eine Liste von Objekten aufgenommen, die nicht gelöscht werden dürfen. Welche Objekte werden aber nun wiederum von den Startobjekten referenziert? Sie alle müssen wir natürlich auch in die Liste aufnehmen, sofern sie nicht schon dort enthalten sind. Und alle neu hinzugefügten Objekte müssen ebenfalls überprüft werden.</p>
+<p>Die Suche bedient sich dabei Algorithmen, die zur Lösung des Erreichbarkeitsproblems in Graphen verwendet werden.</p>
+<p>In Abbildung 7.24 ist die Markierungsphase für ein Beispiel dargestellt. Ausgehend vom Applikationsobjekt werden alle erreichbaren Objekte markiert. Die fett gezeichneten Linien werden dabei durchlaufen, so dass am Ende die dunkelgrau hinterlegten Objekte markiert sind. Bereits markierte Objekte (wie zum Beispiel <span class="clisting">Auftrag2</span>) werden nicht mehr angepasst und weiter bearbeitet, wenn sie zum zweiten Mal erreicht werden. Die hellgrau hinterlegten Objekte sind nicht erreichbar und werden somit auch nicht markiert.</p>
+<div class="bildbox">
+<p><a name="IDAGWSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_019.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_019.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.24    </strong>Markieren von erreichbaren Objekten</p>
+<p><strong><em>Löschphase</em></strong></p>
+<p>Ist die Markierungsphase abgeschlossen, folgt die sogenannte Sweep-Phase. Dabei findet ein erneuter Durchlauf durch die Objektmenge statt, bei dem jedes Objekt, das nicht markiert wurde, gelöscht wird, da es erwiesenermaßen nicht mehr referenziert wird.</p>
+<div class="bildbox">
+<p><a name="IDAMWSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_020.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_020.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.25    </strong>Verbleibende Objekte nach Sweep</p>
+<p>In Abbildung 7.25 sind die nach der Sweep-Phase verbleibenden Objekte dargestellt. [Der englische Begriff <span class="ckursiv">sweep</span> hat die wörtliche Übersetzung »ausfegen«, was schon ziemlich gut das Vorgehen des Algorithmus trifft. Wir sprechen trotzdem in der deutschen Übersetzung von der Löschphase des Algorithmus.
+]  Beim Löschdurchlauf wird außerdem das Flag zurückgesetzt, das die Objekte als bereits markiert gekennzeichnet hat.</p>
+<p><strong><em>Komplexität abhängig von Gesamtzahl der Objekte</em></strong></p>
+<p>Mark and Sweep hat allerdings ein paar Nachteile. Der Hauptnachteil ist die Komplexität des zugehörigen Algorithmus, also sein Bedarf an Zeit und Speicher. Der Zeitbedarf der Markierungsphase ist linear abhängig von der Anzahl der noch verwendeten Objekte. Der Zeitbedarf der Löschphase ist linear abhängig von der Anzahl der insgesamt vorhandenen Objekte.</p>
+<h4 class="t4">Kopieren der erreichbaren Objekte</h4>
+<p>In vielen Fällen besser als Mark and Sweep arbeitet ein anderer Algorithmus (Copy-Collector), der die noch erreichbaren Objekte direkt in einen neuen Speicherbereich kopiert. Da der Algorithmus die nicht erreichbaren Objekte überhaupt nicht betrachten muss, ist seine Komplexität nur von der Anzahl der wirklich erreichbaren Objekte abhängig. In sehr dynamischen Anwendungen, in denen eine große Zahl von kurzlebigen Objekten erzeugt wird, kann die Anzahl der zu löschenden Objekte im Vergleich zu der Zahl der überlebenden Objekte sehr groß sein, der Vorteil des Algorithmus kann also relevant sein.</p>
+<p>Beim Kopieren wird der komplette noch erreichbare Bestand an Objekten in einen vorher leeren Speicherbereich kopiert, den sogenannten <span class="ckursiv">To-Space</span>. Danach wird der bisher genutzte Speicherbereich, der auch <span class="ckursiv">From-Space</span> genannt wird, geleert. Die genutzten Speicherbereiche werden also bei jeder durchgeführten Garbage Collection vertauscht.</p>
+<p><strong><em>Aktionen</em></strong></p>
+<p>Dabei werden für die betroffenen Objekte jeweils die folgenden Aktionen durchgeführt:</p>
+<ul class="gp">
+<li>Das betrachtete Objekt wird in den To-Space kopiert.</li>
+</ul>
+<ul class="gp">
+<li>Der Zeiger, über den das Objekt erreicht wurde, wird umgesetzt und auf dessen neue Position gesetzt.</li>
+</ul>
+<ul class="gp">
+<li>Das ursprüngliche Objekt im From-Space erhält einen Verweis auf seine neue Inkarnation im To-Space.</li>
+</ul>
+<p><strong><em>Zwischenstand beim Kopieren</em></strong></p>
+<p>In Abbildung 7.26 ist der Stand des Kopierens dargestellt, nachdem das Einstiegsobjekt (das Applikationsobjekt) kopiert und der Zeiger darauf umgesetzt wurde. Die von diesem Objekt aus weiterführenden Referenzen sind noch nicht angepasst und zeigen immer noch in den From-Space.</p>
+<p><strong><em>Kopieren von  
+referenzierten Objekten</em></strong></p>
+<p>In Abbildung 7.27 ist der nächste Schritt dargestellt, bei dem dann die ersten beiden referenzierten Objekte kopiert wurden. Wieder sind deren weitere Referenzen noch in den From-Space gerichtet.</p>
+<div class="bildbox">
+<p><a name="IDAWXSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_021.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_021.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.26    </strong>Start des Kopierens in den To-Space</p>
+<div class="bildbox">
+<p><a name="IDA0XSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_022.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_022.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.27    </strong>Kopieren von referenzierten Objekten</p>
+<p>Ganz einfach wird das Verfahren, wenn ein Objekt bereits kopiert wurde. In Abbildung 7.28 ist die Situation dargestellt, dass das bereits kopierte Objekt <span class="clisting">Position</span> eine Referenz auf das bereits früher kopierte Objekt <span class="clisting">Auftrag2</span> hat.</p>
+<div class="bildbox">
+<p><a name="IDAGYSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_023.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_023.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.28    </strong>Referenz auf bereits kopiertes Objekt</p>
+<p><strong><em>Referenzen umsetzen</em></strong></p>
+<p>In diesem Fall ist nichts weiter zu tun, als die Referenz, die von <span class="clisting">Position</span> aus gehalten wird, auf das bereits kopierte Objekt zu setzen. Wo dieses liegt, haben wir uns im ursprünglichen Objekt <span class="clisting">Auftrag2</span> vorher gemerkt.</p>
+<p><strong><em>Entfernen</em></strong></p>
+<p>Nach Abschluss des Verfahrens sind die noch erreichbaren Objekte im To-Space gelandet, wie in Abbildung 7.29 dargestellt. Der gesamte Speicherbereich im From-Space wird nun auf einen Schwung freigegeben, da alle noch benötigten Objekte bereits kopiert wurden. Die Applikation kann jetzt mit allen noch in Verwendung befindlichen Objekten weiterarbeiten.</p>
+<div class="bildbox">
+<p><a name="IDASYSQ"></a><a onClick="OpenWin('bilder/05_ablauefevonooprogrammen_024.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein05_ablauefevonooprogrammen_024.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.29    </strong>Zustand nach Abschluss der Garbage Collection</p>
+<h4 class="t4">Die junge und die alte Generation (Generational Garbage Collection)</h4>
+<p>In der Praxis machen die meisten modernen Verfahren zur Garbage Collection die Tatsache nutzbar, dass die Lebensdauer von Objekten nicht gleichmäßig verteilt ist.</p>
+<p>Die Speicherverwaltung der virtuellen Maschine von Java nutzt unter anderem auch ein Verfahren, das die Speicherbereinigung vom Alter der betroffenen Objekte abhängig macht. Die Grundidee dabei ist: Wenn ein Objekt die erste Zeit überstanden hat, dann wird es sehr wahrscheinlich auch weiter dabei bleiben. Es macht also Sinn, zwischen jungen und alten Objekten zu unterscheiden.</p>
+<p><strong><em>Ältere Objekte bleiben unter sich.</em></strong></p>
+<p>Und eine weitere Beobachtung: Ältere Objekte bleiben meist unter sich, sie referenzieren nur selten junge Objekte. Der Dialog zwischen den Generationen findet bei Objekten nur sehr begrenzt statt. Diese Beobachtungen sind für den überwiegenden Teil von Applikationen zutreffend.</p>
+<p>Wir geben hier einen kurzen Überblick über das Verfahren, wie es von der virtuellen Maschine von Java (Hotspot) angewendet wird.</p>
+<div class="bildbox">
+<p><a name="IDAMZSQ"></a><a onClick="OpenWin('bilder/07_30.gif','Abbildung',800,800)"><img border="0" src="bilderklein/klein07_30.gif" alt="Abbildung"><br><span class="tabunter">Hier klicken, um das Bild zu vergrößern</span></a></p>
+</div>
+<p class="tabunter"><strong>Abbildung 7.30    </strong>Junge und alte Generation von Objekten</p>
+<p><strong><em>Verwendete Speicherbereiche</em></strong></p>
+<p>In Abbildung 7.30 sind die verwendeten Speicherbereiche jeweils mit typischen Bewohnern abgebildet:</p>
+<ul class="gp">
+<li>Neue Objekte werden in einem Bereich angelegt, der <span class="ckursiv">Eden </span>genannt wird. Hier gibt es so kurzlebige Objekte wie Iteratoren oder temporäre Objekte, die nur innerhalb einer Methode verwendet werden. Aber auch langlebige Objekte werden zunächst einmal hier angelegt.</li>
+</ul>
+<ul class="gp">
+<li>Es gibt zwei weitere Bereiche für relativ junge Objekte, die für das bereits beschriebene Verfahren der kopierenden Garbage Collection in From-Space und To-Space eingeteilt sind. Hierhin schaffen es nur Objekte, die eine etwas längere Lebensdauer haben, deshalb wird der Bereich auch <span class="ckursiv">Survivor Space</span> genannt. Hier liegen zum Beispiel fachliche Objekte. Im Beispiel liegen dort auch ein Auftrag und eine Auftragsposition.</li>
+</ul>
+<ul class="gp">
+<li>Schließlich gibt es noch den Bereich für die alte Generation von Objekten, die bereits einige Garbage Collections überstanden haben. Hier landen langlebige Objekte, wie etwa ständig benötigte Fenster einer Applikation, Objekte für Datenbankverbindungen oder auch Aufzählungen, die von der Applikation ständig benötigt werden. Dieser wird auch <span class="ckursiv">Old-Generation-Space </span>genannt.</li>
+</ul>
+<p>Es finden nun zwei ganz verschiedene Arten der Garbage Collection statt. Der Unterschied zwischen den beiden ist etwa der zwischen dem Aufräumen unserer Wohnung und dem kompletten Entrümpeln.</p>
+<p><strong><em>Aufräumen</em></strong></p>
+<p>Die erste Variante, das Aufräumen, wird häufiger durchgeführt und arbeitet nur auf dem Bereich der jungen Generation. Wir sprechen dabei von einer kleinen (minor) Garbage Collection. Dabei wird standardmäßig nach dem Copy-Verfahren aus dem Bereich Eden und dem From-Space in den To-Space kopiert.</p>
+<p>Für die Objekte, die aus dem From-Space kopiert werden, wird zusätzlich ein Zähler hochgezählt. Erreicht dieser einen vordefinierten Wert, haben die Objekte also eine größere Zahl von Durchläufen des Garbage Collectors überstanden, dann dürfen sie sich zur alten Generation gesellen und werden in deren Bereich verschoben.</p>
+<p><strong><em>Entrümpeln</em></strong></p>
+<p>Ein komplettes Entrümpeln führen wir ja auch im realen Leben eher selten durch, weil das wesentlich aufwändiger ist. So wird auch Garbage Collection im Bereich der alten Generation nur in größeren Abständen durchgeführt. Diese wird dann als große (major) Garbage Collection bezeichnet.</p>
+<h4 class="t4">So viele Algorithmen und Verfahren: Was geht mich das an?</h4>
+<p>Sofern in unserem gewählten Entwicklungssystem eine gute Garbage Collection zur Verfügung steht, werden wir zumindest kein eigenes Verfahren dafür umsetzen müssen. Das Vorhandensein von erprobten Verfahren zur Garbage Collection ist denn auch ein gutes Argument für die Verwendung einer Sprache wie Java anstelle von C++.</p>
+<p>Allerdings bietet zum Beispiel die Java-Laufzeitumgebung seit der Version 1.4 gleich vier verschiedene Verfahren zur Garbage Collection an, die alle auch über verschiedene Parameter weiter beeinflusst werden können. Das voreingestellte Verfahren wird zwar für viele Fälle funktionieren, um die Effizienz einer Applikation zu steigern, ist ein gezielter Einsatz der speziellen Verfahren aber ein gutes Mittel.</p><br><hr><a name="kommentar"></a><h3>Ihr Kommentar</h3>
+                       Wie hat Ihnen das &lt;openbook&gt; gefallen? Wir freuen uns immer über Ihre freundlichen und kritischen Rückmeldungen.
+                       <form action="http://www.galileo-press.de/feedback/openbook" method="post" style="text-align: center; margin-top: 10px;"><input type="hidden" name="openbookurl" value="http://www.galileocomputing.de/openbook/oop/oop_kapitel_07_003.htm"><input type="hidden" name="buchtitel" value="Objektorientierte Programmierung"><input type="hidden" name="Kapitel" value="7.3 Objekte löschen"><table border="0">
+<tr>
+<td><label for="name">Name</label><br></td>
+<td><input type="text" name="name" id="name" size="40"><br></td>
+</tr>
+<tr>
+<td><label for="email">E-Mail</label><br></td>
+<td><input type="text" name="email" id="email" size="40"><br></td>
+</tr>
+<tr>
+<td valign="top"><label for="comment">Ihr Kommentar</label><br></td>
+<td><textarea name="comment" id="comment" rows="10" cols="40"></textarea><br></td>
+</tr>
+<tr>
+<td>
+</td>
+<td><input type="submit" value="Kommentar absenden"></td>
+</tr>
+</table>
+</form>
+</div></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="100%" class="start" colspan="1" height="22" align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="25%"><a href="oop_kapitel_07_002.htm" class="navnav"> &lt;&lt;   zurück</a></td>
+<td width="49%"><div align="center"><a class="navnav" href="#">&lt;top&gt;</a></div></td>
+<td align="right" width="25%"><div align="right"><a href="oop_kapitel_07_004.htm" class="navnav">vor   &gt;&gt; </a></div></td>
+</tr>
+</table></td>
+</tr>
+</table>
+</div></td>
+<td width="10" valign="top">  </td>
+<td width="160" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" width="160">
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">
+&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor">
+<strong>Zum Katalog</strong></a>
+</td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2">
+<img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><a href="http://www.galileocomputing.de/2103?GPP=opoop">
+<img src="common/9783836214018_s.gif" width="102" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Objektorientierte Programmierung" title="Zum Katalog: Objektorientierte Programmierung">
+<br><br><br><br><br><br><br><strong>Objektorientierte Programmierung</strong><br><img src="common/pfeil_rechts5.gif" border="0" alt="">Jetzt bestellen</a><br /><br />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Ihre Meinung?</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td>Wie hat Ihnen das &lt;openbook&gt; gefallen?<br><a href="#kommentar"><img src="common/pfeil_rechts5.gif" border="0" alt="">Ihre Meinung</a>
+<br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Tipp</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1628?GPP=opoop">
+<img src="common/9783836211161_s.gif" width="117" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Coding for Fun" title="Zum Katalog: Coding for Fun"><br><br><br><br><br><br><br><br>&nbsp;Coding for Fun</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2">&nbsp;<a href="http://www.galileocomputing.de/katalog/buecher/?GPP=opoop" class="autor"><strong>Buchempfehlungen</strong></a></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1142?GPP=opoop">
+<img src="common/9783898427388_s.gif" width="105" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: UML 2.0" title="Zum Katalog: UML 2.0"><br><br><br><br><br><br><br>&nbsp;UML 2.0</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2069?GPP=opoop">
+<img src="common/9783836213714_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Java ist auch eine Insel" title="Zum Katalog: Java ist auch eine Insel"><br><br><br><br><br><br><br>&nbsp;Java ist auch<br>&nbsp;eine Insel</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1746?GPP=opoop">
+<img src="common/9783836211710_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual Basic 2008" title="Zum Katalog: Visual Basic 2008"><br><br><br><br><br><br><br>&nbsp;Visual Basic 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1747?GPP=opoop">
+<img src="common/9783836211727_s.gif" width="119" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Visual C# 2008" title="Zum Katalog: Visual C# 2008"><br><br><br><br><br><br><br>&nbsp;Visual C# 2008</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1299?GPP=opoop">
+<img src="common/9783898428392_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C/C++" title="Zum Katalog: C/C++"><br><br><br><br><br><br><br>&nbsp;C/C++</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2156?GPP=opoop">
+<img src="common/9783836214292_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: C++ von A bis Z" title="Zum Katalog: C++ von A bis Z"><br><br><br><br><br><br><br>&nbsp;C++ von A bis Z</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2078?GPP=opoop">
+<img src="common/9783836213776_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: PHP 5.3 und MySQL 5.1" title="Zum Katalog: PHP 5.3 und MySQL 5.1"><br><br><br><br><br><br><br>&nbsp;PHP 5.3 und<br>&nbsp;MySQL 5.1</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/2124?GPP=opoop">
+<img src="common/9783836214124_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Python 3" title="Zum Katalog: Python 3"><br><br><br><br><br><br><br>&nbsp;Python 3</a><br><br></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td><td valign="top">
+<a href="http://www.galileocomputing.de/1670?GPP=opoop">
+<img src="common/9783836211390_s.gif" width="113" height="90" border="0" align="left" hspace="4" vspace="8" alt="Zum Katalog: Besser PHP programmieren" title="Zum Katalog: Besser PHP programmieren"><br><br><br><br><br><br><br>&nbsp;Besser PHP<br>&nbsp;programmieren</a><br><br></td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td><img src="common/leer.gif" height="2" width="1" border="0" /></img></td>
+</tr>
+<tr>
+<td>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="start" height="20" colspan="2"><span class="autor"><strong>&nbsp;Shopping</strong></span></td>
+</tr>
+<tr>
+<td valign="top" class="tbl4" width="2"><img src="common/leer.gif" border="0" height="1" width="1"></td>
+<td valign="top">
+<table cellspacing="3">
+<tr>
+<td><b>Versandkostenfrei</b> bestellen in Deutschland und &Ouml;sterreich<br><a href="http://www.galileocomputing.de/hilfe/Shop/?GPP=opoop"><img src="common/pfeil_rechts5.gif" border="0" alt="Info">Info</a><br><br></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><br><br><hr width="70%" align="center">
+<div align="center">
+<p class="standard"><strong>Copyright © Galileo Press 2009</strong><br>
+        Für Ihren privaten Gebrauch dürfen Sie die Online-Version natürlich ausdrucken.
+        Ansonsten unterliegt das &lt;openbook&gt; denselben Bestimmungen, wie die
+        gebundene Ausgabe: Das Werk einschließlich aller seiner Teile ist urheberrechtlich
+        geschützt. Alle Rechte vorbehalten einschließlich der Vervielfältigung, Übersetzung,
+        Mikroverfilmung sowie Einspeicherung und Verarbeitung in elektronischen Systemen.</p><br><a href="http://www.galileocomputing.de/">[Galileo Computing]</a><br><br>
+      Galileo Press, Rheinwerkallee 4, 53227 Bonn, Tel.: 0228.42150.0, Fax 0228.42150.77, <a href="mailto:info@galileo-press.de">info@galileo-press.de</a></div><br><br></body>
+</html>
