@@ -1,0 +1,44 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle", "Puzzle.csproj", "{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCode", "ExampleCode\ExampleCode.csproj", "{B84A4E9A-3826-411E-B959-2D31A40C51E9}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collator", "Collator\Collator.csproj", "{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+		UnitTest = UnitTest
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.Debug.ActiveCfg = Debug|.NET
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.Debug.Build.0 = Debug|.NET
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.Release.ActiveCfg = Release|.NET
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.Release.Build.0 = Release|.NET
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.UnitTest.ActiveCfg = UnitTest|.NET
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.UnitTest.Build.0 = UnitTest|.NET
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.Debug.ActiveCfg = Debug|.NET
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.Debug.Build.0 = Debug|.NET
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.Release.ActiveCfg = Release|.NET
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.Release.Build.0 = Release|.NET
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.UnitTest.ActiveCfg = Release|.NET
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.UnitTest.Build.0 = Release|.NET
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.Debug.ActiveCfg = Debug|.NET
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.Debug.Build.0 = Debug|.NET
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.Release.ActiveCfg = Release|.NET
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.Release.Build.0 = Release|.NET
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.UnitTest.ActiveCfg = Release|.NET
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.UnitTest.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

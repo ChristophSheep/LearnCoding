@@ -1,0 +1,40 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle", "Puzzle.csproj", "{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCode", "ExampleCode\ExampleCode.csproj", "{B84A4E9A-3826-411E-B959-2D31A40C51E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collator", "Collator\Collator.csproj", "{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		UnitTest|Any CPU = UnitTest|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.UnitTest|Any CPU.ActiveCfg = UnitTest|Any CPU
+		{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}.UnitTest|Any CPU.Build.0 = UnitTest|Any CPU
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.UnitTest|Any CPU.ActiveCfg = Release|Any CPU
+		{B84A4E9A-3826-411E-B959-2D31A40C51E9}.UnitTest|Any CPU.Build.0 = Release|Any CPU
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.UnitTest|Any CPU.ActiveCfg = Release|Any CPU
+		{B457BCAD-97D8-4CAF-8F93-25C175C9CBE6}.UnitTest|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,130 @@
+<Configuration>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:string">
+      <Item value="Equals" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:int">
+      <Item value="ToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Point">
+      <Item value="Y" priority="0" />
+      <Item value="X" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Random">
+      <Item value="Next" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Graphics">
+      <Item value="DrawImage" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:wsm.Puzzle.IPuzzleModel">
+      <Item value="Initialize" priority="0" />
+      <Item value="SubscribeUpdateImages" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:wsm.Puzzle.LoadImageModel">
+      <Item value="SetImageName" priority="0" />
+      <Item value="GetImageNames" priority="0" />
+      <Item value="SubscribeImageListChanged" priority="0" />
+      <Item value="LoadImage" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:wsm.Puzzle.PuzzleModel">
+      <Item value="MoveRequest" priority="0" />
+      <Item value="GetImages" priority="3" />
+      <Item value="LoadImageRequest" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.ListBox.ObjectCollection">
+      <Item value="Clear" priority="0" />
+      <Item value="AddRange" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:wsm.Puzzle.ILoadImageView">
+      <Item value="GetSelectedImage" priority="0" />
+      <Item value="SubscribeLoadCommand" priority="0" />
+      <Item value="SetImageList" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Collator.CollatorModel">
+      <Item value="Collate" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ExampleCode.IHumbleView">
+      <Item value="SetTaxBracket" priority="1" />
+      <Item value="SetBaseSalary" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:wsm.Puzzle.ImageCutter">
+      <Item value="CutImage" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:wsm.Puzzle.IImageCutter">
+      <Item value="CutImage" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.ListBox">
+      <Item value="Items" priority="1" />
+      <Item value="SelectedItem" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Image[][]">
+      <Item value="Length" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ExampleCode.HumbleModel">
+      <Item value="Calculate" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.TextBox">
+      <Item value="Text" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Image">
+      <Item value="GetThumbnailImage" priority="0" />
+      <Item value="Size" priority="1" />
+      <Item value="Width" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:wsm.Puzzle.IPuzzleView">
+      <Item value="SubscribeLoadImageRequest" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:wsm.Puzzle.ILoadImageModel">
+      <Item value="SubscribeStart" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Drawing.Bitmap[][]">
+      <Item value="Length" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@">
+      <Item value="SetModel" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Windows.Forms.PictureBox">
+      <Item value="Tag" priority="1" />
+      <Item value="Image" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:wsm.Puzzle.Tests.Fred">
+      <Item value="Update" priority="2" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+  <RecentFilesTracker>
+    <RecentFilesTracker>
+      <TrackedFile location="E:\MyStuff\Puzzle\PuzzleMain.cs" offset="144" line="7" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\Collator\CollatorModel.cs" offset="445" line="4" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\Collator\TestCollatorModel.cs" offset="984" line="34" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\LoadImageDialog.cs" offset="4306" line="64" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\ILoadImageView.cs" offset="51" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\Tests\TestLoadImagePresenter.cs" offset="2178" line="65" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\LoadImagePresenter.cs" offset="917" line="11" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\Presenter.cs" offset="235" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\ExampleCode\HumbleDialog.cs" offset="4950" line="43" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\ExampleCode\IHumbleView.cs" offset="45" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\ExampleCode\HumbleModel.cs" offset="541" line="10" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\IView.cs" offset="60" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\IModel.cs" offset="61" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\PuzzlePresenter.cs" offset="0" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\ExampleCode\HumbleMain.cs" offset="350" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\Tests\TestPuzzleModel.cs" offset="3015" line="88" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\LoadImageModel.cs" offset="0" line="18" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\PuzzleForm.cs" offset="0" line="27" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\PuzzleModel.cs" offset="0" line="66" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\ImageCutter.cs" offset="773" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\IImageCutter.cs" offset="122" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\Tests\TestLoadImageModel.cs" offset="1498" line="25" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\ILoadImageModel.cs" offset="253" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\Tests\TestImageCutter.cs" offset="777" line="9" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\Tests\TestPuzzlePresenter.cs" offset="2238" line="45" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\IPuzzleModel.cs" offset="266" line="0" column="0" />
+      <TrackedFile location="E:\MyStuff\Puzzle\IPuzzleView.cs" offset="201" line="0" column="0" />
+    </RecentFilesTracker>
+  </RecentFilesTracker>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean />
+  </SettingsComponent>
+</Configuration>

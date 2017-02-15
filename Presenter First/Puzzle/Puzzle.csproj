@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>7.10.3077</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7DF0DDD0-A659-430F-A2AE-DAD34AD28E13}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName />
+    <AssemblyName>Puzzle</AssemblyName>
+    <AssemblyOriginatorKeyFile />
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>wsm.Puzzle</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject />
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>Runtime\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn />
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>Runtime\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn />
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'UnitTest|AnyCPU' ">
+    <OutputPath>Runtime\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile />
+    <DefineConstants>DEBUG;TRACE;UNITTEST</DefineConstants>
+    <DocumentationFile />
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn />
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nmock">
+      <Name>nmock</Name>
+      <HintPath>Lib\nmock.dll</HintPath>
+    </Reference>
+    <Reference Include="NMockExt">
+      <Name>NMockExt</Name>
+      <HintPath>Lib\NMockExt.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <Name>nunit.framework</Name>
+      <HintPath>Lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Delegates.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EventSender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IImageCutter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoadImage\ILoadImageModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoadImage\ILoadImageView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ImageCutter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPuzzleModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IPuzzleView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoadImage\LoadImageDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadImage\LoadImageModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LoadImage\LoadImagePresenter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Presenter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PuzzleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PuzzleMain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PuzzleModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PuzzlePresenter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\TestHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\TestImageCutter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\TestLoadImageModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\TestLoadImagePresenter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\TestPuzzleModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\TestPuzzlePresenter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="App.ico" />
+    <EmbeddedResource Include="Images\blank.bmp" />
+    <EmbeddedResource Include="Images\ce1.bmp" />
+    <EmbeddedResource Include="Images\ce2.bmp" />
+    <EmbeddedResource Include="Images\ce3.bmp" />
+    <EmbeddedResource Include="Images\ce4.bmp" />
+    <EmbeddedResource Include="Images\ce5.bmp" />
+    <EmbeddedResource Include="Images\ce6.bmp" />
+    <EmbeddedResource Include="Images\ce7.bmp" />
+    <EmbeddedResource Include="Images\ce8.bmp" />
+    <EmbeddedResource Include="LoadImage\LoadImageDialog.resx">
+      <DependentUpon>LoadImageDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PuzzleForm.resx">
+      <DependentUpon>PuzzleForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent />
+    <PostBuildEvent />
+  </PropertyGroup>
+</Project>
