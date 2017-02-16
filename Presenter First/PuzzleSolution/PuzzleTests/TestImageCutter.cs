@@ -35,7 +35,9 @@ namespace org.Puzzle.Tests
         {
             var dllPath = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
             var outPutDirectory = Path.GetDirectoryName(dllPath);
+
             var imagePath = Path.Combine(outPutDirectory, @"Images\USS Enterprise.jpg");
+
             Image wholeImage = Image.FromFile(imagePath);
 
             Image[][] got = cutter.CutImage(wholeImage);
