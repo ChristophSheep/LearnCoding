@@ -1,20 +1,27 @@
+// ReSharper disable InconsistentNaming
+// ReSharper disable once CheckNamespace
 namespace org.Puzzle
 {
     public class LoadImagePresenter
     {
         private readonly ILoadImageView m_view;
+
         private readonly ILoadImageModel m_model;
 
         public LoadImagePresenter(ILoadImageModel model, ILoadImageView view)
         {
             m_view = view;
+
             m_model = model;
 
-            m_view.SubscribeLoadCommand(new EventDelegate(SetSelectedImageInModel));
+            m_view.SubscribeLoadCommand(SetSelectedImageInModel);
 
-            m_model.SubscribeImageListChanged(new EventDelegate(PutImageListIntoView));
-            m_model.SubscribeStart(new EventDelegate(StartDialogInView));
-            m_model.SubscribeFinish(new EventDelegate(CloseDialogInView));
+            m_model.SubscribeImageListChanged(PutImageListIntoView);
+
+            m_model.SubscribeStart(StartDialogInView);
+
+            m_model.SubscribeFinish(CloseDialogInView);
+
         }
 
         private void CloseDialogInView()

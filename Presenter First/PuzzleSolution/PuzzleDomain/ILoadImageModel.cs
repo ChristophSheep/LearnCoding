@@ -2,17 +2,19 @@ using System.Drawing;
 
 namespace org.Puzzle
 {
-  public interface ILoadImageModel
-  {
-    void SubscribeImageListChanged(EventDelegate listener);
-    void SubscribeStart(EventDelegate listener);
-    void SubscribeFinish(EventDelegate listener);
+    public interface ILoadImageModel
+    {
+        void SubscribeImageListChanged(EventDelegate listener);
 
-    Image LoadImage();
+        void SubscribeStart(EventDelegate listener);
 
-    void SetImageName(string name);
+        void SubscribeFinish(EventDelegate listener);
 
-    string[] GetImageNames();
+        Image LoadImage();
 
-  }
+        void SetImageName(string name);
+
+        string[] GetImageNames();
+
+    }
 }

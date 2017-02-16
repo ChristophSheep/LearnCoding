@@ -1,7 +1,7 @@
 namespace org.Puzzle
 {
-  public interface IView
-  {
-    
-  }
+    public interface IView
+    {
+
+    }
 }

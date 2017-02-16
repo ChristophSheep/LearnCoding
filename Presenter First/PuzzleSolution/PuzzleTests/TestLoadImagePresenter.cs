@@ -29,9 +29,8 @@ namespace org.Puzzle.Tests
         [SetUp]
         public void SetUp()
         {
-            modelMock = new DynamicMock(typeof(ILoadImageModel));
+            modelMock = new DynamicMock(typeof(ILoadImageModel)) {Strict = true};
 
-            modelMock.Strict = true;
             model = modelMock.MockInstance as ILoadImageModel;
 
             imageListChangedConstraint = new SavedTypeOf(typeof(EventDelegate));
@@ -43,8 +42,7 @@ namespace org.Puzzle.Tests
             finishConstraint = new SavedTypeOf(typeof(EventDelegate));
             modelMock.Expect("SubscribeFinish", finishConstraint);
 
-            viewMock = new DynamicMock(typeof(ILoadImageView));
-            viewMock.Strict = true;
+            viewMock = new DynamicMock(typeof(ILoadImageView)) {Strict = true};
             view = viewMock.MockInstance as ILoadImageView;
 
             loadCommandConstraint = new SavedTypeOf(typeof(EventDelegate));

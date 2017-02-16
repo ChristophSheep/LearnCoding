@@ -24,6 +24,7 @@ namespace org.Puzzle
 		private System.ComponentModel.Container components = null;
 
     private event PointDelegate MoveRequestEvent;
+
     private event EventDelegate LoadImageRequestEvent;
     
 		public PuzzleForm()
@@ -69,125 +70,155 @@ namespace org.Puzzle
 		/// </summary>
 		private void InitializeComponent()
 		{
-      this.m_piece7 = new System.Windows.Forms.PictureBox();
-      this.m_piece5 = new System.Windows.Forms.PictureBox();
-      this.m_piece6 = new System.Windows.Forms.PictureBox();
-      this.m_piece9 = new System.Windows.Forms.PictureBox();
-      this.m_piece3 = new System.Windows.Forms.PictureBox();
-      this.m_piece8 = new System.Windows.Forms.PictureBox();
-      this.m_piece2 = new System.Windows.Forms.PictureBox();
-      this.m_piece1 = new System.Windows.Forms.PictureBox();
-      this.m_piece4 = new System.Windows.Forms.PictureBox();
-      this.m_loadImageButton = new System.Windows.Forms.Button();
-      this.SuspendLayout();
-      // 
-      // m_piece7
-      // 
-      this.m_piece7.Location = new System.Drawing.Point(8, 248);
-      this.m_piece7.Name = "m_piece7";
-      this.m_piece7.Size = new System.Drawing.Size(100, 100);
-      this.m_piece7.TabIndex = 0;
-      this.m_piece7.TabStop = false;
-      this.m_piece7.Click += new System.EventHandler(this.PieceClick);
-      // 
-      // m_piece5
-      // 
-      this.m_piece5.Location = new System.Drawing.Point(108, 148);
-      this.m_piece5.Name = "m_piece5";
-      this.m_piece5.Size = new System.Drawing.Size(100, 100);
-      this.m_piece5.TabIndex = 1;
-      this.m_piece5.TabStop = false;
-      this.m_piece5.Click += new System.EventHandler(this.PieceClick);
-      // 
-      // m_piece6
-      // 
-      this.m_piece6.Location = new System.Drawing.Point(208, 148);
-      this.m_piece6.Name = "m_piece6";
-      this.m_piece6.Size = new System.Drawing.Size(100, 100);
-      this.m_piece6.TabIndex = 2;
-      this.m_piece6.TabStop = false;
-      this.m_piece6.Click += new System.EventHandler(this.PieceClick);
-      // 
-      // m_piece9
-      // 
-      this.m_piece9.Location = new System.Drawing.Point(208, 248);
-      this.m_piece9.Name = "m_piece9";
-      this.m_piece9.Size = new System.Drawing.Size(100, 100);
-      this.m_piece9.TabIndex = 3;
-      this.m_piece9.TabStop = false;
-      this.m_piece9.Tag = "";
-      this.m_piece9.Click += new System.EventHandler(this.PieceClick);
-      // 
-      // m_piece3
-      // 
-      this.m_piece3.Location = new System.Drawing.Point(208, 48);
-      this.m_piece3.Name = "m_piece3";
-      this.m_piece3.Size = new System.Drawing.Size(100, 100);
-      this.m_piece3.TabIndex = 4;
-      this.m_piece3.TabStop = false;
-      this.m_piece3.Click += new System.EventHandler(this.PieceClick);
-      // 
-      // m_piece8
-      // 
-      this.m_piece8.Location = new System.Drawing.Point(108, 248);
-      this.m_piece8.Name = "m_piece8";
-      this.m_piece8.Size = new System.Drawing.Size(100, 100);
-      this.m_piece8.TabIndex = 5;
-      this.m_piece8.TabStop = false;
-      this.m_piece8.Click += new System.EventHandler(this.PieceClick);
-      // 
-      // m_piece2
-      // 
-      this.m_piece2.Location = new System.Drawing.Point(108, 48);
-      this.m_piece2.Name = "m_piece2";
-      this.m_piece2.Size = new System.Drawing.Size(100, 100);
-      this.m_piece2.TabIndex = 6;
-      this.m_piece2.TabStop = false;
-      this.m_piece2.Click += new System.EventHandler(this.PieceClick);
-      // 
-      // m_piece1
-      // 
-      this.m_piece1.Location = new System.Drawing.Point(8, 48);
-      this.m_piece1.Name = "m_piece1";
-      this.m_piece1.Size = new System.Drawing.Size(100, 100);
-      this.m_piece1.TabIndex = 7;
-      this.m_piece1.TabStop = false;
-      this.m_piece1.Click += new System.EventHandler(this.PieceClick);
-      // 
-      // m_piece4
-      // 
-      this.m_piece4.Location = new System.Drawing.Point(8, 148);
-      this.m_piece4.Name = "m_piece4";
-      this.m_piece4.Size = new System.Drawing.Size(100, 100);
-      this.m_piece4.TabIndex = 8;
-      this.m_piece4.TabStop = false;
-      this.m_piece4.Click += new System.EventHandler(this.PieceClick);
-      // 
-      // m_loadImageButton
-      // 
-      this.m_loadImageButton.Location = new System.Drawing.Point(8, 8);
-      this.m_loadImageButton.Name = "m_loadImageButton";
-      this.m_loadImageButton.TabIndex = 9;
-      this.m_loadImageButton.Text = "Load Image";
-      this.m_loadImageButton.Click += new System.EventHandler(this.m_loadImageButton_Click);
-      // 
-      // PuzzleForm
-      // 
-      this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-      this.ClientSize = new System.Drawing.Size(312, 350);
-      this.Controls.Add(this.m_loadImageButton);
-      this.Controls.Add(this.m_piece4);
-      this.Controls.Add(this.m_piece1);
-      this.Controls.Add(this.m_piece2);
-      this.Controls.Add(this.m_piece8);
-      this.Controls.Add(this.m_piece3);
-      this.Controls.Add(this.m_piece9);
-      this.Controls.Add(this.m_piece6);
-      this.Controls.Add(this.m_piece5);
-      this.Controls.Add(this.m_piece7);
-      this.Name = "PuzzleForm";
-      this.Text = "PF Puzzle";
-      this.ResumeLayout(false);
+            this.m_piece7 = new System.Windows.Forms.PictureBox();
+            this.m_piece5 = new System.Windows.Forms.PictureBox();
+            this.m_piece6 = new System.Windows.Forms.PictureBox();
+            this.m_piece9 = new System.Windows.Forms.PictureBox();
+            this.m_piece3 = new System.Windows.Forms.PictureBox();
+            this.m_piece8 = new System.Windows.Forms.PictureBox();
+            this.m_piece2 = new System.Windows.Forms.PictureBox();
+            this.m_piece1 = new System.Windows.Forms.PictureBox();
+            this.m_piece4 = new System.Windows.Forms.PictureBox();
+            this.m_loadImageButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece4)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // m_piece7
+            // 
+            this.m_piece7.BackColor = System.Drawing.SystemColors.Window;
+            this.m_piece7.Location = new System.Drawing.Point(13, 254);
+            this.m_piece7.Name = "m_piece7";
+            this.m_piece7.Size = new System.Drawing.Size(100, 100);
+            this.m_piece7.TabIndex = 0;
+            this.m_piece7.TabStop = false;
+            this.m_piece7.Click += new System.EventHandler(this.PieceClick);
+            // 
+            // m_piece5
+            // 
+            this.m_piece5.BackColor = System.Drawing.SystemColors.Window;
+            this.m_piece5.Location = new System.Drawing.Point(113, 154);
+            this.m_piece5.Name = "m_piece5";
+            this.m_piece5.Size = new System.Drawing.Size(100, 100);
+            this.m_piece5.TabIndex = 1;
+            this.m_piece5.TabStop = false;
+            this.m_piece5.Click += new System.EventHandler(this.PieceClick);
+            // 
+            // m_piece6
+            // 
+            this.m_piece6.BackColor = System.Drawing.SystemColors.Window;
+            this.m_piece6.Location = new System.Drawing.Point(213, 154);
+            this.m_piece6.Name = "m_piece6";
+            this.m_piece6.Size = new System.Drawing.Size(100, 100);
+            this.m_piece6.TabIndex = 2;
+            this.m_piece6.TabStop = false;
+            this.m_piece6.Click += new System.EventHandler(this.PieceClick);
+            // 
+            // m_piece9
+            // 
+            this.m_piece9.BackColor = System.Drawing.SystemColors.Window;
+            this.m_piece9.Location = new System.Drawing.Point(213, 254);
+            this.m_piece9.Name = "m_piece9";
+            this.m_piece9.Size = new System.Drawing.Size(100, 100);
+            this.m_piece9.TabIndex = 3;
+            this.m_piece9.TabStop = false;
+            this.m_piece9.Tag = "";
+            this.m_piece9.Click += new System.EventHandler(this.PieceClick);
+            // 
+            // m_piece3
+            // 
+            this.m_piece3.BackColor = System.Drawing.SystemColors.Window;
+            this.m_piece3.Location = new System.Drawing.Point(213, 54);
+            this.m_piece3.Name = "m_piece3";
+            this.m_piece3.Size = new System.Drawing.Size(100, 100);
+            this.m_piece3.TabIndex = 4;
+            this.m_piece3.TabStop = false;
+            this.m_piece3.Click += new System.EventHandler(this.PieceClick);
+            // 
+            // m_piece8
+            // 
+            this.m_piece8.BackColor = System.Drawing.SystemColors.Window;
+            this.m_piece8.Location = new System.Drawing.Point(113, 254);
+            this.m_piece8.Name = "m_piece8";
+            this.m_piece8.Size = new System.Drawing.Size(100, 100);
+            this.m_piece8.TabIndex = 5;
+            this.m_piece8.TabStop = false;
+            this.m_piece8.Click += new System.EventHandler(this.PieceClick);
+            // 
+            // m_piece2
+            // 
+            this.m_piece2.BackColor = System.Drawing.SystemColors.Window;
+            this.m_piece2.Location = new System.Drawing.Point(113, 54);
+            this.m_piece2.Name = "m_piece2";
+            this.m_piece2.Size = new System.Drawing.Size(100, 100);
+            this.m_piece2.TabIndex = 6;
+            this.m_piece2.TabStop = false;
+            this.m_piece2.Click += new System.EventHandler(this.PieceClick);
+            // 
+            // m_piece1
+            // 
+            this.m_piece1.BackColor = System.Drawing.SystemColors.Window;
+            this.m_piece1.Location = new System.Drawing.Point(13, 54);
+            this.m_piece1.Name = "m_piece1";
+            this.m_piece1.Size = new System.Drawing.Size(100, 100);
+            this.m_piece1.TabIndex = 7;
+            this.m_piece1.TabStop = false;
+            this.m_piece1.Click += new System.EventHandler(this.PieceClick);
+            // 
+            // m_piece4
+            // 
+            this.m_piece4.BackColor = System.Drawing.SystemColors.Window;
+            this.m_piece4.Location = new System.Drawing.Point(13, 154);
+            this.m_piece4.Name = "m_piece4";
+            this.m_piece4.Size = new System.Drawing.Size(100, 100);
+            this.m_piece4.TabIndex = 8;
+            this.m_piece4.TabStop = false;
+            this.m_piece4.Click += new System.EventHandler(this.PieceClick);
+            // 
+            // m_loadImageButton
+            // 
+            this.m_loadImageButton.Location = new System.Drawing.Point(113, 12);
+            this.m_loadImageButton.Name = "m_loadImageButton";
+            this.m_loadImageButton.Size = new System.Drawing.Size(100, 24);
+            this.m_loadImageButton.TabIndex = 9;
+            this.m_loadImageButton.Text = "Load Image";
+            this.m_loadImageButton.Click += new System.EventHandler(this.m_loadImageButton_Click);
+            // 
+            // PuzzleForm
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(326, 367);
+            this.Controls.Add(this.m_loadImageButton);
+            this.Controls.Add(this.m_piece4);
+            this.Controls.Add(this.m_piece1);
+            this.Controls.Add(this.m_piece2);
+            this.Controls.Add(this.m_piece8);
+            this.Controls.Add(this.m_piece3);
+            this.Controls.Add(this.m_piece9);
+            this.Controls.Add(this.m_piece6);
+            this.Controls.Add(this.m_piece5);
+            this.Controls.Add(this.m_piece7);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(334, 394);
+            this.Name = "PuzzleForm";
+            this.Text = "Puzzle";
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_piece4)).EndInit();
+            this.ResumeLayout(false);
 
     }
 		#endregion

@@ -2,11 +2,12 @@ using System.Drawing;
 
 namespace org.Puzzle
 {
-	public interface IPuzzleView
-	{
-	  void SubscribeMoveRequest(PointDelegate listener);
-    void SubscribeLoadImageRequest(EventDelegate listener);
+    public interface IPuzzleView
+    {
+        void SubscribeMoveRequest(PointDelegate listener);
 
-	  void SetImages(Image[][] images);
-	}
+        void SubscribeLoadImageRequest(EventDelegate listener);
+
+        void SetImages(Image[][] images);
+    }
 }

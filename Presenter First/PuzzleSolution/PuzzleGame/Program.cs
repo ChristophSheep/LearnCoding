@@ -15,14 +15,13 @@ namespace org.Puzzle
             ILoadImageModel loadImageModel = new LoadImageModel();
             ILoadImageView loadImageView = new LoadImageDialog();
 
-            var loadImagePresenter = new LoadImagePresenter(loadImageModel, loadImageView);
-
-            IImageCutter imageCutter = new ImageCutter();
+            new LoadImagePresenter(loadImageModel, loadImageView);
 
             var view = new PuzzleForm();
 
-            IPuzzleModel model = new PuzzleModel(loadImageModel, imageCutter);
-            var puzzlePresenter = new PuzzlePresenter(model, view);
+            IPuzzleModel model = new PuzzleModel(loadImageModel, new ImageCutter());
+
+            new PuzzlePresenter(model, view);
 
             model.Initialize();
 
